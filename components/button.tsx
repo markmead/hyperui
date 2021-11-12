@@ -3,9 +3,9 @@ import type { FunctionComponent } from 'react'
 import styles from '../styles/button.module.css'
 
 type Props = {
-  text: string
-  link: string
-  className: string
+  text?: string
+  link?: string
+  className?: string
 }
 
 const Button: FunctionComponent<Props> = ({ text, link, className }) => {

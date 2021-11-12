@@ -11,8 +11,8 @@ type Props = {
   title: string
   subtitle: string
   button: boolean
-  buttonText: string
-  buttonLink: string
+  buttonText?: string
+  buttonLink?: string
 }
 
 const Banner: FunctionComponent<Props> = ({
@@ -24,7 +24,7 @@ const Banner: FunctionComponent<Props> = ({
 }) => {
   return (
     <section className="relative">
-      <Image src={pulse} alt="pulse" layout="fill" quality={100} />
+      <Image src={pulse} alt="pulse" layout="fill" quality={100} priority />
 
       <div className={`container ${styles.container}`}>
         <h1 className={styles.title}>{title}</h1>

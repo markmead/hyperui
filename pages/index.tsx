@@ -1,20 +1,24 @@
 import type { NextPage } from 'next'
 
+import { Collection } from '../interface/collection'
+import { collections } from '../lib/collections'
+
 import Banner from '../components/banner'
 import Grid from '../components/grid'
 
-const Home: NextPage = () => {
-  let blocks = [
-    {
-      title: 'What is this?',
-      count: 4,
+export async function getStaticProps() {
+  return {
+    props: {
+      collections,
     },
-    {
-      title: 'How does it work?',
-      count: 8,
-    },
-  ]
+  }
+}
 
+type Props = {
+  collections: Array<Collection>
+}
+
+const Home: NextPage<Props> = ({ collections }) => {
   return (
     <div>
       <Banner
@@ -26,7 +30,10 @@ const Home: NextPage = () => {
       />
 
       <div className="container py-8">
-        <Grid className="grid-cols-2 gap-4 sm:grid-cols-4" blocks={blocks} />
+        <Grid
+          className="grid-cols-2 gap-4 sm:grid-cols-4"
+          blocks={collections}
+        />
       </div>
     </div>
   )

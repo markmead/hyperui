@@ -1,16 +1,18 @@
 import type { FunctionComponent } from 'react'
+import { Collection } from '../interface/collection'
+
 import Card from './card'
 
 type Props = {
   className: string
-  blocks: Array<{ title: string; count: number }>
+  blocks: Array<Collection>
 }
 
 const Grid: FunctionComponent<Props> = ({ className, blocks }) => {
   return (
     <div className={`grid ${className}`}>
       {blocks.map((block, index) => (
-        <Card title={block.title} count={block.count} key={index} />
+        <Card collection={block} key={index} />
       ))}
     </div>
   )
