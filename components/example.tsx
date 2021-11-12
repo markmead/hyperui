@@ -5,28 +5,28 @@ import { Component } from '../interface/component'
 
 type Props = {
   component: Component
-  slug: string
 }
 
-const Example: FunctionComponent<Props> = ({ component, slug }) => {
-  let [html, setHtml] = useState<String>()
-  let url = 'http://localhost:3000'
+const Example: FunctionComponent<Props> = ({ component }) => {
+  let [html, setHtml] = useState<string>()
 
   let { id, title } = component
 
   useEffect(() => {
-    fetch(`${url}/components/${slug}/${id}.html`)
+    let { origin, href } = window.location
+
+    fetch(`${href}/${id}.html`)
       .then((res) => {
         if (res.ok) {
           res.text().then((html) => {
-            let code = `<link rel="stylesheet" href="${url}/css/build.css"><body>${html}</body>`
+            let code = `<link rel="stylesheet" href="${origin}/css/build.css"><body>${html}</body>`
 
             setHtml(code)
           })
         }
       })
       .catch((err) => console.error(err))
-  }, [url, id, slug])
+  }, [id])
 
   return (
     <div>

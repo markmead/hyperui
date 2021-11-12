@@ -26,7 +26,6 @@ export async function getStaticProps({ params: { id } }: Params) {
     props: {
       collection,
       components,
-      slug: id,
     },
   }
 }
@@ -40,10 +39,9 @@ type Params = {
 type Props = {
   collection: Collection
   components: Array<Component>
-  slug: string
 }
 
-const Collection: NextPage<Props> = ({ collection, components, slug }) => {
+const Collection: NextPage<Props> = ({ collection, components }) => {
   return (
     <div>
       <Banner
@@ -53,7 +51,7 @@ const Collection: NextPage<Props> = ({ collection, components, slug }) => {
       />
 
       {components.map((component, index) => (
-        <Example key={index} component={component} slug={slug} />
+        <Example key={index} component={component} />
       ))}
     </div>
   )
