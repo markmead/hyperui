@@ -3,7 +3,8 @@ module.exports = {
   purge: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    './public/components/**/*.html',
+    './public/**/**/*.html',
+    './lib/*.{js,ts}',
   ],
   darkMode: false,
   theme: {

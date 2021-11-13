@@ -1,14 +1,15 @@
 import { Component, ComponentGroup } from '../interface/component'
-import { cards, banners } from './groups'
+import { announcements, inputs } from './groups'
 
 export const components: Array<ComponentGroup> = [
   {
-    id: 'cards',
-    components: cards,
+    id: 'announcements',
+    components: announcements,
   },
   {
-    id: 'banners',
-    components: banners,
+    id: 'inputs',
+    components: inputs,
+    spacing: 'max-w-sm mx-auto p-4',
   },
 ]
 

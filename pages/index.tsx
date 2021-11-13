@@ -5,6 +5,7 @@ import { collections } from '../lib/collections'
 
 import Banner from '../components/banner'
 import Grid from '../components/grid'
+import Header from '../components/header'
 
 export async function getStaticProps() {
   return {
@@ -21,6 +22,8 @@ type Props = {
 const Home: NextPage<Props> = ({ collections }) => {
   return (
     <div>
+      <Header />
+
       <Banner
         title="HyperUI"
         subtitle="An Open Source Tailwind CSS Component Library"

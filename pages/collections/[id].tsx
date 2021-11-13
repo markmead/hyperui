@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 
-import { collectionIds, currentCollection } from '../../lib/collections'
-
 import Banner from '../../components/banner'
 import Example from '../../components/example'
 
 import { Collection } from '../../interface/collection'
 import { Component } from '../../interface/component'
+
 import { currentCollectionComponents } from '../../lib/components'
+import { collectionIds, currentCollection } from '../../lib/collections'
 
 export async function getStaticPaths() {
   let paths = collectionIds()
@@ -42,6 +42,7 @@ type Props = {
 }
 
 const Collection: NextPage<Props> = ({ collection, components }) => {
+  let { spacing } = collection
   return (
     <div>
       <Banner
@@ -50,9 +51,17 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
         button={false}
       />
 
-      {components.map((component, index) => (
-        <Example key={index} component={component} />
-      ))}
+      <div className="container py-8 sm:py-16">
+        <ul className="space-y-8 sm:space-y-16">
+          {components.map((component, index) => (
+            <Example
+              key={index}
+              component={component}
+              parentSpacing={spacing}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

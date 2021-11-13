@@ -1,5 +1,6 @@
 export interface Collection {
-  title: string
   id: string
+  title: string
   count: number
+  spacing?: string
 }
