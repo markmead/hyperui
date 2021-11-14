@@ -1,11 +1,11 @@
 .container {
-  @apply relative py-32;
+  @apply py-32 text-center;
 }
 
 .title {
-  @apply text-4xl font-bold text-white/80 sm:text-6xl;
+  @apply text-4xl font-bold text-black sm:text-6xl;
 }
 
 .subtitle {
-  @apply mt-4 text-xl text-white/80;
+  @apply mt-4 text-sm font-medium tracking-wide text-gray-400 uppercase;
 }

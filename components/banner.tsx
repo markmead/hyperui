@@ -1,11 +1,8 @@
 import type { FunctionComponent } from 'react'
 
-import Image from 'next/image'
-
 import Button from './button'
 
 import styles from '../styles/banner.module.css'
-import pulse from '../public/pulse.jpeg'
 
 type Props = {
   title: string
@@ -23,9 +20,7 @@ const Banner: FunctionComponent<Props> = ({
   buttonLink,
 }) => {
   return (
-    <section className="relative">
-      <Image src={pulse} alt="pulse" layout="fill" quality={100} priority />
-
+    <section>
       <div className={`container ${styles.container}`}>
         <h1 className={styles.title}>{title}</h1>
 

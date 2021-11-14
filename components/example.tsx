@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Component } from '../interface/component'
 
 import Breakpoint from './breakpoint'
+import Code from './code'
 
 type Props = {
   component: Component
@@ -12,6 +13,7 @@ type Props = {
 
 const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
   let [html, setHtml] = useState<string>()
+  let [code, setCode] = useState<string>()
   let [width, setWidth] = useState<string>('100%')
 
   let { id, title, spacing } = component
@@ -35,6 +37,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
             `
 
             setHtml(code)
+            setCode(html)
           })
         }
       })
@@ -58,6 +61,8 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
         className="h-[300px] sm:h-[500px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
         style={{ width }}
       ></iframe>
+
+      <Code code={code} />
     </li>
   )
 }
