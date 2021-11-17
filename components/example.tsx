@@ -50,9 +50,26 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
         <h2 className="text-xl font-medium">{title}</h2>
 
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
-          <Breakpoint handleWidth={setWidth} size="320px" text="Mobile" />
-          <Breakpoint handleWidth={setWidth} size="640px" text="Tablet" />
-          <Breakpoint handleWidth={setWidth} size="100%" text="Desktop" />
+          <Breakpoint
+            handleWidth={setWidth}
+            size="320px"
+            text="Mobile"
+            emoji="📱"
+          />
+
+          <Breakpoint
+            handleWidth={setWidth}
+            size="640px"
+            text="Tablet"
+            emoji="💻"
+          />
+
+          <Breakpoint
+            handleWidth={setWidth}
+            size="100%"
+            text="Desktop"
+            emoji="🖥"
+          />
         </div>
       </div>
 

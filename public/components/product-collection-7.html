@@ -1,0 +1,415 @@
+<!--
+  This component requires JavaScript
+
+  Basic JavaScript implementation to show/hide the form on mobile
+
+  ```
+  button.addEventListener('click', () => form.classList.toggle('hidden'))
+  ```
+-->
+
+<section class="py-16 sm:py-24">
+  <div class="px-4 mx-auto grid grid-cols-1 gap-4 max-w-screen-2xl sm:px-6 lg:px-8 lg:grid-cols-4 lg:items-start">
+    <div>
+      <button
+        type="button"
+        class="flex items-center justify-between w-full p-3 text-xs font-medium tracking-wide uppercase bg-gray-100 border border-gray-200 lg:hidden"
+      >
+        Show Filters
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <form class="hidden border border-gray-200 divide-y divide-gray-200 lg:block">
+        <div>
+          <fieldset>
+            <legend
+              class="w-full p-3 text-xs font-medium tracking-wide text-center uppercase bg-gray-100 border-b border-gray-200"
+            >
+              Product Type
+            </legend>
+
+            <div class="p-4 space-y-2">
+              <div class="flex items-center">
+                <input type="checkbox" id="toy" class="w-6 h-6 border-gray-300" />
+                <label for="toy" class="ml-3 text-sm font-medium">Toy</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="game" class="w-6 h-6 border-gray-300" />
+                <label for="game" class="ml-3 text-sm font-medium">Game</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="download" class="w-6 h-6 border-gray-300" />
+                <label for="download" class="ml-3 text-sm font-medium">Download</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="outdoors" class="w-6 h-6 border-gray-300" />
+                <label for="outdoors" class="ml-3 text-sm font-medium">Outdoors</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div>
+          <fieldset>
+            <legend
+              class="w-full p-3 text-xs font-medium tracking-wide text-center uppercase bg-gray-100 border-b border-gray-200"
+            >
+              Age
+            </legend>
+
+            <div class="p-4 space-y-2">
+              <div class="flex items-center">
+                <input type="checkbox" id="3_plus" class="w-6 h-6 border-gray-300" />
+                <label for="3_plus" class="ml-3 text-sm font-medium">3+</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="8_plus" class="w-6 h-6 border-gray-300" />
+                <label for="8_plus" class="ml-3 text-sm font-medium">8+</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="12_plus" class="w-6 h-6 border-gray-300" />
+                <label for="12_plus" class="ml-3 text-sm font-medium">12+</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="16_plus" class="w-6 h-6 border-gray-300" />
+                <label for="16_plus" class="ml-3 text-sm font-medium">16+</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id="adults" class="w-6 h-6 border-gray-300" />
+                <label for="adults" class="ml-3 text-sm font-medium">Adults</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="flex justify-between p-3">
+          <button type="button" name="reset" class="p-2 text-xs font-medium text-gray-500 uppercase">
+            Reset All
+          </button>
+
+          <button type="button" name="commit" class="p-2 text-xs font-medium text-white uppercase bg-green-600">
+            Apply Filters
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="lg:col-span-3">
+      <div class="flex items-center justify-between">
+        <p class="text-sm text-gray-500">
+          Showing 10 of 30 products
+        </p>
+
+        <div class="ml-4">
+          <label for="sort" class="sr-only">Sort</label>
+
+          <select class="text-sm border-gray-200" id="sort">
+            <option readonly>Sort by</option>
+            <option value="Name ASC">Name ASC</option>
+            <option value="Name DESC">Name DESC</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 bg-gray-200 border border-gray-200 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3">
+        <div class="relative bg-white">
+          <button class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+
+          <img class="object-contain w-full h-64 sm:h-96" src="https://www.hyperui.dev/code/photos/toy-1.jpeg" alt="" />
+
+          <div class="p-6">
+            <span class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"> New </span>
+
+            <h5 class="mt-4 text-xl font-bold text-gray-900">Lorem ipsum dolor sit amet</h5>
+
+            <p class="mt-2 text-sm font-medium text-gray-600">$14.99</p>
+
+            <a class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm" href="">
+              <span class="text-sm font-medium"> Add to cart </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 ml-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative bg-white">
+          <button class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+
+          <img class="object-contain w-full h-64 sm:h-96" src="https://www.hyperui.dev/code/photos/toy-1.jpeg" alt="" />
+
+          <div class="p-6">
+            <span class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"> New </span>
+
+            <h5 class="mt-4 text-xl font-bold text-gray-900">Lorem ipsum dolor sit amet</h5>
+
+            <p class="mt-2 text-sm font-medium text-gray-600">$14.99</p>
+
+            <a class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm" href="">
+              <span class="text-sm font-medium"> Add to cart </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 ml-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative bg-white">
+          <button class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+
+          <img class="object-contain w-full h-64 sm:h-96" src="https://www.hyperui.dev/code/photos/toy-1.jpeg" alt="" />
+
+          <div class="p-6">
+            <span class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"> New </span>
+
+            <h5 class="mt-4 text-xl font-bold text-gray-900">Lorem ipsum dolor sit amet</h5>
+
+            <p class="mt-2 text-sm font-medium text-gray-600">$14.99</p>
+
+            <a class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm" href="">
+              <span class="text-sm font-medium"> Add to cart </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 ml-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative bg-white">
+          <button class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+
+          <img class="object-contain w-full h-64 sm:h-96" src="https://www.hyperui.dev/code/photos/toy-1.jpeg" alt="" />
+
+          <div class="p-6">
+            <span class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"> New </span>
+
+            <h5 class="mt-4 text-xl font-bold text-gray-900">Lorem ipsum dolor sit amet</h5>
+
+            <p class="mt-2 text-sm font-medium text-gray-600">$14.99</p>
+
+            <a class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm" href="">
+              <span class="text-sm font-medium"> Add to cart </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 ml-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative bg-white">
+          <button class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+
+          <img class="object-contain w-full h-64 sm:h-96" src="https://www.hyperui.dev/code/photos/toy-1.jpeg" alt="" />
+
+          <div class="p-6">
+            <span class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"> New </span>
+
+            <h5 class="mt-4 text-xl font-bold text-gray-900">Lorem ipsum dolor sit amet</h5>
+
+            <p class="mt-2 text-sm font-medium text-gray-600">$14.99</p>
+
+            <a class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm" href="">
+              <span class="text-sm font-medium"> Add to cart </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 ml-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative bg-white">
+          <button class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+
+          <img class="object-contain w-full h-64 sm:h-96" src="https://www.hyperui.dev/code/photos/toy-1.jpeg" alt="" />
+
+          <div class="p-6">
+            <span class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"> New </span>
+
+            <h5 class="mt-4 text-xl font-bold text-gray-900">Lorem ipsum dolor sit amet</h5>
+
+            <p class="mt-2 text-sm font-medium text-gray-600">$14.99</p>
+
+            <a class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm" href="">
+              <span class="text-sm font-medium"> Add to cart </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 ml-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

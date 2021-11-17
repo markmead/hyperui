@@ -1,10 +1,49 @@
 import { Component, ComponentGroup } from '../interface/component'
-import { announcements, inputs } from './groups'
+import {
+  alerts,
+  announcements,
+  banners,
+  breadcrumbs,
+  ctas,
+  emptyStates,
+  faqs,
+  footers,
+  inputs,
+} from './groups'
 
 export const components: Array<ComponentGroup> = [
   {
+    id: 'alerts',
+    components: alerts,
+    spacing: 'max-w-sm mx-auto p-4 space-y-4',
+  },
+  {
     id: 'announcements',
     components: announcements,
+  },
+  {
+    id: 'banners',
+    components: banners,
+  },
+  {
+    id: 'breadcrumbs',
+    components: breadcrumbs,
+  },
+  {
+    id: 'ctas',
+    components: ctas,
+  },
+  {
+    id: 'empty-states',
+    components: emptyStates,
+  },
+  {
+    id: 'faqs',
+    components: faqs,
+  },
+  {
+    id: 'footers',
+    components: footers,
   },
   {
     id: 'inputs',

@@ -3,9 +3,9 @@
 }
 
 .title {
-  @apply text-4xl font-bold text-black sm:text-6xl;
+  @apply text-4xl font-bold sm:text-6xl;
 }
 
 .subtitle {
-  @apply mt-4 text-sm font-medium tracking-wide text-gray-400 uppercase;
+  @apply mt-4 text-sm text-gray-500;
 }

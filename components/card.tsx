@@ -14,8 +14,8 @@ const Card: FunctionComponent<Props> = ({ collection }) => {
   return (
     <Link href={`collections/${id}`}>
       <a className="p-8 border-2 border-black">
-        <p>{count}</p>
-        <h2>{title}</h2>
+        <p className="text-sm">{count} Components</p>
+        <h2 className="mt-1 text-lg font-medium">{title}</h2>
       </a>
     </Link>
   )

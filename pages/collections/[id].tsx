@@ -59,7 +59,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
       <div>
         <Banner
           title={collection.title}
-          subtitle={`${collection.count} components`}
+          subtitle={`${collection.count} Components`}
           button={false}
         />
 
@@ -76,10 +76,13 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
         </div>
 
         <ToastContainer
-          limit={1}
-          position="bottom-center"
           hideProgressBar
-          theme="dark"
+          limit={1}
+          closeButton={false}
+          draggable={false}
+          position="bottom-center"
+          theme="light"
+          className="text-center"
         />
       </div>
     </ToastContext.Provider>

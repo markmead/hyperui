@@ -1,3 +1,5 @@
+let colors = require('tailwindcss/colors')
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -16,7 +18,11 @@ module.exports = {
         lg: '2rem',
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        ...colors,
+      },
+    },
   },
   variants: {
     extend: {},
