@@ -28,7 +28,16 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
         if (res.ok) {
           res.text().then((html) => {
             let code = `
+              <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                  let links = [...document.querySelectorAll('a')]
+
+                  links.forEach(link => link.addEventListener('click', (e) => e.preventDefault()))
+                })
+              </script>
+
               <link rel="stylesheet" href="${origin}/css/build.css">
+
               <body>
                 <div class="${wrapper}">
                   ${html}
@@ -77,6 +86,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
         srcDoc={html}
         className="h-[300px] sm:h-[500px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
         style={{ width }}
+        loading="lazy"
       ></iframe>
 
       <Code code={code} />
