@@ -89,7 +89,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
         loading="lazy"
       ></iframe>
 
-      <Code code={code} />
+      {code && <Code code={code} />}
     </li>
   )
 }

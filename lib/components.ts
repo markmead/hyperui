@@ -4,6 +4,8 @@ import {
   announcements,
   banners,
   breadcrumbs,
+  buttons,
+  cards,
   ctas,
   emptyStates,
   faqs,
@@ -26,8 +28,18 @@ export const components: Array<ComponentGroup> = [
     components: banners,
   },
   {
+    id: 'buttons',
+    components: buttons,
+    spacing: 'flex justify-center p-4',
+  },
+  {
     id: 'breadcrumbs',
     components: breadcrumbs,
+  },
+  {
+    id: 'cards',
+    components: cards,
+    spacing: 'max-w-md mx-auto p-4',
   },
   {
     id: 'ctas',

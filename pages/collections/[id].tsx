@@ -81,7 +81,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
           closeButton={false}
           draggable={false}
           position="bottom-center"
-          theme="light"
+          theme="dark"
           className="text-center"
         />
       </div>

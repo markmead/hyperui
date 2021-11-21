@@ -31,7 +31,7 @@ const Home: NextPage<Props> = ({ collections }) => {
 
       <div className="container py-8" id="componentGrid">
         <Grid
-          className="grid-cols-2 gap-4 sm:grid-cols-4"
+          className="gap-4 sm:grid-cols-2 md:grid-cols-4"
           blocks={collections}
         />
       </div>

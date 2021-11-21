@@ -1,5 +1,5 @@
 .container {
-  @apply py-32 text-center;
+  @apply py-16 text-center lg:py-32;
 }
 
 .title {
