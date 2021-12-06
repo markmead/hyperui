@@ -6,11 +6,17 @@ import {
   breadcrumbs,
   buttons,
   cards,
+  carts,
+  content,
   ctas,
   emptyStates,
   faqs,
   footers,
+  forms,
   inputs,
+  productCollections,
+  stats,
+  tags,
 } from './groups'
 
 export const components: Array<ComponentGroup> = [
@@ -42,6 +48,14 @@ export const components: Array<ComponentGroup> = [
     spacing: 'max-w-md mx-auto p-4',
   },
   {
+    id: 'carts',
+    components: carts,
+  },
+  {
+    id: 'content',
+    components: content,
+  },
+  {
     id: 'ctas',
     components: ctas,
   },
@@ -59,9 +73,26 @@ export const components: Array<ComponentGroup> = [
     components: footers,
   },
   {
+    id: 'forms',
+    components: forms,
+  },
+  {
     id: 'inputs',
     components: inputs,
     spacing: 'max-w-sm mx-auto p-4',
+  },
+  {
+    id: 'product-collections',
+    components: productCollections,
+  },
+  {
+    id: 'stats',
+    components: stats,
+  },
+  {
+    id: 'tags',
+    components: tags,
+    spacing: 'flex justify-center p-4',
   },
 ]
 
