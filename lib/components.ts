@@ -48,6 +48,7 @@ export const components: Array<ComponentGroup> = [
   {
     id: 'empty-states',
     components: emptyStates,
+    spacing: 'max-w-lg mx-auto p-4',
   },
   {
     id: 'faqs',

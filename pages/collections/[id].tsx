@@ -64,15 +64,17 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
         />
 
         <div className="container py-8 sm:py-16">
-          <ul className="space-y-8 sm:space-y-16">
-            {components.map((component, index) => (
-              <Example
-                key={index}
-                component={component}
-                parentSpacing={spacing}
-              />
-            ))}
-          </ul>
+          <div className="flow-root">
+            <ul className="-my-8 divide-y divide-gray-100 lg:-my-16">
+              {components.map((component, index) => (
+                <Example
+                  key={index}
+                  component={component}
+                  parentSpacing={spacing}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
 
         <ToastContainer

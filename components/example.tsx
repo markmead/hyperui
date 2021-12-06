@@ -16,7 +16,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
   let [code, setCode] = useState<string>()
   let [width, setWidth] = useState<string>('100%')
 
-  let { id, title, spacing } = component
+  let { id, spacing } = component
 
   let wrapper = spacing ? spacing : parentSpacing
 
@@ -54,10 +54,8 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
   })
 
   return (
-    <li>
+    <li className="py-8 lg:py-16">
       <div className="flex justify-between item-center">
-        <h2 className="text-xl font-medium">{title}</h2>
-
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Breakpoint
             handleWidth={setWidth}
@@ -84,7 +82,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
 
       <iframe
         srcDoc={html}
-        className="h-[300px] sm:h-[500px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
+        className="h-[400px] sm:h-[600px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
         style={{ width }}
         loading="lazy"
       ></iframe>
