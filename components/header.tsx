@@ -42,7 +42,7 @@ const Header: FunctionComponent = () => {
           <a className="text-sm font-medium">HyperUI</a>
         </Link>
 
-        <div className="relative">
+        <div className="relative flex justify-end flex-1">
           <button
             ref={buttonRef}
             type="button"
@@ -56,14 +56,16 @@ const Header: FunctionComponent = () => {
             <nav
               ref={menuRef}
               role="navigation"
-              className="absolute right-0 top-auto p-4 mt-1 space-y-1 bg-gray-100 rounded-lg shadow-xl"
+              className="absolute right-0 grid grid-cols-2 p-4 mt-1 bg-gray-100 rounded-lg shadow-xl top-full"
             >
               {collections.map((collection, index) => {
                 let { id, title } = collection
 
                 return (
                   <Link key={index} href={`/collections/${id}`}>
-                    <a className="block text-sm font-medium">{title}</a>
+                    <a className="block p-1 text-xs font-medium whitespace-nowrap">
+                      {title}
+                    </a>
                   </Link>
                 )
               })}
