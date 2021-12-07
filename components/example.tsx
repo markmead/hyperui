@@ -82,7 +82,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
 
       <iframe
         srcDoc={html}
-        className="h-[400px] sm:h-[600px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
+        className="h-[400px] sm:h-[640px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
         style={{ width }}
         loading="lazy"
       ></iframe>

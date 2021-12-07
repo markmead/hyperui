@@ -159,6 +159,30 @@ export const inputs = [
   { id: 6, spacing: 'max-w-lg mx-auto p-4' },
 ]
 
+export const navigations = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]
+
+export const offCanvasMenus = [{ id: 1 }, { id: 2 }, { id: 3 }]
+
+export const popups = [
+  { id: 1, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 2, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 3, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 4, spacing: 'p-4 max-w-sm mx-auto' },
+  { id: 5, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 6, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 7, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 8 },
+  { id: 9 },
+  { id: 10, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
+]
+
 export const productCollections = [
   { id: 1 },
   { id: 2 },
@@ -177,6 +201,15 @@ export const stats = [
   { id: 5, spacing: 'max-w-lg mx-auto p-4 space-y-4' },
 ]
 
+export const tabs = [
+  { id: 1 },
+  { id: 2, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 3, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 4, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 5, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 6, spacing: 'p-4 max-w-5xl mx-auto' },
+]
+
 export const tags = [
   { id: 1, spacing: 'flex justify-center p-4 space-x-4' },
   { id: 2, spacing: 'flex justify-center p-4 space-x-4' },
@@ -186,4 +219,23 @@ export const tags = [
   { id: 6 },
   { id: 7 },
   { id: 8 },
+]
+
+export const testimonials = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+]
+
+export const titles = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3, spacing: 'max-w-xl mx-auto p-4 space-y-4' },
+  { id: 4 },
 ]

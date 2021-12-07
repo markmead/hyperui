@@ -14,9 +14,15 @@ import {
   footers,
   forms,
   inputs,
+  navigations,
+  offCanvasMenus,
+  popups,
   productCollections,
   stats,
+  tabs,
   tags,
+  testimonials,
+  titles,
 } from './groups'
 
 export const components: Array<ComponentGroup> = [
@@ -82,6 +88,18 @@ export const components: Array<ComponentGroup> = [
     spacing: 'max-w-sm mx-auto p-4',
   },
   {
+    id: 'navigations',
+    components: navigations,
+  },
+  {
+    id: 'off-canvas-menus',
+    components: offCanvasMenus,
+  },
+  {
+    id: 'popups',
+    components: popups,
+  },
+  {
     id: 'product-collections',
     components: productCollections,
   },
@@ -90,9 +108,21 @@ export const components: Array<ComponentGroup> = [
     components: stats,
   },
   {
+    id: 'tabs',
+    components: tabs,
+  },
+  {
     id: 'tags',
     components: tags,
     spacing: 'flex justify-center p-4',
+  },
+  {
+    id: 'testimonials',
+    components: testimonials,
+  },
+  {
+    id: 'titles',
+    components: titles,
   },
 ]
 
