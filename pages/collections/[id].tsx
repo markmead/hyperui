@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Head from 'next/head'
 
 // Interfaces
 import { Collection } from '../../interface/collection'
@@ -52,41 +53,55 @@ type Props = {
 }
 
 const Collection: NextPage<Props> = ({ collection, components }) => {
+  let meta = {
+    title: `${collection.title} Tailwind CSS Components | HyperUI`,
+    description: `Range of ${collection.title} Tailwind CSS components.`,
+  }
+
   let { spacing } = collection
 
   return (
     <ToastContext.Provider value={toast}>
-      <div>
-        <Banner
-          title={collection.title}
-          subtitle={`${collection.count} Components`}
-          button={false}
-        />
+      <>
+        <Head>
+          <title>{meta.title}</title>
+          <meta property="og:title" content={meta.title} />
+          <meta name="description" content={meta.description}></meta>
+          <meta property="og:description" content={meta.description} />
+        </Head>
 
-        <div className="container py-8 sm:py-16">
-          <div className="flow-root">
-            <ul className="-my-8 divide-y divide-gray-100 lg:-my-16">
-              {components.map((component, index) => (
-                <Example
-                  key={index}
-                  component={component}
-                  parentSpacing={spacing}
-                />
-              ))}
-            </ul>
+        <div>
+          <Banner
+            title={collection.title}
+            subtitle={`${collection.count} Components`}
+            button={false}
+          />
+
+          <div className="container py-8 sm:py-16">
+            <div className="flow-root">
+              <ul className="-my-8 divide-y divide-gray-100 lg:-my-16">
+                {components.map((component, index) => (
+                  <Example
+                    key={index}
+                    component={component}
+                    parentSpacing={spacing}
+                  />
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <ToastContainer
-          hideProgressBar
-          limit={1}
-          closeButton={false}
-          draggable={false}
-          position="bottom-center"
-          theme="dark"
-          className="text-center"
-        />
-      </div>
+          <ToastContainer
+            hideProgressBar
+            limit={1}
+            closeButton={false}
+            draggable={false}
+            position="bottom-center"
+            theme="dark"
+            className="text-center"
+          />
+        </div>
+      </>
     </ToastContext.Provider>
   )
 }
