@@ -203,19 +203,19 @@ export const stats = [
 
 export const tabs = [
   { id: 1 },
-  { id: 2, spacing: 'p-4 max-w-5xl mx-auto' },
-  { id: 3, spacing: 'p-4 max-w-5xl mx-auto' },
-  { id: 4, spacing: 'p-4 max-w-5xl mx-auto' },
-  { id: 5, spacing: 'p-4 max-w-5xl mx-auto' },
-  { id: 6, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
 ]
 
 export const tags = [
-  { id: 1, spacing: 'flex justify-center p-4 space-x-4' },
-  { id: 2, spacing: 'flex justify-center p-4 space-x-4' },
-  { id: 3, spacing: 'flex justify-center p-4 space-x-4' },
-  { id: 4, spacing: 'flex justify-center p-4 space-x-4' },
-  { id: 5, spacing: 'flex justify-center p-4 space-x-4' },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
   { id: 6 },
   { id: 7 },
   { id: 8 },
@@ -236,6 +236,6 @@ export const testimonials = [
 export const titles = [
   { id: 1 },
   { id: 2 },
-  { id: 3, spacing: 'max-w-xl mx-auto p-4 space-y-4' },
+  { id: 3, center: true, spacing: 'max-w-lg mx-auto p-4 w-screen' },
   { id: 4 },
 ]

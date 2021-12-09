@@ -8,17 +8,26 @@ import Code from './code'
 
 type Props = {
   component: Component
+  parentCenter?: boolean
+  parentHeight?: string
   parentSpacing?: string
 }
 
-const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
+const Example: FunctionComponent<Props> = ({
+  component,
+  parentCenter,
+  parentHeight,
+  parentSpacing,
+}) => {
   let [html, setHtml] = useState<string>()
   let [code, setCode] = useState<string>()
   let [width, setWidth] = useState<string>('100%')
 
-  let { id, spacing } = component
+  let { id, center, height, spacing } = component
 
-  let wrapper = spacing ? spacing : parentSpacing
+  let spacingClass = spacing ? spacing : parentSpacing
+  let heightClass = height ? height : parentHeight
+  let isCenter = center || parentCenter
 
   useEffect(() => {
     let { origin, href } = window.location
@@ -38,8 +47,8 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
 
               <link rel="stylesheet" href="${origin}/css/build.css">
 
-              <body>
-                <div class="${wrapper}">
+              <body class="${isCenter && 'grid place-content-center h-screen'}">
+                <div class="${spacingClass}">
                   ${html}
                 </div>
               </body>
@@ -82,7 +91,7 @@ const Example: FunctionComponent<Props> = ({ component, parentSpacing }) => {
 
       <iframe
         srcDoc={html}
-        className="h-[400px] sm:h-[640px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all"
+        className={`h-[400px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all ${heightClass}`}
         style={{ width }}
         loading="lazy"
       ></iframe>

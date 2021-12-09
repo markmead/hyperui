@@ -1,22 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-// Interfaces
 import { Collection } from '../../interface/collection'
 import { Component } from '../../interface/component'
 
-// Toast
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-// Context
 import ToastContext from '../../context/toast'
 
-// Components
 import Banner from '../../components/banner'
 import Example from '../../components/example'
 
-// Libs
 import { currentCollectionComponents } from '../../lib/components'
 import { collectionIds, currentCollection } from '../../lib/collections'
 
@@ -58,7 +53,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
     description: `Range of ${collection.title} Tailwind CSS components.`,
   }
 
-  let { spacing } = collection
+  let { spacing, height, center } = collection
 
   return (
     <ToastContext.Provider value={toast}>
@@ -84,6 +79,8 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
                   <Example
                     key={index}
                     component={component}
+                    parentCenter={center}
+                    parentHeight={height}
                     parentSpacing={spacing}
                   />
                 ))}

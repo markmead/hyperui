@@ -3,4 +3,6 @@ export interface Collection {
   title: string
   count: number
   spacing?: string
+  height?: string
+  center?: boolean
 }

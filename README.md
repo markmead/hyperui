@@ -1,4 +1,4 @@
-<img width="1512" alt="Screenshot 2021-12-09 at 16 53 21" src="https://user-images.githubusercontent.com/50486078/145440711-7b7dad03-ff18-4154-8134-b84d626970fa.png">
+<img width="1512" alt="Preview of the HyperUI website" src="https://user-images.githubusercontent.com/50486078/145440711-7b7dad03-ff18-4154-8134-b84d626970fa.png">
 
 HyperUI is a free, open source library of Tailwind CSS components.
 
