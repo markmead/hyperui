@@ -5,4 +5,5 @@ export interface Collection {
   spacing?: string
   height?: string
   center?: boolean
+  ecommerce?: boolean
 }

@@ -193,6 +193,8 @@ export const productCollections = [
   { id: 7 },
 ]
 
+export const reviews = [{ id: 1 }]
+
 export const stats = [
   { id: 1 },
   { id: 2 },

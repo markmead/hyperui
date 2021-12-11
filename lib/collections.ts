@@ -10,6 +10,7 @@ function getCollections(): Array<Collection> {
       spacing = '',
       height = '',
       center = false,
+      ecommerce = false,
     } = component
 
     return {
@@ -19,6 +20,7 @@ function getCollections(): Array<Collection> {
       spacing,
       title: startCase(id),
       count: components.length,
+      ecommerce,
     }
   })
 }

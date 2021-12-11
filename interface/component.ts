@@ -7,8 +7,9 @@ export interface Component {
 
 export interface ComponentGroup {
   id: string
-  components: Array<Component>
   center?: boolean
   height?: string
   spacing?: string
+  components: Array<Component>
+  ecommerce?: boolean
 }

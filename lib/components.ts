@@ -18,6 +18,7 @@ import {
   offCanvasMenus,
   popups,
   productCollections,
+  reviews,
   stats,
   tabs,
   tags,
@@ -118,6 +119,12 @@ export const components: Array<ComponentGroup> = [
     id: 'product-collections',
     components: productCollections,
     height: 'lg:h-[600px]',
+  },
+  {
+    id: 'reviews',
+    components: reviews,
+    height: 'lg:h-[600px]',
+    ecommerce: true,
   },
   {
     id: 'stats',
