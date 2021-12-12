@@ -84,7 +84,7 @@ const Header: FunctionComponent = () => {
                 let { id, title } = collection
 
                 return (
-                  <Link key={index} href={`/collections/${id}`}>
+                  <Link key={index} href={`/components/${id}`}>
                     <a className="block text-xs font-medium whitespace-nowrap hover:opacity-50">
                       {title}
                     </a>
