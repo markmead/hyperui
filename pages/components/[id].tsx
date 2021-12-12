@@ -82,6 +82,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
                     parentCenter={center}
                     parentHeight={height}
                     parentSpacing={spacing}
+                    collection={collection.title}
                   />
                 ))}
               </ul>

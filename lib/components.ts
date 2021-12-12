@@ -18,12 +18,15 @@ import {
   offCanvasMenus,
   popups,
   productCollections,
-  reviews,
   stats,
   tabs,
   tags,
   testimonials,
   titles,
+
+  // Ecommerce
+  productCards,
+  reviews,
 } from './groups'
 
 export const components: Array<ComponentGroup> = [
@@ -56,7 +59,7 @@ export const components: Array<ComponentGroup> = [
     id: 'cards',
     components: cards,
     center: true,
-    height: 'lg:h-[500px]',
+    height: 'lg:h-[600px]',
     spacing: 'max-w-md w-screen mx-auto p-4',
   },
   {
@@ -121,12 +124,6 @@ export const components: Array<ComponentGroup> = [
     height: 'lg:h-[600px]',
   },
   {
-    id: 'reviews',
-    components: reviews,
-    height: 'lg:h-[600px]',
-    ecommerce: true,
-  },
-  {
     id: 'stats',
     components: stats,
     height: 'lg:h-[500px]',
@@ -150,6 +147,23 @@ export const components: Array<ComponentGroup> = [
   {
     id: 'titles',
     components: titles,
+  },
+
+  // Ecommerce
+  {
+    id: 'product-cards',
+    components: productCards,
+    center: true,
+    height: 'lg:h-[600px]',
+    spacing: 'max-w-md w-screen mx-auto p-4',
+    ecommerce: true,
+  },
+
+  {
+    id: 'reviews',
+    components: reviews,
+    height: 'lg:h-[600px]',
+    ecommerce: true,
   },
 ]
 

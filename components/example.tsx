@@ -11,6 +11,7 @@ type Props = {
   parentCenter?: boolean
   parentHeight?: string
   parentSpacing?: string
+  collection: string
 }
 
 const Example: FunctionComponent<Props> = ({
@@ -18,6 +19,7 @@ const Example: FunctionComponent<Props> = ({
   parentCenter,
   parentHeight,
   parentSpacing,
+  collection,
 }) => {
   let [html, setHtml] = useState<string>()
   let [code, setCode] = useState<string>()
@@ -94,6 +96,7 @@ const Example: FunctionComponent<Props> = ({
         className={`h-[400px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all ${heightClass}`}
         style={{ width }}
         loading="lazy"
+        title={`${collection} component ${id}`}
       ></iframe>
 
       {code && <Code code={code} />}

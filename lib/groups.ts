@@ -79,12 +79,6 @@ export const cards = [
   { id: 20 },
   { id: 21 },
   { id: 22 },
-  { id: 23 },
-  { id: 24 },
-  { id: 25 },
-  { id: 26 },
-  { id: 27 },
-  { id: 28 },
 ]
 
 export const carts = [
@@ -193,8 +187,6 @@ export const productCollections = [
   { id: 7 },
 ]
 
-export const reviews = [{ id: 1 }]
-
 export const stats = [
   { id: 1 },
   { id: 2 },
@@ -240,4 +232,16 @@ export const titles = [
   { id: 2 },
   { id: 3, center: true, spacing: 'max-w-lg mx-auto p-4 w-screen' },
   { id: 4 },
+]
+
+// Ecommerce
+
+export const reviews = [{ id: 1 }]
+
+export const productCards = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
 ]
