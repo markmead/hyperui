@@ -1,0 +1,75 @@
+<div class="sm:items-center sm:flex sm:justify-between">
+  <div class="flex space-x-1 sm:justify-end sm:order-last">
+    <button
+      type="button"
+      class="p-1.5 text-gray-700 rounded bg-gray-50"
+    >
+      <span class="sr-only">
+        View as List
+      </span>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      class="p-1.5 text-gray-700 rounded bg-gray-50"
+    >
+      <span class="sr-only">
+        View as Grid
+      </span>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      </svg>
+    </button>
+  </div>
+
+  <form
+    action=""
+    class="flex mt-2 sm:mt-0"
+  >
+    <div>
+      <label
+        for="FilterBy"
+        class="sr-only"
+      >
+        Filter
+      </label>
+
+      <select
+        id="FilterBy"
+        name="filter_by"
+        class="border-gray-100 rounded sm:text-sm"
+      >
+        <option readonly>Filter</option>
+        <option value="health">Health</option>
+        <option value="fitness">Fitness</option>
+        <option value="eating">Eating</option>
+      </select>
+    </div>
+
+    <div class="ml-4">
+      <label
+        for="SortBy"
+        class="sr-only"
+      >
+        Sort
+      </label>
+
+      <select
+        id="SortBy"
+        name="sort_by"
+        class="border-gray-100 rounded sm:text-sm"
+      >
+        <option readonly>Sort</option>
+        <option value="title-asc">Title, A-Z</option>
+        <option value="title-desc">Title, Z-A</option>
+        <option value="price-asc">Price, Low-High</option>
+        <option value="price-desc">Price, High-Low</option>
+      </select>
+    </div>
+  </form>
+</div>

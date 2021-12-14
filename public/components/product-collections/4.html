@@ -1,361 +1,275 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<style>
-  .swiper-pagination {
-    bottom: 0;
-    position: relative;
-  }
-
-  .swiper-container {
-    overflow: hidden;
-  }
-</style>
-
 <section>
-  <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8 sm:py-24">
-    <h2 class="text-xl font-medium sm:text-2xl">Featured Products</h2>
+  <div class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold">
+      Featured Products
+    </h2>
 
-    <div class="relative mt-8">
-      <span class="absolute hidden lg:block -right-14 top-32 sm:top-48">
-        <button
-          type="button"
-          class="p-2 text-gray-700 border border-gray-200 rounded-full next-button"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="relative border border-gray-300">
+    <div class="mt-4">
+      <div class="swiper">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide">
+            <a
+              href="/product/build-your-own-drone"
+              class="relative block border border-gray-100"
+            >
               <button
-                class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4"
+                type="button"
+                name="wishlist"
+                class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
               >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  ></path>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
               </button>
 
               <img
-                class="object-contain w-full h-64 sm:h-96"
+                loading="lazy"
+                alt="Build Your Own Drone"
+                class="object-contain w-full h-56 lg:h-72"
                 src="https://www.hyperui.dev/photos/toy-1.jpeg"
-                alt=""
               />
-            </div>
 
-            <div class="py-6">
-              <span
-                class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"
-              >
-                New
-              </span>
+              <div class="p-6">
+                <span class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400">
+                  New
+                </span>
 
-              <h5 class="mt-4 font-medium">Lorem ipsum dolor sit amet</h5>
+                <h5 class="mt-4 text-lg font-bold">
+                  Build Your Own Drone
+                </h5>
 
-              <p class="mt-2 font-bold">$14.99</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">
+                  $14.99
+                </p>
 
-              <a
-                class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm "
-                href=""
-              >
-                <span class="text-sm font-medium"> Add to cart </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 ml-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <button
+                  name="add"
+                  type="button"
+                  class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+                  <span class="text-sm font-medium">
+                    Add to Cart
+                  </span>
 
-          <div class="swiper-slide">
-            <div class="relative border border-gray-300">
+                  <svg class="w-5 h-5 ml-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </li>
+
+          <li class="swiper-slide">
+            <a
+              href="/product/build-your-own-drone"
+              class="relative block border border-gray-100"
+            >
               <button
-                class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4"
+                type="button"
+                name="wishlist"
+                class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
               >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  ></path>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
               </button>
 
               <img
-                class="object-contain w-full h-64 sm:h-96"
+                loading="lazy"
+                alt="Build Your Own Drone"
+                class="object-contain w-full h-56 lg:h-72"
                 src="https://www.hyperui.dev/photos/toy-1.jpeg"
-                alt=""
               />
-            </div>
 
-            <div class="py-6">
-              <span
-                class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"
-              >
-                New
-              </span>
+              <div class="p-6">
+                <span class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400">
+                  New
+                </span>
 
-              <h5 class="mt-4 font-medium">Lorem ipsum dolor sit amet</h5>
+                <h5 class="mt-4 text-lg font-bold">
+                  Build Your Own Drone
+                </h5>
 
-              <p class="mt-2 font-bold">$14.99</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">
+                  $14.99
+                </p>
 
-              <a
-                class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm "
-                href=""
-              >
-                <span class="text-sm font-medium"> Add to cart </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 ml-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <button
+                  name="add"
+                  type="button"
+                  class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+                  <span class="text-sm font-medium">
+                    Add to Cart
+                  </span>
 
-          <div class="swiper-slide">
-            <div class="relative border border-gray-300">
+                  <svg class="w-5 h-5 ml-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </li>
+
+          <li class="swiper-slide">
+            <a
+              href="/product/build-your-own-drone"
+              class="relative block border border-gray-100"
+            >
               <button
-                class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4"
+                type="button"
+                name="wishlist"
+                class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
               >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  ></path>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
               </button>
 
               <img
-                class="object-contain w-full h-64 sm:h-96"
+                loading="lazy"
+                alt="Build Your Own Drone"
+                class="object-contain w-full h-56 lg:h-72"
                 src="https://www.hyperui.dev/photos/toy-1.jpeg"
-                alt=""
               />
-            </div>
 
-            <div class="py-6">
-              <span
-                class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"
-              >
-                New
-              </span>
+              <div class="p-6">
+                <span class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400">
+                  New
+                </span>
 
-              <h5 class="mt-4 font-medium">Lorem ipsum dolor sit amet</h5>
+                <h5 class="mt-4 text-lg font-bold">
+                  Build Your Own Drone
+                </h5>
 
-              <p class="mt-2 font-bold">$14.99</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">
+                  $14.99
+                </p>
 
-              <a
-                class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm "
-                href=""
-              >
-                <span class="text-sm font-medium"> Add to cart </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 ml-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <button
+                  name="add"
+                  type="button"
+                  class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+                  <span class="text-sm font-medium">
+                    Add to Cart
+                  </span>
 
-          <div class="swiper-slide">
-            <div class="relative border border-gray-300">
+                  <svg class="w-5 h-5 ml-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </li>
+
+          <li class="swiper-slide">
+            <a
+              href="/product/build-your-own-drone"
+              class="relative block border border-gray-100"
+            >
               <button
-                class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4"
+                type="button"
+                name="wishlist"
+                class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
               >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  ></path>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
               </button>
 
               <img
-                class="object-contain w-full h-64 sm:h-96"
+                loading="lazy"
+                alt="Build Your Own Drone"
+                class="object-contain w-full h-56 lg:h-72"
                 src="https://www.hyperui.dev/photos/toy-1.jpeg"
-                alt=""
               />
-            </div>
 
-            <div class="py-6">
-              <span
-                class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"
-              >
-                New
-              </span>
+              <div class="p-6">
+                <span class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400">
+                  New
+                </span>
 
-              <h5 class="mt-4 font-medium">Lorem ipsum dolor sit amet</h5>
+                <h5 class="mt-4 text-lg font-bold">
+                  Build Your Own Drone
+                </h5>
 
-              <p class="mt-2 font-bold">$14.99</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">
+                  $14.99
+                </p>
 
-              <a
-                class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm "
-                href=""
-              >
-                <span class="text-sm font-medium"> Add to cart </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 ml-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <button
+                  name="add"
+                  type="button"
+                  class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+                  <span class="text-sm font-medium">
+                    Add to Cart
+                  </span>
 
-          <div class="swiper-slide">
-            <div class="relative border border-gray-300">
+                  <svg class="w-5 h-5 ml-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </li>
+
+          <li class="swiper-slide">
+            <a
+              href="/product/build-your-own-drone"
+              class="relative block border border-gray-100"
+            >
               <button
-                class="absolute p-2 text-blue-600 bg-gray-100 rounded-full right-4 top-4"
+                type="button"
+                name="wishlist"
+                class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
               >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  ></path>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
               </button>
 
               <img
-                class="object-contain w-full h-64 sm:h-96"
+                loading="lazy"
+                alt="Build Your Own Drone"
+                class="object-contain w-full h-56 lg:h-72"
                 src="https://www.hyperui.dev/photos/toy-1.jpeg"
-                alt=""
               />
-            </div>
 
-            <div class="py-6">
-              <span
-                class="inline-block px-4 py-2 text-xs font-medium bg-yellow-300"
-              >
-                New
-              </span>
+              <div class="p-6">
+                <span class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400">
+                  New
+                </span>
 
-              <h5 class="mt-4 font-medium">Lorem ipsum dolor sit amet</h5>
+                <h5 class="mt-4 text-lg font-bold">
+                  Build Your Own Drone
+                </h5>
 
-              <p class="mt-2 font-bold">$14.99</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">
+                  $14.99
+                </p>
 
-              <a
-                class="flex items-center justify-center px-8 py-4 mt-4 text-gray-900 bg-yellow-500 rounded-sm "
-                href=""
-              >
-                <span class="text-sm font-medium"> Add to cart </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 ml-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <button
+                  name="add"
+                  type="button"
+                  class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
+                  <span class="text-sm font-medium">
+                    Add to Cart
+                  </span>
+
+                  <svg class="w-5 h-5 ml-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </li>
+        </ul>
 
         <div class="max-w-3xl mx-auto mt-8 swiper-pagination"></div>
       </div>
@@ -363,23 +277,25 @@
   </div>
 </section>
 
+<style>
+  .swiper-pagination {
+    bottom: 0;
+    position: relative;
+  }
+</style>
+
 <script>
-  const swiper = new Swiper('.swiper-container', {
+  new Swiper('.swiper', {
     loop: true,
     slidesPerView: 1,
     spaceBetween: 32,
-    autoplay: {
-      delay: 8000,
-    },
+    autoplay: true,
     pagination: {
-      el: '.swiper-pagination',
       type: 'progressbar',
-    },
-    navigation: {
-      nextEl: '.next-button',
+      el: '.swiper-pagination',
     },
     breakpoints: {
-      768: {
+      640: {
         slidesPerView: 2,
       },
       1024: {

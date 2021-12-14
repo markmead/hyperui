@@ -177,16 +177,6 @@ export const popups = [
   { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
 ]
 
-export const productCollections = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-]
-
 export const stats = [
   { id: 1 },
   { id: 2 },
@@ -236,6 +226,8 @@ export const titles = [
 
 // Ecommerce
 
+export const filters = [{ id: 1, spacing: 'max-w-5xl mx-auto p-4' }, { id: 2 }]
+
 export const reviews = [{ id: 1 }]
 
 export const productCards = [
@@ -244,4 +236,13 @@ export const productCards = [
   { id: 3 },
   { id: 4 },
   { id: 5 },
+]
+
+export const productCollections = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
 ]

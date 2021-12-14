@@ -70,14 +70,14 @@ const Example: FunctionComponent<Props> = ({
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Breakpoint
             handleWidth={setWidth}
-            size="320px"
+            size="340px"
             text="Mobile"
             emoji="📱"
           />
 
           <Breakpoint
             handleWidth={setWidth}
-            size="640px"
+            size="680px"
             text="Tablet"
             emoji="💻"
           />

@@ -17,7 +17,6 @@ import {
   navigations,
   offCanvasMenus,
   popups,
-  productCollections,
   stats,
   tabs,
   tags,
@@ -25,7 +24,9 @@ import {
   titles,
 
   // Ecommerce
+  filters,
   productCards,
+  productCollections,
   reviews,
 } from './groups'
 
@@ -119,11 +120,6 @@ export const components: Array<ComponentGroup> = [
     height: 'lg:h-[500px]',
   },
   {
-    id: 'product-collections',
-    components: productCollections,
-    height: 'lg:h-[600px]',
-  },
-  {
     id: 'stats',
     components: stats,
     height: 'lg:h-[500px]',
@@ -151,6 +147,12 @@ export const components: Array<ComponentGroup> = [
 
   // Ecommerce
   {
+    id: 'filters',
+    components: filters,
+    height: 'lg:h-[600px]',
+    ecommerce: true,
+  },
+  {
     id: 'product-cards',
     components: productCards,
     center: true,
@@ -158,7 +160,12 @@ export const components: Array<ComponentGroup> = [
     spacing: 'max-w-md w-screen mx-auto p-4',
     ecommerce: true,
   },
-
+  {
+    id: 'product-collections',
+    components: productCollections,
+    height: 'lg:h-[600px]',
+    ecommerce: true,
+  },
   {
     id: 'reviews',
     components: reviews,
