@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import styles from '../styles/copy.module.css'
+import styles from '../styles/button.module.css'
 import ToastContext from '../context/toast'
 
 type Props = {
