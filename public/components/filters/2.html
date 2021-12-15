@@ -1,7 +1,10 @@
-<details open>
+<details
+  open
+  class="overflow-hidden border border-gray-200 rounded"
+>
   <summary class="flex items-center justify-between px-5 py-3 bg-gray-100 lg:hidden">
     <span class="text-sm font-medium">
-      Filters
+      Toggle Filters
     </span>
 
     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -11,136 +14,169 @@
 
   <form
     action=""
-    class="border border-gray-200 divide-y divide-gray-200"
+    class="border-t border-gray-200 lg:border-t-0"
   >
-    <div>
-      <fieldset>
-        <legend
-          class="w-full p-3 text-xs font-medium tracking-wide text-center uppercase bg-gray-100 border-b border-gray-200 "
-        >
-          Product Type
-        </legend>
+    <fieldset>
+      <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+        Type
+      </legend>
 
-        <div class="p-4 space-y-2">
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="toy"
-              class="w-6 h-6 border-gray-300"
-            />
-            <label for="toy" class="ml-3 text-sm font-medium">Toy</label>
-          </div>
+      <div class="px-5 py-6 space-y-2">
+        <div class="flex items-center">
+          <input
+            id="toy"
+            type="checkbox"
+            name="type[toy]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
 
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="game"
-              class="w-6 h-6 border-gray-300"
-            />
-            <label for="game" class="ml-3 text-sm font-medium">Game</label>
-          </div>
-
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="download"
-              class="w-6 h-6 border-gray-300"
-            />
-            <label for="download" class="ml-3 text-sm font-medium"
-              >Download</label
-            >
-          </div>
-
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="outdoors"
-              class="w-6 h-6 border-gray-300"
-            />
-            <label for="outdoors" class="ml-3 text-sm font-medium"
-              >Outdoors</label
-            >
-          </div>
+          <label
+            for="toy"
+            class="ml-3 text-sm font-medium"
+          >
+            Toy
+          </label>
         </div>
-      </fieldset>
-    </div>
+
+        <div class="flex items-center">
+          <input
+            id="game"
+            type="checkbox"
+            name="type[game]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label
+            for="game"
+            class="ml-3 text-sm font-medium"
+          >
+            Game
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="outdoor"
+            type="checkbox"
+            name="type[outdoor]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label
+            for="outdoor"
+            class="ml-3 text-sm font-medium"
+          >
+            Outdoor
+          </label>
+        </div>
+
+        <div class="pt-2">
+          <button
+            type="button"
+            class="text-xs text-gray-500 underline"
+          >
+            Reset Type
+          </button>
+        </div>
+      </div>
+    </fieldset>
 
     <div>
       <fieldset>
-        <legend
-          class="w-full p-3 text-xs font-medium tracking-wide text-center uppercase bg-gray-100 border-b border-gray-200 "
-        >
+        <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
           Age
         </legend>
 
-        <div class="p-4 space-y-2">
+        <div class="px-5 py-6 space-y-2">
           <div class="flex items-center">
             <input
+              id="3+"
               type="checkbox"
-              id="3_plus"
-              class="w-6 h-6 border-gray-300"
+              name="age[3+]"
+              class="w-5 h-5 border-gray-300 rounded"
             />
-            <label for="3_plus" class="ml-3 text-sm font-medium">3+</label>
-          </div>
 
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="8_plus"
-              class="w-6 h-6 border-gray-300"
-            />
-            <label for="8_plus" class="ml-3 text-sm font-medium">8+</label>
-          </div>
-
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="12_plus"
-              class="w-6 h-6 border-gray-300"
-            />
-            <label for="12_plus" class="ml-3 text-sm font-medium"
-              >12+</label
+            <label
+              for="3+"
+              class="ml-3 text-sm font-medium"
             >
+              3+
+            </label>
           </div>
 
           <div class="flex items-center">
             <input
+              id="8+"
               type="checkbox"
-              id="16_plus"
-              class="w-6 h-6 border-gray-300"
+              name="age[8+]"
+              class="w-5 h-5 border-gray-300 rounded"
             />
-            <label for="16_plus" class="ml-3 text-sm font-medium"
-              >16+</label
+
+            <label
+              for="8+"
+              class="ml-3 text-sm font-medium"
             >
+              8+
+            </label>
           </div>
 
           <div class="flex items-center">
             <input
+              id="12+"
               type="checkbox"
-              id="adults"
-              class="w-6 h-6 border-gray-300"
+              name="age[12+]"
+              class="w-5 h-5 border-gray-300 rounded"
             />
-            <label for="adults" class="ml-3 text-sm font-medium"
-              >Adults</label
+
+            <label
+              for="12+"
+              class="ml-3 text-sm font-medium"
             >
+              12+
+            </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="16+"
+              type="checkbox"
+              name="age[16+]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+
+            <label
+              for="16+"
+              class="ml-3 text-sm font-medium"
+            >
+              16+
+            </label>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="button"
+              class="text-xs text-gray-500 underline"
+            >
+              Reset Age
+            </button>
           </div>
         </div>
       </fieldset>
     </div>
 
-    <div class="flex justify-between p-3">
+    <div class="flex justify-between px-5 py-3 border-t border-gray-200">
       <button
-        type="button"
         name="reset"
-        class="p-2 text-xs font-medium text-gray-500 uppercase"
+        type="button"
+        class="text-xs font-medium text-gray-600 underline rounded"
       >
         Reset All
       </button>
 
       <button
-        type="button"
         name="commit"
-        class="p-2 text-xs font-medium text-white uppercase bg-green-600"
+        type="button"
+        class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
       >
         Apply Filters
       </button>

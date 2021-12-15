@@ -226,7 +226,10 @@ export const titles = [
 
 // Ecommerce
 
-export const filters = [{ id: 1, spacing: 'max-w-5xl mx-auto p-4' }, { id: 2 }]
+export const filters = [
+  { id: 1, spacing: 'max-w-5xl mx-auto p-4' },
+  { id: 2, spacing: 'max-w-md mx-auto p-4' },
+]
 
 export const reviews = [{ id: 1 }]
 
