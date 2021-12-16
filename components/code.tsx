@@ -1,26 +1,25 @@
-import { FunctionComponent, useContext } from 'react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { FunctionComponent } from 'react'
 
-import styles from '../styles/code.module.css'
-import ToastContext from '../context/toast'
+import styles from '../styles/button.module.css'
 
 type Props = {
-  code: string
+  view: boolean
+  handleView: any
 }
 
-const Code: FunctionComponent<Props> = ({ code }) => {
-  let toast = useContext(ToastContext)
-
+const Code: FunctionComponent<Props> = ({ view, handleView }) => {
   return (
     <>
-      <CopyToClipboard text={code} onCopy={() => toast('Copied to Clipboard!')}>
-        <button type="button" className={styles.toggle}>
-          <span role="img" className="mr-1.5">
-            📋
-          </span>
-          Copy
-        </button>
-      </CopyToClipboard>
+      <button
+        type="button"
+        className={styles.toggle}
+        onClick={() => handleView(!view)}
+      >
+        <span role="img" className="mr-1.5">
+          👀
+        </span>
+        View
+      </button>
     </>
   )
 }

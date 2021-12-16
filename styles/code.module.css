@@ -1,9 +1,0 @@
-.button {
-  @apply absolute px-4 py-2 text-xs font-medium text-white border rounded-lg border-white/50 top-4 right-4;
-  @apply hover:border-white;
-  @apply transition-colors;
-}
-
-.toggle {
-  @apply px-4 py-2 mt-4 text-xs font-medium bg-gray-100 rounded-lg;
-}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Component } from '../interface/component'
 
 import Breakpoint from './breakpoint'
+import Copy from './copy'
 import Code from './code'
 
 type Props = {
@@ -23,6 +24,7 @@ const Example: FunctionComponent<Props> = ({
 }) => {
   let [html, setHtml] = useState<string>()
   let [code, setCode] = useState<string>()
+  let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
 
   let { id, center, height, spacing } = component
@@ -30,6 +32,7 @@ const Example: FunctionComponent<Props> = ({
   let spacingClass = spacing ? spacing : parentSpacing
   let heightClass = height ? height : parentHeight
   let isCenter = center || parentCenter
+  let isExample = view
 
   useEffect(() => {
     let { origin, href } = window.location
@@ -65,7 +68,7 @@ const Example: FunctionComponent<Props> = ({
   })
 
   return (
-    <li className="py-8 lg:py-16">
+    <li className="py-8 space-y-4 lg:py-16">
       <div className="flex justify-between item-center">
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Breakpoint
@@ -91,15 +94,31 @@ const Example: FunctionComponent<Props> = ({
         </div>
       </div>
 
-      <iframe
-        srcDoc={html}
-        className={`h-[400px] border-2 bg-white rounded-lg border-gray-100 mt-4 lg:transition-all ${heightClass}`}
-        style={{ width }}
-        loading="lazy"
-        title={`${collection} component ${id}`}
-      ></iframe>
+      <div>
+        {isExample ? (
+          <iframe
+            srcDoc={html}
+            className={`h-[400px] border-2 bg-white rounded-lg border-gray-100 lg:transition-all ${heightClass}`}
+            width={width}
+            loading="lazy"
+            title={`${collection} component ${id}`}
+          ></iframe>
+        ) : (
+          <pre
+            className={`p-4 bg-gray-100 overflow-auto rounded-lg h-[400px] ${heightClass}`}
+          >
+            {code}
+          </pre>
+        )}
+      </div>
 
-      {code && <Code code={code} />}
+      {code && (
+        <div className="flex items-center space-x-4">
+          <Copy code={code} />
+
+          <Code view={view} handleView={setView} />
+        </div>
+      )}
     </li>
   )
 }
