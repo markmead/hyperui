@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 
 import Link from 'next/link'
 
+import IconGithub from './icon/github'
+
 import { collections } from '../lib/collections'
 
 const Header: FunctionComponent = () => {
@@ -38,20 +40,28 @@ const Header: FunctionComponent = () => {
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b border-gray-100">
       <div className="container flex items-center justify-between h-16">
-        <Link href="/">
-          <a className="text-sm font-medium">HyperUI</a>
-        </Link>
-
-        <div className="relative flex items-center justify-end flex-1 space-x-4">
-          <Link href="/ecommerce">
-            <a className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100">
-              Ecommerce
-              <span className="ml-1.5 inline-block px-2 py-0.5 text-xs text-white bg-blue-500 rounded-full">
-                WIP
+        <nav role="navigation" className="flex items-center space-x-4">
+          <Link href="/">
+            <a className="text-sm font-medium">
+              HyperUI
+              <span role="img" className="ml-1.5">
+                🚀
               </span>
             </a>
           </Link>
 
+          <span className="hidden w-px h-6 bg-gray-100 lg:block"></span>
+
+          <Link href="/">
+            <a className="hidden text-xs font-medium lg:block">Components</a>
+          </Link>
+
+          <Link href="/ecommerce">
+            <a className="hidden text-xs font-medium lg:block">Ecommerce</a>
+          </Link>
+        </nav>
+
+        <div className="relative flex items-center justify-end flex-1 space-x-4">
           <button
             ref={buttonRef}
             type="button"
@@ -74,18 +84,27 @@ const Header: FunctionComponent = () => {
             </svg>
           </button>
 
+          <a
+            href="https://github.com/markmead/hyperui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-gray-100 rounded"
+          >
+            <IconGithub style="w-4 h-4" />
+          </a>
+
           {open && (
             <nav
               ref={menuRef}
               role="navigation"
-              className="absolute right-0 grid grid-cols-2 gap-2 p-4 mt-1 rounded-lg bg-gray-50 top-full"
+              className="absolute right-0 grid grid-cols-2 p-4 mt-1 rounded gap-x-4 gap-y-2 bg-gray-50 top-full"
             >
               {collections.map((collection, index) => {
                 let { id, title } = collection
 
                 return (
                   <Link key={index} href={`/components/${id}`}>
-                    <a className="block text-xs font-medium whitespace-nowrap hover:opacity-50">
+                    <a className="block text-xs font-medium hover:opacity-50">
                       {title}
                     </a>
                   </Link>
