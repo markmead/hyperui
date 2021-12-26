@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 import Head from 'next/head'
 
+import Announcement from './announcement'
 import Header from './header'
 import Footer from './footer'
 
@@ -24,6 +25,8 @@ const Layout: FunctionComponent = ({ children }) => {
           }}
         />
       </Head>
+
+      <Announcement />
 
       <Header />
 
