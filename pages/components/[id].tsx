@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import ToastContext from '../../context/toast'
 
+import Breadcrumbs from '../../components/breadcrumbs'
 import Banner from '../../components/banner'
 import Example from '../../components/example'
 
@@ -69,6 +70,8 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
         </Head>
 
         <div>
+          <Breadcrumbs collection={collection} />
+
           <Banner
             title={collection.title}
             subtitle={`${collection.count} Components`}

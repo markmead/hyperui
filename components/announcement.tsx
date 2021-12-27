@@ -7,7 +7,7 @@ type Props = {
 
 const Announcement: FunctionComponent<Props> = ({ text, url }) => (
   <aside className="p-3 text-center text-white bg-black">
-    <p className="ml-3 text-sm font-medium text-center">
+    <p className="ml-3 text-xs font-medium text-center">
       <a
         href={url}
         target="_blank"
