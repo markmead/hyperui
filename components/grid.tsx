@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react'
+
 import { Collection } from '../interface/collection'
 
 import Card from './card'

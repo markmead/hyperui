@@ -9,16 +9,12 @@ import Code from './code'
 
 type Props = {
   component: Component
-  parentCenter?: boolean
-  parentHeight?: string
   parentSpacing?: string
   collection: string
 }
 
 const Example: FunctionComponent<Props> = ({
   component,
-  parentCenter,
-  parentHeight,
   parentSpacing,
   collection,
 }) => {
@@ -27,11 +23,9 @@ const Example: FunctionComponent<Props> = ({
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
 
-  let { id, center, height, spacing } = component
+  let { id, spacing } = component
 
   let spacingClass = spacing ? spacing : parentSpacing
-  let heightClass = height ? height : parentHeight
-  let isCenter = center || parentCenter
   let isExample = view
 
   useEffect(() => {
@@ -52,7 +46,7 @@ const Example: FunctionComponent<Props> = ({
 
               <link rel="stylesheet" href="${origin}/css/build.css">
 
-              <body class="${isCenter && 'grid place-content-center h-screen'}">
+              <body>
                 <div class="${spacingClass}">
                   ${html}
                 </div>
@@ -98,14 +92,14 @@ const Example: FunctionComponent<Props> = ({
         {isExample ? (
           <iframe
             srcDoc={html}
-            className={`h-[400px] border-2 bg-white rounded-lg border-gray-100 lg:transition-all ${heightClass}`}
+            className={`border-2 bg-white rounded-lg border-gray-100 h-[400px] lg:transition-all lg:h-[600px]`}
             width={width}
             loading="lazy"
             title={`${collection} component ${id}`}
           ></iframe>
         ) : (
           <pre
-            className={`p-4 bg-gray-100 overflow-auto rounded-lg h-[400px] ${heightClass}`}
+            className={`p-4 bg-gray-100 overflow-auto rounded-lg h-[400px] lg:h-[600px]`}
           >
             {code}
           </pre>
@@ -115,7 +109,6 @@ const Example: FunctionComponent<Props> = ({
       {code && (
         <div className="flex items-center space-x-4">
           <Copy code={code} />
-
           <Code view={view} handleView={setView} />
         </div>
       )}

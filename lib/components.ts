@@ -1,181 +1,251 @@
-import { Component, ComponentGroup } from '../interface/component'
-import {
-  alerts,
-  announcements,
-  banners,
-  breadcrumbs,
-  buttons,
-  cards,
-  carts,
-  content,
-  ctas,
-  emptyStates,
-  faqs,
-  footers,
-  forms,
-  inputs,
-  navigations,
-  offCanvasMenus,
-  popups,
-  stats,
-  tabs,
-  tags,
-  testimonials,
-  titles,
-
-  // Ecommerce
-  filters,
-  productCards,
-  productCollections,
-  reviews,
-} from './groups'
-
-export const components: Array<ComponentGroup> = [
-  {
-    id: 'alerts',
-    components: alerts,
-    center: true,
-    spacing: 'max-w-sm w-screen mx-auto p-4',
-  },
-  {
-    id: 'announcements',
-    components: announcements,
-  },
-  {
-    id: 'banners',
-    components: banners,
-    height: 'lg:h-[600px]',
-  },
-  {
-    id: 'buttons',
-    components: buttons,
-    center: true,
-    spacing: 'p-4',
-  },
-  {
-    id: 'breadcrumbs',
-    components: breadcrumbs,
-  },
-  {
-    id: 'cards',
-    components: cards,
-    center: true,
-    height: 'lg:h-[600px]',
-    spacing: 'max-w-md w-screen mx-auto p-4',
-  },
-  {
-    id: 'carts',
-    components: carts,
-    height: 'lg:h-[600px]',
-  },
-  {
-    id: 'content',
-    components: content,
-    height: 'lg:h-[600px]',
-  },
-  {
-    id: 'ctas',
-    components: ctas,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'empty-states',
-    components: emptyStates,
-    center: true,
-    spacing: 'max-w-lg w-screen mx-auto p-4',
-  },
-  {
-    id: 'faqs',
-    components: faqs,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'footers',
-    components: footers,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'forms',
-    components: forms,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'inputs',
-    components: inputs,
-    center: true,
-    spacing: 'w-screen max-w-sm mx-auto p-4',
-  },
-  {
-    id: 'navigations',
-    components: navigations,
-  },
-  {
-    id: 'off-canvas-menus',
-    components: offCanvasMenus,
-    height: 'lg:h-[700px]',
-  },
-  {
-    id: 'popups',
-    components: popups,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'stats',
-    components: stats,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'tabs',
-    components: tabs,
-    spacing: 'p-4 max-w-5xl mx-auto',
-  },
-  {
-    id: 'tags',
-    components: tags,
-    center: true,
-    spacing: 'max-w-md w-screen mx-auto p-4 text-center',
-  },
-  {
-    id: 'testimonials',
-    components: testimonials,
-    height: 'lg:h-[500px]',
-  },
-  {
-    id: 'titles',
-    components: titles,
-  },
-
-  // Ecommerce
-  {
-    id: 'filters',
-    components: filters,
-    height: 'lg:h-[600px]',
-    ecommerce: true,
-  },
-  {
-    id: 'product-cards',
-    components: productCards,
-    center: true,
-    height: 'lg:h-[600px]',
-    spacing: 'max-w-md w-screen mx-auto p-4',
-    ecommerce: true,
-  },
-  {
-    id: 'product-collections',
-    components: productCollections,
-    height: 'lg:h-[600px]',
-    ecommerce: true,
-  },
-  {
-    id: 'reviews',
-    components: reviews,
-    height: 'lg:h-[600px]',
-    ecommerce: true,
-  },
+export const alerts = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
 ]
 
-export function currentCollectionComponents(id: string): Array<Component> | [] {
-  let group = components.find((collection) => collection.id === id)
+export const announcements = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]
 
-  return group ? group.components : []
-}
+export const banners = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+]
+
+export const breadcrumbs = [
+  { id: 1, spacing: 'p-4' },
+  { id: 2, spacing: 'p-4' },
+  { id: 3 },
+]
+
+export const buttons = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+  { id: 10 },
+  { id: 11 },
+  { id: 12 },
+  { id: 13 },
+  { id: 14 },
+  { id: 15 },
+  { id: 16 },
+  { id: 17 },
+  { id: 18 },
+  { id: 19 },
+]
+
+export const cards = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+  { id: 10 },
+  { id: 11 },
+  { id: 12 },
+  { id: 13 },
+  { id: 14 },
+  { id: 15 },
+  { id: 16 },
+  { id: 17 },
+  { id: 18 },
+  { id: 19 },
+  { id: 20 },
+  { id: 21 },
+  { id: 22 },
+]
+
+export const carts = [
+  { id: 1 },
+  { id: 2, spacing: 'max-w-sm mx-auto p-4' },
+  { id: 3 },
+]
+
+export const content = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+  { id: 10 },
+  { id: 11 },
+]
+
+export const ctas = [
+  { id: 1, spacing: 'p-4' },
+  { id: 2, spacing: 'p-4' },
+  { id: 3, spacing: 'p-4' },
+  { id: 4, spacing: 'p-4' },
+  { id: 5, spacing: 'p-4' },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+]
+
+export const emptyStates = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]
+
+export const faqs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
+
+export const footers = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+]
+
+export const forms = [
+  { id: 1, spacing: 'p-4' },
+  { id: 2, spacing: 'p-4' },
+  { id: 3 },
+  { id: 4 },
+  { id: 5, spacing: 'p-4' },
+  { id: 6 },
+  { id: 7 },
+]
+
+export const inputs = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6, spacing: 'max-w-lg mx-auto p-4' },
+]
+
+export const navigations = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]
+
+export const offCanvasMenus = [{ id: 1 }, { id: 2 }, { id: 3 }]
+
+export const popups = [
+  { id: 1, spacing: 'p-4 max-w-5xl mx-auto' },
+  { id: 2, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 3, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 4, spacing: 'p-4 max-w-sm mx-auto' },
+  { id: 5, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 6, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 7, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 8 },
+  { id: 9 },
+  { id: 10, spacing: 'p-4 max-w-lg mx-auto' },
+  { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
+]
+
+export const stats = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5, spacing: 'max-w-lg mx-auto p-4 space-y-4' },
+]
+
+export const tabs = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+]
+
+export const tags = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+]
+
+export const testimonials = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+]
+
+export const titles = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3, spacing: 'max-w-lg mx-auto p-4 w-screen' },
+  { id: 4 },
+]
+
+// Ecommerce
+
+export const filters = [
+  { id: 1, spacing: 'max-w-5xl mx-auto p-4' },
+  { id: 2, spacing: 'max-w-md mx-auto p-4' },
+]
+
+export const reviews = [{ id: 1 }]
+
+export const productCards = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]
+
+export const productCollections = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+]
