@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 import IconGithub from './icon/github'
 
-import { collections } from '../lib/collections'
+import { collections } from '../lib/_collections'
 
 const Header: FunctionComponent = () => {
   let router = useRouter()

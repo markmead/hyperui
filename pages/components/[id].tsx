@@ -12,8 +12,11 @@ import ToastContext from '../../context/toast'
 import Banner from '../../components/banner'
 import Example from '../../components/example'
 
-import { currentCollectionComponents } from '../../lib/components'
-import { collectionIds, currentCollection } from '../../lib/collections'
+import {
+  currentCollectionComponents,
+  collectionIds,
+  currentCollection,
+} from '../../lib/collections'
 
 export async function getStaticPaths() {
   let paths = collectionIds()

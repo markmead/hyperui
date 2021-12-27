@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Collection } from '../../interface/collection'
-import { collections } from '../../lib/collections'
+import { collections } from '../../lib/_collections'
 
 import Banner from '../../components/banner'
 import Grid from '../../components/grid'
