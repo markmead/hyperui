@@ -1,15 +1,20 @@
 import type { FunctionComponent } from 'react'
 
-const Announcement: FunctionComponent = () => (
-  <aside className="p-4 text-center text-white bg-black">
+type Props = {
+  text: string
+  url: string
+}
+
+const Announcement: FunctionComponent<Props> = ({ text, url }) => (
+  <aside className="p-3 text-center text-white bg-black">
     <p className="ml-3 text-sm font-medium text-center">
       <a
-        href="https://liquid.hyperui.dev"
+        href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center underline"
+        className="inline-flex items-center hover:opacity-75"
       >
-        Shopify Developer? Checkout Liquid HyperUI 🛍️
+        {text}
       </a>
     </p>
   </aside>

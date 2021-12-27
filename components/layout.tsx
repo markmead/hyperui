@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 import Head from 'next/head'
 
+import Announcements from './announcements'
 import Announcement from './announcement'
 import Header from './header'
 import Footer from './footer'
@@ -26,7 +27,17 @@ const Layout: FunctionComponent = ({ children }) => {
         />
       </Head>
 
-      <Announcement />
+      <Announcements>
+        <Announcement
+          text="🛍️ Shopify Developer? Checkout Liquid HyperUI 🛍️"
+          url="https://liquid.hyperui.dev"
+        />
+
+        <Announcement
+          text="🌟 HyperUI is Open Source! Drop a Star on GitHub 🌟"
+          url="https://github.com/markmead/hyperui"
+        />
+      </Announcements>
 
       <Header />
 
