@@ -53,7 +53,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
     description: `Range of ${collection.title} Tailwind CSS components.`,
   }
 
-  let { spacing, height, center } = collection
+  let { spacing } = collection
 
   return (
     <ToastContext.Provider value={toast}>
@@ -79,8 +79,6 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
                   <Example
                     key={index}
                     component={component}
-                    parentCenter={center}
-                    parentHeight={height}
                     parentSpacing={spacing}
                     collection={collection.title}
                   />

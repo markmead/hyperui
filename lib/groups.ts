@@ -220,7 +220,7 @@ export const testimonials = [
 export const titles = [
   { id: 1 },
   { id: 2 },
-  { id: 3, center: true, spacing: 'max-w-lg mx-auto p-4 w-screen' },
+  { id: 3, spacing: 'max-w-lg mx-auto p-4 w-screen' },
   { id: 4 },
 ]
 
