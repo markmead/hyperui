@@ -1,7 +1,4 @@
-import { FunctionComponent, useEffect } from 'react'
-
-import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
@@ -9,13 +6,6 @@ import IconGithub from './icon/github'
 import IconTwitter from './icon/twitter'
 
 const Header: FunctionComponent = () => {
-  let router = useRouter()
-  let [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    setOpen(false)
-  }, [router.asPath])
-
   return (
     <div className="relative">
       <header className="sticky inset-x-0 top-0 z-50 bg-white border-b border-gray-100">
