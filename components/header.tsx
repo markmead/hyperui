@@ -9,7 +9,7 @@ const Header: FunctionComponent = () => {
   return (
     <div className="relative">
       <header className="sticky inset-x-0 top-0 z-50 bg-white border-b border-gray-100">
-        <div className="container flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
           <nav role="navigation" className="flex items-center space-x-4">
             <Link href="/">
               <a className="text-sm font-medium">

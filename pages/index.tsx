@@ -43,7 +43,7 @@ const Home: NextPage<Props> = ({ collections }) => {
         buttonLink="#componentGrid"
       />
 
-      <div className="container py-8" id="componentGrid">
+      <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
         <Grid
           className="gap-4 sm:grid-cols-2 md:grid-cols-4"
           blocks={collections}

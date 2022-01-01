@@ -78,7 +78,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
             button={false}
           />
 
-          <div className="container py-8 sm:py-16">
+          <div className="max-w-screen-xl px-4 py-8 mx-auto sm:py-16">
             <div className="flow-root">
               <ul className="-my-8 divide-y divide-gray-100 lg:-my-16">
                 {components.map((component, index) => (

@@ -121,7 +121,14 @@ export const emptyStates = [
   { id: 5 },
 ]
 
-export const faqs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
+export const faqs = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6, spacing: 'px-4 py-8' },
+]
 
 export const footers = [
   { id: 1 },

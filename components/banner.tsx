@@ -21,7 +21,7 @@ const Banner: FunctionComponent<Props> = ({
 }) => {
   return (
     <section>
-      <div className={`container ${styles.container}`}>
+      <div className={`max-w-screen-xl px-4 mx-auto ${styles.container}`}>
         <h1 className={styles.title}>{title}</h1>
 
         <h2 className={styles.subtitle}>{subtitle}</h2>

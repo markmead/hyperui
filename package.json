@@ -9,9 +9,6 @@
     "tailwind": "npx tailwindcss -o styles/global.css --jit --minify -o public/css/build.css"
   },
   "dependencies": {
-    "@tailwindcss/aspect-ratio": "^0.3.0",
-    "@tailwindcss/forms": "^0.3.4",
-    "@tailwindcss/typography": "^0.4.1",
     "next": "12.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -30,7 +27,10 @@
     "prismjs": "^1.25.0",
     "react-copy-to-clipboard": "^5.0.4",
     "react-toastify": "^8.1.0",
-    "tailwindcss": "^2.2.19",
+    "tailwindcss": "^3.0.8",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
     "typescript": "4.4.4"
   }
 }
