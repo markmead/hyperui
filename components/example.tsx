@@ -44,7 +44,7 @@ const Example: FunctionComponent<Props> = ({
                 })
               </script>
 
-              <link rel="stylesheet" href="${origin}/css/build.css">
+              <link rel="stylesheet" href="${origin}/build.css">
 
               <body>
                 <div class="${spacingClass}">
