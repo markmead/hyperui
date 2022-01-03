@@ -30,7 +30,7 @@ const Layout: FunctionComponent = ({ children }) => {
       <Announcements>
         <Announcement
           text="🎉 Want a New Component? Create a Request on GitHub 🎉"
-          url="https://github.com/markmead/hyperui/issues/new?title=New Component Request"
+          url="https://github.com/markmead/hyperui/issues/new?assignees=markmead&labels=request&template=component-request.md&title=New+Component+Request"
         />
 
         <Announcement
