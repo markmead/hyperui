@@ -74,16 +74,30 @@ const Example: FunctionComponent<Props> = ({
 
           <Breakpoint
             handleWidth={setWidth}
-            size="680px"
-            text="Tablet"
-            emoji="💻"
+            size="640px"
+            text="Small"
+            emoji="🐛"
+          />
+
+          <Breakpoint
+            handleWidth={setWidth}
+            size="768px"
+            text="Medium"
+            emoji="🏢"
+          />
+
+          <Breakpoint
+            handleWidth={setWidth}
+            size="1024px"
+            text="Large"
+            emoji="🏔️"
           />
 
           <Breakpoint
             handleWidth={setWidth}
             size="100%"
-            text="Desktop"
-            emoji="🖥"
+            text="Full"
+            emoji="🌝"
           />
         </div>
       </div>
@@ -92,7 +106,7 @@ const Example: FunctionComponent<Props> = ({
         {isExample ? (
           <iframe
             srcDoc={html}
-            className={`border-2 bg-white rounded-lg border-gray-100 h-[400px] lg:transition-all lg:h-[600px]`}
+            className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-gray-100 lg:h-[600px]`}
             width={width}
             loading="lazy"
             title={`${collection} component ${id}`}
