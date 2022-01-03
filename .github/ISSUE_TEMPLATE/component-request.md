@@ -1,10 +1,9 @@
 ---
 name: Component Request
 about: Suggest a component for this project
-title: ''
+title: New Component Request
 labels: request
 assignees: markmead
-
 ---
 
 **Collection Title**
