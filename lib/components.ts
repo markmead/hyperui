@@ -171,6 +171,16 @@ export const navigations = [
 
 export const offCanvasMenus = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
+export const pagination = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+]
+
 export const popups = [
   { id: 1, spacing: 'p-4 max-w-5xl mx-auto' },
   { id: 2, spacing: 'p-4 max-w-lg mx-auto' },

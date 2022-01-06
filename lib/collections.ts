@@ -17,6 +17,7 @@ import {
   inputs,
   navigations,
   offCanvasMenus,
+  pagination,
   popups,
   stats,
   tabs,
@@ -147,6 +148,14 @@ export const collections: Array<Collection> = [
     title: 'Off Canvas Menus',
     components: offCanvasMenus,
     count: offCanvasMenus.length,
+  },
+
+  {
+    id: 'pagination',
+    title: 'Pagination',
+    components: pagination,
+    count: pagination.length,
+    spacing: 'p-4 max-w-xs mx-auto flex justify-center',
   },
 
   {
