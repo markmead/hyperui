@@ -247,7 +247,7 @@ export const filters = [
   { id: 2, spacing: 'max-w-md mx-auto p-4' },
 ]
 
-export const reviews = [{ id: 1 }]
+export const products = [{ id: 1 }]
 
 export const productCards = [
   { id: 1 },
@@ -265,3 +265,5 @@ export const productCollections = [
   { id: 5 },
   { id: 6 },
 ]
+
+export const reviews = [{ id: 1 }]

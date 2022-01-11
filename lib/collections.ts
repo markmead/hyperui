@@ -27,6 +27,7 @@ import {
 
   // Ecommerce
   filters,
+  products,
   productCards,
   productCollections,
   reviews,
@@ -209,6 +210,14 @@ export const collections: Array<Collection> = [
     title: 'Filters',
     components: filters,
     count: filters.length,
+    ecommerce: true,
+  },
+
+  {
+    id: 'products',
+    title: 'Products',
+    components: products,
+    count: products.length,
     ecommerce: true,
   },
 
