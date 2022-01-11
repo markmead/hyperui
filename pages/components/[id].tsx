@@ -74,7 +74,9 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
 
           <Banner
             title={collection.title}
-            subtitle={`${collection.count} Components`}
+            subtitle={`${collection.count} ${
+              collection.count > 1 ? ' components' : ' component'
+            }`}
             button={false}
           />
 

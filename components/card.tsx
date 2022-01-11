@@ -14,7 +14,10 @@ const Card: FunctionComponent<Props> = ({ collection }) => {
   return (
     <Link href={`/components/${id}`}>
       <a className="p-8 border-2 border-black rounded-lg hover:opacity-75">
-        <p className="text-sm">{count} Components</p>
+        <p className="text-sm">
+          {count}
+          {count > 1 ? ' components' : ' component'}
+        </p>
         <h2 className="mt-1 text-lg font-medium">{title}</h2>
       </a>
     </Link>
