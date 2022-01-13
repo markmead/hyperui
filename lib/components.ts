@@ -132,13 +132,14 @@ export const faqs = [
 ]
 
 export const footers = [
-  { id: 1 },
+  { id: 9 },
   { id: 2 },
+  { id: 7 },
+  { id: 6 },
   { id: 3 },
   { id: 4 },
+  { id: 1 },
   { id: 5 },
-  { id: 6 },
-  { id: 7 },
   { id: 8 },
 ]
 
