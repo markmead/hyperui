@@ -239,6 +239,7 @@ export const titles = [
   { id: 2 },
   { id: 3, spacing: 'max-w-lg mx-auto p-4 w-screen' },
   { id: 4 },
+  { id: 5, spacing: 'max-w-3xl mx-auto p-4' },
 ]
 
 // Ecommerce
@@ -260,11 +261,11 @@ export const productCards = [
 
 export const productCollections = [
   { id: 1 },
-  { id: 2 },
   { id: 3 },
   { id: 4 },
   { id: 5 },
   { id: 6 },
+  { id: 7 },
 ]
 
 export const reviews = [{ id: 1 }]
