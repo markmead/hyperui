@@ -57,6 +57,7 @@ export const buttons = [
 ]
 
 export const cards = [
+  { id: 24, spacing: 'max-w-3xl p-4 mx-auto' },
   { id: 1 },
   { id: 2 },
   { id: 3 },
@@ -252,6 +253,7 @@ export const filters = [
 export const products = [{ id: 1 }]
 
 export const productCards = [
+  { id: 6 },
   { id: 1 },
   { id: 2 },
   { id: 3 },
