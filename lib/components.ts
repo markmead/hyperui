@@ -135,6 +135,7 @@ export const faqs = [
 export const footers = [
   { id: 9 },
   { id: 2 },
+  { id: 10 },
   { id: 7 },
   { id: 6 },
   { id: 3 },
@@ -262,6 +263,7 @@ export const productCards = [
 ]
 
 export const productCollections = [
+  { id: 8 },
   { id: 1 },
   { id: 3 },
   { id: 4 },
