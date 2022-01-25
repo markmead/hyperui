@@ -7,7 +7,7 @@ import IconTwitter from './icon/twitter'
 
 const Header: FunctionComponent = () => {
   return (
-    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b border-gray-100">
+    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
       <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
         <nav role="navigation" className="flex items-center space-x-4">
           <Link href="/">

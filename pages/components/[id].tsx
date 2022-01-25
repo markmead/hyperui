@@ -77,22 +77,19 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
             subtitle={`${collection.count} ${
               collection.count > 1 ? ' components' : ' component'
             }`}
-            button={false}
           />
 
           <div className="px-4 py-8 mx-auto max-w-[1380px] sm:py-16">
-            <div className="flow-root">
-              <ul className="-my-8 divide-y divide-gray-100 lg:-my-16">
-                {components.map((component, index) => (
-                  <Example
-                    key={index}
-                    component={component}
-                    parentSpacing={spacing}
-                    collection={collection.title}
-                  />
-                ))}
-              </ul>
-            </div>
+            <ul className="space-y-8 lg:space-y-16">
+              {components.map((component, index) => (
+                <Example
+                  key={index}
+                  component={component}
+                  parentSpacing={spacing}
+                  collection={collection.title}
+                />
+              ))}
+            </ul>
           </div>
 
           <ToastContainer

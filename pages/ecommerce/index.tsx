@@ -37,9 +37,6 @@ const Ecommerce: NextPage = () => {
       <Banner
         title="HyperUI Ecommerce"
         subtitle="Tailwind CSS Components for Ecommerce Projects"
-        button={true}
-        buttonText="Get Started"
-        buttonLink="#componentGrid"
       />
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">

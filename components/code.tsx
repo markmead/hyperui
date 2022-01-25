@@ -15,10 +15,11 @@ const Code: FunctionComponent<Props> = ({ view, handleView }) => {
         className={styles.toggle}
         onClick={() => handleView(!view)}
       >
-        <span role="img" className="mr-1.5">
+        <span role="img" className="mr-1.5 text-sm">
           👀
         </span>
-        View
+
+        <span className="text-xs font-medium">View</span>
       </button>
     </>
   )

@@ -9,16 +9,19 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ collection }) => {
-  let { id, title, count } = collection
+  let { id, title, count, emoji } = collection
 
   return (
     <Link href={`/components/${id}`}>
-      <a className="p-8 border-2 border-black rounded-lg hover:opacity-75">
-        <p className="text-sm">
+      <a className="p-6 border-2 border-black hover:bg-black rounded-xl hover:text-white">
+        <span role="img" className="text-xl">
+          {emoji}
+        </span>
+        <h2 className="mt-4 text-lg font-medium">{title}</h2>
+        <p className="mt-1 text-xs">
           {count}
           {count > 1 ? ' components' : ' component'}
         </p>
-        <h2 className="mt-1 text-lg font-medium">{title}</h2>
       </a>
     </Link>
   )

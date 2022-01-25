@@ -21,11 +21,11 @@ const Breakpoint: FunctionComponent<Props> = ({
       className={styles.button}
       onClick={() => handleWidth(size)}
     >
-      <span role="img" className="mr-1.5">
+      <span role="img" className="mr-1.5 text-sm">
         {emoji}
       </span>
 
-      {text}
+      <span className="text-xs font-medium">{text}</span>
     </button>
   )
 }

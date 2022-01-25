@@ -62,7 +62,7 @@ const Example: FunctionComponent<Props> = ({
   })
 
   return (
-    <li className="py-8 space-y-4 lg:py-16">
+    <li className="space-y-4">
       <div className="flex justify-between item-center">
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Breakpoint
@@ -106,7 +106,7 @@ const Example: FunctionComponent<Props> = ({
         {isExample ? (
           <iframe
             srcDoc={html}
-            className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-gray-100 lg:h-[600px]`}
+            className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
             width={width}
             loading="lazy"
             title={`${collection} component ${id}`}

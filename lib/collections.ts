@@ -39,6 +39,7 @@ export const collections: Array<Collection> = [
     title: 'Alerts',
     components: alerts,
     count: alerts.length,
+    emoji: '🚨',
     spacing: 'max-w-sm w-screen mx-auto p-4',
   },
 
@@ -47,6 +48,7 @@ export const collections: Array<Collection> = [
     title: 'Announcements',
     components: announcements,
     count: announcements.length,
+    emoji: '📣',
   },
 
   {
@@ -54,6 +56,7 @@ export const collections: Array<Collection> = [
     title: 'Banners',
     components: banners,
     count: banners.length,
+    emoji: '✨',
   },
 
   {
@@ -61,6 +64,7 @@ export const collections: Array<Collection> = [
     title: 'Buttons',
     components: buttons,
     count: buttons.length,
+    emoji: '👆',
     spacing: 'p-4',
   },
 
@@ -69,6 +73,7 @@ export const collections: Array<Collection> = [
     title: 'Breadcrumbs',
     components: breadcrumbs,
     count: breadcrumbs.length,
+    emoji: '🍞',
   },
 
   {
@@ -76,6 +81,7 @@ export const collections: Array<Collection> = [
     title: 'Cards',
     components: cards,
     count: cards.length,
+    emoji: '🃏',
     spacing: 'max-w-md w-screen mx-auto p-4',
   },
 
@@ -84,6 +90,7 @@ export const collections: Array<Collection> = [
     title: 'Carts',
     components: carts,
     count: carts.length,
+    emoji: '🛒',
   },
 
   {
@@ -91,6 +98,7 @@ export const collections: Array<Collection> = [
     title: 'Content',
     components: content,
     count: content.length,
+    emoji: '📚',
   },
 
   {
@@ -98,6 +106,7 @@ export const collections: Array<Collection> = [
     title: 'CTAs',
     components: ctas,
     count: ctas.length,
+    emoji: '🔗',
   },
 
   {
@@ -105,6 +114,7 @@ export const collections: Array<Collection> = [
     title: 'Empty States',
     components: emptyStates,
     count: emptyStates.length,
+    emoji: '🤷‍♂️',
     spacing: 'max-w-lg w-screen mx-auto p-4',
   },
 
@@ -113,6 +123,7 @@ export const collections: Array<Collection> = [
     title: 'FAQs',
     components: faqs,
     count: faqs.length,
+    emoji: '🤔',
   },
 
   {
@@ -120,6 +131,7 @@ export const collections: Array<Collection> = [
     title: 'Footers',
     components: footers,
     count: footers.length,
+    emoji: '🚀',
   },
 
   {
@@ -127,6 +139,7 @@ export const collections: Array<Collection> = [
     title: 'Forms',
     components: forms,
     count: forms.length,
+    emoji: '📝',
   },
 
   {
@@ -134,6 +147,7 @@ export const collections: Array<Collection> = [
     title: 'Inputs',
     components: inputs,
     count: inputs.length,
+    emoji: '🖱',
     spacing: 'w-screen max-w-sm mx-auto p-4',
   },
 
@@ -142,6 +156,7 @@ export const collections: Array<Collection> = [
     title: 'Navigations',
     components: navigations,
     count: navigations.length,
+    emoji: '🗺️',
   },
 
   {
@@ -149,6 +164,7 @@ export const collections: Array<Collection> = [
     title: 'Off Canvas Menus',
     components: offCanvasMenus,
     count: offCanvasMenus.length,
+    emoji: '👋',
   },
 
   {
@@ -156,6 +172,7 @@ export const collections: Array<Collection> = [
     title: 'Pagination',
     components: pagination,
     count: pagination.length,
+    emoji: '🔢',
     spacing: 'p-4 max-w-xs mx-auto flex justify-center',
   },
 
@@ -164,6 +181,7 @@ export const collections: Array<Collection> = [
     title: 'Popups',
     components: popups,
     count: popups.length,
+    emoji: '🔥',
   },
 
   {
@@ -171,6 +189,7 @@ export const collections: Array<Collection> = [
     title: 'Stats',
     components: stats,
     count: stats.length,
+    emoji: '📈',
   },
 
   {
@@ -178,6 +197,7 @@ export const collections: Array<Collection> = [
     title: 'Tabs',
     components: tabs,
     count: tabs.length,
+    emoji: '📚',
     spacing: 'p-4 max-w-5xl mx-auto',
   },
 
@@ -186,6 +206,7 @@ export const collections: Array<Collection> = [
     title: 'Tags',
     components: tags,
     count: tags.length,
+    emoji: '🏷️',
     spacing: 'max-w-md w-screen mx-auto p-4 text-center',
   },
 
@@ -194,6 +215,7 @@ export const collections: Array<Collection> = [
     title: 'Testimonials',
     components: testimonials,
     count: testimonials.length,
+    emoji: '👍',
   },
 
   {
@@ -201,6 +223,7 @@ export const collections: Array<Collection> = [
     title: 'Titles',
     components: titles,
     count: titles.length,
+    emoji: '📚',
   },
 
   // Ecommerce
@@ -210,6 +233,7 @@ export const collections: Array<Collection> = [
     title: 'Filters',
     components: filters,
     count: filters.length,
+    emoji: '🔎',
     ecommerce: true,
   },
 
@@ -218,6 +242,7 @@ export const collections: Array<Collection> = [
     title: 'Products',
     components: products,
     count: products.length,
+    emoji: '🏎️',
     ecommerce: true,
   },
 
@@ -226,6 +251,7 @@ export const collections: Array<Collection> = [
     title: 'Product Cards',
     components: productCards,
     count: productCards.length,
+    emoji: '🃏',
     spacing: 'max-w-md w-screen mx-auto p-4',
     ecommerce: true,
   },
@@ -235,6 +261,7 @@ export const collections: Array<Collection> = [
     title: 'Product Collections',
     components: productCollections,
     count: productCollections.length,
+    emoji: '🛍️',
     ecommerce: true,
   },
 
@@ -243,6 +270,7 @@ export const collections: Array<Collection> = [
     title: 'Reviews',
     components: reviews,
     count: reviews.length,
+    emoji: '👍',
     ecommerce: true,
   },
 ]

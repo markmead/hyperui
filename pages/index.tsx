@@ -38,9 +38,6 @@ const Home: NextPage<Props> = ({ collections }) => {
       <Banner
         title="HyperUI"
         subtitle="An Open Source Tailwind CSS Component Library"
-        button={true}
-        buttonText="Get Started"
-        buttonLink="#componentGrid"
       />
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">

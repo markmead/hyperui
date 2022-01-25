@@ -15,10 +15,11 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
     <>
       <CopyToClipboard text={code} onCopy={() => toast('Copied to Clipboard!')}>
         <button type="button" className={styles.toggle}>
-          <span role="img" className="mr-1.5">
+          <span role="img" className="text-sm mr-1.5">
             📋
           </span>
-          Copy
+
+          <span className="text-xs font-medium">Copy</span>
         </button>
       </CopyToClipboard>
     </>
