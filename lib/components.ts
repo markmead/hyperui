@@ -58,6 +58,8 @@ export const buttons = [
 
 export const cards = [
   { id: 24, spacing: 'max-w-3xl p-4 mx-auto' },
+  { id: 25 },
+  { id: 26 },
   { id: 1 },
   { id: 2 },
   { id: 3 },
@@ -165,6 +167,7 @@ export const inputs = [
 ]
 
 export const navigations = [
+  { id: 6 },
   { id: 1 },
   { id: 2 },
   { id: 3 },
