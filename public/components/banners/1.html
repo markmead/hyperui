@@ -7,10 +7,8 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<section role="banner" class="p-4 bg-white lg:h-screen">
-  <div
-    class="mx-auto lg:grid max-w-screen-2xl lg:gap-y-8 lg:gap-x-16 lg:grid-cols-2 lg:items-center lg:h-full"
-  >
+<section class="p-4 bg-white lg:h-screen">
+  <div class="mx-auto lg:grid max-w-screen-2xl lg:gap-y-8 lg:gap-x-16 lg:grid-cols-2 lg:items-center lg:h-full">
     <div class="px-4 py-8 space-y-8 text-center sm:p-16 lg:text-left">
       <h1 class="text-4xl font-extrabold sm:text-5xl">
         Lorem ipsum dolor sit amet,
@@ -25,27 +23,26 @@
 
       <form role="search">
         <div class="relative">
+          <label class="sr-only" for="q">
+            Query
+          </label>
+
           <input
-            placeholder="Search..."
-            type="search"
             class="w-full h-16 p-6 border-gray-200 rounded-xl"
+            id="q" name="q "type="search"  placeholder="I'm looking for..."
           />
 
           <button
             type="submit"
-            aria-label="Submit search"
             class="absolute p-3 text-white bg-pink-500 shadow-xl hover:bg-pink-600 rounded-xl right-2 top-2"
           >
+            <span class="sr-only">Submit</span>
+
             <svg
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
               class="w-6 h-6"
+              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                fill-rule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd"
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"
               ></path>
             </svg>
           </button>
@@ -55,15 +52,17 @@
 
     <div class="relative h-64 sm:h-96 lg:h-full">
       <img
+        class="absolute inset-0 object-cover w-full h-full rounded-3xl"
         src="https://www.hyperui.dev/photos/man-3.jpeg"
         alt="Man leaving office"
-        class="absolute inset-0 object-cover w-full h-full rounded-3xl"
       />
 
-      <aside
+      <div
         class="hidden lg:absolute lg:max-w-sm lg:p-8 lg:bg-white lg:shadow-xl lg:block lg:rounded-2xl lg:bottom-8 lg:left-8"
       >
-        <h3 class="text-xl font-bold">Lorem ipsum dolor sit amet.</h3>
+        <h2 class="text-xl font-bold">
+          Lorem ipsum dolor sit amet.
+        </h2>
 
         <p class="mt-2 text-sm text-gray-500">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto,
@@ -71,27 +70,19 @@
         </p>
 
         <a
-          href=""
           class="inline-flex items-center px-5 py-3 mt-6 text-sm font-medium text-white bg-pink-500 rounded-lg hover:bg-pink-600"
+          href="/join"
         >
           Get started today
 
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
             class="w-4 h-4 ml-3"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
-      </aside>
+      </div>
     </div>
   </div>
 </section>
