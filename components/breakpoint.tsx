@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import styles from '../styles/breakpoint.module.css'
+import styles from '../styles/button.module.css'
 
 type Props = {
   text: string
@@ -18,7 +18,7 @@ const Breakpoint: FunctionComponent<Props> = ({
   return (
     <button
       type="button"
-      className={styles.button}
+      className={styles.pill}
       onClick={() => handleWidth(size)}
     >
       <span role="img" className="mr-1.5 text-sm">

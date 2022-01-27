@@ -2,6 +2,7 @@ import { FunctionComponent, useContext } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import styles from '../styles/button.module.css'
+
 import ToastContext from '../context/toast'
 
 type Props = {
@@ -14,7 +15,7 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
   return (
     <>
       <CopyToClipboard text={code} onCopy={() => toast('Copied to Clipboard!')}>
-        <button type="button" className={styles.toggle}>
+        <button type="button" className={styles.pill}>
           <span role="img" className="text-sm mr-1.5">
             📋
           </span>

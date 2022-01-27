@@ -12,7 +12,7 @@ const Code: FunctionComponent<Props> = ({ view, handleView }) => {
     <>
       <button
         type="button"
-        className={styles.toggle}
+        className={styles.pill}
         onClick={() => handleView(!view)}
       >
         <span role="img" className="mr-1.5 text-sm">
