@@ -65,7 +65,7 @@ export const collections: Array<Collection> = [
     components: buttons,
     count: buttons.length,
     emoji: '👆',
-    spacing: 'p-4',
+    spacing: 'p-8 flex flex-col space-y-8 items-center',
   },
 
   {
