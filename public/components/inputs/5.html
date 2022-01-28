@@ -7,18 +7,15 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<div class="relative h-16">
-  <label
-    for="name"
-    class="absolute text-xs font-medium text-gray-500 top-3 left-3"
-  >
-    Name
-  </label>
-
+<label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="name">
   <input
-    type="text"
+    class="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
     id="name"
-    placeholder="John Doe"
-    class="absolute inset-0 w-full px-3 pb-3 bg-transparent border-gray-200 rounded-lg sm:text-sm pt-9"
+    type="text"
+    placeholder="Name"
   />
-</div>
+
+  <span class="absolute text-xs font-medium text-gray-500 transition-all left-3 peer-focus:text-xs peer-focus:top-3 peer-focus:translate-y-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm">
+    Name
+  </span>
+</label>

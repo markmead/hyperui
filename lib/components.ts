@@ -141,14 +141,7 @@ export const forms = [
   { id: 7 },
 ]
 
-export const inputs = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6, spacing: 'max-w-lg mx-auto p-4' },
-]
+export const inputs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
 
 export const navigations = [
   { id: 6 },

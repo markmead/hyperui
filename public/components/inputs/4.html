@@ -7,35 +7,10 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<div>
-  <label for="email" class="sr-only"> Email </label>
+<label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="name">
+  <span class="text-xs font-medium text-gray-500" for="name">
+    Name
+  </span>
 
-  <input
-    type="email"
-    id="email"
-    placeholder="Enter email"
-    value="testemail.com"
-    class="w-full p-4 border-2 border-gray-200 rounded-lg sm:text-sm peer invalid:border-red-600"
-  />
-
-  <div class="items-center hidden mt-2 text-red-600 peer-invalid:flex">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      class="w-5 h-5"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-
-    <p class="ml-2 text-sm">
-      <strong> Error: </strong> Please enter a valid email address
-    </p>
-  </div>
-</div>
+  <input class="w-full p-0 text-sm border-none focus:ring-0" id="name" type="text" placeholder="John Doe" />
+</label>

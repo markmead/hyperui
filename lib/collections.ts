@@ -148,7 +148,7 @@ export const collections: Array<Collection> = [
     components: inputs,
     count: inputs.length,
     emoji: '🖱',
-    spacing: 'w-screen max-w-sm mx-auto p-4',
+    spacing: 'max-w-sm mx-auto p-8',
   },
 
   {
