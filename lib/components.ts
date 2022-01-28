@@ -24,6 +24,8 @@ export const breadcrumbs = [
   { id: 3 },
 ]
 
+export const buttonGroups = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+
 export const buttons = [
   { id: 1 },
   { id: 2 },

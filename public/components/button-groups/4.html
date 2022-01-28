@@ -1,0 +1,31 @@
+<div class="inline-flex items-center -space-x-px text-xs rounded-md">
+  <label class="relative" for="sort">
+    <span class="sr-only"> Sort </span>
+
+    <select
+      class="py-3 pl-5 pr-10 text-xs font-medium border-gray-200 rounded-l-md hover:z-10 focus:outline-none focus:border-indigo-600 focus:z-10 hover:bg-gray-50 focus:ring-0"
+      id="sort"
+      name="sort"
+    >
+      <option> Sort By </option>
+      <option value="name-asc"> Name, Asc </option>
+      <option value="name-desc"> Name, Desc </option>
+      <option value="date-asc"> Date, Asc </option>
+      <option value="name-desc"> Date, Desc </option>
+    </select>
+  </label>
+
+  <button
+    class="px-5 py-3 font-medium border hover:z-10 focus:outline-none focus:border-indigo-600 focus:z-10 hover:bg-gray-50 active:opacity-75"
+    type="button"
+  >
+    Download
+  </button>
+
+  <button
+    class="px-5 py-3 font-medium border rounded-r-md hover:z-10 focus:outline-none focus:border-indigo-600 focus:z-10 hover:bg-gray-50 active:opacity-75"
+    type="button"
+  >
+    Export
+  </button>
+</div>

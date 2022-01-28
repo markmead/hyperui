@@ -6,6 +6,7 @@ import {
   banners,
   breadcrumbs,
   buttons,
+  buttonGroups,
   cards,
   carts,
   content,
@@ -66,6 +67,15 @@ export const collections: Array<Collection> = [
     count: buttons.length,
     emoji: '👆',
     spacing: 'p-8 flex flex-col space-y-8 items-center',
+  },
+
+  {
+    id: 'button-groups',
+    title: 'Button Groups',
+    components: buttonGroups,
+    count: buttonGroups.length,
+    emoji: '🍮',
+    spacing: 'p-8 flex flex-col items-center',
   },
 
   {
