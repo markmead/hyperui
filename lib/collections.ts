@@ -40,7 +40,7 @@ export const collections: Array<Collection> = [
     components: alerts,
     count: alerts.length,
     emoji: '🚨',
-    spacing: 'max-w-sm w-screen mx-auto p-4',
+    spacing: 'max-w-sm p-4 space-y-8 mx-auto',
   },
 
   {
