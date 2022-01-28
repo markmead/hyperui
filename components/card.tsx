@@ -13,7 +13,7 @@ const Card: FunctionComponent<Props> = ({ collection }) => {
 
   return (
     <Link href={`/components/${id}`}>
-      <a className="p-6 border-2 border-black hover:bg-black rounded-xl hover:text-white">
+      <a className="p-6 transition-shadow border-2 border-black rounded-xl shadow-cartoon hover:shadow-none">
         <span role="img" className="text-xl">
           {emoji}
         </span>

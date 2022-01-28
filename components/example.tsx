@@ -106,7 +106,7 @@ const Example: FunctionComponent<Props> = ({
         {isExample ? (
           <iframe
             srcDoc={html}
-            className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
+            className={`bg-white rounded-2xl h-[400px] lg:transition-all border-2 border-black lg:h-[600px] shadow-example`}
             width={width}
             loading="lazy"
             title={`${collection} component ${id}`}

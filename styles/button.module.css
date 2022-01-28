@@ -1,3 +1,9 @@
 .pill {
-  @apply inline-flex items-center px-3 py-1.5 border-2 border-black rounded-lg hover:bg-black hover:text-white;
+  @apply inline-flex items-center;
+  @apply px-3 py-1.5;
+  @apply border-2 border-black;
+  @apply rounded-lg;
+  @apply relative;
+  @apply shadow-cartoon;
+  @apply transition-shadow hover:shadow-none;
 }
