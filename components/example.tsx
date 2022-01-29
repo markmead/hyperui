@@ -34,9 +34,9 @@ const Example: FunctionComponent<Props> = ({
     let iframeHeightStyle =
       iframeHeight > 1400
         ? '1000px'
-        : iframeHeight > 300
+        : iframeHeight > 400
         ? `${iframeHeight}px`
-        : '300px'
+        : '400px'
 
     el.style.height = iframeHeightStyle
   }
