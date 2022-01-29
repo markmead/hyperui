@@ -28,6 +28,19 @@ const Example: FunctionComponent<Props> = ({
   let spacingClass = spacing ? spacing : parentSpacing
   let isExample = view
 
+  const autoHeight = (el: HTMLIFrameElement) => {
+    let iframeHeight = el.contentWindow?.document.body.scrollHeight || 400
+
+    let iframeHeightStyle =
+      iframeHeight > 1400
+        ? '1000px'
+        : iframeHeight > 300
+        ? `${iframeHeight}px`
+        : '300px'
+
+    el.style.height = iframeHeightStyle
+  }
+
   useEffect(() => {
     let { origin, href } = window.location
 
@@ -106,10 +119,16 @@ const Example: FunctionComponent<Props> = ({
         {isExample ? (
           <iframe
             srcDoc={html}
-            className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
+            className={`bg-white rounded-lg lg:transition-all ring-2 ring-black`}
             width={width}
             loading="lazy"
-            title={`${collection} component ${id}`}
+            id={`example-${id}`}
+            title={`${collection} Component ${id}`}
+            onLoad={(event) => {
+              let iframe = event.currentTarget as HTMLIFrameElement
+
+              autoHeight(iframe)
+            }}
           ></iframe>
         ) : (
           <pre
