@@ -236,13 +236,11 @@ export const filters = [
 export const products = [{ id: 1 }, { id: 2 }]
 
 export const productCards = [
-  { id: 6 },
   { id: 1 },
   { id: 2 },
   { id: 3 },
   { id: 4 },
   { id: 5 },
-  { id: 7 },
 ]
 
 export const productCollections = [
