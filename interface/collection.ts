@@ -6,6 +6,7 @@ export interface Collection {
   count: number
   emoji: string
   spacing?: string
+  height?: string
   components: Array<Component>
   ecommerce?: boolean
 }

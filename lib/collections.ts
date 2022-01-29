@@ -58,6 +58,7 @@ export const collections: Array<Collection> = [
     components: banners,
     count: banners.length,
     emoji: '✨',
+    height: '600px',
   },
 
   {
@@ -253,6 +254,7 @@ export const collections: Array<Collection> = [
     components: products,
     count: products.length,
     emoji: '🏎️',
+    height: '800px',
     ecommerce: true,
   },
 

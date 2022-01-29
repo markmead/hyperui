@@ -10,12 +10,14 @@ import Code from './code'
 type Props = {
   component: Component
   parentSpacing?: string
+  parentHeight?: string
   collection: string
 }
 
 const Example: FunctionComponent<Props> = ({
   component,
   parentSpacing,
+  parentHeight,
   collection,
 }) => {
   let [html, setHtml] = useState<string>()
@@ -31,12 +33,13 @@ const Example: FunctionComponent<Props> = ({
   const autoHeight = (el: HTMLIFrameElement) => {
     let iframeHeight = el.contentWindow?.document.body.scrollHeight || 400
 
-    let iframeHeightStyle =
-      iframeHeight > 1400
-        ? '1000px'
-        : iframeHeight > 400
-        ? `${iframeHeight}px`
-        : '400px'
+    if (parentHeight) {
+      el.style.height = parentHeight
+
+      return
+    }
+
+    let iframeHeightStyle = iframeHeight > 400 ? `${iframeHeight}px` : '400px'
 
     el.style.height = iframeHeightStyle
   }
