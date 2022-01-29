@@ -10,9 +10,10 @@ const Layout: FunctionComponent = ({ children }) => {
     <>
       <Head>
         <script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
+          async
         ></script>
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -24,6 +25,39 @@ const Layout: FunctionComponent = ({ children }) => {
             `,
           }}
         />
+
+        <title>Open Source Tailwind CSS Components | HyperUI</title>
+        <meta
+          property="description"
+          content="HyperUI is a free, open source library of Tailwind CSS components."
+          key="description"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hyperui.dev/" />
+        <meta
+          property="og:title"
+          content="Open Source Tailwind CSS Components | HyperUI"
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content="HyperUI is a free, open source library of Tailwind CSS components."
+          key="og:description"
+        />
+        <meta property="og:image" content="https://hyperui.dev/og.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://hyperui.dev/" />
+        <meta
+          property="twitter:title"
+          content="Open Source Tailwind CSS Components | HyperUI"
+          key="twitter:title"
+        />
+        <meta
+          property="twitter:description"
+          content="HyperUI is a free, open source library of Tailwind CSS components."
+          key="twitter:description"
+        />
+        <meta property="twitter:image" content="https://hyperui.dev/og.png" />
       </Head>
 
       <Announcement
