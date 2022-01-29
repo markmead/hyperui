@@ -31,7 +31,7 @@ const Example: FunctionComponent<Props> = ({
   let isExample = view
 
   const autoHeight = (el: HTMLIFrameElement) => {
-    let iframeHeight = el.contentWindow?.document.body.scrollHeight || 400
+    let iframeHeight = el.contentWindow?.document.body.scrollHeight || 200
 
     if (parentHeight) {
       el.style.height = parentHeight
@@ -39,7 +39,7 @@ const Example: FunctionComponent<Props> = ({
       return
     }
 
-    let iframeHeightStyle = iframeHeight > 400 ? `${iframeHeight}px` : '400px'
+    let iframeHeightStyle = iframeHeight > 200 ? `${iframeHeight}px` : '200px'
 
     el.style.height = iframeHeightStyle
   }
