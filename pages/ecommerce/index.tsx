@@ -29,9 +29,27 @@ const Ecommerce: NextPage = () => {
     <>
       <Head>
         <title>{meta.title}</title>
-        <meta property="og:title" content={meta.title} />
-        <meta name="description" content={meta.description}></meta>
-        <meta property="og:description" content={meta.description} />
+        <meta
+          property="description"
+          content={meta.description}
+          key="description"
+        />
+        <meta property="og:title" content={meta.title} key="og:title" />
+        <meta
+          property="og:description"
+          content={meta.description}
+          key="og:description"
+        />
+        <meta
+          property="twitter:title"
+          content={meta.title}
+          key="twitter:title"
+        />
+        <meta
+          property="twitter:description"
+          content={meta.description}
+          key="twitter:description"
+        />
       </Head>
 
       <Banner

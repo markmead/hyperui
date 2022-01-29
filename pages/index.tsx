@@ -20,21 +20,8 @@ type Props = {
 }
 
 const Home: NextPage<Props> = ({ collections }) => {
-  let meta = {
-    title: 'Open Source Tailwind CSS Components | HyperUI',
-    description:
-      'HyperUI is a free, open source library of Tailwind CSS components.',
-  }
-
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <meta property="og:title" content={meta.title} />
-        <meta name="description" content={meta.description}></meta>
-        <meta property="og:description" content={meta.description} />
-      </Head>
-
       <Banner
         title="HyperUI"
         subtitle="An Open Source Tailwind CSS Component Library"
