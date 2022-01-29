@@ -233,7 +233,7 @@ export const filters = [
   { id: 2, spacing: 'max-w-md mx-auto p-4' },
 ]
 
-export const products = [{ id: 1 }, { id: 2 }]
+export const products = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
 export const productCards = [
   { id: 6 },
@@ -242,6 +242,7 @@ export const productCards = [
   { id: 3 },
   { id: 4 },
   { id: 5 },
+  { id: 7 },
 ]
 
 export const productCollections = [
