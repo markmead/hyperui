@@ -41,6 +41,7 @@ const Header: FunctionComponent = () => {
             rel="noopener noreferrer"
             className="p-2 rounded hover:opacity-75"
           >
+            <span className="sr-only"> Twitter </span>
             <IconTwitter />
           </a>
 
@@ -50,6 +51,7 @@ const Header: FunctionComponent = () => {
             rel="noopener noreferrer"
             className="p-2 rounded hover:opacity-75"
           >
+            <span className="sr-only"> GitHub </span>
             <IconGithub />
           </a>
         </div>
