@@ -7,15 +7,7 @@ export const announcements = [
   { id: 4, spacing: 'spacing-y-0' },
 ]
 
-export const banners = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-]
+export const banners = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
 export const breadcrumbs = [
   { id: 1, spacing: 'p-4' },

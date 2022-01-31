@@ -1,28 +1,118 @@
-<section class="text-white bg-gray-900" role="banner">
-  <div class="max-w-screen-xl px-4 py-24 mx-auto sm:px-6 lg:px-8 sm:py-36 lg:h-screen lg:flex lg:items-center">
-    <div class="max-w-3xl mx-auto text-center">
-      <h1
-        class="text-3xl font-extrabold text-transparent sm:text-6xl bg-clip-text bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
-      >
-        Lorem ipsum dolor sit amet consectetur.
-      </h1>
+<style>
+  input[type="search"]::-webkit-search-cancel-button{
+    margin: 0;
+    appearance: none;
+  }
+</style>
 
-      <p class="max-w-xl mx-auto mt-6 text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique necessitatibus dolorem soluta,
-        recusandaefacere error.
+<section class="relative bg-white">
+  <img
+    class="absolute inset-0 object-cover w-full h-full opacity-25 sm:opacity-100"
+    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2973&q=80"
+    alt="Beach landscape"
+  />
+
+  <div class="hidden sm:block sm:inset-0 sm:absolute sm:bg-gradient-to-r sm:from-white sm:to-transparent"></div>
+
+  <div class="relative max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
+    <div class="max-w-xl text-center text-indigo-900 sm:text-left">
+      <p class="text-sm font-medium">
+        Hello traveller...
       </p>
 
-      <div class="mt-8 sm:justify-center sm:flex">
-        <a href="" class="block px-5 py-3 font-medium bg-purple-600 rounded-lg hover:bg-purple-500">
-          Get started today
-        </a>
+      <h1 class="mt-1 text-3xl font-bold sm:text-5xl">
+        Let us take the stress out of your next holiday.
+      </h1>
 
-        <a
-          href=""
-          class="block px-5 py-3 mt-3 font-medium border border-purple-600 rounded-lg sm:ml-3 sm:mt-0 hover:border-purple-500"
+      <form class="mt-8" role="search">
+        <div class="relative">
+          <label class="sr-only" for="q"> Query </label>
+
+          <input
+            class="w-full py-4 pl-16 pr-3 text-indigo-800 border-none rounded-lg shadow-sm placeholder-indigo-900/75 focus:outline-none focus:ring"
+            id="q"
+            type="search"
+            placeholder="I'm looking for..."
+          />
+
+          <button
+            class="absolute order-first p-2 text-indigo-800 -translate-y-1/2 rounded-full top-1/2 left-4"
+            type="submit"
+          >
+            <span class="sr-only"> Submit </span>
+
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <div class="flex flex-wrap justify-center max-w-xs gap-1.5 mt-4 sm:justify-start">
+        <button
+          class="inline-block px-3 py-1 text-xs transition-colors rounded-lg shadow-sm bg-white/75 hover:bg-white"
+          type="button"
         >
-          Find out more
-        </a>
+          <span role="img">
+            🍕
+          </span>
+
+          <span class="ml-0.5 font-medium">
+            Italy
+          </span>
+        </button>
+
+        <button
+          class="inline-block px-3 py-1 text-xs transition-colors rounded-lg shadow-sm bg-white/75 hover:bg-white"
+          type="button"
+        >
+          <span role="img">
+            🌮
+          </span>
+
+          <span class="ml-0.5 font-medium">
+            Mexico
+          </span>
+        </button>
+
+        <button
+          class="inline-block px-3 py-1 text-xs transition-colors rounded-lg shadow-sm bg-white/75 hover:bg-white"
+          type="button"
+        >
+          <span role="img">
+            🍫
+          </span>
+
+          <span class="ml-0.5 font-medium">
+            Belgium
+          </span>
+        </button>
+
+        <button
+          class="inline-block px-3 py-1 text-xs transition-colors rounded-lg shadow-sm bg-white/75 hover:bg-white"
+          type="button"
+        >
+          <span role="img">
+            🍔
+          </span>
+
+          <span class="ml-0.5 font-medium">
+            America
+          </span>
+        </button>
+
+        <button
+          class="inline-block px-3 py-1 text-xs transition-colors rounded-lg shadow-sm bg-white/75 hover:bg-white"
+          type="button"
+        >
+          <span role="img">
+            🍯
+          </span>
+
+          <span class="ml-0.5 font-medium">
+            Canada
+          </span>
+        </button>
       </div>
     </div>
   </div>
