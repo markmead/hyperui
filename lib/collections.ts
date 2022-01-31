@@ -50,6 +50,7 @@ export const collections: Array<Collection> = [
     components: announcements,
     count: announcements.length,
     emoji: '📣',
+    spacing: 'space-y-8',
   },
 
   {
