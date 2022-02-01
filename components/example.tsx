@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 import { useState, useEffect } from 'react'
 
-import Prism from 'Prismjs'
+const prism = require('prismjs')
 
 import { Component } from '../interface/component'
 
@@ -57,7 +57,7 @@ const Example: FunctionComponent<Props> = ({
 
             setHtml(code)
             setCode(html)
-            Prism.highlightAll()
+            prism.highlightAll()
           })
         }
       })
