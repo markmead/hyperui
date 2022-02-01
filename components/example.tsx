@@ -1,6 +1,8 @@
 import type { FunctionComponent } from 'react'
 import { useState, useEffect } from 'react'
 
+import Prism from 'Prismjs'
+
 import { Component } from '../interface/component'
 
 import Breakpoint from './breakpoint'
@@ -55,6 +57,7 @@ const Example: FunctionComponent<Props> = ({
 
             setHtml(code)
             setCode(html)
+            Prism.highlightAll()
           })
         }
       })
@@ -109,13 +112,11 @@ const Example: FunctionComponent<Props> = ({
             className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
             width={width}
             loading="lazy"
-            title={`${collection} component ${id}`}
+            title={`${collection} Component ${id}`}
           ></iframe>
         ) : (
-          <pre
-            className={`p-4 bg-gray-100 overflow-auto rounded-lg h-[400px] lg:h-[600px]`}
-          >
-            {code}
+          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px]">
+            <code className="language-html">{code}</code>
           </pre>
         )}
       </div>
