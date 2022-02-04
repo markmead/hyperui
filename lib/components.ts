@@ -192,8 +192,6 @@ export const tags = [
   { id: 4 },
   { id: 5 },
   { id: 6 },
-  { id: 7 },
-  { id: 8 },
 ]
 
 export const testimonials = [
