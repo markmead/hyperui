@@ -218,7 +218,7 @@ export const collections: Array<Collection> = [
     components: tags,
     count: tags.length,
     emoji: '🏷️',
-    spacing: 'max-w-md w-screen mx-auto p-4 text-center',
+    spacing: 'p-8 flex flex-col space-y-8 items-center',
   },
 
   {
