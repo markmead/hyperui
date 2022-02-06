@@ -8,7 +8,6 @@ import {
   buttons,
   buttonGroups,
   cards,
-  carts,
   content,
   ctas,
   emptyStates,
@@ -27,6 +26,7 @@ import {
   titles,
 
   // Ecommerce
+  carts,
   filters,
   products,
   productCards,
@@ -94,14 +94,6 @@ export const collections: Array<Collection> = [
     count: cards.length,
     emoji: '🃏',
     spacing: 'max-w-md w-screen mx-auto p-4',
-  },
-
-  {
-    id: 'carts',
-    title: 'Carts',
-    components: carts,
-    count: carts.length,
-    emoji: '🛒',
   },
 
   {
@@ -238,6 +230,15 @@ export const collections: Array<Collection> = [
   },
 
   // Ecommerce
+
+  {
+    id: 'carts',
+    title: 'Carts',
+    components: carts,
+    count: carts.length,
+    emoji: '🛒',
+    ecommerce: true,
+  },
 
   {
     id: 'filters',

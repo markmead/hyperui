@@ -1,186 +1,77 @@
-<!--
-  This component uses @tailwindcss/forms
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
+<div
+  class="block p-10 border sm:px-12 bg-stone-100 border-stone-600"
+  aria-modal="true"
+  aria-label="Item added to your cart"
+  role="dialog"
+  tabindex="-1"
+>
+  <div class="flex items-start justify-between">
+    <h2 class="flex items-center text-gray-700">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
 
-  plugins: [require('@tailwindcss/forms')]
--->
+      <span class="ml-2 text-sm">
+        Item added to your cart
+      </span>
+    </h2>
 
-<style>
-  .no-spinners {
-    -moz-appearance: textfield;
-  }
-
-  .no-spinners::-webkit-outer-spin-button,
-  .no-spinners::-webkit-inner-spin-button {
-    margin: 0;
-    -webkit-appearance: none;
-  }
-</style>
-
-<section>
-  <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-    <ul class="space-y-4">
-      <li
-        class="p-4 border-2 border-black sm:items-center sm:justify-between sm:flex"
-      >
-        <div class="flex items-center sm:flex-1">
-          <a href="" class="flex-shrink-0 block">
-            <img
-              class="w-36 h-36"
-              src="https://www.hyperui.dev/photos/fruit-1.jpeg"
-              alt=""
-            />
-          </a>
-
-          <div class="max-w-xl ml-6">
-            <a href="" class="text-lg font-medium">
-              Lorem ipsum dolor sit amet.
-            </a>
-
-            <p class="mt-1 text-xs text-gray-500">Super Yellow Version</p>
-
-            <p class="mt-4 font-medium text-gray-700">
-              $8.99 <s class="opacity-50">$10.99</s>
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-4 lg:items-center lg:mt-0 lg:flex">
-          <div class="flex justify-between p-2 space-x-2 border-2 border-black">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-black "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-
-            <input
-              type="number"
-              value="1"
-              min="0"
-              class="w-full h-10 text-center border-2 border-black sm:w-16 no-spinners"
-            />
-
-            <button
-              type="button"
-              class="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-black "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <a
-            href=""
-            class="block w-full px-5 py-3 mt-4 text-sm font-medium tracking-widest text-red-600 uppercase border-2 border-red-600 lg:ml-4 lg:mt-0 hover:bg-red-600 hover:text-white"
-          >
-            Remove
-          </a>
-        </div>
-      </li>
-
-      <li
-        class="p-4 border-2 border-black sm:items-center sm:justify-between sm:flex"
-      >
-        <div class="flex items-center sm:flex-1">
-          <a href="" class="flex-shrink-0 block">
-            <img
-              class="w-36 h-36"
-              src="https://www.hyperui.dev/photos/fruit-1.jpeg"
-              alt=""
-            />
-          </a>
-
-          <div class="max-w-xl ml-6">
-            <a href="" class="text-lg font-medium">
-              Lorem ipsum dolor sit amet.
-            </a>
-
-            <p class="mt-1 text-xs text-gray-500">Super Yellow Version</p>
-
-            <p class="mt-4 font-medium text-gray-700">
-              $8.99 <s class="opacity-50">$10.99</s>
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-4 lg:items-center lg:mt-0 lg:flex">
-          <div class="flex justify-between p-2 space-x-2 border-2 border-black">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-black "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-
-            <input
-              type="number"
-              value="1"
-              min="0"
-              class="w-full h-10 text-center border-2 border-black sm:w-16 no-spinners"
-            />
-
-            <button
-              type="button"
-              class="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-black "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <a
-            href=""
-            class="block w-full px-5 py-3 mt-4 text-sm font-medium tracking-widest text-red-600 uppercase border-2 border-red-600 lg:ml-4 lg:mt-0 hover:bg-red-600 hover:text-white"
-          >
-            Remove
-          </a>
-        </div>
-      </li>
-    </ul>
+    <button class="-mt-6 -mr-6 transition-transform sm:-mr-8 hover:scale-110" type="button" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
   </div>
-</section>
+
+  <div class="flex items-start pt-8 pb-12">
+    <img
+      class="object-cover w-16 h-16 rounded-lg"
+      src="../../photos/tee-green-person-2.png"
+      alt="Basic Tee"
+    />
+
+    <div class="ml-4">
+      <h3 class="text-sm">
+        Basic Tee 6-Pack
+      </h3>
+
+      <dl class="mt-1 space-y-1 text-xs text-gray-500">
+        <div>
+          <dt class="inline"> Size: </dt>
+          <dd class="inline"> XXS </dd>
+        </div>
+
+        <div>
+          <dt class="inline"> Color: </dt>
+          <dd class="inline"> White </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="space-y-4 text-center">
+    <a
+      class="block p-3 text-sm border rounded-lg border-stone-600 text-stone-500 hover:ring-1 hover:ring-stone-400 hover:text-stone-600"
+      href="/cart"
+    >
+      View my cart (2)
+    </a>
+
+    <form action="/cart" method="post">
+      <button
+        class="block w-full p-3 text-sm rounded-lg bg-stone-600 text-stone-100 hover:bg-stone-500"
+        type="submit"
+      >
+        Check out
+      </button>
+    </form>
+
+    <a
+      class="inline-block text-sm tracking-wide underline underline-offset-4 text-stone-500 hover:text-stone-600"
+      href="/collections/all"
+    >
+      Continue shopping
+    </a>
+  </div>
+</div>

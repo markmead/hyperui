@@ -62,12 +62,6 @@ export const cards = [
   { id: 23 },
 ]
 
-export const carts = [
-  { id: 1 },
-  { id: 2, spacing: 'max-w-sm mx-auto p-4' },
-  { id: 3 },
-]
-
 export const content = [
   { id: 1 },
   { id: 2 },
@@ -215,6 +209,11 @@ export const titles = [
 ]
 
 // Ecommerce
+
+export const carts = [
+  { id: 1, spacing: 'max-w-lg mx-auto p-8' },
+  { id: 2, spacing: 'max-w-lg mx-auto p-8' },
+]
 
 export const filters = [
   { id: 1, spacing: 'max-w-5xl mx-auto p-4' },
