@@ -35,7 +35,9 @@ const Search: FunctionComponent = () => {
   }, [open, query])
 
   useEffect(() => {
-    document.activeElement.blur()
+    let activeElement = document.activeElement as HTMLElement
+
+    activeElement.blur()
   }, [router.asPath])
 
   return (
@@ -61,7 +63,7 @@ const Search: FunctionComponent = () => {
 
       <div className="hidden group-focus-within:block">
         <div className="absolute top-auto w-64 p-2 mt-6 bg-white border-2 border-gray-100 rounded-xl">
-          {results.length > 1 ? (
+          {results.length > 0 ? (
             <ul className="overflow-y-auto max-h-64">
               {results.map((collection, index) => (
                 <li key={index}>
