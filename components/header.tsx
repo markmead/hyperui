@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import IconGithub from './icon/github'
 import IconTwitter from './icon/twitter'
+import Search from './search'
 
 const Header: FunctionComponent = () => {
   return (
@@ -35,6 +36,10 @@ const Header: FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-end flex-1">
+          <div className="hidden lg:block">
+            <Search />
+          </div>
+
           <a
             href="https://twitter.com/itsmarkmead"
             target="_blank"
