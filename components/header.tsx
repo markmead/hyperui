@@ -35,7 +35,12 @@ const Header: FunctionComponent = () => {
           </Link>
 
           <Link href="/saved">
-            <a className="block text-xs font-medium hover:opacity-75">Saved</a>
+            <a className="inline-flex items-center text-xs font-medium hover:opacity-75">
+              Saved
+              <span className="hidden sm:block text-white bg-blue-600 ml-1 px-1.5 py-0.5 rounded uppercase text-[10px]">
+                New
+              </span>
+            </a>
           </Link>
         </nav>
 
