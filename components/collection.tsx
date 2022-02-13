@@ -1,9 +1,9 @@
 // groupedSavedCollections
 
 import { FunctionComponent, useEffect, useState } from 'react'
-import { Collection } from '../interface/collection'
 
 import { Component } from '../interface/component'
+import { Collection } from '../interface/collection'
 import { currentCollection } from '../lib/collections'
 
 import Example from './example'
