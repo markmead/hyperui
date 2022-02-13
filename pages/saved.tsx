@@ -46,13 +46,19 @@ const Saved: NextPage = () => {
         subtitle="Your Saved HyperUI Tailwind CSS Component Library"
       />
 
-      <div className="flow-root">
-        <div className="-my-8 divide-y divide-gray-100 sm:-my-16">
+      {Object.keys(collections).length > 0 ? (
+        <div className="divide-y divide-gray-100">
           {(Object.keys(collections) || []).map((item: string) => (
             <Collection key={item} id={item} components={collections[item]} />
           ))}
         </div>
-      </div>
+      ) : (
+        <div className="max-w-xl pb-8 mx-auto text-center sm:pb-16">
+          <p className="text-sm text-gray-500">
+            You have not saved any components yet <span role="img">😢</span>
+          </p>
+        </div>
+      )}
     </>
   )
 }
