@@ -38,6 +38,10 @@ const Heart: FunctionComponent<Props> = ({ collection, id }) => {
   let handleClick = (collection: string, id: number) => {
     saveToLocalStorage(collection, id)
     checkSaved(collection, id)
+
+    window.dispatchEvent(
+      new CustomEvent('save', { detail: { collection, id } })
+    )
   }
 
   useEffect(() => {

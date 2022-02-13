@@ -9,28 +9,34 @@ const Saved: NextPage = () => {
   let [collections, setCollections] = useState<Array<string>>([])
 
   useEffect(() => {
-    let savedCollections = JSON.parse(
-      localStorage.getItem('collections') || '[]'
-    )
+    function getAndSetCollections() {
+      let savedCollections = JSON.parse(
+        localStorage.getItem('collections') || '[]'
+      ).sort()
 
-    let groupedSavedCollections = savedCollections.reduce((acc, item) => {
-      let itemAsArray = item.split('-')
-      let id = parseInt(itemAsArray[itemAsArray.length - 1])
+      let newCollections = savedCollections.reduce((acc, item) => {
+        let itemAsArray = item.split('-')
+        let id = parseInt(itemAsArray[itemAsArray.length - 1])
 
-      itemAsArray.pop()
+        itemAsArray.pop()
 
-      let name = itemAsArray.join('-')
+        let name = itemAsArray.join('-')
 
-      if (!acc[name]) {
-        acc[name] = []
-      }
+        if (!acc[name]) {
+          acc[name] = []
+        }
 
-      acc[name].push(id)
+        acc[name].push(id)
 
-      return acc
-    }, {})
+        return acc
+      }, {})
 
-    setCollections(groupedSavedCollections)
+      setCollections(newCollections)
+    }
+
+    getAndSetCollections()
+
+    window.addEventListener('save', () => getAndSetCollections())
   }, [])
 
   return (
