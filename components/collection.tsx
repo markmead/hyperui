@@ -26,9 +26,9 @@ const Collection: FunctionComponent<Props> = ({ id, components }) => {
       setCollection(collection)
 
       setCollectionComponents(
-        collection.components.filter((component) =>
-          components.includes(component.id)
-        )
+        collection.components.filter((component: Component) => {
+          return (components as any).includes(component.id)
+        })
       )
     }
   }, [components])

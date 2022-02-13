@@ -13,22 +13,25 @@ const Saved: NextPage = () => {
       localStorage.getItem('collections') || '[]'
     ).sort()
 
-    let newCollections = savedCollections.reduce((acc, item) => {
-      let itemAsArray = item.split('-')
-      let id = parseInt(itemAsArray[itemAsArray.length - 1])
+    let newCollections = savedCollections.reduce(
+      (acc: Array<object>, item: string) => {
+        let itemAsArray: Array<string> = item.split('-')
+        let id: number = parseInt(itemAsArray[itemAsArray.length - 1])
 
-      itemAsArray.pop()
+        itemAsArray.pop()
 
-      let name = itemAsArray.join('-')
+        let name: string = itemAsArray.join('-')
 
-      if (!acc[name]) {
-        acc[name] = []
-      }
+        if (!acc[name]) {
+          acc[name] = []
+        }
 
-      acc[name].push(id)
+        acc[name].push(id)
 
-      return acc
-    }, {})
+        return acc
+      },
+      {}
+    )
 
     setCollections(newCollections)
   }
