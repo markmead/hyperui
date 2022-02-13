@@ -1,7 +1,9 @@
 // groupedSavedCollections
 
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
+import { Collection } from '../interface/collection'
 
+import { Component } from '../interface/component'
 import { currentCollection } from '../lib/collections'
 
 import Example from './example'
@@ -12,30 +14,49 @@ type Props = {
 }
 
 const Collection: FunctionComponent<Props> = ({ id, components }) => {
-  let collection = currentCollection(id)
+  let [collection, setCollection] = useState<Collection>()
+  let [collectionComponents, setCollectionComponents] = useState<
+    Array<Component>
+  >([])
 
-  let collectionComponents = collection.components.filter((component) =>
-    components.includes(component.id)
-  )
+  useEffect(() => {
+    let collection = currentCollection(id)
+
+    if (collection) {
+      setCollection(collection)
+
+      setCollectionComponents(
+        collection.components.filter((component) =>
+          components.includes(component.id)
+        )
+      )
+    }
+  }, [components])
 
   return (
-    <div className="px-4 py-8 mx-auto max-w-[1380px] sm:py-16">
-      <h2 className="text-xl font-bold sm:text-2xl">{collection?.title}</h2>
+    <>
+      {collection && (
+        <div className="px-4 py-8 mx-auto max-w-[1380px] sm:py-16">
+          <h2 className="text-xl font-bold sm:text-2xl">{collection?.title}</h2>
 
-      <ul className="mt-8 space-y-8 lg:space-y-16">
-        {collectionComponents.map((component) => {
-          return (
-            <Example
-              key={component.id}
-              component={component}
-              parentSpacing={collection.spacing}
-              collection={collection}
-              target={`/components/${collection.title}`}
-            />
-          )
-        })}
-      </ul>
-    </div>
+          <ul className="mt-8 space-y-8 lg:space-y-16">
+            {collectionComponents.map((component) => {
+              if (component && collection) {
+                return (
+                  <Example
+                    key={component.id}
+                    component={component}
+                    parentSpacing={collection?.spacing}
+                    collection={collection}
+                    target={`/components/${collection.id}`}
+                  />
+                )
+              }
+            })}
+          </ul>
+        </div>
+      )}
+    </>
   )
 }
 

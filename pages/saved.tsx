@@ -8,35 +8,39 @@ import Collection from '../components/collection'
 const Saved: NextPage = () => {
   let [collections, setCollections] = useState<Array<string>>([])
 
+  function getAndSetCollections() {
+    let savedCollections = JSON.parse(
+      localStorage.getItem('collections') || '[]'
+    ).sort()
+
+    let newCollections = savedCollections.reduce((acc, item) => {
+      let itemAsArray = item.split('-')
+      let id = parseInt(itemAsArray[itemAsArray.length - 1])
+
+      itemAsArray.pop()
+
+      let name = itemAsArray.join('-')
+
+      if (!acc[name]) {
+        acc[name] = []
+      }
+
+      acc[name].push(id)
+
+      return acc
+    }, {})
+
+    setCollections(newCollections)
+  }
+
   useEffect(() => {
-    function getAndSetCollections() {
-      let savedCollections = JSON.parse(
-        localStorage.getItem('collections') || '[]'
-      ).sort()
-
-      let newCollections = savedCollections.reduce((acc, item) => {
-        let itemAsArray = item.split('-')
-        let id = parseInt(itemAsArray[itemAsArray.length - 1])
-
-        itemAsArray.pop()
-
-        let name = itemAsArray.join('-')
-
-        if (!acc[name]) {
-          acc[name] = []
-        }
-
-        acc[name].push(id)
-
-        return acc
-      }, {})
-
-      setCollections(newCollections)
-    }
-
     getAndSetCollections()
 
-    window.addEventListener('save', () => getAndSetCollections())
+    window.addEventListener('save', () => {
+      if (window.location.pathname === '/saved') {
+        getAndSetCollections()
+      }
+    })
   }, [])
 
   return (
