@@ -3,22 +3,26 @@ import { useState, useEffect } from 'react'
 
 const prism = require('prismjs')
 
+import { Collection } from '../interface/collection'
 import { Component } from '../interface/component'
 
 import Breakpoint from './breakpoint'
 import Copy from './copy'
 import Code from './code'
+import Heart from './heart'
 
 type Props = {
   component: Component
   parentSpacing?: string
-  collection: string
+  collection: Collection
+  target?: string
 }
 
 const Example: FunctionComponent<Props> = ({
   component,
   parentSpacing,
   collection,
+  target,
 }) => {
   let [html, setHtml] = useState<string>()
   let [code, setCode] = useState<string>()
@@ -32,8 +36,9 @@ const Example: FunctionComponent<Props> = ({
 
   useEffect(() => {
     let { origin, href } = window.location
+    let endpoint = target ? target : href
 
-    fetch(`${href}/${id}.html`)
+    fetch(`${endpoint}/${id}.html`)
       .then((res) => {
         if (res.ok) {
           res.text().then((html) => {
@@ -112,7 +117,7 @@ const Example: FunctionComponent<Props> = ({
             className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
             width={width}
             loading="lazy"
-            title={`${collection} Component ${id}`}
+            title={`${collection.title} Component ${id}`}
           ></iframe>
         ) : (
           <pre className="p-4 overflow-auto h-[400px] lg:h-[600px]">
@@ -125,6 +130,7 @@ const Example: FunctionComponent<Props> = ({
         <div className="flex items-center space-x-4">
           <Copy code={code} />
           <Code view={view} handleView={setView} />
+          <Heart collection={collection} id={id} />
         </div>
       )}
     </li>

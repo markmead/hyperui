@@ -33,6 +33,10 @@ const Header: FunctionComponent = () => {
               Ecommerce
             </a>
           </Link>
+
+          <Link href="/saved">
+            <a className="block text-xs font-medium hover:opacity-75">Saved</a>
+          </Link>
         </nav>
 
         <div className="flex items-center justify-end flex-1">
