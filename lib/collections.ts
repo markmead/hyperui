@@ -21,6 +21,7 @@ import {
   popups,
   stats,
   tabs,
+  tables,
   tags,
   testimonials,
   titles,
@@ -202,6 +203,15 @@ export const collections: Array<Collection> = [
     count: tabs.length,
     emoji: '📚',
     spacing: 'p-4 max-w-5xl mx-auto',
+  },
+
+  {
+    id: 'tables',
+    title: 'Tables',
+    components: tables,
+    count: tables.length,
+    emoji: '🍽',
+    spacing: 'p-8 flex justify-center',
   },
 
   {
