@@ -17,10 +17,14 @@ const Search: FunctionComponent = () => {
     let searchInput: HTMLInputElement | null = document.querySelector('#search')
 
     document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.keyCode === 75 && e.metaKey) {
+      if (e.metaKey && e.key === 'k') {
         setOpen(!open)
 
         open ? searchInput?.blur() : searchInput?.focus()
+      }
+
+      if (e.key === 'Enter' && results.length === 1) {
+        router.push(`/components/${results[0].id}`)
       }
     })
 
@@ -38,6 +42,8 @@ const Search: FunctionComponent = () => {
     let activeElement = document.activeElement as HTMLElement
 
     activeElement.blur()
+
+    setQuery('')
   }, [router.asPath])
 
   return (
