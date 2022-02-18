@@ -9,11 +9,7 @@ export const announcements = [
 
 export const banners = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
-export const breadcrumbs = [
-  { id: 1, spacing: 'p-4' },
-  { id: 2, spacing: 'p-4' },
-  { id: 3 },
-]
+export const breadcrumbs = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
 export const buttonGroups = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 

@@ -86,6 +86,7 @@ export const collections: Array<Collection> = [
     components: breadcrumbs,
     count: breadcrumbs.length,
     emoji: '🍞',
+    spacing: 'p-8 max-w-sm mx-auto flex justify-center',
   },
 
   {
