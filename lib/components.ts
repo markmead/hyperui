@@ -179,7 +179,7 @@ export const tabs = [
   { id: 6 },
 ]
 
-export const tables = [{ id: 1 }, { id: 2 }]
+export const tables = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
 export const tags = [
   { id: 1 },
