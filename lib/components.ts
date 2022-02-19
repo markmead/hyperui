@@ -158,6 +158,8 @@ export const popups = [
   { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
 ]
 
+export const radioGroups = [{ id: 1 }, { id: 2 }]
+
 export const stats = [
   { id: 1 },
   { id: 2 },

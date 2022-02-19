@@ -19,6 +19,7 @@ import {
   offCanvasMenus,
   pagination,
   popups,
+  radioGroups,
   stats,
   tabs,
   tables,
@@ -187,6 +188,15 @@ export const collections: Array<Collection> = [
     components: popups,
     count: popups.length,
     emoji: '🔥',
+  },
+
+  {
+    id: 'radio-groups',
+    title: 'Radio Groups',
+    components: radioGroups,
+    count: radioGroups.length,
+    emoji: '📻',
+    spacing: 'p-8 max-w-lg mx-auto',
   },
 
   {
