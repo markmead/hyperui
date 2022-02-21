@@ -5,13 +5,16 @@ import {
   announcements,
   banners,
   breadcrumbs,
-  buttons,
   buttonGroups,
+  buttons,
   cards,
+  carts,
+  checkouts,
   content,
   ctas,
   emptyStates,
   faqs,
+  filters,
   footers,
   forms,
   inputs,
@@ -19,22 +22,17 @@ import {
   offCanvasMenus,
   pagination,
   popups,
+  productCards,
+  productCollections,
+  products,
   radioGroups,
+  reviews,
   stats,
-  tabs,
   tables,
+  tabs,
   tags,
   testimonials,
   titles,
-
-  // Ecommerce
-  carts,
-  checkouts,
-  filters,
-  products,
-  productCards,
-  productCollections,
-  reviews,
 } from './components'
 
 export const collections: Array<Collection> = [
@@ -65,6 +63,15 @@ export const collections: Array<Collection> = [
   },
 
   {
+    id: 'breadcrumbs',
+    title: 'Breadcrumbs',
+    components: breadcrumbs,
+    count: breadcrumbs.length,
+    emoji: '🍞',
+    spacing: 'p-8 max-w-sm mx-auto flex justify-center',
+  },
+
+  {
     id: 'buttons',
     title: 'Buttons',
     components: buttons,
@@ -83,21 +90,30 @@ export const collections: Array<Collection> = [
   },
 
   {
-    id: 'breadcrumbs',
-    title: 'Breadcrumbs',
-    components: breadcrumbs,
-    count: breadcrumbs.length,
-    emoji: '🍞',
-    spacing: 'p-8 max-w-sm mx-auto flex justify-center',
-  },
-
-  {
     id: 'cards',
     title: 'Cards',
     components: cards,
     count: cards.length,
     emoji: '🃏',
     spacing: 'max-w-md w-screen mx-auto p-4',
+  },
+
+  {
+    id: 'carts',
+    title: 'Carts',
+    components: carts,
+    count: carts.length,
+    emoji: '🛒',
+    ecommerce: true,
+  },
+
+  {
+    id: 'checkouts',
+    title: 'Checkouts',
+    components: checkouts,
+    count: checkouts.length,
+    emoji: '💰',
+    ecommerce: true,
   },
 
   {
@@ -131,6 +147,15 @@ export const collections: Array<Collection> = [
     components: faqs,
     count: faqs.length,
     emoji: '🤔',
+  },
+
+  {
+    id: 'filters',
+    title: 'Filters',
+    components: filters,
+    count: filters.length,
+    emoji: '🔎',
+    ecommerce: true,
   },
 
   {
@@ -192,12 +217,49 @@ export const collections: Array<Collection> = [
   },
 
   {
+    id: 'product-cards',
+    title: 'Product Cards',
+    components: productCards,
+    count: productCards.length,
+    emoji: '🃏',
+    spacing: 'max-w-md w-screen mx-auto p-4',
+    ecommerce: true,
+  },
+
+  {
+    id: 'product-collections',
+    title: 'Product Collections',
+    components: productCollections,
+    count: productCollections.length,
+    emoji: '🛍️',
+    ecommerce: true,
+  },
+
+  {
+    id: 'products',
+    title: 'Products',
+    components: products,
+    count: products.length,
+    emoji: '🏎️',
+    ecommerce: true,
+  },
+
+  {
     id: 'radio-groups',
     title: 'Radio Groups',
     components: radioGroups,
     count: radioGroups.length,
     emoji: '📻',
     spacing: 'p-8 max-w-lg mx-auto',
+  },
+
+  {
+    id: 'reviews',
+    title: 'Reviews',
+    components: reviews,
+    count: reviews.length,
+    emoji: '👍',
+    ecommerce: true,
   },
 
   {
@@ -209,21 +271,21 @@ export const collections: Array<Collection> = [
   },
 
   {
-    id: 'tabs',
-    title: 'Tabs',
-    components: tabs,
-    count: tabs.length,
-    emoji: '📚',
-    spacing: 'p-4 max-w-5xl mx-auto',
-  },
-
-  {
     id: 'tables',
     title: 'Tables',
     components: tables,
     count: tables.length,
     emoji: '🍽',
     spacing: 'p-8 flex justify-center',
+  },
+
+  {
+    id: 'tabs',
+    title: 'Tabs',
+    components: tabs,
+    count: tabs.length,
+    emoji: '📚',
+    spacing: 'p-4 max-w-5xl mx-auto',
   },
 
   {
@@ -249,72 +311,6 @@ export const collections: Array<Collection> = [
     components: titles,
     count: titles.length,
     emoji: '📚',
-  },
-
-  // Ecommerce
-
-  {
-    id: 'checkouts',
-    title: 'Checkouts',
-    components: checkouts,
-    count: checkouts.length,
-    emoji: '💰',
-    ecommerce: true,
-  },
-
-  {
-    id: 'carts',
-    title: 'Carts',
-    components: carts,
-    count: carts.length,
-    emoji: '🛒',
-    ecommerce: true,
-  },
-
-  {
-    id: 'filters',
-    title: 'Filters',
-    components: filters,
-    count: filters.length,
-    emoji: '🔎',
-    ecommerce: true,
-  },
-
-  {
-    id: 'products',
-    title: 'Products',
-    components: products,
-    count: products.length,
-    emoji: '🏎️',
-    ecommerce: true,
-  },
-
-  {
-    id: 'product-cards',
-    title: 'Product Cards',
-    components: productCards,
-    count: productCards.length,
-    emoji: '🃏',
-    spacing: 'max-w-md w-screen mx-auto p-4',
-    ecommerce: true,
-  },
-
-  {
-    id: 'product-collections',
-    title: 'Product Collections',
-    components: productCollections,
-    count: productCollections.length,
-    emoji: '🛍️',
-    ecommerce: true,
-  },
-
-  {
-    id: 'reviews',
-    title: 'Reviews',
-    components: reviews,
-    count: reviews.length,
-    emoji: '👍',
-    ecommerce: true,
   },
 ]
 

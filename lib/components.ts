@@ -7,9 +7,9 @@ export const announcements = [
   { id: 4, spacing: 'spacing-y-0' },
 ]
 
-export const banners = [{ id: 1 }, { id: 2 }, { id: 3 }]
-
 export const breadcrumbs = [{ id: 1 }, { id: 2 }, { id: 3 }]
+
+export const banners = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
 export const buttonGroups = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
@@ -58,6 +58,13 @@ export const cards = [
   { id: 23 },
 ]
 
+export const carts = [
+  { id: 1, spacing: 'max-w-lg mx-auto p-8' },
+  { id: 2, spacing: 'max-w-lg mx-auto p-8' },
+]
+
+export const checkouts = [{ id: 1 }]
+
 export const content = [
   { id: 1 },
   { id: 2 },
@@ -99,6 +106,11 @@ export const faqs = [
   { id: 4 },
   { id: 5 },
   { id: 6, spacing: 'px-4 py-8' },
+]
+
+export const filters = [
+  { id: 1, spacing: 'max-w-5xl mx-auto p-4' },
+  { id: 2, spacing: 'max-w-md mx-auto p-4' },
 ]
 
 export const footers = [
@@ -158,7 +170,29 @@ export const popups = [
   { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
 ]
 
+export const productCards = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]
+
+export const productCollections = [
+  { id: 8 },
+  { id: 1 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+]
+
+export const products = [{ id: 1 }, { id: 2 }]
+
 export const radioGroups = [{ id: 1 }, { id: 2 }]
+
+export const reviews = [{ id: 1 }]
 
 export const stats = [
   { id: 1 },
@@ -168,6 +202,8 @@ export const stats = [
   { id: 5, spacing: 'max-w-lg mx-auto p-4 space-y-4' },
 ]
 
+export const tables = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+
 export const tabs = [
   { id: 1 },
   { id: 2 },
@@ -176,8 +212,6 @@ export const tabs = [
   { id: 5 },
   { id: 6 },
 ]
-
-export const tables = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
 export const tags = [
   { id: 1 },
@@ -207,39 +241,3 @@ export const titles = [
   { id: 4 },
   { id: 5, spacing: 'max-w-3xl mx-auto p-4' },
 ]
-
-// Ecommerce
-
-export const checkouts = [{ id: 1 }]
-
-export const carts = [
-  { id: 1, spacing: 'max-w-lg mx-auto p-8' },
-  { id: 2, spacing: 'max-w-lg mx-auto p-8' },
-]
-
-export const filters = [
-  { id: 1, spacing: 'max-w-5xl mx-auto p-4' },
-  { id: 2, spacing: 'max-w-md mx-auto p-4' },
-]
-
-export const products = [{ id: 1 }, { id: 2 }]
-
-export const productCards = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]
-
-export const productCollections = [
-  { id: 8 },
-  { id: 1 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-]
-
-export const reviews = [{ id: 1 }]
