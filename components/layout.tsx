@@ -26,22 +26,22 @@ const Layout: FunctionComponent = ({ children }) => {
           }}
         />
 
-        <title>Open Source Tailwind CSS Components | HyperUI</title>
+        <title>Open Source Tailwind CSS Component Library | HyperUI</title>
         <meta
           name="description"
-          content="HyperUI is a free, open source library of Tailwind CSS components."
+          content="HyperUI is a free, open-source Tailwind CSS component library."
           key="description"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://hyperui.dev/" />
         <meta
           property="og:title"
-          content="Open Source Tailwind CSS Components | HyperUI"
+          content="Open Source Tailwind CSS Component Library | HyperUI"
           key="og:title"
         />
         <meta
           property="og:description"
-          content="HyperUI is a free, open source library of Tailwind CSS components."
+          content="HyperUI is a free, open-source Tailwind CSS component library."
           key="og:description"
         />
         <meta property="og:image" content="https://hyperui.dev/og.png" />
@@ -49,12 +49,12 @@ const Layout: FunctionComponent = ({ children }) => {
         <meta name="twitter:url" content="https://hyperui.dev/" />
         <meta
           name="twitter:title"
-          content="Open Source Tailwind CSS Components | HyperUI"
+          content="Open Source Tailwind CSS Component Library | HyperUI"
           key="twitter:title"
         />
         <meta
           name="twitter:description"
-          content="HyperUI is a free, open source library of Tailwind CSS components."
+          content="HyperUI is a free, open-source Tailwind CSS component library."
           key="twitter:description"
         />
         <meta name="twitter:image" content="https://hyperui.dev/og.png" />
