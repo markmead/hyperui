@@ -190,6 +190,8 @@ export const productCollections = [
 
 export const products = [{ id: 1 }, { id: 2 }]
 
+export const prose = [{ id: 1 }, { id: 2 }]
+
 export const radioGroups = [{ id: 1 }, { id: 2 }]
 
 export const reviews = [{ id: 1 }]

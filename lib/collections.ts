@@ -25,6 +25,7 @@ import {
   productCards,
   productCollections,
   products,
+  prose,
   radioGroups,
   reviews,
   stats,
@@ -242,6 +243,15 @@ export const collections: Array<Collection> = [
     count: products.length,
     emoji: '🏎️',
     ecommerce: true,
+  },
+
+  {
+    id: 'prose',
+    title: 'Prose',
+    components: prose,
+    count: prose.length,
+    emoji: '📝',
+    spacing: 'flex justify-center p-8',
   },
 
   {
