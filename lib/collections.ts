@@ -29,6 +29,7 @@ import {
 
   // Ecommerce
   carts,
+  checkouts,
   filters,
   products,
   productCards,
@@ -251,6 +252,15 @@ export const collections: Array<Collection> = [
   },
 
   // Ecommerce
+
+  {
+    id: 'checkouts',
+    title: 'Checkouts',
+    components: checkouts,
+    count: checkouts.length,
+    emoji: '💰',
+    ecommerce: true,
+  },
 
   {
     id: 'carts',

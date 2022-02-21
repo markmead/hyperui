@@ -210,6 +210,8 @@ export const titles = [
 
 // Ecommerce
 
+export const checkouts = [{ id: 1 }]
+
 export const carts = [
   { id: 1, spacing: 'max-w-lg mx-auto p-8' },
   { id: 2, spacing: 'max-w-lg mx-auto p-8' },
