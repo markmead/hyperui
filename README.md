@@ -33,9 +33,9 @@ Don't need the component now? Save it and come back to it later - [https://hyper
 1. Clone Repo
 2. Run `yarn`
 3. Run `yarn dev`
-4. Run `yarn css -w`
+4. Run `yarn watch`
 
-Step 4 is optional, but if you find your new components missing Tailwind CSS classes then you'll need to run `yarn css -w`.
+Step 4 is optional, but if you find your new components missing Tailwind CSS classes then you'll need to run it
 
 ### Adding Components
 

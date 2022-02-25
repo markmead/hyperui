@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "css": "npx tailwindcss -i styles/globals.css -o public/build.css -m"
+    "watch": "npx tailwindcss -i styles/globals.css -o public/build.css -m -w"
   },
   "dependencies": {
     "next": "12.1.0",
