@@ -27,6 +27,7 @@ export const buttons = [
   { id: 11, spacing: 'max-w-sm p-8 mx-auto space-y-8' },
   { id: 12 },
   { id: 13 },
+  { id: 14 },
 ]
 
 export const cards = [
