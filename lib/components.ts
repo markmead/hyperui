@@ -66,20 +66,6 @@ export const carts = [
 
 export const checkouts = [{ id: 1 }]
 
-export const content = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-]
-
 export const ctas = [
   { id: 1, spacing: 'p-4' },
   { id: 2, spacing: 'p-4' },
@@ -196,6 +182,16 @@ export const prose = [{ id: 1 }]
 export const radioGroups = [{ id: 1 }, { id: 2 }]
 
 export const reviews = [{ id: 1 }]
+
+export const sections = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+]
 
 export const stats = [
   { id: 1 },

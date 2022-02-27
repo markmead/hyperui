@@ -10,7 +10,6 @@ import {
   cards,
   carts,
   checkouts,
-  content,
   ctas,
   emptyStates,
   faqs,
@@ -28,6 +27,7 @@ import {
   prose,
   radioGroups,
   reviews,
+  sections,
   stats,
   tables,
   tabs,
@@ -118,14 +118,6 @@ export const collections: Array<Collection> = [
   },
 
   {
-    id: 'content',
-    title: 'Content',
-    components: content,
-    count: content.length,
-    emoji: '📚',
-  },
-
-  {
     id: 'ctas',
     title: 'CTAs',
     components: ctas,
@@ -148,6 +140,14 @@ export const collections: Array<Collection> = [
     components: faqs,
     count: faqs.length,
     emoji: '🤔',
+  },
+
+  {
+    id: 'sections',
+    title: 'Sections',
+    components: sections,
+    count: sections.length,
+    emoji: '🧱',
   },
 
   {
