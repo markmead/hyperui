@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react'
+import { FunctionComponent } from 'react'
 import Head from 'next/head'
 
 import Announcement from './announcement'

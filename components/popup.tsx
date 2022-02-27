@@ -22,7 +22,7 @@ const Popup: FunctionComponent<Props> = ({ text, url }) => {
     setShow(false)
   }
 
-  if (!show) return false
+  if (!show) return <></>
 
   return (
     <aside className="fixed flex items-center p-3 text-center text-white bg-black rounded-lg bottom-4 right-4">
