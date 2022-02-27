@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect } from 'react'
 import Head from 'next/head'
 
 import Announcement from './announcement'
+import Popup from './popup'
 import Header from './header'
 import Footer from './footer'
 
@@ -61,8 +62,13 @@ const Layout: FunctionComponent = ({ children }) => {
       </Head>
 
       <Announcement
-        text="🌟 HyperUI is Open Source! Drop a Star on GitHub 🌟"
+        text="⭐️ Like HyperUI? Star on GitHub ⭐️"
         url="https://github.com/markmead/hyperui"
+      />
+
+      <Popup
+        text="Click for Alpine JS Snippets 🥳"
+        url="https://alpinejs.hyperui.dev"
       />
 
       <Header />
