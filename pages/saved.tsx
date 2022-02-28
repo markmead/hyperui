@@ -9,11 +9,6 @@ import Collection from '../components/collection'
 const Saved: NextPage = () => {
   let [collections, setCollections] = useState<Array<string>>([])
 
-  let meta = {
-    title: 'Saved Tailwind CSS Components | HyperUI',
-    description: 'Your favourite Tailwind CSS components.',
-  }
-
   function getAndSetCollections() {
     let savedCollections = JSON.parse(
       localStorage.getItem('collections') || '[]'
@@ -55,27 +50,11 @@ const Saved: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        <title>Saved Tailwind CSS Components | HyperUI</title>
         <meta
-          property="description"
-          content={meta.description}
+          name="description"
+          content="Your favourite Tailwind CSS components."
           key="description"
-        />
-        <meta property="og:title" content={meta.title} key="og:title" />
-        <meta
-          property="og:description"
-          content={meta.description}
-          key="og:description"
-        />
-        <meta
-          property="twitter:title"
-          content={meta.title}
-          key="twitter:title"
-        />
-        <meta
-          property="twitter:description"
-          content={meta.description}
-          key="twitter:description"
         />
       </Head>
 

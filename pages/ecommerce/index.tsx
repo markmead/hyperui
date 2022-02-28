@@ -16,11 +16,6 @@ export async function getStaticProps() {
 }
 
 const Ecommerce: NextPage = () => {
-  let meta = {
-    title: 'Open Source Ecommerce Tailwind CSS Components | HyperUI',
-    description: 'Ecommerce components built with Tailwind CSS.',
-  }
-
   let ecommerce = collections.filter(
     (collection: Collection) => collection.ecommerce
   )
@@ -28,27 +23,11 @@ const Ecommerce: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        <title>Open Source Ecommerce Tailwind CSS Components | HyperUI</title>
         <meta
-          property="description"
-          content={meta.description}
+          name="description"
+          content="Ecommerce components built with Tailwind CSS."
           key="description"
-        />
-        <meta property="og:title" content={meta.title} key="og:title" />
-        <meta
-          property="og:description"
-          content={meta.description}
-          key="og:description"
-        />
-        <meta
-          property="twitter:title"
-          content={meta.title}
-          key="twitter:title"
-        />
-        <meta
-          property="twitter:description"
-          content={meta.description}
-          key="twitter:description"
         />
       </Head>
 

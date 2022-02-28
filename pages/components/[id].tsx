@@ -52,21 +52,18 @@ type Props = {
 }
 
 const Collection: NextPage<Props> = ({ collection, components }) => {
-  let meta = {
-    title: `${collection.title} Tailwind CSS Components | HyperUI`,
-    description: `Range of ${collection.title} Tailwind CSS components.`,
-  }
-
   let { spacing } = collection
 
   return (
     <ToastContext.Provider value={toast}>
       <>
         <Head>
-          <title>{meta.title}</title>
-          <meta property="og:title" content={meta.title} />
-          <meta name="description" content={meta.description}></meta>
-          <meta property="og:description" content={meta.description} />
+          <title>{collection.title} Tailwind CSS Components | HyperUI</title>
+          <meta
+            name="description"
+            content={`Range of ${collection.title} Tailwind CSS components.`}
+            key="description"
+          ></meta>
         </Head>
 
         <div>
