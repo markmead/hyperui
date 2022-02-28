@@ -143,14 +143,6 @@ export const collections: Array<Collection> = [
   },
 
   {
-    id: 'sections',
-    title: 'Sections',
-    components: sections,
-    count: sections.length,
-    emoji: '🧱',
-  },
-
-  {
     id: 'filters',
     title: 'Filters',
     components: filters,
@@ -270,6 +262,14 @@ export const collections: Array<Collection> = [
     count: reviews.length,
     emoji: '👍',
     ecommerce: true,
+  },
+
+  {
+    id: 'sections',
+    title: 'Sections',
+    components: sections,
+    count: sections.length,
+    emoji: '🧱',
   },
 
   {
