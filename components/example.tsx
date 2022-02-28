@@ -62,6 +62,7 @@ const Example: FunctionComponent<Props> = ({
 
             setHtml(code)
             setCode(html)
+
             prism.highlightAll()
           })
         }

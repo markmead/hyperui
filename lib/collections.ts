@@ -10,7 +10,6 @@ import {
   cards,
   carts,
   checkouts,
-  content,
   ctas,
   emptyStates,
   faqs,
@@ -28,6 +27,7 @@ import {
   prose,
   radioGroups,
   reviews,
+  sections,
   stats,
   tables,
   tabs,
@@ -115,14 +115,6 @@ export const collections: Array<Collection> = [
     count: checkouts.length,
     emoji: '💰',
     ecommerce: true,
-  },
-
-  {
-    id: 'content',
-    title: 'Content',
-    components: content,
-    count: content.length,
-    emoji: '📚',
   },
 
   {
@@ -270,6 +262,14 @@ export const collections: Array<Collection> = [
     count: reviews.length,
     emoji: '👍',
     ecommerce: true,
+  },
+
+  {
+    id: 'sections',
+    title: 'Sections',
+    components: sections,
+    count: sections.length,
+    emoji: '🧱',
   },
 
   {

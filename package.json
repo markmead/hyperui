@@ -6,7 +6,7 @@
     "build": "next build",
     "lint": "next lint",
     "css": "npx tailwindcss -i styles/globals.css -o public/build.css -m",
-    "watch": "css -w"
+    "watch": "yarn css -w"
   },
   "dependencies": {
     "next": "12.1.0",
