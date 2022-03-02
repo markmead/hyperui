@@ -27,35 +27,33 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         />
 
-        <title>Open Source Tailwind CSS Component Library | HyperUI</title>
+        <title>Free Open Source Tailwind CSS Components | HyperUI</title>
         <meta
           name="description"
-          content="HyperUI is a free, open-source Tailwind CSS component library."
+          content="Free Tailwind CSS components that can be used in your next project. Perfect for Laravel, Rails, React, Vue and more."
           key="description"
         />
-
         <meta
           property="og:title"
-          content="Open Source Tailwind CSS Component Library | HyperUI"
+          content="Free Open Source Tailwind CSS Components | HyperUI"
           key="og:title"
         />
         <meta
           property="og:description"
-          content="HyperUI is a free, open-source Tailwind CSS component library."
+          content="Free Tailwind CSS components that can be used in your next project. Perfect for Laravel, Rails, React, Vue and more."
           key="og:description"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://hyperui.dev/" />
         <meta property="og:image" content="https://hyperui.dev/og.png" />
-
         <meta
           name="twitter:title"
-          content="Open Source Tailwind CSS Component Library | HyperUI"
+          content="Free Open Source Tailwind CSS Components | HyperUI"
           key="twitter:title"
         />
         <meta
           name="twitter:description"
-          content="HyperUI is a free, open-source Tailwind CSS component library."
+          content="Free Tailwind CSS components that can be used in your next project. Perfect for Laravel, Rails, React, Vue and more."
           key="twitter:description"
         />
         <meta name="twitter:image" content="https://hyperui.dev/og.png" />

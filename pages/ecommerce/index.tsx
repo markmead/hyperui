@@ -23,10 +23,12 @@ const Ecommerce: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Open Source Ecommerce Tailwind CSS Components | HyperUI</title>
+        <title>
+          Ecommerce | Free Open Source Tailwind CSS Components | HyperUI
+        </title>
         <meta
           name="description"
-          content="Ecommerce components built with Tailwind CSS."
+          content="Free Tailwind CSS components that can be used in your ecommerce projects. Perfect for Shopify, WooCommerce, Magento, BigCommerce and more."
           key="description"
         />
       </Head>

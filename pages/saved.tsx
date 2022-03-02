@@ -50,11 +50,13 @@ const Saved: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Saved Tailwind CSS Components | HyperUI</title>
+        <title>
+          Favourite | Free Open Source Tailwind CSS Components | HyperUI
+        </title>
         <meta
           name="description"
-          content="Your favourite Tailwind CSS components."
           key="description"
+          content="Find all of your favourite free Tailwind CSS components in one place. Created by HyperUI."
         />
       </Head>
 

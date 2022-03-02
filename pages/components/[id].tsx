@@ -54,14 +54,23 @@ type Props = {
 const Collection: NextPage<Props> = ({ collection, components }) => {
   let { spacing } = collection
 
+  let perfectFor = collection.ecommerce
+    ? 'Shopify, WooCommerce, Magento, BigCommerce'
+    : 'Laravel, Rails, React, Vue'
+
+  let metaDescription = `Free Tailwind CSS components for ${collection.title.toLowerCase()} that can be used in your next project. Perfect for ${perfectFor} and more`
+
   return (
     <ToastContext.Provider value={toast}>
       <>
         <Head>
-          <title>{collection.title} Tailwind CSS Components | HyperUI</title>
+          <title>
+            {collection.title} | Free Open Source Tailwind CSS Components |
+            HyperUI
+          </title>
           <meta
             name="description"
-            content={`Range of ${collection.title} Tailwind CSS components.`}
+            content={metaDescription}
             key="description"
           ></meta>
         </Head>
@@ -69,12 +78,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
         <div>
           <Breadcrumbs collection={collection} />
 
-          <Banner
-            title={collection.title}
-            subtitle={`${collection.count} ${
-              collection.count > 1 ? ' components' : ' component'
-            }`}
-          />
+          <Banner title={collection.title}>{collection.description}</Banner>
 
           <div className="px-4 py-8 mx-auto max-w-[1380px] sm:py-16">
             <ul className="space-y-8 lg:space-y-16">
