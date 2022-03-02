@@ -56,6 +56,7 @@ export const collections: Array<Collection> = [
     count: announcements.length,
     emoji: '📣',
     spacing: 'space-y-8',
+    description: getDescription('announcements'),
   },
 
   {
@@ -64,6 +65,7 @@ export const collections: Array<Collection> = [
     components: banners,
     count: banners.length,
     emoji: '✨',
+    description: getDescription('banners'),
   },
 
   {
