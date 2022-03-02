@@ -36,6 +36,8 @@ import {
   titles,
 } from './components'
 
+import { getDescription } from './descriptions'
+
 export const collections: Array<Collection> = [
   {
     id: 'alerts',
@@ -44,6 +46,7 @@ export const collections: Array<Collection> = [
     count: alerts.length,
     emoji: '🚨',
     spacing: 'max-w-sm p-4 space-y-8 mx-auto',
+    description: getDescription('alerts'),
   },
 
   {
@@ -53,6 +56,7 @@ export const collections: Array<Collection> = [
     count: announcements.length,
     emoji: '📣',
     spacing: 'space-y-8',
+    description: getDescription('announcements'),
   },
 
   {
@@ -61,6 +65,7 @@ export const collections: Array<Collection> = [
     components: banners,
     count: banners.length,
     emoji: '✨',
+    description: getDescription('banners'),
   },
 
   {

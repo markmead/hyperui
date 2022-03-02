@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hyperui.dev
+
+# Sitemaps
+Sitemap: https://hyperui.dev/sitemap.xml

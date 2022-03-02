@@ -8,4 +8,5 @@ export interface Collection {
   spacing?: string
   components: Array<Component>
   ecommerce?: boolean
+  description?: string
 }
