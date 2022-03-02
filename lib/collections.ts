@@ -29,6 +29,7 @@ import {
   reviews,
   sections,
   stats,
+  steps,
   tables,
   tabs,
   tags,
@@ -308,6 +309,16 @@ export const collections: Array<Collection> = [
     count: stats.length,
     emoji: '📈',
     description: descriptions['stats'] ?? '',
+  },
+
+  {
+    id: 'steps',
+    title: 'Steps',
+    components: steps,
+    count: steps.length,
+    emoji: '🪜',
+    spacing: 'max-w-3xl mx-auto p-8',
+    description: descriptions['steps'] ?? '',
   },
 
   {

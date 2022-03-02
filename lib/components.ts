@@ -201,6 +201,12 @@ export const stats = [
   { id: 5, spacing: 'max-w-lg mx-auto p-4 space-y-4' },
 ]
 
+export const steps = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3, spacing: 'max-w-xl mx-auto p-8 flex justify-center' },
+]
+
 export const tables = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
 export const tabs = [
