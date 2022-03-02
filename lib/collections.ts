@@ -36,7 +36,7 @@ import {
   titles,
 } from './components'
 
-import { getDescription } from './descriptions'
+import { descriptions } from './descriptions'
 
 export const collections: Array<Collection> = [
   {
@@ -46,7 +46,7 @@ export const collections: Array<Collection> = [
     count: alerts.length,
     emoji: '🚨',
     spacing: 'max-w-sm p-4 space-y-8 mx-auto',
-    description: getDescription('alerts'),
+    description: descriptions['alerts'] ?? '',
   },
 
   {
@@ -56,7 +56,7 @@ export const collections: Array<Collection> = [
     count: announcements.length,
     emoji: '📣',
     spacing: 'space-y-8',
-    description: getDescription('announcements'),
+    description: descriptions['announcements'] ?? '',
   },
 
   {
@@ -65,7 +65,7 @@ export const collections: Array<Collection> = [
     components: banners,
     count: banners.length,
     emoji: '✨',
-    description: getDescription('banners'),
+    description: descriptions['banners'] ?? '',
   },
 
   {
@@ -75,6 +75,7 @@ export const collections: Array<Collection> = [
     count: breadcrumbs.length,
     emoji: '🍞',
     spacing: 'p-8 max-w-sm mx-auto flex justify-center',
+    description: descriptions['breadcrumbs'] ?? '',
   },
 
   {
@@ -84,6 +85,7 @@ export const collections: Array<Collection> = [
     count: buttons.length,
     emoji: '👆',
     spacing: 'p-8 flex flex-col space-y-8 items-center',
+    description: descriptions['buttons'] ?? '',
   },
 
   {
@@ -93,6 +95,7 @@ export const collections: Array<Collection> = [
     count: buttonGroups.length,
     emoji: '🍮',
     spacing: 'p-8 flex flex-col items-center',
+    description: descriptions['buttonGroups'] ?? '',
   },
 
   {
@@ -102,6 +105,7 @@ export const collections: Array<Collection> = [
     count: cards.length,
     emoji: '🃏',
     spacing: 'max-w-md w-screen mx-auto p-4',
+    description: descriptions['cards'] ?? '',
   },
 
   {
@@ -111,6 +115,7 @@ export const collections: Array<Collection> = [
     count: carts.length,
     emoji: '🛒',
     ecommerce: true,
+    description: descriptions['carts'] ?? '',
   },
 
   {
@@ -120,6 +125,7 @@ export const collections: Array<Collection> = [
     count: checkouts.length,
     emoji: '💰',
     ecommerce: true,
+    description: descriptions['checkouts'] ?? '',
   },
 
   {
@@ -128,6 +134,7 @@ export const collections: Array<Collection> = [
     components: ctas,
     count: ctas.length,
     emoji: '🔗',
+    description: descriptions['ctas'] ?? '',
   },
 
   {
@@ -137,6 +144,7 @@ export const collections: Array<Collection> = [
     count: emptyStates.length,
     emoji: '🤷‍♂️',
     spacing: 'max-w-lg w-screen mx-auto p-4',
+    description: descriptions['emptyStates'] ?? '',
   },
 
   {
@@ -145,6 +153,7 @@ export const collections: Array<Collection> = [
     components: faqs,
     count: faqs.length,
     emoji: '🤔',
+    description: descriptions['faqs'] ?? '',
   },
 
   {
@@ -154,6 +163,7 @@ export const collections: Array<Collection> = [
     count: filters.length,
     emoji: '🔎',
     ecommerce: true,
+    description: descriptions['filters'] ?? '',
   },
 
   {
@@ -162,6 +172,7 @@ export const collections: Array<Collection> = [
     components: footers,
     count: footers.length,
     emoji: '🚀',
+    description: descriptions['footers'] ?? '',
   },
 
   {
@@ -170,6 +181,7 @@ export const collections: Array<Collection> = [
     components: forms,
     count: forms.length,
     emoji: '📝',
+    description: descriptions['forms'] ?? '',
   },
 
   {
@@ -179,6 +191,7 @@ export const collections: Array<Collection> = [
     count: inputs.length,
     emoji: '🖱',
     spacing: 'max-w-sm mx-auto p-8',
+    description: descriptions['inputs'] ?? '',
   },
 
   {
@@ -187,6 +200,7 @@ export const collections: Array<Collection> = [
     components: navigations,
     count: navigations.length,
     emoji: '🗺️',
+    description: descriptions['navigations'] ?? '',
   },
 
   {
@@ -195,6 +209,7 @@ export const collections: Array<Collection> = [
     components: offCanvasMenus,
     count: offCanvasMenus.length,
     emoji: '👋',
+    description: descriptions['offCanvasMenus'] ?? '',
   },
 
   {
@@ -204,6 +219,7 @@ export const collections: Array<Collection> = [
     count: pagination.length,
     emoji: '🔢',
     spacing: 'p-4 max-w-xs mx-auto flex justify-center',
+    description: descriptions['pagination'] ?? '',
   },
 
   {
@@ -212,6 +228,7 @@ export const collections: Array<Collection> = [
     components: popups,
     count: popups.length,
     emoji: '🔥',
+    description: descriptions['popups'] ?? '',
   },
 
   {
@@ -222,6 +239,7 @@ export const collections: Array<Collection> = [
     emoji: '🃏',
     spacing: 'max-w-md w-screen mx-auto p-4',
     ecommerce: true,
+    description: descriptions['productCards'] ?? '',
   },
 
   {
@@ -231,6 +249,7 @@ export const collections: Array<Collection> = [
     count: productCollections.length,
     emoji: '🛍️',
     ecommerce: true,
+    description: descriptions['productCollections'] ?? '',
   },
 
   {
@@ -240,6 +259,7 @@ export const collections: Array<Collection> = [
     count: products.length,
     emoji: '🏎️',
     ecommerce: true,
+    description: descriptions['products'] ?? '',
   },
 
   {
@@ -249,6 +269,7 @@ export const collections: Array<Collection> = [
     count: prose.length,
     emoji: '📝',
     spacing: 'flex justify-center p-8',
+    description: descriptions['prose'] ?? '',
   },
 
   {
@@ -258,6 +279,7 @@ export const collections: Array<Collection> = [
     count: radioGroups.length,
     emoji: '📻',
     spacing: 'p-8 max-w-lg mx-auto',
+    description: descriptions['radioGroups'] ?? '',
   },
 
   {
@@ -267,6 +289,7 @@ export const collections: Array<Collection> = [
     count: reviews.length,
     emoji: '👍',
     ecommerce: true,
+    description: descriptions['reviews'] ?? '',
   },
 
   {
@@ -275,6 +298,7 @@ export const collections: Array<Collection> = [
     components: sections,
     count: sections.length,
     emoji: '🧱',
+    description: descriptions['sections'] ?? '',
   },
 
   {
@@ -283,6 +307,7 @@ export const collections: Array<Collection> = [
     components: stats,
     count: stats.length,
     emoji: '📈',
+    description: descriptions['stats'] ?? '',
   },
 
   {
@@ -292,6 +317,7 @@ export const collections: Array<Collection> = [
     count: tables.length,
     emoji: '🍽',
     spacing: 'p-8 flex justify-center',
+    description: descriptions['tables'] ?? '',
   },
 
   {
@@ -301,6 +327,7 @@ export const collections: Array<Collection> = [
     count: tabs.length,
     emoji: '📚',
     spacing: 'p-4 max-w-5xl mx-auto',
+    description: descriptions['tabs'] ?? '',
   },
 
   {
@@ -310,6 +337,7 @@ export const collections: Array<Collection> = [
     count: tags.length,
     emoji: '🏷️',
     spacing: 'p-8 flex flex-col space-y-8 items-center',
+    description: descriptions['tags'] ?? '',
   },
 
   {
@@ -318,6 +346,7 @@ export const collections: Array<Collection> = [
     components: testimonials,
     count: testimonials.length,
     emoji: '👍',
+    description: descriptions['testimonials'] ?? '',
   },
 
   {
@@ -326,6 +355,7 @@ export const collections: Array<Collection> = [
     components: titles,
     count: titles.length,
     emoji: '📚',
+    description: descriptions['titles'] ?? '',
   },
 ]
 
