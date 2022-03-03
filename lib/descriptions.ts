@@ -22,6 +22,9 @@ const cards =
 const carts =
   'Carts are used to display a list of items in a cart. These can range from a popup, slide out or a full page cart which have their differences in functionality and benefits.'
 
+const steps =
+  'Steps are used to display a list of steps in a process. They are there to guide the user through the process, typically used on a multistep form or a checkout.'
+
 export const descriptions = {
   alerts,
   announcements,
@@ -31,4 +34,5 @@ export const descriptions = {
   buttonGroups,
   cards,
   carts,
+  steps,
 }

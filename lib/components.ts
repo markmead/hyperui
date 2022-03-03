@@ -205,10 +205,9 @@ export const steps = [
   { id: 1 },
   { id: 2 },
   { id: 3 },
-  { id: 4 },
-  { id: 5, spacing: 'max-w-xl mx-auto p-8 flex justify-center' },
+  { id: 4, spacing: 'max-w-xl mx-auto p-8 flex justify-center' },
+  { id: 5 },
   { id: 6 },
-  { id: 7 },
 ]
 
 export const tables = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
