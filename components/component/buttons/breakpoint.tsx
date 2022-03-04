@@ -3,25 +3,25 @@ import type { FunctionComponent } from 'react'
 import styles from '../../../styles/button.module.css'
 
 type Props = {
-  text: string
-  size: string
-  handleWidth: any
   emoji: string
+  handleWidth: any
+  size: string
+  text: string
 }
 
 const Breakpoint: FunctionComponent<Props> = ({
-  text,
-  size,
-  handleWidth,
   emoji,
+  handleWidth,
+  size,
+  text,
 }) => {
   return (
     <button
-      type="button"
       className={styles.pill}
       onClick={() => handleWidth(size)}
+      type="button"
     >
-      <span role="img" className="mr-1.5 text-sm">
+      <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
         {emoji}
       </span>
 

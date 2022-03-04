@@ -51,11 +51,11 @@ const Favourite: FunctionComponent<Props> = ({ collection, id }) => {
   return (
     <>
       <button
-        type="button"
         className={`${styles.pill} ${save && 'bg-black text-white'}`}
         onClick={() => handleClick(collection.id, id)}
+        type="button"
       >
-        <span role="img" className="mr-1.5 text-sm">
+        <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
           ❤️
         </span>
 

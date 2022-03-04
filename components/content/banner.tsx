@@ -1,11 +1,11 @@
 import type { FunctionComponent } from 'react'
 
 type Props = {
-  title: string
   subtitle?: string
+  title: string
 }
 
-const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
+const Banner: FunctionComponent<Props> = ({ children, subtitle, title }) => {
   return (
     <section>
       <div className="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32">

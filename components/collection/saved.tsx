@@ -7,8 +7,8 @@ import { currentCollection } from '../../lib/collections'
 import Example from '../component/example'
 
 type Props = {
-  id: string
   components: Array<string>
+  id: string
 }
 
 const Collection: FunctionComponent<Props> = ({ id, components }) => {
@@ -42,10 +42,10 @@ const Collection: FunctionComponent<Props> = ({ id, components }) => {
               if (component && collection) {
                 return (
                   <Example
-                    key={component.id}
-                    component={component}
-                    parentSpacing={collection?.spacing}
                     collection={collection}
+                    component={component}
+                    key={component.id}
+                    parentSpacing={collection?.spacing}
                     target={`/components/${collection.id}`}
                   />
                 )

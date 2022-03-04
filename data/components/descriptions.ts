@@ -10,11 +10,11 @@ const banners =
 const breadcrumbs =
   'Breadcrumbs are used to display to the user their navigation to a specific page and allow them to return to previous pages.'
 
-const buttons =
-  'Buttons are used to trigger an action on the website, such as submitting a form or clicking a link. They can come in many variatiosn to promote different importance levels.'
-
 const buttonGroups =
   'Button groups are used to group buttons together that share functionality, or are part of a larger group of functionality. An example of this would be edit and delete buttons for a blog post.'
+
+const buttons =
+  'Buttons are used to trigger an action on the website, such as submitting a form or clicking a link. They can come in many variatiosn to promote different importance levels.'
 
 const cards =
   'Cards are used to display information to the user in a way that is easy to read and understand. They can be used to display information about a product, service, or blog post.'
@@ -30,8 +30,8 @@ export const descriptions = {
   announcements,
   banners,
   breadcrumbs,
-  buttons,
   buttonGroups,
+  buttons,
   cards,
   carts,
   steps,

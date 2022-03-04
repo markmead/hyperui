@@ -56,9 +56,9 @@ const Search: FunctionComponent = () => {
         <input
           className="w-64 pr-16 text-xs border-2 border-gray-100 rounded-lg"
           id="search"
-          type="text"
-          placeholder="Search Components..."
           onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search Components..."
+          type="text"
           value={query}
         />
 

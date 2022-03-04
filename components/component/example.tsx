@@ -12,27 +12,27 @@ import Code from './buttons/view'
 import Heart from './buttons/favourite'
 
 type Props = {
+  collection: Collection
   component: Component
   parentSpacing?: string
-  collection: Collection
   target?: string
 }
 
 const Example: FunctionComponent<Props> = ({
+  collection,
   component,
   parentSpacing,
-  collection,
   target,
 }) => {
-  let [html, setHtml] = useState<string>()
   let [code, setCode] = useState<string>()
+  let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
 
   let { id, spacing } = component
 
-  let spacingClass = spacing ? spacing : parentSpacing
   let isExample = view
+  let spacingClass = spacing ? spacing : parentSpacing
 
   useEffect(() => {
     let { origin, href } = window.location
@@ -60,8 +60,8 @@ const Example: FunctionComponent<Props> = ({
               </body>
             `
 
-            setHtml(code)
             setCode(html)
+            setHtml(code)
 
             prism.highlightAll()
           })
@@ -75,38 +75,38 @@ const Example: FunctionComponent<Props> = ({
       <div className="flex justify-between item-center">
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Breakpoint
+            emoji="📱"
             handleWidth={setWidth}
             size="340px"
             text="Mobile"
-            emoji="📱"
           />
 
           <Breakpoint
+            emoji="🐛"
             handleWidth={setWidth}
             size="640px"
             text="Small"
-            emoji="🐛"
           />
 
           <Breakpoint
+            emoji="🏢"
             handleWidth={setWidth}
             size="768px"
             text="Medium"
-            emoji="🏢"
           />
 
           <Breakpoint
+            emoji="🏔️"
             handleWidth={setWidth}
             size="1024px"
             text="Large"
-            emoji="🏔️"
           />
 
           <Breakpoint
+            emoji="🌝"
             handleWidth={setWidth}
             size="100%"
             text="Full"
-            emoji="🌝"
           />
         </div>
       </div>
@@ -114,11 +114,11 @@ const Example: FunctionComponent<Props> = ({
       <div>
         {isExample ? (
           <iframe
-            srcDoc={html}
             className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
-            width={width}
             loading="lazy"
+            srcDoc={html}
             title={`${collection.title} Component ${id}`}
+            width={width}
           ></iframe>
         ) : (
           <pre className="p-4 overflow-auto h-[400px] lg:h-[600px]">
@@ -129,8 +129,8 @@ const Example: FunctionComponent<Props> = ({
 
       {code && (
         <div className="flex items-center space-x-4">
+          <Code handleView={setView} view={view} />
           <Copy code={code} />
-          <Code view={view} handleView={setView} />
           <Heart collection={collection} id={id} />
         </div>
       )}

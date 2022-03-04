@@ -10,11 +10,11 @@ const Header: FunctionComponent = () => {
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
       <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
-        <nav role="navigation" className="flex items-center space-x-4">
+        <nav className="flex items-center space-x-4">
           <Link href="/">
             <a className="text-sm font-medium">
               HyperUI
-              <span role="img" className="ml-1.5">
+              <span aria-hidden="true" className="ml-1.5" role="img">
                 🚀
               </span>
             </a>
@@ -45,22 +45,24 @@ const Header: FunctionComponent = () => {
           </div>
 
           <a
-            href="https://twitter.com/itsmarkmead"
-            target="_blank"
-            rel="noopener noreferrer"
             className="p-2 rounded hover:opacity-75"
+            href="https://twitter.com/itsmarkmead"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span className="sr-only"> Twitter </span>
+
             <IconTwitter />
           </a>
 
           <a
-            href="https://github.com/markmead/hyperui"
-            target="_blank"
-            rel="noopener noreferrer"
             className="p-2 rounded hover:opacity-75"
+            href="https://github.com/markmead/hyperui"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span className="sr-only"> GitHub </span>
+
             <IconGithub />
           </a>
         </div>

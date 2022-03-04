@@ -15,8 +15,8 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
   return (
     <>
       <CopyToClipboard text={code} onCopy={() => toast('Copied to Clipboard!')}>
-        <button type="button" className={styles.pill}>
-          <span role="img" className="text-sm mr-1.5">
+        <button className={styles.pill} type="button">
+          <span aria-hidden="true" className="text-sm mr-1.5" role="img">
             📋
           </span>
 
