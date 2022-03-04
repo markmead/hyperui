@@ -7,78 +7,188 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<div class="sm:items-center sm:flex sm:justify-between">
-  <div class="flex space-x-1 sm:justify-end sm:order-last">
-    <button
-      type="button"
-      class="p-1.5 text-gray-700 rounded bg-gray-50"
-    >
-      <span class="sr-only">
-        View as List
-      </span>
+<details
+  open
+  class="overflow-hidden border border-gray-200 rounded"
+>
+  <summary class="flex items-center justify-between px-5 py-3 bg-gray-100 lg:hidden">
+    <span class="text-sm font-medium">
+      Toggle Filters
+    </span>
 
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-      </svg>
-    </button>
-
-    <button
-      type="button"
-      class="p-1.5 text-gray-700 rounded bg-gray-50"
-    >
-      <span class="sr-only">
-        View as Grid
-      </span>
-
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-      </svg>
-    </button>
-  </div>
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </summary>
 
   <form
     action=""
-    class="flex mt-2 sm:mt-0"
+    class="border-t border-gray-200 lg:border-t-0"
   >
-    <div>
-      <label
-        for="FilterBy"
-        class="sr-only"
-      >
-        Filter
-      </label>
+    <fieldset>
+      <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+        Type
+      </legend>
 
-      <select
-        id="FilterBy"
-        name="filter_by"
-        class="text-sm border-gray-100 rounded"
-      >
-        <option readonly>Filter</option>
-        <option value="health">Health</option>
-        <option value="fitness">Fitness</option>
-        <option value="eating">Eating</option>
-      </select>
+      <div class="px-5 py-6 space-y-2">
+        <div class="flex items-center">
+          <input
+            id="toy"
+            type="checkbox"
+            name="type[toy]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label
+            for="toy"
+            class="ml-3 text-sm font-medium"
+          >
+            Toy
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="game"
+            type="checkbox"
+            name="type[game]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label
+            for="game"
+            class="ml-3 text-sm font-medium"
+          >
+            Game
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="outdoor"
+            type="checkbox"
+            name="type[outdoor]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label
+            for="outdoor"
+            class="ml-3 text-sm font-medium"
+          >
+            Outdoor
+          </label>
+        </div>
+
+        <div class="pt-2">
+          <button
+            type="button"
+            class="text-xs text-gray-500 underline"
+          >
+            Reset Type
+          </button>
+        </div>
+      </div>
+    </fieldset>
+
+    <div>
+      <fieldset>
+        <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+          Age
+        </legend>
+
+        <div class="px-5 py-6 space-y-2">
+          <div class="flex items-center">
+            <input
+              id="3+"
+              type="checkbox"
+              name="age[3+]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+
+            <label
+              for="3+"
+              class="ml-3 text-sm font-medium"
+            >
+              3+
+            </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="8+"
+              type="checkbox"
+              name="age[8+]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+
+            <label
+              for="8+"
+              class="ml-3 text-sm font-medium"
+            >
+              8+
+            </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="12+"
+              type="checkbox"
+              name="age[12+]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+
+            <label
+              for="12+"
+              class="ml-3 text-sm font-medium"
+            >
+              12+
+            </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="16+"
+              type="checkbox"
+              name="age[16+]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+
+            <label
+              for="16+"
+              class="ml-3 text-sm font-medium"
+            >
+              16+
+            </label>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="button"
+              class="text-xs text-gray-500 underline"
+            >
+              Reset Age
+            </button>
+          </div>
+        </div>
+      </fieldset>
     </div>
 
-    <div class="ml-4">
-      <label
-        for="SortBy"
-        class="sr-only"
+    <div class="flex justify-between px-5 py-3 border-t border-gray-200">
+      <button
+        name="reset"
+        type="button"
+        class="text-xs font-medium text-gray-600 underline rounded"
       >
-        Sort
-      </label>
+        Reset All
+      </button>
 
-      <select
-        id="SortBy"
-        name="sort_by"
-        class="text-sm border-gray-100 rounded"
+      <button
+        name="commit"
+        type="button"
+        class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
       >
-        <option readonly>Sort</option>
-        <option value="title-asc">Title, A-Z</option>
-        <option value="title-desc">Title, Z-A</option>
-        <option value="price-asc">Price, Low-High</option>
-        <option value="price-desc">Price, High-Low</option>
-      </select>
+        Apply Filters
+      </button>
     </div>
   </form>
-</div>
+</details>
