@@ -31,13 +31,10 @@ export const buttons = [
 ]
 
 export const cards = [
-  { id: 24, spacing: 'max-w-3xl p-4 mx-auto' },
-  { id: 25 },
-  { id: 26 },
   { id: 1 },
   { id: 2 },
   { id: 3 },
-  { id: 4 },
+  { id: 4, spacing: 'max-w-3xl mx-auto p-8' },
   { id: 5 },
   { id: 6 },
   { id: 7 },
@@ -56,7 +53,6 @@ export const cards = [
   { id: 20 },
   { id: 21 },
   { id: 22 },
-  { id: 23 },
 ]
 
 export const carts = [
