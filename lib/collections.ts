@@ -34,7 +34,6 @@ import {
   tabs,
   tags,
   testimonials,
-  titles,
 } from './components'
 
 import { descriptions } from '../data/components/descriptions'
@@ -358,15 +357,6 @@ export const collections: Array<Collection> = [
     emoji: '👍',
     id: 'testimonials',
     title: 'Testimonials',
-  },
-
-  {
-    components: titles,
-    count: titles.length,
-    description: descriptions['titles'] ?? '',
-    emoji: '📚',
-    id: 'titles',
-    title: 'Titles',
   },
 ]
 

@@ -238,14 +238,4 @@ export const testimonials = [
   { id: 5 },
   { id: 6 },
   { id: 7 },
-  { id: 8 },
-  { id: 9 },
-]
-
-export const titles = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3, spacing: 'max-w-lg mx-auto p-4 w-screen' },
-  { id: 4 },
-  { id: 5, spacing: 'max-w-3xl mx-auto p-4' },
 ]

@@ -1,45 +1,169 @@
-<!--
-  This component uses @tailwindcss/aspect-ratio
+<link
+  crossorigin="anonymous"
+  href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  rel="stylesheet"
+/>
 
-  yarn add @tailwindcss/aspect-ratio
-  npm install @tailwindcss/aspect-ratio
+<script
+  crossorigin="anonymous"
+  defer
+  src="https://unpkg.com/swiper/swiper-bundle.min.js"
+></script>
 
-  plugins: [require('@tailwindcss/aspect-ratio')]
--->
+<style>
+  .swiper-pagination {
+    bottom: 0;
+    position: relative;
+  }
 
-<div class="max-w-5xl px-4 py-8 mx-auto">
-  <section class="p-8 bg-gray-100 rounded-lg">
-    <div class="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:items-center">
-      <div class="relative">
-        <div class="aspect-w-1 aspect-h-1">
-          <img
-            src="https://www.hyperui.dev/photos/man-5.jpeg"
-            alt=""
-            class="object-cover rounded-lg"
-          />
+  .swiper-container {
+    overflow: hidden;
+  }
+</style>
+
+<section>
+  <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <blockquote class="p-8 bg-gray-100">
+            <div class="flex items-center">
+              <img
+                src="https://www.hyperui.dev/photos/man-4.jpeg"
+                alt=""
+                class="object-cover w-16 h-16 rounded-full"
+              />
+
+              <div class="ml-4 text-sm">
+                <p class="font-medium">Jeff Wezos</p>
+                <p class="mt-1">CEO of Shipping Company</p>
+              </div>
+            </div>
+
+            <p class="relative mt-4 text-gray-500">
+              <span class="text-xl">&ldquo;</span>
+
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              assumenda officiis sit amet itaque eveniet accusantium corporis
+              tempora, soluta perspiciatis rerum, ratione animi nemo inventore
+              repellat, commodi in esse quisquam.
+
+              <span class="text-xl">&rdquo;</span>
+            </p>
+          </blockquote>
         </div>
 
-        <div
-          class="absolute inline-flex px-4 py-2 bg-white rounded-lg shadow-xl -bottom-4 -right-4"
-        >
-          <span class="inline-block w-12 h-10 bg-gray-100 rounded-lg"></span>
+        <div class="swiper-slide">
+          <blockquote class="p-8 bg-gray-100">
+            <div class="flex items-center">
+              <img
+                src="https://www.hyperui.dev/photos/man-4.jpeg"
+                alt=""
+                class="object-cover w-16 h-16 rounded-full"
+              />
+
+              <div class="ml-4 text-sm">
+                <p class="font-medium">Jeff Wezos</p>
+                <p class="mt-1">CEO of Shipping Company</p>
+              </div>
+            </div>
+
+            <p class="relative mt-4 text-gray-500">
+              <span class="text-xl">&ldquo;</span>
+
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              assumenda officiis sit amet itaque eveniet accusantium corporis
+              tempora, soluta perspiciatis rerum, ratione animi nemo inventore
+              repellat, commodi in esse quisquam.
+
+              <span class="text-xl">&rdquo;</span>
+            </p>
+          </blockquote>
+        </div>
+
+        <div class="swiper-slide">
+          <blockquote class="p-8 bg-gray-100">
+            <div class="flex items-center">
+              <img
+                src="https://www.hyperui.dev/photos/man-4.jpeg"
+                alt=""
+                class="object-cover w-16 h-16 rounded-full"
+              />
+
+              <div class="ml-4 text-sm">
+                <p class="font-medium">Jeff Wezos</p>
+                <p class="mt-1">CEO of Shipping Company</p>
+              </div>
+            </div>
+
+            <p class="relative mt-4 text-gray-500">
+              <span class="text-xl">&ldquo;</span>
+
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              assumenda officiis sit amet itaque eveniet accusantium corporis
+              tempora, soluta perspiciatis rerum, ratione animi nemo inventore
+              repellat, commodi in esse quisquam.
+
+              <span class="text-xl">&rdquo;</span>
+            </p>
+          </blockquote>
+        </div>
+
+        <div class="swiper-slide">
+          <blockquote class="p-8 bg-gray-100">
+            <div class="flex items-center">
+              <img
+                src="https://www.hyperui.dev/photos/man-4.jpeg"
+                alt=""
+                class="object-cover w-16 h-16 rounded-full"
+              />
+
+              <div class="ml-4 text-sm">
+                <p class="font-medium">Jeff Wezos</p>
+                <p class="mt-1">CEO of Shipping Company</p>
+              </div>
+            </div>
+
+            <p class="relative mt-4 text-gray-500">
+              <span class="text-xl">&ldquo;</span>
+
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              assumenda officiis sit amet itaque eveniet accusantium corporis
+              tempora, soluta perspiciatis rerum, ratione animi nemo inventore
+              repellat, commodi in esse quisquam.
+
+              <span class="text-xl">&rdquo;</span>
+            </p>
+          </blockquote>
         </div>
       </div>
 
-      <blockquote class="sm:col-span-2">
-        <p class="text-xl font-medium sm:text-2xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-          perspiciatis cumque neque ut nobis excepturi, quasi iure quisquam
-          autem alias.
-        </p>
-
-        <cite class="inline-flex items-center mt-8 not-italic">
-          <span class="hidden w-6 h-px bg-gray-400 sm:inline-block"></span>
-          <p class="text-sm text-gray-500 uppercase sm:ml-3">
-            <strong>Simon Cooper</strong>, Inbetweener Co.
-          </p>
-        </cite>
-      </blockquote>
+      <div class="mt-12 swiper-pagination"></div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.swiper-container', {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 8,
+      autoplay: {
+        delay: 8000,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1.5,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    })
+  })
+</script>
