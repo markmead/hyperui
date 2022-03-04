@@ -67,15 +67,13 @@ export const carts = [
 export const checkouts = [{ id: 1 }]
 
 export const ctas = [
-  { id: 1, spacing: 'p-4' },
-  { id: 2, spacing: 'p-4' },
-  { id: 3, spacing: 'p-4' },
-  { id: 4, spacing: 'p-4' },
-  { id: 5, spacing: 'p-4' },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
   { id: 6 },
   { id: 7 },
-  { id: 8 },
-  { id: 9 },
 ]
 
 export const emptyStates = [{ id: 1 }, { id: 2 }, { id: 3 }]
