@@ -124,14 +124,7 @@ export const forms = [
 
 export const inputs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
 
-export const navigations = [
-  { id: 6 },
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]
+export const navigations = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
 export const offCanvasMenus = [{ id: 1 }]
 
