@@ -3,8 +3,8 @@ import Head from 'next/head'
 
 import { useEffect, useState } from 'react'
 
-import Banner from '../components/banner'
-import Collection from '../components/collection'
+import Banner from '../components/content/banner'
+import Collection from '../components/collection/saved'
 
 const Saved: NextPage = () => {
   let [collections, setCollections] = useState<Array<string>>([])

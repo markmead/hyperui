@@ -1,13 +1,13 @@
 import { FunctionComponent } from 'react'
 
-import styles from '../styles/button.module.css'
+import styles from '../../../styles/button.module.css'
 
 type Props = {
   view: boolean
   handleView: any
 }
 
-const Code: FunctionComponent<Props> = ({ view, handleView }) => {
+const View: FunctionComponent<Props> = ({ view, handleView }) => {
   return (
     <>
       <button
@@ -25,4 +25,4 @@ const Code: FunctionComponent<Props> = ({ view, handleView }) => {
   )
 }
 
-export default Code
+export default View

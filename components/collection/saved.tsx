@@ -1,12 +1,10 @@
-// groupedSavedCollections
-
 import { FunctionComponent, useEffect, useState } from 'react'
 
-import { Component } from '../interface/component'
-import { Collection } from '../interface/collection'
-import { currentCollection } from '../lib/collections'
+import { Component } from '../../interface/component'
+import { Collection } from '../../interface/collection'
+import { currentCollection } from '../../lib/collections'
 
-import Example from './example'
+import Example from '../component/example'
 
 type Props = {
   id: string

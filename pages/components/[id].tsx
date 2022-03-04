@@ -9,9 +9,9 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import ToastContext from '../../context/toast'
 
-import Breadcrumbs from '../../components/breadcrumbs'
-import Banner from '../../components/banner'
-import Example from '../../components/example'
+import Breadcrumbs from '../../components/collection/breadcrumbs'
+import Banner from '../../components/content/banner'
+import Example from '../../components/component/example'
 
 import {
   currentCollectionComponents,

@@ -5,7 +5,7 @@ type Props = {
   url: string
 }
 
-const Announcement: FunctionComponent<Props> = ({ text, url }) => (
+const Banner: FunctionComponent<Props> = ({ text, url }) => (
   <aside className="p-3 text-center text-white bg-black">
     <p className="text-sm font-medium text-center">
       <a
@@ -20,4 +20,4 @@ const Announcement: FunctionComponent<Props> = ({ text, url }) => (
   </aside>
 )
 
-export default Announcement
+export default Banner

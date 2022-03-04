@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 
 const prism = require('prismjs')
 
-import { Collection } from '../interface/collection'
-import { Component } from '../interface/component'
+import { Collection } from '../../interface/collection'
+import { Component } from '../../interface/component'
 
-import Breakpoint from './breakpoint'
-import Copy from './copy'
-import Code from './code'
-import Heart from './heart'
+import Breakpoint from './buttons/breakpoint'
+import Copy from './buttons/copy'
+import Code from './buttons/view'
+import Heart from './buttons/favourite'
 
 type Props = {
   component: Component

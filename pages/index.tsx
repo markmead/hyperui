@@ -3,8 +3,8 @@ import type { NextPage } from 'next'
 import { Collection } from '../interface/collection'
 import { collections } from '../lib/collections'
 
-import Banner from '../components/banner'
-import Grid from '../components/grid'
+import Banner from '../components/content/banner'
+import Grid from '../components/collection/grid'
 
 export async function getStaticProps() {
   return {

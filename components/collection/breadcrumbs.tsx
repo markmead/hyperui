@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { Collection } from '../interface/collection'
+import { Collection } from '../../interface/collection'
 
 type Props = {
   collection: Collection

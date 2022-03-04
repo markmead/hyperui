@@ -2,8 +2,8 @@ import { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import IconGithub from './icon/github'
-import IconTwitter from './icon/twitter'
+import IconGithub from '../icon/github'
+import IconTwitter from '../icon/twitter'
 import Search from './search'
 
 const Header: FunctionComponent = () => {

@@ -2,8 +2,8 @@ import { FunctionComponent, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
-import { Collection } from '../interface/collection'
-import { collections } from '../lib/collections'
+import { Collection } from '../../interface/collection'
+import { collections } from '../../lib/collections'
 import { useRouter } from 'next/router'
 
 const Search: FunctionComponent = () => {
