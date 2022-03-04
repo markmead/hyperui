@@ -2,17 +2,17 @@
   "name": "hyperui",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
-    "lint": "next lint",
     "css": "npx tailwindcss -i styles/globals.css -o public/build.css -m",
+    "dev": "next dev",
+    "lint": "next lint",
+    "postbuild": "next-sitemap",
     "watch": "yarn css -w"
   },
   "dependencies": {
     "next": "12.1.0",
-    "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react": "17.0.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
@@ -20,11 +20,11 @@
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
     "@types/node": "16.11.7",
-    "@types/react": "17.0.34",
     "@types/react-copy-to-clipboard": "^5.0.2",
+    "@types/react": "17.0.34",
     "autoprefixer": "^10.4.0",
-    "eslint": "7",
     "eslint-config-next": "12.0.3",
+    "eslint": "7",
     "next-sitemap": "^2.5.2",
     "postcss": "^8.3.11",
     "prismjs": "^1.27.0",

@@ -14,7 +14,7 @@ const Card: FunctionComponent<Props> = ({ collection }) => {
   return (
     <Link href={`/components/${id}`}>
       <a className="p-6 border-2 border-black hover:bg-black rounded-xl hover:text-white">
-        <span className="text-xl" role="img">
+        <span aria-hidden="true" className="text-xl" role="img">
           {emoji}
         </span>
 
