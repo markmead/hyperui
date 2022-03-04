@@ -133,7 +133,7 @@ export const navigations = [
   { id: 5 },
 ]
 
-export const offCanvasMenus = [{ id: 1 }, { id: 2 }, { id: 3 }]
+export const offCanvasMenus = [{ id: 1 }]
 
 export const pagination = [
   { id: 1 },
