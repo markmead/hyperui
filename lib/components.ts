@@ -78,13 +78,7 @@ export const ctas = [
   { id: 9 },
 ]
 
-export const emptyStates = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]
+export const emptyStates = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
 export const faqs = [
   { id: 1, spacing: 'max-w-3xl w-screen mx-auto p-8' },
