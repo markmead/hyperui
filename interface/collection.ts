@@ -1,12 +1,12 @@
 import { Component } from './component'
 
 export interface Collection {
-  id: string
-  title: string
-  count: number
-  emoji: string
-  spacing?: string
   components: Array<Component>
-  ecommerce?: boolean
+  count: number
   description?: string
+  ecommerce?: boolean
+  emoji: string
+  id: string
+  spacing?: string
+  title: string
 }

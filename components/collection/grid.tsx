@@ -1,12 +1,12 @@
 import type { FunctionComponent } from 'react'
 
-import { Collection } from '../interface/collection'
+import { Collection } from '../../interface/collection'
 
 import Card from './card'
 
 type Props = {
-  className: string
   blocks: Array<Collection>
+  className: string
 }
 
 const Grid: FunctionComponent<Props> = ({ className, blocks }) => {

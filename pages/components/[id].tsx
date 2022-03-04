@@ -9,22 +9,22 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import ToastContext from '../../context/toast'
 
-import Breadcrumbs from '../../components/breadcrumbs'
-import Banner from '../../components/banner'
-import Example from '../../components/example'
+import Breadcrumbs from '../../components/collection/breadcrumbs'
+import Banner from '../../components/content/banner'
+import Example from '../../components/component/example'
 
 import {
-  currentCollectionComponents,
   collectionIds,
   currentCollection,
+  currentCollectionComponents,
 } from '../../lib/collections'
 
 export async function getStaticPaths() {
   let paths = collectionIds()
 
   return {
-    paths,
     fallback: false,
+    paths,
   }
 }
 
@@ -68,10 +68,11 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
             {collection.title} | Free Open Source Tailwind CSS Components |
             HyperUI
           </title>
+
           <meta
-            name="description"
             content={metaDescription}
             key="description"
+            name="description"
           ></meta>
         </Head>
 
@@ -84,23 +85,23 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
             <ul className="space-y-8 lg:space-y-16">
               {components.map((component, index) => (
                 <Example
-                  key={index}
-                  component={component}
-                  parentSpacing={spacing}
                   collection={collection}
+                  component={component}
+                  key={index}
+                  parentSpacing={spacing}
                 />
               ))}
             </ul>
           </div>
 
           <ToastContainer
-            hideProgressBar
-            limit={1}
+            className="text-center"
             closeButton={false}
             draggable={false}
+            hideProgressBar
+            limit={1}
             position="bottom-center"
             theme="dark"
-            className="text-center"
           />
         </div>
       </>

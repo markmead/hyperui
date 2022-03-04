@@ -27,25 +27,25 @@ const Popup: FunctionComponent<Props> = ({ text, url }) => {
   return (
     <aside className="fixed flex items-center p-3 text-center text-white bg-black rounded-lg bottom-4 right-4">
       <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
         className="text-sm font-medium hover:opacity-75"
+        href={url}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         {text}
       </a>
 
       <button
-        onClick={() => hidePopup()}
-        type="button"
         aria-label="Dismiss Popup"
         className="p-1 ml-4 rounded bg-white/25 hover:bg-white/10"
+        onClick={() => hidePopup()}
+        type="button"
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           className="w-4 h-4"
-          viewBox="0 0 20 20"
           fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
             fillRule="evenodd"

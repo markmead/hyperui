@@ -1,21 +1,21 @@
 import { FunctionComponent } from 'react'
 
-import styles from '../styles/button.module.css'
+import styles from '../../../styles/button.module.css'
 
 type Props = {
-  view: boolean
   handleView: any
+  view: boolean
 }
 
-const Code: FunctionComponent<Props> = ({ view, handleView }) => {
+const View: FunctionComponent<Props> = ({ view, handleView }) => {
   return (
     <>
       <button
-        type="button"
         className={styles.pill}
         onClick={() => handleView(!view)}
+        type="button"
       >
-        <span role="img" className="mr-1.5 text-sm">
+        <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
           👀
         </span>
 
@@ -25,4 +25,4 @@ const Code: FunctionComponent<Props> = ({ view, handleView }) => {
   )
 }
 
-export default Code
+export default View

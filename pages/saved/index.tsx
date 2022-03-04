@@ -3,8 +3,8 @@ import Head from 'next/head'
 
 import { useEffect, useState } from 'react'
 
-import Banner from '../components/banner'
-import Collection from '../components/collection'
+import Banner from '../../components/content/banner'
+import Collection from '../../components/collection/saved'
 
 const Saved: NextPage = () => {
   let [collections, setCollections] = useState<Array<string>>([])
@@ -53,28 +53,32 @@ const Saved: NextPage = () => {
         <title>
           Favourite | Free Open Source Tailwind CSS Components | HyperUI
         </title>
+
         <meta
-          name="description"
-          key="description"
           content="Find all of your favourite free Tailwind CSS components in one place. Created by HyperUI."
+          key="description"
+          name="description"
         />
       </Head>
 
       <Banner
-        title="HyperUI Saved"
         subtitle="Your Saved HyperUI Tailwind CSS Component Library"
+        title="HyperUI Saved"
       />
 
       {Object.keys(collections).length > 0 ? (
         <div className="divide-y divide-gray-100">
           {(Object.keys(collections) || []).map((item: string) => (
-            <Collection key={item} id={item} components={collections[item]} />
+            <Collection components={collections[item]} id={item} key={item} />
           ))}
         </div>
       ) : (
         <div className="max-w-xl pb-8 mx-auto text-center sm:pb-16">
           <p className="text-sm text-gray-500">
-            You have not saved any components yet <span role="img">😢</span>
+            You have not saved any components yet{' '}
+            <span aria-hidden="true" role="img">
+              😢
+            </span>
           </p>
         </div>
       )}

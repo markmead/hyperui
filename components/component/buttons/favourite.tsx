@@ -1,15 +1,15 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 
-import styles from '../styles/button.module.css'
+import styles from '../../../styles/button.module.css'
 
-import { Collection } from '../interface/collection'
+import { Collection } from '../../../interface/collection'
 
 type Props = {
   collection: Collection
   id: number
 }
 
-const Heart: FunctionComponent<Props> = ({ collection, id }) => {
+const Favourite: FunctionComponent<Props> = ({ collection, id }) => {
   let [save, setSave] = useState<boolean>(false)
 
   const saveToLocalStorage = (collection: string, id: number) => {
@@ -51,18 +51,20 @@ const Heart: FunctionComponent<Props> = ({ collection, id }) => {
   return (
     <>
       <button
-        type="button"
-        className={styles.pill}
+        className={`${styles.pill} ${save && 'bg-black text-white'}`}
         onClick={() => handleClick(collection.id, id)}
+        type="button"
       >
-        <span role="img" className="mr-1.5 text-sm">
+        <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
           ❤️
         </span>
 
-        <span className="text-xs font-medium">{save ? 'Saved' : 'Save'}</span>
+        <span className="text-xs font-medium">
+          {save ? 'Favourited' : 'Favourite'}
+        </span>
       </button>
     </>
   )
 }
 
-export default Heart
+export default Favourite

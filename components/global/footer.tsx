@@ -7,10 +7,10 @@ const Footer: FunctionComponent = () => {
         <p className="text-sm text-center text-gray-500">
           Created with 💖 by{' '}
           <a
-            href="https://twitter.com/itsmarkmead"
-            rel="noreferrer"
-            target="_blank"
             className="underline"
+            href="https://twitter.com/itsmarkmead"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             @itsmarkmead
           </a>
