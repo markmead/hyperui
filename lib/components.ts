@@ -151,10 +151,7 @@ export const popups = [
   { id: 5, spacing: 'p-4 max-w-lg mx-auto' },
   { id: 6, spacing: 'p-4 max-w-lg mx-auto' },
   { id: 7, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 8 },
-  { id: 9 },
-  { id: 10, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
+  { id: 8, spacing: 'p-4 max-w-sm mx-auto' },
 ]
 
 export const productCards = [
