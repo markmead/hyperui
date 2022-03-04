@@ -111,8 +111,7 @@ _This is done at the top of the file_
 import {
   alerts,
   // ...
-  reviews,
-  checkouts,
+  checkouts, // New collection
 } from './components'
 ```
 
@@ -120,13 +119,13 @@ Then you can add the new collection like this:
 
 ```js
 {
-  id: 'checkouts',
-  title: 'Checkouts',
   components: checkouts,
   count: checkouts.length,
-  emoji: '💸',
-  spacing: '', // Optional
   ecommerce: '', // Optional
+  emoji: '💸',
+  id: 'checkouts',
+  spacing: '', // Optional
+  title: 'Checkouts',
 },
 ```
 
