@@ -87,15 +87,13 @@ export const emptyStates = [
 ]
 
 export const faqs = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
+  { id: 1, spacing: 'max-w-3xl w-screen mx-auto p-8' },
+  { id: 2, spacing: 'max-w-3xl w-screen mx-auto p-8' },
+  { id: 3, spacing: 'max-w-3xl w-screen mx-auto p-8' },
   { id: 4 },
-  { id: 5 },
-  { id: 6, spacing: 'px-4 py-8' },
 ]
 
-export const filters = [{ id: 2, spacing: 'max-w-md mx-auto p-4' }]
+export const filters = [{ id: 1, spacing: 'max-w-md mx-auto p-4' }]
 
 export const footers = [
   { id: 1 },
