@@ -7,25 +7,26 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<section class="relative flex flex-wrap lg:h-screen lg:items-center">
-  <div class="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-16 lg:py-24">
-    <div class="max-w-lg mx-auto text-center">
-      <h1 class="text-2xl font-bold sm:text-3xl">Get started today!</h1>
+<div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+  <div class="max-w-lg mx-auto">
+    <h1 class="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">Get started today</h1>
 
-      <p class="mt-4 text-gray-500">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla
-        eaque error neque ipsa culpa autem, at itaque nostrum!
-      </p>
-    </div>
+    <p class="max-w-md mx-auto mt-4 text-center text-gray-500">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt dolores deleniti inventore quaerat
+      mollitia?
+    </p>
 
-    <form action="" class="max-w-xl mx-auto mt-8 mb-0 space-y-4">
+    <form action="" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
+      <p class="text-lg font-medium">Sign in to your account</p>
+
       <div>
-        <label for="email" class="sr-only">Email</label>
+        <label for="email" class="text-sm font-medium">Email</label>
 
-        <div class="relative">
+        <div class="relative mt-1">
           <input
             type="email"
-            class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
+            id="email"
+            class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
             placeholder="Enter email"
           />
 
@@ -49,11 +50,13 @@
       </div>
 
       <div>
-        <label for="password" class="sr-only">Password</label>
-        <div class="relative">
+        <label for="password" class="text-sm font-medium">Password</label>
+
+        <div class="relative mt-1">
           <input
             type="password"
-            class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
+            id="password"
+            class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
             placeholder="Enter password"
           />
 
@@ -82,27 +85,14 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-between">
-        <p class="text-sm text-gray-500">
-          No account?
-          <a class="underline" href="">Sign up</a>
-        </p>
+      <button type="submit" class="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg">
+        Sign in
+      </button>
 
-        <button
-          type="submit"
-          class="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg "
-        >
-          Sign in
-        </button>
-      </div>
+      <p class="text-sm text-center text-gray-500">
+        No account?
+        <a class="underline" href="">Sign up</a>
+      </p>
     </form>
   </div>
-
-  <div class="relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-full">
-    <img
-      class="absolute inset-0 object-cover w-full h-full"
-      src="https://www.hyperui.dev/photos/team-1.jpeg"
-      alt=""
-    />
-  </div>
-</section>
+</div>

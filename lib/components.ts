@@ -117,9 +117,7 @@ export const forms = [
   { id: 2, spacing: 'p-4' },
   { id: 3 },
   { id: 4 },
-  { id: 5, spacing: 'p-4' },
-  { id: 6 },
-  { id: 7 },
+  { id: 5 },
 ]
 
 export const inputs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
