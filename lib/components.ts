@@ -31,13 +31,10 @@ export const buttons = [
 ]
 
 export const cards = [
-  { id: 24, spacing: 'max-w-3xl p-4 mx-auto' },
-  { id: 25 },
-  { id: 26 },
   { id: 1 },
   { id: 2 },
   { id: 3 },
-  { id: 4 },
+  { id: 4, spacing: 'max-w-3xl mx-auto p-8' },
   { id: 5 },
   { id: 6 },
   { id: 7 },
@@ -56,7 +53,6 @@ export const cards = [
   { id: 20 },
   { id: 21 },
   { id: 22 },
-  { id: 23 },
 ]
 
 export const carts = [
@@ -67,38 +63,25 @@ export const carts = [
 export const checkouts = [{ id: 1 }]
 
 export const ctas = [
-  { id: 1, spacing: 'p-4' },
-  { id: 2, spacing: 'p-4' },
-  { id: 3, spacing: 'p-4' },
-  { id: 4, spacing: 'p-4' },
-  { id: 5, spacing: 'p-4' },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
   { id: 6 },
   { id: 7 },
-  { id: 8 },
-  { id: 9 },
 ]
 
-export const emptyStates = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]
+export const emptyStates = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
 export const faqs = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
+  { id: 1, spacing: 'max-w-3xl w-screen mx-auto p-8' },
+  { id: 2, spacing: 'max-w-3xl w-screen mx-auto p-8' },
+  { id: 3, spacing: 'max-w-3xl w-screen mx-auto p-8' },
   { id: 4 },
-  { id: 5 },
-  { id: 6, spacing: 'px-4 py-8' },
 ]
 
-export const filters = [
-  { id: 1, spacing: 'max-w-5xl mx-auto p-4' },
-  { id: 2, spacing: 'max-w-md mx-auto p-4' },
-]
+export const filters = [{ id: 1, spacing: 'max-w-md mx-auto p-4' }]
 
 export const footers = [
   { id: 1 },
@@ -117,23 +100,14 @@ export const forms = [
   { id: 2, spacing: 'p-4' },
   { id: 3 },
   { id: 4 },
-  { id: 5, spacing: 'p-4' },
-  { id: 6 },
-  { id: 7 },
+  { id: 5 },
 ]
 
 export const inputs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
 
-export const navigations = [
-  { id: 6 },
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]
+export const navigations = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
-export const offCanvasMenus = [{ id: 1 }, { id: 2 }, { id: 3 }]
+export const offCanvasMenus = [{ id: 1 }]
 
 export const pagination = [
   { id: 1 },
@@ -151,10 +125,7 @@ export const popups = [
   { id: 5, spacing: 'p-4 max-w-lg mx-auto' },
   { id: 6, spacing: 'p-4 max-w-lg mx-auto' },
   { id: 7, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 8 },
-  { id: 9 },
-  { id: 10, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 11, spacing: 'p-4 max-w-sm mx-auto' },
+  { id: 8, spacing: 'p-4 max-w-sm mx-auto' },
 ]
 
 export const productCards = [
@@ -212,14 +183,7 @@ export const steps = [
 
 export const tables = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
-export const tabs = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-]
+export const tabs = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
 
 export const tags = [
   { id: 1 },
@@ -238,14 +202,4 @@ export const testimonials = [
   { id: 5 },
   { id: 6 },
   { id: 7 },
-  { id: 8 },
-  { id: 9 },
-]
-
-export const titles = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3, spacing: 'max-w-lg mx-auto p-4 w-screen' },
-  { id: 4 },
-  { id: 5, spacing: 'max-w-3xl mx-auto p-4' },
 ]
