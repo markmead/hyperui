@@ -124,7 +124,7 @@ export const filters = [
     spacing: 'max-w-md mx-auto p-4',
   },
   {
-    id: '2',
+    id: 2,
     title: 'Popup with Sections',
     spacing: 'p-4',
   },
