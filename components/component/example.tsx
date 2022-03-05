@@ -73,6 +73,7 @@ const Example: FunctionComponent<Props> = ({
   return (
     <li className="space-y-4">
       <div className="flex justify-between item-center">
+        <h2 className="text-lg font-bold sm:text-xl">{component.title}</h2>
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Breakpoint
             emoji="📱"

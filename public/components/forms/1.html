@@ -7,186 +7,92 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<form
-  class="relative w-screen max-w-lg mx-auto overflow-auto bg-white divide-y divide-gray-100 rounded-lg shadow-2xl"
-  role="dialog"
-  aria-label="Filters"
->
-  <header class="p-6 text-center">
-    <p class="text-lg font-medium">Search courses</p>
-  </header>
+<div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+  <div class="max-w-lg mx-auto text-center">
+    <h1 class="text-2xl font-bold sm:text-3xl">Get started today!</h1>
 
-  <main class="flow-root p-6 overflow-y-auto h-96">
-    <div class="-my-8 divide-y divide-gray-100">
-      <div class="py-8">
-        <fieldset>
-          <legend class="text-xl font-medium">Study Type</legend>
+    <p class="mt-4 text-gray-500">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla
+      eaque error neque ipsa culpa autem, at itaque nostrum!
+    </p>
+  </div>
 
-          <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="radio" class="w-6 h-6 border-gray-200" />
-                <span class="ml-3 font-medium">Undergraduate</span>
-              </label>
-            </li>
+  <form action="" class="max-w-md mx-auto mt-8 mb-0 space-y-4">
+    <div>
+      <label for="email" class="sr-only">Email</label>
 
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="radio" class="w-6 h-6 border-gray-200" checked />
-                <span class="ml-3 font-medium">Postgraduate</span>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-      </div>
+      <div class="relative">
+        <input
+          type="email"
+          class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+          placeholder="Enter email"
+        />
 
-      <div class="py-8">
-        <fieldset>
-          <legend class="text-xl font-medium">Locations</legend>
-
-          <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">All Regions</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">East Midlands</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">East of England</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">London (Greater)</span>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-      </div>
-
-      <div class="py-8">
-        <fieldset>
-          <legend class="text-xl font-medium">Universities</legend>
-
-          <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Aston University</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Bangor University</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Brunel University London</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Glyndwr University</span>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-
-        <button class="inline-flex items-center mt-6 text-sm font-medium text-gray-600 underline" type="button">
-          Show all universities
-
-          <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <span class="absolute inset-y-0 inline-flex items-center right-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
-              fill-rule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+            />
           </svg>
-        </button>
-      </div>
-
-      <div class="py-8">
-        <fieldset>
-          <legend class="text-xl font-medium">Commitment</legend>
-
-          <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Full Time</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Part Time</span>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-      </div>
-
-      <div class="py-8">
-        <fieldset>
-          <legend class="text-xl font-medium">University Rating</legend>
-
-          <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 1+</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 2+</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 3+</span>
-              </label>
-            </li>
-
-            <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 4+</span>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
+        </span>
       </div>
     </div>
-  </main>
 
-  <footer class="flex items-center justify-between p-6">
-    <button class="text-sm font-medium text-gray-600 underline" type="button">Clear all</button>
+    <div>
+      <label for="password" class="sr-only">Password</label>
+      <div class="relative">
+        <input
+          type="password"
+          class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+          placeholder="Enter password"
+        />
 
-    <button class="px-5 py-3 font-medium text-white bg-black rounded-lg" type="submit">Show 300+ results</button>
-  </footer>
-</form>
+        <span class="absolute inset-y-0 inline-flex items-center right-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <p class="text-sm text-gray-500">
+        No account?
+        <a class="underline" href="">Sign up</a>
+      </p>
+
+      <button
+        type="submit"
+        class="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
+      >
+        Sign in
+      </button>
+    </div>
+  </form>
+</div>
