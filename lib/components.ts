@@ -53,28 +53,35 @@ export const buttons = [
 ]
 
 export const cards = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4, spacing: 'max-w-3xl mx-auto p-8' },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-  { id: 12 },
-  { id: 13 },
-  { id: 14 },
-  { id: 15 },
-  { id: 16 },
-  { id: 17 },
-  { id: 18 },
-  { id: 19 },
-  { id: 20 },
-  { id: 21 },
-  { id: 22 },
+  { id: 1, title: 'Shadow with Review Score' },
+  { id: 2, title: 'Image with Content and Background' },
+  { id: 3, title: 'Shadow with Gradient Border' },
+  {
+    id: 4,
+    title: 'With Large Call to Action and Image',
+    spacing: 'max-w-3xl mx-auto p-8',
+  },
+  { id: 5, title: 'Stacked with Image with Shadow and Content' },
+  { id: 6, title: 'Bordered with Image and Content with Call to Action' },
+  { id: 7, title: 'With Content, Image, Details and Gradient Border' },
+  { id: 8, title: 'With Icon, Content and Background' },
+  { id: 9, title: 'Stacked with Large Image and Content' },
+  { id: 10, title: 'Darkened Background with Content on Hover' },
+  { id: 11, title: 'Bordered with Content on Hover' },
+  { id: 12, title: 'Bordered with Content Over Image' },
+  { id: 13, title: 'Stat, Content with Call to Action' },
+  { id: 14, title: 'Stat, Content with Accent Border and Icon' },
+  { id: 15, title: 'Bordered with Image, Price, Content and Details' },
+  { id: 16, title: 'Split with Image and Tags with Content' },
+  {
+    id: 17,
+    title: 'Image, Name, with Social Links and Project Links',
+  },
+  { id: 18, title: 'Content Over Image with Review Score' },
+  { id: 19, title: 'Gradient Border with Content and Tags' },
+  { id: 20, title: 'Shaped with Iamge and Content' },
+  { id: 21, title: 'Bordered with Icon, Content and Call to Action' },
+  { id: 22, title: 'Content and Background with Image' },
 ]
 
 export const carts = [
@@ -156,71 +163,110 @@ export const inputs = [
   { id: 5, title: 'With Floating Label in Input' },
 ]
 
-export const navigations = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+export const navigations = [
+  { id: 1, title: 'With Links, Basket, Account and Search' },
+  { id: 2, title: 'With Links and Actions' },
+  { id: 3, title: 'With Search, Links and Actions' },
+  { id: 4, title: 'Contained with Links' },
+]
 
-export const offCanvasMenus = [{ id: 1 }]
+export const offCanvasMenus = [{ id: 1, title: 'Links and Close' }]
 
 export const pagination = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
+  { id: 1, title: 'With Rounded Buttons' },
+  { id: 2, title: 'With Circle Buttons' },
+  { id: 3, title: 'With Input' },
+  { id: 4, title: 'Background with Input ' },
+  { id: 5, title: 'With Fraction' },
 ]
 
 export const popups = [
-  { id: 1, spacing: 'p-4 max-w-5xl mx-auto' },
-  { id: 2, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 3, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 4, spacing: 'p-4 max-w-sm mx-auto' },
-  { id: 5, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 6, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 7, spacing: 'p-4 max-w-lg mx-auto' },
-  { id: 8, spacing: 'p-4 max-w-sm mx-auto' },
+  {
+    id: 1,
+    title: 'Split with Image and Call to Action',
+    spacing: 'p-4 max-w-5xl mx-auto',
+  },
+  {
+    id: 2,
+    title: 'Message Notification with Actions',
+    spacing: 'p-4 max-w-lg mx-auto',
+  },
+  {
+    id: 3,
+    title: 'Order Notification with Action',
+    spacing: 'p-4 max-w-lg mx-auto',
+  },
+  {
+    id: 4,
+    title: 'Contact Actions',
+    spacing: 'p-4 max-w-sm mx-auto',
+  },
+  {
+    id: 5,
+    title: 'Notification with Image and Close',
+    spacing: 'p-4 max-w-lg mx-auto',
+  },
+  {
+    id: 6,
+    title: 'Floating Split with Image and Content and Close',
+    spacing: 'p-4 max-w-lg mx-auto',
+  },
+  { id: 7, title: 'Warning with Actions', spacing: 'p-4 max-w-sm mx-auto' },
 ]
 
 export const productCards = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
+  { id: 1, title: 'With Variants' },
+  { id: 2, title: 'With Tag' },
+  { id: 3, title: 'Simple' },
+  { id: 4, title: 'Artistic' },
+  { id: 5, title: 'Bordered with Wishlist Action and Tag' },
 ]
 
 export const productCollections = [
-  { id: 8 },
-  { id: 1 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
+  { id: 1, title: 'Grid with Cards' },
+  { id: 2, title: 'Split with Content, Call to Action and Grid' },
+  { id: 3, title: 'Slider with Pagination' },
+  { id: 4, title: 'Splider with Progress Bar' },
+  { id: 5, title: 'Split with Filter and Grid' },
+  { id: 6, title: 'Grid with Action' },
 ]
 
-export const products = [{ id: 1 }, { id: 2 }]
+export const products = [
+  {
+    id: 1,
+    title: 'Split with Featured Image, Image Grid and Content with Form',
+  },
+  { id: 2, title: 'Split with Featured Image, Image Grid, Content and Form ' },
+]
 
-export const prose = [{ id: 1 }]
+export const prose = [{ id: 1, title: 'Artistic' }]
 
-export const radioGroups = [{ id: 1 }, { id: 2 }]
+export const radioGroups = [
+  { id: 1, title: 'Stacked with Justified Content' },
+  { id: 2, title: 'Grid with Stacked Content' },
+]
 
-export const reviews = [{ id: 1 }]
+export const reviews = [{ id: 1, title: 'Overal Statistic with Reviews Grid' }]
 
 export const sections = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
+  { id: 1, title: 'Content with USPs Grid' },
+  { id: 2, title: 'Split with Content and Link Grid' },
+  { id: 3, title: 'Split with Content and Image' },
+  { id: 4, title: 'Content with Link Grid and Call to Action' },
+  { id: 5, title: 'Content and Split with Image and Content' },
+  { id: 6, title: 'Split with Image and Content with Overlap Background' },
 ]
 
 export const stats = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5, spacing: 'max-w-lg mx-auto p-4 space-y-4' },
+  { id: 1, title: 'Content with Grid' },
+  { id: 2, title: 'Border Grid' },
+  { id: 3, title: 'Content with Ladder Grid' },
+  { id: 4, title: 'Panel Grid' },
+  {
+    id: 5,
+    title: 'Financial Content with Pecentage',
+    spacing: 'max-w-lg mx-auto p-4 space-y-4',
+  },
 ]
 
 export const steps = [
