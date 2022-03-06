@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
 
-import { getAllPosts, getPostBySlug, postSlugs } from '../../lib/posts'
-import { Post } from '../../interface/post'
 import markdownToHtml from '../../lib/markdown'
+import { getPostBySlug, postSlugs } from '../../lib/posts'
+
+import { Post } from '../../interface/post'
 
 export async function getStaticPaths() {
   let paths = postSlugs()
@@ -40,10 +41,16 @@ type Props = {
 const Blog: NextPage<Props> = ({ post }) => {
   return (
     <>
-      <article className="prose">
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      </article>
+      <div className="max-w-screen-xl px-4 py-8 mx-auto">
+        <article className="mx-auto prose">
+          <header>
+            <time className="text-sm text-gray-500">{post.date}</time>
+            <h1 className="mt-1">{post.title}</h1>
+          </header>
+
+          <main dangerouslySetInnerHTML={{ __html: post.content }} />
+        </article>
+      </div>
     </>
   )
 }

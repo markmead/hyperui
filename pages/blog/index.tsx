@@ -5,6 +5,7 @@ import Banner from '../../components/content/banner'
 
 import { getAllPosts } from '../../lib/posts'
 import { Post } from '../../interface/post'
+import Card from '../../components/blog/card'
 
 export async function getStaticProps() {
   const posts = getAllPosts(['title', 'slug', 'date', 'emoji'])
@@ -30,25 +31,7 @@ const Blogs: NextPage<Props> = ({ posts }) => {
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>
-              <Link href="/blog/[slug]" as={`/blog/${post.slug}`}>
-                <a className="relative block group">
-                  <span className="absolute inset-0 border-2 border-black border-dashed"></span>
-
-                  <div className="relative flex items-end h-full transition-transform transform bg-white border-2 border-black group-hover:-translate-x-2 group-hover:-translate-y-2">
-                    <div className="px-8 pt-32 pb-8">
-                      <span className="text-4xl" role="img" aria-hidden="true">
-                        {post.emoji}
-                      </span>
-
-                      <h2 className="mt-4 text-xl font-medium">{post.title}</h2>
-
-                      <time className="mt-1 text-xs text-gray-500">
-                        {post.date}
-                      </time>
-                    </div>
-                  </div>
-                </a>
-              </Link>
+              <Card post={post} />
             </li>
           ))}
         </ul>
