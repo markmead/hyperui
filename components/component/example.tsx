@@ -104,6 +104,7 @@ const Example: FunctionComponent<Props> = ({
             handleWidth={setWidth}
             size="340px"
             text="Mobile"
+            active={width === '340px'}
           />
 
           <Breakpoint
@@ -111,6 +112,7 @@ const Example: FunctionComponent<Props> = ({
             handleWidth={setWidth}
             size="640px"
             text="Small"
+            active={width === '640px'}
           />
 
           <Breakpoint
@@ -118,6 +120,7 @@ const Example: FunctionComponent<Props> = ({
             handleWidth={setWidth}
             size="768px"
             text="Medium"
+            active={width === '768px'}
           />
 
           <Breakpoint
@@ -125,6 +128,7 @@ const Example: FunctionComponent<Props> = ({
             handleWidth={setWidth}
             size="1024px"
             text="Large"
+            active={width === '1024px'}
           />
 
           <Breakpoint
@@ -132,6 +136,7 @@ const Example: FunctionComponent<Props> = ({
             handleWidth={setWidth}
             size="100%"
             text="Full"
+            active={width === '100%'}
           />
 
           <strong className="inline-block w-20 text-xs font-medium leading-9 text-center text-white bg-black rounded-lg h-9">

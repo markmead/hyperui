@@ -3,6 +3,7 @@ import type { FunctionComponent } from 'react'
 import styles from '../../../styles/button.module.css'
 
 type Props = {
+  active: boolean
   emoji: string
   handleWidth: any
   size: string
@@ -10,6 +11,7 @@ type Props = {
 }
 
 const Breakpoint: FunctionComponent<Props> = ({
+  active,
   emoji,
   handleWidth,
   size,
@@ -17,7 +19,7 @@ const Breakpoint: FunctionComponent<Props> = ({
 }) => {
   return (
     <button
-      className={styles.pill}
+      className={`${styles.pill} ${active ? 'bg-black text-white' : ''}`}
       onClick={() => handleWidth(size)}
       type="button"
     >
