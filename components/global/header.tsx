@@ -37,6 +37,10 @@ const Header: FunctionComponent = () => {
           <Link href="/saved">
             <a className="block text-xs font-medium hover:opacity-75">Saved</a>
           </Link>
+
+          <Link href="/blog">
+            <a className="block text-xs font-medium hover:opacity-75">Blog</a>
+          </Link>
         </nav>
 
         <div className="flex items-center justify-end flex-1">
