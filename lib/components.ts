@@ -3,6 +3,10 @@ export const alerts = [
   { id: 2, title: 'With Description' },
   { id: 3, title: 'With List' },
   { id: 4, title: 'With Description and Close' },
+  { id: 5, title: 'With Accent' },
+  { id: 6, title: 'With Icon, Content and Close' },
+  { id: 7, title: 'Dark with Icon' },
+  { id: 8, title: 'With Close' },
 ]
 
 export const announcements = [
