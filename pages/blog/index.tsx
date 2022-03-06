@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
 
 import Banner from '../../components/content/banner'
 
