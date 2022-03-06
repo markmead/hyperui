@@ -15,10 +15,6 @@ const Header: FunctionComponent = () => {
   let [menu, setMenu] = useState(false)
 
   useEffect(() => {
-    let activeElement = document.activeElement as HTMLElement
-
-    activeElement.blur()
-
     setMenu(false)
   }, [router.asPath])
 
