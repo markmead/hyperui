@@ -28,11 +28,16 @@ const Example: FunctionComponent<Props> = ({
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
+  let [rangeWidth, setRangeWidth] = useState<number>(1348)
 
   let { id, spacing } = component
 
   let isExample = view
   let spacingClass = spacing ? spacing : parentSpacing
+
+  useEffect(() => {
+    rangeWidth === 1348 ? setWidth('100%') : setWidth(`${rangeWidth}px`)
+  }, [rangeWidth])
 
   useEffect(() => {
     let { origin, href } = window.location
@@ -78,6 +83,22 @@ const Example: FunctionComponent<Props> = ({
         )}
 
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
+          <div>
+            <label className="sr-only" htmlFor="rangeWidth">
+              Width
+            </label>
+
+            <input
+              type="range"
+              min="340"
+              max="1348"
+              step="8"
+              id="rangeWidth"
+              value={rangeWidth}
+              onChange={(e) => setRangeWidth(Number(e.currentTarget.value))}
+            />
+          </div>
+
           <Breakpoint
             emoji="📱"
             handleWidth={setWidth}
@@ -112,17 +133,21 @@ const Example: FunctionComponent<Props> = ({
             size="100%"
             text="Full"
           />
+
+          <strong className="inline-block w-20 text-xs font-medium leading-9 text-center text-white bg-black rounded-lg h-9">
+            @ {width}
+          </strong>
         </div>
       </div>
 
       <div>
         {isExample ? (
           <iframe
-            className={`bg-white rounded-lg h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
+            className={`bg-white rounded-lg w-full h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
             loading="lazy"
             srcDoc={html}
             title={`${collection.title} Component ${id}`}
-            width={width}
+            style={{ maxWidth: width }}
           ></iframe>
         ) : (
           <pre className="p-4 overflow-auto h-[400px] lg:h-[600px]">
