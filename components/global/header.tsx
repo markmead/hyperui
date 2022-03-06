@@ -6,9 +6,11 @@ import { useRouter } from 'next/router'
 
 import IconGithub from '../icon/github'
 import IconTwitter from '../icon/twitter'
-import Search from './search'
-import { links } from '../../data/header/links'
 import IconMenu from '../icon/menu'
+
+import Search from './search'
+
+import { links } from '../../data/header/links'
 
 const Header: FunctionComponent = () => {
   let router = useRouter()
