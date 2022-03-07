@@ -1,5 +1,6 @@
 ---
 title: Custom Gradients with JIT in Tailwind CSS (No Custom CSS)
+slug: custom-gradients-with-tailwindcss-jit
 date: 07/03/2022
 emoji: 🎨
 ---
