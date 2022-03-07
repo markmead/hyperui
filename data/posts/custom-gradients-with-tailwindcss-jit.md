@@ -5,6 +5,8 @@ date: 07/03/2022
 emoji: 🎨
 ---
 
+## What is JIT?
+
 Since v3, JIT has been the default in Tailwind CSS and has bought a lot of power to the framework. One of the best additions are [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values), these allow you to replace custom CSS with Tailwind CSS like classes.
 
 ### Without Tailwind CSS JIT
