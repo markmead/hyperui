@@ -5,6 +5,9 @@ import { getPostBySlug, postSlugs } from '../../lib/posts'
 
 import { Post } from '../../interface/post'
 import Head from 'next/head'
+import { useEffect } from 'react'
+
+const prism = require('prismjs')
 
 export async function getStaticPaths() {
   let paths = postSlugs()
@@ -68,6 +71,16 @@ const Blog: NextPage<Props> = ({ post }) => {
     },
   }
 
+  useEffect(() => {
+    let codeTags = document.querySelectorAll('pre code')
+
+    codeTags.forEach((code) => {
+      code.classList.add('language-html')
+    })
+
+    prism.highlightAll()
+  })
+
   return (
     <>
       <Head>
@@ -78,7 +91,7 @@ const Blog: NextPage<Props> = ({ post }) => {
       </Head>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto">
-        <article className="mx-auto prose">
+        <article className="mx-auto prose prose-img:rounded-lg">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>
             <h1 className="mt-1">{post.title}</h1>
