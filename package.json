@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "next": "12.1.0",
-    "react-dom": "17.0.2",
     "react": "17.0.2",
+    "react-dom": "17.0.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
@@ -20,16 +20,19 @@
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
     "@types/node": "16.11.7",
-    "@types/react-copy-to-clipboard": "^5.0.2",
     "@types/react": "17.0.34",
+    "@types/react-copy-to-clipboard": "^5.0.2",
     "autoprefixer": "^10.4.0",
-    "eslint-config-next": "12.0.3",
     "eslint": "7",
+    "eslint-config-next": "12.0.3",
+    "gray-matter": "^4.0.3",
     "next-sitemap": "^2.5.2",
     "postcss": "^8.3.11",
     "prismjs": "^1.27.0",
     "react-copy-to-clipboard": "^5.0.4",
     "react-toastify": "^8.1.0",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
     "tailwindcss": "^3.0.8",
     "typescript": "4.4.4"
   }

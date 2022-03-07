@@ -1,16 +1,29 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
+import { useRouter } from 'next/router'
+
 import IconGithub from '../icon/github'
 import IconTwitter from '../icon/twitter'
+import IconMenu from '../icon/menu'
+
 import Search from './search'
 
+import { links } from '../../data/header/links'
+
 const Header: FunctionComponent = () => {
+  let router = useRouter()
+  let [menu, setMenu] = useState(false)
+
+  useEffect(() => {
+    setMenu(false)
+  }, [router.asPath])
+
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
       <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
-        <nav className="flex items-center space-x-4">
+        <nav className="flex items-center">
           <Link href="/">
             <a className="text-sm font-medium">
               HyperUI
@@ -20,23 +33,44 @@ const Header: FunctionComponent = () => {
             </a>
           </Link>
 
-          <span className="block w-px h-6 bg-gray-100"></span>
+          <span className="block w-px h-6 mx-4 bg-gray-100"></span>
 
-          <Link href="/">
-            <a className="hidden text-xs font-medium lg:block hover:opacity-75">
-              Components
-            </a>
-          </Link>
+          <div className="relative flex items-center sm:hidden">
+            <button
+              className="inline-flex items-center"
+              onClick={() => setMenu(!menu)}
+              type="button"
+            >
+              <IconMenu />
+              <span className="ml-2 text-xs font-medium">Menu</span>
+            </button>
 
-          <Link href="/ecommerce">
-            <a className="block text-xs font-medium hover:opacity-75">
-              Ecommerce
-            </a>
-          </Link>
+            {menu && (
+              <ul className="absolute w-40 p-2 mt-2 bg-white border-2 border-gray-100 top-full rounded-xl">
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href}>
+                      <a className="block p-2 text-xs font-medium">
+                        {link.title}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-          <Link href="/saved">
-            <a className="block text-xs font-medium hover:opacity-75">Saved</a>
-          </Link>
+          <ul className="hidden space-x-4 sm:flex">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>
+                  <a className="block text-xs font-medium hover:opacity-75">
+                    {link.title}
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
         <div className="flex items-center justify-end flex-1">
