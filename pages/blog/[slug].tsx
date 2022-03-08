@@ -92,7 +92,7 @@ const Blog: NextPage<Props> = ({ post }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{post.title} | HyperUI</title>
+        <title>{post.title} | Blog | HyperUI</title>
 
         <meta content={post.description} key="description" name="description" />
       </Head>
