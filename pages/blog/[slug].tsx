@@ -19,7 +19,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {
-  const post = getPostBySlug(slug, ['title', 'slug', 'date', 'content'])
+  const post = getPostBySlug(slug, [
+    'title',
+    'slug',
+    'description',
+    'date',
+    'content',
+  ])
   const content = await markdownToHtml(post.content || '')
 
   return {
@@ -43,7 +49,7 @@ type Props = {
 }
 
 const Blog: NextPage<Props> = ({ post }) => {
-  const schemaData = {
+  let schemaData = {
     '@context': 'http://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
@@ -72,11 +78,9 @@ const Blog: NextPage<Props> = ({ post }) => {
   }
 
   useEffect(() => {
-    let codeTags = document.querySelectorAll('pre code')
-
-    codeTags.forEach((code) => {
-      code.classList.add('language-html')
-    })
+    document
+      .querySelectorAll('pre code')
+      .forEach((code) => code.classList.add('language-html'))
 
     prism.highlightAll()
   })
@@ -88,6 +92,9 @@ const Blog: NextPage<Props> = ({ post }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
+        <title>{post.title} | HyperUI</title>
+
+        <meta content={post.description} key="description" name="description" />
       </Head>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto">
