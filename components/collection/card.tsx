@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ collection }) => {
-  let { count, emoji, id, title } = collection
+  let { count, emoji, id, name } = collection
 
   return (
     <Link href={`/components/${id}`}>
@@ -18,7 +18,7 @@ const Card: FunctionComponent<Props> = ({ collection }) => {
           {emoji}
         </span>
 
-        <p className="mt-4 text-lg font-medium">{title}</p>
+        <p className="mt-4 text-lg font-medium">{name}</p>
 
         <p className="mt-1 text-xs">
           {count} {count > 1 ? ' components' : ' component'}
