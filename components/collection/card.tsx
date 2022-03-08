@@ -18,7 +18,7 @@ const Card: FunctionComponent<Props> = ({ collection }) => {
           {emoji}
         </span>
 
-        <h2 className="mt-4 text-lg font-medium">{title}</h2>
+        <p className="mt-4 text-lg font-medium">{title}</p>
 
         <p className="mt-1 text-xs">
           {count} {count > 1 ? ' components' : ' component'}
