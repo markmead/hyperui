@@ -36,13 +36,10 @@ import {
   testimonials,
 } from './components'
 
-import { descriptions } from '../data/components/descriptions'
-
 export const collections: Array<Collection> = [
   {
     components: alerts,
     count: alerts.length,
-    description: descriptions['alerts'] ?? '',
     emoji: '🚨',
     id: 'alerts',
     spacing: 'max-w-sm p-4 space-y-8 mx-auto',
@@ -53,7 +50,6 @@ export const collections: Array<Collection> = [
   {
     components: announcements,
     count: announcements.length,
-    description: descriptions['announcements'] ?? '',
     emoji: '📣',
     id: 'announcements',
     spacing: 'space-y-8',
@@ -64,7 +60,6 @@ export const collections: Array<Collection> = [
   {
     components: banners,
     count: banners.length,
-    description: descriptions['banners'] ?? '',
     emoji: '✨',
     id: 'banners',
     title: 'Banner',
@@ -74,7 +69,6 @@ export const collections: Array<Collection> = [
   {
     components: breadcrumbs,
     count: breadcrumbs.length,
-    description: descriptions['breadcrumbs'] ?? '',
     emoji: '🍞',
     id: 'breadcrumbs',
     spacing: 'p-8 max-w-sm mx-auto flex justify-center',
@@ -85,7 +79,6 @@ export const collections: Array<Collection> = [
   {
     components: buttons,
     count: buttons.length,
-    description: descriptions['buttons'] ?? '',
     emoji: '👆',
     id: 'buttons',
     spacing: 'p-8 flex flex-col space-y-8 items-center',
@@ -96,7 +89,6 @@ export const collections: Array<Collection> = [
   {
     components: buttonGroups,
     count: buttonGroups.length,
-    description: descriptions['buttonGroups'] ?? '',
     emoji: '🍮',
     id: 'button-groups',
     spacing: 'p-8 flex flex-col items-center',
@@ -107,7 +99,6 @@ export const collections: Array<Collection> = [
   {
     components: cards,
     count: cards.length,
-    description: descriptions['cards'] ?? '',
     emoji: '🃏',
     id: 'cards',
     spacing: 'max-w-md w-screen mx-auto p-4',
@@ -118,7 +109,6 @@ export const collections: Array<Collection> = [
   {
     components: carts,
     count: carts.length,
-    description: descriptions['carts'] ?? '',
     ecommerce: true,
     emoji: '🛒',
     id: 'carts',
@@ -129,7 +119,6 @@ export const collections: Array<Collection> = [
   {
     components: checkouts,
     count: checkouts.length,
-    description: descriptions['checkouts'] ?? '',
     ecommerce: true,
     emoji: '💰',
     id: 'checkouts',
@@ -140,7 +129,6 @@ export const collections: Array<Collection> = [
   {
     components: ctas,
     count: ctas.length,
-    description: descriptions['ctas'] ?? '',
     emoji: '🔗',
     id: 'ctas',
     title: 'CTA',
@@ -150,7 +138,6 @@ export const collections: Array<Collection> = [
   {
     components: emptyStates,
     count: emptyStates.length,
-    description: descriptions['emptyStates'] ?? '',
     emoji: '🤷‍♂️',
     id: 'empty-states',
     spacing: 'max-w-lg w-screen mx-auto p-4',
@@ -161,7 +148,6 @@ export const collections: Array<Collection> = [
   {
     components: faqs,
     count: faqs.length,
-    description: descriptions['faqs'] ?? '',
     emoji: '🤔',
     id: 'faqs',
     title: 'FAQ',
@@ -171,7 +157,6 @@ export const collections: Array<Collection> = [
   {
     components: filters,
     count: filters.length,
-    description: descriptions['filters'] ?? '',
     ecommerce: true,
     emoji: '🔎',
     id: 'filters',
@@ -182,7 +167,6 @@ export const collections: Array<Collection> = [
   {
     components: footers,
     count: footers.length,
-    description: descriptions['footers'] ?? '',
     emoji: '🚀',
     id: 'footers',
     title: 'Footer',
@@ -192,7 +176,6 @@ export const collections: Array<Collection> = [
   {
     components: forms,
     count: forms.length,
-    description: descriptions['forms'] ?? '',
     emoji: '📝',
     id: 'forms',
     title: 'Form',
@@ -202,7 +185,6 @@ export const collections: Array<Collection> = [
   {
     components: inputs,
     count: inputs.length,
-    description: descriptions['inputs'] ?? '',
     emoji: '🖱',
     id: 'inputs',
     spacing: 'max-w-sm mx-auto p-8',
@@ -213,7 +195,6 @@ export const collections: Array<Collection> = [
   {
     components: navigations,
     count: navigations.length,
-    description: descriptions['navigations'] ?? '',
     emoji: '🗺️',
     id: 'navigations',
     title: 'Navigation',
@@ -223,7 +204,6 @@ export const collections: Array<Collection> = [
   {
     components: offCanvasMenus,
     count: offCanvasMenus.length,
-    description: descriptions['offCanvasMenus'] ?? '',
     emoji: '👋',
     id: 'off-canvas-menus',
     title: 'Off Canvas Menu',
@@ -233,7 +213,6 @@ export const collections: Array<Collection> = [
   {
     components: pagination,
     count: pagination.length,
-    description: descriptions['pagination'] ?? '',
     emoji: '🔢',
     id: 'pagination',
     spacing: 'p-4 max-w-xs mx-auto flex justify-center',
@@ -244,7 +223,6 @@ export const collections: Array<Collection> = [
   {
     components: popups,
     count: popups.length,
-    description: descriptions['popups'] ?? '',
     emoji: '🔥',
     id: 'popups',
     title: 'Popup',
@@ -254,7 +232,6 @@ export const collections: Array<Collection> = [
   {
     components: productCards,
     count: productCards.length,
-    description: descriptions['productCards'] ?? '',
     ecommerce: true,
     emoji: '🃏',
     id: 'product-cards',
@@ -266,7 +243,6 @@ export const collections: Array<Collection> = [
   {
     components: productCollections,
     count: productCollections.length,
-    description: descriptions['productCollections'] ?? '',
     ecommerce: true,
     emoji: '🛍️',
     id: 'product-collections',
@@ -277,7 +253,6 @@ export const collections: Array<Collection> = [
   {
     components: products,
     count: products.length,
-    description: descriptions['products'] ?? '',
     ecommerce: true,
     emoji: '🏎️',
     id: 'products',
@@ -288,7 +263,6 @@ export const collections: Array<Collection> = [
   {
     components: prose,
     count: prose.length,
-    description: descriptions['prose'] ?? '',
     emoji: '📝',
     id: 'prose',
     spacing: 'flex justify-center p-8',
@@ -299,7 +273,6 @@ export const collections: Array<Collection> = [
   {
     components: radioGroups,
     count: radioGroups.length,
-    description: descriptions['radioGroups'] ?? '',
     emoji: '📻',
     id: 'radio-groups',
     spacing: 'p-8 max-w-lg mx-auto',
@@ -310,7 +283,6 @@ export const collections: Array<Collection> = [
   {
     components: reviews,
     count: reviews.length,
-    description: descriptions['reviews'] ?? '',
     ecommerce: true,
     emoji: '👍',
     id: 'reviews',
@@ -321,7 +293,6 @@ export const collections: Array<Collection> = [
   {
     components: sections,
     count: sections.length,
-    description: descriptions['sections'] ?? '',
     emoji: '🧱',
     id: 'sections',
     title: 'Section',
@@ -331,7 +302,6 @@ export const collections: Array<Collection> = [
   {
     components: stats,
     count: stats.length,
-    description: descriptions['stats'] ?? '',
     emoji: '📈',
     id: 'stats',
     title: 'Stat',
@@ -341,7 +311,6 @@ export const collections: Array<Collection> = [
   {
     components: steps,
     count: steps.length,
-    description: descriptions['steps'] ?? '',
     emoji: '🪜',
     id: 'steps',
     spacing: 'max-w-3xl mx-auto p-8',
@@ -352,7 +321,6 @@ export const collections: Array<Collection> = [
   {
     components: tables,
     count: tables.length,
-    description: descriptions['tables'] ?? '',
     emoji: '🍽',
     id: 'tables',
     spacing: 'p-8 flex justify-center',
@@ -363,7 +331,6 @@ export const collections: Array<Collection> = [
   {
     components: tabs,
     count: tabs.length,
-    description: descriptions['tabs'] ?? '',
     emoji: '📚',
     id: 'tabs',
     spacing: 'p-4 max-w-5xl mx-auto',
@@ -374,7 +341,6 @@ export const collections: Array<Collection> = [
   {
     components: tags,
     count: tags.length,
-    description: descriptions['tags'] ?? '',
     emoji: '🏷️',
     id: 'tags',
     spacing: 'p-8 flex flex-col space-y-8 items-center',
@@ -385,7 +351,6 @@ export const collections: Array<Collection> = [
   {
     components: testimonials,
     count: testimonials.length,
-    description: descriptions['testimonials'] ?? '',
     emoji: '👍',
     id: 'testimonials',
     title: 'Testimonial',

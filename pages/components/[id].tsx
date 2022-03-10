@@ -79,9 +79,7 @@ const Collection: NextPage<Props> = ({ collection, components }) => {
         <div>
           <Breadcrumbs collection={collection} />
 
-          <Banner title={`${collection.title} Components`}>
-            {collection.description}
-          </Banner>
+          <Banner title={`${collection.title} Components`} />
 
           <div className="px-4 py-8 mx-auto max-w-[1380px] sm:py-16">
             <ul className="space-y-8 lg:space-y-16">
