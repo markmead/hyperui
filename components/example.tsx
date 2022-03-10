@@ -1,16 +1,18 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { Component, FunctionComponent, useEffect, useState } from 'react'
 
 type Props = {
   id: number
+  name: string
+  title: string | undefined
 }
 
-const Test: FunctionComponent<Props> = ({ id }) => {
+const Test: FunctionComponent<Props> = ({ id, name, title }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [width, setWidth] = useState<number>(1348)
 
   useEffect(() => {
-    fetch(`/components/banners/${id}.html`)
+    fetch(`/components/${name}/${id}.html`)
       .then((res) => {
         if (res.ok) {
           res.text().then((html) => {
@@ -39,32 +41,30 @@ const Test: FunctionComponent<Props> = ({ id }) => {
   })
 
   return (
-    <section>
-      <div className="px-4 py-8 mx-auto max-w-[1380px] sm:py-16">
-        <div>
-          <label className="sr-only" htmlFor="rangeWidth">
-            Width
-          </label>
+    <div>
+      <header className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-black sm:text-2xl">{title}</h2>
 
+        <div>
           <input
-            type="range"
-            min="340"
+            aria-label="Breakpoint"
             max="1348"
+            min="340"
             step="8"
-            id="rangeWidth"
+            type="range"
             value={width}
             onChange={(e) => setWidth(Number(e.currentTarget.value))}
           />
         </div>
+      </header>
 
-        <iframe
-          className={`bg-white rounded-lg w-full h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
-          loading="lazy"
-          srcDoc={html}
-          style={{ maxWidth: width }}
-        ></iframe>
-      </div>
-    </section>
+      <iframe
+        className="bg-white rounded-3xl shadow-[8px_8px_0_0_#000] w-full h-[400px] lg:transition-all ring-4 ring-black lg:h-[600px] mt-4"
+        loading="lazy"
+        srcDoc={html}
+        style={{ maxWidth: width }}
+      ></iframe>
+    </div>
   )
 }
 

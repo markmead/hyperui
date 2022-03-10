@@ -4,19 +4,20 @@ import Example from './example'
 
 type Props = {
   list: Array<Component>
+  name: string
 }
 
-const List: FunctionComponent<Props> = ({ list }) => {
+const List: FunctionComponent<Props> = ({ list, name }) => {
   return (
-    <section>
-      <ul>
+    <div className="xl:max-w-[1348px] xl:-ml-[34px] xl:w-screen not-prose mt-24">
+      <ul className="space-y-16">
         {list.map((component) => (
           <li key={component.id}>
-            <Example id={component.id} />
+            <Example id={component.id} name={name} title={component.title} />
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   )
 }
 

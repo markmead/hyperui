@@ -13,15 +13,17 @@ const components = {
   List,
 }
 
-export default function PostPage({ source, frontMatter, examples }) {
-  const data = { examples }
+export default function PostPage({ source, frontMatter, examples, name }) {
+  const data = { examples, name }
 
   return (
-    <>
-      <h1>{frontMatter.title}</h1>
-
-      <MDXRemote {...source} components={components} scope={data} />
-    </>
+    <section>
+      <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
+        <div className="prose">
+          <MDXRemote {...source} components={components} scope={data} />
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -46,6 +48,7 @@ export const getStaticProps = async ({ params }) => {
       source: mdxSource,
       frontMatter: data,
       examples,
+      name: params.slug,
     },
   }
 }
