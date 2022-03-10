@@ -35,9 +35,13 @@ const Ecommerce: NextPage = () => {
       </Head>
 
       <Banner
-        subtitle="Tailwind CSS Components for Ecommerce Projects"
-        title="HyperUI Ecommerce"
-      />
+        title="HyperUI Eccomerce"
+        subtitle="Free Open Source Eccomerce Tailwind CSS Components"
+      >
+        Working on an ecommerce project? HyperUI has a evergrowing range of
+        eccomerce Tailwind CSS components, that will help you build your next
+        ecommerce website in Shopify, BigCommerce, Magento and more.
+      </Banner>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
         <Grid

@@ -22,9 +22,13 @@ const Home: NextPage<Props> = ({ collections }) => {
   return (
     <>
       <Banner
-        subtitle="An Open Source Tailwind CSS Component Library"
         title="HyperUI"
-      />
+        subtitle="Free Open Source Tailwind CSS Components"
+      >
+        HyperUI is a collection of free Tailwind CSS components that can be used
+        in your next project. With a range of components, you can build your
+        next marketing website, admin dashboard, ecommerce store and much more.
+      </Banner>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
         <Grid

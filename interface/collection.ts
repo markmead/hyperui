@@ -9,4 +9,5 @@ export interface Collection {
   id: string
   spacing?: string
   title: string
+  name: string
 }

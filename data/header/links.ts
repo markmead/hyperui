@@ -12,7 +12,7 @@ export const links = [
     href: '/blog',
   },
   {
-    title: 'Saved',
-    href: '/saved',
+    title: 'Favourites',
+    href: '/favourites',
   },
 ]

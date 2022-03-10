@@ -20,7 +20,7 @@ const Card: FunctionComponent<Props> = ({ post }) => {
               {post.emoji}
             </span>
 
-            <h2 className="mt-4 text-xl font-medium">{post.title}</h2>
+            <p className="mt-4 text-xl font-medium">{post.title}</p>
 
             <time className="mt-1 text-xs text-gray-500">{post.date}</time>
           </div>
