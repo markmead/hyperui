@@ -34,8 +34,11 @@ const Blogs: NextPage<Props> = ({ posts }) => {
 
       <Banner
         title="HyperUI Blog"
-        subtitle="Learn Tailwind CSS Tips and Tricks"
-      />
+        subtitle="Tailwind CSS Blog with Tips and Tricks"
+      >
+        Learn Tailwind CSS tips and tricks that you can use in your work to help
+        write cleaner, more maintainable code and help you be more productive.
+      </Banner>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">

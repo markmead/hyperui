@@ -62,9 +62,13 @@ const Saved: NextPage = () => {
       </Head>
 
       <Banner
-        subtitle="Your Saved HyperUI Tailwind CSS Component Library"
-        title="HyperUI Saved"
-      />
+        title="HyperUI Favourites"
+        subtitle="Your Favourite Free Tailwind CSS Components"
+      >
+        Manage and view your favourite free Tailwind CSS components from the
+        HyperUI collection. This is a great way to quickly find components that
+        you frequenly use, or plan to use in your next project.
+      </Banner>
 
       {Object.keys(collections).length > 0 ? (
         <div className="divide-y divide-gray-100">
