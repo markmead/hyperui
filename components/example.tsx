@@ -12,6 +12,7 @@ import Breakpoint from './component/buttons/breakpoint'
 import Copy from './component/buttons/copy'
 import Code from './component/buttons/view'
 import Range from './component/range'
+import IconLoading from './icon/loading'
 
 type Props = {
   name: string
@@ -78,12 +79,12 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
       </div>
 
       <div className="relative">
-        {!code && (
+        {code && (
           <div
             className="absolute inset-0 flex items-center justify-center bg-white rounded-lg"
             aria-hidden="true"
           >
-            <p className="text-sm animate-pulse">Loading</p>
+            <IconLoading />
           </div>
         )}
 
