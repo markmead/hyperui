@@ -33,18 +33,20 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   const componentSpacing: string = space ? space : spacing
 
   useEffect(() => {
-    fetch(`/components/${name}/${id}.html`).then((res) => {
-      if (!res.ok) return
+    async function fetchHtml() {
+      const response = await fetch(`/components/${name}/${id}.html`)
+      const text = await response.text()
 
-      res.text().then((html) => {
-        setCode(html)
+      setCode(text)
+      setHtml(source(text, componentSpacing))
 
-        html && setHtml(source(html, componentSpacing))
-      })
-    })
+      return
+    }
+
+    fetchHtml()
 
     prism.highlightAll()
-  })
+  }, [id])
 
   useEffect(() => {
     range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
