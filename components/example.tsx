@@ -15,7 +15,7 @@ type Props = {
   id: number
   name: string
   title: string | undefined
-  spacing: Array<object> | string
+  spacing: Array<object>
 }
 
 const Test: FunctionComponent<Props> = ({
@@ -37,8 +37,6 @@ const Test: FunctionComponent<Props> = ({
 
       res.text().then((html) => {
         setCode(html)
-
-        console.log(spacing[id])
 
         let spacingValue = spacing[id] ? spacing[id] : spacing['default']
         let componentSpacing = `${spacingValue}`

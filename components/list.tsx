@@ -9,7 +9,7 @@ type Props = {
   collection: Collection
   list: Array<Component>
   name: string
-  spacing: Array<object> | string
+  spacing: Array<object>
 }
 
 const List: FunctionComponent<Props> = ({
