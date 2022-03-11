@@ -1,29 +1,25 @@
 import type { NextPage } from 'next'
 
-import { Collection } from '../interface/collection'
-import { collections } from '../lib/collections'
-
 import Banner from '../components/content/banner'
 import Grid from '../components/collection/grid'
+
 import { getAllExamples } from '../lib/examples'
 
 export async function getStaticProps() {
-  const examples = getAllExamples(['title', 'slug'])
+  const components = getAllExamples(['title', 'slug', 'emoji', 'count'])
 
   return {
     props: {
-      collections,
-      examples,
+      components,
     },
   }
 }
 
 type Props = {
-  collections: Array<Collection>
-  examples: Array<Collection>
+  components: Array<{}>
 }
 
-const Home: NextPage<Props> = ({ collections, examples }) => {
+const Home: NextPage<Props> = ({ components }) => {
   return (
     <>
       <Banner
@@ -36,10 +32,7 @@ const Home: NextPage<Props> = ({ collections, examples }) => {
       </Banner>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
-        <Grid
-          blocks={examples}
-          className="gap-4 sm:grid-cols-2 md:grid-cols-4"
-        />
+        <Grid items={components} />
       </div>
     </>
   )
