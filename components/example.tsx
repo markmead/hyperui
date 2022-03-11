@@ -9,18 +9,19 @@ import Copy from './component/buttons/copy'
 import Code from './component/buttons/view'
 
 type Props = {
-  id: number
   name: string
-  title: string | undefined
+  item: any
   spacing: Array<object>
 }
 
-const Test: FunctionComponent<Props> = ({ id, name, title, spacing }) => {
+const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [rangeWidth, setRangeWidth] = useState<number>(1348)
+
+  const { id, title, spacing: space } = item
 
   useEffect(() => {
     fetch(`/components/${name}/${id}.html`).then((res) => {
@@ -29,8 +30,7 @@ const Test: FunctionComponent<Props> = ({ id, name, title, spacing }) => {
       res.text().then((html) => {
         setCode(html)
 
-        let spacingValue = spacing[id] ? spacing[id] : spacing['default']
-        let componentSpacing = `${spacingValue}`
+        let componentSpacing = space ? space : spacing
 
         html && setHtml(markup(html, componentSpacing))
       })

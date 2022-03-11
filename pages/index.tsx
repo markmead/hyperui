@@ -6,7 +6,7 @@ import Grid from '../components/collection/grid'
 import { getAllExamples } from '../lib/examples'
 
 export async function getStaticProps() {
-  const components = getAllExamples(['title', 'slug', 'emoji', 'count'])
+  const components = getAllExamples(['title', 'slug', 'emoji', 'components'])
 
   return {
     props: {

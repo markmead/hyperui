@@ -6,7 +6,7 @@ interface ComponentCard {
   title: string
   slug: string
   emoji: string
-  count: number
+  components: Array<any>
 }
 
 type Props = {
@@ -14,7 +14,8 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count } = item
+  const { title, slug, emoji, components } = item
+  const count = Object.keys(components).length
 
   return (
     <Link href={`/examples/${slug}`}>

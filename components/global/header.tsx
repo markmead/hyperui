@@ -74,9 +74,7 @@ const Header: FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-end flex-1">
-          <div className="hidden lg:block">
-            <Search />
-          </div>
+          <div className="hidden lg:block">{/* <Search /> */}</div>
 
           <a
             className="p-2 rounded hover:opacity-75"

@@ -51,3 +51,15 @@ export function getAllEcommerceExamples(fields: string[] = []) {
 
   return ecommerceExamples
 }
+
+// export function getAllExamplesBySlug(slug: string) {
+//   let examples = []
+
+//   fetch(`/components/${slug}/1`)
+//     .then((response) => response.json())
+//     .then((data) => {
+
+//   console.log(example)
+
+//   // return example
+// }
