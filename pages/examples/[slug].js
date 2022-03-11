@@ -12,22 +12,40 @@ import {
 } from '../../lib/collections'
 
 import List from '../../components/list'
+import Head from 'next/head'
 
 const components = {
   List,
 }
 
-export default function Example({ source, collection, examples, name }) {
+export default function Example({
+  source,
+  collection,
+  examples,
+  name,
+  frontMatter,
+}) {
   const data = { collection, examples, name }
 
   return (
-    <section>
-      <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
-        <div className="prose">
-          <MDXRemote {...source} components={components} scope={data} />
+    <>
+      <Head>
+        <title>{frontMatter.seo.title}</title>
+        <meta
+          name="description"
+          key="description"
+          content={frontMatter.seo.description}
+        />
+      </Head>
+
+      <section>
+        <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
+          <div className="prose">
+            <MDXRemote {...source} components={components} scope={data} />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
@@ -52,10 +70,10 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       source: mdxSource,
-      // frontMatter: data,
       collection,
       examples,
       name,
+      frontMatter: data,
     },
   }
 }
