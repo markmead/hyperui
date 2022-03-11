@@ -1,14 +1,11 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 
 import Link from 'next/link'
-
 import { useRouter } from 'next/router'
 
 import IconGithub from '../icon/github'
 import IconTwitter from '../icon/twitter'
 import IconMenu from '../icon/menu'
-
-import Search from './search'
 
 import { links } from '../../data/header/links'
 
@@ -74,8 +71,6 @@ const Header: FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-end flex-1">
-          <div className="hidden lg:block">{/* <Search /> */}</div>
-
           <a
             className="p-2 rounded hover:opacity-75"
             href="https://twitter.com/itsmarkmead"

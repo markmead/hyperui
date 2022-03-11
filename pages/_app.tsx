@@ -4,7 +4,12 @@ import 'prismjs/themes/prism-okaidia.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
+import { getComponents } from '../lib/components'
+
 import Layout from '../components/layout'
+import Banner from '../components/global/banner'
+import Header from '../components/global/header'
+import Footer from '../components/global/footer'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -61,9 +66,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:url" content="https://hyperui.dev/" />
       </Head>
 
+      <Banner
+        text="⭐️ Star HyperUI on GitHub ⭐️"
+        url="https://github.com/markmead/hyperui"
+      />
+
+      <Header />
+
       <Layout>
         <Component {...pageProps} />
       </Layout>
+
+      <Footer />
     </>
   )
 }
