@@ -1,3 +1,5 @@
+import type { NextPage } from 'next'
+
 import fs from 'fs'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
@@ -13,7 +15,37 @@ const components = {
   List,
 }
 
-export default function Example({ source, name, frontMatter }) {
+interface FrontMatterSeo {
+  title: string
+  description: string
+}
+
+interface FrontMatterComponents {
+  title: string
+  spacing?: string
+}
+
+interface FrontMatter {
+  title: string
+  emoji: string
+  spacing: string
+  seo: FrontMatterSeo
+  components: FrontMatterComponents
+}
+
+type Props = {
+  source: any
+  name: string
+  frontMatter: FrontMatter
+}
+
+type Params = {
+  params: {
+    slug: string
+  }
+}
+
+const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
   const componentsArray = Object.entries(frontMatter.components).map(
     ([key, value]) => ({
       id: key,
@@ -50,8 +82,8 @@ export default function Example({ source, name, frontMatter }) {
   )
 }
 
-export const getStaticProps = async ({ params }) => {
-  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
+export async function getStaticProps({ params: { slug } }: Params) {
+  const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`)
   const source = fs.readFileSync(postFilePath)
 
   const { content, data } = matter(source)
@@ -68,7 +100,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       source: mdxSource,
       frontMatter: data,
-      name: params.slug,
+      name: slug,
     },
   }
 }
@@ -83,3 +115,5 @@ export const getStaticPaths = async () => {
     fallback: false,
   }
 }
+
+export default Component

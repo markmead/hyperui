@@ -1,18 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { getAllEcommerceExamples } from '../../lib/examples'
+import { getEcommerceComponents } from '../../lib/components'
 
 import Banner from '../../components/content/banner'
 import Grid from '../../components/collection/grid'
 
 export async function getStaticProps() {
-  const components = getAllEcommerceExamples([
+  const components = getEcommerceComponents([
     'title',
     'slug',
     'ecommerce',
     'emoji',
-    'count',
+    'components',
   ])
 
   return {

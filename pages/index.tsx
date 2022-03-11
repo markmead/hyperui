@@ -3,10 +3,10 @@ import type { NextPage } from 'next'
 import Banner from '../components/content/banner'
 import Grid from '../components/collection/grid'
 
-import { getAllExamples } from '../lib/examples'
+import { getComponents } from '../lib/components'
 
 export async function getStaticProps() {
-  const components = getAllExamples(['title', 'slug', 'emoji', 'components'])
+  const components = getComponents(['title', 'slug', 'emoji', 'components'])
 
   return {
     props: {

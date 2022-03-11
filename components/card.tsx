@@ -18,7 +18,7 @@ const Card: FunctionComponent<Props> = ({ item }) => {
   const count = Object.keys(components).length
 
   return (
-    <Link href={`/examples/${slug}`}>
+    <Link href={`/components/${slug}`}>
       <a className="p-6 border-2 border-black hover:bg-black rounded-xl hover:text-white">
         <span className="text-xl" role="img" aria-hidden="true">
           {emoji}

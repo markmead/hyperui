@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
 
-import markdownToHtml from '../../lib/markdown'
+import Head from 'next/head'
+
+import markdownToHtml from '../../utils/md'
 import { getPostBySlug, postSlugs } from '../../lib/posts'
 
 import { Post } from '../../interface/post'
-import Head from 'next/head'
 import { useEffect } from 'react'
 
 const prism = require('prismjs')

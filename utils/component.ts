@@ -1,4 +1,4 @@
-export function markup(html: string, spacing: string = 'relative') {
+export function source(html: string, spacing: string = 'relative') {
   return `
     <script>
       document.addEventListener('DOMContentLoaded', () => {

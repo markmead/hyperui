@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from 'react'
 
 const prism = require('prismjs')
 
-import { markup } from '../utils/component'
+import { source } from '../utils/component'
 
 import Breakpoint from './component/buttons/breakpoint'
 import Copy from './component/buttons/copy'
@@ -23,6 +23,8 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const { id, title, spacing: space } = item
 
+  const componentSpacing = space ? space : spacing
+
   useEffect(() => {
     fetch(`/components/${name}/${id}.html`).then((res) => {
       if (!res.ok) return
@@ -30,9 +32,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
       res.text().then((html) => {
         setCode(html)
 
-        let componentSpacing = space ? space : spacing
-
-        html && setHtml(markup(html, componentSpacing))
+        html && setHtml(source(html, componentSpacing))
       })
     })
 
