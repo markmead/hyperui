@@ -4,13 +4,15 @@ const prism = require('prismjs')
 
 import { source } from '../utils/component'
 
+import { Component } from '../interface/component'
+
 import Breakpoint from './component/buttons/breakpoint'
 import Copy from './component/buttons/copy'
 import Code from './component/buttons/view'
 
 type Props = {
   name: string
-  item: any
+  item: Component
   spacing: string
 }
 
@@ -23,7 +25,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const { id, title, spacing: space } = item
 
-  const componentSpacing = space ? space : spacing
+  const componentSpacing: string = space ? space : spacing
 
   useEffect(() => {
     fetch(`/components/${name}/${id}.html`).then((res) => {

@@ -11,12 +11,13 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { componentFilePaths, COMPONENTS_PATH } from '../../utils/mdx'
 
 import List from '../../components/list'
+import { Component } from '../../interface/component'
 
 const components = {
   List,
 }
 
-interface FrontMatterSeo {
+interface FrontMatterSEO {
   title: string
   description: string
 }
@@ -30,7 +31,7 @@ interface FrontMatter {
   title: string
   emoji: string
   spacing: string
-  seo: FrontMatterSeo
+  seo: FrontMatterSEO
   components: FrontMatterComponents
 }
 
@@ -47,8 +48,10 @@ type Params = {
 }
 
 const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
-  const componentsArray = Object.entries(frontMatter.components).map(
-    ([key, value]) => ({
+  const componentsArray: Array<Component> = Object.entries(
+    frontMatter.components
+  ).map(
+    ([key, value]): Component => ({
       id: key,
       title: value.title,
       spacing: value.spacing ?? false,

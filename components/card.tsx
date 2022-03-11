@@ -2,11 +2,13 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
+import { Component } from '../interface/component'
+
 interface ComponentCard {
   title: string
   slug: string
   emoji: string
-  components: Array<any>
+  components: Array<Component>
 }
 
 type Props = {
@@ -15,7 +17,8 @@ type Props = {
 
 const Card: FunctionComponent<Props> = ({ item }) => {
   const { title, slug, emoji, components } = item
-  const count = Object.keys(components).length
+
+  const count: number = Object.keys(components).length
 
   return (
     <Link href={`/components/${slug}`}>

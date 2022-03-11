@@ -1,10 +1,12 @@
 import { FunctionComponent } from 'react'
 
+import { Component } from '../interface/component'
+
 import Example from './example'
 
 type Props = {
   name: string
-  items: Array<any>
+  items: Array<Component>
   spacing: string
 }
 
