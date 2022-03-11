@@ -39,6 +39,15 @@ export function getExampleBySlug(slug: string, fields: string[] = []) {
 
 export function getAllExamples(fields: string[] = []) {
   const slugs = getExampleSlugs()
+  const examples = slugs.map((slug) => getExampleBySlug(slug, fields))
 
-  return slugs.map((slug) => getExampleBySlug(slug, fields))
+  return examples
+}
+
+export function getAllEcommerceExamples(fields: string[] = []) {
+  const slugs = getExampleSlugs()
+  const examples = slugs.map((slug) => getExampleBySlug(slug, fields))
+  const ecommerceExamples = examples.filter((example) => example.ecommerce)
+
+  return ecommerceExamples
 }

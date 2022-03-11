@@ -2,20 +2,29 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Collection } from '../../interface/collection'
+
 import { collections } from '../../lib/collections'
+import { getAllEcommerceExamples } from '../../lib/examples'
 
 import Banner from '../../components/content/banner'
 import Grid from '../../components/collection/grid'
 
 export async function getStaticProps() {
+  const examples = getAllEcommerceExamples(['title', 'slug', 'ecommerce'])
+
   return {
     props: {
       collections,
+      examples,
     },
   }
 }
 
-const Ecommerce: NextPage = () => {
+type Props = {
+  examples: Array<Collection>
+}
+
+const Ecommerce: NextPage<Props> = ({ examples }) => {
   let ecommerce = collections.filter(
     (collection: Collection) => collection.ecommerce
   )
@@ -45,7 +54,7 @@ const Ecommerce: NextPage = () => {
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
         <Grid
-          blocks={ecommerce}
+          blocks={examples}
           className="gap-4 sm:grid-cols-2 md:grid-cols-4"
         />
       </div>
