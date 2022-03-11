@@ -3,9 +3,13 @@ import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import path from 'path'
+
 import { postFilePaths, POSTS_PATH } from '../../utils/mdx'
 
-import { currentCollectionComponents } from '../../lib/collections'
+import {
+  currentCollection,
+  currentCollectionComponents,
+} from '../../lib/collections'
 
 import List from '../../components/list'
 
@@ -13,8 +17,8 @@ const components = {
   List,
 }
 
-export default function PostPage({ source, frontMatter, examples, name }) {
-  const data = { examples, name }
+export default function Example({ source, collection, examples, name }) {
+  const data = { collection, examples, name }
 
   return (
     <section>
@@ -41,14 +45,17 @@ export const getStaticProps = async ({ params }) => {
     scope: data,
   })
 
-  let examples = currentCollectionComponents(params.slug)
+  const collection = currentCollection(params.slug)
+  const examples = currentCollectionComponents(params.slug)
+  const name = params.slug
 
   return {
     props: {
       source: mdxSource,
-      frontMatter: data,
+      // frontMatter: data,
+      collection,
       examples,
-      name: params.slug,
+      name,
     },
   }
 }
