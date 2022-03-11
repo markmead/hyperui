@@ -37,8 +37,8 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
   return items
 }
 
-export function componentSlugs(): Array<object> {
-  let slugs = getComponentSlugs().map((slug) => slug.replace(/\.md$/, ''))
+export function componentSlugs() {
+  let slugs = getComponentSlugs().map((slug) => slug.replace(/\.mdx$/, ''))
 
   return slugs.map((slug) => {
     return {

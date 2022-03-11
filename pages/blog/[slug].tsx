@@ -1,51 +1,16 @@
 import type { NextPage } from 'next'
 
 import Head from 'next/head'
+
 import { useEffect } from 'react'
 
 const prism = require('prismjs')
 
 import { getPostBySlug, postSlugs } from '../../lib/posts'
 
-import markdownToHtml from '../../utils/md'
+import convert from '../../utils/markdown'
 
 import { Post } from '../../interface/post'
-
-type Params = {
-  params: {
-    slug: string
-  }
-}
-
-export async function getStaticPaths() {
-  const paths = postSlugs()
-
-  return {
-    paths,
-    fallback: false,
-  }
-}
-
-export async function getStaticProps({ params: { slug } }: Params) {
-  const post = getPostBySlug(slug, [
-    'title',
-    'slug',
-    'description',
-    'date',
-    'content',
-  ])
-
-  const content = await markdownToHtml(post.content || '')
-
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-      },
-    },
-  }
-}
 
 type Props = {
   post: Post
@@ -113,6 +78,42 @@ const Blog: NextPage<Props> = ({ post }) => {
       </div>
     </>
   )
+}
+
+type Params = {
+  params: {
+    slug: string
+  }
+}
+
+export async function getStaticPaths() {
+  const paths = postSlugs()
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params: { slug } }: Params) {
+  const post = getPostBySlug(slug, [
+    'title',
+    'slug',
+    'description',
+    'date',
+    'content',
+  ])
+
+  const content = await convert(post.content || '')
+
+  return {
+    props: {
+      post: {
+        ...post,
+        content,
+      },
+    },
+  }
 }
 
 export default Blog

@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { Component } from '../../interface/component'
 import { FrontMatter } from '../../interface/frontmatter'
 
-import { componentFilePaths, COMPONENTS_PATH } from '../../utils/mdx'
+import { componentSlugs } from '../../lib/components'
 
 import fs from 'fs'
 import path from 'path'
@@ -70,8 +70,7 @@ type Params = {
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {
-  const postFilePath = path.join(COMPONENTS_PATH, `${slug}.mdx`)
-  const source = fs.readFileSync(postFilePath)
+  const source = fs.readFileSync(`data/components/${slug}.mdx`)
 
   const { content, data } = matter(source)
 
@@ -92,10 +91,8 @@ export async function getStaticProps({ params: { slug } }: Params) {
   }
 }
 
-export const getStaticPaths = async () => {
-  const paths = componentFilePaths
-    .map((path) => path.replace(/\.mdx?$/, ''))
-    .map((slug) => ({ params: { slug } }))
+export async function getStaticPaths() {
+  const paths = componentSlugs()
 
   return {
     paths,
