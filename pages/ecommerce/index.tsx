@@ -1,5 +1,8 @@
 import type { NextPage } from 'next'
+
 import Head from 'next/head'
+
+import { Component } from '../../interface/component'
 
 import { getEcommerceComponents } from '../../lib/components'
 
@@ -23,7 +26,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  components: Array<{}>
+  components: Array<Component>
 }
 
 const Ecommerce: NextPage<Props> = ({ components }) => {
@@ -50,7 +53,7 @@ const Ecommerce: NextPage<Props> = ({ components }) => {
         ecommerce website in Shopify, BigCommerce, Magento and more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
+      <div className="max-w-screen-xl px-4 py-8 mx-auto">
         <Grid items={components} />
       </div>
     </>

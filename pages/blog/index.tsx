@@ -2,9 +2,9 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
-import { getAllPosts } from '../../lib/posts'
-
 import { Post } from '../../interface/post'
+
+import { getAllPosts } from '../../lib/posts'
 
 import Banner from '../../components/content/banner'
 import Card from '../../components/blog/card'
@@ -29,8 +29,8 @@ const Blogs: NextPage<Props> = ({ posts }) => {
 
         <meta
           content="Read the HyperUI blog for tips and tricks on using Tailwind CSS in your projects."
-          key="description"
           name="description"
+          key="description"
         />
       </Head>
 

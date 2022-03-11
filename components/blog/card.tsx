@@ -14,7 +14,7 @@ const Card: FunctionComponent<Props> = ({ post }) => {
       <a className="relative block group">
         <span className="absolute inset-0 border-2 border-black border-dashed"></span>
 
-        <div className="relative flex items-end h-full transition-transform transform bg-white border-2 border-black group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="relative transition bg-white border-2 border-black group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="px-8 pt-32 pb-8">
             <span className="text-4xl" role="img" aria-hidden="true">
               {post.emoji}

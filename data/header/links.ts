@@ -1,4 +1,6 @@
-export const links = [
+import { Link } from '../../interface/global'
+
+export const links: Array<Link> = [
   {
     title: 'Components',
     href: '/',

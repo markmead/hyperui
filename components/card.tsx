@@ -2,14 +2,7 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { Component } from '../interface/component'
-
-interface ComponentCard {
-  title: string
-  slug: string
-  emoji: string
-  components: Array<Component>
-}
+import { ComponentCard } from '../interface/component'
 
 type Props = {
   item: ComponentCard

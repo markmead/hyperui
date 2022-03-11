@@ -1,0 +1,39 @@
+import type { FunctionComponent } from 'react'
+
+import Link from 'next/link'
+
+import { Link as iLink } from '../../interface/global'
+
+import IconMenu from '../icon/menu'
+
+type Props = {
+  menu: boolean
+  handleMenu: CallableFunction
+  links: Array<iLink>
+}
+
+const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
+  <div className="relative flex items-center sm:hidden">
+    <button
+      className="inline-flex items-center"
+      onClick={() => handleMenu(!menu)}
+    >
+      <IconMenu />
+      <span className="ml-2 text-xs font-medium">Menu</span>
+    </button>
+
+    {menu && (
+      <ul className="absolute w-40 p-2 mt-2 bg-white border-2 border-gray-100 top-full rounded-xl">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href}>
+              <a className="block p-2 text-xs font-medium">{link.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+)
+
+export default Menu

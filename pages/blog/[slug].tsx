@@ -11,6 +11,12 @@ import markdownToHtml from '../../utils/md'
 
 import { Post } from '../../interface/post'
 
+type Params = {
+  params: {
+    slug: string
+  }
+}
+
 export async function getStaticPaths() {
   const paths = postSlugs()
 
@@ -38,12 +44,6 @@ export async function getStaticProps({ params: { slug } }: Params) {
         content,
       },
     },
-  }
-}
-
-type Params = {
-  params: {
-    slug: string
   }
 }
 
@@ -104,6 +104,7 @@ const Blog: NextPage<Props> = ({ post }) => {
         <article className="mx-auto prose prose-img:rounded-lg">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>
+
             <h1 className="mt-1">{post.title}</h1>
           </header>
 

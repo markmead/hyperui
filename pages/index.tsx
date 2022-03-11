@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 
-import Banner from '../components/content/banner'
-import Grid from '../components/collection/grid'
+import { Component } from '../interface/component'
 
 import { getComponents } from '../lib/components'
+
+import Banner from '../components/content/banner'
+import Grid from '../components/collection/grid'
 
 export async function getStaticProps() {
   const components = getComponents(['title', 'slug', 'emoji', 'components'])
@@ -16,7 +18,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  components: Array<{}>
+  components: Array<Component>
 }
 
 const Home: NextPage<Props> = ({ components }) => {
@@ -31,7 +33,7 @@ const Home: NextPage<Props> = ({ components }) => {
         next marketing website, admin dashboard, ecommerce store and much more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
+      <div className="max-w-screen-xl px-4 py-8 mx-auto">
         <Grid items={components} />
       </div>
     </>

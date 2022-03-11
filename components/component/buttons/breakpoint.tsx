@@ -5,7 +5,7 @@ import styles from '../../../styles/button.module.css'
 type Props = {
   active: boolean
   emoji: string
-  handleWidth: any
+  handleWidth: CallableFunction
   size: string
   text: string
 }
@@ -19,11 +19,10 @@ const Breakpoint: FunctionComponent<Props> = ({
 }) => {
   return (
     <button
+      onClick={() => handleWidth(size)}
       className={`${styles.pill} ${
         active ? 'bg-black text-white' : 'text-black'
       }`}
-      onClick={() => handleWidth(size)}
-      type="button"
     >
       <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
         {emoji}

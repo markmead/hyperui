@@ -2,37 +2,21 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
+import { Component } from '../../interface/component'
+import { FrontMatter } from '../../interface/frontmatter'
+
+import { componentFilePaths, COMPONENTS_PATH } from '../../utils/mdx'
+
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { componentFilePaths, COMPONENTS_PATH } from '../../utils/mdx'
-
 import List from '../../components/list'
-import { Component } from '../../interface/component'
 
 const components = {
   List,
-}
-
-interface FrontMatterSEO {
-  title: string
-  description: string
-}
-
-interface FrontMatterComponents {
-  title: string
-  spacing?: string
-}
-
-interface FrontMatter {
-  title: string
-  emoji: string
-  spacing: string
-  seo: FrontMatterSEO
-  components: FrontMatterComponents
 }
 
 type Props = {
@@ -41,16 +25,10 @@ type Props = {
   frontMatter: FrontMatter
 }
 
-type Params = {
-  params: {
-    slug: string
-  }
-}
-
 const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
-  const componentsArray: Array<Component> = Object.entries(
-    frontMatter.components
-  ).map(
+  const { seo, spacing, components: items } = frontMatter
+
+  const componentsArray: Array<Component> = Object.entries(items).map(
     ([key, value]): Component => ({
       id: key,
       title: value.title,
@@ -60,7 +38,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
 
   const data = {
     name,
-    spacing: frontMatter.spacing,
+    spacing: spacing,
     examples: componentsArray,
   }
 
@@ -68,15 +46,10 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
     <>
       <Head>
         <title>
-          {frontMatter.seo.title} | Free Open Source Tailwind CSS Components |
-          HyperUI
+          {seo.title} | Free Open Source Tailwind CSS Components | HyperUI
         </title>
 
-        <meta
-          name="description"
-          key="description"
-          content={frontMatter.seo.description}
-        />
+        <meta name="description" key="description" content={seo.description} />
       </Head>
 
       <section>
@@ -88,6 +61,12 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
       </section>
     </>
   )
+}
+
+type Params = {
+  params: {
+    slug: string
+  }
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {

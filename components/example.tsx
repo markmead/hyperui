@@ -11,6 +11,7 @@ import { Component } from '../interface/component'
 import Breakpoint from './component/buttons/breakpoint'
 import Copy from './component/buttons/copy'
 import Code from './component/buttons/view'
+import Range from './component/range'
 
 type Props = {
   name: string
@@ -23,7 +24,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
-  let [rangeWidth, setRangeWidth] = useState<number>(1348)
+  let [range, setRange] = useState<number>(1348)
 
   const breakpoints = allBreakpoints
 
@@ -46,8 +47,8 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   })
 
   useEffect(() => {
-    rangeWidth === 1348 ? setWidth('100%') : setWidth(`${rangeWidth}px`)
-  }, [rangeWidth])
+    range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
+  }, [range])
 
   return (
     <div className="space-y-4">
@@ -55,21 +56,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
         <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
 
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
-          <div>
-            <label className="sr-only" htmlFor="rangeWidth">
-              Width
-            </label>
-
-            <input
-              type="range"
-              min="340"
-              max="1348"
-              step="8"
-              id="rangeWidth"
-              value={rangeWidth}
-              onChange={(e) => setRangeWidth(Number(e.currentTarget.value))}
-            />
-          </div>
+          <Range range={range} handleRange={setRange} />
 
           {breakpoints.map(({ name, emoji, width: breakpoint }) => (
             <Breakpoint

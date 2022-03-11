@@ -11,3 +11,10 @@ export interface ComponentPage {
   spacing?: string
   components?: Array<Component>
 }
+
+export interface ComponentCard {
+  title: string
+  slug: string
+  emoji: string
+  components: Array<Component>
+}
