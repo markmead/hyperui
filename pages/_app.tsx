@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/next-script-for-ga */
+
 import type { AppProps } from 'next/app'
 
 import Head from 'next/head'
-import Script from 'next/script'
 
 import '../styles/globals.css'
 import 'prismjs/themes/prism-okaidia.css'
@@ -14,20 +15,22 @@ import Footer from '../components/global/footer'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Script
+      <script
+        async
         src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
-        strategy="afterInteractive"
+      ></script>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-VE5EHLYPZP');
+            `,
+        }}
       />
-
-      <Script id="googleAnalytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-VE5EHLYPZP');
-        `}
-      </Script>
 
       <Head>
         <title>Free Open Source Tailwind CSS Components | HyperUI</title>
