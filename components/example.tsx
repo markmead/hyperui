@@ -11,7 +11,7 @@ import Code from './component/buttons/view'
 type Props = {
   name: string
   item: any
-  spacing: Array<object>
+  spacing: string
 }
 
 const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
