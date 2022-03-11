@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Component } from '../interface/component'
+import { ComponentCard } from '../interface/component'
 
 import { getComponents } from '../lib/components'
 
@@ -18,7 +18,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  components: Array<Component>
+  components: Array<ComponentCard>
 }
 
 const Home: NextPage<Props> = ({ components }) => {

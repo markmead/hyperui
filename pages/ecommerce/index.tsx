@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
-import { Component } from '../../interface/component'
+import { ComponentCard } from '../../interface/component'
 
 import { getEcommerceComponents } from '../../lib/components'
 
@@ -26,7 +26,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  components: Array<Component>
+  components: Array<ComponentCard>
 }
 
 const Ecommerce: NextPage<Props> = ({ components }) => {
