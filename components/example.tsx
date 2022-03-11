@@ -4,6 +4,8 @@ const prism = require('prismjs')
 
 import { source } from '../utils/component'
 
+import { allBreakpoints } from '../lib/breakpoints'
+
 import { Component } from '../interface/component'
 
 import Breakpoint from './component/buttons/breakpoint'
@@ -22,6 +24,8 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [rangeWidth, setRangeWidth] = useState<number>(1348)
+
+  const breakpoints = allBreakpoints
 
   const { id, title, spacing: space } = item
 
@@ -67,47 +71,18 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
             />
           </div>
 
-          <Breakpoint
-            emoji="📱"
-            handleWidth={setWidth}
-            size="340px"
-            text="Mobile"
-            active={width === '340px'}
-          />
+          {breakpoints.map(({ name, emoji, width: breakpoint }) => (
+            <Breakpoint
+              key={name}
+              text={name}
+              emoji={emoji}
+              size={breakpoint}
+              handleWidth={setWidth}
+              active={width === breakpoint}
+            />
+          ))}
 
-          <Breakpoint
-            emoji="🐛"
-            handleWidth={setWidth}
-            size="640px"
-            text="Small"
-            active={width === '640px'}
-          />
-
-          <Breakpoint
-            emoji="🏢"
-            handleWidth={setWidth}
-            size="768px"
-            text="Medium"
-            active={width === '768px'}
-          />
-
-          <Breakpoint
-            emoji="🏔️"
-            handleWidth={setWidth}
-            size="1024px"
-            text="Large"
-            active={width === '1024px'}
-          />
-
-          <Breakpoint
-            emoji="🌝"
-            handleWidth={setWidth}
-            size="100%"
-            text="Full"
-            active={width === '100%'}
-          />
-
-          <strong className="inline-block w-20 text-xs font-medium leading-9 text-center text-white bg-black rounded-lg h-9">
+          <strong className="inline-block w-20 py-2.5 text-xs font-medium text-center text-white bg-black rounded-lg">
             @ {width}
           </strong>
         </div>

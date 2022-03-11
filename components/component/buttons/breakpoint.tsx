@@ -19,7 +19,9 @@ const Breakpoint: FunctionComponent<Props> = ({
 }) => {
   return (
     <button
-      className={`${styles.pill} ${active ? 'bg-black text-white' : ''}`}
+      className={`${styles.pill} ${
+        active ? 'bg-black text-white' : 'text-black'
+      }`}
       onClick={() => handleWidth(size)}
       type="button"
     >
