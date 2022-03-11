@@ -75,7 +75,16 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
         </div>
       </div>
 
-      <div>
+      <div className="relative">
+        {!code && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-white rounded-lg"
+            aria-hidden="true"
+          >
+            <p className="text-sm animate-pulse">Loading</p>
+          </div>
+        )}
+
         {view ? (
           <iframe
             className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
