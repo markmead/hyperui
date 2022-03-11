@@ -38,7 +38,9 @@ const Test: FunctionComponent<Props> = ({
       res.text().then((html) => {
         setCode(html)
 
-        let spacingValue = typeof spacing === 'string' ? spacing : spacing[id]
+        console.log(spacing[id])
+
+        let spacingValue = spacing[id] ? spacing[id] : spacing['default']
         let componentSpacing = `${spacingValue}`
 
         html && setHtml(markup(html, componentSpacing))
