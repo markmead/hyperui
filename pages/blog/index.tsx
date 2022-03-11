@@ -1,11 +1,13 @@
 import type { NextPage } from 'next'
 
-import Banner from '../../components/content/banner'
+import Head from 'next/head'
 
 import { getAllPosts } from '../../lib/posts'
+
 import { Post } from '../../interface/post'
+
+import Banner from '../../components/content/banner'
 import Card from '../../components/blog/card'
-import Head from 'next/head'
 
 export async function getStaticProps() {
   const posts = getAllPosts(['title', 'slug', 'date', 'emoji'])

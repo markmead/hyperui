@@ -1,15 +1,16 @@
 import type { NextPage } from 'next'
 
+import Head from 'next/head'
+
 import fs from 'fs'
+import path from 'path'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
-import path from 'path'
 
-import { postFilePaths, POSTS_PATH } from '../../utils/mdx'
+import { componentFilePaths, COMPONENTS_PATH } from '../../utils/mdx'
 
 import List from '../../components/list'
-import Head from 'next/head'
 
 const components = {
   List,
@@ -83,7 +84,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {
-  const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`)
+  const postFilePath = path.join(COMPONENTS_PATH, `${slug}.mdx`)
   const source = fs.readFileSync(postFilePath)
 
   const { content, data } = matter(source)
@@ -106,7 +107,7 @@ export async function getStaticProps({ params: { slug } }: Params) {
 }
 
 export const getStaticPaths = async () => {
-  const paths = postFilePaths
+  const paths = componentFilePaths
     .map((path) => path.replace(/\.mdx?$/, ''))
     .map((slug) => ({ params: { slug } }))
 

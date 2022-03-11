@@ -1,21 +1,22 @@
 import type { NextPage } from 'next'
 
 import Head from 'next/head'
-
-import markdownToHtml from '../../utils/md'
-import { getPostBySlug, postSlugs } from '../../lib/posts'
-
-import { Post } from '../../interface/post'
 import { useEffect } from 'react'
 
 const prism = require('prismjs')
 
+import { getPostBySlug, postSlugs } from '../../lib/posts'
+
+import markdownToHtml from '../../utils/md'
+
+import { Post } from '../../interface/post'
+
 export async function getStaticPaths() {
-  let paths = postSlugs()
+  const paths = postSlugs()
 
   return {
-    fallback: false,
     paths,
+    fallback: false,
   }
 }
 
@@ -27,6 +28,7 @@ export async function getStaticProps({ params: { slug } }: Params) {
     'date',
     'content',
   ])
+
   const content = await markdownToHtml(post.content || '')
 
   return {

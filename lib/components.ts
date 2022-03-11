@@ -37,6 +37,18 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
   return items
 }
 
+export function componentSlugs(): Array<object> {
+  let slugs = getComponentSlugs().map((slug) => slug.replace(/\.md$/, ''))
+
+  return slugs.map((slug) => {
+    return {
+      params: {
+        slug,
+      },
+    }
+  })
+}
+
 export function getComponents(fields: string[] = []) {
   const slugs = getComponentSlugs()
   const components = slugs.map((slug) => getComponentBySlug(slug, fields))
