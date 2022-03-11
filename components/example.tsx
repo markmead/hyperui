@@ -15,9 +15,16 @@ type Props = {
   id: number
   name: string
   title: string | undefined
+  spacing: Array<object> | string
 }
 
-const Test: FunctionComponent<Props> = ({ collection, id, name, title }) => {
+const Test: FunctionComponent<Props> = ({
+  collection,
+  id,
+  name,
+  title,
+  spacing,
+}) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
@@ -31,7 +38,10 @@ const Test: FunctionComponent<Props> = ({ collection, id, name, title }) => {
       res.text().then((html) => {
         setCode(html)
 
-        html && setHtml(markup(html))
+        let spacingValue = typeof spacing === 'string' ? spacing : spacing[id]
+        let componentSpacing = `${spacingValue}`
+
+        html && setHtml(markup(html, componentSpacing))
       })
     })
 

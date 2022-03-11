@@ -1,4 +1,4 @@
-export function markup(html: string) {
+export function markup(html: string, spacing: string) {
   return `
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +10,7 @@ export function markup(html: string) {
 
     <link rel="stylesheet" href="${origin}/build.css">
 
-    <body>
+    <body class="${spacing}">
       ${html}
     </body>
   `

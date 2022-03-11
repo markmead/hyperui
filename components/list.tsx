@@ -9,9 +9,15 @@ type Props = {
   collection: Collection
   list: Array<Component>
   name: string
+  spacing: Array<object> | string
 }
 
-const List: FunctionComponent<Props> = ({ collection, list, name }) => {
+const List: FunctionComponent<Props> = ({
+  collection,
+  list,
+  name,
+  spacing,
+}) => {
   return (
     <div className="xl:max-w-[1348px] xl:-ml-[34px] xl:w-screen not-prose mt-24">
       <ul className="space-y-16">
@@ -22,6 +28,7 @@ const List: FunctionComponent<Props> = ({ collection, list, name }) => {
               collection={collection}
               name={name}
               title={component.title}
+              spacing={spacing}
             />
           </li>
         ))}

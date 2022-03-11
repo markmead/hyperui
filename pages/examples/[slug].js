@@ -25,7 +25,7 @@ export default function Example({
   name,
   frontMatter,
 }) {
-  const data = { collection, examples, name }
+  const data = { collection, examples, name, spacing: frontMatter.spacing }
 
   return (
     <>
