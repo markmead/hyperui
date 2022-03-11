@@ -7,24 +7,15 @@ import { markup } from '../utils/component'
 import Breakpoint from './component/buttons/breakpoint'
 import Copy from './component/buttons/copy'
 import Code from './component/buttons/view'
-import Favourite from './component/buttons/favourite'
-import { Collection } from '../interface/collection'
 
 type Props = {
-  collection: Collection
   id: number
   name: string
   title: string | undefined
   spacing: Array<object>
 }
 
-const Test: FunctionComponent<Props> = ({
-  collection,
-  id,
-  name,
-  title,
-  spacing,
-}) => {
+const Test: FunctionComponent<Props> = ({ id, name, title, spacing }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
@@ -136,10 +127,9 @@ const Test: FunctionComponent<Props> = ({
       </div>
 
       {code && (
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
           <Code handleView={setView} view={view} />
           <Copy code={code} />
-          <Favourite collection={collection} id={id} />
         </div>
       )}
     </div>

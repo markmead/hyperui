@@ -11,8 +11,8 @@ export const links = [
     title: 'Blog',
     href: '/blog',
   },
-  {
-    title: 'Favourites',
-    href: '/favourites',
-  },
+  // {
+  //   title: 'Favourites',
+  //   href: '/favourites',
+  // },
 ]

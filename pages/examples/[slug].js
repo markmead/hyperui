@@ -6,10 +6,7 @@ import path from 'path'
 
 import { postFilePaths, POSTS_PATH } from '../../utils/mdx'
 
-import {
-  currentCollection,
-  currentCollectionComponents,
-} from '../../lib/collections'
+import { currentCollectionComponents } from '../../lib/collections'
 
 import List from '../../components/list'
 import Head from 'next/head'
@@ -18,14 +15,8 @@ const components = {
   List,
 }
 
-export default function Example({
-  source,
-  collection,
-  examples,
-  name,
-  frontMatter,
-}) {
-  const data = { collection, examples, name, spacing: frontMatter.spacing }
+export default function Example({ source, examples, name, frontMatter }) {
+  const data = { examples, name, spacing: frontMatter.spacing }
 
   return (
     <>
@@ -63,17 +54,14 @@ export const getStaticProps = async ({ params }) => {
     scope: data,
   })
 
-  const collection = currentCollection(params.slug)
-  const examples = currentCollectionComponents(params.slug)
-  const name = params.slug
+  const components = currentCollectionComponents(params.slug)
 
   return {
     props: {
       source: mdxSource,
-      collection,
-      examples,
-      name,
+      examples: components,
       frontMatter: data,
+      name: params.slug,
     },
   }
 }

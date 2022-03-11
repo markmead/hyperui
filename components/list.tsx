@@ -1,35 +1,22 @@
 import { FunctionComponent } from 'react'
-import { Collection } from '../interface/collection'
 
 import { Component } from '../interface/component'
 
 import Example from './example'
 
 type Props = {
-  collection: Collection
-  list: Array<Component>
   name: string
+  items: Array<Component>
   spacing: Array<object>
 }
 
-const List: FunctionComponent<Props> = ({
-  collection,
-  list,
-  name,
-  spacing,
-}) => {
+const List: FunctionComponent<Props> = ({ name, items, spacing }) => {
   return (
     <div className="xl:max-w-[1348px] xl:-ml-[34px] xl:w-screen not-prose mt-24">
       <ul className="space-y-16">
-        {list.map((component) => (
-          <li key={component.id}>
-            <Example
-              id={component.id}
-              collection={collection}
-              name={name}
-              title={component.title}
-              spacing={spacing}
-            />
+        {items.map(({ id, title }) => (
+          <li key={id}>
+            <Example id={id} name={name} title={title} spacing={spacing} />
           </li>
         ))}
       </ul>
