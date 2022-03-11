@@ -15,16 +15,25 @@ const Card: FunctionComponent<Props> = ({ item }) => {
 
   return (
     <Link href={`/components/${slug}`}>
-      <a className="p-6 border-2 border-black hover:bg-black rounded-xl hover:text-white">
-        <span className="text-xl" role="img" aria-hidden="true">
-          {emoji}
-        </span>
+      <a className="relative block group">
+        <span
+          className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
+          aria-hidden="true"
+        ></span>
 
-        <p className="mt-4 text-lg font-medium">{title}</p>
+        <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+          <div className="p-8">
+            <span className="text-xl" role="img" aria-hidden="true">
+              {emoji}
+            </span>
 
-        <p className="mt-1 text-xs">
-          {count} {count > 1 ? ' components' : ' component'}
-        </p>
+            <p className="mt-4 text-lg font-medium">{title}</p>
+
+            <p className="mt-1 text-xs">
+              {count} {count > 1 ? ' components' : ' component'}
+            </p>
+          </div>
+        </div>
       </a>
     </Link>
   )
