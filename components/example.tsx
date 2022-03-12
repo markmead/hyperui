@@ -105,6 +105,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
             loading="lazy"
             srcDoc={html}
             style={{ maxWidth: width }}
+            title={`${title} Component`}
           ></iframe>
         </div>
 
