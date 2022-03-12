@@ -8,7 +8,7 @@ import Banner from '../components/content/banner'
 import Grid from '../components/collection/grid'
 
 export async function getStaticProps() {
-  const components = getComponents(['title', 'slug', 'emoji', 'components'])
+  const components = getComponents(['title', 'slug', 'emoji', 'count'])
 
   return {
     props: {

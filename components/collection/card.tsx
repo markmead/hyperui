@@ -9,9 +9,7 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, components } = item
-
-  const count: number = Object.keys(components).length
+  const { title, slug, emoji, count } = item
 
   return (
     <Link href={`/components/${slug}`}>
