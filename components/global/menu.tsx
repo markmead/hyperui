@@ -19,7 +19,8 @@ const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
       onClick={() => handleMenu(!menu)}
     >
       <IconMenu />
-      <span className="ml-2 text-xs font-medium">Menu</span>
+
+      <span className="ml-1.5 text-xs font-medium">Menu</span>
     </button>
 
     {menu && (
