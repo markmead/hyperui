@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
-import { Post } from '../../interface/post'
+import { PostCard } from '../../interface/post'
 
 import { getAllPosts } from '../../lib/posts'
 
@@ -18,7 +18,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  posts: Array<Post>
+  posts: Array<PostCard>
 }
 
 const Blogs: NextPage<Props> = ({ posts }) => {

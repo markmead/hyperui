@@ -2,10 +2,10 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { Post } from '../../interface/post'
+import { PostCard } from '../../interface/post'
 
 type Props = {
-  post: Post
+  post: PostCard
 }
 
 const Card: FunctionComponent<Props> = ({ post }) => {

@@ -17,7 +17,9 @@ type Props = {
 }
 
 const Blog: NextPage<Props> = ({ post }) => {
-  let schemaData = {
+  const { seo } = post
+
+  const schemaData = {
     '@context': 'http://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
@@ -60,9 +62,9 @@ const Blog: NextPage<Props> = ({ post }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{post.title} | Blog | HyperUI</title>
+        <title>{seo.title} | Blog | HyperUI</title>
 
-        <meta content={post.description} key="description" name="description" />
+        <meta content={seo.description} key="description" name="description" />
       </Head>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto">
@@ -96,13 +98,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {
-  const post = getPostBySlug(slug, [
-    'title',
-    'slug',
-    'description',
-    'date',
-    'content',
-  ])
+  const post = getPostBySlug(slug, ['title', 'slug', 'date', 'seo', 'content'])
 
   const content = await convert(post.content || '')
 
