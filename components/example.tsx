@@ -31,6 +31,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   })
 
   const breakpoints = allBreakpoints
