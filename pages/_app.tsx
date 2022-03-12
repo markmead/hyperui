@@ -11,6 +11,7 @@ import Layout from '../components/layout'
 import Banner from '../components/global/banner'
 import Header from '../components/global/header'
 import Footer from '../components/global/footer'
+import Popup from '../components/global/popup'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -70,6 +71,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Banner
         text="⭐️ Star HyperUI on GitHub ⭐️"
         url="https://github.com/markmead/hyperui"
+      />
+
+      <Popup
+        text="Use Alpine JS? Click Here 👋"
+        url="https://alpinejs.hyperui.dev"
       />
 
       <Header />
