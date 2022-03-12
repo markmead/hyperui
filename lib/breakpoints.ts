@@ -1,8 +1,4 @@
-type Breakpoint = {
-  name: string
-  emoji: string
-  width: string
-}
+import { Breakpoint } from '../interface/breakpoint'
 
 export const allBreakpoints: Array<Breakpoint> = [
   {
