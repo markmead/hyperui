@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
-  <div className="relative flex items-center sm:hidden">
+  <div className="flex items-center sm:hidden">
     <button
       className="inline-flex items-center"
       onClick={() => handleMenu(!menu)}
@@ -23,7 +23,7 @@ const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
     </button>
 
     {menu && (
-      <ul className="absolute w-40 p-2 mt-2 bg-white border-2 border-gray-100 top-full rounded-xl">
+      <ul className="absolute inset-x-0 p-2 mt-[2px] bg-white border-b-2 border-gray-100 top-full">
         {links.map((link) => (
           <li key={link.href}>
             <Link href={link.href}>

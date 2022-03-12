@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react'
 
-import { Component } from '../interface/component'
+import { Component } from '../../interface/component'
 
-import Example from './example'
+import Example from '../component/example'
 
 type Props = {
   name: string

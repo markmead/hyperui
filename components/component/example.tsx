@@ -4,17 +4,17 @@ import { useInView } from 'react-intersection-observer'
 
 const prism = require('prismjs')
 
-import { source } from '../utils/component'
+import { source } from '../../utils/component'
 
-import { allBreakpoints } from '../lib/breakpoints'
+import { allBreakpoints } from '../../lib/breakpoints'
 
-import { Component } from '../interface/component'
+import { Component } from '../../interface/component'
 
-import Breakpoint from './component/buttons/breakpoint'
-import Copy from './component/buttons/copy'
-import Code from './component/buttons/view'
-import Range from './component/range'
-import IconLoading from './icon/loading'
+import Breakpoint from './buttons/breakpoint'
+import Copy from './buttons/copy'
+import Code from './buttons/view'
+import Range from './range'
+import IconLoading from '../icon/loading'
 
 type Props = {
   name: string

@@ -13,7 +13,7 @@ import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import List from '../../components/list'
+import List from '../../components/collection/list'
 
 const components = {
   List,
