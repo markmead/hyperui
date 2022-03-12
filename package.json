@@ -26,7 +26,7 @@
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "gray-matter": "^4.0.3",
-    "next-mdx-remote": "^3.0.1",
+    "next-mdx-remote": "^4.0.0",
     "next-sitemap": "^2.5.7",
     "postcss": "^8.4.8",
     "prismjs": "^1.27.0",
