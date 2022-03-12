@@ -2,27 +2,36 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { Collection } from '../../interface/collection'
+import { ComponentCard } from '../../interface/component'
 
 type Props = {
-  collection: Collection
+  item: ComponentCard
 }
 
-const Card: FunctionComponent<Props> = ({ collection }) => {
-  let { count, emoji, id, name } = collection
+const Card: FunctionComponent<Props> = ({ item }) => {
+  const { title, slug, emoji, count } = item
 
   return (
-    <Link href={`/components/${id}`}>
-      <a className="p-6 border-2 border-black hover:bg-black rounded-xl hover:text-white">
-        <span aria-hidden="true" className="text-xl" role="img">
-          {emoji}
-        </span>
+    <Link href={`/components/${slug}`}>
+      <a className="relative block group">
+        <span
+          className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
+          aria-hidden="true"
+        ></span>
 
-        <p className="mt-4 text-lg font-medium">{name}</p>
+        <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+          <div className="p-6">
+            <span className="text-xl" role="img" aria-hidden="true">
+              {emoji}
+            </span>
 
-        <p className="mt-1 text-xs">
-          {count} {count > 1 ? ' components' : ' component'}
-        </p>
+            <p className="mt-4 text-lg font-medium">{title}</p>
+
+            <p className="mt-1 text-xs">
+              {count} {count > 1 ? ' components' : ' component'}
+            </p>
+          </div>
+        </div>
       </a>
     </Link>
   )

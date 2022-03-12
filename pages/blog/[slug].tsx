@@ -1,55 +1,25 @@
 import type { NextPage } from 'next'
 
-import markdownToHtml from '../../lib/markdown'
-import { getPostBySlug, postSlugs } from '../../lib/posts'
-
-import { Post } from '../../interface/post'
 import Head from 'next/head'
+
 import { useEffect } from 'react'
 
 const prism = require('prismjs')
 
-export async function getStaticPaths() {
-  let paths = postSlugs()
+import { getPostBySlug, postSlugs } from '../../lib/posts'
 
-  return {
-    fallback: false,
-    paths,
-  }
-}
+import convert from '../../utils/markdown'
 
-export async function getStaticProps({ params: { slug } }: Params) {
-  const post = getPostBySlug(slug, [
-    'title',
-    'slug',
-    'description',
-    'date',
-    'content',
-  ])
-  const content = await markdownToHtml(post.content || '')
-
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-      },
-    },
-  }
-}
-
-type Params = {
-  params: {
-    slug: string
-  }
-}
+import { Post } from '../../interface/post'
 
 type Props = {
   post: Post
 }
 
 const Blog: NextPage<Props> = ({ post }) => {
-  let schemaData = {
+  const { seo } = post
+
+  const schemaData = {
     '@context': 'http://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
@@ -92,15 +62,16 @@ const Blog: NextPage<Props> = ({ post }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{post.title} | Blog | HyperUI</title>
+        <title>{seo.title} | Blog | HyperUI</title>
 
-        <meta content={post.description} key="description" name="description" />
+        <meta content={seo.description} key="description" name="description" />
       </Head>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto">
         <article className="mx-auto prose prose-img:rounded-lg">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>
+
             <h1 className="mt-1">{post.title}</h1>
           </header>
 
@@ -109,6 +80,36 @@ const Blog: NextPage<Props> = ({ post }) => {
       </div>
     </>
   )
+}
+
+type Params = {
+  params: {
+    slug: string
+  }
+}
+
+export async function getStaticPaths() {
+  const paths = postSlugs()
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params: { slug } }: Params) {
+  const post = getPostBySlug(slug, ['title', 'slug', 'date', 'seo', 'content'])
+
+  const content = await convert(post.content || '')
+
+  return {
+    props: {
+      post: {
+        ...post,
+        content,
+      },
+    },
+  }
 }
 
 export default Blog

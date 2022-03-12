@@ -1,24 +1,27 @@
 import type { NextPage } from 'next'
 
-import { Collection } from '../interface/collection'
-import { collections } from '../lib/collections'
+import { ComponentCard } from '../interface/component'
+
+import { getComponents } from '../lib/components'
 
 import Banner from '../components/content/banner'
 import Grid from '../components/collection/grid'
 
 export async function getStaticProps() {
+  const components = getComponents(['title', 'slug', 'emoji', 'count'])
+
   return {
     props: {
-      collections,
+      components,
     },
   }
 }
 
 type Props = {
-  collections: Array<Collection>
+  components: Array<ComponentCard>
 }
 
-const Home: NextPage<Props> = ({ collections }) => {
+const Home: NextPage<Props> = ({ components }) => {
   return (
     <>
       <Banner
@@ -30,11 +33,8 @@ const Home: NextPage<Props> = ({ collections }) => {
         next marketing website, admin dashboard, ecommerce store and much more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto" id="componentGrid">
-        <Grid
-          blocks={collections}
-          className="gap-4 sm:grid-cols-2 md:grid-cols-4"
-        />
+      <div className="max-w-screen-xl px-4 py-8 mx-auto">
+        <Grid items={components} />
       </div>
     </>
   )

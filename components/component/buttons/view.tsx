@@ -3,25 +3,19 @@ import { FunctionComponent } from 'react'
 import styles from '../../../styles/button.module.css'
 
 type Props = {
-  handleView: any
   view: boolean
+  handleView: CallableFunction
 }
 
-const View: FunctionComponent<Props> = ({ view, handleView }) => {
+const View: FunctionComponent<Props> = ({ handleView, view }) => {
   return (
-    <>
-      <button
-        className={styles.pill}
-        onClick={() => handleView(!view)}
-        type="button"
-      >
-        <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
-          👀
-        </span>
+    <button onClick={() => handleView(!view)} className={styles.pill}>
+      <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
+        👀
+      </span>
 
-        <span className="text-xs font-medium">View</span>
-      </button>
-    </>
+      <span className="text-xs font-medium">View</span>
+    </button>
   )
 }
 

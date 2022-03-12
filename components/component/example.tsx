@@ -1,175 +1,129 @@
-import type { FunctionComponent } from 'react'
-import { useState, useEffect } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
+
+import { useInView } from 'react-intersection-observer'
 
 const prism = require('prismjs')
 
-import { Collection } from '../../interface/collection'
+import { source } from '../../utils/component'
+
+import { allBreakpoints } from '../../lib/breakpoints'
+
 import { Component } from '../../interface/component'
 
 import Breakpoint from './buttons/breakpoint'
 import Copy from './buttons/copy'
 import Code from './buttons/view'
-import Heart from './buttons/favourite'
+import Range from './range'
+import IconLoading from '../icon/loading'
 
 type Props = {
-  collection: Collection
-  component: Component
-  parentSpacing?: string
-  target?: string
+  name: string
+  item: Component
+  spacing: string
 }
 
-const Example: FunctionComponent<Props> = ({
-  collection,
-  component,
-  parentSpacing,
-  target,
-}) => {
+const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
-  let [rangeWidth, setRangeWidth] = useState<number>(1348)
+  let [range, setRange] = useState<number>(1348)
 
-  let { id, spacing } = component
-
-  let isExample = view
-  let spacingClass = spacing ? spacing : parentSpacing
-
-  useEffect(() => {
-    rangeWidth === 1348 ? setWidth('100%') : setWidth(`${rangeWidth}px`)
-  }, [rangeWidth])
-
-  useEffect(() => {
-    let { origin, href } = window.location
-    let endpoint = target ? target : href
-
-    fetch(`${endpoint}/${id}.html`)
-      .then((res) => {
-        if (res.ok) {
-          res.text().then((html) => {
-            let code = `
-              <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                  let links = [...document.querySelectorAll('a')]
-
-                  links.forEach(link => link.addEventListener('click', (e) => e.preventDefault()))
-                })
-              </script>
-
-              <link rel="stylesheet" href="${origin}/build.css">
-
-              <body>
-                <div class="${spacingClass}">
-                  ${html}
-                </div>
-              </body>
-            `
-
-            setCode(html)
-            setHtml(code)
-
-            prism.highlightAll()
-          })
-        }
-      })
-      .catch((err) => console.error(err))
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: true,
   })
 
+  const breakpoints = allBreakpoints
+
+  const { id, title, spacing: space } = item
+
+  const componentSpacing: string = space ? space : spacing
+
+  useEffect(() => {
+    async function fetchHtml() {
+      const response = await fetch(`/components/${name}/${id}.html`)
+      const text = await response.text()
+
+      setCode(text)
+      setHtml(source(text, componentSpacing))
+
+      return
+    }
+
+    if (inView) {
+      fetchHtml()
+    }
+  }, [inView])
+
+  useEffect(() => {
+    prism.highlightAll()
+  })
+
+  useEffect(() => {
+    range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
+  }, [range])
+
   return (
-    <li className="space-y-4">
+    <div className="space-y-4" ref={ref}>
       <div className="flex justify-between item-center">
-        {component.title && (
-          <h2 className="text-lg font-bold sm:text-xl">{component.title}</h2>
-        )}
+        <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
 
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
-          <div>
-            <label className="sr-only" htmlFor="rangeWidth">
-              Width
-            </label>
+          <Range range={range} handleRange={setRange} />
 
-            <input
-              type="range"
-              min="340"
-              max="1348"
-              step="8"
-              id="rangeWidth"
-              value={rangeWidth}
-              onChange={(e) => setRangeWidth(Number(e.currentTarget.value))}
+          {breakpoints.map(({ name, emoji, width: breakpoint }) => (
+            <Breakpoint
+              key={name}
+              text={name}
+              emoji={emoji}
+              size={breakpoint}
+              handleWidth={setWidth}
+              active={width === breakpoint}
             />
-          </div>
+          ))}
 
-          <Breakpoint
-            emoji="📱"
-            handleWidth={setWidth}
-            size="340px"
-            text="Mobile"
-            active={width === '340px'}
-          />
-
-          <Breakpoint
-            emoji="🐛"
-            handleWidth={setWidth}
-            size="640px"
-            text="Small"
-            active={width === '640px'}
-          />
-
-          <Breakpoint
-            emoji="🏢"
-            handleWidth={setWidth}
-            size="768px"
-            text="Medium"
-            active={width === '768px'}
-          />
-
-          <Breakpoint
-            emoji="🏔️"
-            handleWidth={setWidth}
-            size="1024px"
-            text="Large"
-            active={width === '1024px'}
-          />
-
-          <Breakpoint
-            emoji="🌝"
-            handleWidth={setWidth}
-            size="100%"
-            text="Full"
-            active={width === '100%'}
-          />
-
-          <strong className="inline-block w-20 text-xs font-medium leading-9 text-center text-white bg-black rounded-lg h-9">
+          <strong className="inline-block w-20 py-2.5 text-xs font-medium text-center text-white bg-black rounded-lg">
             @ {width}
           </strong>
         </div>
       </div>
 
-      <div>
-        {isExample ? (
+      <div className="relative">
+        {!code && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-white rounded-lg"
+            aria-hidden="true"
+          >
+            <IconLoading />
+          </div>
+        )}
+
+        <div className={view ? 'block' : 'hidden'}>
           <iframe
-            className={`bg-white rounded-lg w-full h-[400px] lg:transition-all ring-2 ring-black lg:h-[600px]`}
+            className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
             loading="lazy"
             srcDoc={html}
-            title={`${collection.title} Component ${id}`}
             style={{ maxWidth: width }}
+            title={`${title} Component`}
           ></iframe>
-        ) : (
-          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px]">
+        </div>
+
+        <div className={view ? 'hidden' : 'block'}>
+          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
             <code className="language-html">{code}</code>
           </pre>
-        )}
+        </div>
       </div>
 
       {code && (
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
           <Code handleView={setView} view={view} />
           <Copy code={code} />
-          <Heart collection={collection} id={id} />
         </div>
       )}
-    </li>
+    </div>
   )
 }
 
-export default Example
+export default Test

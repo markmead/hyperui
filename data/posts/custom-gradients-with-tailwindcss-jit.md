@@ -1,9 +1,11 @@
 ---
 title: Custom Gradients with JIT in Tailwind CSS (No Custom CSS)
 slug: custom-gradients-with-tailwindcss-jit
-description: Tailwind CSS v3 meant JIT become the standard, learn how to use JIT to create custom gradients in Tailwind CSS without any custom CSS.
 date: 07/03/2022
 emoji: 🎨
+seo:
+  title: How to Create Custom Gradients in Tailwind CSS with JIT
+  description: Tailwind CSS v3 meant JIT become the standard, learn how to use JIT to create custom gradients in Tailwind CSS without any custom CSS.
 ---
 
 ## What is JIT?

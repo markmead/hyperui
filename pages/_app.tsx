@@ -1,32 +1,38 @@
+/* eslint-disable @next/next/next-script-for-ga */
+
+import type { AppProps } from 'next/app'
+
+import Head from 'next/head'
+
 import '../styles/globals.css'
 import 'prismjs/themes/prism-okaidia.css'
 
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
-
 import Layout from '../components/layout'
+import Banner from '../components/global/banner'
+import Header from '../components/global/header'
+import Footer from '../components/global/footer'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
-        ></script>
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
+      ></script>
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
               gtag('config', 'G-VE5EHLYPZP');
             `,
-          }}
-        />
+        }}
+      />
 
+      <Head>
         <title>Free Open Source Tailwind CSS Components | HyperUI</title>
         <meta
           name="description"
@@ -61,9 +67,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:url" content="https://hyperui.dev/" />
       </Head>
 
+      <Banner
+        text="⭐️ Star HyperUI on GitHub ⭐️"
+        url="https://github.com/markmead/hyperui"
+      />
+
+      <Header />
+
       <Layout>
         <Component {...pageProps} />
       </Layout>
+
+      <Footer />
     </>
   )
 }

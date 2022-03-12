@@ -1,11 +1,13 @@
 import type { NextPage } from 'next'
 
-import Banner from '../../components/content/banner'
+import Head from 'next/head'
+
+import { PostCard } from '../../interface/post'
 
 import { getAllPosts } from '../../lib/posts'
-import { Post } from '../../interface/post'
+
+import Banner from '../../components/content/banner'
 import Card from '../../components/blog/card'
-import Head from 'next/head'
 
 export async function getStaticProps() {
   const posts = getAllPosts(['title', 'slug', 'date', 'emoji'])
@@ -16,7 +18,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  posts: Array<Post>
+  posts: Array<PostCard>
 }
 
 const Blogs: NextPage<Props> = ({ posts }) => {
@@ -27,8 +29,8 @@ const Blogs: NextPage<Props> = ({ posts }) => {
 
         <meta
           content="Read the HyperUI blog for tips and tricks on using Tailwind CSS in your projects."
-          key="description"
           name="description"
+          key="description"
         />
       </Head>
 

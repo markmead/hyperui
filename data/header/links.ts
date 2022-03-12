@@ -1,4 +1,6 @@
-export const links = [
+import { Link } from '../../interface/global'
+
+export const links: Array<Link> = [
   {
     title: 'Components',
     href: '/',
@@ -10,9 +12,5 @@ export const links = [
   {
     title: 'Blog',
     href: '/blog',
-  },
-  {
-    title: 'Favourites',
-    href: '/favourites',
   },
 ]
