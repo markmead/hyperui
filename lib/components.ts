@@ -15,7 +15,7 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
   const { data, content } = matter(fileContents)
 
   type Items = {
-    [key: string]: string
+    [key: string]: string | number
   }
 
   const items: Items = {}
@@ -34,7 +34,7 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
     }
 
     if (field === 'count') {
-      items[field] = `${Object.keys(data.components).length}`
+      items[field] = Object.keys(data.components).length
     }
   })
 

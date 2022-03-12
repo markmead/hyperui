@@ -16,5 +16,5 @@ export interface ComponentCard {
   title: string
   slug: string
   emoji: string
-  count: string
+  count: number
 }
