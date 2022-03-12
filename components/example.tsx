@@ -1,5 +1,7 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 
+import { useInView } from 'react-intersection-observer'
+
 const prism = require('prismjs')
 
 import { source } from '../utils/component'
@@ -27,6 +29,10 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
 
+  const { ref, inView } = useInView({
+    threshold: 0,
+  })
+
   const breakpoints = allBreakpoints
 
   const { id, title, spacing: space } = item
@@ -44,17 +50,21 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
       return
     }
 
-    fetchHtml()
+    if (inView) {
+      fetchHtml()
+    }
+  }, [inView])
 
+  useEffect(() => {
     prism.highlightAll()
-  }, [id])
+  })
 
   useEffect(() => {
     range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
   }, [range])
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" ref={ref}>
       <div className="flex justify-between item-center">
         <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
 
@@ -88,18 +98,20 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
           </div>
         )}
 
-        {view ? (
+        <div className={view ? 'block' : 'hidden'}>
           <iframe
             className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
             loading="lazy"
             srcDoc={html}
             style={{ maxWidth: width }}
           ></iframe>
-        ) : (
+        </div>
+
+        <div className={view ? 'hidden' : 'block'}>
           <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
             <code className="language-html">{code}</code>
           </pre>
-        )}
+        </div>
       </div>
 
       {code && (
