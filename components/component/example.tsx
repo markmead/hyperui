@@ -54,6 +54,8 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
     if (inView) {
       fetchHtml()
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
