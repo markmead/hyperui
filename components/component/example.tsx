@@ -68,7 +68,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   return (
     <div className="space-y-4" ref={ref}>
-      <div className="flex justify-between item-center">
+      <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
 
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
