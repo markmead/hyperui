@@ -1,0 +1,89 @@
+<!-- This component uses Swiper JS - https://swiperjs.com/ -->
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<div class="px-4 py-3 bg-stone-100">
+  <div class="flex items-center justify-center max-w-3xl mx-auto">
+    <button
+      class="hidden sm:block sm:rounded sm:transition sm:text-gray-700 hover:text-gray-500 swiper-prev-button"
+      aria-label="Previous Slide"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+
+    <div class="swiper">
+      <ul class="swiper-wrapper">
+        <li class="swiper-slide">
+          <p class="text-sm font-medium text-center">
+            Love Alpine JS? Check out this new course!
+
+            <a class="underline" href="/alpinejs"> Learn More &rarr; </a>
+          </p>
+        </li>
+
+        <li class="swiper-slide">
+          <p class="text-sm font-medium text-center">
+            Love Tailwind CSS? Check out this new course!
+
+            <a class="underline" href="/alpinejs"> Learn More &rarr; </a>
+          </p>
+        </li>
+
+        <li class="swiper-slide">
+          <p class="text-sm font-medium text-center">
+            Love Laravel? Check out this new course!
+
+            <a class="underline" href="/alpinejs"> Learn More &rarr; </a>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <button
+      class="hidden sm:block sm:rounded sm:transition sm:text-gray-700 hover:text-gray-500 swiper-next-button"
+      aria-label="Next Slide"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  new Swiper('.swiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+    fadeEffect: {
+      crossFade: true,
+    },
+    navigation: {
+      prevEl: '.swiper-prev-button',
+      nextEl: '.swiper-next-button',
+    },
+  })
+</script>
