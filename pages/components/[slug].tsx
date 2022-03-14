@@ -26,7 +26,7 @@ type Props = {
 }
 
 const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
-  const { seo, spacing, components: items } = frontMatter
+  const { seo, spacing, height, components: items } = frontMatter
 
   const componentsArray: Array<Component> = Object.entries(items).map(
     ([key, value]): Component => ({
@@ -38,7 +38,8 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
 
   const data = {
     name,
-    spacing: spacing,
+    spacing,
+    height,
     examples: componentsArray,
   }
 

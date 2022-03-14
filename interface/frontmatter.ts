@@ -12,6 +12,7 @@ export interface FrontMatter {
   title: string
   emoji: string
   spacing: string
+  height?: string
   seo: SEO
   components: Components
 }

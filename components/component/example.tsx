@@ -20,9 +20,10 @@ type Props = {
   name: string
   item: Component
   spacing: string
+  height?: string
 }
 
-const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
+const Test: FunctionComponent<Props> = ({ name, item, spacing, height }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
@@ -103,7 +104,9 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
         <div className={view ? 'block' : 'hidden'}>
           <iframe
-            className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
+            className={`bg-white w-full lg:transition-all ring-2 ring-black rounded-lg ${
+              height ? height : 'h-[400px] lg:h-[600px]'
+            }`}
             loading="lazy"
             srcDoc={html}
             style={{ maxWidth: width }}
@@ -112,7 +115,11 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
         </div>
 
         <div className={view ? 'hidden' : 'block'}>
-          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
+          <pre
+            className={`p-4 overflow-auto ring-2 ring-black rounded-lg ${
+              height ? height : 'h-[400px] lg:h-[600px]'
+            }`}
+          >
             <code className="language-html">{code}</code>
           </pre>
         </div>
