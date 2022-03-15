@@ -52,23 +52,6 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
       return
     }
 
-    const iframe = document.getElementById(`iframe-${id}`) as HTMLIFrameElement
-
-    if (iframe) {
-      iframe.addEventListener('load', () => {
-        let currentHeight: number | undefined =
-          iframe.contentWindow?.document.body.scrollHeight
-
-        currentHeight =
-          currentHeight && currentHeight > 1000 ? 1000 : currentHeight
-
-        currentHeight =
-          currentHeight && currentHeight < 300 ? 300 : currentHeight
-
-        setHeight(`${currentHeight}px`)
-      })
-    }
-
     if (inView) {
       fetchHtml()
     }
@@ -83,6 +66,22 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   useEffect(() => {
     range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
   }, [range])
+
+  function calculateHeight() {
+    const iframe = document.getElementById(`iframe-${id}`) as HTMLIFrameElement
+
+    if (iframe) {
+      let currentHeight: number | undefined =
+        iframe.contentWindow?.document.body.scrollHeight
+
+      currentHeight =
+        currentHeight && currentHeight > 1000 ? 1000 : currentHeight
+
+      currentHeight = currentHeight < 300 ? 300 : currentHeight
+
+      setHeight(`${currentHeight}px`)
+    }
+  }
 
   return (
     <div className="space-y-4" ref={ref}>
@@ -127,6 +126,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
             style={{ maxWidth: width, height: height }}
             title={`${title} Component`}
             id={`iframe-${id}`}
+            onLoad={() => calculateHeight()}
           ></iframe>
         </div>
 
