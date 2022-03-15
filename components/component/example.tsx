@@ -20,14 +20,14 @@ type Props = {
   name: string
   item: Component
   spacing: string
-  height?: string
 }
 
-const Test: FunctionComponent<Props> = ({ name, item, spacing, height }) => {
+const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
+  let [height, setHeight] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
 
   const { ref, inView } = useInView({
@@ -50,6 +50,23 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing, height }) => {
       setHtml(source(text, componentSpacing))
 
       return
+    }
+
+    const iframe = document.getElementById(`iframe-${id}`) as HTMLIFrameElement
+
+    if (iframe) {
+      iframe.addEventListener('load', () => {
+        let currentHeight: number | undefined =
+          iframe.contentWindow?.document.body.scrollHeight
+
+        currentHeight =
+          currentHeight && currentHeight > 1000 ? 1000 : currentHeight
+
+        currentHeight =
+          currentHeight && currentHeight < 300 ? 300 : currentHeight
+
+        setHeight(`${currentHeight}px`)
+      })
     }
 
     if (inView) {
@@ -104,21 +121,19 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing, height }) => {
 
         <div className={view ? 'block' : 'hidden'}>
           <iframe
-            className={`bg-white w-full lg:transition-all ring-2 ring-black rounded-lg ${
-              height ? height : 'h-[400px] lg:h-[600px]'
-            }`}
+            className="w-full bg-white rounded-lg lg:transition-all ring-2 ring-black"
             loading="lazy"
             srcDoc={html}
-            style={{ maxWidth: width }}
+            style={{ maxWidth: width, height: height }}
             title={`${title} Component`}
+            id={`iframe-${id}`}
           ></iframe>
         </div>
 
         <div className={view ? 'hidden' : 'block'}>
           <pre
-            className={`p-4 overflow-auto ring-2 ring-black rounded-lg ${
-              height ? height : 'h-[400px] lg:h-[600px]'
-            }`}
+            className="p-4 overflow-auto rounded-lg ring-2 ring-black"
+            style={{ height: height }}
           >
             <code className="language-html">{code}</code>
           </pre>
