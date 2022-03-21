@@ -5,7 +5,7 @@ date: 13/03/2022
 emoji: 👌
 seo:
   title: What's New in HyperUI?
-  description: Tailwind CSS v3 meant JIT become the standard, learn how to use JIT to create custom gradients in Tailwind CSS without any custom CSS.
+  description: Find out what's new in HyperUI as the project goes through its biggest update to date, featuring an easier process for contributors.
 ---
 
 ## What is HyperUI?
