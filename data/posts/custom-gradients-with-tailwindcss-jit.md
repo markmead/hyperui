@@ -59,7 +59,7 @@ background-image: linear-gradient(180deg, #005BBB 49.9%, #FFD500 50%);
 
 The underscores after commas are personal choice, I leave them in for readability but you can remove them.
 
-Here's a [preview of the example](https://play.tailwindcss.com/0Q0oaPLA4I) create in Tailwind CSS play sandbox.
+Here's a [preview of the example](https://play.tailwindcss.com/0Q0oaPLA4I) created in Tailwind CSS play sandbox.
 
 Let's try something a little tougher.
 
