@@ -16,13 +16,19 @@ At the moment, there is no official support for `text-shadow` classes in Tailwin
 
 > In before `text-shadow` — harder than it sounds, one day, I'm sorry 👀
 
-[Tweet on Twitter](https://twitter.com/adamwathan/status/1507431966412611591?s=20&t=augWHUcu8eIqNRWNCAAn9Q)
+[View tweet on Twitter](https://twitter.com/adamwathan/status/1507431966412611591?s=20&t=augWHUcu8eIqNRWNCAAn9Q)
 
-It seems that the day we can write `text-shadow-xl` is a little off in the future so for now we can add it ourself.
+The reason for this is justified, it's not the implementation that's difficult (as you will see), it's the execution.
 
-## Adding Text Shadow
+> The hard part is choosing the default shadows to include. I've spent probably 20 hours on the problem so far and still haven't come up with a good way to approach it. What are all the problems they solve, how many sizes do we need, do they need to support colors, etc.
 
-First thing to do is update the `tailwind.config.js` file with the following:
+[View tweet on Twitter](https://twitter.com/adamwathan/status/1507433677927727104?s=20&t=NTtEa-65fs_7MWFxra0Icw)
+
+What to do while we wait? Let's implement `text-shadow` classes ourselves.
+
+## Adding Text Shadow Classes to Tailwind CSS
+
+In your `tailwind.config.js` add the following:
 
 ```js
 const plugin = require('tailwindcss/plugin')
@@ -52,30 +58,24 @@ module.exports = {
 }
 ```
 
-### How Does it Work?
+And that's it. We can now write `text-shadow shadow-red-500` for example and have a beautiful red text shadow using Tailwind CSS.
 
-There's no magic here, it's all copied and pasted from the documentation and the updated for `text-shadow` classes.
+There's no magic here, I followed the [adding plugins documenation](https://tailwindcss.com/docs/plugins#adding-utilities) and it worked a treat.
 
-[Tailwind CSS plugin documentation](https://tailwindcss.com/docs/plugins#adding-utilities)
-
-The classes added are:
+The classes that have been added are:
 
 - `text-shadow`
 - `text-shadow-sm`
 - `text-shadow-lg`
 
-All of these will appear in [Tailwind CSS IntelliSense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code).
+But you can add as many as you like.
 
-In these classes we make use of `var(--tw-shadow-color)` which allows us to use `shadow-` classes from Tailwind CSS to color the text shadow.
+The classes that are added will appear in [Tailwind CSS IntelliSense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code) when writing something like `text-sh` for example.
 
-Another feature is we can use arbitrary values such as `text-shadow-[0_4px_8px_#6366f1]`.
+It's worth noting the use of `var(--tw-shadow-color)`.
 
-```html
-<p class="text-shadow-lg shadow-indigo-500/50">Shadow</p>
+This is important as it allows us to use Tailwind CSS `shadow-[color]` classes with the added `text-shadow` classes.
 
-<p class="text-shadow-[0_4px_8px_#6366f1]">Shadow</p>
-```
+Something else to note is we have full access to JIT and can use arbitrary values such as; `text-shadow-[0_4px_8px_#6366f1]`.
 
-You can [view the example](https://play.tailwindcss.com/wJi9jhaOyb) on the Tailwind CSS play sandbox.
-
-And that's all there is to add `text-shadow` classes to Tailwind CSS in a way that supports shadow colors and arbitrary values.
+Want to see more? You can view the [full example](https://play.tailwindcss.com/wJi9jhaOyb) on the Tailwind CSS play sandbox.
