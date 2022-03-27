@@ -4,7 +4,7 @@ slug: text-shadow-with-tailwindcss
 date: 26/03/2022
 emoji: 👤
 seo:
-  title: How to Add Text Shadow Support to Taiwind CSS
+  title: How to Add Text Shadow Support to Tailwind CSS
   description: Currently there is no support for text shadows in Tailwind CSS, even though it's one of the most requested features. Find out how to add it yourself.
 ---
 
