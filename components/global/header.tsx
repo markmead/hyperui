@@ -49,7 +49,7 @@ const Header: FunctionComponent = () => {
 
         <div className="flex items-center justify-end flex-1">
           <a
-            className="p-2 rounded hover:opacity-75"
+            className="p-2 rounded lg:ml-8 hover:opacity-75"
             href="https://twitter.com/itsmarkmead"
             rel="noopener noreferrer"
             target="_blank"
