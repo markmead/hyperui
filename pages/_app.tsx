@@ -16,24 +16,24 @@ import Popup from '../components/global/popup'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
-      ></script>
+      <Head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
+        ></script>
 
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
               gtag('config', 'G-VE5EHLYPZP');
             `,
-        }}
-      />
+          }}
+        />
 
-      <Head>
         <title>Free Open Source Tailwind CSS Components | HyperUI</title>
         <meta
           name="description"
