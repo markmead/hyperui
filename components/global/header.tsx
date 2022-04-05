@@ -49,7 +49,7 @@ const Header: FunctionComponent = () => {
 
         <div className="flex items-center justify-end flex-1">
           <Link href="https://twwordle.hyperui.dev/">
-            <a className="block text-xs font-medium text-center hover:opacity-75">
+            <a className="hidden sm:text-center sm:font-medium sm:text-xs sm:block hover:opacity-75">
               <span aria-hidden="true" className="mr-1.5" role="img">
                 🟧
               </span>
@@ -61,7 +61,7 @@ const Header: FunctionComponent = () => {
           </Link>
 
           <a
-            className="p-2 rounded lg:ml-8 hover:opacity-75"
+            className="p-2 rounded sm:ml-8 hover:opacity-75"
             href="https://twitter.com/itsmarkmead"
             rel="noopener noreferrer"
             target="_blank"
