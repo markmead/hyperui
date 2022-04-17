@@ -48,9 +48,11 @@ const Blog: NextPage<Props> = ({ post }) => {
   }
 
   useEffect(() => {
-    document
-      .querySelectorAll('pre code')
-      .forEach((code) => code.classList.add('language-html'))
+    let prismCode = [
+      ...document.querySelectorAll('pre code'),
+    ] as Array<HTMLPreElement>
+
+    prismCode.forEach((code) => code.classList.add('language-html'))
 
     prism.highlightAll()
   })
