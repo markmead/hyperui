@@ -62,7 +62,7 @@ And that's it.
 
 We can now write `text-shadow shadow-red-500` and have a beautiful red text shadow appear, fully created with Tailwind CSS and zero custom CSS.
 
-All I did was follow the [adding plugins documenation](https://tailwindcss.com/docs/plugins#adding-utilities) and it worked.
+All I did was follow the [adding plugins documentation](https://tailwindcss.com/docs/plugins#adding-utilities) and it worked.
 
 Our code added the following Tailwind CSS classes:
 
