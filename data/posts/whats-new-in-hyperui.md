@@ -121,7 +121,7 @@ components:
 <List items={examples} name={name} spacing={spacing} />
 ```
 
-This has now ticked everything off the checklist as it's taken the old collection object writting JavaScript and converted it to frontmatter.
+This has now ticked everything off the checklist as it's taken the old collection object writing JavaScript and converted it to frontmatter.
 
 ### Collection Content
 
@@ -190,7 +190,7 @@ This was fixed by adding `[id]` to the `useEffect` hook that was fetching the co
 
 As I was updating HyperUI I noticed there was a few cases of unnecessary data being passed via props. The biggest culprit was the collection cards.
 
-In the past these would recieved the entire collection object as a prop, however, with the new update to HyperUI you specify what attributes you want back and only they will be returned, therefore limiting the data that is passed around.
+In the past these would received the entire collection object as a prop, however, with the new update to HyperUI you specify what attributes you want back and only they will be returned, therefore limiting the data that is passed around.
 
 Currently that filtering is an optional parameter on the helper function, in the future I'll be making it required.
 
