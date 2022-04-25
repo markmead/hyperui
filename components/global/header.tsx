@@ -48,17 +48,14 @@ const Header: FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-end flex-1">
-          <Link href="https://twwordle.hyperui.dev/">
-            <a className="hidden sm:text-center sm:font-medium sm:text-xs sm:block hover:opacity-75">
-              <span aria-hidden="true" className="mr-1.5" role="img">
-                🟧
-              </span>
-              Tailwind CSS Wordle
-              <span aria-hidden="true" className="ml-1.5" role="img">
-                🟩
-              </span>
-            </a>
-          </Link>
+          <a
+            href="https://twwordle.hyperui.dev/"
+            className="hidden sm:font-medium sm:text-xs sm:block sm:hover:opacity-75"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Tailwind CSS Wordle
+          </a>
 
           <a
             className="p-2 rounded sm:ml-8 hover:opacity-75"
