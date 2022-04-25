@@ -12,10 +12,13 @@ Search through the website for components, view the preview, the source code and
 
 ### Setup
 
-1. Clone Repo
-2. Run `yarn`
-3. Run `yarn dev`
-4. Run `yarn watch`
+```shell
+git clone git@github.com:markmead/hyperui.git
+yarn
+yarn dev
+```
+
+If needed, you can run `yarn watch` in a new window. This will rebuild the CSS on every change.
 
 ### Adding Components
 
@@ -25,7 +28,7 @@ All components and collections are stored in `/public/components/[collection]/[i
 
 Let's say you've created a new footer component.
 
-Create a new file in `/public/components/footers/` called `10.html`.
+Create a new file in `/public/components/footers/` called `4.html`.
 
 Then add the new component to the footer collection.
 
@@ -45,16 +48,6 @@ components:
     title: Simple Stacked
   3:
     title: Simple Row
-  4:
-    title: Call to Action with Gradient
-  5:
-    title: Split with Company Info, Links and Image
-  6:
-    title: Simple with Service Status
-  7:
-    title: Centered with Social Links as Priority
-  8:
-    title: Split with Company Info, Links and Call to Action
 ---
 
 Content...
@@ -67,7 +60,11 @@ You can add your new component like this:
 components:
   1:
     title: Large with Newsletter Form
-  10:
+  2:
+    title: Simple Stacked
+  3:
+    title: Simple Row
+  4:
     title: [Description]
     spacing [Adjustments] // Optional
 ---
@@ -86,3 +83,19 @@ You'll then want to create a `/data/components/checkouts.mdx` file. (Just duplic
 Update the content to represent the new collection and add your new components.
 
 And that's it, nice and simple!
+
+## More Hyper
+
+### Hypercolor
+
+[Website](https://hypercolor.dev/)
+[GitHub](https://github.com/jordihales/hypercolor)
+
+A curated collection of beautiful Tailwind CSS gradients using the full range of Tailwind CSS colors. Easily copy and paste the class names, CSS or even save the gradients as an image.
+
+## HyperJS
+
+[Website](https://www.hyperjs.dev/)
+[GitHub](https://github.com/markmead/hyperjs)
+
+Alpine JS allows you to write DOM manipulation all in your HTML, Liquid, Blade etc. Here's a collection of snippets that you can copy and paste into your project.
