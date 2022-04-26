@@ -68,7 +68,6 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const handleWidth = (width: string) => {
     setWidth(width)
-    console.log(width)
     width === '100%'
       ? setRange(1348)
       : setRange(Number(width.replace(/px$/, '')))
