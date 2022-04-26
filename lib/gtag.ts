@@ -5,7 +5,7 @@ type GtagEventParams = {
   category?: string | undefined;
 }
 
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID ?? ''
+export const GA_TRACKING_ID = 'G-VE5EHLYPZP'
 
 export const pageview = (url: string) => {
   window.gtag('config', GA_TRACKING_ID, {
