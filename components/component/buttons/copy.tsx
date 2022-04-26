@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useCallback } from 'react'
+import { FunctionComponent, useContext } from 'react'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -11,21 +11,10 @@ type Props = {
 }
 
 const Copy: FunctionComponent<Props> = ({ code }) => {
-  const toast = useContext(ToastContext)
-
-  const onCopyToast = useCallback(() => {
-    toast(
-      <>
-        <span aria-hidden="true" className="text-sm mr-1.5" role="img">
-          📋
-        </span>
-        <span>Copied to Clipboard!</span>
-      </>
-    )
-  }, [toast])
+  let toast = useContext(ToastContext)
 
   return (
-    <CopyToClipboard text={code} onCopy={() => onCopyToast()}>
+    <CopyToClipboard text={code} onCopy={() => toast('Copied to Clipboard!')}>
       <button className={styles.pill}>
         <span aria-hidden="true" className="text-sm mr-1.5" role="img">
           📋

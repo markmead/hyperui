@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app'
 
 import Head from 'next/head'
 import Script from 'next/script'
-import { ToastContainer, Slide } from 'react-toastify'
 
 import '../styles/globals.css'
 import 'prismjs/themes/prism-okaidia.css'
@@ -89,22 +88,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Layout>
 
       <Footer />
-
-      <ToastContainer
-        className="sm:w-56"
-        toastClassName={() =>
-          'bg-black relative flex items-center px-5 py-3 mt-3 sm:rounded-lg justify-between overflow-hidden cursor-pointer'
-        }
-        bodyClassName={() => 'text-white text-sm font-medium'}
-        position="bottom-right"
-        pauseOnFocusLoss={false}
-        pauseOnHover={false}
-        transition={Slide}
-        draggable={false}
-        autoClose={1000}
-        hideProgressBar
-        closeOnClick
-      />
     </>
   )
 }
