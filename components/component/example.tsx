@@ -66,6 +66,14 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
     range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
   }, [range])
 
+  const handleWidth = (width: string) => {
+    setWidth(width)
+    console.log(width)
+    width === '100%'
+      ? setRange(1348)
+      : setRange(Number(width.replace(/px$/, '')))
+  }
+
   return (
     <div className="space-y-4" ref={ref}>
       <div className="flex items-center justify-between">
@@ -80,7 +88,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
               text={name}
               emoji={emoji}
               size={breakpoint}
-              handleWidth={setWidth}
+              handleWidth={(width: string) => handleWidth(width)}
               active={width === breakpoint}
             />
           ))}
@@ -112,9 +120,11 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
         </div>
 
         <div className={view ? 'hidden' : 'block'}>
-          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
-            <code className="language-html">{code}</code>
-          </pre>
+          {!view && (
+            <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg language-html">
+              <code>{code}</code>
+            </pre>
+          )}
         </div>
       </div>
 
