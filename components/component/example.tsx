@@ -120,11 +120,9 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
         </div>
 
         <div className={view ? 'hidden' : 'block'}>
-          {!view && (
-            <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
-              <code className="language-html">{code}</code>
-            </pre>
-          )}
+          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
+            <code className="language-html">{code}</code>
+          </pre>
         </div>
       </div>
 
