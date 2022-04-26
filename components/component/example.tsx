@@ -68,9 +68,10 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const handleWidth = (width: string) => {
     setWidth(width)
+
     width === '100%'
       ? setRange(1348)
-      : setRange(Number(width.replace(/px$/, '')))
+      : setRange(Number(width.replace('px', '')))
   }
 
   return (
@@ -120,8 +121,8 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
         <div className={view ? 'hidden' : 'block'}>
           {!view && (
-            <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg language-html">
-              <code>{code}</code>
+            <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
+              <code className="language-html">{code}</code>
             </pre>
           )}
         </div>
