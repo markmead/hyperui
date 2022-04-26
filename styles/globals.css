@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'react-toastify/dist/ReactToastify.min.css';
 
 pre[class*='language-'] {
   @apply p-8 m-0 rounded-xl bg-gray-900 !important;
