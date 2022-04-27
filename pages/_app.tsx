@@ -1,10 +1,7 @@
-import { useEffect } from 'react'
-
 import type { AppProps } from 'next/app'
 
 import Head from 'next/head'
 import Script from 'next/script'
-import { useRouter } from 'next/router'
 
 import '../styles/globals.css'
 import 'prismjs/themes/prism-okaidia.css'
@@ -15,23 +12,7 @@ import Header from '../components/global/header'
 import Footer from '../components/global/footer'
 import Popup from '../components/global/popup'
 
-import * as gtag from '../lib/gtag'
-
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter()
-
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      gtag.pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    router.events.on('hashChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-      router.events.off('hashChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
-
   return (
     <>
       <Head>
@@ -83,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+        src="https://www.googletagmanager.com/gtag/js?id=G-VE5EHLYPZP"
       />
 
       <Script
@@ -94,9 +75,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
+            gtag('config', 'G-VE5EHLYPZP');
           `,
         }}
       />
