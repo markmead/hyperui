@@ -2,6 +2,11 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import ToastContext from '../../context/toast'
+
 import { Component } from '../../interface/component'
 import { FrontMatter } from '../../interface/frontmatter'
 
@@ -43,21 +48,37 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
   }
 
   return (
-    <>
-      <Head>
-        <title>Free Open Source Tailwind CSS {seo.title} | HyperUI</title>
+    <ToastContext.Provider value={toast}>
+      <>
+        <Head>
+          <title>Free Open Source Tailwind CSS {seo.title} | HyperUI</title>
 
-        <meta name="description" key="description" content={seo.description} />
-      </Head>
+          <meta
+            name="description"
+            key="description"
+            content={seo.description}
+          />
+        </Head>
 
-      <section>
-        <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
-          <div className="prose">
-            <MDXRemote {...source} components={components} scope={data} />
+        <section>
+          <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
+            <div className="prose max-w-none">
+              <MDXRemote {...source} components={components} scope={data} />
+            </div>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+
+        <ToastContainer
+          className="text-center"
+          closeButton={false}
+          draggable={false}
+          hideProgressBar
+          limit={1}
+          position="bottom-center"
+          theme="dark"
+        />
+      </>
+    </ToastContext.Provider>
   )
 }
 

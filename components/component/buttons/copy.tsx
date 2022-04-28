@@ -11,7 +11,7 @@ type Props = {
 }
 
 const Copy: FunctionComponent<Props> = ({ code }) => {
-  const toast = useContext(ToastContext)
+  let toast = useContext(ToastContext)
 
   return (
     <CopyToClipboard text={code} onCopy={() => toast('Copied to Clipboard!')}>
