@@ -10,6 +10,7 @@
     "watch": "yarn css -w"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.0",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
