@@ -10,6 +10,10 @@ export const links: Array<Link> = [
     href: '/ecommerce',
   },
   {
+    title: 'Application UI',
+    href: '/blog/application-ui-coming-soon',
+  },
+  {
     title: 'Blog',
     href: '/blog',
   },
