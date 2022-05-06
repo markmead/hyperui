@@ -316,10 +316,12 @@ There's a few:
 ### Incorrect
 
 ```
-<div class="mt-4 text-lg sm:mt-0 sm:text-xl lg:text-3xl">
+<div class="\mt-4 sm:mt-0 text-lg sm:text-xl lg:text-3xl\">
   Hello World
 </div>
 ```
+
+_Excuse the `\...\` it's to stop Headwind from formatting._
 
 ### Correct
 
