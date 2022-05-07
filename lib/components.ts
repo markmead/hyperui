@@ -68,3 +68,12 @@ export function getEcommerceComponents(fields: string[] = []) {
 
   return components
 }
+
+export function getApplicationComponents(fields: string[] = []) {
+  const slugs = getComponentSlugs()
+  const components = slugs
+    .map((slug) => getComponentBySlug(slug, fields))
+    .filter((component) => component.application)
+
+  return components
+}
