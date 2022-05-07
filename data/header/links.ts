@@ -13,8 +13,4 @@ export const links: Array<Link> = [
     title: 'Application UI',
     href: '/application',
   },
-  {
-    title: 'Blog',
-    href: '/blog',
-  },
 ]
