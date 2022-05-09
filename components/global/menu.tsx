@@ -32,17 +32,6 @@ const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
             </Link>
           </li>
         ))}
-
-        <li>
-          <a
-            href="https://twwordle.hyperui.dev/"
-            className="block p-2 text-xs font-medium"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Tailwind CSS Wordle
-          </a>
-        </li>
       </ul>
     )}
   </div>
