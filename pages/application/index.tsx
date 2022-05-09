@@ -48,10 +48,9 @@ const Application: NextPage<Props> = ({ components }) => {
         title="Application UI"
         subtitle="Free Open Source Application UI Tailwind CSS Components"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-        repellendus, corporis error facilis voluptas doloremque quam ipsam illo,
-        nostrum, velit molestiae quod ipsa omnis mollitia architecto iusto quae
-        distinctio magni.
+        Working on an CMS, ecommerce platform or admin hub? HyperUI has a
+        growing range of application UI Tailwind CSS components, that will help
+        you build an accessible, responsive application for your next project.
       </Banner>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto">
