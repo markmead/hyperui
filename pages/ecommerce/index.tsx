@@ -48,7 +48,7 @@ const Ecommerce: NextPage<Props> = ({ components }) => {
         title="HyperUI Ecommerce"
         subtitle="Free Open Source Ecommerce Tailwind CSS Components"
       >
-        Working on an ecommerce project? HyperUI has a evergrowing range of
+        Working on an ecommerce project? HyperUI has a growing range of
         ecommerce Tailwind CSS components, that will help you build your next
         ecommerce website in Shopify, BigCommerce, Magento and more.
       </Banner>
