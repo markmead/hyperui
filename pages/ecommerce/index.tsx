@@ -46,10 +46,10 @@ const Ecommerce: NextPage<Props> = ({ components }) => {
 
       <Banner
         title="HyperUI Ecommerce"
-        subtitle="Free Open Source Eccomerce Tailwind CSS Components"
+        subtitle="Free Open Source Ecommerce Tailwind CSS Components"
       >
-        Working on an ecommerce project? HyperUI has a evergrowing range of
-        eccomerce Tailwind CSS components, that will help you build your next
+        Working on an ecommerce project? HyperUI has a growing range of
+        ecommerce Tailwind CSS components, that will help you build your next
         ecommerce website in Shopify, BigCommerce, Magento and more.
       </Banner>
 

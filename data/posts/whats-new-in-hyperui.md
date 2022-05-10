@@ -131,7 +131,7 @@ Thanks to the `.prose` class from Tailwind CSS, the process of adding content ha
 
 It's no secret to me that HyperUI needed a performance rework and in HyperUI v2 I'm pleased to say there has been some massive improvements.
 
-All of these changes has seen results of HyperUI loading **5-8x faster** and now has **100/100** Lighthouse scrores across the board.
+All of these changes has seen results of HyperUI loading **5-8x faster** and now has **100/100** Lighthouse scores across the board.
 
 #### Component Loading
 
