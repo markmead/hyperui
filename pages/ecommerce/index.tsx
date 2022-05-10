@@ -45,7 +45,7 @@ const Ecommerce: NextPage<Props> = ({ components }) => {
       </Head>
 
       <Banner
-        title="HyperUI Eccomerce"
+        title="HyperUI Ecommerce"
         subtitle="Free Open Source Eccomerce Tailwind CSS Components"
       >
         Working on an ecommerce project? HyperUI has a evergrowing range of
