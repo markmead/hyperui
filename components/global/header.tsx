@@ -48,17 +48,14 @@ const Header: FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-end flex-1">
-          <a
-            href="https://twwordle.hyperui.dev/"
-            className="hidden sm:font-medium sm:text-xs sm:block sm:hover:opacity-75"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Tailwind CSS Wordle
-          </a>
+          <Link href="/blog">
+            <a className="block text-xs font-medium hover:opacity-75">
+              <span className="hidden sm:inline">HyperUI</span> Blog
+            </a>
+          </Link>
 
           <a
-            className="p-2 rounded sm:ml-8 hover:opacity-75"
+            className="p-2 ml-4 rounded hover:opacity-75"
             href="https://twitter.com/itsmarkmead"
             rel="noopener noreferrer"
             target="_blank"

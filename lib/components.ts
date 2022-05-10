@@ -60,11 +60,29 @@ export function getComponents(fields: string[] = []) {
   return components
 }
 
+export function getMarketingComponents(fields: string[] = []) {
+  const slugs = getComponentSlugs()
+  const components = slugs
+    .map((slug) => getComponentBySlug(slug, fields))
+    .filter((component) => !component.ecommerce && !component.application)
+
+  return components
+}
+
 export function getEcommerceComponents(fields: string[] = []) {
   const slugs = getComponentSlugs()
   const components = slugs
     .map((slug) => getComponentBySlug(slug, fields))
     .filter((component) => component.ecommerce)
+
+  return components
+}
+
+export function getApplicationComponents(fields: string[] = []) {
+  const slugs = getComponentSlugs()
+  const components = slugs
+    .map((slug) => getComponentBySlug(slug, fields))
+    .filter((component) => component.application)
 
   return components
 }
