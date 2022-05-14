@@ -1,12 +1,3 @@
-<!--
-  This component uses @tailwindcss/forms
-
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
--->
-
 <header class="bg-gray-50">
   <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
     <div class="flex items-center sm:justify-between sm:gap-4">
@@ -14,7 +5,7 @@
         <label class="sr-only" for="search"> Search </label>
 
         <input
-          class="w-full h-10 pl-4 pr-10 text-sm bg-white border-none rounded-lg sm:w-56"
+          class="w-full h-10 pl-4 pr-10 text-sm bg-white border-none rounded-lg shadow-sm sm:w-56"
           id="search"
           type="search"
           placeholder="Search website..."
@@ -48,7 +39,7 @@
         <div class="flex gap-4">
           <button
             type="button"
-            class="block sm:hidden p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0"
+            class="block sm:hidden p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0 shadow-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +59,7 @@
 
           <a
             href=""
-            class="block p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0"
+            class="block p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0 shadow-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +83,7 @@
 
           <a
             href=""
-            class="block p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0"
+            class="block p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0 shadow-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +102,10 @@
           </a>
         </div>
 
-        <button type="button" class="flex items-center group shrink-0">
+        <button
+          type="button"
+          class="flex items-center transition rounded-lg group shrink-0"
+        >
           <img
             class="object-cover w-10 h-10 rounded-full"
             src="https://www.hyperui.dev/photos/man-4.jpeg"
@@ -147,7 +141,7 @@
 
       <p class="mt-1.5 text-sm text-gray-500">
         Your website has seen a 52% increase in traffic in the last month. Keep
-        it up!
+        it up! 🚀
       </p>
     </div>
   </div>
