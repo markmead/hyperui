@@ -13,24 +13,17 @@ const Card: FunctionComponent<Props> = ({ item }) => {
 
   return (
     <Link href={`/components/${slug}`}>
-      <a className="relative block group">
-        <span
-          className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
-          aria-hidden="true"
-        ></span>
+      <a className="flex px-6 py-4 transition border border-gray-100 rounded-lg hover:border-gray-200 hover:shadow-sm">
+        <span className="text-2xl" role="img" aria-hidden="true">
+          {emoji}
+        </span>
 
-        <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
-          <div className="p-6">
-            <span className="text-xl" role="img" aria-hidden="true">
-              {emoji}
-            </span>
+        <div className="ml-4">
+          <strong className="md:text-lg">{title}</strong>
 
-            <p className="mt-4 text-lg font-medium">{title}</p>
-
-            <p className="mt-1 text-xs">
-              {count} {count > 1 ? ' components' : ' component'}
-            </p>
-          </div>
+          <p className="mt-1 text-sm">
+            {count} {count > 1 ? ' components' : ' component'}
+          </p>
         </div>
       </a>
     </Link>

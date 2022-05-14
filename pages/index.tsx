@@ -55,27 +55,33 @@ const Home: NextPage<Props> = ({
         next marketing website, admin dashboard, ecommerce store and much more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">Marketing Components</h2>
+      <section className="relative">
+        <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-24 sm:py-16 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Marketing Components
+            </h2>
 
-          <Grid items={componentsMarketing} />
+            <Grid items={componentsMarketing} />
+          </div>
+
+          <div className="pt-24 space-y-8 border-t border-gray-100">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Ecommerce Components
+            </h2>
+
+            <Grid items={componentsEcommerce} />
+          </div>
+
+          <div className="pt-24 space-y-8 border-t border-gray-100">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Application UI Components
+            </h2>
+
+            <Grid items={componentsApplication} />
+          </div>
         </div>
-
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">Ecommerce Components</h2>
-
-          <Grid items={componentsEcommerce} />
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">
-            Application UI Components
-          </h2>
-
-          <Grid items={componentsApplication} />
-        </div>
-      </div>
+      </section>
     </>
   )
 }

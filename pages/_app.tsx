@@ -15,7 +15,7 @@ import Popup from '../components/global/popup'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Free Open Source Tailwind CSS Components | HyperUI</title>
         <meta
           name="description"
@@ -48,19 +48,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content="https://hyperui.dev/og.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://hyperui.dev/" />
-      </Head>
+      </Head> */}
 
-      <Banner
+      {/* <Banner
         text="⭐️ Star HyperUI on GitHub ⭐️"
         url="https://github.com/markmead/hyperui"
-      />
+      /> */}
 
-      <Popup
+      {/* <Popup
         text="Use Alpine JS? Click Here 👋"
         url="https://alpinejs.hyperui.dev"
-      />
+      /> */}
 
-      <Header />
+      {/* <Header /> */}
 
       <Script
         strategy="afterInteractive"
@@ -84,7 +84,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </Layout>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

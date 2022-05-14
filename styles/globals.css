@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-pre[class*='language-'] {
+/* pre[class*='language-'] {
   @apply p-8 m-0 rounded-xl bg-gray-900 !important;
 }
 
@@ -122,4 +122,4 @@ input[type='range']:focus::-ms-fill-lower {
 }
 input[type='range']:focus::-ms-fill-upper {
   background: #000000;
-}
+} */

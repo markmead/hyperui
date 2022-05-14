@@ -8,15 +8,16 @@ type Props = {
 const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
   return (
     <section>
-      <div className="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32">
-        <h1 className="text-4xl font-bold sm:text-6xl">{title}</h1>
-
-        {subtitle && <h2 className="mt-4 text-sm text-gray-500">{subtitle}</h2>}
+      <div className="max-w-screen-xl px-4 pt-16 mx-auto sm:pt-24 lg:pt-32 sm:px-6 lg:px-8">
+        <h1 className="text-5xl font-bold md:text-6xl lg:text-7xl">
+          HyperUI
+          <span className="block mt-4 text-3xl">
+            Free Open Source Tailwind CSS Components
+          </span>
+        </h1>
 
         {children && (
-          <p className="max-w-lg mx-auto mt-4 text-sm text-gray-500">
-            {children}
-          </p>
+          <p className="max-w-lg mt-8 text-lg leading-relaxed">{children}</p>
         )}
       </div>
     </section>
