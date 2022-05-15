@@ -12,7 +12,6 @@ import Breakpoint from './buttons/breakpoint'
 import Copy from './buttons/copy'
 import Code from './buttons/view'
 import Range from './range'
-import IconLoading from '../icon/loading'
 
 type Props = {
   name: string
