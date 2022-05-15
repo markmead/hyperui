@@ -61,15 +61,10 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
         </Head>
 
         <section>
-          <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
-            <div className="prose max-w-none">
-              <MDXRemote {...source} components={components} scope={data} />
-            </div>
-          </div>
+          <MDXRemote {...source} components={components} scope={data} />
         </section>
 
         <ToastContainer
-          className="text-center"
           closeButton={false}
           draggable={false}
           hideProgressBar

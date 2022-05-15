@@ -12,15 +12,13 @@ type Props = {
 
 const List: FunctionComponent<Props> = ({ name, items, spacing }) => {
   return (
-    <div className="xl:max-w-[1348px] not-prose mt-16 lg:mt-24">
-      <ul className="space-y-16">
-        {items.map((item) => (
-          <li key={item.id}>
-            <Example name={name} item={item} spacing={spacing} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          <Example name={name} item={item} spacing={spacing} />
+        </li>
+      ))}
+    </ul>
   )
 }
 

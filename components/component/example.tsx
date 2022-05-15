@@ -75,43 +75,30 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   }
 
   return (
-    <div className="space-y-4" ref={ref}>
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
+    <div ref={ref}>
+      <h2>{title}</h2>
 
-        <div className="hidden lg:items-center lg:space-x-4 lg:flex">
-          <Range range={range} handleRange={setRange} />
+      <div>
+        <Range range={range} handleRange={setRange} />
 
-          {breakpoints.map(({ name, emoji, width: breakpoint }) => (
-            <Breakpoint
-              key={name}
-              text={name}
-              emoji={emoji}
-              size={breakpoint}
-              handleWidth={(width: string) => handleWidth(width)}
-              active={width === breakpoint}
-            />
-          ))}
+        {breakpoints.map(({ name, width: breakpoint }) => (
+          <Breakpoint
+            key={name}
+            text={name}
+            size={breakpoint}
+            handleWidth={(width: string) => handleWidth(width)}
+          />
+        ))}
 
-          <strong className="inline-block w-20 py-2.5 text-xs font-medium text-center text-white bg-black rounded-lg">
-            @ {width}
-          </strong>
-        </div>
+        <strong>@ {width}</strong>
       </div>
 
-      <div className="relative">
-        {!code && (
-          <div
-            className="absolute inset-0 flex items-center justify-center bg-white rounded-lg"
-            aria-hidden="true"
-          >
-            <IconLoading />
-          </div>
-        )}
+      <div>
+        {!code && <div>Loading</div>}
 
         <div className={view ? 'block' : 'hidden'}>
           <iframe
-            className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
+            className="w-full h-[400px] lg:h-[600px]"
             loading="lazy"
             srcDoc={html}
             style={{ maxWidth: width }}
@@ -120,14 +107,14 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
         </div>
 
         <div className={view ? 'hidden' : 'block'}>
-          <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
-            <code className="language-html">{code}</code>
+          <pre className="w-full h-[400px] lg:h-[600px] overflow-auto">
+            <code>{code}</code>
           </pre>
         </div>
       </div>
 
       {code && (
-        <div className="flex items-center gap-4">
+        <div>
           <Code handleView={setView} view={view} />
           <Copy code={code} />
         </div>

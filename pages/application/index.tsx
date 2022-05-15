@@ -53,9 +53,7 @@ const Application: NextPage<Props> = ({ components }) => {
         you build an accessible, responsive application for your next project.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto">
-        <Grid items={components} />
-      </div>
+      <Grid items={components} />
     </>
   )
 }
