@@ -4,8 +4,6 @@ import Head from 'next/head'
 
 import { useEffect } from 'react'
 
-const prism = require('prismjs')
-
 import { getPostBySlug, postSlugs } from '../../lib/posts'
 
 import convert from '../../utils/markdown'
@@ -46,16 +44,6 @@ const Blog: NextPage<Props> = ({ post }) => {
       width: 1200,
     },
   }
-
-  useEffect(() => {
-    let prismCode = [
-      ...document.querySelectorAll('pre code'),
-    ] as Array<HTMLPreElement>
-
-    prismCode.forEach((code) => code.classList.add('language-html'))
-
-    prism.highlightAll()
-  })
 
   return (
     <>

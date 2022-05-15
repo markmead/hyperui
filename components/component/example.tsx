@@ -2,8 +2,6 @@ import { FunctionComponent, useEffect, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-const prism = require('prismjs')
-
 import { source } from '../../utils/component'
 
 import { allBreakpoints } from '../../lib/breakpoints'
@@ -57,10 +55,6 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
-
-  useEffect(() => {
-    prism.highlightAll()
-  })
 
   useEffect(() => {
     range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
