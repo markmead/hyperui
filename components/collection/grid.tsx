@@ -10,7 +10,7 @@ type Props = {
 
 const Grid: FunctionComponent<Props> = ({ items }) => {
   return (
-    <div>
+    <div className="grid grid-cols-4 gap-4">
       {items.map((item) => (
         <Card item={item} key={item.slug} />
       ))}
