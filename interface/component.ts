@@ -17,4 +17,5 @@ export interface ComponentCard {
   slug: string
   emoji: string
   count: number
+  unreleased?: boolean
 }
