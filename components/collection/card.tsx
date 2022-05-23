@@ -9,11 +9,15 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count } = item
+  const { title, slug, emoji, count, unreleased = false } = item
 
   return (
     <Link href={`/components/${slug}`}>
-      <a className="relative block group">
+      <a
+        className={`relative block group ${
+          unreleased && 'pointer-events-none opacity-50'
+        }`}
+      >
         <span
           className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
           aria-hidden="true"
@@ -28,7 +32,13 @@ const Card: FunctionComponent<Props> = ({ item }) => {
             <p className="mt-4 text-lg font-medium">{title}</p>
 
             <p className="mt-1 text-xs">
-              {count} {count > 1 ? ' components' : ' component'}
+              {unreleased ? (
+                <span>Coming Soon</span>
+              ) : (
+                <span>
+                  {count} {count > 1 ? ' components' : ' component'}
+                </span>
+              )}
             </p>
           </div>
         </div>
