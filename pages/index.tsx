@@ -19,6 +19,8 @@ export async function getStaticProps() {
     'count',
     'ecommerce',
     'application',
+    'unreleased',
+    'updated',
   ]
   const componentsMarketing = getMarketingComponents(componentData)
   const componentsEcommerce = getEcommerceComponents(componentData)

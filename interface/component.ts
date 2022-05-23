@@ -2,6 +2,7 @@ export interface Component {
   id?: string
   title: string
   spacing?: string
+  updated?: boolean
 }
 
 export interface ComponentPage {
@@ -18,4 +19,5 @@ export interface ComponentCard {
   emoji: string
   count: number
   unreleased?: boolean
+  updated?: boolean
 }

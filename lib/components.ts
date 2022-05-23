@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { Component } from '../interface/component'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 
@@ -35,6 +36,14 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
 
     if (field === 'count') {
       items[field] = Object.keys(data.components).length
+    }
+
+    if (field === 'updated') {
+      const values = Object.entries(data.components)
+        .map(([key, component]) => component && component.updated)
+        .filter((value: boolean) => value)
+
+      items[field] = values.length ? true : false
     }
   })
 

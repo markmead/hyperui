@@ -9,7 +9,14 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count, unreleased = false } = item
+  const {
+    title,
+    slug,
+    emoji,
+    count,
+    unreleased = false,
+    updated = false,
+  } = item
 
   return (
     <Link href={`/components/${slug}`}>
@@ -22,6 +29,8 @@ const Card: FunctionComponent<Props> = ({ item }) => {
           className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
           aria-hidden="true"
         ></span>
+
+        {updated && <span>New</span>}
 
         <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-6">
