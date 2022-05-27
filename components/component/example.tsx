@@ -38,6 +38,8 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const { id, title, spacing: space } = item
 
+  const slug = title.toLowerCase().replace(/\s/g, '-')
+
   const componentSpacing: string = space ? space : spacing
 
   useEffect(() => {
@@ -75,9 +77,20 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   }
 
   return (
-    <div className="space-y-4" ref={ref}>
+    <div className="pt-20 -mt-20 space-y-4" ref={ref} id={slug}>
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
+        <h2 className="text-lg font-bold text-black sm:text-xl">
+          <a href={`#${slug}`} className="relative block group">
+            <span
+              className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
+              aria-hidden="true"
+            >
+              #
+            </span>
+
+            {title}
+          </a>
+        </h2>
 
         <div className="hidden lg:items-center lg:space-x-4 lg:flex">
           <Range range={range} handleRange={setRange} />
