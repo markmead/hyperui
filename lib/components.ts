@@ -29,12 +29,12 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
       items[field] = content
     }
 
-    if (typeof data[field] !== 'undefined') {
-      items[field] = data[field]
-    }
-
     if (field === 'count') {
       items[field] = Object.keys(data.components).length
+    }
+
+    if (typeof data[field] !== 'undefined') {
+      items[field] = data[field]
     }
   })
 
