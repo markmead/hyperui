@@ -3,6 +3,7 @@ import type { FunctionComponent } from 'react'
 import Link from 'next/link'
 
 import { ComponentCard } from '../../interface/component'
+import Tags from '../component/tags'
 
 type Props = {
   item: ComponentCard
@@ -26,17 +27,7 @@ const Card: FunctionComponent<Props> = ({ item }) => {
                 {emoji}
               </span>
 
-              <div className="flex gap-1.5 items-center -mr-3 -mt-3">
-                {tags &&
-                  tags.map((tag) => (
-                    <span
-                      className="text-[10px] text-white bg-black rounded py-1 px-3"
-                      key={tag}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-              </div>
+              <Tags tags={tags} card={true} />
             </div>
 
             <p className="mt-4 text-lg font-medium">{title}</p>

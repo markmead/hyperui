@@ -15,6 +15,7 @@ import Copy from './buttons/copy'
 import Code from './buttons/view'
 import Range from './range'
 import IconLoading from '../icon/loading'
+import Tags from './tags'
 
 type Props = {
   name: string
@@ -78,17 +79,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   return (
     <div className="pt-20 -mt-20" ref={ref} id={slug}>
-      <div className="flex gap-1.5 items-center">
-        {tags &&
-          tags.map((tag) => (
-            <span
-              className="text-[10px] text-white bg-black rounded py-1 px-3"
-              key={tag}
-            >
-              {tag}
-            </span>
-          ))}
-      </div>
+      <Tags tags={tags} />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
