@@ -30,20 +30,12 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
       items[field] = content
     }
 
-    if (typeof data[field] !== 'undefined') {
-      items[field] = data[field]
-    }
-
     if (field === 'count') {
       items[field] = Object.keys(data.components).length
     }
 
-    if (field === 'updated') {
-      const values = Object.entries(data.components)
-        .map(([key, component]) => component && component.updated)
-        .filter((value: boolean) => value)
-
-      items[field] = values.length ? true : false
+    if (typeof data[field] !== 'undefined') {
+      items[field] = data[field]
     }
   })
 

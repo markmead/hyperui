@@ -3,6 +3,7 @@ export interface Component {
   title: string
   spacing?: string
   updated?: boolean
+  latest?: boolean
 }
 
 export interface ComponentPage {
@@ -18,6 +19,6 @@ export interface ComponentCard {
   slug: string
   emoji: string
   count: number
-  unreleased?: boolean
   updated?: boolean
+  latest?: boolean
 }
