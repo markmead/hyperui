@@ -76,11 +76,19 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
       : setRange(Number(width.replace('px', '')))
   }
 
+  const handleLink = (href: string) => {
+    window.history.replaceState({}, '', href)
+  }
+
   return (
     <div className="pt-20 -mt-20 space-y-4" ref={ref} id={slug}>
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold text-black sm:text-xl">
-          <a href={`#${slug}`} className="relative block group">
+          <a
+            href={`#${slug}`}
+            className="relative block group"
+            onClick={(e) => handleLink(e.currentTarget.href)}
+          >
             <span
               className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
               aria-hidden="true"
