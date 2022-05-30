@@ -1,7 +1,6 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
-import { Component } from '../interface/component'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 

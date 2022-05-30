@@ -38,7 +38,6 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
       id: key,
       title: value.title,
       spacing: value.spacing ?? false,
-      updated: value.updated ?? false,
     })
   )
 

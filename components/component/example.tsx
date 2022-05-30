@@ -36,9 +36,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const breakpoints = allBreakpoints
 
-  const { id, title, spacing: space, updated } = item
-
-  console.log(item)
+  const { id, title, spacing: space } = item
 
   const slug = title.toLowerCase().replace(/\s/g, '-')
 

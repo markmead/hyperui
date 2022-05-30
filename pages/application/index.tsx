@@ -16,6 +16,8 @@ export async function getStaticProps() {
     'application',
     'emoji',
     'count',
+    'updated',
+    'latest',
   ])
 
   return {
