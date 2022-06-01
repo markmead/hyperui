@@ -10,7 +10,6 @@
     "watch": "yarn css -w"
   },
   "dependencies": {
-    "@tailwindcss/line-clamp": "^0.4.0",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -19,6 +18,7 @@
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/node": "17.0.21",
     "@types/react": "17.0.40",
