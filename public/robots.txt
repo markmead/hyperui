@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://hyperui.dev
+Host: https://www.hyperui.dev
 
 # Sitemaps
-Sitemap: https://hyperui.dev/sitemap.xml
+Sitemap: https://www.hyperui.dev/sitemap.xml

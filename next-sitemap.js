@@ -1,5 +1,5 @@
 module.exports = {
   exclude: ['/components/**/*.html'],
   generateRobotsTxt: true,
-  siteUrl: 'https://hyperui.dev',
+  siteUrl: 'https://www.hyperui.dev',
 }
