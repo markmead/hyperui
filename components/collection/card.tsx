@@ -3,13 +3,14 @@ import type { FunctionComponent } from 'react'
 import Link from 'next/link'
 
 import { ComponentCard } from '../../interface/component'
+import Tags from '../component/tags'
 
 type Props = {
   item: ComponentCard
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count } = item
+  const { title, slug, emoji, count, tags } = item
 
   return (
     <Link href={`/components/${slug}`}>
@@ -21,9 +22,13 @@ const Card: FunctionComponent<Props> = ({ item }) => {
 
         <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-6">
-            <span className="text-xl" role="img" aria-hidden="true">
-              {emoji}
-            </span>
+            <div className="flex items-start justify-between">
+              <span className="text-xl" role="img" aria-hidden="true">
+                {emoji}
+              </span>
+
+              <Tags tags={tags} card={true} />
+            </div>
 
             <p className="mt-4 text-lg font-medium">{title}</p>
 

@@ -16,6 +16,7 @@ export async function getStaticProps() {
     'ecommerce',
     'emoji',
     'count',
+    'tags',
   ])
 
   return {
