@@ -2,6 +2,9 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 
+import { Collection } from '../interface/collection'
+import { getCategories } from './categories'
+
 const componentsDirectory = join(process.cwd(), '/data/components')
 
 export function getComponentSlugs() {
@@ -42,47 +45,19 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
 }
 
 export function componentSlugs() {
-  let slugs = getComponentSlugs().map((slug) => slug.replace(/\.mdx$/, ''))
+  let categories = getCategories(['slug', 'collections'])
 
-  return slugs.map((slug) => {
-    return {
-      params: {
-        slug,
-      },
-    }
-  })
-}
-
-export function getComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs.map((slug) => getComponentBySlug(slug, fields))
-
-  return components
-}
-
-export function getMarketingComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => !component.ecommerce && !component.application)
-
-  return components
-}
-
-export function getEcommerceComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.ecommerce)
-
-  return components
-}
-
-export function getApplicationComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.application)
-
-  return components
+  return categories.flatMap((category: any) =>
+    category.children.flatMap((collection: Collection) =>
+      collection.components.flatMap((component: string) => {
+        return {
+          params: {
+            category: category.slug,
+            collection: collection.slug,
+            slug: component,
+          },
+        }
+      })
+    )
+  )
 }

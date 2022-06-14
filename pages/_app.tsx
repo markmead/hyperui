@@ -50,15 +50,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:url" content="https://www.hyperui.dev/" />
       </Head>
 
-      <Banner
+      {/* <Banner
         text="⭐️ Star HyperUI on GitHub ⭐️"
         url="https://github.com/markmead/hyperui"
-      />
+      /> */}
 
-      <Popup
+      {/* <Popup
         text="Use Alpine JS? Click Here 👋"
         url="https://alpinejs.hyperui.dev"
-      />
+      /> */}
 
       <Header />
 

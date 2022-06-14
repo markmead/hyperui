@@ -3,6 +3,7 @@ export interface Component {
   title: string
   spacing?: string
   tags?: string[]
+  collection?: string
 }
 
 export interface ComponentPage {

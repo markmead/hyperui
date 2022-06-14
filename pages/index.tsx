@@ -1,81 +1,78 @@
 import type { NextPage } from 'next'
 
-import { ComponentCard } from '../interface/component'
+import { Category } from '../interface/category'
 
-import {
-  getMarketingComponents,
-  getEcommerceComponents,
-  getApplicationComponents,
-} from '../lib/components'
+import { getCategoryBySlug } from '../lib/categories'
 
 import Banner from '../components/content/banner'
-import Grid from '../components/collection/grid'
+import Listing from '../components/category/listing'
 
 export async function getStaticProps() {
-  const componentData = [
+  const marketingCategory = getCategoryBySlug('marketing', [
     'title',
     'slug',
-    'emoji',
-    'count',
-    'ecommerce',
-    'application',
-    'tags',
-  ]
-  const componentsMarketing = getMarketingComponents(componentData)
-  const componentsEcommerce = getEcommerceComponents(componentData)
-  const componentsApplication = getApplicationComponents(componentData)
+    'collections',
+  ])
+
+  const applicationCategory = getCategoryBySlug('application-ui', [
+    'title',
+    'slug',
+    'collections',
+  ])
+
+  const ecommerceCategory = getCategoryBySlug('ecommerce', [
+    'title',
+    'slug',
+    'collections',
+  ])
 
   return {
     props: {
-      componentsMarketing,
-      componentsEcommerce,
-      componentsApplication,
+      marketingCategory,
+      applicationCategory,
+      ecommerceCategory,
     },
   }
 }
 
 type Props = {
-  componentsMarketing: Array<ComponentCard>
-  componentsEcommerce: Array<ComponentCard>
-  componentsApplication: Array<ComponentCard>
+  marketingCategory: Category
+  applicationCategory: Category
+  ecommerceCategory: Category
 }
 
 const Home: NextPage<Props> = ({
-  componentsMarketing,
-  componentsEcommerce,
-  componentsApplication,
+  marketingCategory,
+  applicationCategory,
+  ecommerceCategory,
 }) => {
   return (
     <>
-      <Banner
-        title="HyperUI"
-        subtitle="Free Open Source Tailwind CSS Components"
-      >
-        HyperUI is a collection of free Tailwind CSS components that can be used
-        in your next project. With a range of components, you can build your
-        next marketing website, admin dashboard, ecommerce store and much more.
+      <Banner title="Open Source Tailwind CSS Components" subtitle="HyperUI">
+        HyperUI is an open source Tailwind CSS component library featuring over
+        200+ components. As HyperUI is open source these components are free to
+        use. It also means that you are welcome to create a pull request and add
+        your own components 🥳.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">Marketing Components</h2>
+      <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-16 sm:px-6 lg:px-8 sm:pb-24">
+        <Listing
+          title={marketingCategory.title}
+          category={marketingCategory.slug}
+          collections={marketingCategory.children}
+        />
 
-          <Grid items={componentsMarketing} />
-        </div>
+        <Listing
+          title={applicationCategory.title}
+          category={applicationCategory.slug}
+          collections={applicationCategory.children}
+        />
 
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">Ecommerce Components</h2>
-
-          <Grid items={componentsEcommerce} />
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">
-            Application UI Components
-          </h2>
-
-          <Grid items={componentsApplication} />
-        </div>
+        <Listing
+          title={ecommerceCategory.title}
+          category={ecommerceCategory.slug}
+          collections={ecommerceCategory.children}
+        />
       </div>
     </>
   )

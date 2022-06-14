@@ -5,20 +5,19 @@ import Head from 'next/head'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import ToastContext from '../../context/toast'
+import ToastContext from '../../../../context/toast'
 
-import { Component } from '../../interface/component'
-import { FrontMatter } from '../../interface/frontmatter'
+import { Component } from '../../../../interface/component'
+import { FrontMatter } from '../../../../interface/frontmatter'
 
-import { componentSlugs } from '../../lib/components'
+import { componentSlugs } from '../../../../lib/components'
 
 import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import List from '../../components/collection/list'
+import List from '../../../../components/collection/list'
 
 const components = {
   List,
@@ -85,6 +84,8 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
 
 type Params = {
   params: {
+    category: string
+    collection: string
     slug: string
   }
 }

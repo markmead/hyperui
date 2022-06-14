@@ -2,35 +2,32 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
-import { ComponentCard } from '../../interface/component'
+import { Category } from '../../../interface/category'
 
-import { getEcommerceComponents } from '../../lib/components'
+import { getCategoryBySlug } from '../../../lib/categories'
 
-import Banner from '../../components/content/banner'
-import Grid from '../../components/collection/grid'
+import Banner from '../../../components/content/banner'
+import Listing from '../../../components/category/listing'
 
 export async function getStaticProps() {
-  const components = getEcommerceComponents([
+  const ecommerceCategory = getCategoryBySlug('ecommerce', [
     'title',
     'slug',
-    'ecommerce',
-    'emoji',
-    'count',
-    'tags',
+    'collections',
   ])
 
   return {
     props: {
-      components,
+      ecommerceCategory,
     },
   }
 }
 
 type Props = {
-  components: Array<ComponentCard>
+  ecommerceCategory: Category
 }
 
-const Ecommerce: NextPage<Props> = ({ components }) => {
+const Ecommerce: NextPage<Props> = ({ ecommerceCategory }) => {
   return (
     <>
       <Head>
@@ -46,16 +43,20 @@ const Ecommerce: NextPage<Props> = ({ components }) => {
       </Head>
 
       <Banner
-        title="HyperUI Ecommerce"
-        subtitle="Free Open Source Ecommerce Tailwind CSS Components"
+        title="Open Source Tailwind CSS Components for eCommerce Projects"
+        subtitle="HyperUI Ecommerce"
       >
         Working on an ecommerce project? HyperUI has a growing range of
         ecommerce Tailwind CSS components, that will help you build your next
         ecommerce website in Shopify, BigCommerce, Magento and more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto">
-        <Grid items={components} />
+      <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-16 sm:px-6 lg:px-8 sm:pb-24">
+        <Listing
+          title={ecommerceCategory.title}
+          category={ecommerceCategory.slug}
+          collections={ecommerceCategory.children}
+        />
       </div>
     </>
   )

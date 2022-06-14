@@ -18,63 +18,77 @@ const Header: FunctionComponent = () => {
   }, [router.asPath])
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-      <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
-        <nav className="flex items-center">
+    <header>
+      <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           <Link href="/">
-            <a className="text-sm font-medium">
+            <a className="font-medium">
               HyperUI
-              <span aria-hidden="true" className="ml-1.5" role="img">
+              <span role="img" aria-hidden="true">
                 🚀
               </span>
             </a>
           </Link>
 
-          <span className="block w-px h-6 mx-4 bg-gray-100"></span>
+          <div className="block sm:hidden">
+            <button className="inline-flex items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
 
-          <Menu menu={menu} handleMenu={setMenu} links={links} />
+              <span className="text-sm font-medium"> Menu </span>
+            </button>
+          </div>
 
-          <ul className="hidden space-x-4 sm:flex">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href}>
-                  <a className="block text-xs font-medium hover:opacity-75">
-                    {link.title}
+          <nav className="hidden sm:block">
+            <ul className="flex items-center gap-4">
+              <li>
+                <Link href="/components/marketing">
+                  <a className="text-sm font-medium text-gray-700">Marketing</a>
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/components/ecommerce">
+                  <a className="text-sm font-medium text-gray-700">eCommerce</a>
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/components/application-ui">
+                  <a className="text-sm font-medium text-gray-700">
+                    Application UI
                   </a>
                 </Link>
               </li>
-            ))}
-          </ul>
-        </nav>
 
-        <div className="flex items-center justify-end flex-1">
-          <Link href="/blog">
-            <a className="block text-xs font-medium hover:opacity-75">
-              <span className="hidden sm:inline">HyperUI</span> Blog
-            </a>
-          </Link>
+              <li
+                aria-hidden="true"
+                className="w-px h-4 bg-gray-300 rounded-full"
+              ></li>
 
-          <a
-            className="p-2 ml-4 rounded hover:opacity-75"
-            href="https://twitter.com/itsmarkmead"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span className="sr-only"> Twitter </span>
+              <li>
+                <Link href="/blog">
+                  <a className="text-sm font-medium text-gray-700">Blog</a>
+                </Link>
+              </li>
 
-            <IconTwitter />
-          </a>
-
-          <a
-            className="p-2 rounded hover:opacity-75"
-            href="https://github.com/markmead/hyperui"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span className="sr-only"> GitHub </span>
-
-            <IconGithub />
-          </a>
+              <li>
+                <Link href="/faqs">
+                  <a className="text-sm font-medium text-gray-700">FAQs</a>
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>

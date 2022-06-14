@@ -2,35 +2,32 @@ import type { NextPage } from 'next'
 
 import Head from 'next/head'
 
-import { ComponentCard } from '../../interface/component'
+import { Category } from '../../../interface/category'
 
-import { getApplicationComponents } from '../../lib/components'
+import { getCategoryBySlug } from '../../../lib/categories'
 
-import Banner from '../../components/content/banner'
-import Grid from '../../components/collection/grid'
+import Banner from '../../../components/content/banner'
+import Listing from '../../../components/category/listing'
 
 export async function getStaticProps() {
-  const components = getApplicationComponents([
+  const applicationCategory = getCategoryBySlug('application-ui', [
     'title',
     'slug',
-    'application',
-    'emoji',
-    'count',
-    'tags',
+    'collections',
   ])
 
   return {
     props: {
-      components,
+      applicationCategory,
     },
   }
 }
 
 type Props = {
-  components: Array<ComponentCard>
+  applicationCategory: Category
 }
 
-const Application: NextPage<Props> = ({ components }) => {
+const Application: NextPage<Props> = ({ applicationCategory }) => {
   return (
     <>
       <Head>
@@ -54,8 +51,12 @@ const Application: NextPage<Props> = ({ components }) => {
         you build an accessible, responsive application for your next project.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-8 mx-auto">
-        <Grid items={components} />
+      <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-16 sm:px-6 lg:px-8 sm:pb-24">
+        <Listing
+          title={applicationCategory.title}
+          category={applicationCategory.slug}
+          collections={applicationCategory.children}
+        />
       </div>
     </>
   )
