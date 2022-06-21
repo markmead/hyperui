@@ -5,7 +5,8 @@ module.exports = {
     './data/components/*.{md,mdx}',
     './lib/*.{js,ts}',
     './pages/**/*.{js,ts,jsx,tsx}',
-    './public/**/**/*.html',
+    './public/components/**/*.html',
+    './public/components/**/**/*.html',
     './utils/*.{js,ts}',
   ],
   theme: {
