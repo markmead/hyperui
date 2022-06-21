@@ -53,8 +53,8 @@ export function componentSlugs() {
         return {
           params: {
             category: category.slug,
-            collection: collection.slug,
-            slug: component,
+            collection: collection.slug.replace('marketing-', ''),
+            slug: component.replace('marketing-', ''),
           },
         }
       })

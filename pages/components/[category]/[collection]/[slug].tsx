@@ -61,7 +61,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
         </Head>
 
         <section>
-          <div className="max-w-screen-xl px-4 pt-24 pb-16 mx-auto">
+          <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-16 sm:px-6 lg:px-8 sm:pb-24">
             <div className="prose max-w-none">
               <MDXRemote {...source} components={components} scope={data} />
             </div>
@@ -90,8 +90,10 @@ type Params = {
   }
 }
 
-export async function getStaticProps({ params: { slug } }: Params) {
-  const source = fs.readFileSync(`data/components/${slug}.mdx`)
+export async function getStaticProps({ params: { category, slug } }: Params) {
+  let realSlug = `${category}-${slug}`
+
+  const source = fs.readFileSync(`data/components/${realSlug}.mdx`)
 
   const { content, data } = matter(source)
 

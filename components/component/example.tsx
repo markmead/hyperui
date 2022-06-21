@@ -1,5 +1,7 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 
+import { useRouter } from 'next/router'
+
 import { useInView } from 'react-intersection-observer'
 
 const prism = require('prismjs')
@@ -29,6 +31,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
+  let router = useRouter()
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -45,7 +48,7 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   useEffect(() => {
     async function fetchHtml() {
-      const response = await fetch(`/components/${name}/${id}.html`)
+      const response = await fetch(`${router.asPath}/${id}.html`)
       const text = await response.text()
 
       setCode(text)
