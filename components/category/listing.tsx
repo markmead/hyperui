@@ -6,6 +6,7 @@ import { Collection } from '../../interface/collection'
 import { ComponentCard } from '../../interface/component'
 
 import Card from '../collection/card'
+import { urlSlug } from '../../utils/slug'
 
 type Props = {
   title: string
@@ -26,12 +27,12 @@ const Listing: FunctionComponent<Props> = ({
 
       <div className="mt-4 space-y-8">
         {collections.map((collection: Collection) => {
-          let realCollection = collection.slug.replace(`${category}-`, '')
+          let realCollectionSlug = urlSlug(collection.slug, category)
 
           return (
             <div key={collection.title}>
               <h2 className="font-medium">
-                <Link href={`/components/${category}/${realCollection}`}>
+                <Link href={`/components/${category}/${realCollectionSlug}`}>
                   {collection.title}
                 </Link>
               </h2>

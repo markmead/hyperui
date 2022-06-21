@@ -4,8 +4,8 @@ import matter from 'gray-matter'
 
 import { getComponentBySlug } from './components'
 
-import { Collection } from '../interface/collection'
 import { getCategories } from './categories'
+import { urlSlug } from '../utils/slug'
 
 const collectionsDirectory = join(process.cwd(), '/data/collections')
 
@@ -59,7 +59,7 @@ export function collectionSlugs() {
       return {
         params: {
           category: category.slug,
-          collection: collection.replace(`${category.slug}-`, ''),
+          collection: urlSlug(collection, category.slug),
         },
       }
     })

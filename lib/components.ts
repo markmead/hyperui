@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 
 import { Collection } from '../interface/collection'
 import { getCategories } from './categories'
+import { urlSlug } from '../utils/slug'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 
@@ -53,8 +54,8 @@ export function componentSlugs() {
         return {
           params: {
             category: category.slug,
-            collection: collection.slug.replace('marketing-', ''),
-            slug: component.replace('marketing-', ''),
+            collection: urlSlug(collection.slug, category.slug),
+            slug: urlSlug(component, category.slug),
           },
         }
       })
