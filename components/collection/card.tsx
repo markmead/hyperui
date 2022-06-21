@@ -13,9 +13,8 @@ type Props = {
 const Card: FunctionComponent<Props> = ({ item, category, collection }) => {
   const { title, slug, emoji, count, tags } = item
 
-  let realSlug = slug.replace(`${category}-`, '')
-
   let realCollection = collection.replace(`${category}-`, '')
+  let realSlug = slug.replace(`${category}-`, '')
 
   return (
     <Link href={`/components/${category}/${realCollection}/${realSlug}`}>

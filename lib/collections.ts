@@ -59,7 +59,7 @@ export function collectionSlugs() {
       return {
         params: {
           category: category.slug,
-          collection: collection,
+          collection: collection.replace(`${category.slug}-`, ''),
         },
       }
     })

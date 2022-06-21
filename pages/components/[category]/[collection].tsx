@@ -67,7 +67,9 @@ type Params = {
 export async function getStaticProps({
   params: { category, collection },
 }: Params) {
-  const source = fs.readFileSync(`data/collections/${collection}.mdx`)
+  let realSlug = `${category}-${collection}`
+
+  const source = fs.readFileSync(`data/collections/${realSlug}.mdx`)
 
   const { content, data } = matter(source)
 
@@ -79,7 +81,7 @@ export async function getStaticProps({
     scope: data,
   })
 
-  let collectionData = getCollectionBySlug(collection, [
+  let collectionData = getCollectionBySlug(realSlug, [
     'title',
     'slug',
     'description',

@@ -26,10 +26,12 @@ const Listing: FunctionComponent<Props> = ({
 
       <div className="mt-4 space-y-8">
         {collections.map((collection: Collection) => {
+          let realCollection = collection.slug.replace(`${category}-`, '')
+
           return (
             <div key={collection.title}>
               <h2 className="font-medium">
-                <Link href={`/components/${category}/${collection.slug}`}>
+                <Link href={`/components/${category}/${realCollection}`}>
                   {collection.title}
                 </Link>
               </h2>
