@@ -10,14 +10,21 @@ import Banner from '../components/content/banner'
 import Grid from '../components/collection/grid'
 
 export async function getStaticProps() {
-  const componentData = ['title', 'slug', 'emoji', 'count', 'tags', 'category']
-
   const categorySlugs = getComponentCategorySlugsSimple()
 
-  let componentsByCategory = categorySlugs.map((category: string) => {
-    let categoryComponents = getComponentsByCategory(category, componentData)
+  const componentsByCategory = categorySlugs.map((category: any) => {
+    const slug: string = category
 
-    let categoryDetails = getCategoryBySlug(category, ['title', 'banner'])
+    const categoryDetails = getCategoryBySlug(slug, ['title', 'banner'])
+
+    const categoryComponents = getComponentsByCategory(slug, [
+      'title',
+      'slug',
+      'emoji',
+      'count',
+      'tags',
+      'category',
+    ])
 
     return {
       category: categoryDetails,
