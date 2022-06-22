@@ -60,6 +60,33 @@ export function getComponents(fields: string[] = []) {
   return components
 }
 
+export function getComponentCategorySlugs() {
+  let categories = getComponents(['category'])
+    .map((component) => component.category)
+    .filter((item) => item)
+
+  return categories.map((category) => {
+    return {
+      params: {
+        category,
+      },
+    }
+  })
+}
+
+export function getComponentsByCategory(
+  category: string,
+  fields: string[] = []
+) {
+  const slugs = getComponentSlugs()
+
+  const components = slugs
+    .map((slug) => getComponentBySlug(slug, fields))
+    .filter((component) => component.category == category)
+
+  return components
+}
+
 export function getMarketingComponents(fields: string[] = []) {
   const slugs = getComponentSlugs()
   const components = slugs
