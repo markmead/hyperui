@@ -3,6 +3,7 @@ import { join } from 'path'
 import matter from 'gray-matter'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
+const categoriesDirectory = join(process.cwd(), '/data/categories')
 
 export function getComponentSlugs() {
   return fs.readdirSync(componentsDirectory)
@@ -87,29 +88,54 @@ export function getComponentsByCategory(
   return components
 }
 
-export function getMarketingComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => !component.ecommerce && !component.application)
+export function getCategoryBySlug(category: string, fields: string[] = []) {
+  const realSlug = category.replace(/\.mdx$/, '')
+  const fullPath = join(categoriesDirectory, `${realSlug}.mdx`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data } = matter(fileContents)
 
-  return components
+  type Items = {
+    [key: string]: string | number
+  }
+
+  const items: Items = {}
+
+  fields.forEach((field) => {
+    if (field === 'slug') {
+      items[field] = realSlug
+    }
+
+    if (typeof data[field] !== 'undefined') {
+      items[field] = data[field]
+    }
+  })
+
+  return items
 }
 
-export function getEcommerceComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.ecommerce)
+// export function getMarketingComponents(fields: string[] = []) {
+//   const slugs = getComponentSlugs()
+//   const components = slugs
+//     .map((slug) => getComponentBySlug(slug, fields))
+//     .filter((component) => !component.ecommerce && !component.application)
 
-  return components
-}
+//   return components
+// }
 
-export function getApplicationComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.application)
+// export function getEcommerceComponents(fields: string[] = []) {
+//   const slugs = getComponentSlugs()
+//   const components = slugs
+//     .map((slug) => getComponentBySlug(slug, fields))
+//     .filter((component) => component.ecommerce)
 
-  return components
-}
+//   return components
+// }
+
+// export function getApplicationComponents(fields: string[] = []) {
+//   const slugs = getComponentSlugs()
+//   const components = slugs
+//     .map((slug) => getComponentBySlug(slug, fields))
+//     .filter((component) => component.application)
+
+//   return components
+// }
