@@ -61,6 +61,12 @@ export function getComponents(fields: string[] = []) {
   return components
 }
 
+export function getComponentCategorySlugsSimple() {
+  return getComponents(['category'])
+    .map((component) => component.category)
+    .filter((item) => item)
+}
+
 export function getComponentCategorySlugs() {
   let categories = getComponents(['category'])
     .map((component) => component.category)

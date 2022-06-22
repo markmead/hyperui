@@ -1,50 +1,42 @@
 import type { NextPage } from 'next'
 
-import { ComponentCard } from '../interface/component'
-
 import {
-  getMarketingComponents,
-  getEcommerceComponents,
-  getApplicationComponents,
+  getComponentCategorySlugsSimple,
+  getComponentsByCategory,
+  getCategoryBySlug,
 } from '../lib/components'
 
 import Banner from '../components/content/banner'
 import Grid from '../components/collection/grid'
 
 export async function getStaticProps() {
-  const componentData = [
-    'title',
-    'slug',
-    'emoji',
-    'count',
-    'ecommerce',
-    'application',
-    'tags',
-  ]
-  const componentsMarketing = getMarketingComponents(componentData)
-  const componentsEcommerce = getEcommerceComponents(componentData)
-  const componentsApplication = getApplicationComponents(componentData)
+  const componentData = ['title', 'slug', 'emoji', 'count', 'tags', 'category']
+
+  const categorySlugs = getComponentCategorySlugsSimple()
+
+  let componentsByCategory = categorySlugs.map((category: string) => {
+    let categoryComponents = getComponentsByCategory(category, componentData)
+
+    let categoryDetails = getCategoryBySlug(category, ['title', 'banner'])
+
+    return {
+      category: categoryDetails,
+      components: categoryComponents,
+    }
+  })
 
   return {
     props: {
-      componentsMarketing,
-      componentsEcommerce,
-      componentsApplication,
+      componentsByCategory,
     },
   }
 }
 
 type Props = {
-  componentsMarketing: Array<ComponentCard>
-  componentsEcommerce: Array<ComponentCard>
-  componentsApplication: Array<ComponentCard>
+  componentsByCategory: any
 }
 
-const Home: NextPage<Props> = ({
-  componentsMarketing,
-  componentsEcommerce,
-  componentsApplication,
-}) => {
+const Home: NextPage<Props> = ({ componentsByCategory }) => {
   return (
     <>
       <Banner
@@ -57,25 +49,17 @@ const Home: NextPage<Props> = ({
       </Banner>
 
       <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">Marketing Components</h2>
+        {componentsByCategory.map((item: any) => {
+          return (
+            <div className="space-y-4" key={item.category.title}>
+              <h2 className="text-lg font-bold sm:text-xl">
+                {item.category.banner.title}
+              </h2>
 
-          <Grid items={componentsMarketing} />
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">Ecommerce Components</h2>
-
-          <Grid items={componentsEcommerce} />
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">
-            Application UI Components
-          </h2>
-
-          <Grid items={componentsApplication} />
-        </div>
+              <Grid items={item.components} />
+            </div>
+          )
+        })}
       </div>
     </>
   )
