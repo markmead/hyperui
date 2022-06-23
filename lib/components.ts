@@ -46,10 +46,12 @@ export function componentSlugs() {
   let components = getComponents(['slug', 'category'])
 
   return components.map(({ slug, category }) => {
+    const realSlug = slug.replace(`${category}-`, '')
+
     return {
       params: {
         category,
-        slug,
+        slug: realSlug,
       },
     }
   })

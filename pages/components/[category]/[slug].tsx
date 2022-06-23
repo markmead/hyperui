@@ -85,12 +85,13 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
 
 type Params = {
   params: {
+    category: string
     slug: string
   }
 }
 
-export async function getStaticProps({ params: { slug } }: Params) {
-  const source = fs.readFileSync(`data/components/${slug}.mdx`)
+export async function getStaticProps({ params: { category, slug } }: Params) {
+  const source = fs.readFileSync(`data/components/${category}-${slug}.mdx`)
 
   const { content, data } = matter(source)
 

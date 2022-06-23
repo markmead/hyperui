@@ -16,19 +16,20 @@ import Code from './buttons/view'
 import Range from './range'
 import IconLoading from '../icon/loading'
 import Tags from './tags'
+import { useRouter } from 'next/router'
 
 type Props = {
-  name: string
   item: Component
   spacing: string
 }
 
-const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
+const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
+  let router = useRouter()
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -45,7 +46,10 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   useEffect(() => {
     async function fetchHtml() {
-      const response = await fetch(`/components/${name}/${id}.html`)
+      const { query } = router
+      const { category, slug } = query
+
+      const response = await fetch(`/components/${category}-${slug}/${id}.html`)
       const text = await response.text()
 
       setCode(text)
@@ -154,4 +158,4 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   )
 }
 
-export default Test
+export default Example
