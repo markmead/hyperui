@@ -44,7 +44,7 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
 }
 
 export function componentSlugs() {
-  let components = getComponents(['slug', 'category'])
+  let components = getComponents(['title', 'slug', 'category'])
 
   return components.map((component: any) => {
     const slug: string = component.slug
@@ -101,6 +101,12 @@ export function getComponentsByCategory(
   const components = slugs
     .map((slug) => getComponentBySlug(slug, fields))
     .filter((component) => component.category == category)
+    .sort((componentA, componentB) => {
+      const titleA: string = componentA.title as string
+      const titleB: string = componentB.title as string
+
+      return titleA.localeCompare(titleB)
+    })
 
   return components
 }
