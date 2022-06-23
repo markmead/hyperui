@@ -62,17 +62,21 @@ export function getComponents(fields: string[] = []) {
 }
 
 export function getComponentCategorySlugsSimple() {
-  return getComponents(['category'])
+  const categorySlugs = getComponents(['category'])
     .map((component) => component.category)
     .filter((item) => item)
+
+  return [...new Set(categorySlugs)]
 }
 
 export function getComponentCategorySlugs() {
-  let categories = getComponents(['category'])
+  let categorySlugs = getComponents(['category'])
     .map((component) => component.category)
     .filter((item) => item)
 
-  return categories.map((category) => {
+  categorySlugs = [...new Set(categorySlugs)]
+
+  return categorySlugs.map((category) => {
     return {
       params: {
         category,
