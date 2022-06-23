@@ -43,11 +43,12 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
 }
 
 export function componentSlugs() {
-  let slugs = getComponentSlugs().map((slug) => slug.replace(/\.mdx$/, ''))
+  let components = getComponents(['slug', 'category'])
 
-  return slugs.map((slug) => {
+  return components.map(({ slug, category }) => {
     return {
       params: {
+        category,
         slug,
       },
     }
