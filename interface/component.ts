@@ -19,4 +19,5 @@ export interface ComponentCard {
   emoji: string
   count: number
   tags?: string[]
+  category: string
 }

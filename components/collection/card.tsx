@@ -10,10 +10,10 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count, tags } = item
+  const { title, slug, emoji, count, tags, category } = item
 
   return (
-    <Link href={`/components/${slug}`}>
+    <Link href={`/components/${category}/${slug}`}>
       <a className="relative block group">
         <span
           className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
