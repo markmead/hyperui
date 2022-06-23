@@ -13,7 +13,6 @@ import { FrontMatter } from '../../../interface/frontmatter'
 import { componentSlugs } from '../../../lib/components'
 
 import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
