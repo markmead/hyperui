@@ -17,3 +17,7 @@ export function source(html: string, spacing: string = 'relative') {
     </body>
   `
 }
+
+export function slugify(slug: string, category: string) {
+  return slug.replace(`${category}-`, '')
+}

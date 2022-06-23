@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { slugify } from '../utils/component'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 const categoriesDirectory = join(process.cwd(), '/data/categories')
@@ -45,8 +46,11 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
 export function componentSlugs() {
   let components = getComponents(['slug', 'category'])
 
-  return components.map(({ slug, category }) => {
-    const realSlug = slug.replace(`${category}-`, '')
+  return components.map((component: any) => {
+    const slug: string = component.slug
+    const category: string = component.category
+
+    const realSlug = slugify(slug, category)
 
     return {
       params: {

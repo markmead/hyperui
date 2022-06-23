@@ -40,15 +40,13 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const { id, title, spacing: space, tags } = item
 
-  const slug = title.toLowerCase().replace(/\s/g, '-')
+  const { query } = router
+  const { category, slug } = query
 
   const componentSpacing: string = space ? space : spacing
 
   useEffect(() => {
     async function fetchHtml() {
-      const { query } = router
-      const { category, slug } = query
-
       const response = await fetch(`/components/${category}-${slug}/${id}.html`)
       const text = await response.text()
 
