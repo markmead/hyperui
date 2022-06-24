@@ -100,7 +100,7 @@ export function getComponentsByCategory(
 
   const components = slugs
     .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.category == category)
+    .filter((component) => component.category === category)
     .sort((componentA, componentB) => {
       const titleA: string = componentA.title as string
       const titleB: string = componentB.title as string
