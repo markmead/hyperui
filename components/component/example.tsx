@@ -38,7 +38,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const breakpoints = allBreakpoints
 
-  const { id, title, spacing: space, tags } = item
+  const { id, title, tags, spacing: space } = item
 
   const { query } = router
   const { category, slug } = query
@@ -80,23 +80,12 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   }
 
   return (
-    <div className="pt-20 -mt-20" ref={ref} id={slug}>
+    <div className="pt-20 -mt-20" ref={ref}>
       <Tags tags={tags} />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-black sm:text-xl">
-            <a href={`#${slug}`} className="relative block group">
-              <span
-                className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
-                aria-hidden="true"
-              >
-                #
-              </span>
-
-              {title}
-            </a>
-          </h2>
+          <h2 className="text-lg font-bold text-black sm:text-xl">{title}</h2>
 
           <div className="hidden lg:items-center lg:space-x-4 lg:flex">
             <Range range={range} handleRange={setRange} />
