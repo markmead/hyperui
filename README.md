@@ -10,6 +10,8 @@ Search through the website for components, view the preview, the source code and
 
 ## Contributing
 
+**There has been an update to the HyperUI file/folder structure as it now uses categories.**
+
 ### Setup
 
 ```shell
