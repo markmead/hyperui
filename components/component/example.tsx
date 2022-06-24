@@ -16,19 +16,20 @@ import Code from './buttons/view'
 import Range from './range'
 import IconLoading from '../icon/loading'
 import Tags from './tags'
+import { useRouter } from 'next/router'
 
 type Props = {
-  name: string
   item: Component
   spacing: string
 }
 
-const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
+const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   let [code, setCode] = useState<string>()
   let [html, setHtml] = useState<string>()
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
+  let router = useRouter()
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -37,15 +38,18 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
 
   const breakpoints = allBreakpoints
 
-  const { id, title, spacing: space, tags } = item
+  const { id, title, tags, spacing: space } = item
 
-  const slug = title.toLowerCase().replace(/\s/g, '-')
+  const { query } = router
+  const { category, slug } = query
 
   const componentSpacing: string = space ? space : spacing
 
+  const componentId = `component-${id}`
+
   useEffect(() => {
     async function fetchHtml() {
-      const response = await fetch(`/components/${name}/${id}.html`)
+      const response = await fetch(`/components/${category}-${slug}/${id}.html`)
       const text = await response.text()
 
       setCode(text)
@@ -78,13 +82,13 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   }
 
   return (
-    <div className="pt-20 -mt-20" ref={ref} id={slug}>
+    <div className="pt-20 -mt-20" ref={ref} id={componentId}>
       <Tags tags={tags} />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-black sm:text-xl">
-            <a href={`#${slug}`} className="relative block group">
+            <a href={`#${componentId}`} className="relative block group">
               <span
                 className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
                 aria-hidden="true"
@@ -154,4 +158,4 @@ const Test: FunctionComponent<Props> = ({ name, item, spacing }) => {
   )
 }
 
-export default Test
+export default Example

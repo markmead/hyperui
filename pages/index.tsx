@@ -12,25 +12,27 @@ import Grid from '../components/collection/grid'
 export async function getStaticProps() {
   const categorySlugs = getComponentCategorySlugsSimple()
 
-  const componentsByCategory = categorySlugs.map((category: any) => {
-    const slug: string = category
+  const componentsByCategory = categorySlugs
+    .map((category: any) => {
+      const slug: string = category
 
-    const categoryDetails = getCategoryBySlug(slug, ['title', 'banner'])
+      const categoryDetails = getCategoryBySlug(slug, ['title', 'banner'])
 
-    const categoryComponents = getComponentsByCategory(slug, [
-      'title',
-      'slug',
-      'emoji',
-      'count',
-      'tags',
-      'category',
-    ])
+      const categoryComponents = getComponentsByCategory(slug, [
+        'title',
+        'slug',
+        'emoji',
+        'count',
+        'tags',
+        'category',
+      ])
 
-    return {
-      category: categoryDetails,
-      components: categoryComponents,
-    }
-  })
+      return {
+        category: categoryDetails,
+        components: categoryComponents,
+      }
+    })
+    .reverse()
 
   return {
     props: {
