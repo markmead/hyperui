@@ -3,7 +3,6 @@ import type { FunctionComponent } from 'react'
 import Link from 'next/link'
 
 import { ComponentCard } from '../../interface/component'
-import Tags from '../component/tags'
 import { slugify } from '../../utils/component'
 
 type Props = {
@@ -11,7 +10,7 @@ type Props = {
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count, tags, category } = item
+  const { title, slug, emoji, count, category } = item
 
   const realSlug = slugify(slug, category)
 
@@ -29,8 +28,6 @@ const Card: FunctionComponent<Props> = ({ item }) => {
               <span className="text-xl" role="img" aria-hidden="true">
                 {emoji}
               </span>
-
-              <Tags tags={tags} card={true} />
             </div>
 
             <p className="mt-4 text-lg font-medium">{title}</p>

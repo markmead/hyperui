@@ -2,7 +2,6 @@ export interface Component {
   id?: string
   title: string
   spacing?: string
-  tags?: string[]
 }
 
 export interface ComponentPage {
@@ -18,6 +17,5 @@ export interface ComponentCard {
   slug: string
   emoji: string
   count: number
-  tags?: string[]
   category: string
 }
