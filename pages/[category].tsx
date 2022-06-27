@@ -51,7 +51,6 @@ export async function getStaticProps({ params: { category } }: Params) {
     'slug',
     'emoji',
     'count',
-    'tags',
     'category',
   ])
 

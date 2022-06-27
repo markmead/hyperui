@@ -15,7 +15,6 @@ import Copy from './buttons/copy'
 import Code from './buttons/view'
 import Range from './range'
 import IconLoading from '../icon/loading'
-import Tags from './tags'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -38,7 +37,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const breakpoints = allBreakpoints
 
-  const { id, title, tags, spacing: space } = item
+  const { id, title, spacing: space } = item
 
   const { query } = router
   const { category, slug } = query
@@ -83,8 +82,6 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   return (
     <div className="pt-20 -mt-20" ref={ref} id={componentId}>
-      <Tags tags={tags} />
-
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-black sm:text-xl">

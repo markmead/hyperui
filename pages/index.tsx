@@ -23,7 +23,6 @@ export async function getStaticProps() {
         'slug',
         'emoji',
         'count',
-        'tags',
         'category',
       ])
 
