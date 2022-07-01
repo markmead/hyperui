@@ -57,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Popup
         text="Use Alpine JS? Click Here 👋"
-        url="https://alpinejs.hyperui.dev"
+        url="https://hyperjs.dev/"
       />
 
       <Header />
