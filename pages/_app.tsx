@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app'
 
+import { useRouter } from 'next/router'
+
 import Head from 'next/head'
 import Script from 'next/script'
 
@@ -13,6 +15,10 @@ import Footer from '../components/global/footer'
 import Popup from '../components/global/popup'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  let router = useRouter()
+
+  let isHome = router.asPath === '/'
+
   return (
     <>
       <Head>
@@ -55,10 +61,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         url="https://github.com/markmead/hyperui"
       />
 
-      <Popup
-        text="Use Alpine JS? Click Here 👋"
-        url="https://hyperjs.dev/"
-      />
+      {isHome && (
+        // <Popup
+        //   text="Use Alpine JS? Click Here 👋"
+        //   url="https://hyperjs.dev/"
+        // />
+
+        <Popup
+          text="Bored of writing markdown in your code editor? Try my new product"
+          url="https://tiny-markdown.vercel.app/"
+        />
+      )}
 
       <Header />
 
