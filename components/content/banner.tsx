@@ -27,7 +27,7 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
           </p>
 
           <a
-            href="https://getcandy.io/"
+            href="https://getcandy.io/?ref=hyperui.dev"
             target="_blank"
             rel="noreferrer"
             className="relative block w-40 h-10 mx-auto mt-4 sm:m-0"
