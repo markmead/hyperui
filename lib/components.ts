@@ -1,8 +1,10 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { slugify } from '../utils/component'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
+const categoriesDirectory = join(process.cwd(), '/data/categories')
 
 export function getComponentSlugs() {
   return fs.readdirSync(componentsDirectory)
@@ -42,12 +44,18 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
 }
 
 export function componentSlugs() {
-  let slugs = getComponentSlugs().map((slug) => slug.replace(/\.mdx$/, ''))
+  let components = getComponents(['title', 'slug', 'category'])
 
-  return slugs.map((slug) => {
+  return components.map((component: any) => {
+    const slug: string = component.slug
+    const category: string = component.category
+
+    const realSlug = slugify(slug, category)
+
     return {
       params: {
-        slug,
+        category,
+        slug: realSlug,
       },
     }
   })
@@ -60,29 +68,70 @@ export function getComponents(fields: string[] = []) {
   return components
 }
 
-export function getMarketingComponents(fields: string[] = []) {
+export function getComponentCategorySlugsSimple() {
+  const categorySlugs = getComponents(['category'])
+    .map((component) => component.category)
+    .filter((item) => item)
+
+  return [...new Set(categorySlugs)]
+}
+
+export function getComponentCategorySlugs() {
+  let categorySlugs = getComponents(['category'])
+    .map((component) => component.category)
+    .filter((item) => item)
+
+  categorySlugs = [...new Set(categorySlugs)]
+
+  return categorySlugs.map((category) => {
+    return {
+      params: {
+        category,
+      },
+    }
+  })
+}
+
+export function getComponentsByCategory(
+  category: string,
+  fields: string[] = []
+) {
   const slugs = getComponentSlugs()
+
   const components = slugs
     .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => !component.ecommerce && !component.application)
+    .filter((component) => component.category === category)
+    .sort((componentA, componentB) => {
+      const titleA: string = componentA.title as string
+      const titleB: string = componentB.title as string
+
+      return titleA.localeCompare(titleB)
+    })
 
   return components
 }
 
-export function getEcommerceComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.ecommerce)
+export function getCategoryBySlug(category: string, fields: string[] = []) {
+  const realSlug = category.replace(/\.mdx$/, '')
+  const fullPath = join(categoriesDirectory, `${realSlug}.mdx`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data } = matter(fileContents)
 
-  return components
-}
+  type Items = {
+    [key: string]: string | number
+  }
 
-export function getApplicationComponents(fields: string[] = []) {
-  const slugs = getComponentSlugs()
-  const components = slugs
-    .map((slug) => getComponentBySlug(slug, fields))
-    .filter((component) => component.application)
+  const items: Items = {}
 
-  return components
+  fields.forEach((field) => {
+    if (field === 'slug') {
+      items[field] = realSlug
+    }
+
+    if (typeof data[field] !== 'undefined') {
+      items[field] = data[field]
+    }
+  })
+
+  return items
 }

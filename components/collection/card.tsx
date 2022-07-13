@@ -3,17 +3,19 @@ import type { FunctionComponent } from 'react'
 import Link from 'next/link'
 
 import { ComponentCard } from '../../interface/component'
-import Tags from '../component/tags'
+import { slugify } from '../../utils/component'
 
 type Props = {
   item: ComponentCard
 }
 
 const Card: FunctionComponent<Props> = ({ item }) => {
-  const { title, slug, emoji, count, tags } = item
+  const { title, slug, emoji, count, category } = item
+
+  const realSlug = slugify(slug, category)
 
   return (
-    <Link href={`/components/${slug}`}>
+    <Link href={`/components/${category}/${realSlug}`}>
       <a className="relative block group">
         <span
           className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
@@ -26,8 +28,6 @@ const Card: FunctionComponent<Props> = ({ item }) => {
               <span className="text-xl" role="img" aria-hidden="true">
                 {emoji}
               </span>
-
-              <Tags tags={tags} card={true} />
             </div>
 
             <p className="mt-4 text-lg font-medium">{title}</p>

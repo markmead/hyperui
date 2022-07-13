@@ -5,18 +5,17 @@ import { Component } from '../../interface/component'
 import Example from '../component/example'
 
 type Props = {
-  name: string
   items: Array<Component>
   spacing: string
 }
 
-const List: FunctionComponent<Props> = ({ name, items, spacing }) => {
+const List: FunctionComponent<Props> = ({ items, spacing }) => {
   return (
     <div className="xl:max-w-[1348px] not-prose mt-16 lg:mt-24">
       <ul className="space-y-16">
         {items.map((item) => (
           <li key={item.id}>
-            <Example name={name} item={item} spacing={spacing} />
+            <Example item={item} spacing={spacing} />
           </li>
         ))}
       </ul>

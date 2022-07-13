@@ -2,8 +2,8 @@ import { Link } from '../../interface/global'
 
 export const links: Array<Link> = [
   {
-    title: 'Components',
-    href: '/',
+    title: 'Marketing',
+    href: '/marketing',
   },
   {
     title: 'Ecommerce',
@@ -11,6 +11,6 @@ export const links: Array<Link> = [
   },
   {
     title: 'Application UI',
-    href: '/application',
+    href: '/application-ui',
   },
 ]
