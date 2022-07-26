@@ -7,7 +7,7 @@ import { links } from '../../data/header/links'
 const Footer: FunctionComponent = () => {
   return (
     <footer className="bg-gray-100">
-      <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8 lg:pt-24">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
         <div className="lg:flex lg:items-end lg:justify-between">
           <div>
             <Link href="/">
