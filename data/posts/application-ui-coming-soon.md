@@ -5,7 +5,7 @@ date: 05/04/2022
 emoji: 🚀
 seo:
   title: Application UI Coming Soon
-  description:
+  description: HyperUI is getting new application UI components, find out why that is and have your say on GitHub as to what is added in this new update.
 ---
 
 Where I work ([Neon](https://neondigital.co.uk/) and [GetCandy](https://getcandy.io/)) we've developed an open source Laravel ecommerce package called, GetCandy.
