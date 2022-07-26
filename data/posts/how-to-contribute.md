@@ -8,19 +8,19 @@ seo:
   description: It can be daunting contributing to an open source project, find out how you can get involved with the development of HyperUI.
 ---
 
-For some, the idea of contributing to an open source project can be very daunting but please don't let that put you off. Let's walk through how you can contribute to HyperUI and get some open source work on your CV... Trust me, it makes you stand out.
+For some, the idea of contributing to an open source project can be very daunting but please don't let that put you off. Let's walk through how you can contribute to HyperUI and get some open source work on your CV/GitHub.
 
 ## Spotted a Bug?
 
-If you notice something that looks a little off, it could be anything from:
+If you notice something that looks a little off:
 
 - Spelling
 - Accessibility
 - SEO
 
-And plenty more, then please do [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
+Plus plenty more, then please do [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
 
-Once an issue has been created I can start working on a fix. However, if you'd like to work on the fix then do let me know.
+Once an issue has been created I can start working on a fix. However, if you'd like to work on the fix then let me know.
 
 ## Want to Add Something?
 
@@ -28,7 +28,7 @@ If you have something that you want to add to HyperUI then that's awesome, but b
 
 If you plan to add a new component then please include some examples of what the component will look like.
 
-## Pull Request Feedback
+### Pull Request Feedback
 
 Here's the scary part 👻
 
@@ -44,7 +44,7 @@ yarn
 yarn dev
 ```
 
-You can also run `yarn watch` in a second window to rebuild the CSS on each save, this is very useful when developing new components.
+You can also run `yarn watch` in a second window to rebuild the CSS on each save, this is very useful when creating new components.
 
 ### Creating a New Component
 
@@ -68,6 +68,8 @@ components:
     title: My Awesome New Footer ✨
 ```
 
+As you will see, component files are named incrementally, please follow this method.
+
 If needed you can use `spacing: ...` to position the component within the preview, but note, that any classes added here will be ignored when copying or viewing the components code.
 
 ### Creating a New Collection
@@ -78,14 +80,14 @@ If you want to create a new collection then please [create an issue](https://git
 
 If you are looking to add a component to HyperUI then I will give feedback on both the design and development of the component.
 
-For new component pull requests, I will review the work three times. If on the third review there is feedback from the first review that is not addressed, then I will close it and ask for it to be re-opened once feedback has been addressed.
+For new component pull requests, I will review the work three times. If on the third review there is feedback from the first review that is still not addressed, then I will close it and ask for it to be re-opened once feedback has been addressed.
 
-If on the third review there is new feedback then that's not an issue, it's only if you have ignored feedback from the first review.
+If on the third review there is new feedback then that's not an issue, it's only if you have continued to ignore feedback from the first review.
 
 I believe this to be fair.
 
 ## Final Notes
 
-I believe that contributing to open source is one of the best feelings for a developer, but as mentioned, it can be very daunting. I really don't want anyone to feel that way with HyperUI, so please do get involved, and let's all push HyperUI to become a better project.
+Contributing to open source is one of the best feelings for a developer, but as mentioned, it can be very daunting. I really don't want anyone to feel that way with HyperUI, so please do get involved, and let's all push HyperUI to become a better project.
 
 Heads up, I wrote this with [Tiny Markdown](https://tiny-markdown.vercel.app/) my new browser markdown editor 🚀
