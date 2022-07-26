@@ -7,7 +7,6 @@ import '../styles/globals.css'
 import 'prismjs/themes/prism-okaidia.css'
 
 import Layout from '../components/layout'
-import Banner from '../components/global/banner'
 import Header from '../components/global/header'
 import Footer from '../components/global/footer'
 
@@ -48,11 +47,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.hyperui.dev/" />
       </Head>
-
-      <Banner
-        text="⭐️ Star HyperUI on GitHub ⭐️"
-        url="https://github.com/markmead/hyperui"
-      />
 
       <Header />
 
