@@ -84,7 +84,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
     <div className="pt-20 -mt-20" ref={ref} id={componentId}>
       <div className="space-y-4">
         <h2 className="text-lg font-bold text-black sm:text-xl">
-          <a href={`#${componentId}`} className="relative block group">
+          <a href={`#${componentId}`} className="relative inline-block group">
             <span
               className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
               aria-hidden="true"
