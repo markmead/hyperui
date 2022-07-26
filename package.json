@@ -2,30 +2,30 @@
   "name": "hyperui",
   "private": true,
   "scripts": {
-    "build": "next build",
     "css": "npx tailwindcss -i styles/globals.css -o public/build.css -m",
+    "watch": "yarn css -w",
     "dev": "next dev",
     "lint": "next lint",
-    "postbuild": "next-sitemap",
-    "watch": "yarn css -w"
+    "build": "next build",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@tailwindcss/line-clamp": "^0.4.0",
     "next": "12.1.0",
-    "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react": "17.0.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/node": "17.0.21",
-    "@types/react": "17.0.40",
     "@types/react-copy-to-clipboard": "^5.0.2",
+    "@types/react": "17.0.40",
     "autoprefixer": "^10.4.0",
-    "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
+    "eslint": "8.11.0",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",
     "next-sitemap": "^2.5.7",
@@ -34,8 +34,8 @@
     "react-copy-to-clipboard": "^5.0.4",
     "react-intersection-observer": "^8.33.1",
     "react-toastify": "^8.2.0",
-    "remark": "^14.0.2",
     "remark-html": "^15.0.1",
+    "remark": "^14.0.2",
     "tailwindcss": "^3.0.23",
     "typescript": "4.6.2"
   }
