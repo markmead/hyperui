@@ -5,8 +5,9 @@ date: 07/26/2022
 emoji: 🫵
 seo:
   title: How to Contribute to HyperUI
-  description:
+  description: It can be daunting contributing to an open source project, find out how you can get involved with the development of HyperUI.
 ---
+
 For some, the idea of contributing to an open source project can be very daunting but please don't let that put you off. Let's walk through how you can contribute to HyperUI and get some open source work on your CV... Trust me, it makes you stand out.
 
 ## Spotted a Bug?
