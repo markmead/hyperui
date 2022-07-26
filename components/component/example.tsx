@@ -100,6 +100,10 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
           <div className="hidden lg:items-center lg:space-x-4 lg:flex">
             <Range range={range} handleRange={setRange} />
 
+            <strong className="text-center font-mono text-white font-medium text-xs w-16 py-2.5 bg-black rounded-lg">
+              {width}
+            </strong>
+
             {breakpoints.map(({ name, emoji, width: breakpoint }) => (
               <Breakpoint
                 key={name}
@@ -110,10 +114,6 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
                 active={width === breakpoint}
               />
             ))}
-
-            <strong className="inline-block w-20 py-2.5 text-xs font-medium text-center text-white bg-black rounded-lg">
-              @ {width}
-            </strong>
           </div>
         </div>
 
