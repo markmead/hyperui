@@ -46,3 +46,5 @@ I believe this to be fair.
 ## Final Notes
 
 I believe that contributing to open source is one of the best feelings for a developer, but as mentioned, it can be very daunting. I really don't want anyone to feel that way with HyperUI, so please do get involved, and let's all push HyperUI to become a better project.
+
+Heads up, I wrote this with [Tiny Markdown](https://tiny-markdown.vercel.app/) my new browser markdown editor 🚀
