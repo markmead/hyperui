@@ -34,6 +34,46 @@ Here's the scary part 👻
 
 All pull requests need to be reviewed before being merged into HyperU, which does mean that on occasion there will be feedback. Please do not be disheartened by feedback, we're all developing each other's skillset and trying to make HyperUI (and other open source projects) better.
 
+### Getting HyperUI Running Locally
+
+HyperUI is a Next JS + Typescript project and can be set up quickly with the following commands.
+
+```shell
+git clone git@github.com:markmead/hyperui.git
+yarn
+yarn dev
+```
+
+You can also run `yarn watch` in a second window to rebuild the CSS on each save, this is very useful when developing new components.
+
+### Creating a New Component
+
+For this example, we will be adding a new footer component in the marketing category.
+
+1. Create a new file in `/public/components/marketing-footers`
+2. Add the new component to the components group in `/data/components/marketing-footers.mdx`
+
+It should look like this.
+
+```
+components:
+  1:
+    title: Large with Newsletter Form
+  2:
+    title: Simple Stacked
+  ...
+  21:
+    title: With Call to Action (Dark)
+  22:
+    title: My Awesome New Footer ✨
+```
+
+If needed you can use `spacing: ...` to position the component within the preview, but note, that any classes added here will be ignored when copying or viewing the components code.
+
+### Creating a New Collection
+
+If you want to create a new collection then please [create an issue](https://github.com/markmead/hyperui/issues/new/choose) on GitHub, then we can discuss the new collection and get some ideas for what components can be added.
+
 ### New Component Feedback
 
 If you are looking to add a component to HyperUI then I will give feedback on both the design and development of the component.
