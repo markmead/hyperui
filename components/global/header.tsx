@@ -49,9 +49,7 @@ const Header: FunctionComponent = () => {
 
         <div className="flex items-center justify-end flex-1">
           <Link href="/blog">
-            <a className="block text-xs font-medium hover:opacity-75">
-              <span className="hidden sm:inline">HyperUI</span> Blog
-            </a>
+            <a className="block text-xs font-medium hover:opacity-75">Blog</a>
           </Link>
 
           <a

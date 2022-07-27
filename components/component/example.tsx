@@ -83,22 +83,35 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   return (
     <div className="pt-20 -mt-20" ref={ref} id={componentId}>
       <div className="space-y-4">
+        <h2 className="text-lg font-bold text-black sm:text-xl">
+          <a href={`#${componentId}`} className="relative inline-block group">
+            <span
+              className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
+              aria-hidden="true"
+            >
+              #
+            </span>
+
+            {title}
+          </a>
+        </h2>
+
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-black sm:text-xl">
-            <a href={`#${componentId}`} className="relative block group">
-              <span
-                className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
-                aria-hidden="true"
-              >
-                #
-              </span>
+          <div>
+            {code && (
+              <div className="flex items-center gap-4">
+                <Code handleView={setView} view={view} />
+                <Copy code={code} />
+              </div>
+            )}
+          </div>
 
-              {title}
-            </a>
-          </h2>
-
-          <div className="hidden lg:items-center lg:space-x-4 lg:flex">
+          <div className="hidden lg:items-center lg:gap-4 lg:flex">
             <Range range={range} handleRange={setRange} />
+
+            <strong className="text-center font-mono text-white font-medium text-xs w-16 py-2.5 bg-black rounded-lg">
+              {width}
+            </strong>
 
             {breakpoints.map(({ name, emoji, width: breakpoint }) => (
               <Breakpoint
@@ -110,10 +123,6 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
                 active={width === breakpoint}
               />
             ))}
-
-            <strong className="inline-block w-20 py-2.5 text-xs font-medium text-center text-white bg-black rounded-lg">
-              @ {width}
-            </strong>
           </div>
         </div>
 
@@ -143,13 +152,6 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
             </pre>
           </div>
         </div>
-
-        {code && (
-          <div className="flex items-center gap-4">
-            <Code handleView={setView} view={view} />
-            <Copy code={code} />
-          </div>
-        )}
       </div>
     </div>
   )
