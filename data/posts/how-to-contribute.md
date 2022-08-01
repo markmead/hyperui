@@ -72,6 +72,15 @@ As you will see, component files are named incrementally, please follow this met
 
 If needed you can use `spacing: ...` to position the component within the preview, but note, that any classes added here will be ignored when copying or viewing the components code.
 
+#### Notes on New Components
+
+1. Components need to be written with Tailwind CSS
+2. Don't make changes to the `/public/build.css`
+3. Use `<style>...</style>` tags when writing custom CSS
+4. Reference used Tailwind CSS plugins in the HTML
+
+You can see examples of points 3 and 4 in the HTML of this [input component](https://www.hyperui.dev/components/application-ui/pagination#component-3).
+
 ### Creating a New Collection
 
 If you want to create a new collection then please [create an issue](https://github.com/markmead/hyperui/issues/new/choose) on GitHub, then we can discuss the new collection and get some ideas for what components can be added.
