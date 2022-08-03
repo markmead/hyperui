@@ -44,7 +44,11 @@ yarn
 yarn dev
 ```
 
-You can also run `yarn watch` in a second window to rebuild the CSS on each save, this is very useful when creating new components.
+If you are working on some changes that need to compile CSS, then you'll need to open a new terminal window and run the following.
+
+```shell
+yarn watch
+```
 
 ### Creating a New Component
 
