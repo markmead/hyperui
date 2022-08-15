@@ -21,7 +21,7 @@ const Footer: FunctionComponent = () => {
 
             <p className="max-w-md mt-6 leading-relaxed text-gray-500">
               Free open source Tailwind CSS components for marketing and
-              ecommece websites, as well as application UI
+              ecommerce websites, as well as application UI
             </p>
           </div>
 
