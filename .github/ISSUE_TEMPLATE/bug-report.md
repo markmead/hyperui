@@ -1,10 +1,9 @@
 ---
 name: Bug Report
-about: Spotted a bug? Let's get that fixed
-title: ''
+about: Spotted a bug? Let's get that fixed.
+title: '[BUG]'
 labels: bug
 assignees: markmead
-
 ---
 
 **Bug Description**
@@ -13,17 +12,19 @@ assignees: markmead
 
 **Expected Behavior**
 
-**Screenshots**
+**Screenshots (Optional)**
 
 **Desktop**
- - OS
- - Browser
- - Version
+
+- OS
+- Browser
+- Version
 
 **Smartphone**
- - Device
- - OS
- - Browser
- - Version
+
+- Device
+- OS
+- Browser
+- Version
 
 **Additional Information**
