@@ -1,21 +1,37 @@
 # HyperUI
 
-HyperUI is a free, open source Tailwind CSS component library.
+HyperUI is a large collection of free Tailwind CSS components for marketing, ecommerce and application UI 🐳
 
-![HyperUI Preview](https://user-images.githubusercontent.com/50486078/165143091-fa908559-33ac-4488-a05c-a2951a67bdb7.png)
+![HyperUI website screenshot](https://user-images.githubusercontent.com/50486078/184835404-8df6bfc7-2a81-4544-82ea-5afac89d1704.png)
 
-## Contributing
 
-If you want to contribute to HyperUI then please read the [How to Contribute](https://www.hyperui.dev/blog/how-to-contribute) blog post.
+## Resources
 
-## HyperJS
+### Blog
 
-Collection of Alpine JS components for your next project.
+HyperUI features a blog that focuses on how to work better with Tailwind CSS.
 
-[Website](https://www.hyperjs.dev/) / [GitHub](https://github.com/markmead/hyperjs)
+You will also find.
 
-### Hypercolor
+- Project guides
+- Project updates
+- Project announcements
+- Related project announcements
 
-Collection of gradients and gradient generators created with Tailwind CSS.
+### Contributing
 
-[Website](https://hypercolor.dev/) / [GitHub](https://github.com/jordihales/hypercolor)
+If you are looking to contribute to HyperUI, then please read the [How to Contribute](https://www.hyperui.dev/blog/how-to-contribute) blog post.
+
+### Alpine JS Components
+
+HyperJS is a related project of mine that has ready to use Alpine JS components.
+
+- [View the website](https://js.hyperui.dev/)
+- [View the GitHub repo](https://github.com/markmead/hyperjs)
+
+### Tailwind CSS Gradients
+
+Hypercolor is a related project I work on that lists gradients created with Tailwind CSS and includes generators.
+
+- [View the website](https://hypercolor.dev/)
+- [View the GitHub repo](https://github.com/jordihales/hypercolor)
