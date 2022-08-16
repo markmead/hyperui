@@ -1,14 +1,9 @@
 ---
 name: Component Request
-about: Suggest a component for this project
-title: New Component Request
-labels: request
+about: Want a component? Let's add it.
+title: [REQUEST] Components ...
+labels: enhancement
 assignees: markmead
-
 ---
 
-**Collection Title**
-
-Description of the component if no examples are given.
-
-**Examples of Component**
+Please add information about the component including screenshots/videos.
