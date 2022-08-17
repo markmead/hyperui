@@ -47,6 +47,8 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const componentId = `component-${id}`
 
+  const componentVariants = variants ? variants : []
+
   useEffect(() => {
     if (inView) {
       fetchHtml()
@@ -109,7 +111,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
           </h2>
 
           <Variants
-            variants={variants}
+            variants={componentVariants}
             handleReset={fetchHtml}
             handleFetch={fetchVariant}
           />

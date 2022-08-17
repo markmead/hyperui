@@ -28,21 +28,19 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
   const { seo, spacing, components: items } = frontMatter
 
   const componentsArray: Array<Component> = Object.entries(items).map(
-    ([key, value]): Component => {
-      return {
-        id: key,
-        title: value.title,
-        spacing: value.spacing ?? false,
-        variants: value.variants
-          ? Object.entries(value.variants).map(([key, value]): Component => {
-              return {
-                id: key,
-                title: value.title,
-              }
+    ([key, value]): Component => ({
+      id: key,
+      title: value.title,
+      spacing: value.spacing ?? false,
+      variants: value.variants
+        ? Object.entries(value.variants).map(
+            ([key, value]: any): Component => ({
+              id: key,
+              title: value.title,
             })
-          : [],
-      }
-    }
+          )
+        : [],
+    })
   )
 
   const data = {

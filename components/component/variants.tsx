@@ -4,7 +4,7 @@ import { Component } from '../../interface/component'
 import styles from '../../styles/button.module.css'
 
 type Props = {
-  variants: Array<Component>
+  variants: Array<Component> | []
   handleReset: CallableFunction
   handleFetch: CallableFunction
 }
