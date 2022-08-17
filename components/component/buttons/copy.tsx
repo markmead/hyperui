@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 
 import styles from '../../../styles/button.module.css'
 
