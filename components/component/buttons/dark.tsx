@@ -13,12 +13,16 @@ const Dark: FunctionComponent<Props> = ({ themed, dark, handleSetDark }) => {
     <button
       onClick={() => handleSetDark(!dark)}
       className={`${styles.pill} ${
-        dark ? 'bg-black text-white' : 'text-black'
+        dark && themed ? 'bg-black text-white' : 'text-black'
       } disabled:opacity-25 disabled:pointer-events-none`}
       disabled={!themed}
     >
-      <span aria-hidden="true" className="text-sm" role="img">
-        {dark ? '🌕' : '🌞'}
+      <span aria-hidden="true" className="text-sm mr-1.5" role="img">
+        {dark && themed ? '🌕' : '🌞'}
+      </span>
+
+      <span className="text-xs font-medium">
+        {dark && themed ? 'Dark' : 'Light'}
       </span>
     </button>
   )
