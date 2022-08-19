@@ -29,6 +29,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
+  let [variant, setVariant] = useState<string>('base')
   let router = useRouter()
 
   const { ref, inView } = useInView({
@@ -58,6 +59,10 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   }, [inView])
 
   useEffect(() => {
+    fetchHtml()
+  }, [variant])
+
+  useEffect(() => {
     prism.highlightAll()
   })
 
@@ -73,18 +78,13 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
       : setRange(Number(width.replace('px', '')))
   }
 
-  async function fetchVariant(variant: string) {
-    const response = await fetch(
-      `/components/${category}-${slug}/${id}-${variant}.html`
-    )
-    const text = await response.text()
-
-    setCode(text)
-    setHtml(source(text, componentSpacing))
-  }
-
   async function fetchHtml() {
-    const response = await fetch(`/components/${category}-${slug}/${id}.html`)
+    let componentUrl =
+      variant === 'base'
+        ? `/components/${category}-${slug}/${id}.html`
+        : `/components/${category}-${slug}/${id}-${variant}.html`
+
+    const response = await fetch(componentUrl)
     const text = await response.text()
 
     setCode(text)
@@ -96,31 +96,28 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   return (
     <div className="pt-20 -mt-20" ref={ref} id={componentId}>
       <div className="space-y-4">
-        <div className="flex gap-4 justify-between">
-          <h2 className="text-lg font-bold text-black sm:text-xl">
-            <a href={`#${componentId}`} className="relative inline-block group">
-              <span
-                className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
-                aria-hidden="true"
-              >
-                #
-              </span>
+        <h2 className="text-lg font-bold text-black sm:text-xl">
+          <a href={`#${componentId}`} className="relative inline-block group">
+            <span
+              className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
+              aria-hidden="true"
+            >
+              #
+            </span>
 
-              {title}
-            </a>
-          </h2>
-
-          <Variants
-            variants={componentVariants}
-            handleReset={fetchHtml}
-            handleFetch={fetchVariant}
-          />
-        </div>
+            {title}
+          </a>
+        </h2>
 
         <div className="flex items-center justify-between">
           <div>
             {code && (
               <div className="flex items-center gap-4">
+                <Variants
+                  variants={componentVariants}
+                  handleSetVariant={setVariant}
+                />
+
                 <Code handleView={setView} view={view} />
                 <Copy code={code} />
               </div>

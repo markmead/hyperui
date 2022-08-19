@@ -1,37 +1,32 @@
 import { FunctionComponent } from 'react'
 import { Component } from '../../interface/component'
 
-import styles from '../../styles/button.module.css'
-
 type Props = {
   variants: Array<Component> | []
-  handleReset: CallableFunction
-  handleFetch: CallableFunction
+  handleSetVariant: CallableFunction
 }
 
-const Variants: FunctionComponent<Props> = ({
-  variants,
-  handleReset,
-  handleFetch,
-}) => {
+const Variants: FunctionComponent<Props> = ({ variants, handleSetVariant }) => {
   return (
     <>
       {variants.length > 0 && (
-        <div className="flex gap-4">
-          <button className={styles.pill} onClick={() => handleReset()}>
-            <span className="text-xs font-medium">Base</span>
-          </button>
+        <>
+          <label htmlFor="VariantSelect" className="sr-only">
+            Variants
+          </label>
 
-          {variants.map((variant) => (
-            <button
-              className={styles.pill}
-              onClick={() => handleFetch(variant.id)}
-              key={variant.id}
-            >
-              <span className="text-xs font-medium">{variant.title}</span>
-            </button>
-          ))}
-        </div>
+          <select
+            onChange={(e) => handleSetVariant(e.currentTarget.value)}
+            className="pl-3 h-9 border-2 border-black rounded-lg text-xs font-medium"
+            id="VariantSelect"
+          >
+            <option value="base">Base</option>
+
+            {variants.map((variant) => (
+              <option value={variant.id}>{variant.title}</option>
+            ))}
+          </select>
+        </>
       )}
     </>
   )
