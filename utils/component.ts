@@ -12,7 +12,7 @@ export function source(html: string, spacing: string = 'relative') {
 
     <link rel="stylesheet" href="${origin}/build.css">
 
-    <body class="${spacing}">
+    <body class="${spacing}" >
       ${html}
     </body>
   `
