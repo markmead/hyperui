@@ -23,7 +23,9 @@ const Variants: FunctionComponent<Props> = ({ variants, handleSetVariant }) => {
             <option value="base">Base</option>
 
             {variants.map((variant) => (
-              <option value={variant.id}>{variant.title}</option>
+              <option value={variant.id} key={variant.id}>
+                {variant.title}
+              </option>
             ))}
           </select>
         </>
