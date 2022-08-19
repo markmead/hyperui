@@ -66,6 +66,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   }, [inView])
 
   useEffect(() => {
+    setDark(false)
     setLoading(true)
 
     fetchHtml()
