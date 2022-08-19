@@ -31,6 +31,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
   let [variant, setVariant] = useState<string>('base')
+  let [themed, setThemed] = useState<boolean>(false)
   let [dark, setDark] = useState<boolean>(false)
   let [loading, setLoading] = useState<boolean>(false)
   let router = useRouter()
@@ -140,9 +141,10 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
                 <Variants
                   variants={componentVariants}
                   handleSetVariant={setVariant}
+                  handleSetThemed={setThemed}
                 />
 
-                <Dark dark={dark} handleSetDark={setDark} />
+                <Dark themed={themed} dark={dark} handleSetDark={setDark} />
                 <Code handleView={setView} view={view} />
                 <Copy code={code} />
               </div>
