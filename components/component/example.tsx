@@ -139,13 +139,17 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
           <div>
             {code && (
               <div className="flex items-center gap-4">
-                <Variants
-                  variants={componentVariants}
-                  handleSetVariant={setVariant}
-                  handleSetThemed={setThemed}
-                />
+                {componentVariants.length > 0 && (
+                  <>
+                    <Variants
+                      variants={componentVariants}
+                      handleSetVariant={setVariant}
+                      handleSetThemed={setThemed}
+                    />
 
-                <Dark themed={themed} dark={dark} handleSetDark={setDark} />
+                    <Dark themed={themed} dark={dark} handleSetDark={setDark} />
+                  </>
+                )}
                 <Code handleView={setView} view={view} />
                 <Copy code={code} />
               </div>
