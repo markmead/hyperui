@@ -94,11 +94,11 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
         ? `/components/${category}-${slug}/${id}.html`
         : `/components/${category}-${slug}/${id}-${variant}.html`
 
-    const response = await fetch(componentUrl)
-    const text = await response.text()
+    let fetchResponse = await fetch(componentUrl)
+    let textResponse = await fetchResponse.text()
 
-    setCode(text)
-    setHtml(source(text, componentSpacing))
+    setCode(textResponse)
+    setHtml(source(textResponse, componentSpacing))
 
     fakeLoading()
 
