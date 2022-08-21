@@ -116,7 +116,10 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   function fakeLoading() {
     let randomDuration = Math.floor(Math.random() * (250 - 150) + 150)
 
-    setTimeout(() => setLoading(false), randomDuration)
+    setTimeout(() => {
+      setLoading(false)
+      setDark(themed)
+    }, randomDuration)
   }
 
   return (
