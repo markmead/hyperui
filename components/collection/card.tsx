@@ -3,7 +3,7 @@ import type { FunctionComponent } from 'react'
 import Link from 'next/link'
 
 import { ComponentCard } from '../../interface/component'
-import { slugify } from '../../utils/component'
+import { componentSlug } from '../../utils/component'
 
 type Props = {
   item: ComponentCard
@@ -12,7 +12,7 @@ type Props = {
 const Card: FunctionComponent<Props> = ({ item }) => {
   const { title, slug, emoji, count, category } = item
 
-  const realSlug = slugify(slug, category)
+  const realSlug = componentSlug(slug, category)
 
   return (
     <Link href={`/components/${category}/${realSlug}`}>

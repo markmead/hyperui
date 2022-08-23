@@ -21,6 +21,7 @@
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/node": "17.0.21",
+    "@types/prismjs": "^1.26.0",
     "@types/react": "17.0.40",
     "autoprefixer": "^10.4.0",
     "eslint": "8.11.0",

@@ -2,9 +2,9 @@ import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-const prism = require('prismjs')
+import Prism from 'prismjs'
 
-import { source } from '../../utils/component'
+import { componentHtml } from '../../utils/component'
 
 import { allBreakpoints } from '../../lib/breakpoints'
 
@@ -81,7 +81,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   }, [dark])
 
   useEffect(() => {
-    prism.highlightAll()
+    Prism.highlightAll()
   })
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
     let textResponse = await fetchResponse.text()
 
     setCode(textResponse)
-    setHtml(source(textResponse, componentSpacing))
+    setHtml(componentHtml(textResponse, componentSpacing))
 
     fakeLoading()
 
