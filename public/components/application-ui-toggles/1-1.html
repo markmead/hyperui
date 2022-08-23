@@ -1,0 +1,9 @@
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<label x-data="{ isChecked: false }" for="AcceptConditions" class="h-8 w-16 relative cursor-pointer">
+  <input x-model="isChecked" type="checkbox" id="AcceptConditions" class="peer sr-only" />
+
+  <span :class="{ 'bg-blue-400': !isChecked, 'bg-blue-600': isChecked }" class="absolute inset-0 transition"></span>
+
+  <span :class="{ 'translate-x-8': isChecked }" class="absolute inset-0 w-6 h-6 bg-white m-1 transition"></span>
+</div>
