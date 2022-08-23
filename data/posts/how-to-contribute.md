@@ -66,8 +66,6 @@ components:
   2:
     title: Simple Stacked
   ...
-  21:
-    title: With Call to Action (Dark)
   22:
     title: My Awesome New Footer ✨
 ```
