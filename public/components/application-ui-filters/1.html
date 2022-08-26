@@ -8,32 +8,50 @@
 -->
 
 <form
-  class="relative w-screen max-w-lg mx-auto overflow-auto bg-white divide-y divide-gray-100 rounded-lg shadow-2xl"
-  role="dialog"
-  aria-label="Filters"
+  class="relative w-screen max-w-lg mx-auto overflow-auto bg-white border border-gray-100 divide-y divide-gray-100 rounded-lg shadow-lg"
 >
-  <header class="p-6 text-center">
-    <p class="text-lg font-medium">Search courses</p>
+  <header class="px-6 py-4">
+    <strong class="text-lg font-medium text-gray-900">
+      Filter University Courses
+    </strong>
+
+    <p class="text-sm mt-1.5 text-gray-500">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
   </header>
 
-  <main class="flow-root p-6 overflow-y-auto h-96">
-    <div class="-my-8 divide-y divide-gray-100">
+  <main class="flow-root px-6 overflow-y-auto h-96">
+    <div class="divide-y divide-gray-100">
       <div class="py-8">
         <fieldset>
-          <legend class="text-xl font-medium">Study Type</legend>
+          <legend class="font-medium text-gray-900">Study type</legend>
 
           <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
             <li>
-              <label class="flex items-center text-sm">
-                <input type="radio" class="w-6 h-6 border-gray-200" />
-                <span class="ml-3 font-medium">Undergraduate</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="radio"
+                  name="study_type"
+                  class="w-6 h-6 border-gray-200"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Undergraduate
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="radio" class="w-6 h-6 border-gray-200" checked />
-                <span class="ml-3 font-medium">Postgraduate</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="radio"
+                  name="study_type"
+                  class="w-6 h-6 border-gray-200"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Postgraduate
+                </span>
               </label>
             </li>
           </ul>
@@ -42,34 +60,60 @@
 
       <div class="py-8">
         <fieldset>
-          <legend class="text-xl font-medium">Locations</legend>
+          <legend class="font-medium text-gray-900">Locations</legend>
 
           <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">All Regions</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="location"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  All regions
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">East Midlands</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="location"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  East Midlands
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">East of England</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="location"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  East of England
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">London (Greater)</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="location"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700"> London </span>
               </label>
             </li>
           </ul>
@@ -78,43 +122,79 @@
 
       <div class="py-8">
         <fieldset>
-          <legend class="text-xl font-medium">Universities</legend>
+          <legend class="font-medium text-gray-900">Universities</legend>
 
           <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Aston University</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="univeristy"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Aston University
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Bangor University</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="univeristy"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Bangor University
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Brunel University London</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="univeristy"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Brunel University of London
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Glyndwr University</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="univeristy"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Glyndwr University
+                </span>
               </label>
             </li>
           </ul>
         </fieldset>
 
-        <button class="inline-flex items-center mt-6 text-sm font-medium text-gray-600 underline" type="button">
-          Show all universities
+        <button
+          class="flex items-center mt-6 text-gray-700 gap-2 px-4 py-2 bg-gray-50 rounded-lg"
+          type="button"
+        >
+          <span class="text-sm font-medium"> Show all </span>
 
-          <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            class="w-4 h-4"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fill-rule="evenodd"
               d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -126,20 +206,34 @@
 
       <div class="py-8">
         <fieldset>
-          <legend class="text-xl font-medium">Commitment</legend>
+          <legend class="font-medium">Commitment</legend>
 
           <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Full Time</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="commitment"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Full time
+                </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Part Time</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="commitment"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700">
+                  Part time
+                </span>
               </label>
             </li>
           </ul>
@@ -148,34 +242,54 @@
 
       <div class="py-8">
         <fieldset>
-          <legend class="text-xl font-medium">University Rating</legend>
+          <legend class="font-medium">University rating</legend>
 
           <ul class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 1+</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="radting"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700"> 1+ </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 2+</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="rating"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700"> 2+ </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 3+</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="rating"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700"> 3+ </span>
               </label>
             </li>
 
             <li>
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="w-6 h-6 border border-gray-200 rounded-md" />
-                <span class="ml-3 font-medium">Rated 4+</span>
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="rating"
+                  class="w-6 h-6 border-gray-200 rounded-md"
+                />
+
+                <span class="font-medium text-sm text-gray-700"> 4+ </span>
               </label>
             </li>
           </ul>
@@ -184,9 +298,18 @@
     </div>
   </main>
 
-  <footer class="flex items-center justify-between p-6">
-    <button class="text-sm font-medium text-gray-600 underline" type="button">Clear all</button>
+  <footer class="flex items-center justify-between px-6 py-4">
+    <input
+      type="reset"
+      value="Clear all"
+      class="px-5 py-3 text-sm font-medium text-gray-700 bg-gray-50 rounded-lg"
+    />
 
-    <button class="px-5 py-3 font-medium text-white bg-black rounded-lg" type="submit">Show 300+ results</button>
+    <button
+      class="px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg"
+      type="submit"
+    >
+      Show 300+ results
+    </button>
   </footer>
 </form>
