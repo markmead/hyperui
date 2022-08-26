@@ -76,7 +76,10 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
     if (refIframe && refIframe.current) {
       let iframeEl = refIframe.current as HTMLIFrameElement
 
-      iframeEl.contentWindow?.document.body.classList.toggle('dark', dark)
+      iframeEl.contentWindow?.document.documentElement.classList.toggle(
+        'dark',
+        dark
+      )
     }
   }, [dark])
 
