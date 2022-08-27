@@ -10,7 +10,7 @@ type Props = {
 const View: FunctionComponent<Props> = ({ handleView, view }) => {
   return (
     <button onClick={() => handleView(!view)} className={styles.pill}>
-      <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
+      <span aria-hidden="true" className="text-sm" role="img">
         👀
       </span>
 

@@ -3,13 +3,28 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { links } from '../../data/header/links'
+import { Link as LinkInterface } from '../../interface/global'
 
 import IconGithub from '../icon/github'
 import IconTwitter from '../icon/twitter'
 import Menu from './menu'
 
 const Header: FunctionComponent = () => {
+  const links: Array<LinkInterface> = [
+    {
+      title: 'Marketing',
+      href: '/marketing',
+    },
+    {
+      title: 'Ecommerce',
+      href: '/ecommerce',
+    },
+    {
+      title: 'Application UI',
+      href: '/application-ui',
+    },
+  ]
+
   let router = useRouter()
   let [menu, setMenu] = useState(false)
 
@@ -19,12 +34,13 @@ const Header: FunctionComponent = () => {
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-      <div className="flex items-center justify-between h-16 px-4 mx-auto max-w-screen-xl">
+      <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
         <nav className="flex items-center">
           <Link href="/">
-            <a className="text-sm font-medium">
-              HyperUI
-              <span aria-hidden="true" className="ml-1.5" role="img">
+            <a className="text-sm font-medium gap-1.5">
+              <span>HyperUI</span>
+
+              <span aria-hidden="true" role="img">
                 🚀
               </span>
             </a>
@@ -34,7 +50,7 @@ const Header: FunctionComponent = () => {
 
           <Menu menu={menu} handleMenu={setMenu} links={links} />
 
-          <ul className="hidden space-x-4 sm:flex">
+          <ul className="hidden sm:gap-4 sm:flex">
             {links.map((link) => (
               <li key={link.href}>
                 <Link href={link.href}>

@@ -33,7 +33,7 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
   return (
     <>
       <button className={styles.pill} onClick={copyToClipboard}>
-        <span aria-hidden="true" className="text-sm mr-1.5" role="img">
+        <span aria-hidden="true" className="text-sm" role="img">
           {emoji}
         </span>
 

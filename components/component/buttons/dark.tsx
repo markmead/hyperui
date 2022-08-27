@@ -17,7 +17,7 @@ const Dark: FunctionComponent<Props> = ({ themed, dark, handleSetDark }) => {
       } disabled:opacity-25 disabled:pointer-events-none`}
       disabled={!themed}
     >
-      <span aria-hidden="true" className="text-sm mr-1.5" role="img">
+      <span aria-hidden="true" className="text-sm" role="img">
         {dark && themed ? '🌕' : '🌞'}
       </span>
 

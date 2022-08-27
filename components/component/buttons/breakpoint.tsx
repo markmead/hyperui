@@ -24,7 +24,7 @@ const Breakpoint: FunctionComponent<Props> = ({
         active ? 'bg-black text-white' : 'text-black'
       }`}
     >
-      <span aria-hidden="true" className="mr-1.5 text-sm" role="img">
+      <span aria-hidden="true" className="text-sm" role="img">
         {emoji}
       </span>
 
