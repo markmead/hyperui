@@ -50,7 +50,7 @@ const Variants: FunctionComponent<Props> = ({
 
       <select
         onChange={(e) => setVariant(e.currentTarget.value)}
-        className="pl-3 h-9 border-2 border-black rounded-lg text-xs font-medium"
+        className="pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
         id="VariantSelect"
       >
         <option value="base">Base</option>

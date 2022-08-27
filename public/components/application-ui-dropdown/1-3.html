@@ -1,8 +1,8 @@
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <div
-  class="inline-flex items-stretch bg-white border rounded-md dark:bg-gray-900 dark:border-gray-800"
   x-data="{ isActive: false }"
+  class="inline-flex items-stretch bg-white border rounded-md dark:bg-gray-900 dark:border-gray-800"
 >
   <a
     href="/edit"
@@ -14,8 +14,8 @@
   <div class="relative">
     <button
       type="button"
-      class="inline-flex items-center justify-center h-full px-2 text-gray-600 dark:text-gray-300 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 border-l border-gray-100 hover:text-gray-700 rounded-r-md hover:bg-gray-50"
       x-on:click="isActive = !isActive"
+      class="inline-flex items-center justify-center h-full px-2 text-gray-600 border-l border-gray-100 dark:text-gray-300 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 rounded-r-md hover:bg-gray-50"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -32,13 +32,13 @@
     </button>
 
     <div
-      class="absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white dark:bg-gray-900 dark:border-gray-800 border border-gray-100 rounded-md shadow-lg"
       role="menu"
       x-cloak
       x-transition
       x-show="isActive"
       x-on:click.away="isActive = false"
       x-on:keydown.escape.window="isActive = false"
+      class="absolute right-0 z-10 w-56 mt-4 bg-white border border-gray-100 shadow-lg origin-top-right dark:bg-gray-900 dark:border-gray-800 rounded-md"
     >
       <div class="p-2">
         <a
@@ -76,7 +76,7 @@
         <form method="POST" action="#">
           <button
             type="submit"
-            class="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-700 dark:text-red-500 dark:hover:bg-red-600/10 rounded-lg hover:bg-red-50"
+            class="flex items-center w-full px-4 py-2 text-sm text-red-700 rounded-lg gap-2 dark:text-red-500 dark:hover:bg-red-600/10 hover:bg-red-50"
             role="menuitem"
           >
             <svg

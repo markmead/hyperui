@@ -10,13 +10,13 @@ type Props = {
 const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
   return (
     <section>
-      <div className="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32">
+      <div className="px-4 py-16 mx-auto text-center max-w-screen-xl lg:py-32">
         <h1 className="text-4xl font-bold sm:text-6xl">{title}</h1>
 
         {subtitle && <h2 className="mt-4 text-gray-500">{subtitle}</h2>}
 
         {children && (
-          <p className="max-w-lg mx-auto mt-4 text-sm text-gray-500 leading-relaxed">
+          <p className="max-w-lg mx-auto mt-4 text-sm leading-relaxed text-gray-500">
             {children}
           </p>
         )}

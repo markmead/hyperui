@@ -17,7 +17,7 @@ const Card: FunctionComponent<Props> = ({ post }) => {
           aria-hidden="true"
         ></span>
 
-        <div className="h-full transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="h-full bg-white border-2 border-black rounded-lg transition group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="px-8 pt-32 pb-8">
             <span className="text-4xl" role="img" aria-hidden="true">
               {post.emoji}

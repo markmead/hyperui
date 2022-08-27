@@ -69,7 +69,7 @@ const Blog: NextPage<Props> = ({ post }) => {
         <meta content={seo.description} key="description" name="description" />
       </Head>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto">
+      <div className="px-4 py-12 mx-auto max-w-screen-xl">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>

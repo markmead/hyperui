@@ -22,7 +22,7 @@ const Card: FunctionComponent<Props> = ({ item }) => {
           aria-hidden="true"
         ></span>
 
-        <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="bg-white border-2 border-black rounded-lg transition group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-6">
             <div className="flex items-start justify-between">
               <span className="text-xl" role="img" aria-hidden="true">

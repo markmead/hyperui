@@ -56,7 +56,7 @@ const Home: NextPage<Props> = ({ componentsByCategory }) => {
         next marketing website, admin dashboard, ecommerce store and much more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
+      <div className="px-4 py-12 mx-auto max-w-screen-xl space-y-8">
         {componentsByCategory.map((item: any) => {
           return (
             <div className="space-y-4" key={item.category.title}>

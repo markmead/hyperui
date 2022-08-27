@@ -41,7 +41,7 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
       </button>
 
       {error && (
-        <span className="text-xs text-red-600 font-medium">
+        <span className="text-xs font-medium text-red-600">
           🚨 Failed copying to clipboard 🚨
         </span>
       )}

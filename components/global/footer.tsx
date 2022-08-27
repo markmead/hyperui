@@ -7,11 +7,11 @@ import { links } from '../../data/header/links'
 const Footer: FunctionComponent = () => {
   return (
     <footer className="bg-gray-100">
-      <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
+      <div className="px-4 py-12 mx-auto max-w-screen-xl lg:pt-24">
         <div className="lg:flex lg:items-end lg:justify-between">
           <div>
             <Link href="/">
-              <a className="text-lg font-medium inline-block">
+              <a className="inline-block text-lg font-medium">
                 HyperUI
                 <span aria-hidden="true" className="ml-1.5" role="img">
                   🚀
