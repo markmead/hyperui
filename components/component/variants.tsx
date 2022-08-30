@@ -43,14 +43,14 @@ const Variants: FunctionComponent<Props> = ({
   }, [variant])
 
   return (
-    <>
+    <div>
       <label htmlFor="VariantSelect" className="sr-only">
         Variants
       </label>
 
       <select
         onChange={(e) => setVariant(e.currentTarget.value)}
-        className="pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
+        className="w-full pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
         id="VariantSelect"
       >
         <option value="base">Base</option>
@@ -61,7 +61,7 @@ const Variants: FunctionComponent<Props> = ({
           </option>
         ))}
       </select>
-    </>
+    </div>
   )
 }
 

@@ -156,6 +156,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
                     <Dark themed={themed} dark={dark} handleSetDark={setDark} />
                   </>
                 )}
+
                 <Code handleView={setView} view={view} />
                 <Copy code={code} />
               </div>
