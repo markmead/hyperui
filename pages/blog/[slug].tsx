@@ -8,7 +8,7 @@ import Prism from 'prismjs'
 
 import { getPostBySlug, postSlugs } from '../../lib/posts'
 
-import { mdToHtml } from '../../utils/markdown'
+import { markdownToHtml } from '../../utils/markdown'
 
 import { Post } from '../../interface/post'
 
@@ -69,7 +69,7 @@ const Blog: NextPage<Props> = ({ post }) => {
         <meta content={seo.description} key="description" name="description" />
       </Head>
 
-      <div className="px-4 py-12 mx-auto max-w-screen-xl">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>
@@ -102,7 +102,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { slug } }: Params) {
   const post = getPostBySlug(slug, ['title', 'slug', 'date', 'seo', 'content'])
 
-  const content = await mdToHtml(post.content || '')
+  const content = await markdownToHtml(post.content || '')
 
   return {
     props: {
