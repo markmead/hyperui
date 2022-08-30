@@ -1,0 +1,31 @@
+pre[class*='language-'] {
+  @apply !p-4 !m-0 !rounded-xl !bg-gray-900;
+}
+
+.token:is(.property, .tag, .constant, .symbol, .deleted) {
+  @apply !text-red-400;
+}
+
+.token:is(.selector, .attr-name, .string, .char, .builtin, .inserted) {
+  @apply !text-yellow-400;
+}
+
+.token:is(.atrule, .attr-value, .function, .class-name) {
+  @apply !text-green-400;
+}
+
+.token:is(.comment, .prolog, .doctype, .cdata) {
+  @apply !text-gray-400;
+}
+
+.token:is(.operator, .entity, .url, .variable) {
+  @apply !text-white;
+}
+
+.token:is(.boolean, .number) {
+  @apply !text-purple-400;
+}
+
+.token.keyword {
+  @apply !text-cyan-400;
+}

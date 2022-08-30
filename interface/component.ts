@@ -1,7 +1,8 @@
 export interface Component {
-  id?: string
+  id: string
   title: string
   spacing?: string
+  variants?: Array<Component>
 }
 
 export interface ComponentPage {

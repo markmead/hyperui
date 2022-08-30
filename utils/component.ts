@@ -1,4 +1,4 @@
-export function source(html: string, spacing: string = 'relative') {
+export function componentHtml(html: string, spacing: string = 'relative') {
   return `
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +18,6 @@ export function source(html: string, spacing: string = 'relative') {
   `
 }
 
-export function slugify(slug: string, category: string) {
+export function componentSlug(slug: string, category: string) {
   return slug.replace(`${category}-`, '')
 }

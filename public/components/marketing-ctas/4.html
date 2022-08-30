@@ -1,43 +1,26 @@
-<!--
-  This component uses @tailwindcss/forms
-
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
--->
-
-<aside class="bg-gray-900">
-  <div class="p-8 md:p-12 lg:px-16 lg:py-24">
-    <div class="max-w-lg mx-auto text-center">
-      <h2 class="text-2xl font-bold text-white md:text-3xl">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit
+<aside
+  class="overflow-hidden bg-[url(/photos/tee-green-person-2.png)] bg-center bg-no-repeat bg-cover"
+>
+  <div class="p-8 md:p-12 lg:px-16 lg:py-24 bg-green-900/25">
+    <div class="max-w-lg text-center sm:text-left">
+      <h2 class="text-2xl font-bold text-white sm:text-3xl md:text-5xl">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo!
       </h2>
 
-      <p class="hidden text-gray-300 sm:mt-4 sm:block">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor
-        officia blanditiis repellat in, vero, aperiam porro ipsum laboriosam
-        consequuntur exercitationem incidunt tempora nisi?
+      <p
+        class="hidden max-w-md text-white/90 md:mt-6 md:text-lg md:leading-relaxed md:block"
+      >
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
+        officia corporis quasi doloribus iure architecto quae voluptatum beatae
+        excepturi dolores.
       </p>
-    </div>
 
-    <div class="max-w-xl mx-auto mt-8">
-      <form action="#" class="sm:gap-4 sm:flex">
-        <div class="sm:flex-1">
-          <label for="email" class="sr-only">Email</label>
-
-          <input
-            type="email"
-            placeholder="Email address"
-            class="w-full p-3 text-gray-100 transition bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring focus:outline-none focus:ring-yellow-400 focus:border-gray-800"
-          />
-        </div>
-
-        <button
-          type="submit"
-          class="flex items-center justify-center w-full px-5 py-3 mt-4 text-white transition rounded-md bg-rose-600 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
+      <div class="mt-4 sm:mt-8">
+        <a
+          class="inline-flex items-center px-8 py-3 text-white bg-gray-900 rounded-full shadow-lg transition focus:outline-none focus:ring focus:ring-yellow-400 hover:bg-gray-800"
+          href="#"
         >
-          <span class="text-sm font-medium"> Sign Up </span>
+          <span class="text-sm font-medium"> Order Now </span>
 
           <svg
             class="w-5 h-5 ml-3"
@@ -53,8 +36,8 @@
               d="M17 8l4 4m0 0l-4 4m4-4H3"
             />
           </svg>
-        </button>
-      </form>
+        </a>
+      </div>
     </div>
   </div>
 </aside>

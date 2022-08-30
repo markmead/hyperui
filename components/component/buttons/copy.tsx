@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 
 import styles from '../../../styles/button.module.css'
 
@@ -33,7 +33,7 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
   return (
     <>
       <button className={styles.pill} onClick={copyToClipboard}>
-        <span aria-hidden="true" className="text-sm mr-1.5" role="img">
+        <span aria-hidden="true" className="text-sm" role="img">
           {emoji}
         </span>
 
@@ -41,7 +41,7 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
       </button>
 
       {error && (
-        <span className="text-xs text-red-600 font-medium">
+        <span className="text-xs font-medium text-red-600">
           🚨 Failed copying to clipboard 🚨
         </span>
       )}

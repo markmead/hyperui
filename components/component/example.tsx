@@ -1,18 +1,20 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-const prism = require('prismjs')
+import Prism from 'prismjs'
 
-import { source } from '../../utils/component'
+import { componentHtml } from '../../utils/component'
 
 import { allBreakpoints } from '../../lib/breakpoints'
 
 import { Component } from '../../interface/component'
 
 import Breakpoint from './buttons/breakpoint'
+import Dark from './buttons/dark'
 import Copy from './buttons/copy'
 import Code from './buttons/view'
+import Variants from './variants'
 import Range from './range'
 import IconLoading from '../icon/loading'
 import { useRouter } from 'next/router'
@@ -28,7 +30,12 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   let [view, setView] = useState<boolean>(true)
   let [width, setWidth] = useState<string>('100%')
   let [range, setRange] = useState<number>(1348)
+  let [variant, setVariant] = useState<string>('base')
+  let [themed, setThemed] = useState<boolean>(false)
+  let [dark, setDark] = useState<boolean>(false)
+  let [loading, setLoading] = useState<boolean>(false)
   let router = useRouter()
+  let refIframe = useRef(null)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -37,7 +44,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const breakpoints = allBreakpoints
 
-  const { id, title, spacing: space } = item
+  const { id, title, spacing: space, variants } = item
 
   const { query } = router
   const { category, slug } = query
@@ -46,16 +53,10 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const componentId = `component-${id}`
 
+  const componentVariants = variants ? variants : []
+
   useEffect(() => {
-    async function fetchHtml() {
-      const response = await fetch(`/components/${category}-${slug}/${id}.html`)
-      const text = await response.text()
-
-      setCode(text)
-      setHtml(source(text, componentSpacing))
-
-      return
-    }
+    setLoading(true)
 
     if (inView) {
       fetchHtml()
@@ -65,19 +66,63 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
   }, [inView])
 
   useEffect(() => {
-    prism.highlightAll()
+    setDark(false)
+    setLoading(true)
+
+    fetchHtml()
+  }, [variant])
+
+  useEffect(() => {
+    if (refIframe && refIframe.current) {
+      let iframeEl = refIframe.current as HTMLIFrameElement
+
+      iframeEl.contentWindow?.document.documentElement.classList.toggle(
+        'dark',
+        dark
+      )
+    }
+  }, [dark])
+
+  useEffect(() => {
+    Prism.highlightAll()
   })
 
   useEffect(() => {
     range === 1348 ? setWidth('100%') : setWidth(`${range}px`)
   }, [range])
 
-  const handleWidth = (width: string) => {
+  async function fetchHtml() {
+    let componentUrl =
+      variant === 'base'
+        ? `/components/${category}-${slug}/${id}.html`
+        : `/components/${category}-${slug}/${id}-${variant}.html`
+
+    let fetchResponse = await fetch(componentUrl)
+    let textResponse = await fetchResponse.text()
+
+    setCode(textResponse)
+    setHtml(componentHtml(textResponse, componentSpacing))
+
+    fakeLoading()
+
+    return
+  }
+
+  function handleWidth(width: string) {
     setWidth(width)
 
     width === '100%'
       ? setRange(1348)
       : setRange(Number(width.replace('px', '')))
+  }
+
+  function fakeLoading() {
+    let randomDuration = Math.floor(Math.random() * (250 - 150) + 150)
+
+    setTimeout(() => {
+      setLoading(false)
+      setDark(themed)
+    }, randomDuration)
   }
 
   return (
@@ -100,6 +145,18 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
           <div>
             {code && (
               <div className="flex items-center gap-4">
+                {componentVariants.length > 0 && (
+                  <>
+                    <Variants
+                      variants={componentVariants}
+                      handleSetVariant={setVariant}
+                      handleSetThemed={setThemed}
+                    />
+
+                    <Dark themed={themed} dark={dark} handleSetDark={setDark} />
+                  </>
+                )}
+
                 <Code handleView={setView} view={view} />
                 <Copy code={code} />
               </div>
@@ -127,8 +184,9 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
         </div>
 
         <div className="relative">
-          {!code && (
+          {loading && (
             <div
+              style={{ maxWidth: width }}
               className="absolute inset-0 flex items-center justify-center bg-white rounded-lg"
               aria-hidden="true"
             >
@@ -143,6 +201,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
               srcDoc={html}
               style={{ maxWidth: width }}
               title={`${title} Component`}
+              ref={refIframe}
             ></iframe>
           </div>
 

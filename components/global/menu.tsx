@@ -2,25 +2,25 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { Link as iLink } from '../../interface/global'
+import { Link as LinkInterface } from '../../interface/global'
 
 import IconMenu from '../icon/menu'
 
 type Props = {
   menu: boolean
   handleMenu: CallableFunction
-  links: Array<iLink>
+  links: Array<LinkInterface>
 }
 
 const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
   <div className="flex items-center sm:hidden">
     <button
-      className="inline-flex items-center"
+      className="inline-flex items-center gap-1.5"
       onClick={() => handleMenu(!menu)}
     >
       <IconMenu />
 
-      <span className="ml-1.5 text-xs font-medium">Menu</span>
+      <span className="text-xs font-medium">Menu</span>
     </button>
 
     {menu && (

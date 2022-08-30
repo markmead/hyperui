@@ -146,13 +146,13 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 ### Incorrect
 
 ```
-<button class="transition-all bg-red-500 hover:bg-red-600">Click</button>
+<button class="bg-red-500 transition-all hover:bg-red-600">Click</button>
 ```
 
 ### Correct
 
 ```
-<button class="transition-colors bg-red-500 hover:bg-red-600">Click</button>
+<button class="bg-red-500 transition-colors hover:bg-red-600">Click</button>
 ```
 
 > But the class name is longer?

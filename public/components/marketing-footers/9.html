@@ -7,11 +7,11 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<footer class="bg-gray-900">
-  <div class="max-w-screen-xl px-4 pt-16 pb-8 mx-auto sm:px-6 lg:px-8">
+<footer class="bg-white">
+  <div class="px-4 pt-16 pb-8 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
     <div class="max-w-md mx-auto">
       <strong
-        class="block text-xl font-medium text-center text-white sm:text-3xl"
+        class="block text-xl font-medium text-center text-gray-900 sm:text-3xl"
       >
         Want us to email you with the latest blockbuster news?
       </strong>
@@ -21,14 +21,14 @@
           <label class="sr-only" for="email"> Email </label>
 
           <input
-            class="w-full p-4 pr-16 text-sm font-medium bg-white border-none rounded-full"
+            class="w-full p-4 pr-32 text-sm font-medium bg-gray-100 border-gray-200 rounded-full"
             id="email"
             type="email"
             placeholder="john@doe.com"
           />
 
           <button
-            class="absolute top-1/2 right-1.5 -translate-y-1/2 rounded-full bg-blue-600 p-3 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-blue-700"
+            class="absolute px-5 py-3 text-sm font-medium text-white bg-blue-600 rounded-full top-1/2 right-1 -translate-y-1/2 transition hover:bg-blue-700"
             type="button"
           >
             Subscribe
@@ -37,23 +37,17 @@
       </form>
     </div>
 
-    <div class="grid grid-cols-1 gap-8 mt-16 lg:grid-cols-2 lg:gap-32">
+    <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
       <div class="max-w-sm mx-auto lg:max-w-none">
-        <span
-          class="block w-32 h-10 mx-auto bg-gray-700 rounded-lg lg:ml-0"
-        ></span>
-
-        <p class="mt-4 text-center text-white lg:text-left lg:text-lg">
+        <p class="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium
           natus quod eveniet aut perferendis distinctio iusto repudiandae,
           provident velit earum?
         </p>
 
-        <div
-          class="flex justify-center gap-4 mt-6 text-gray-300 lg:justify-start"
-        >
+        <div class="flex justify-center mt-6 gap-4 lg:justify-start">
           <a
-            class="transition hover:opacity-75"
+            class="text-gray-700 transition hover:text-gray-700/75"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -75,7 +69,7 @@
           </a>
 
           <a
-            class="transition hover:opacity-75"
+            class="text-gray-700 transition hover:text-gray-700/75"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -97,7 +91,7 @@
           </a>
 
           <a
-            class="transition hover:opacity-75"
+            class="text-gray-700 transition hover:text-gray-700/75"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -117,7 +111,7 @@
           </a>
 
           <a
-            class="transition hover:opacity-75"
+            class="text-gray-700 transition hover:text-gray-700/75"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -139,7 +133,7 @@
           </a>
 
           <a
-            class="transition hover:opacity-75"
+            class="text-gray-700 transition hover:text-gray-700/75"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -163,61 +157,82 @@
       </div>
 
       <div
-        class="grid grid-cols-1 gap-8 text-center lg:grid-cols-3 lg:text-left"
+        class="text-center grid grid-cols-1 gap-8 lg:grid-cols-3 lg:text-left"
       >
         <div>
-          <strong class="text-sm font-bold tracking-wide text-white uppercase">
-            Services
-          </strong>
+          <strong class="font-medium text-gray-900"> Services </strong>
 
-          <nav class="flex flex-col mt-6 space-y-1 text-gray-400">
-            <a class="transition hover:text-white" href="/"> Marketing </a>
-            <a class="transition hover:text-white" href="/"> Graphic Design </a>
-            <a class="transition hover:text-white" href="/">
+          <nav class="flex flex-col mt-6 space-y-1">
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              Marketing
+            </a>
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              Graphic Design
+            </a>
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
               App Development
             </a>
-            <a class="transition hover:text-white" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
               Web Development
             </a>
           </nav>
         </div>
 
         <div>
-          <strong class="text-sm font-bold tracking-wide text-white uppercase">
-            About
-          </strong>
+          <strong class="font-medium text-gray-900"> About </strong>
 
-          <nav class="flex flex-col mt-6 space-y-1 text-gray-400">
-            <a class="transition hover:text-white" href="/"> About </a>
-            <a class="transition hover:text-white" href="/"> Careers </a>
-            <a class="transition hover:text-white" href="/"> History </a>
-            <a class="transition hover:text-white" href="/"> Our Team </a>
+          <nav class="flex flex-col mt-6 space-y-1">
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              About
+            </a>
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              Careers
+            </a>
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              History
+            </a>
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              Our Team
+            </a>
           </nav>
         </div>
 
         <div>
-          <strong class="text-sm font-bold tracking-wide text-white uppercase">
-            Support
-          </strong>
+          <strong class="font-medium text-gray-900"> Support </strong>
 
-          <nav class="flex flex-col mt-6 space-y-1 text-gray-400">
-            <a class="transition hover:text-white" href="/"> FAQs </a>
-            <a class="transition hover:text-white" href="/"> Contact </a>
-            <a class="transition hover:text-white" href="/"> Live Chat </a>
+          <nav class="flex flex-col mt-6 space-y-1">
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              FAQs
+            </a>
+
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              Contact
+            </a>
+
+            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+              Live Chat
+            </a>
           </nav>
         </div>
       </div>
     </div>
 
-    <div class="pt-8 mt-16 border-t border-white/10">
-      <p class="text-xs leading-relaxed text-center text-gray-300">
+    <div class="pt-8 mt-16 border-t border-gray-100">
+      <p class="text-xs leading-relaxed text-center text-gray-500">
         © Company 2022. All rights reserved.
 
         <br />
 
         Created with
-        <a href="" class="underline transition hover:text-white">Laravel</a> and
-        <a href="" class="underline transition hover:text-white"
+        <a
+          href=""
+          class="text-gray-700 underline transition hover:text-gray-700/75"
+          >Laravel</a
+        >
+        and
+        <a
+          href=""
+          class="text-gray-700 underline transition hover:text-gray-700/75"
           >Laravel Livewire</a
         >.
       </p>

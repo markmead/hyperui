@@ -4,11 +4,11 @@ import Head from 'next/head'
 
 import { useEffect } from 'react'
 
-const prism = require('prismjs')
+import Prism from 'prismjs'
 
 import { getPostBySlug, postSlugs } from '../../lib/posts'
 
-import convert from '../../utils/markdown'
+import { markdownToHtml } from '../../utils/markdown'
 
 import { Post } from '../../interface/post'
 
@@ -54,7 +54,7 @@ const Blog: NextPage<Props> = ({ post }) => {
 
     prismCode.forEach((code) => code.classList.add('language-html'))
 
-    prism.highlightAll()
+    Prism.highlightAll()
   })
 
   return (
@@ -69,7 +69,7 @@ const Blog: NextPage<Props> = ({ post }) => {
         <meta content={seo.description} key="description" name="description" />
       </Head>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto">
+      <div className="px-4 py-12 mx-auto max-w-screen-xl">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>
@@ -102,7 +102,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { slug } }: Params) {
   const post = getPostBySlug(slug, ['title', 'slug', 'date', 'seo', 'content'])
 
-  const content = await convert(post.content || '')
+  const content = await markdownToHtml(post.content || '')
 
   return {
     props: {
