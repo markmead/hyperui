@@ -4,7 +4,7 @@ slug: whats-new-in-hyperui
 date: 03/13/2022
 emoji: 👌
 seo:
-  title: What's New in HyperUI?
+  title: What's New in HyperUI? Biggest Update Yet!
   description: Find out what's new in HyperUI as the project goes through its biggest update to date, featuring an easier process for contributors.
 ---
 

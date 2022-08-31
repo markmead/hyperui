@@ -21,29 +21,15 @@ const Blog: NextPage<Props> = ({ post }) => {
 
   const schemaData = {
     '@context': 'http://schema.org',
-    '@type': 'BlogPosting',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.hyperui.dev/blog/${post.slug}`,
-    },
+    '@type': 'NewsArticle',
     headline: `${post.title}`,
+    image: ['https://www.hyperui.dev/og.png'],
     datePublished: `${post.date}`,
     dateModified: `${post.date}`,
     author: {
       '@type': 'Person',
       name: 'Mark Mead',
       url: 'https://twitter.com/itsmarkmead',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'HyperUI',
-    },
-    articleBody: `${post.content}`,
-    image: {
-      '@type': 'ImageObject',
-      url: 'https://www.hyperui.dev/og.png',
-      height: 630,
-      width: 1200,
     },
   }
 
@@ -69,7 +55,7 @@ const Blog: NextPage<Props> = ({ post }) => {
         <meta content={seo.description} key="description" name="description" />
       </Head>
 
-      <div className="px-4 py-12 mx-auto max-w-screen-xl">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
             <time className="text-sm text-gray-500">{post.date}</time>

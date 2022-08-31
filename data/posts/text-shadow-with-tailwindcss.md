@@ -1,5 +1,5 @@
 ---
-title: Adding Text Shadow Support to Tailwind CSS
+title: How to Add Text Shadow Support to Tailwind CSS
 slug: text-shadow-with-tailwindcss
 date: 03/26/2022
 emoji: 👤

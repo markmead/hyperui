@@ -4,7 +4,7 @@ slug: how-to-write-better-tailwindcss
 date: 04/17/2022
 emoji: 🧐
 seo:
-  title: How to Write Better Tailwind CSS
+  title: Tips & Tricks for Writing Better Tailwind CSS
   description: I've been writing Tailwind CSS for since 2018 and have come across a few tips and tricks to make your code look and perform better.
 ---
 
@@ -146,13 +146,13 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 ### Incorrect
 
 ```
-<button class="bg-red-500 transition-all hover:bg-red-600">Click</button>
+<button class="transition-all bg-red-500 hover:bg-red-600">Click</button>
 ```
 
 ### Correct
 
 ```
-<button class="bg-red-500 transition-colors hover:bg-red-600">Click</button>
+<button class="transition-colors bg-red-500 hover:bg-red-600">Click</button>
 ```
 
 > But the class name is longer?

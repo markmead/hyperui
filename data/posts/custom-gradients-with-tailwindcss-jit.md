@@ -1,5 +1,5 @@
 ---
-title: Custom Gradients with JIT in Tailwind CSS (No Custom CSS)
+title: How to Create Custom Gradients in Tailwind CSS with JIT
 slug: custom-gradients-with-tailwindcss-jit
 date: 03/07/2022
 emoji: 🎨
