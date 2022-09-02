@@ -18,18 +18,20 @@ const Breakpoint: FunctionComponent<Props> = ({
   text,
 }) => {
   return (
-    <button
-      onClick={() => handleWidth(size)}
-      className={`${styles.pill} ${
-        active ? 'bg-black text-white' : 'text-black'
-      }`}
-    >
-      <span aria-hidden="true" className="text-sm" role="img">
-        {emoji}
-      </span>
+    <>
+      <button
+        onClick={() => handleWidth(size)}
+        className={`${styles.pill} ${
+          active ? 'bg-black text-white' : 'text-black'
+        }`}
+      >
+        <span aria-hidden="true" className="text-sm" role="img">
+          {emoji}
+        </span>
 
-      <span className="text-xs font-medium">{text}</span>
-    </button>
+        <span className="text-xs font-medium">{text}</span>
+      </button>
+    </>
   )
 }
 

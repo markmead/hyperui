@@ -9,13 +9,15 @@ type Props = {
 
 const View: FunctionComponent<Props> = ({ handleView, view }) => {
   return (
-    <button onClick={() => handleView(!view)} className={styles.pill}>
-      <span aria-hidden="true" className="text-sm" role="img">
-        👀
-      </span>
+    <>
+      <button onClick={() => handleView(!view)} className={styles.pill}>
+        <span aria-hidden="true" className="text-sm" role="img">
+          👀
+        </span>
 
-      <span className="text-xs font-medium">View</span>
-    </button>
+        <span className="text-xs font-medium">View</span>
+      </button>
+    </>
   )
 }
 
