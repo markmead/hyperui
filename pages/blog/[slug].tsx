@@ -6,54 +6,37 @@ import { useEffect } from 'react'
 
 import Prism from 'prismjs'
 
-import { getPostBySlug, postSlugs } from '../../lib/posts'
+import fs from 'fs'
+import matter from 'gray-matter'
+import { MDXRemote } from 'next-mdx-remote'
+import { serialize } from 'next-mdx-remote/serialize'
 
-import { markdownToHtml } from '../../utils/markdown'
+import { postSlugs } from '../../lib/posts'
+import { PostFrontmatter } from '../../interface/post'
 
-import { Post } from '../../interface/post'
+const components = {}
 
 type Props = {
-  post: Post
+  source: any
+  frontMatter: PostFrontmatter
 }
 
-const Blog: NextPage<Props> = ({ post }) => {
-  const { seo } = post
-
+const Blog: NextPage<Props> = ({ source, frontMatter }) => {
   const schemaData = {
     '@context': 'http://schema.org',
-    '@type': 'BlogPosting',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.hyperui.dev/blog/${post.slug}`,
-    },
-    headline: `${post.title}`,
-    datePublished: `${post.date}`,
-    dateModified: `${post.date}`,
+    '@type': 'NewsArticle',
+    headline: `${frontMatter.title}`,
+    image: ['https://www.hyperui.dev/og.png'],
+    datePublished: `${frontMatter.date}`,
+    dateModified: `${frontMatter.date}`,
     author: {
       '@type': 'Person',
       name: 'Mark Mead',
       url: 'https://twitter.com/itsmarkmead',
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'HyperUI',
-    },
-    articleBody: `${post.content}`,
-    image: {
-      '@type': 'ImageObject',
-      url: 'https://www.hyperui.dev/og.png',
-      height: 630,
-      width: 1200,
-    },
   }
 
   useEffect(() => {
-    let prismCode = [
-      ...document.querySelectorAll('pre code'),
-    ] as Array<HTMLPreElement>
-
-    prismCode.forEach((code) => code.classList.add('language-html'))
-
     Prism.highlightAll()
   })
 
@@ -64,20 +47,24 @@ const Blog: NextPage<Props> = ({ post }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{seo.title} | Blog | HyperUI</title>
+        <title>{frontMatter.seo.title} | Blog | HyperUI</title>
 
-        <meta content={seo.description} key="description" name="description" />
+        <meta
+          content={frontMatter.seo.description}
+          key="description"
+          name="description"
+        />
       </Head>
 
-      <div className="px-4 py-12 mx-auto max-w-screen-xl">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
-            <time className="text-sm text-gray-500">{post.date}</time>
+            <time className="text-sm text-gray-500">{frontMatter.date}</time>
 
-            <h1 className="mt-1">{post.title}</h1>
+            <h1 className="mt-1">{frontMatter.title}</h1>
           </header>
 
-          <main dangerouslySetInnerHTML={{ __html: post.content }} />
+          <MDXRemote {...source} components={components} />
         </article>
       </div>
     </>
@@ -90,27 +77,33 @@ type Params = {
   }
 }
 
+export async function getStaticProps({ params: { slug } }: Params) {
+  const source = fs.readFileSync(`data/posts/${slug}.mdx`)
+
+  const { content, data } = matter(source)
+
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [],
+    },
+    scope: data,
+  })
+
+  return {
+    props: {
+      source: mdxSource,
+      frontMatter: data,
+    },
+  }
+}
+
 export async function getStaticPaths() {
   const paths = postSlugs()
 
   return {
     paths,
     fallback: false,
-  }
-}
-
-export async function getStaticProps({ params: { slug } }: Params) {
-  const post = getPostBySlug(slug, ['title', 'slug', 'date', 'seo', 'content'])
-
-  const content = await markdownToHtml(post.content || '')
-
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-      },
-    },
   }
 }
 

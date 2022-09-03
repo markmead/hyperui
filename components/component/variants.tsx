@@ -43,25 +43,27 @@ const Variants: FunctionComponent<Props> = ({
   }, [variant])
 
   return (
-    <div>
-      <label htmlFor="VariantSelect" className="sr-only">
-        Variants
-      </label>
+    <>
+      <div>
+        <label htmlFor="VariantSelect" className="sr-only">
+          Variants
+        </label>
 
-      <select
-        onChange={(e) => setVariant(e.currentTarget.value)}
-        className="w-full pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
-        id="VariantSelect"
-      >
-        <option value="base">Base</option>
+        <select
+          onChange={(e) => setVariant(e.currentTarget.value)}
+          className="w-full pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
+          id="VariantSelect"
+        >
+          <option value="base">Base</option>
 
-        {variants.map((variant) => (
-          <option value={variant.id} key={variant.id}>
-            {variant.title}
-          </option>
-        ))}
-      </select>
-    </div>
+          {variants.map((variant) => (
+            <option value={variant.id} key={variant.id}>
+              {variant.title}
+            </option>
+          ))}
+        </select>
+      </div>
+    </>
   )
 }
 

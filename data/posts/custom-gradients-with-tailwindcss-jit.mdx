@@ -1,6 +1,5 @@
 ---
-title: Custom Gradients with JIT in Tailwind CSS (No Custom CSS)
-slug: custom-gradients-with-tailwindcss-jit
+title: How to Create Custom Gradients in Tailwind CSS with JIT
 date: 03/07/2022
 emoji: 🎨
 seo:
@@ -14,25 +13,23 @@ Since v3, JIT has been the default in Tailwind CSS and has bought a lot of power
 
 ### Without Tailwind CSS JIT
 
+```html
+<div class="absolute p-4 floating-alert">Hello World! 👋</div>
 ```
-<div class="absolute p-4 floating-alert">
-  Hello World! 👋
-</div>
 
-<style>
-  .floating-alert {
-    bottom: 5px;
-    right: 5px;
-  }
-</style>
+And for the CSS...
+
+```css
+.floating-alert {
+  bottom: 5px;
+  right: 5px;
+}
 ```
 
 ### With Tailwind CSS JIT
 
-```
-<div class="absolute p-4 bottom-[5px] right-[5px]">
-  Hello World! 👋
-</div>
+```html
+<div class="absolute p-4 bottom-[5px] right-[5px]">Hello World! 👋</div>
 ```
 
 The benefit here is keeping everything within the HTML, this means:
@@ -47,14 +44,14 @@ If you are using these gradients more than once, it's worth adding them to the T
 
 The syntax for creating a gradient looks confusing, but it's easy to understand once you realise that spaces are replaced with underscores. Take the following example:
 
-```
+```html
 <div class="bg-[linear-gradient(180deg,_#005BBB_49.9%,_#FFD500_50%)]"></div>
 ```
 
 In CSS this would be:
 
-```
-background-image: linear-gradient(180deg, #005BBB 49.9%, #FFD500 50%);
+```css
+background-image: linear-gradient(180deg, #005bbb 49.9%, #ffd500 50%);
 ```
 
 The underscores after commas are personal choice, I leave them in for readability but you can remove them.
@@ -71,13 +68,15 @@ For this I've used [Hypercolor](https://hypercolor.dev) to find a `conic-gradien
 
 Here's the code written to replicate the example:
 
-```
-<div class="bg-[conic-gradient(at_left_center,_#eab308,_#a855f7,_#3b82f6)]"></div>
+```html
+<div
+  class="bg-[conic-gradient(at_left_center,_#eab308,_#a855f7,_#3b82f6)]"
+></div>
 ```
 
 Which results in the follow CSS:
 
-```
+```css
 background-image: conic-gradient(at left center, #eab308, #a855f7, #3b82f6);
 ```
 
@@ -89,13 +88,15 @@ Once again I'm using [Hypercolor](https://hypercolor.dev) to find a `radial-grad
 
 Here's the code written to replicate the example:
 
-```
-<div class="bg-[radial-gradient(at_center_bottom,_#fde68a,_#7c3aed,_#0c4a6e)]"></div>
+```html
+<div
+  class="bg-[radial-gradient(at_center_bottom,_#fde68a,_#7c3aed,_#0c4a6e)]"
+></div>
 ```
 
 Which results in the follow CSS:
 
-```
+```css
 background-image: radial-gradient(at center bottom, #fde68a, #7c3aed, #0c4a6e);
 ```
 
