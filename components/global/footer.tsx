@@ -6,7 +6,7 @@ const Footer: FunctionComponent = () => {
   return (
     <>
       <footer className="border-t border-gray-100">
-        <div className="max-w-screen-xl px-4 py-12 mx-auto">
+        <div className="px-4 py-12 mx-auto max-w-screen-xl">
           <div>
             <Link href="/">
               <a className="inline-flex text-lg font-medium gap-1.5">

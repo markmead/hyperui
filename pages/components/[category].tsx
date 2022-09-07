@@ -40,7 +40,7 @@ const Category: NextPage<Props> = ({ categoryComponents, categoryDetails }) => {
         {categoryDetails.banner.description}
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
+      <div className="px-4 py-12 mx-auto max-w-screen-xl space-y-8">
         <div className="space-y-4">
           <h2 className="text-lg font-bold sm:text-xl">
             {categoryDetails.title} Components

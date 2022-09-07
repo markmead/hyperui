@@ -42,7 +42,7 @@ const Blogs: NextPage<Props> = ({ posts }) => {
         write cleaner, more maintainable code and help you be more productive.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto">
+      <div className="px-4 py-12 mx-auto max-w-screen-xl">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>
