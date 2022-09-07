@@ -47,7 +47,7 @@ const Blog: NextPage<Props> = ({ source, frontMatter }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{frontMatter.seo.title} | Blog | HyperUI</title>
+        <title>{frontMatter.seo.title} | HyperUI</title>
 
         <meta
           content={frontMatter.seo.description}

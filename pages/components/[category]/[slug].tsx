@@ -52,7 +52,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
   return (
     <>
       <Head>
-        <title>Free Open Source Tailwind CSS {seo.title} | HyperUI</title>
+        <title>Free Tailwind CSS {seo.title} | HyperUI</title>
 
         <meta name="description" key="description" content={seo.description} />
       </Head>

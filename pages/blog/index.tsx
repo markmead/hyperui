@@ -25,7 +25,7 @@ const Blogs: NextPage<Props> = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>Blog | Free Open Source Tailwind CSS Components | HyperUI</title>
+        <title>Tailwind CSS Blog | HyperUI</title>
 
         <meta
           content="Read the HyperUI blog for tips and tricks on using Tailwind CSS in your projects."
@@ -42,7 +42,7 @@ const Blogs: NextPage<Props> = ({ posts }) => {
         write cleaner, more maintainable code and help you be more productive.
       </Banner>
 
-      <div className="px-4 py-12 mx-auto max-w-screen-xl">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>
