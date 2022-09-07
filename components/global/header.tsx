@@ -13,15 +13,15 @@ const Header: FunctionComponent = () => {
   const links: Array<LinkInterface> = [
     {
       title: 'Marketing',
-      href: '/marketing',
+      href: '/components/marketing',
     },
     {
       title: 'Ecommerce',
-      href: '/ecommerce',
+      href: '/components/ecommerce',
     },
     {
       title: 'Application UI',
-      href: '/application-ui',
+      href: '/components/application-ui',
     },
   ]
 
