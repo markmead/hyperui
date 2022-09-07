@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 
+import Head from 'next/head'
+
 import { ComponentCard } from '../../interface/component'
 
 import {
@@ -19,6 +21,18 @@ type Props = {
 const Category: NextPage<Props> = ({ categoryComponents, categoryDetails }) => {
   return (
     <>
+      <Head>
+        <title>
+          Free Tailwind CSS {categoryDetails.banner.title} | HyperUI
+        </title>
+
+        <meta
+          name="description"
+          key="description"
+          content={categoryDetails.banner.description}
+        />
+      </Head>
+
       <Banner
         title={categoryDetails.banner.title}
         subtitle={categoryDetails.banner.subtitle}
