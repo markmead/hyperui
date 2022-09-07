@@ -25,7 +25,7 @@ const Blogs: NextPage<Props> = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>Blog | Free Open Source Tailwind CSS Components | HyperUI</title>
+        <title>Tailwind CSS Blog | HyperUI</title>
 
         <meta
           content="Read the HyperUI blog for tips and tricks on using Tailwind CSS in your projects."
