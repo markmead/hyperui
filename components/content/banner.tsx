@@ -22,7 +22,7 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
             </p>
           )}
 
-          <div className="mt-8 sm:justify-center sm:items-center sm:flex">
+          <div className="mt-8 sm:justify-center sm:items-center sm:flex sm:gap-2">
             <p className="text-xs tracking-wide text-gray-400 uppercase">
               Proudly supported by
             </p>
@@ -30,8 +30,8 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
             <a
               href="https://lunarphp.io/?ref=hyperui.dev"
               target="_blank"
-              rel="noopener"
-              className="relative block w-40 h-10 mx-auto mt-4 sm:m-0"
+              rel="noreferrer"
+              className="relative block h-8 mx-auto mt-4 sm:m-0 w-28"
             >
               <Image
                 src="/brands/lunar.svg"
