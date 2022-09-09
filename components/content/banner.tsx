@@ -27,10 +27,11 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
               Proudly supported by
             </p>
 
+            {/* eslint-disable-next-line react/jsx-no-target-blank */}
             <a
               href="https://lunarphp.io/?ref=hyperui.dev"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener"
               className="relative block h-8 mx-auto mt-4 sm:m-0 w-28"
             >
               <Image
