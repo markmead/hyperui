@@ -1,10 +1,10 @@
 <style>
-    .background-animate {
+    .animate-gradient {
       background-size: 400%;
-      -webkit-animation: AnimationName 1.5s ease infinite;
-      animation: AnimationName 1.5s ease infinite;
+      -webkit-animation: move-gradient 1.5s ease infinite;
+      animation: move-gradient 1.5s ease infinite;
     }
-    @keyframes AnimationName {
+    @keyframes move-gradient {
       0%,
       100% {
         background-position: 0% 50%;
@@ -13,18 +13,13 @@
         background-position: 100% 50%;
       }
     }
-    .bg-image {
-      background-image: url("https://images.pexels.com/photos/10027233/pexels-photo-10027233.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load");
-    }
-    .bg-image:hover {
-      background-image: url("https://images.pexels.com/photos/1252869/pexels-photo-1252869.jpeg?auto=compress&cs=tinysrgb&w=1600");
-    }
+
   </style>
   <div
-    class="background-animate inline-flex aspect-[4/3] items-center justify-center rounded-xl bg-gradient-to-br from-rose-400 via-fuchsia-500 to-indigo-500 p-2 shadow-xl w-full"
+    class=" animate-gradient inline-flex aspect-[4/3] items-center justify-center rounded-xl bg-gradient-to-br from-rose-400 via-fuchsia-500 to-indigo-500 p-2 shadow-xl w-full"
   >
     <div
-      class="bg-image h-full w-full object-fit rounded-xl bg-cover bg-center bg-no-repeat transition-all duration-500"
+      class="bg-[url('https://unsplash.it/235')] hover:bg-[url('https://unsplash.it/457')] h-full w-full object-fit rounded-xl bg-cover bg-center bg-no-repeat transition-all duration-500"
     ></div>
   </div>
       
