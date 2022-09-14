@@ -32,7 +32,7 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
               href="https://lunarphp.io/?ref=hyperui.dev"
               target="_blank"
               rel="noopener"
-              className="relative block h-8 mx-auto mt-4 sm:m-0 w-28"
+              className="relative block w-24 h-8 mx-auto mt-4 sm:m-0"
             >
               <Image
                 src="/brands/lunar.svg"
