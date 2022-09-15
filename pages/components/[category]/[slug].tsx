@@ -32,6 +32,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
       id: key,
       title: value.title,
       spacing: value.spacing ?? false,
+      creator: value.creator ?? false,
       variants: value.variants
         ? Object.entries(value.variants).map(
             ([key, value]: any): Component => ({
@@ -58,7 +59,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
       </Head>
 
       <section>
-        <div className="px-4 py-12 mx-auto max-w-screen-xl lg:pt-24">
+        <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
           <div className="prose max-w-none">
             <MDXRemote {...source} components={components} scope={data} />
           </div>

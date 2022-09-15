@@ -2,6 +2,7 @@ export interface Component {
   id: string
   title: string
   spacing?: string
+  creator?: string
   variants?: Array<Component>
 }
 
