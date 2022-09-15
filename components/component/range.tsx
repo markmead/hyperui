@@ -8,7 +8,7 @@ type Props = {
 const Range: FunctionComponent<Props> = ({ range, handleRange }) => {
   return (
     <>
-      <label htmlFor="ComponentWidth">
+      <label htmlFor="ComponentWidth" className="flex">
         <span className="sr-only">Component preview width</span>
 
         <input
