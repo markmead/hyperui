@@ -23,7 +23,7 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
           )}
 
           <div className="mt-8 sm:justify-center sm:items-center sm:flex sm:gap-2">
-            <p className="text-xs tracking-wide text-gray-400 uppercase">
+            <p className="text-xs tracking-wide text-gray-500 uppercase">
               Proudly supported by
             </p>
 
