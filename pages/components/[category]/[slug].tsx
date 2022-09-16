@@ -59,7 +59,7 @@ const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
       </Head>
 
       <section>
-        <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
+        <div className="px-4 py-12 mx-auto max-w-screen-xl lg:pt-24">
           <div className="prose max-w-none">
             <MDXRemote {...source} components={components} scope={data} />
           </div>
