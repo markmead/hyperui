@@ -44,7 +44,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
 
   const breakpoints = allBreakpoints
 
-  const { id, title, spacing: space, variants } = item
+  const { id, title, spacing: space, creator, variants } = item
 
   const { query } = router
   const { category, slug } = query
@@ -216,6 +216,22 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
               </pre>
             </div>
           </div>
+
+          {creator && (
+            <div>
+              <p className="text-sm text-gray-500">
+                Created by{' '}
+                <a
+                  href={`https://github.com/${creator}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline transition hover:text-gray-600"
+                >
+                  {creator}
+                </a>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>
