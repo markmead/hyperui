@@ -11,7 +11,7 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
   return (
     <>
       <section>
-        <div className="px-4 py-16 mx-auto text-center max-w-screen-xl lg:py-32">
+        <div className="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32">
           <h1 className="text-4xl font-bold sm:text-6xl">{title}</h1>
 
           {subtitle && <h2 className="mt-4 text-gray-500">{subtitle}</h2>}
@@ -22,20 +22,21 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
             </p>
           )}
 
-          <div className="mt-8 sm:justify-center sm:items-center sm:flex">
+          <div className="mt-8 sm:justify-center sm:items-center sm:flex sm:gap-2">
             <p className="text-xs tracking-wide text-gray-400 uppercase">
               Proudly supported by
             </p>
 
+            {/* eslint-disable-next-line react/jsx-no-target-blank */}
             <a
-              href="https://getcandy.io/?ref=hyperui.dev"
+              href="https://lunarphp.io/?ref=hyperui.dev"
               target="_blank"
-              rel="noreferrer"
-              className="relative block w-40 h-10 mx-auto mt-4 sm:m-0"
+              rel="noopener"
+              className="relative block w-24 h-8 mx-auto mt-4 sm:m-0"
             >
               <Image
-                src="/brands/getcandy.svg"
-                alt="GetCandy - Laravel eCommerce"
+                src="/brands/lunar.svg"
+                alt="Lunar - Laravel eCommerce"
                 layout="fill"
               />
             </a>
