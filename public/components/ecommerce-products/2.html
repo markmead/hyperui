@@ -1,32 +1,9 @@
-<style>
-  .prose h3 {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgb(243 244 246);
-
-    /* @apply mb-1 pb-2 border-b border-gray-200; */
-  }
-
-  .prose iframe {
-    width: 100%;
-    margin-top: 1.5rem;
-    aspect-ratio: 16 / 9;
-    border-radius: 0.75rem;
-
-    /* @apply w-full aspect-video mt-6 rounded-xl; */
-  }
-</style>
-
 <section>
-  <div class="relative px-4 py-8 mx-auto max-w-screen-xl">
+  <div class="relative max-w-screen-xl px-4 py-8 mx-auto">
     <div>
-      <h1 class="text-2xl font-bold lg:text-3xl">
-        Simple Clothes Basic Tee
-      </h1>
+      <h1 class="text-2xl font-bold lg:text-3xl">Simple Clothes Basic Tee</h1>
 
-      <p class="mt-1 text-sm text-gray-500">
-        SKU: #012345
-      </p>
+      <p class="mt-1 text-sm text-gray-500">SKU: #012345</p>
     </div>
 
     <div class="grid gap-8 lg:items-start lg:grid-cols-4">
@@ -38,35 +15,59 @@
             class="w-full rounded-xl h-72 lg:h-[540px] object-cover"
           />
 
-          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/75 text-white px-3 py-1.5 inline-flex items-center">
+          <div
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/75 text-white px-3 py-1.5 inline-flex items-center"
+          >
             <svg
               class="w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+              />
             </svg>
 
-            <span class="text-xs ml-1.5">
-              Hover to zoom
-            </span>
+            <span class="text-xs ml-1.5"> Hover to zoom </span>
           </div>
         </div>
 
-        <ul class="flex mt-1 gap-1">
+        <ul class="flex gap-1 mt-1">
           <li>
-            <img class="object-cover w-16 h-16 rounded-md" src="../../photos/tee-green-hanger-2.png" alt="" />
+            <img
+              class="object-cover w-16 h-16 rounded-md"
+              src="../../photos/tee-green-hanger-2.png"
+              alt=""
+            />
           </li>
 
           <li>
-            <img class="object-cover w-16 h-16 rounded-md" src="../../photos/tee-green-hanger-3.png" alt="" />
+            <img
+              class="object-cover w-16 h-16 rounded-md"
+              src="../../photos/tee-green-hanger-3.png"
+              alt=""
+            />
           </li>
 
           <li>
-            <img class="object-cover w-16 h-16 rounded-md" src="../../photos/tee-green-person.png" alt="" />
+            <img
+              class="object-cover w-16 h-16 rounded-md"
+              src="../../photos/tee-green-person.png"
+              alt=""
+            />
           </li>
 
           <li>
-            <img class="object-cover w-16 h-16 rounded-md" src="../../photos/tee-green-person-2.png" alt="" />
+            <img
+              class="object-cover w-16 h-16 rounded-md"
+              src="../../photos/tee-green-person-2.png"
+              alt=""
+            />
           </li>
         </ul>
       </div>
@@ -74,61 +75,109 @@
       <div class="lg:top-0 lg:sticky">
         <form class="space-y-4 lg:pt-8">
           <fieldset>
-            <legend class="text-lg font-bold">
-              Color
-            </legend>
+            <legend class="text-lg font-bold">Color</legend>
 
             <div class="flex mt-2 space-x-1">
               <label for="color_green" class="cursor-pointer">
-                <input type="radio" id="color_green" name="color" class="sr-only peer" checked />
+                <input
+                  type="radio"
+                  id="color_green"
+                  name="color"
+                  class="sr-only peer"
+                  checked
+                />
 
-                <span class="block w-6 h-6 bg-green-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"></span>
+                <span
+                  class="block w-6 h-6 bg-green-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                ></span>
               </label>
 
               <label for="color_blue" class="cursor-pointer">
-                <input type="radio" id="color_blue" name="color" class="sr-only peer" />
+                <input
+                  type="radio"
+                  id="color_blue"
+                  name="color"
+                  class="sr-only peer"
+                />
 
-                <span class="block w-6 h-6 bg-blue-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"></span>
+                <span
+                  class="block w-6 h-6 bg-blue-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                ></span>
               </label>
 
               <label for="color_pink" class="cursor-pointer">
-                <input type="radio" id="color_pink" name="color" class="sr-only peer" />
+                <input
+                  type="radio"
+                  id="color_pink"
+                  name="color"
+                  class="sr-only peer"
+                />
 
-                <span class="block w-6 h-6 bg-pink-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"></span>
+                <span
+                  class="block w-6 h-6 bg-pink-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                ></span>
               </label>
 
               <label for="color_red" class="cursor-pointer">
-                <input type="radio" id="color_red" name="color" class="sr-only peer" />
+                <input
+                  type="radio"
+                  id="color_red"
+                  name="color"
+                  class="sr-only peer"
+                />
 
-                <span class="block w-6 h-6 bg-red-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"></span>
+                <span
+                  class="block w-6 h-6 bg-red-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                ></span>
               </label>
 
               <label for="color_indigo" class="cursor-pointer">
-                <input type="radio" id="color_indigo" name="color" class="sr-only peer" />
+                <input
+                  type="radio"
+                  id="color_indigo"
+                  name="color"
+                  class="sr-only peer"
+                />
 
-                <span class="block w-6 h-6 bg-indigo-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"></span>
+                <span
+                  class="block w-6 h-6 bg-indigo-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                ></span>
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend class="text-lg font-bold">
-              Material
-            </legend>
+            <legend class="text-lg font-bold">Material</legend>
 
             <div class="flex mt-2 space-x-1">
               <label for="material_cotton" class="cursor-pointer">
-                <input type="radio" id="material_cotton" name="material" class="sr-only peer" checked />
+                <input
+                  type="radio"
+                  id="material_cotton"
+                  name="material"
+                  class="sr-only peer"
+                  checked
+                />
 
-                <span class="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100">
+                <span
+                  class="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100"
+                >
                   Cotton
                 </span>
               </label>
 
               <label for="material_wool" class="cursor-pointer">
-                <input type="radio" id="material_wool" name="material" class="sr-only peer" checked />
+                <input
+                  type="radio"
+                  id="material_wool"
+                  name="material"
+                  class="sr-only peer"
+                  checked
+                />
 
-                <span class="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100">
+                <span
+                  class="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100"
+                >
                   Wool
                 </span>
               </label>
@@ -137,20 +186,14 @@
 
           <div class="p-4 bg-gray-100 border rounded">
             <p class="text-sm">
-              <span class="block">
-                Pay as low as $3/mo with 0% APR.
-              </span>
+              <span class="block"> Pay as low as $3/mo with 0% APR. </span>
 
-              <a href="" class="inline-block mt-1 underline">
-                Find out more
-              </a>
+              <a href="" class="inline-block mt-1 underline"> Find out more </a>
             </p>
           </div>
 
           <div>
-            <p class="text-xl font-bold">
-              $19.99
-            </p>
+            <p class="text-xl font-bold">$19.99</p>
           </div>
 
           <button
@@ -170,10 +213,19 @@
       </div>
 
       <div class="lg:col-span-3">
-        <div class="prose max-w-none">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem ad labore nostrum, a explicabo iste est dolorem deserunt id ullam magni accusamus saepe, nulla sed sint reiciendis, aperiam cumque officiis!</p>
+        <div
+          class="prose max-w-none [&>iframe]:w-full [&>iframe]:mt-6 [&>iframe]:rounded-xl [&>iframe]:aspect-[16/9]"
+        >
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem ad
+            labore nostrum, a explicabo iste est dolorem deserunt id ullam magni
+            accusamus saepe, nulla sed sint reiciendis, aperiam cumque officiis!
+          </p>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eveniet ipsam mollitia nesciunt illo! Suscipit, corrupti!</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
+            eveniet ipsam mollitia nesciunt illo! Suscipit, corrupti!
+          </p>
 
           <h3>Features</h3>
 
@@ -184,7 +236,12 @@
             <li>Made from recycled materials</li>
           </ul>
 
-          <iframe src="https://www.youtube-nocookie.com/embed/Eb-Vfe61W6A?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/Eb-Vfe61W6A?controls=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>

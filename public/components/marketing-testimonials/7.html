@@ -1,29 +1,10 @@
-<link
-  crossorigin="anonymous"
-  href="https://unpkg.com/swiper/swiper-bundle.min.css"
-  rel="stylesheet"
-/>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script
-  crossorigin="anonymous"
-  defer
-  src="https://unpkg.com/swiper/swiper-bundle.min.js"
-></script>
-
-<style>
-  .swiper-pagination {
-    bottom: 0;
-    position: relative;
-  }
-
-  .swiper-container {
-    overflow: hidden;
-  }
-</style>
+<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
 <section>
-  <div class="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
-    <div class="swiper-container">
+  <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+    <div class="swiper-container !overflow-hidden">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <blockquote class="p-8 bg-gray-100">
@@ -138,7 +119,7 @@
         </div>
       </div>
 
-      <div class="mt-12 swiper-pagination"></div>
+      <div class="mt-12 swiper-pagination !bottom-0 !relative"></div>
     </div>
   </div>
 </section>

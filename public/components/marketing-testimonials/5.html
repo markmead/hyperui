@@ -1,20 +1,6 @@
-<link
-  crossorigin="anonymous"
-  href="https://unpkg.com/swiper/swiper-bundle.min.css"
-  rel="stylesheet"
-/>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script
-  crossorigin="anonymous"
-  defer
-  src="https://unpkg.com/swiper/swiper-bundle.min.js"
-></script>
-
-<style>
-  .swiper-container {
-    overflow: hidden;
-  }
-</style>
+<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
 <section class="bg-gray-100">
   <div
@@ -27,7 +13,7 @@
 
       <div class="flex mt-8 lg:mt-0">
         <button
-          class="p-3 text-pink-600 border rounded-full transition-colors border-current focus:outline-none focus:bg-pink-600 focus:text-white prev-button"
+          class="p-3 text-pink-600 transition-colors border border-current rounded-full focus:outline-none focus:bg-pink-600 focus:text-white prev-button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +32,7 @@
         </button>
 
         <button
-          class="p-3 ml-3 text-pink-600 border rounded-full border-current focus:outline-none focus:bg-pink-600 focus:text-white next-button"
+          class="p-3 ml-3 text-pink-600 border border-current rounded-full focus:outline-none focus:bg-pink-600 focus:text-white next-button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +53,7 @@
     </div>
 
     <div class="mt-8 -mx-6 lg:col-span-2 lg:mx-0">
-      <div class="swiper-container">
+      <div class="swiper-container !overflow-hidden">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <blockquote

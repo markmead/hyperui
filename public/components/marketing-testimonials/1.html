@@ -1,20 +1,6 @@
-<link
-  crossorigin="anonymous"
-  href="https://unpkg.com/swiper/swiper-bundle.min.css"
-  rel="stylesheet"
-/>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script
-  crossorigin="anonymous"
-  defer
-  src="https://unpkg.com/swiper/swiper-bundle.min.js"
-></script>
-
-<style>
-  .swiper-container {
-    overflow: hidden;
-  }
-</style>
+<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
 <section class="bg-gray-100">
   <div
@@ -79,7 +65,7 @@
       </div>
 
       <div class="-mx-6 lg:col-span-2 lg:mx-0">
-        <div class="swiper-container">
+        <div class="swiper-container !overflow-hidden">
           <ul class="swiper-wrapper">
             <li class="swiper-slide">
               <blockquote
@@ -331,7 +317,7 @@
       </div>
     </div>
 
-    <div class="flex justify-center mt-8 gap-4 lg:hidden">
+    <div class="flex justify-center gap-4 mt-8 lg:hidden">
       <button
         aria-label="Previous slide"
         class="p-4 text-pink-600 border border-pink-600 rounded-full hover:bg-pink-600 hover:text-white prev-button"
