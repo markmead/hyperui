@@ -169,7 +169,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
             </div>
 
             <div className="hidden lg:items-center lg:gap-4 lg:flex">
-              <Range range={range} handleRange={setRange} />
+              <Range range={range} handleRange={setRange} id={id} />
 
               <strong className="text-center font-mono text-white font-medium text-xs w-16 py-2.5 bg-black rounded-lg">
                 {width}
@@ -199,21 +199,21 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
               </div>
             )}
 
-            <div className={view ? 'block' : 'hidden'}>
-              <iframe
-                className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
-                loading="lazy"
-                srcDoc={html}
-                style={{ maxWidth: width }}
-                title={`${title} Component`}
-                ref={refIframe}
-              ></iframe>
-            </div>
-
-            <div className={view ? 'hidden' : 'block'}>
-              <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
-                <code className="language-html">{code}</code>
-              </pre>
+            <div>
+              {view ? (
+                <iframe
+                  className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
+                  loading="lazy"
+                  srcDoc={html}
+                  style={{ maxWidth: width }}
+                  title={`${title} Component`}
+                  ref={refIframe}
+                ></iframe>
+              ) : (
+                <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
+                  <code className="language-html">{code}</code>
+                </pre>
+              )}
             </div>
           </div>
 

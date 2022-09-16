@@ -3,9 +3,10 @@ import { FunctionComponent } from 'react'
 type Props = {
   range: number
   handleRange: CallableFunction
+  id: string
 }
 
-const Range: FunctionComponent<Props> = ({ range, handleRange }) => {
+const Range: FunctionComponent<Props> = ({ range, handleRange, id }) => {
   return (
     <>
       <label htmlFor="ComponentWidth" className="flex">
@@ -17,7 +18,7 @@ const Range: FunctionComponent<Props> = ({ range, handleRange }) => {
           max="1348"
           step="4"
           value={range}
-          id="ComponentWidth"
+          id={`ComponentWidth${id}`}
           onChange={(e) => handleRange(Number(e.currentTarget.value))}
         />
       </label>
