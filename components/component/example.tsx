@@ -152,6 +152,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
                         variants={componentVariants}
                         handleSetVariant={setVariant}
                         handleSetThemed={setThemed}
+                        id={id}
                       />
 
                       <Dark
