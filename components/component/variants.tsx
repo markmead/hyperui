@@ -5,6 +5,7 @@ type Props = {
   variants: Array<Component> | []
   handleSetVariant: CallableFunction
   handleSetThemed: CallableFunction
+  id: string
 }
 
 type Variant = {
@@ -16,6 +17,7 @@ const Variants: FunctionComponent<Props> = ({
   variants,
   handleSetVariant,
   handleSetThemed,
+  id,
 }) => {
   let [variant, setVariant] = useState<string>('base')
 
@@ -52,7 +54,7 @@ const Variants: FunctionComponent<Props> = ({
         <select
           onChange={(e) => setVariant(e.currentTarget.value)}
           className="w-full pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
-          id="VariantSelect"
+          id={`VariantSelect${id}`}
         >
           <option value="base">Base</option>
 
