@@ -42,6 +42,7 @@ const Variants: FunctionComponent<Props> = ({
     }
 
     handleSetThemed(activeVariant.title.includes('Dark'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variant])
 
   return (
