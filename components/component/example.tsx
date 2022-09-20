@@ -70,6 +70,7 @@ const Example: FunctionComponent<Props> = ({ item, spacing }) => {
     setLoading(true)
 
     fetchHtml()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variant])
 
   useEffect(() => {
