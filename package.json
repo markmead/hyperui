@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "css": "npx tailwindcss -i styles/globals.css -o public/build.css -m",
+    "css": "npx tailwindcss -i styles/global.css -o public/build.s.css -m",
     "dev": "next dev",
     "lint": "next lint",
     "postbuild": "next-sitemap",
