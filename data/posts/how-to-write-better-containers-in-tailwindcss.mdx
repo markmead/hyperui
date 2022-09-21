@@ -1,0 +1,63 @@
+---
+title: How to Write Better Containers in Tailwind CSS
+date: 09/25/2022
+emoji: 🫙
+seo:
+  title: How to Write Better Containers in Tailwind CSS
+  description: Find out how to write better Tailwind CSS containers and make your website feel more fluid as you change breakpoints.
+---
+
+Throughout HyperUI you will see the classes `max-w-screen-xl mx-auto px-4` used to contain content, this can be seen on the website and the components.
+
+Some of you may be wondering...
+
+> Why not use the `.container` class?
+
+Great question.
+
+Let's look at the `.container` class [documentation](https://tailwindcss.com/docs/container) on the Tailwind CSS website.
+
+As we can see it provides `max-width` sizes at different breakpoints, which results in the content within the container snapping to that size as the breakpoint is reached.
+
+[Container Example](https://play.tailwindcss.com/b5FKBhVHw7?layout=preview&size=1866x900)
+
+If you shrink/expand the preview you will see the content within the container snapping.
+
+## A More Fluid Container
+
+Here's the same preview but using the classes I mentioned at the start of this blog post.
+
+[Fluid Example](https://play.tailwindcss.com/vwHBxhrJMC?layout=preview&size=1866x900)
+
+As you can see it's more fluid, you reach the breakpoint where `max-w-screen-xl` is no longer applied and then the padding is used to contain the content. If you wanted a fully fluid container you can remove the `max-w-screen-xl` class.
+
+Let's compare the two.
+
+[Container vs Fluid Example](https://play.tailwindcss.com/A7HdMDPg0O?layout=preview&size=1866x900)
+
+An argument for the `.container` approach is that the content is wider on larger screens, but to solve that you can use `max-w-screen-2xl` instead of `max-w-screen-xl`.
+
+## Edit the Config and Write Less Code
+
+One final note, if you are using the `.container` approach and find yourself writing `container mx-auto` a lot, then you can do the following.
+
+```js
+theme: {
+  container: {
+    center: true,
+
+    // Optional
+    padding: {
+      DEFAULT: '1rem',
+      sm: '1.5rem',
+      lg: '2rem'
+    }
+  },
+}
+```
+
+---
+
+Fun fact, I wrote a blog post in 2021 arguing the `.container` approach over using `max-w-screen-xl`, you can still read that.
+
+[How to Write Better Tailwind CSS Containers - 2021](https://v1.markmead.dev/blogs/how-to-write-better-tailwindcss-containers)
