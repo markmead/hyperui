@@ -175,19 +175,19 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz#0c8b74c50f29ee44f423f7416829c0bf8bb5eb27"
   integrity sha512-LwzQKA4vzIct1zNZzBmRKI9QuNpLgTQMEjsQLf3BXuGYb3QPTP4Yjf6mkdX+X1mYttZ808QpOwAzZjv28kq7DA==
 
-"@tailwindcss/forms@^0.5.0":
+"@tailwindcss/forms@^0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.3.tgz#e4d7989686cbcaf416c53f1523df5225332a86e7"
   integrity sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
-"@tailwindcss/line-clamp@^0.4.0":
+"@tailwindcss/line-clamp@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.4.2.tgz#f353c5a8ab2c939c6267ac5b907f012e5ee130f9"
   integrity sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==
 
-"@tailwindcss/typography@^0.5.2":
+"@tailwindcss/typography@^0.5.7":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.5.7.tgz#e0b95bea787ee14c5a34a74fc824e6fe86ea8855"
   integrity sha512-JTTSTrgZfp6Ki4svhPA4mkd9nmQ/j9EfE7SbHJ1cLtthKkpW2OxsFXzSmxbhYbEkfNIyAyhle5p4SYyKRbz/jg==
@@ -470,13 +470,13 @@ astring@^1.8.0:
   resolved "https://registry.yarnpkg.com/astring/-/astring-1.8.3.tgz#1a0ae738c7cc558f8e5ddc8e3120636f5cebcb85"
   integrity sha512-sRpyiNrx2dEYIMmUXprS8nlpRg2Drs8m9ElX9vVEXaCB4XEAJhKfs7IcX0IwShjuOAjLR6wzIrgoptz1n19i1A==
 
-autoprefixer@^10.4.0:
-  version "10.4.8"
-  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.8.tgz#92c7a0199e1cfb2ad5d9427bd585a3d75895b9e5"
-  integrity sha512-75Jr6Q/XpTqEf6D2ltS5uMewJIx5irCU1oBYJrWjFenq/m12WRRrz6g15L1EIoYvPLXTbEry7rDOwrcYNj77xw==
+autoprefixer@^10.4.12:
+  version "10.4.12"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.12.tgz#183f30bf0b0722af54ee5ef257f7d4320bb33129"
+  integrity sha512-WrCGV9/b97Pa+jtwf5UGaRjgQIg7OK3D06GnoYoZNcG1Xb8Gt3EfuKjlhh9i/VtT16g6PYjZ69jdJ2g8FxSC4Q==
   dependencies:
-    browserslist "^4.21.3"
-    caniuse-lite "^1.0.30001373"
+    browserslist "^4.21.4"
+    caniuse-lite "^1.0.30001407"
     fraction.js "^4.2.0"
     normalize-range "^0.1.2"
     picocolors "^1.0.0"
@@ -522,15 +522,15 @@ braces@^3.0.2, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-browserslist@^4.21.3:
-  version "4.21.3"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.21.3.tgz#5df277694eb3c48bc5c4b05af3e8b7e09c5a6d1a"
-  integrity sha512-898rgRXLAyRkM1GryrrBHGkqA5hlpkV5MhtZwg9QXeiyLUYs2k00Un05aX5l2/yJIOObYKOpS2JNo8nJDE7fWQ==
+browserslist@^4.21.4:
+  version "4.21.4"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.21.4.tgz#e7496bbc67b9e39dd0f98565feccdcb0d4ff6987"
+  integrity sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==
   dependencies:
-    caniuse-lite "^1.0.30001370"
-    electron-to-chromium "^1.4.202"
+    caniuse-lite "^1.0.30001400"
+    electron-to-chromium "^1.4.251"
     node-releases "^2.0.6"
-    update-browserslist-db "^1.0.5"
+    update-browserslist-db "^1.0.9"
 
 buffer-from@^1.0.0:
   version "1.1.2"
@@ -555,10 +555,15 @@ camelcase-css@^2.0.1:
   resolved "https://registry.yarnpkg.com/camelcase-css/-/camelcase-css-2.0.1.tgz#ee978f6947914cc30c6b44741b6ed1df7f043fd5"
   integrity sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==
 
-caniuse-lite@^1.0.30001283, caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
+caniuse-lite@^1.0.30001283:
   version "1.0.30001388"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001388.tgz#88e01f4591cbd81f9f665f3f078c66b509fbe55d"
   integrity sha512-znVbq4OUjqgLxMxoNX2ZeeLR0d7lcDiE5uJ4eUiWdml1J1EkxbnQq6opT9jb9SMfJxB0XA16/ziHwni4u1I3GQ==
+
+caniuse-lite@^1.0.30001400, caniuse-lite@^1.0.30001407:
+  version "1.0.30001409"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001409.tgz#6135da9dcab34cd9761d9cdb12a68e6740c5e96e"
+  integrity sha512-V0mnJ5dwarmhYv8/MzhJ//aW68UpvnQBXv8lJ2QUsvn2pHcmAuNtu8hQEDz37XnA1iE+lRR9CIfGWWpgJ5QedQ==
 
 ccount@^2.0.0:
   version "2.0.1"
@@ -755,10 +760,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-electron-to-chromium@^1.4.202:
-  version "1.4.240"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.240.tgz#b11fb838f2e79f34fbe8b57eec55e7e5d81ee6ea"
-  integrity sha512-r20dUOtZ4vUPTqAajDGonIM1uas5tf85Up+wPdtNBNvBSqGCfkpvMVvQ1T8YJzPV9/Y9g3FbUDcXb94Rafycow==
+electron-to-chromium@^1.4.251:
+  version "1.4.256"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.256.tgz#c735032f412505e8e0482f147a8ff10cfca45bf4"
+  integrity sha512-x+JnqyluoJv8I0U9gVe+Sk2st8vF0CzMt78SXxuoWCooLLY2k5VerIBdpvG7ql6GKI4dzNnPjmqgDJ76EdaAKw==
 
 emoji-regex@^9.2.2:
   version "9.2.2"
@@ -2415,7 +2420,7 @@ postcss@8.4.5:
     picocolors "^1.0.0"
     source-map-js "^1.0.1"
 
-postcss@^8.4.14, postcss@^8.4.8:
+postcss@^8.4.14, postcss@^8.4.16:
   version "8.4.16"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.16.tgz#33a1d675fac39941f5f445db0de4db2b6e01d43c"
   integrity sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==
@@ -2802,7 +2807,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tailwindcss@^3.0.23:
+tailwindcss@^3.1.8:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.1.8.tgz#4f8520550d67a835d32f2f4021580f9fddb7b741"
   integrity sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==
@@ -2982,10 +2987,10 @@ unist-util-visit@^4.0.0:
     unist-util-is "^5.0.0"
     unist-util-visit-parents "^5.1.1"
 
-update-browserslist-db@^1.0.5:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.7.tgz#16279639cff1d0f800b14792de43d97df2d11b7d"
-  integrity sha512-iN/XYesmZ2RmmWAiI4Z5rq0YqSiv0brj9Ce9CfhNE4xIW2h+MFxcgkxIzZ+ShkFPUkjU3gQ+3oypadD3RAMtrg==
+update-browserslist-db@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.9.tgz#2924d3927367a38d5c555413a7ce138fc95fcb18"
+  integrity sha512-/xsqn21EGVdXI3EXSum1Yckj3ZVZugqyOZQ/CxYPBD/R+ko9NSUScf8tFF4dOKY+2pvSSJA/S+5B8s4Zr4kyvg==
   dependencies:
     escalade "^3.1.1"
     picocolors "^1.0.0"
