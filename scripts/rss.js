@@ -33,16 +33,20 @@ async function generate() {
       )
 
       const postFrontmatter = matter(postContent)
-      const { data: postData } = postFrontmatter
+      const { data: postData, content: postMarkdown } = postFrontmatter
 
       const postSlug = name.replace(/\.mdx?/, '')
 
+      const convertedPostTags = postData.tags.map((postTag) => ({
+        name: postTag,
+      }))
+
       rssFeed.addItem({
-        title: postData.seo.title,
+        title: postData.title,
         id: postSlug,
         link: `https://www.hyperui.dev/blog/${postSlug}`,
-        description: postData.seo.description,
-        content: postData.content,
+        description: postData.description,
+        content: postMarkdown,
         author: [
           {
             name: 'Mark Mead',
@@ -50,6 +54,7 @@ async function generate() {
           },
         ],
         date: new Date(postData.date),
+        category: convertedPostTags,
       })
     })
   )
