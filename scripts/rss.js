@@ -6,15 +6,16 @@ const matter = require('gray-matter')
 async function generate() {
   const rssFeed = new Feed({
     title: 'HyperUI | Tailwind CSS Components',
-    description: 'RSS feed for blog posts on HyperUI.',
+    description: 'RSS feed.',
     id: 'https://www.hyperui.dev/',
-    link: 'https://www.hyperui.dev/feed.xml',
+    link: 'https://www.hyperui.dev/rss.xml',
     language: 'en',
     image: 'https://www.hyperui.dev/og.png',
     favicon: 'https://www.hyperui.dev/favicon.ico',
     feedLinks: {
-      json: 'https://www.hyperui.dev/json',
-      atom: 'https://www.hyperui.dev/atom',
+      xml: 'https://www.hyperui.dev/rss.xml',
+      json: 'https://www.hyperui.dev/rss.json',
+      atom: 'https://www.hyperui.dev/rss.atom',
     },
     author: {
       name: 'Mark Mead',
