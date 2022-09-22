@@ -6,7 +6,8 @@
     "css": "npx tailwindcss -i styles/global.css -o public/build.css -m",
     "dev": "next dev",
     "lint": "next lint",
-    "postbuild": "next-sitemap",
+    "rss": "node ./scripts/rss.js",
+    "postbuild": "yarn rss && next-sitemap",
     "watch": "yarn css -w"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "autoprefixer": "^10.4.12",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
+    "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",
     "next-sitemap": "^3.1.20",
