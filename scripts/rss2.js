@@ -37,7 +37,7 @@ async function generate() {
       feed.addItem({
         title: frontmatter.data.seo.title,
         id: slug,
-        link: `${feed.id}blog/${slug}`,
+        link: `https://www.hyperui.dev/blog/${slug}`,
         description: frontmatter.data.seo.description,
         content: frontmatter.content,
         author: [
