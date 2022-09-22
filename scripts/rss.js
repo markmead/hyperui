@@ -1,13 +1,25 @@
 const { promises: fs } = require('fs')
 const path = require('path')
-const RSS = require('rss')
+const Feed = require('feed').Feed
 const matter = require('gray-matter')
 
 async function generate() {
-  const feed = new RSS({
+  const feed = new Feed({
     title: 'HyperUI | Tailwind CSS Components',
-    site_url: 'https://www.hyperui.dev',
-    feed_url: 'https://www.hyperui.dev/feed.xml',
+    description: 'RSS feed for blog posts on HyperUI.',
+    id: 'https://www.hyperui.dev/',
+    link: 'https://www.hyperui.dev/feed.xml',
+    language: 'en',
+    image: 'https://www.hyperui.dev/og.png',
+    favicon: 'https://www.hyperui.dev/favicon.ico',
+    feedLinks: {
+      json: 'https://www.hyperui.dev/json',
+      atom: 'https://www.hyperui.dev/atom',
+    },
+    author: {
+      name: 'Mark Mead',
+      link: 'https://www.markmead.dev/',
+    },
   })
 
   const posts = await fs.readdir(path.join(__dirname, '..', 'data', 'posts'))
@@ -20,19 +32,28 @@ async function generate() {
 
       const frontmatter = matter(content)
 
-      feed.item({
+      const slug = name.replace(/\.mdx?/, '')
+
+      feed.addItem({
         title: frontmatter.data.seo.title,
+        id: slug,
+        link: `https://www.hyperui.dev/blog/${slug}`,
         description: frontmatter.data.seo.description,
-        url: `${feed.site_url}/blog/${name.replace(/\.mdx?/, '')}`,
-        categories: ['tailwindcss', 'css'],
-        author: 'HyperUI',
-        date: frontmatter.data.date,
-        custom_elements: [{ content: frontmatter.content }],
+        content: frontmatter.content,
+        author: [
+          {
+            name: 'Mark Mead',
+            link: 'https://www.markmead.dev/',
+          },
+        ],
+        date: new Date(frontmatter.data.date),
       })
     })
   )
 
-  await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }))
+  await fs.writeFile('./public/rss.xml', feed.rss2())
+  await fs.writeFile('./public/rss.json', feed.json1())
+  await fs.writeFile('./public/rss.atom', feed.atom1())
 }
 
 generate()

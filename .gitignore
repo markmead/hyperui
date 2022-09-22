@@ -37,5 +37,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 # rss
-public/feed.xml
-public/feed2.xml
+public/rss.xml
+public/rss.json
+public/rss.atom

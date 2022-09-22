@@ -7,8 +7,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "rss": "node ./scripts/rss.js",
-    "rss2": "node ./scripts/rss2.js",
-    "postbuild": "yarn rss && yarn rss2 && next-sitemap",
+    "postbuild": "yarn rss && next-sitemap",
     "watch": "yarn css -w"
   },
   "dependencies": {
@@ -24,7 +23,6 @@
     "@types/node": "17.0.21",
     "@types/prismjs": "^1.26.0",
     "@types/react": "17.0.40",
-    "@types/rss": "^0.0.29",
     "autoprefixer": "^10.4.12",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
@@ -38,7 +36,6 @@
     "react-intersection-observer": "^8.33.1",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
-    "rss": "^1.2.2",
     "tailwindcss": "^3.1.8",
     "typescript": "4.6.2"
   },
