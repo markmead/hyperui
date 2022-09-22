@@ -32,10 +32,12 @@ async function generate() {
 
       const frontmatter = matter(content)
 
+      const slug = name.replace(/\.mdx?/, '')
+
       feed.addItem({
         title: frontmatter.data.seo.title,
-        id: frontmatter.slug,
-        link: frontmatter.slug,
+        id: slug,
+        link: `${feed.site_url}/blog/${slug}`,
         description: frontmatter.data.seo.description,
         content: frontmatter.content,
         author: [
