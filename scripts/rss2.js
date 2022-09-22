@@ -8,7 +8,7 @@ async function generate() {
     title: 'HyperUI | Tailwind CSS Components',
     description: 'RSS feed for blog posts on HyperUI.',
     id: 'https://www.hyperui.dev/',
-    link: 'https://www.hyperui.dev/',
+    link: 'https://www.hyperui.dev/feed.xml',
     language: 'en',
     image: 'https://www.hyperui.dev/og.png',
     favicon: 'https://www.hyperui.dev/favicon.ico',
@@ -37,7 +37,7 @@ async function generate() {
       feed.addItem({
         title: frontmatter.data.seo.title,
         id: slug,
-        link: `${feed.site_url}/blog/${slug}`,
+        link: `${feed.id}blog/${slug}`,
         description: frontmatter.data.seo.description,
         content: frontmatter.content,
         author: [
