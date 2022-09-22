@@ -38,3 +38,4 @@ yarn-error.log*
 
 # rss
 public/feed.xml
+public/feed2.xml
