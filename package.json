@@ -8,7 +8,7 @@
     "lint": "next lint",
     "rss": "node ./scripts/rss.js",
     "rss2": "node ./scripts/rss2.js",
-    "postbuild": "yarn rss && next-sitemap",
+    "postbuild": "yarn rss && yarn rss2 && next-sitemap",
     "watch": "yarn css -w"
   },
   "dependencies": {
