@@ -1,5 +1,3 @@
-import { SEO } from './seo'
-
 export interface PostCard {
   emoji: string
   title: string
@@ -10,9 +8,9 @@ export interface PostCard {
 export interface PostFrontmatter {
   emoji: string
   title: string
+  description: string
   slug: string
   date: Date
-  seo: SEO
 }
 
 export interface Post extends PostFrontmatter {

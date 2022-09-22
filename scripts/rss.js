@@ -4,7 +4,7 @@ const Feed = require('feed').Feed
 const matter = require('gray-matter')
 
 async function generate() {
-  const feed = new Feed({
+  const rssFeed = new Feed({
     title: 'HyperUI | Tailwind CSS Components',
     description: 'RSS feed for blog posts on HyperUI.',
     id: 'https://www.hyperui.dev/',
@@ -22,38 +22,46 @@ async function generate() {
     },
   })
 
-  const posts = await fs.readdir(path.join(__dirname, '..', 'data', 'posts'))
+  const selfPosts = await fs.readdir(
+    path.join(__dirname, '..', 'data', 'posts')
+  )
 
   await Promise.all(
-    posts.map(async (name) => {
-      const content = await fs.readFile(
+    selfPosts.map(async (name) => {
+      const postContent = await fs.readFile(
         path.join(__dirname, '..', 'data', 'posts', name)
       )
 
-      const frontmatter = matter(content)
+      const postFrontmatter = matter(postContent)
+      const { data: postData, content: postMarkdown } = postFrontmatter
 
-      const slug = name.replace(/\.mdx?/, '')
+      const postSlug = name.replace(/\.mdx?/, '')
 
-      feed.addItem({
-        title: frontmatter.data.seo.title,
-        id: slug,
-        link: `https://www.hyperui.dev/blog/${slug}`,
-        description: frontmatter.data.seo.description,
-        content: frontmatter.content,
+      const convertedPostTags = postData.tags.map((postTag) => ({
+        name: postTag,
+      }))
+
+      rssFeed.addItem({
+        title: postData.title,
+        id: postSlug,
+        link: `https://www.hyperui.dev/blog/${postSlug}`,
+        description: postData.description,
+        content: postMarkdown,
         author: [
           {
             name: 'Mark Mead',
             link: 'https://www.markmead.dev/',
           },
         ],
-        date: new Date(frontmatter.data.date),
+        date: new Date(postData.date),
+        category: convertedPostTags,
       })
     })
   )
 
-  await fs.writeFile('./public/rss.xml', feed.rss2())
-  await fs.writeFile('./public/rss.json', feed.json1())
-  await fs.writeFile('./public/rss.atom', feed.atom1())
+  await fs.writeFile('./public/rss.xml', rssFeed.rss2())
+  await fs.writeFile('./public/rss.json', rssFeed.json1())
+  await fs.writeFile('./public/rss.atom', rssFeed.atom1())
 }
 
 generate()

@@ -47,16 +47,16 @@ const Blog: NextPage<Props> = ({ source, frontMatter }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{frontMatter.seo.title} | HyperUI</title>
+        <title>{frontMatter.title} | HyperUI</title>
 
         <meta
-          content={frontMatter.seo.description}
+          content={frontMatter.description}
           key="description"
           name="description"
         />
       </Head>
 
-      <div className="px-4 py-12 mx-auto max-w-screen-xl">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
             <time className="text-sm text-gray-500">{frontMatter.date}</time>
