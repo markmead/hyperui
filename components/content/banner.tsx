@@ -11,7 +11,7 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
   return (
     <>
       <section>
-        <div className="px-4 py-16 mx-auto text-center max-w-screen-xl lg:py-32">
+        <div className="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32">
           <h1 className="text-4xl font-bold sm:text-6xl">{title}</h1>
 
           {subtitle && <h2 className="mt-4 text-gray-500">{subtitle}</h2>}
