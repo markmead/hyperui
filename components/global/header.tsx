@@ -16,7 +16,7 @@ const Header: FunctionComponent = () => {
       href: '/components/marketing',
     },
     {
-      title: 'Ecommerce',
+      title: 'eCommerce',
       href: '/components/ecommerce',
     },
     {
@@ -35,7 +35,7 @@ const Header: FunctionComponent = () => {
   return (
     <>
       <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-        <div className="flex items-center justify-between h-16 px-4 mx-auto max-w-screen-xl">
+        <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
           <nav className="flex items-center">
             <Link href="/">
               <a className="text-sm font-medium inline-flex gap-1.5">

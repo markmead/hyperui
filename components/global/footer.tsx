@@ -6,7 +6,7 @@ const Footer: FunctionComponent = () => {
   return (
     <>
       <footer className="border-t border-gray-100">
-        <div className="px-4 py-12 mx-auto max-w-screen-xl">
+        <div className="max-w-screen-xl px-4 py-12 mx-auto">
           <div>
             <Link href="/">
               <a className="inline-flex text-lg font-medium gap-1.5">
@@ -21,7 +21,7 @@ const Footer: FunctionComponent = () => {
             <div className="mt-6 lg:flex lg:items-end lg:justify-between">
               <p className="max-w-md leading-relaxed text-gray-500">
                 Free open source Tailwind CSS components for marketing and
-                ecommerce websites, as well as application UI.
+                eCommerce websites, as well as application UI.
               </p>
 
               <p className="mt-4 text-sm text-gray-500 lg:mt-0">
