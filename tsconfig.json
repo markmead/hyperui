@@ -18,6 +18,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "scripts/rss.js"]
+  "exclude": ["node_modules", "scripts/rss.js"],
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts"]
 }
