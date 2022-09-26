@@ -10,27 +10,14 @@ const Search: FunctionComponent = () => {
   let [searchResults, setSearchResults] = useState<any>([])
 
   useEffect(() => {
-    let localSearchData = localStorage.getItem('_HUISearchData')
-
-    if (localSearchData) {
-      setInitialResults(JSON.parse(localSearchData).items)
-
-      return
-    }
-
     fetch('/search.json')
       .then((result) => result.json())
       .then((data) => {
-        let searchData = data
         let sortedData = data.items.sort((resultA: any, resultB: any) =>
           resultA.name.localeCompare(resultB.name)
         )
 
-        searchData.items = sortedData
-
         setInitialResults(sortedData)
-
-        localStorage.setItem('_HUISearchData', JSON.stringify(searchData))
       })
   }, [])
 
