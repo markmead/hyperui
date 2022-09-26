@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /search.json
 
 # Host
 Host: https://www.hyperui.dev
