@@ -21,8 +21,10 @@ async function generate() {
       const { data: componentData } = componentFrontmatter
 
       return {
-        slug: realSlug,
+        slug: realSlug.replace(`${componentData.category}-`, ''),
         name: componentData.title,
+        category: componentData.category,
+        id: realSlug,
       }
     })
   ).then((componentData) => {

@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "yarn css && yarn rss && next-sitemap",
+    "postbuild": "yarn css && yarn rss && yarn search && next-sitemap",
     "lint": "next lint",
     "css": "npx tailwindcss -i styles/global.css -o public/build.css -m",
     "css:watch": "yarn css -w",
