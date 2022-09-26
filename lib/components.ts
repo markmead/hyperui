@@ -32,7 +32,16 @@ export function getComponentBySlug(slug: string, fields: string[] = []) {
     }
 
     if (field === 'count') {
-      items[field] = Object.keys(data.components).length
+      let componentObjs = Object.values(data.components)
+      let componentCount = componentObjs.length
+
+      componentObjs.forEach((componentObj: any) => {
+        if (componentObj.hasOwnProperty('variants')) {
+          componentCount += Object.keys(componentObj.variants).length
+        }
+      })
+
+      items[field] = componentCount
     }
 
     if (typeof data[field] !== 'undefined') {
