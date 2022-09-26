@@ -8,7 +8,8 @@
     "lint": "next lint",
     "css": "npx tailwindcss -i styles/global.css -o public/build.css -m",
     "css:watch": "yarn css -w",
-    "rss": "node ./scripts/rss.js"
+    "rss": "node ./scripts/rss.js",
+    "search": "node ./scripts/search.js"
   },
   "dependencies": {
     "next": "12.1.0",

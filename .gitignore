@@ -40,3 +40,6 @@ yarn-error.log*
 public/rss.xml
 public/rss.json
 public/rss.atom
+
+# search
+public/search.json
