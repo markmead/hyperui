@@ -29,6 +29,7 @@ const Search: FunctionComponent = () => {
     })
 
     setSearchResults(filteredResults)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery])
 
   useEffect(() => {
