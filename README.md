@@ -1,5 +1,5 @@
 > **Note**
-> If you are making PRs for Hacktoberfest, please read the [How to Contribute](https://www.hyperui.dev/blog/how-to-contribute) blog post.
+> If you are making PRs for Hacktoberfest, then please read the [How to Contribute](https://www.hyperui.dev/blog/how-to-contribute) blog post.
 
 # HyperUI
 
