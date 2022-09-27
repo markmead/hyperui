@@ -76,7 +76,7 @@ const Header: FunctionComponent = () => {
               <a
                 className="p-2 rounded hover:opacity-75"
                 href="https://twitter.com/itsmarkmead"
-                rel="noopener noreferrer"
+                rel="noreferrer"
                 target="_blank"
               >
                 <span className="sr-only"> Twitter </span>
@@ -87,7 +87,7 @@ const Header: FunctionComponent = () => {
               <a
                 className="p-2 rounded hover:opacity-75"
                 href="https://github.com/markmead/hyperui"
-                rel="noopener noreferrer"
+                rel="noreferrer"
                 target="_blank"
               >
                 <span className="sr-only"> GitHub </span>

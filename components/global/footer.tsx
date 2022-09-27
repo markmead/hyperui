@@ -25,7 +25,16 @@ const Footer: FunctionComponent = () => {
               </p>
 
               <p className="mt-4 text-sm text-gray-500 lg:mt-0">
-                Created by Mark Mead.
+                Created by{' '}
+                <a
+                  href="https://twitter.com/itsmarkmead"
+                  rel="noreferrer"
+                  target="_blank"
+                  className="font-medium text-gray-700 hover:text-gray-600"
+                >
+                  Mark Mead
+                </a>
+                .
               </p>
             </div>
           </div>
