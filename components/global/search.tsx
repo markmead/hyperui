@@ -12,7 +12,7 @@ type SearchResult = {
 
 const Search: FunctionComponent = () => {
   let router = useRouter()
-  let dropdownRef = useRef<HTMLDivElement>()
+  let dropdownRef = useRef(null)
   let [showDropdown, setShowDropdown] = useState<boolean>(false)
   let [initialResults, setInitialResults] = useState<Array<SearchResult>>([])
   let [searchQuery, setSearchQuery] = useState<string>('')
@@ -51,7 +51,7 @@ const Search: FunctionComponent = () => {
   }, [router.asPath])
 
   function handleClickOutsideSearch(e: Event) {
-    let dropdownEl = dropdownRef.current as HTMLDivElement | undefined
+    let dropdownEl = dropdownRef.current as HTMLDivElement | null
     let clickEl = e.target as HTMLElement
 
     if (dropdownEl && !dropdownEl.contains(clickEl)) {
