@@ -8,6 +8,7 @@ import { Link as LinkInterface } from '../../interface/global'
 import IconGithub from '../icon/github'
 import IconTwitter from '../icon/twitter'
 import Menu from './menu'
+import Search from './search'
 
 const Header: FunctionComponent = () => {
   const links: Array<LinkInterface> = [
@@ -64,32 +65,36 @@ const Header: FunctionComponent = () => {
             </ul>
           </nav>
 
-          <div className="flex items-center justify-end flex-1">
+          <div className="flex items-center justify-end flex-1 gap-4">
+            <Search />
+
             <Link href="/blog">
               <a className="block text-xs font-medium hover:opacity-75">Blog</a>
             </Link>
 
-            <a
-              className="p-2 ml-4 rounded hover:opacity-75"
-              href="https://twitter.com/itsmarkmead"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <span className="sr-only"> Twitter </span>
+            <div className="flex">
+              <a
+                className="p-2 rounded hover:opacity-75"
+                href="https://twitter.com/itsmarkmead"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <span className="sr-only"> Twitter </span>
 
-              <IconTwitter />
-            </a>
+                <IconTwitter />
+              </a>
 
-            <a
-              className="p-2 rounded hover:opacity-75"
-              href="https://github.com/markmead/hyperui"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <span className="sr-only"> GitHub </span>
+              <a
+                className="p-2 rounded hover:opacity-75"
+                href="https://github.com/markmead/hyperui"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <span className="sr-only"> GitHub </span>
 
-              <IconGithub />
-            </a>
+                <IconGithub />
+              </a>
+            </div>
           </div>
         </div>
       </header>

@@ -5,8 +5,8 @@ const matter = require('gray-matter')
 
 async function generate() {
   const rssFeed = new Feed({
-    title: 'HyperUI | Tailwind CSS Components',
-    description: 'RSS feed.',
+    title: 'RSS Feed | HyperUI',
+    description: 'RSS feed for Tailwind CSS blog posts on HyperUI.',
     id: 'https://www.hyperui.dev/',
     link: 'https://www.hyperui.dev/rss.xml',
     language: 'en',
