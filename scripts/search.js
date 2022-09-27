@@ -7,8 +7,8 @@ async function generate() {
   const componentSlugs = await fs.readdir(componentsDirectory)
 
   let searchObject = {
-    title: 'HyperUI Search',
-    updated: new Date(),
+    title: 'Component Search | HyperUI',
+    description: 'JSON data for Tailwind CSS component searching on HyperUI.',
     items: [],
   }
 

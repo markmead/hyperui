@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 type SearchResult = {
-  name: string
   slug: string
+  name: string
   category: string
   id: string
 }
