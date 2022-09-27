@@ -2,13 +2,7 @@ import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
-type SearchResult = {
-  slug: string
-  name: string
-  category: string
-  id: string
-}
+import { SearchResult } from '../../interface/search'
 
 const Search: FunctionComponent = () => {
   let router = useRouter()
@@ -50,6 +44,14 @@ const Search: FunctionComponent = () => {
     setShowDropdown(false)
   }, [router.asPath])
 
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutsideSearch)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutsideSearch)
+    }
+  })
+
   function handleClickOutsideSearch(e: Event) {
     let dropdownEl = dropdownRef.current as HTMLDivElement | null
     let clickEl = e.target as HTMLElement
@@ -58,14 +60,6 @@ const Search: FunctionComponent = () => {
       setShowDropdown(false)
     }
   }
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutsideSearch)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutsideSearch)
-    }
-  })
 
   return (
     <>
@@ -89,13 +83,13 @@ const Search: FunctionComponent = () => {
           <div className="absolute right-0 w-64 mt-2 bg-white border-2 border-gray-100 rounded-lg top-full">
             {searchResults.length > 0 ? (
               <ul className="p-2 space-y-1 overflow-auto max-h-64">
-                {searchResults.map((result: any) => (
-                  <li key={result.id}>
+                {searchResults.map((searchResult: SearchResult) => (
+                  <li key={searchResult.id}>
                     <Link
-                      href={`/components/${result.category}/${result.slug}`}
+                      href={`/components/${searchResult.category}/${searchResult.slug}`}
                     >
                       <a className="block px-4 py-2 text-xs font-medium text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-50">
-                        {result.name}
+                        {searchResult.name}
                       </a>
                     </Link>
                   </li>
