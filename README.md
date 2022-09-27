@@ -1,3 +1,6 @@
+> **Note**
+> If you are making PRs for Hacktoberfest, please read the [How to Contribute](https://www.hyperui.dev/blog/how-to-contribute) blog post.
+
 # HyperUI
 
 HyperUI is a large collection of free Tailwind CSS components for marketing, eCommerce and application UI 🐳
