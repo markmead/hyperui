@@ -1,32 +1,45 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+type SearchResult = {
+  name: string
+  slug: string
+  category: string
+  id: string
+}
+
 const Search: FunctionComponent = () => {
   let router = useRouter()
-  let [initialResults, setInitialResults] = useState<any>([])
+  let dropdownRef = useRef<HTMLDivElement>()
+  let [showDropdown, setShowDropdown] = useState<boolean>(false)
+  let [initialResults, setInitialResults] = useState<Array<SearchResult>>([])
   let [searchQuery, setSearchQuery] = useState<string>('')
-  let [searchResults, setSearchResults] = useState<any>([])
+  let [searchResults, setSearchResults] = useState<Array<SearchResult>>([])
 
   useEffect(() => {
     fetch('/search.json')
       .then((result) => result.json())
       .then((data) => {
-        let sortedData = data.items.sort((resultA: any, resultB: any) =>
-          resultA.name.localeCompare(resultB.name)
+        let sortedData = data.items.sort(
+          (resultA: SearchResult, resultB: SearchResult) =>
+            resultA.name.localeCompare(resultB.name)
         )
 
         setInitialResults(sortedData)
+        setSearchResults(sortedData)
       })
   }, [])
 
   useEffect(() => {
-    let filteredResults = initialResults.filter((initialResult: any) => {
-      let { name: resultName } = initialResult
+    let filteredResults = initialResults.filter(
+      (initialResult: SearchResult) => {
+        let { name: resultName } = initialResult
 
-      return resultName.toLowerCase().includes(searchQuery.toLowerCase())
-    })
+        return resultName.toLowerCase().includes(searchQuery.toLowerCase())
+      }
+    )
 
     setSearchResults(filteredResults)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,15 +47,34 @@ const Search: FunctionComponent = () => {
 
   useEffect(() => {
     setSearchQuery('')
+    setShowDropdown(false)
   }, [router.asPath])
+
+  function handleClickOutsideSearch(e: Event) {
+    let dropdownEl = dropdownRef.current as HTMLDivElement | undefined
+    let clickEl = e.target as HTMLElement
+
+    if (dropdownEl && !dropdownEl.contains(clickEl)) {
+      setShowDropdown(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutsideSearch)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutsideSearch)
+    }
+  })
 
   return (
     <>
-      <div className="relative">
+      <div ref={dropdownRef} className="relative">
         <form role="search">
           <input
             type="text"
             onInput={(e) => setSearchQuery(e.currentTarget.value)}
+            onFocus={() => setShowDropdown(true)}
             value={searchQuery}
             placeholder="Search..."
             className="text-sm border-gray-200 rounded-md"
@@ -53,7 +85,7 @@ const Search: FunctionComponent = () => {
           </button>
         </form>
 
-        {searchQuery && (
+        {showDropdown && (
           <div className="absolute right-0 w-64 mt-2 bg-white border-2 border-gray-100 rounded-lg top-full">
             {searchResults.length > 0 ? (
               <ul className="p-2 space-y-1 overflow-auto max-h-64">
