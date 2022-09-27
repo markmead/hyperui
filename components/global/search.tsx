@@ -69,7 +69,7 @@ const Search: FunctionComponent = () => {
 
   return (
     <>
-      <div ref={dropdownRef} className="relative">
+      <div ref={dropdownRef} className="hidden sm:block sm:relative">
         <form role="search">
           <input
             type="text"
