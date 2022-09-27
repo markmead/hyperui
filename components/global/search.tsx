@@ -46,9 +46,11 @@ const Search: FunctionComponent = () => {
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutsideSearch)
+    document.addEventListener('keydown', handleEscapeSearch)
 
     return () => {
       document.removeEventListener('click', handleClickOutsideSearch)
+      document.removeEventListener('keydown', handleEscapeSearch)
     }
   })
 
@@ -57,6 +59,20 @@ const Search: FunctionComponent = () => {
     let clickEl = e.target as HTMLElement
 
     if (dropdownEl && !dropdownEl.contains(clickEl)) {
+      setShowDropdown(false)
+    }
+  }
+
+  function handleEscapeSearch(e: KeyboardEvent) {
+    if (!showDropdown) {
+      return
+    }
+
+    let isEscape = e.key === 'Escape'
+    let inputEl = e.target as HTMLElement
+
+    if (isEscape) {
+      inputEl.blur()
       setShowDropdown(false)
     }
   }
