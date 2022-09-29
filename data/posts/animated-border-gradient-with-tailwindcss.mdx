@@ -1,5 +1,5 @@
 ---
-title: Animated Border Gradient with Tailwind CSS
+title: How to Create an Animated Border Gradient with Tailwind CSS
 description: How to create an animated border gradient with Tailwind CSS with no custom CSS.
 date: 09/30/2022
 emoji: 🎨
@@ -16,7 +16,7 @@ First, we need our interactive element, for this example, I'll use an `<a>` to h
 
 ```html
 <a href="#" class="inline-block bg-white p-0.5">
-  <span class="block px-5 py-3 bg-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
@@ -24,49 +24,49 @@ Inside that, we add a `<span>` that will have the text content of the element, a
 
 ### Adding the Gradient
 
-Next, we need to add the gradient. I'm going to grab a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/).
+Next, we need to add the gradient.
 
-We apply this gradient to the interactive element with the fake border, in the example, this is the `<a>` element.
+I'm going to use a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/). We apply the gradient to the interactive element with the fake border.
 
 ```html
 <a
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5"
 >
-  <span class="block px-5 py-3 bg-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
-You might be concerned that the gradient classes added will override the `bg-white` but it won't, for that to happen we need to add the gradient direction class which we do on hover.
+You might be concerned that the gradient classes added will override the `bg-white` but it won't, for that to happen we need to add the gradient direction class which is done on hover.
 
 ### Applying the Hover Effect
 
-We can take what we've done and add two classes on hover, one is a default Tailwind CSS class, the other needs some JIT magic.
+We can take what we've done and add two more classes, one is a default Tailwind CSS class which is applied on hover, the other is always applied and needs some JIT magic.
 
 ```html
 <a
   href="#"
-  class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5 hover:bg-gradient-to-r bg-[length:400%_400%]"
+  class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5 bg-[length:400%_400%] hover:bg-gradient-to-r"
 >
-  <span class="block px-5 py-3 bg-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
 Let's break these down.
 
-**`hover:bg-gradient-to-r `**
+#### `hover:bg-gradient-to-r`
 
-This applies the background gradient direction class only on hover which will make the gradient display instead of `bg-white`.
+This applies the gradient direction class only on hover which will make the gradient display instead of `bg-white`.
 
-**`bg-[length:400%_400%]`**
+#### `bg-[length:400%_400%]`
 
-This makes the background gradient massive allowing us to apply a spin animation to show movement.
+This makes the gradient huge allowing us to apply an animation to it, without this class the gradient will appear as is and wont animate.
 
 ### Animating the Gradient
 
 Now it's time to animate.
 
-First, we need to make some additions to our `tailwind.config.js` file.
+First, we need to make some additions to our Tailwind CSS config.
 
 ```js
 theme: {
@@ -74,26 +74,29 @@ theme: {
     animation: {
       border: 'border 4s ease infinite',
     },
-  keyframes: {
-    border: {
-      '0%, 100%': { backgroundPosition: '0% 50%' },
-      '50%': { backgroundPosition: '100% 50%' },
+    keyframes: {
+      border: {
+        '0%, 100%': { backgroundPosition: '0% 50%' },
+        '50%': { backgroundPosition: '100% 50%' },
+      },
     },
   },
-},
+}
 ```
 
-Here we're creating an animation that we can use as `animate-border` which under the hood is moving the position of the background gradient.
+Here we're creating an animation with the class `animate-border` which is using the `border` object in the `keyframes` object. In short, this moves the gradient.
 
-And finally, add the `animate-border` class to the interactive element with the background gradient classes. The full example looks like this.
+Finally, we can add the `animate-border` class to the interactive element with the gradient classes.
+
+The full example looks like this.
 
 ```html
 <a
   href="#"
   class="animate-border inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5 hover:bg-gradient-to-r bg-[length:400%_400%] "
 >
-  <span class="block px-5 py-3 bg-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
-And here is the [full example](https://play.tailwindcss.com/G0fl4mBN3Z?layout=preview) on Tailwind Play.
+And here is the [full example](https://play.tailwindcss.com/YooA6NXDHi?layout=preview) (with some extra spice) on Tailwind Play.
