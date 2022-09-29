@@ -26,7 +26,9 @@ Inside that, we add a `<span>` that will have the text content of the element, a
 
 Next, we need to add the gradient.
 
-I'm going to use a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/). We apply the gradient to the interactive element with the fake border.
+I'm going to use a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/).
+
+We apply the gradient to the interactive element with the fake border.
 
 ```html
 <a
@@ -54,11 +56,11 @@ We can take what we've done and add two more classes, one is a default Tailwind 
 
 Let's break these down.
 
-#### `hover:bg-gradient-to-r`
+`hover:bg-gradient-to-r`
 
 This applies the gradient direction class only on hover which will make the gradient display instead of `bg-white`.
 
-#### `bg-[length:400%_400%]`
+`bg-[length:400%_400%]`
 
 This makes the gradient huge allowing us to apply an animation to it, without this class the gradient will appear as is and wont animate.
 
