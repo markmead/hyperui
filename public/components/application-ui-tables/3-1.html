@@ -1,0 +1,148 @@
+<!--
+  This component uses @tailwindcss/forms
+
+  yarn add @tailwindcss/forms
+  npm install @tailwindcss/forms
+
+  plugins: [require('@tailwindcss/forms')]
+-->
+
+<div
+  class="overflow-hidden overflow-x-auto border border-gray-200 rounded-lg dark:border-gray-700"
+>
+  <table
+    class="min-w-full text-sm divide-y divide-gray-200 dark:divide-gray-700"
+  >
+    <thead class="bg-gray-100 dark:bg-gray-800">
+      <tr>
+        <th class="px-4 py-2 text-left bg-gray-100 dark:bg-gray-800">
+          <label class="sr-only" for="SelectAll">Select All</label>
+
+          <input
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
+            type="checkbox"
+            id="SelectAll"
+          />
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Name
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Date of Birth
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Role
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Salary
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+      <tr class="dark:bg-gray-900">
+        <td class="px-4 py-2 bg-white dark:bg-gray-900">
+          <label class="sr-only" for="Row1">Row 1</label>
+
+          <input
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
+            type="checkbox"
+            id="Row1"
+          />
+        </td>
+        <td
+          class="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          John Doe
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          24/05/1995
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          Web Developer
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          $120,000
+        </td>
+      </tr>
+
+      <tr class="dark:bg-gray-900">
+        <td class="px-4 py-2 bg-white dark:bg-gray-900">
+          <label class="sr-only" for="Row2">Row 2</label>
+
+          <input
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
+            type="checkbox"
+            id="Row2"
+          />
+        </td>
+        <td
+          class="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Jane Doe
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          04/11/1980
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          Web Designer
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          $100,000
+        </td>
+      </tr>
+
+      <tr class="dark:bg-gray-900">
+        <td class="px-4 py-2 bg-white dark:bg-gray-900">
+          <label class="sr-only" for="Row3">Row 3</label>
+
+          <input
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
+            type="checkbox"
+            id="Row3"
+          />
+        </td>
+        <td
+          class="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Gary Barlow
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          24/05/1995
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          Singer
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          $20,000
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

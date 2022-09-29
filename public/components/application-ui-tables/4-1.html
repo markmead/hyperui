@@ -7,28 +7,34 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<div class="overflow-hidden overflow-x-auto border border-gray-200 rounded-lg">
-  <table class="min-w-full text-sm divide-y divide-gray-200">
-    <thead class="bg-gray-100">
+<div
+  class="overflow-hidden overflow-x-auto border border-gray-200 rounded-lg dark:border-gray-700"
+>
+  <table
+    class="min-w-full text-sm divide-y divide-gray-200 dark:divide-gray-700"
+  >
+    <thead class="bg-gray-100 dark:bg-gray-800">
       <tr>
-        <th class="sticky inset-y-0 left-0 px-4 py-2 text-left bg-gray-100">
+        <th
+          class="sticky inset-y-0 left-0 px-4 py-2 text-left bg-gray-100 dark:bg-gray-800"
+        >
           <label class="sr-only" for="SelectAll">Select All</label>
 
           <input
-            class="w-5 h-5 border-gray-200 rounded"
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
             type="checkbox"
             id="SelectAll"
           />
         </th>
         <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
         >
           <div class="flex items-center gap-2">
             ID
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 text-gray-700"
+              class="w-4 h-4 text-gray-700 dark:text-gray-200"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -41,14 +47,14 @@
           </div>
         </th>
         <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
         >
           <div class="flex items-center gap-2">
             Name
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 text-gray-700"
+              class="w-4 h-4 text-gray-700 dark:text-gray-200"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -61,14 +67,14 @@
           </div>
         </th>
         <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
         >
           <div class="flex items-center gap-2">
             Email
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 text-gray-700"
+              class="w-4 h-4 text-gray-700 dark:text-gray-200"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -81,14 +87,14 @@
           </div>
         </th>
         <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
         >
           <div class="flex items-center gap-2">
             Amount
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 text-gray-700"
+              class="w-4 h-4 text-gray-700 dark:text-gray-200"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -101,91 +107,125 @@
           </div>
         </th>
         <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+          class="px-4 py-2 font-medium text-left text-gray-900 dark:text-white whitespace-nowrap"
         >
           Status
         </th>
       </tr>
     </thead>
 
-    <tbody class="divide-y divide-gray-200">
-      <tr>
-        <td class="sticky inset-y-0 left-0 px-4 py-2 bg-white">
+    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+      <tr class="dark:bg-gray-900">
+        <td class="sticky inset-y-0 left-0 px-4 py-2 bg-white dark:bg-gray-900">
           <label class="sr-only" for="Row1">Row 1</label>
 
           <input
-            class="w-5 h-5 border-gray-200 rounded"
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
             type="checkbox"
             id="Row1"
           />
         </td>
-        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+        <td
+          class="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
           #00001
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
           John Frusciante
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">john@rhcp.com</td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">$783.23</td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          john@rhcp.com
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          $783.23
+        </td>
         <td class="px-4 py-2 whitespace-nowrap">
           <strong
-            class="bg-red-100 text-red-700 px-3 py-1.5 rounded text-xs font-medium"
+            class="bg-red-100 text-red-700 dark:bg-red-600 dark:text-white px-3 py-1.5 rounded text-xs font-medium"
           >
             Cancelled
           </strong>
         </td>
       </tr>
 
-      <tr>
-        <td class="sticky inset-y-0 left-0 px-4 py-2 bg-white">
+      <tr class="dark:bg-gray-900">
+        <td class="sticky inset-y-0 left-0 px-4 py-2 bg-white dark:bg-gray-900">
           <label class="sr-only" for="Row2">Row 2</label>
 
           <input
-            class="w-5 h-5 border-gray-200 rounded"
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
             type="checkbox"
             id="Row2"
           />
         </td>
-        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+        <td
+          class="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
           #00002
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
           George Harrison
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
           george@beatles.com
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">$128.99</td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          $128.99
+        </td>
         <td class="px-4 py-2 whitespace-nowrap">
           <strong
-            class="bg-green-100 text-green-700 px-3 py-1.5 rounded text-xs font-medium"
+            class="bg-green-100 text-green-700 dark:bg-green-600 dark:text-white px-3 py-1.5 rounded text-xs font-medium"
           >
             Paid
           </strong>
         </td>
       </tr>
 
-      <tr>
-        <td class="sticky inset-y-0 left-0 px-4 py-2 bg-white">
+      <tr class="dark:bg-gray-900">
+        <td class="sticky inset-y-0 left-0 px-4 py-2 bg-white dark:bg-gray-900">
           <label class="sr-only" for="Row3">Row 3</label>
 
           <input
-            class="w-5 h-5 border-gray-200 rounded"
+            class="w-5 h-5 border-gray-200 rounded dark:border-gray-700"
             type="checkbox"
             id="Row3"
           />
         </td>
-        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+        <td
+          class="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
           #00003
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">Dave Gilmour</td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          Dave Gilmour
+        </td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
           dave@pinkfloyd.com
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">$459.43</td>
+        <td
+          class="px-4 py-2 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+        >
+          $459.43
+        </td>
         <td class="px-4 py-2 whitespace-nowrap">
           <strong
-            class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded text-xs font-medium"
+            class="bg-amber-100 text-amber-700 dark:bg-amber-600 dark:text-white px-3 py-1.5 rounded text-xs font-medium"
           >
             Partially Refunded
           </strong>
