@@ -1,11 +1,11 @@
-import type { ReactChild } from 'react'
+import type { ReactNode } from 'react'
 
 import Image from 'next/image'
 
 type Props = {
   title: string
   subtitle?: string
-  children?: ReactChild
+  children?: ReactNode
 }
 
 function HeroBanner({ title, subtitle, children }: Props) {

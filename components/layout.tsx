@@ -1,7 +1,7 @@
-import { ReactChild } from 'react'
+import { ReactNode } from 'react'
 
 type Props = {
-  children: ReactChild
+  children: ReactNode
 }
 
 function Layout({ children }: Props) {
