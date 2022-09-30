@@ -46,14 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.hyperui.dev/" />
       </Head>
-
-      <Header />
-
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-
-      <Footer />
     </>
   )
 }
