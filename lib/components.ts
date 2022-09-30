@@ -2,7 +2,7 @@ import fs from 'fs'
 import { format, join } from 'path'
 import matter from 'gray-matter'
 
-import { componentSlug } from '../utils/componentHelpers'
+import { transformComponentSlug } from '../utils/componentHelpers'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 const categoriesDirectory = join(process.cwd(), '/data/categories')
@@ -60,7 +60,7 @@ export function componentSlugs() {
     const slug: string = component.slug
     const category: string = component.category
 
-    const realSlug = componentSlug(slug, category)
+    const realSlug = transformComponentSlug(slug, category)
 
     return {
       params: {

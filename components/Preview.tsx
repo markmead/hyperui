@@ -15,7 +15,6 @@ import Dark from './PreviewDark'
 import Copy from './PreviewCopy'
 import Code from './PreviewView'
 import Variants from './PreviewVariants'
-import Range from './PreviewSlider'
 import ComponentCreator from './ComponentCreator'
 import PreviewLoading from './PreviewLoading'
 
@@ -32,7 +31,6 @@ function Preview({ componentData, componentSpacing }: Props) {
   const [componentHtml, setComponentHtml] = useState<string>()
   const [showPreview, setShowPreview] = useState<boolean>(true)
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
-  const [previewRange, setPreviewRange] = useState<number>(1348)
   const [selectedVariant, setSelectedVariant] = useState<string>('base')
   const [hasDarkMode, setHasDarkMode] = useState<boolean>(false)
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
@@ -92,18 +90,6 @@ function Preview({ componentData, componentSpacing }: Props) {
   }, [isDarkMode])
 
   useEffect(() => Prism.highlightAll())
-
-  useEffect(() => {
-    previewRange === 1348
-      ? setPreviewWidth('100%')
-      : setPreviewWidth(`${previewRange}px`)
-  }, [previewRange])
-
-  useEffect(() => {
-    previewWidth === '100%'
-      ? setPreviewRange(1348)
-      : setPreviewRange(Number(previewWidth.replace(/\D/g, '')))
-  }, [previewWidth])
 
   async function fetchHtml() {
     const componentUrl =
@@ -179,16 +165,6 @@ function Preview({ componentData, componentSpacing }: Props) {
           </div>
 
           <div className="hidden lg:items-center lg:gap-4 lg:flex">
-            <Range
-              previewRange={previewRange}
-              handleSetPreviewRange={setPreviewRange}
-              componentId={componentId}
-            />
-
-            <strong className="text-center font-mono text-white font-medium text-xs w-16 py-2.5 bg-black rounded-lg">
-              {previewWidth}
-            </strong>
-
             {componentBreakpoints.map(
               ({
                 name: breakpointName,

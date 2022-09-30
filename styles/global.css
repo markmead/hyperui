@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import './prism.css';
-@import './slider.css';
 
 html {
   @apply scroll-smooth;
