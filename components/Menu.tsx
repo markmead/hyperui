@@ -4,8 +4,6 @@ import Link from 'next/link'
 
 import { Link as LinkInterface } from '../interface/global'
 
-import IconMenu from './IconMenu'
-
 type Props = {
   menu: boolean
   handleMenu: CallableFunction
@@ -19,7 +17,20 @@ const Menu: FunctionComponent<Props> = ({ menu, handleMenu, links }) => (
         className="inline-flex items-center gap-1.5"
         onClick={() => handleMenu(!menu)}
       >
-        <IconMenu />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
 
         <span className="text-xs font-medium">Menu</span>
       </button>
