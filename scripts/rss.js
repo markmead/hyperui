@@ -24,13 +24,13 @@ async function generate() {
   })
 
   const selfPosts = await fs.readdir(
-    path.join(__dirname, '..', 'data', 'posts')
+    path.join(process.cwd(), '/src/data/posts')
   )
 
   await Promise.all(
     selfPosts.map(async (name) => {
       const postContent = await fs.readFile(
-        path.join(__dirname, '..', 'data', 'posts', name)
+        path.join(process.cwd(), '/src/data/posts', name)
       )
 
       const postFrontmatter = matter(postContent)

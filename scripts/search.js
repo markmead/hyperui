@@ -3,7 +3,7 @@ const path = require('path')
 const matter = require('gray-matter')
 
 async function generate() {
-  const componentsDirectory = path.join(__dirname, '..', 'data', 'components')
+  const componentsDirectory = path.join(process.cwd(), '/src/data/components')
   const componentSlugs = await fs.readdir(componentsDirectory)
 
   let searchObject = {
