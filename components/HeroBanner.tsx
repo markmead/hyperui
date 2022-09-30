@@ -1,13 +1,14 @@
-import type { FunctionComponent } from 'react'
+import type { ReactChild } from 'react'
 
 import Image from 'next/image'
 
 type Props = {
   title: string
   subtitle?: string
+  children?: ReactChild
 }
 
-const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
+function HeroBanner({ title, subtitle, children }: Props) {
   return (
     <>
       <section>
@@ -47,4 +48,4 @@ const Banner: FunctionComponent<Props> = ({ title, subtitle, children }) => {
   )
 }
 
-export default Banner
+export default HeroBanner

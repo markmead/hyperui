@@ -1,81 +1,49 @@
-import { FunctionComponent, useEffect, useState } from 'react'
-
 import Link from 'next/link'
+
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { Link as LinkInterface } from '../interface/global'
+import { menuLinks } from '../utils/menuLinks'
 
-import Menu from './Menu'
-import Search from './Search'
+import BrandLogo from './BrandLogo'
+import Menu from './HeaderMenu'
+import Search from './HeaderSearch'
+import HeaderMenuLinks from './HeaderMenuLinks'
 
-const Header: FunctionComponent = () => {
-  const links: Array<LinkInterface> = [
-    {
-      title: 'Marketing',
-      href: '/components/marketing',
-    },
-    {
-      title: 'eCommerce',
-      href: '/components/ecommerce',
-    },
-    {
-      title: 'Application UI',
-      href: '/components/application-ui',
-    },
-  ]
+function Header() {
+  const nextRouter = useRouter()
+  const [showMenu, setShowMenu] = useState(false)
 
-  let router = useRouter()
-  let [menu, setMenu] = useState(false)
-
-  useEffect(() => {
-    setMenu(false)
-  }, [router.asPath])
+  useEffect(() => setShowMenu(false), [nextRouter.asPath])
 
   return (
-    <>
-      <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-        <div className="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto">
-          <nav className="flex items-center">
-            <Link href="/">
-              <a className="text-sm font-medium inline-flex gap-1.5">
-                <span>HyperUI</span>
+    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
+      <div className="max-w-screen-xl px-4 mx-auto">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-4">
+            <BrandLogo />
 
-                <span aria-hidden="true" role="img">
-                  🚀
-                </span>
-              </a>
-            </Link>
+            <span
+              aria-hidden="true"
+              className="hidden sm:w-px sm:h-6 sm:bg-gray-100 sm:block"
+            ></span>
 
-            <span className="block w-px h-6 mx-4 bg-gray-100"></span>
-
-            <Menu menu={menu} handleMenu={setMenu} links={links} />
-
-            <ul className="hidden sm:gap-4 sm:flex">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href}>
-                    <a className="block text-xs font-medium hover:opacity-75">
-                      {link.title}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+            <HeaderMenuLinks
+              menuLinks={menuLinks}
+              navClass="hidden sm:block"
+              ulClass="gap-4 flex"
+            />
+          </div>
 
           <div className="flex items-center justify-end flex-1 gap-4">
             <Search />
 
-            <Link href="/blog">
-              <a className="block text-xs font-medium hover:opacity-75">Blog</a>
-            </Link>
-
-            <div className="flex">
+            <div className="flex gap-4">
               <a
-                className="p-2 rounded hover:opacity-75"
                 href="https://twitter.com/itsmarkmead"
                 rel="noreferrer"
                 target="_blank"
+                className="hover:opacity-75"
               >
                 <span className="sr-only"> Twitter </span>
 
@@ -90,10 +58,10 @@ const Header: FunctionComponent = () => {
               </a>
 
               <a
-                className="p-2 rounded hover:opacity-75"
                 href="https://github.com/markmead/hyperui"
                 rel="noreferrer"
                 target="_blank"
+                className="hover:opacity-75"
               >
                 <span className="sr-only"> GitHub </span>
 
@@ -111,10 +79,16 @@ const Header: FunctionComponent = () => {
                 </svg>
               </a>
             </div>
+
+            <Menu
+              showMenu={showMenu}
+              handleSetShowMenu={setShowMenu}
+              menuLinks={menuLinks}
+            />
           </div>
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   )
 }
 

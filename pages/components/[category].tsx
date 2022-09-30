@@ -10,7 +10,7 @@ import {
   getComponentsByCategory,
 } from '../../lib/components'
 
-import Banner from '../../components/Banner'
+import HeroBanner from '../../components/HeroBanner'
 import Grid from '../../components/CollectionGrid'
 
 type Props = {
@@ -33,12 +33,12 @@ const Category: NextPage<Props> = ({ categoryComponents, categoryDetails }) => {
         />
       </Head>
 
-      <Banner
+      <HeroBanner
         title={categoryDetails.banner.title}
         subtitle={categoryDetails.banner.subtitle}
       >
         {categoryDetails.banner.description}
-      </Banner>
+      </HeroBanner>
 
       <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
         <div className="space-y-4">
