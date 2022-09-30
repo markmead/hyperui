@@ -1,11 +1,11 @@
-import { Link } from '@/interface/global'
+import { MenuLink } from '@/interface/global'
 
 import MenuLinks from '@/components/HeaderMenuLinks'
 
 type Props = {
   showMenu: boolean
   handleSetShowMenu: CallableFunction
-  menuLinks: Array<Link>
+  menuLinks: Array<MenuLink>
 }
 
 function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }: Props) {
