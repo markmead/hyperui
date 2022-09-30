@@ -5,10 +5,6 @@ import Head from 'next/head'
 import '../styles/global.css'
 import 'prismjs/themes/prism-okaidia.css'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Layout from '../components/Layout'
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
