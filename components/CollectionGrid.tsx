@@ -1,8 +1,8 @@
 import type { FunctionComponent } from 'react'
 
-import { ComponentCard } from '../../interface/component'
+import { ComponentCard } from '../interface/component'
 
-import Card from './card'
+import Card from './CollectionCard'
 
 type Props = {
   items: Array<ComponentCard>

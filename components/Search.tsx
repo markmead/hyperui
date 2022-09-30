@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { SearchResult } from '../../interface/search'
+import { SearchResult } from '../interface/search'
 
 const Search: FunctionComponent = () => {
   let router = useRouter()

@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import styles from '../../../styles/button.module.css'
+import styles from '../styles/button.module.css'
 
 type Props = {
   themed: boolean

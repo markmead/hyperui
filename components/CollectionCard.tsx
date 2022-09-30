@@ -2,8 +2,8 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { ComponentCard } from '../../interface/component'
-import { componentSlug } from '../../utils/component'
+import { ComponentCard } from '../interface/component'
+import { componentSlug } from '../utils/component'
 
 type Props = {
   item: ComponentCard

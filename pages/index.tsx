@@ -6,8 +6,8 @@ import {
   getCategoryBySlug,
 } from '../lib/components'
 
-import Banner from '../components/content/banner'
-import Grid from '../components/collection/grid'
+import Banner from '../components/Banner'
+import Grid from '../components/CollectionGrid'
 
 export async function getStaticProps() {
   const categorySlugs = getComponentCategorySlugsSimple()

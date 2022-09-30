@@ -6,8 +6,8 @@ import { PostCard } from '../../interface/post'
 
 import { getAllPosts } from '../../lib/posts'
 
-import Banner from '../../components/content/banner'
-import Card from '../../components/blog/card'
+import Banner from '../../components/Banner'
+import Card from '../../components/BlogCard'
 
 export async function getStaticProps() {
   const posts = getAllPosts(['title', 'slug', 'date', 'emoji'])
@@ -42,7 +42,7 @@ const Blogs: NextPage<Props> = ({ posts }) => {
         write cleaner, more maintainable code and help you be more productive.
       </Banner>
 
-      <div className="px-4 py-12 mx-auto max-w-screen-xl">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>

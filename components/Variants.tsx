@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { Component } from '../../interface/component'
+import { Component } from '../interface/component'
 
 type Props = {
   variants: Array<Component> | []

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-import styles from '../../../styles/button.module.css'
+import styles from '../styles/button.module.css'
 
 type Props = {
   view: boolean

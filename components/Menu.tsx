@@ -2,9 +2,9 @@ import type { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
-import { Link as LinkInterface } from '../../interface/global'
+import { Link as LinkInterface } from '../interface/global'
 
-import IconMenu from '../icon/menu'
+import IconMenu from './IconMenu'
 
 type Props = {
   menu: boolean

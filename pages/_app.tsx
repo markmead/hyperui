@@ -5,9 +5,9 @@ import Head from 'next/head'
 import '../styles/global.css'
 import 'prismjs/themes/prism-okaidia.css'
 
-import Layout from '../components/layout'
-import Header from '../components/global/header'
-import Footer from '../components/global/footer'
+import Layout from '../components/Layout'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

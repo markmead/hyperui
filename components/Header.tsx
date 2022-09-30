@@ -3,12 +3,12 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Link as LinkInterface } from '../../interface/global'
+import { Link as LinkInterface } from '../interface/global'
 
-import IconGithub from '../icon/github'
-import IconTwitter from '../icon/twitter'
-import Menu from './menu'
-import Search from './search'
+import IconGithub from './IconGithub'
+import IconTwitter from './IconTwitter'
+import Menu from './Menu'
+import Search from './Search'
 
 const Header: FunctionComponent = () => {
   const links: Array<LinkInterface> = [

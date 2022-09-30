@@ -4,19 +4,19 @@ import { useInView } from 'react-intersection-observer'
 
 import Prism from 'prismjs'
 
-import { componentHtml } from '../../utils/component'
+import { componentHtml } from '../utils/component'
 
-import { allBreakpoints } from '../../lib/breakpoints'
+import { allBreakpoints } from '../lib/breakpoints'
 
-import { Component } from '../../interface/component'
+import { Component } from '../interface/component'
 
-import Breakpoint from './buttons/breakpoint'
-import Dark from './buttons/dark'
-import Copy from './buttons/copy'
-import Code from './buttons/view'
-import Variants from './variants'
-import Range from './range'
-import IconLoading from '../icon/loading'
+import Breakpoint from './Breakpoint'
+import Dark from './Dark'
+import Copy from './Copy'
+import Code from './View'
+import Variants from './Variants'
+import Range from './Range'
+import IconLoading from './IconLoading'
 import { useRouter } from 'next/router'
 
 type Props = {
