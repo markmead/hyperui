@@ -6,11 +6,11 @@ function PreviewLoading({ previewWidth }: Props) {
   return (
     <div
       style={{ maxWidth: previewWidth }}
-      className="absolute inset-0 flex items-center justify-center bg-white rounded-lg"
+      className="absolute inset-0 flex items-center justify-center rounded-lg bg-white"
       aria-hidden="true"
     >
       <svg
-        className="w-12 h-12 text-gray-300 animate-spin"
+        className="h-12 w-12 animate-spin text-gray-300"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

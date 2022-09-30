@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import styles from '../styles/button.module.css'
+import styles from '@/styles/button.module.css'
 
 type Props = {
   componentCode: string
@@ -9,7 +9,7 @@ type Props = {
 function Copy({ componentCode }: Props) {
   const [buttonText, setButtonText] = useState('Copy')
   const [buttonEmoji, setButtonEmoji] = useState('📋')
-  let [hasError, setHasError] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   function copyToClipboard() {
     navigator.clipboard.writeText(componentCode).then(

@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
-import { ComponentCard } from '../interface/component'
-import { transformComponentSlug } from '../utils/componentHelpers'
+import { ComponentCard as iComponentCard } from '@/interface/component'
+import { transformComponentSlug } from '@/utils/componentHelpers'
 
 type Props = {
-  componentData: ComponentCard
+  componentData: iComponentCard
 }
 
 function ComponentCard({ componentData }: Props) {
@@ -18,13 +18,13 @@ function ComponentCard({ componentData }: Props) {
 
   return (
     <Link href={`/components/${componentData.category}/${trueComponentSlug}`}>
-      <a className="relative block group">
+      <a className="group relative block">
         <span
-          className="absolute inset-0 border-2 border-black border-dashed rounded-lg"
+          className="absolute inset-0 rounded-lg border-2 border-dashed border-black"
           aria-hidden="true"
         ></span>
 
-        <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="rounded-lg border-2 border-black bg-white transition group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-6">
             <span className="text-xl" role="img" aria-hidden="true">
               {componentData.emoji}

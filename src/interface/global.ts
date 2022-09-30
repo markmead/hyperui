@@ -1,4 +1,4 @@
-export interface Link {
+export interface MenuLink {
   title: string
   href: string
 }

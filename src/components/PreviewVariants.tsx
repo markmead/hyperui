@@ -1,5 +1,6 @@
-import { FunctionComponent, useEffect, useState } from 'react'
-import { Component } from '../interface/component'
+import { useEffect, useState } from 'react'
+
+import { Component } from '@/interface/component'
 
 type Props = {
   componentVariants: Array<Component> | []
@@ -13,27 +14,31 @@ type Variant = {
   title: string
 }
 
-const Variants: FunctionComponent<Props> = ({
+function PreviewVariants({
   componentVariants,
   handleSetVariant,
   handleSetHasDarkMode,
   componentId,
-}) => {
-  let [variant, setVariant] = useState<string>('base')
+}: Props) {
+  const [selectedVariant, setSelectedVariant] = useState<string>('base')
 
   useEffect(() => {
-    handleSetVariant(variant)
+    handleSetVariant(selectedVariant)
 
-    let variantsObjects = componentVariants.map((variant) => {
+    const variantsObjects = componentVariants.map(function (componentVariant) {
       return {
-        id: variant.id,
-        title: variant.title,
+        id: componentVariant.id,
+        title: componentVariant.title,
       }
-    })
+    }) as Array<Variant>
 
-    let activeVariant: Variant = variantsObjects.filter(
-      ({ id }) => id === variant
-    )[0]
+    const activeVariant: Variant = variantsObjects.filter(function (
+      variantObject: Variant
+    ) {
+      const { id: variantId } = variantObject
+
+      return variantId === selectedVariant
+    })[0]
 
     if (!activeVariant) {
       handleSetHasDarkMode(false)
@@ -43,31 +48,29 @@ const Variants: FunctionComponent<Props> = ({
 
     handleSetHasDarkMode(activeVariant.title.includes('Dark'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [variant])
+  }, [selectedVariant])
 
   return (
-    <>
-      <div>
-        <label htmlFor="VariantSelect" className="sr-only">
-          Variants
-        </label>
+    <div>
+      <label htmlFor="VariantSelect" className="sr-only">
+        Variants
+      </label>
 
-        <select
-          onChange={(e) => setVariant(e.currentTarget.value)}
-          className="w-full pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
-          id={`VariantSelect${componentId}`}
-        >
-          <option value="base">Base</option>
+      <select
+        onChange={(e) => setSelectedVariant(e.currentTarget.value)}
+        id={`VariantSelect${componentId}`}
+        className="h-9 w-full rounded-lg border-2 border-black pl-3 text-xs font-medium"
+      >
+        <option value="base">Base</option>
 
-          {componentVariants.map((variant) => (
-            <option value={variant.id} key={variant.id}>
-              {variant.title}
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
+        {componentVariants.map((componentVariant: Variant) => (
+          <option value={componentVariant.id} key={componentVariant.id}>
+            {componentVariant.title}
+          </option>
+        ))}
+      </select>
+    </div>
   )
 }
 
-export default Variants
+export default PreviewVariants

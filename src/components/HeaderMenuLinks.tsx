@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { Link as iLink } from '../interface/global'
+import { MenuLink } from '@/interface/global'
 
 type Props = {
-  menuLinks: Array<iLink>
+  menuLinks: Array<MenuLink>
   navClass: string
   ulClass: string
 }

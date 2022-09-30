@@ -5,18 +5,18 @@ import Prism from 'prismjs'
 
 import { useInView } from 'react-intersection-observer'
 
-import { Component } from '../interface/component'
+import { Component } from '@/interface/component'
 
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
-import Breakpoint from './PreviewBreakpoint'
-import Dark from './PreviewDark'
-import Copy from './PreviewCopy'
-import Code from './PreviewView'
-import Variants from './PreviewVariants'
-import ComponentCreator from './ComponentCreator'
-import PreviewLoading from './PreviewLoading'
+import Breakpoint from '@/components/PreviewBreakpoint'
+import Dark from '@/components/PreviewDark'
+import Copy from '@/components/PreviewCopy'
+import Code from '@/components/PreviewView'
+import Variants from '@/components/PreviewVariants'
+import ComponentCreator from '@/components/ComponentCreator'
+import PreviewLoading from '@/components/PreviewLoading'
 
 type Props = {
   componentData: Component

@@ -1,4 +1,4 @@
-import styles from '../styles/button.module.css'
+import styles from '@/styles/button.module.css'
 
 type Props = {
   breakpointActive: boolean
@@ -8,7 +8,7 @@ type Props = {
   breakpointText: string
 }
 
-function Breakpoint({
+function PreviewBreakpoint({
   breakpointActive,
   breakpointEmoji,
   handleSetPreviewWidth,
@@ -31,4 +31,4 @@ function Breakpoint({
   )
 }
 
-export default Breakpoint
+export default PreviewBreakpoint

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { menuLinks } from '../utils/menuLinks'
+import { menuLinks } from '@/utils/menuLinks'
 
-import GitHub from './BrandGithub'
-import Logo from './BrandLogo'
-import Menu from './HeaderMenu'
-import MenuLinks from './HeaderMenuLinks'
-import Search from './HeaderSearch'
-import Twitter from './BrandTwitter'
+import GitHub from '@/components/BrandGithub'
+import Twitter from '@/components/BrandTwitter'
+import Logo from '@/components/BrandLogo'
+import Menu from '@/components/HeaderMenu'
+import MenuLinks from '@/components/HeaderMenuLinks'
+import Search from '@/components/HeaderSearch'
 
 function Header() {
   const nextRouter = useRouter()
@@ -17,15 +17,15 @@ function Header() {
   useEffect(() => setShowMenu(false), [nextRouter.asPath])
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-      <div className="max-w-screen-xl px-4 mx-auto">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white">
+      <div className="mx-auto max-w-screen-xl px-4">
+        <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
             <Logo fontSize="text-sm" />
 
             <span
               aria-hidden="true"
-              className="hidden sm:w-px sm:h-6 sm:bg-gray-100 sm:block"
+              className="hidden sm:block sm:h-6 sm:w-px sm:bg-gray-100"
             ></span>
 
             <MenuLinks
@@ -35,7 +35,7 @@ function Header() {
             />
           </div>
 
-          <div className="flex items-center justify-end flex-1 gap-4">
+          <div className="flex flex-1 items-center justify-end gap-4">
             <Search />
 
             <div className="flex gap-4">

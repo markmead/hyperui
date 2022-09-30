@@ -1,4 +1,4 @@
-import styles from '../styles/button.module.css'
+import styles from '@/styles/button.module.css'
 
 type Props = {
   showPreview: boolean

@@ -1,6 +1,6 @@
-import { Link } from '../interface/global'
+import { Link } from '@/interface/global'
 
-import MenuLinks from './HeaderMenuLinks'
+import MenuLinks from '@/components/HeaderMenuLinks'
 
 type Props = {
   showMenu: boolean
@@ -17,7 +17,7 @@ function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }: Props) {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

@@ -1,4 +1,4 @@
-import styles from '../styles/button.module.css'
+import styles from '@/styles/button.module.css'
 
 type Props = {
   hasDarkMode: boolean
@@ -12,7 +12,7 @@ function Dark({ hasDarkMode, isDarkMode, handleSetIsDarkMode }: Props) {
       onClick={() => handleSetIsDarkMode(!isDarkMode)}
       className={`${styles.pill} ${
         isDarkMode && hasDarkMode ? 'bg-black text-white' : 'text-black'
-      } disabled:opacity-25 disabled:pointer-events-none`}
+      } disabled:pointer-events-none disabled:opacity-25`}
       disabled={!hasDarkMode}
     >
       <span aria-hidden="true" className="text-sm" role="img">
