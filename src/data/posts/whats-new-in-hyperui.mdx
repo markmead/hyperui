@@ -166,11 +166,11 @@ When the component HTML is fetched it adds in:
 
 ```html
 <head>
-  <link rel="stylesheet" href="/build.css" />
+  <link rel="stylesheet" href="/tailwind.css" />
 </head>
 ```
 
-Currently, `/build.css` is a tiny file and doesn't have too much of an impact on the performance. However, one thing I noticed was `/build.css` being loaded in each time you toggled back to the preview of the component from the source code.
+Currently, `/tailwind.css` is a tiny file and doesn't have too much of an impact on the performance. However, one thing I noticed was `/tailwind.css` being loaded in each time you toggled back to the preview of the component from the source code.
 
 This was happening because the component was being re-rendered as it was wrapped in:
 
@@ -178,7 +178,7 @@ This was happening because the component was being re-rendered as it was wrapped
 {view ? <Preview /> : <Code />}
 ```
 
-I've changed this now to use CSS class names to toggle between the preview and the source code, this results in `/build.css` not being re-loaded.
+I've changed this now to use CSS class names to toggle between the preview and the source code, this results in `/tailwind.css` not being re-loaded.
 
 #### Bug Fixes
 

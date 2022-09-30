@@ -1,15 +1,15 @@
 <section>
-  <div class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
       <div class="lg:sticky lg:top-4">
-        <details open class="overflow-hidden border border-gray-200 rounded">
+        <details open class="overflow-hidden rounded border border-gray-200">
           <summary
-            class="flex items-center justify-between px-5 py-3 bg-gray-100 lg:hidden"
+            class="flex items-center justify-between bg-gray-100 px-5 py-3 lg:hidden"
           >
             <span class="text-sm font-medium"> Toggle Filters </span>
 
             <svg
-              class="w-5 h-5"
+              class="h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -27,18 +27,18 @@
           <form class="border-t border-gray-200 lg:border-t-0">
             <fieldset>
               <legend
-                class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
+                class="block w-full bg-gray-50 px-5 py-3 text-xs font-medium"
               >
                 Type
               </legend>
 
-              <div class="px-5 py-6 space-y-2">
+              <div class="space-y-2 px-5 py-6">
                 <div class="flex items-center">
                   <input
                     id="toy"
                     type="checkbox"
                     name="type[toy]"
-                    class="w-5 h-5 border-gray-300 rounded"
+                    class="h-5 w-5 rounded border-gray-300"
                   />
 
                   <label for="toy" class="ml-3 text-sm font-medium">
@@ -51,7 +51,7 @@
                     id="game"
                     type="checkbox"
                     name="type[game]"
-                    class="w-5 h-5 border-gray-300 rounded"
+                    class="h-5 w-5 rounded border-gray-300"
                   />
 
                   <label for="game" class="ml-3 text-sm font-medium">
@@ -64,7 +64,7 @@
                     id="outdoor"
                     type="checkbox"
                     name="type[outdoor]"
-                    class="w-5 h-5 border-gray-300 rounded"
+                    class="h-5 w-5 rounded border-gray-300"
                   />
 
                   <label for="outdoor" class="ml-3 text-sm font-medium">
@@ -83,18 +83,18 @@
             <div>
               <fieldset>
                 <legend
-                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
+                  class="block w-full bg-gray-50 px-5 py-3 text-xs font-medium"
                 >
                   Age
                 </legend>
 
-                <div class="px-5 py-6 space-y-2">
+                <div class="space-y-2 px-5 py-6">
                   <div class="flex items-center">
                     <input
                       id="3+"
                       type="checkbox"
                       name="age[3+]"
-                      class="w-5 h-5 border-gray-300 rounded"
+                      class="h-5 w-5 rounded border-gray-300"
                     />
 
                     <label for="3+" class="ml-3 text-sm font-medium">
@@ -107,7 +107,7 @@
                       id="8+"
                       type="checkbox"
                       name="age[8+]"
-                      class="w-5 h-5 border-gray-300 rounded"
+                      class="h-5 w-5 rounded border-gray-300"
                     />
 
                     <label for="8+" class="ml-3 text-sm font-medium">
@@ -120,7 +120,7 @@
                       id="12+"
                       type="checkbox"
                       name="age[12+]"
-                      class="w-5 h-5 border-gray-300 rounded"
+                      class="h-5 w-5 rounded border-gray-300"
                     />
 
                     <label for="12+" class="ml-3 text-sm font-medium">
@@ -133,7 +133,7 @@
                       id="16+"
                       type="checkbox"
                       name="age[16+]"
-                      class="w-5 h-5 border-gray-300 rounded"
+                      class="h-5 w-5 rounded border-gray-300"
                     />
 
                     <label for="16+" class="ml-3 text-sm font-medium">
@@ -154,12 +154,12 @@
             </div>
 
             <div
-              class="flex justify-between px-5 py-3 border-t border-gray-200"
+              class="flex justify-between border-t border-gray-200 px-5 py-3"
             >
               <button
                 name="reset"
                 type="button"
-                class="text-xs font-medium text-gray-600 underline rounded"
+                class="rounded text-xs font-medium text-gray-600 underline"
               >
                 Reset All
               </button>
@@ -167,7 +167,7 @@
               <button
                 name="commit"
                 type="button"
-                class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
+                class="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white"
               >
                 Apply Filters
               </button>
@@ -189,7 +189,7 @@
             <select
               id="SortBy"
               name="sort_by"
-              class="text-sm border-gray-100 rounded"
+              class="rounded border-gray-100 text-sm"
             >
               <option readonly>Sort</option>
               <option value="title-asc">Title, A-Z</option>
@@ -201,16 +201,16 @@
         </div>
 
         <div
-          class="grid grid-cols-1 gap-px mt-4 bg-gray-200 border border-gray-200 sm:grid-cols-2 lg:grid-cols-3"
+          class="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
         >
           <a href="#" class="relative block bg-white">
             <button
               type="button"
               name="wishlist"
-              class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
+              class="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
             >
               <svg
-                class="w-4 h-4"
+                class="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -228,12 +228,12 @@
             <img
               alt="Toy"
               src="https://images.unsplash.com/photo-1603356033288-acfcb54801e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              class="object-contain w-full h-56 lg:h-72"
+              class="h-56 w-full object-contain lg:h-72"
             />
 
             <div class="p-6">
               <span
-                class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+                class="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"
               >
                 New
               </span>
@@ -245,12 +245,12 @@
               <button
                 name="add"
                 type="button"
-                class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+                class="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
               >
                 <span class="text-sm font-medium"> Add to Cart </span>
 
                 <svg
-                  class="w-5 h-5 ml-1.5"
+                  class="ml-1.5 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -271,10 +271,10 @@
             <button
               type="button"
               name="wishlist"
-              class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
+              class="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
             >
               <svg
-                class="w-4 h-4"
+                class="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -292,12 +292,12 @@
             <img
               alt="Toy"
               src="https://images.unsplash.com/photo-1603356033288-acfcb54801e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              class="object-contain w-full h-56 lg:h-72"
+              class="h-56 w-full object-contain lg:h-72"
             />
 
             <div class="p-6">
               <span
-                class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+                class="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"
               >
                 New
               </span>
@@ -309,12 +309,12 @@
               <button
                 name="add"
                 type="button"
-                class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+                class="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
               >
                 <span class="text-sm font-medium"> Add to Cart </span>
 
                 <svg
-                  class="w-5 h-5 ml-1.5"
+                  class="ml-1.5 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -335,10 +335,10 @@
             <button
               type="button"
               name="wishlist"
-              class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
+              class="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
             >
               <svg
-                class="w-4 h-4"
+                class="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -356,12 +356,12 @@
             <img
               alt="Toy"
               src="https://images.unsplash.com/photo-1603356033288-acfcb54801e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              class="object-contain w-full h-56 lg:h-72"
+              class="h-56 w-full object-contain lg:h-72"
             />
 
             <div class="p-6">
               <span
-                class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+                class="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"
               >
                 New
               </span>
@@ -373,12 +373,12 @@
               <button
                 name="add"
                 type="button"
-                class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+                class="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
               >
                 <span class="text-sm font-medium"> Add to Cart </span>
 
                 <svg
-                  class="w-5 h-5 ml-1.5"
+                  class="ml-1.5 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -399,10 +399,10 @@
             <button
               type="button"
               name="wishlist"
-              class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
+              class="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
             >
               <svg
-                class="w-4 h-4"
+                class="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -420,12 +420,12 @@
             <img
               alt="Toy"
               src="https://images.unsplash.com/photo-1603356033288-acfcb54801e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              class="object-contain w-full h-56 lg:h-72"
+              class="h-56 w-full object-contain lg:h-72"
             />
 
             <div class="p-6">
               <span
-                class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+                class="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"
               >
                 New
               </span>
@@ -437,12 +437,12 @@
               <button
                 name="add"
                 type="button"
-                class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+                class="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
               >
                 <span class="text-sm font-medium"> Add to Cart </span>
 
                 <svg
-                  class="w-5 h-5 ml-1.5"
+                  class="ml-1.5 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -463,10 +463,10 @@
             <button
               type="button"
               name="wishlist"
-              class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
+              class="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
             >
               <svg
-                class="w-4 h-4"
+                class="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -484,12 +484,12 @@
             <img
               alt="Toy"
               src="https://images.unsplash.com/photo-1603356033288-acfcb54801e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              class="object-contain w-full h-56 lg:h-72"
+              class="h-56 w-full object-contain lg:h-72"
             />
 
             <div class="p-6">
               <span
-                class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+                class="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"
               >
                 New
               </span>
@@ -501,12 +501,12 @@
               <button
                 name="add"
                 type="button"
-                class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+                class="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
               >
                 <span class="text-sm font-medium"> Add to Cart </span>
 
                 <svg
-                  class="w-5 h-5 ml-1.5"
+                  class="ml-1.5 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -527,10 +527,10 @@
             <button
               type="button"
               name="wishlist"
-              class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
+              class="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
             >
               <svg
-                class="w-4 h-4"
+                class="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -548,12 +548,12 @@
             <img
               alt="Toy"
               src="https://images.unsplash.com/photo-1603356033288-acfcb54801e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              class="object-contain w-full h-56 lg:h-72"
+              class="h-56 w-full object-contain lg:h-72"
             />
 
             <div class="p-6">
               <span
-                class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+                class="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"
               >
                 New
               </span>
@@ -565,12 +565,12 @@
               <button
                 name="add"
                 type="button"
-                class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+                class="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
               >
                 <span class="text-sm font-medium"> Add to Cart </span>
 
                 <svg
-                  class="w-5 h-5 ml-1.5"
+                  class="ml-1.5 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
