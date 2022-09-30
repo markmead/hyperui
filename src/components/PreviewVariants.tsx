@@ -1,9 +1,8 @@
+import { ComponentVariant } from '@/interface/component'
 import { useEffect, useState } from 'react'
 
-import { Component } from '@/interface/component'
-
 type Props = {
-  componentVariants: Array<Component> | []
+  componentVariants: Array<ComponentVariant> | []
   handleSetVariant: CallableFunction
   handleSetHasDarkMode: CallableFunction
   componentId: string

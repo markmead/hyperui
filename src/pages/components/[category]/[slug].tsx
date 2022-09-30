@@ -1,14 +1,12 @@
 import Head from 'next/head'
 
-import { Component } from '@/interface/component'
-import { FrontMatter } from '@/interface/frontmatter'
-
-import { getComponentPaths } from '@/lib/getComponents'
-
 import fs from 'fs'
 import matter from 'gray-matter'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
+
+import { Component, ComponentVariant } from '@/interface/component'
+import { getComponentPaths } from '@/lib/getComponents'
 
 import List from '@/components/CollectionList'
 
@@ -16,10 +14,26 @@ const mdxComponents = {
   List,
 }
 
+type CategoryData = {
+  title: string
+  emoji: string
+  spacing: string
+  seo: {
+    title: string
+    description: string
+  }
+  components: {
+    title: string
+    spacing?: string
+  }
+}
+
+type ComponentData = Omit<Component, 'slug'>
+
 type Props = {
   componentSlug: string
   componentSource: MDXRemoteProps
-  componentFrontmatter: FrontMatter
+  componentFrontmatter: CategoryData
 }
 
 function Component({
@@ -33,8 +47,14 @@ function Component({
     components: componentsData,
   } = componentFrontmatter
 
+  console.log(
+    componentsData,
+    Object.entries(componentsData),
+    Object.values(componentsData)
+  )
+
   const componentsArray: Array<Component> = Object.entries(componentsData).map(
-    function ([componentId, componentData]: [string, Component]) {
+    function ([componentId, componentData]: [string, ComponentData]) {
       return {
         id: componentId,
         title: componentData.title,
@@ -44,7 +64,7 @@ function Component({
           ? Object.entries(componentData.variants).map(function ([
               variantId,
               variantData,
-            ]: [string, Component]) {
+            ]: [string, ComponentVariant]) {
               return {
                 id: variantId,
                 title: variantData.title,

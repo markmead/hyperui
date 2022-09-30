@@ -1,23 +1,22 @@
-export interface Component {
-  id: string
-  title: string
-  spacing?: string
-  creator?: string
-  variants?: Array<Component>
-}
-
-export interface ComponentPage {
+interface Core {
   title: string
   slug: string
-  emoji?: string
-  spacing?: string
-  components?: Array<Component>
 }
 
-export interface ComponentCard {
-  title: string
-  slug: string
+export interface ComponentCard extends Core {
   emoji: string
   count: number
   category: string
+}
+
+export interface Component extends Core {
+  spacing?: string
+  creator?: string
+  variants?: Array<ComponentVariant>
+}
+
+export interface ComponentVariant {
+  id: string
+  title: string
+  spacing?: string
 }

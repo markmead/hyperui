@@ -1,13 +1,13 @@
-interface Blog {
+interface Core {
   emoji: string
   title: string
   slug: string
   date: Date
 }
 
-export interface BlogCard extends Blog {}
+export interface BlogCard extends Core {}
 
-export interface BlogFrontmatter extends Blog {
+export interface BlogFrontmatter extends Core {
   description: string
 }
 

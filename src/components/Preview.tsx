@@ -18,8 +18,12 @@ import Variants from '@/components/PreviewVariants'
 import ComponentCreator from '@/components/ComponentCreator'
 import PreviewLoading from '@/components/PreviewLoading'
 
+type ComponentData = Component & {
+  id: string
+}
+
 type Props = {
-  componentData: Component
+  componentData: ComponentData
   componentSpacing: string
 }
 
