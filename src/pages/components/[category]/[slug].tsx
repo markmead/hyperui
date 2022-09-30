@@ -1,16 +1,16 @@
 import Head from 'next/head'
 
-import { Component } from '../../../interface/component'
-import { FrontMatter } from '../../../interface/frontmatter'
+import { Component } from '@/interface/component'
+import { FrontMatter } from '@/interface/frontmatter'
 
-import { componentSlugs } from '../../../lib/components'
+import { componentSlugs } from '@/lib/components'
 
 import fs from 'fs'
 import matter from 'gray-matter'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import List from '../../../components/CollectionList'
+import List from '@/components/CollectionList'
 
 const mdxComponents = {
   List,

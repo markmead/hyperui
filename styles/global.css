@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import './prism.css';
-
-html {
-  @apply scroll-smooth;
-}

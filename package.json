@@ -6,7 +6,7 @@
     "build": "next build",
     "postbuild": "yarn css && yarn rss && yarn search && next-sitemap --config sitemap.config.js",
     "lint": "next lint",
-    "css": "npx tailwindcss -i styles/global.css -o public/build.css -m",
+    "css": "npx tailwindcss -i src/styles/tailwind.css -o public/build.css -m",
     "css:watch": "yarn css -w",
     "rss": "node ./scripts/rss.js",
     "search": "node ./scripts/search.js"
@@ -27,6 +27,7 @@
     "autoprefixer": "^10.4.12",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
+    "fast-glob": "^3.2.12",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",

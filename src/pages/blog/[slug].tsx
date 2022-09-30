@@ -9,8 +9,8 @@ import matter from 'gray-matter'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { postSlugs } from '../../lib/posts'
-import { BlogFrontmatter } from '../../interface/blog'
+import { postSlugs } from '@/lib/posts'
+import { BlogFrontmatter } from '@/interface/blog'
 
 type Props = {
   blogSource: MDXRemoteProps

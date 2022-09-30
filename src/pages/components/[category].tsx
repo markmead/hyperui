@@ -4,12 +4,12 @@ import {
   getCategoryBySlug,
   getCategoryPaths,
   getComponentsByCategory,
-} from '../../lib/components'
+} from '@/lib/components'
 
-import { ComponentCard } from '../../interface/component'
+import { ComponentCard } from '@/interface/component'
 
-import Banner from '../../components/HeroBanner'
-import Grid from '../../components/CollectionGrid'
+import Banner from '@/components/HeroBanner'
+import Grid from '@/components/CollectionGrid'
 
 type Props = {
   categoryDetail: {

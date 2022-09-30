@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
-import { getAllPosts } from '../../lib/posts'
+import { getAllPosts } from '@/lib/posts'
 
-import { BlogCard } from '../../interface/blog'
+import { BlogCard } from '@/interface/blog'
 
-import Banner from '../../components/HeroBanner'
-import Card from '../../components/BlogCard'
+import Banner from '@/components/HeroBanner'
+import Card from '@/components/BlogCard'
 
 type Props = {
   blogPosts: Array<BlogCard>

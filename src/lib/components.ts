@@ -1,11 +1,11 @@
 import fs from 'fs'
-import { format, join } from 'path'
+import { join } from 'path'
 import matter from 'gray-matter'
 
-import { transformComponentSlug } from '../utils/componentHelpers'
+import { transformComponentSlug } from '@/utils/componentHelpers'
 
-const componentsDirectory = join(process.cwd(), '/data/components')
-const categoriesDirectory = join(process.cwd(), '/data/categories')
+const componentsDirectory = join(process.cwd(), '/src/data/components')
+const categoriesDirectory = join(process.cwd(), '/src/data/categories')
 
 export function getComponentSlugs() {
   return fs.readdirSync(componentsDirectory)

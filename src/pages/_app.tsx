@@ -2,12 +2,12 @@ import type { AppProps } from 'next/app'
 
 import Head from 'next/head'
 
-import '../styles/global.css'
+import '@/styles/tailwind.css'
 import 'prismjs/themes/prism-okaidia.css'
 
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import SkipLink from '../components/SkipLink'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import SkipLink from '@/components/SkipLink'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -1,4 +1,4 @@
-import { Breakpoint } from '../interface/breakpoint'
+import { Breakpoint } from '@/interface/breakpoint'
 
 export const allBreakpoints: Array<Breakpoint> = [
   {
