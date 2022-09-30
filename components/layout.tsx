@@ -4,7 +4,7 @@ type Props = {
   children: ReactNode
 }
 
-function Layout({ children }: Props) {
+const Layout = ({ children }: Props) => {
   return (
     <main role="main" id="MainContent">
       {children}
