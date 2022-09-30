@@ -1,10 +1,10 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
 }
 
-const Layout: FunctionComponent = ({ children }) => {
+function Layout({ children }: Props) {
   return (
     <main role="main" id="MainContent">
       {children}
