@@ -47,13 +47,8 @@ function Component({
     components: componentsData,
   } = componentFrontmatter
 
-  console.log(
-    componentsData,
-    Object.entries(componentsData),
-    Object.values(componentsData)
-  )
-
   const componentsArray: Array<Component> = Object.entries(componentsData).map(
+    // @ts-expect-error
     function ([componentId, componentData]: [string, ComponentData]) {
       return {
         id: componentId,
