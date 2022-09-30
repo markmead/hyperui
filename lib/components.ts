@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { join } from 'path'
+import { format, join } from 'path'
 import matter from 'gray-matter'
 
 import { componentSlug } from '../utils/componentHelpers'
@@ -83,7 +83,7 @@ export function getCategorySlugs() {
     .map((componentObject) => componentObject.category)
     .filter((categorySlug) => categorySlug)
 
-  return [...new Set(categorySlugs)]
+  return Array.from(new Set(categorySlugs))
 }
 
 export function getCategoryPaths() {
