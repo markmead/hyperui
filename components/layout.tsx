@@ -1,7 +1,15 @@
-import { FunctionComponent } from 'react'
+import { ReactChild } from 'react'
 
-const Layout: FunctionComponent = ({ children }) => {
-  return <main role="main">{children}</main>
+type Props = {
+  children: ReactChild
+}
+
+function Layout({ children }: Props) {
+  return (
+    <main role="main" id="MainContent">
+      {children}
+    </main>
+  )
 }
 
 export default Layout
