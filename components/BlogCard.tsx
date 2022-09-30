@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { PostCard } from '../interface/post'
+import { BlogCard } from '../interface/blog'
 
 type Props = {
-  blogPost: PostCard
+  blogPost: BlogCard
 }
 
 function Card({ blogPost }: Props) {

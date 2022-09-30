@@ -12,7 +12,7 @@ function List({ componentsData, componentSpacing }: Props) {
     <div className="xl:max-w-[1348px] mx-auto not-prose mt-16 lg:mt-24">
       <ul className="space-y-16">
         {componentsData.map((componentData: Component) => (
-          <li key={componentsData.id}>
+          <li key={componentData.id}>
             <Preview
               componentData={componentData}
               componentSpacing={componentSpacing}

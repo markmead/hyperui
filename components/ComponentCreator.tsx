@@ -1,4 +1,8 @@
-function ComponentCreator({ creatorGithub }) {
+type Props = {
+  creatorGithub: string
+}
+
+function ComponentCreator({ creatorGithub }: Props) {
   return (
     <div>
       <p className="text-sm text-gray-500">

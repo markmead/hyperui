@@ -41,7 +41,7 @@ function Home({ componentsByCategory }: Props) {
                   {categoryDetail.title}
                 </h2>
 
-                <Grid items={categoryComponents} />
+                <Grid componentsData={categoryComponents} />
               </div>
             )
           }

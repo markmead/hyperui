@@ -55,8 +55,6 @@ function Component({
     }
   )
 
-  console.log(componentsArray)
-
   const componentData = {
     componentSlug,
     componentSpacing,
