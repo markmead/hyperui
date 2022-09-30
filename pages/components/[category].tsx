@@ -1,53 +1,47 @@
-import type { NextPage } from 'next'
-
 import Head from 'next/head'
-
-import { ComponentCard } from '../../interface/component'
 
 import {
   getCategoryBySlug,
-  getComponentCategorySlugs,
+  getCategoryPaths,
   getComponentsByCategory,
 } from '../../lib/components'
 
-import HeroBanner from '../../components/HeroBanner'
+import { ComponentCard } from '../../interface/component'
+
+import Banner from '../../components/HeroBanner'
 import Grid from '../../components/CollectionGrid'
 
 type Props = {
+  categoryDetail: {
+    title: string
+    subtitle: string
+    description: string
+  }
   categoryComponents: Array<ComponentCard>
-  categoryDetails: any
 }
 
-const Category: NextPage<Props> = ({ categoryComponents, categoryDetails }) => {
+function Category({ categoryComponents, categoryDetail }: Props) {
   return (
     <>
       <Head>
-        <title>
-          Free Tailwind CSS {categoryDetails.banner.title} | HyperUI
-        </title>
+        <title>Free Tailwind CSS {categoryDetail.title} | HyperUI</title>
 
         <meta
           name="description"
           key="description"
-          content={categoryDetails.banner.description}
+          content={categoryDetail.description}
         />
       </Head>
 
-      <HeroBanner
-        title={categoryDetails.banner.title}
-        subtitle={categoryDetails.banner.subtitle}
+      <Banner
+        title={`${categoryDetail.title} Components`}
+        subtitle={categoryDetail.subtitle}
       >
-        {categoryDetails.banner.description}
-      </HeroBanner>
+        {categoryDetail.description}
+      </Banner>
 
       <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold sm:text-xl">
-            {categoryDetails.title} Components
-          </h2>
-
-          <Grid items={categoryComponents} />
-        </div>
+        <Grid componentsData={categoryComponents} />
       </div>
     </>
   )
@@ -60,7 +54,15 @@ type Params = {
 }
 
 export async function getStaticProps({ params: { category } }: Params) {
-  const categoryComponents = getComponentsByCategory(category, [
+  const categorySlug = category
+
+  const categoryDetail = getCategoryBySlug(categorySlug, [
+    'title',
+    'subtitle',
+    'description',
+  ])
+
+  const categoryComponents = getComponentsByCategory(categorySlug, [
     'title',
     'slug',
     'emoji',
@@ -68,21 +70,19 @@ export async function getStaticProps({ params: { category } }: Params) {
     'category',
   ])
 
-  const categoryDetails = getCategoryBySlug(category, ['title', 'banner'])
-
   return {
     props: {
+      categoryDetail,
       categoryComponents,
-      categoryDetails,
     },
   }
 }
 
 export async function getStaticPaths() {
-  const paths = getComponentCategorySlugs()
+  const categoryPaths = getCategoryPaths()
 
   return {
-    paths,
+    paths: categoryPaths,
     fallback: false,
   }
 }

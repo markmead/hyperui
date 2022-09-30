@@ -1,31 +1,31 @@
-import { FunctionComponent, useState } from 'react'
+import { useState } from 'react'
 
 import styles from '../styles/button.module.css'
 
 type Props = {
-  code: string
+  componentCode: string
 }
 
-const Copy: FunctionComponent<Props> = ({ code }) => {
-  let [text, setText] = useState('Copy')
-  let [emoji, setEmoji] = useState('📋')
-  let [error, setError] = useState(false)
+function Copy({ componentCode }: Props) {
+  const [buttonText, setButtonText] = useState('Copy')
+  const [buttonEmoji, setButtonEmoji] = useState('📋')
+  let [hasError, setHasError] = useState(false)
 
   function copyToClipboard() {
-    navigator.clipboard.writeText(code).then(
+    navigator.clipboard.writeText(componentCode).then(
       function () {
-        setError(false)
+        setHasError(false)
 
-        setEmoji('✅')
-        setText('Copied')
+        setButtonEmoji('✅')
+        setButtonText('Copied')
 
         setTimeout(() => {
-          setEmoji('📋')
-          setText('Copy')
+          setButtonEmoji('📋')
+          setButtonText('Copy')
         }, 3000)
       },
       function () {
-        setError(true)
+        setHasError(true)
       }
     )
   }
@@ -34,13 +34,13 @@ const Copy: FunctionComponent<Props> = ({ code }) => {
     <>
       <button className={styles.pill} onClick={copyToClipboard}>
         <span aria-hidden="true" className="text-sm" role="img">
-          {emoji}
+          {buttonEmoji}
         </span>
 
-        <span className="text-xs font-medium">{text}</span>
+        <span className="text-xs font-medium">{buttonText}</span>
       </button>
 
-      {error && (
+      {hasError && (
         <span className="text-xs font-medium text-red-600">
           🚨 Failed copying to clipboard 🚨
         </span>

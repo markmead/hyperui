@@ -1,5 +1,3 @@
-import type { NextPage } from 'next'
-
 import Head from 'next/head'
 
 import { Component } from '../../../interface/component'
@@ -9,59 +7,82 @@ import { componentSlugs } from '../../../lib/components'
 
 import fs from 'fs'
 import matter from 'gray-matter'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import List from '../../../components/CollectionList'
 
-const components = {
+const mdxComponents = {
   List,
 }
 
 type Props = {
-  source: any
-  name: string
-  frontMatter: FrontMatter
+  componentSlug: string
+  componentSource: MDXRemoteProps
+  componentFrontmatter: FrontMatter
 }
 
-const Component: NextPage<Props> = ({ source, name, frontMatter }) => {
-  const { seo, spacing, components: items } = frontMatter
+function Component({
+  componentSlug,
+  componentSource,
+  componentFrontmatter,
+}: Props) {
+  const {
+    seo: componentSeo,
+    spacing: componentSpacing,
+    components: componentsData,
+  } = componentFrontmatter
 
-  const componentsArray: Array<Component> = Object.entries(items).map(
-    ([key, value]): Component => ({
-      id: key,
-      title: value.title,
-      spacing: value.spacing ?? false,
-      creator: value.creator ?? false,
-      variants: value.variants
-        ? Object.entries(value.variants).map(
-            ([key, value]: any): Component => ({
-              id: key,
-              title: value.title,
+  const componentsArray: Array<Component> = Object.entries(componentsData).map(
+    function ([componentId, componentData]: [string, Component]) {
+      return {
+        id: componentId,
+        title: componentData.title,
+        spacing: componentData.spacing ?? '',
+        creator: componentData.creator ?? '',
+        variants: componentData.variants
+          ? Object.entries(componentData.variants).map(function ([
+              variantId,
+              variantData,
+            ]: [string, Component]) {
+              return {
+                id: variantId,
+                title: variantData.title,
+              }
             })
-          )
-        : [],
-    })
+          : [],
+      }
+    }
   )
 
-  const data = {
-    name,
-    spacing: spacing,
-    examples: componentsArray,
+  console.log(componentsArray)
+
+  const componentData = {
+    componentSlug,
+    componentSpacing,
+    componentsArray,
   }
 
   return (
     <>
       <Head>
-        <title>Free Tailwind CSS {seo.title} | HyperUI</title>
+        <title>Free Tailwind CSS {componentSeo.title} | HyperUI</title>
 
-        <meta name="description" key="description" content={seo.description} />
+        <meta
+          name="description"
+          key="description"
+          content={componentSeo.description}
+        />
       </Head>
 
       <section>
         <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
           <div className="prose max-w-none">
-            <MDXRemote {...source} components={components} scope={data} />
+            <MDXRemote
+              {...componentSource}
+              components={mdxComponents}
+              scope={componentData}
+            />
           </div>
         </div>
       </section>
@@ -77,32 +98,38 @@ type Params = {
 }
 
 export async function getStaticProps({ params: { category, slug } }: Params) {
-  const source = fs.readFileSync(`data/components/${category}-${slug}.mdx`)
+  const categorySlug = category
+  const componentSlug = slug
 
-  const { content, data } = matter(source)
+  const componentSource = fs.readFileSync(
+    `data/components/${categorySlug}-${componentSlug}.mdx`
+  )
 
-  const mdxSource = await serialize(content, {
+  const { content: componentContent, data: componentData } =
+    matter(componentSource)
+
+  const mdxSource = await serialize(componentContent, {
     mdxOptions: {
-      remarkPlugins: [],
       rehypePlugins: [],
+      remarkPlugins: [],
     },
-    scope: data,
+    scope: componentData,
   })
 
   return {
     props: {
-      source: mdxSource,
-      frontMatter: data,
-      name: slug,
+      componentSource: mdxSource,
+      componentFrontmatter: componentData,
+      componentSlug,
     },
   }
 }
 
 export async function getStaticPaths() {
-  const paths = componentSlugs()
+  const componentPaths = componentSlugs()
 
   return {
-    paths,
+    paths: componentPaths,
     fallback: false,
   }
 }

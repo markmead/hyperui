@@ -7,7 +7,6 @@ import 'prismjs/themes/prism-okaidia.css'
 
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-// import Layout from '../components/Layout'
 import SkipLink from '../components/SkipLink'
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,24 +1,23 @@
-import { FunctionComponent } from 'react'
-
 import styles from '../styles/button.module.css'
 
 type Props = {
-  view: boolean
-  handleView: CallableFunction
+  showPreview: boolean
+  handleSetShowPreview: CallableFunction
 }
 
-const View: FunctionComponent<Props> = ({ handleView, view }) => {
+function PreviewView({ showPreview, handleSetShowPreview }: Props) {
   return (
-    <>
-      <button onClick={() => handleView(!view)} className={styles.pill}>
-        <span aria-hidden="true" className="text-sm" role="img">
-          👀
-        </span>
+    <button
+      onClick={() => handleSetShowPreview(!showPreview)}
+      className={styles.pill}
+    >
+      <span aria-hidden="true" className="text-sm" role="img">
+        👀
+      </span>
 
-        <span className="text-xs font-medium">View</span>
-      </button>
-    </>
+      <span className="text-xs font-medium">View</span>
+    </button>
   )
 }
 
-export default View
+export default PreviewView

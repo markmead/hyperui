@@ -1,34 +1,30 @@
-import type { NextPage } from 'next'
+import { useEffect } from 'react'
 
 import Head from 'next/head'
-
-import { useEffect } from 'react'
 
 import Prism from 'prismjs'
 
 import fs from 'fs'
 import matter from 'gray-matter'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import { postSlugs } from '../../lib/posts'
-import { PostFrontmatter } from '../../interface/post'
-
-const components = {}
+import { BlogFrontmatter } from '../../interface/blog'
 
 type Props = {
-  source: any
-  frontMatter: PostFrontmatter
+  blogSource: MDXRemoteProps
+  blogFrontmatter: BlogFrontmatter
 }
 
-const Blog: NextPage<Props> = ({ source, frontMatter }) => {
+function BlogShow({ blogSource, blogFrontmatter }: Props) {
   const schemaData = {
     '@context': 'http://schema.org',
     '@type': 'NewsArticle',
-    headline: `${frontMatter.title}`,
+    headline: `${blogFrontmatter.title}`,
     image: ['https://www.hyperui.dev/og.png'],
-    datePublished: `${frontMatter.date}`,
-    dateModified: `${frontMatter.date}`,
+    datePublished: `${blogFrontmatter.date}`,
+    dateModified: `${blogFrontmatter.date}`,
     author: {
       '@type': 'Person',
       name: 'Mark Mead',
@@ -36,9 +32,7 @@ const Blog: NextPage<Props> = ({ source, frontMatter }) => {
     },
   }
 
-  useEffect(() => {
-    Prism.highlightAll()
-  })
+  useEffect(() => Prism.highlightAll())
 
   return (
     <>
@@ -47,10 +41,10 @@ const Blog: NextPage<Props> = ({ source, frontMatter }) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <title>{frontMatter.title} | HyperUI</title>
+        <title>{blogFrontmatter.title} | HyperUI</title>
 
         <meta
-          content={frontMatter.description}
+          content={blogFrontmatter.description}
           key="description"
           name="description"
         />
@@ -59,12 +53,14 @@ const Blog: NextPage<Props> = ({ source, frontMatter }) => {
       <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
           <header>
-            <time className="text-sm text-gray-500">{frontMatter.date}</time>
+            <time className="text-sm text-gray-500">
+              {blogFrontmatter.date}
+            </time>
 
-            <h1 className="mt-1">{frontMatter.title}</h1>
+            <h1 className="mt-1">{blogFrontmatter.title}</h1>
           </header>
 
-          <MDXRemote {...source} components={components} />
+          <MDXRemote {...blogSource} />
         </article>
       </div>
     </>
@@ -78,22 +74,24 @@ type Params = {
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {
-  const source = fs.readFileSync(`data/posts/${slug}.mdx`)
+  const blogSlug = slug
 
-  const { content, data } = matter(source)
+  const blogSource = fs.readFileSync(`data/posts/${blogSlug}.mdx`)
 
-  const mdxSource = await serialize(content, {
+  const { content: blogContent, data: blogData } = matter(blogSource)
+
+  const mdxSource = await serialize(blogContent, {
     mdxOptions: {
-      remarkPlugins: [],
       rehypePlugins: [],
+      remarkPlugins: [],
     },
-    scope: data,
+    scope: blogData,
   })
 
   return {
     props: {
-      source: mdxSource,
-      frontMatter: data,
+      blogFrontmatter: blogData,
+      blogSource: mdxSource,
     },
   }
 }
@@ -107,4 +105,4 @@ export async function getStaticPaths() {
   }
 }
 
-export default Blog
+export default BlogShow

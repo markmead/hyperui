@@ -1,7 +1,8 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
-import { componentSlug } from '../utils/component'
+
+import { componentSlug } from '../utils/componentHelpers'
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 const categoriesDirectory = join(process.cwd(), '/data/categories')
@@ -77,25 +78,21 @@ export function getComponents(fields: string[] = []) {
   return components
 }
 
-export function getComponentCategorySlugsSimple() {
+export function getCategorySlugs() {
   const categorySlugs = getComponents(['category'])
-    .map((component) => component.category)
-    .filter((item) => item)
+    .map((componentObject) => componentObject.category)
+    .filter((categorySlug) => categorySlug)
 
   return [...new Set(categorySlugs)]
 }
 
-export function getComponentCategorySlugs() {
-  let categorySlugs = getComponents(['category'])
-    .map((component) => component.category)
-    .filter((item) => item)
+export function getCategoryPaths() {
+  const categorySlugs = getCategorySlugs()
 
-  categorySlugs = [...new Set(categorySlugs)]
-
-  return categorySlugs.map((category) => {
+  return categorySlugs.map((categorySlug) => {
     return {
       params: {
-        category,
+        category: categorySlug,
       },
     }
   })

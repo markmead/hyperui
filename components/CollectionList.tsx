@@ -1,27 +1,26 @@
-import { FunctionComponent } from 'react'
-
 import { Component } from '../interface/component'
 
-import Example from './Preview'
+import Preview from './Preview'
 
 type Props = {
-  items: Array<Component>
-  spacing: string
+  componentsData: Array<Component>
+  componentSpacing: string
 }
 
-const List: FunctionComponent<Props> = ({ items, spacing }) => {
+function List({ componentsData, componentSpacing }: Props) {
   return (
-    <>
-      <div className="xl:max-w-[1348px] not-prose mt-16 lg:mt-24">
-        <ul className="space-y-16">
-          {items.map((item) => (
-            <li key={item.id}>
-              <Example item={item} spacing={spacing} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <div className="xl:max-w-[1348px] mx-auto not-prose mt-16 lg:mt-24">
+      <ul className="space-y-16">
+        {componentsData.map((componentData: Component) => (
+          <li key={componentsData.id}>
+            <Preview
+              componentData={componentData}
+              componentSpacing={componentSpacing}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

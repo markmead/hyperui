@@ -1,24 +1,64 @@
-import type { NextPage } from 'next'
-
 import {
-  getComponentCategorySlugsSimple,
-  getComponentsByCategory,
   getCategoryBySlug,
+  getCategorySlugs,
+  getComponentsByCategory,
 } from '../lib/components'
 
-import HeroBanner from '../components/HeroBanner'
+import { ComponentCard } from '../interface/component'
+
+import Banner from '../components/HeroBanner'
 import Grid from '../components/CollectionGrid'
 
+type Props = {
+  componentsByCategory: any
+}
+
+type CategoryProps = {
+  categoryDetail: {
+    title: string
+  }
+  categoryComponents: Array<ComponentCard>
+}
+
+function Home({ componentsByCategory }: Props) {
+  return (
+    <>
+      <Banner
+        title="HyperUI"
+        subtitle="Free Open Source Tailwind CSS Components"
+      >
+        HyperUI is a collection of free Tailwind CSS components that can be used
+        in your next project. With a range of components, you can build your
+        next marketing website, admin dashboard, eCommerce store and much more.
+      </Banner>
+
+      <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
+        {componentsByCategory.map(
+          ({ categoryDetail, categoryComponents }: CategoryProps) => {
+            return (
+              <div className="space-y-4" key={categoryDetail.title}>
+                <h2 className="text-lg font-bold sm:text-xl">
+                  {categoryDetail.title}
+                </h2>
+
+                <Grid items={categoryComponents} />
+              </div>
+            )
+          }
+        )}
+      </div>
+    </>
+  )
+}
+
 export async function getStaticProps() {
-  const categorySlugs = getComponentCategorySlugsSimple()
+  const categorySlugs = getCategorySlugs()
 
   const componentsByCategory = categorySlugs
-    .map((category: any) => {
-      const slug: string = category
+    .map((categorySlug) => {
+      const categoryDetail = getCategoryBySlug(`${categorySlug}`, ['title'])
 
-      const categoryDetails = getCategoryBySlug(slug, ['title', 'banner'])
-
-      const categoryComponents = getComponentsByCategory(slug, [
+      const categoryComponents = getComponentsByCategory(`${categorySlug}`, [
         'title',
         'slug',
         'emoji',
@@ -27,8 +67,8 @@ export async function getStaticProps() {
       ])
 
       return {
-        category: categoryDetails,
-        components: categoryComponents,
+        categoryDetail,
+        categoryComponents,
       }
     })
     .reverse()
@@ -38,39 +78,6 @@ export async function getStaticProps() {
       componentsByCategory,
     },
   }
-}
-
-type Props = {
-  componentsByCategory: any
-}
-
-const Home: NextPage<Props> = ({ componentsByCategory }) => {
-  return (
-    <>
-      <HeroBanner
-        title="HyperUI"
-        subtitle="Free Open Source Tailwind CSS Components"
-      >
-        HyperUI is a collection of free Tailwind CSS components that can be used
-        in your next project. With a range of components, you can build your
-        next marketing website, admin dashboard, eCommerce store and much more.
-      </HeroBanner>
-
-      <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
-        {componentsByCategory.map((item: any) => {
-          return (
-            <div className="space-y-4" key={item.category.title}>
-              <h2 className="text-lg font-bold sm:text-xl">
-                {item.category.banner.title}
-              </h2>
-
-              <Grid items={item.components} />
-            </div>
-          )
-        })}
-      </div>
-    </>
-  )
 }
 
 export default Home

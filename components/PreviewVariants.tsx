@@ -2,10 +2,10 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import { Component } from '../interface/component'
 
 type Props = {
-  variants: Array<Component> | []
+  componentVariants: Array<Component> | []
   handleSetVariant: CallableFunction
-  handleSetThemed: CallableFunction
-  id: string
+  handleSetHasDarkMode: CallableFunction
+  componentId: string
 }
 
 type Variant = {
@@ -14,17 +14,17 @@ type Variant = {
 }
 
 const Variants: FunctionComponent<Props> = ({
-  variants,
+  componentVariants,
   handleSetVariant,
-  handleSetThemed,
-  id,
+  handleSetHasDarkMode,
+  componentId,
 }) => {
   let [variant, setVariant] = useState<string>('base')
 
   useEffect(() => {
     handleSetVariant(variant)
 
-    let variantsObjects = variants.map((variant) => {
+    let variantsObjects = componentVariants.map((variant) => {
       return {
         id: variant.id,
         title: variant.title,
@@ -36,12 +36,12 @@ const Variants: FunctionComponent<Props> = ({
     )[0]
 
     if (!activeVariant) {
-      handleSetThemed(false)
+      handleSetHasDarkMode(false)
 
       return
     }
 
-    handleSetThemed(activeVariant.title.includes('Dark'))
+    handleSetHasDarkMode(activeVariant.title.includes('Dark'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variant])
 
@@ -55,11 +55,11 @@ const Variants: FunctionComponent<Props> = ({
         <select
           onChange={(e) => setVariant(e.currentTarget.value)}
           className="w-full pl-3 text-xs font-medium border-2 border-black rounded-lg h-9"
-          id={`VariantSelect${id}`}
+          id={`VariantSelect${componentId}`}
         >
           <option value="base">Base</option>
 
-          {variants.map((variant) => (
+          {componentVariants.map((variant) => (
             <option value={variant.id} key={variant.id}>
               {variant.title}
             </option>

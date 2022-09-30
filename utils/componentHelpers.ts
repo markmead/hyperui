@@ -1,4 +1,7 @@
-export function componentHtml(html: string, spacing: string = 'relative') {
+export function transformComponentHtml(
+  componentHtml: string,
+  componentSpacing: string = 'relative'
+) {
   return `
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -10,10 +13,10 @@ export function componentHtml(html: string, spacing: string = 'relative') {
       })
     </script>
 
-    <link rel="stylesheet" href="${origin}/build.css">
+    <link rel="stylesheet" href="/build.css">
 
-    <body class="${spacing}">
-      ${html}
+    <body class="${componentSpacing}">
+      ${componentHtml}
     </body>
   `
 }

@@ -2,22 +2,20 @@ import type { FunctionComponent } from 'react'
 
 import { ComponentCard } from '../interface/component'
 
-import Card from './CollectionCard'
+import Card from './ComponentCard'
 
 type Props = {
-  items: Array<ComponentCard>
+  componentsData: Array<ComponentCard>
 }
 
-const Grid: FunctionComponent<Props> = ({ items }) => {
+function CollectionGrid({ componentsData }: Props) {
   return (
-    <>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {items.map((item) => (
-          <Card item={item} key={item.slug} />
-        ))}
-      </div>
-    </>
+    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {componentsData.map((componentData: ComponentCard) => (
+        <Card componentData={componentData} key={componentData.slug} />
+      ))}
+    </div>
   )
 }
 
-export default Grid
+export default CollectionGrid
