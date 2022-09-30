@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Component } from '@/interface/component'
 import { FrontMatter } from '@/interface/frontmatter'
 
-import { componentSlugs } from '@/lib/components'
+import { getComponentPaths } from '@/lib/getComponents'
 
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -74,7 +74,7 @@ function Component({
       </Head>
 
       <section>
-        <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
+        <div className="mx-auto max-w-screen-xl px-4 py-12 lg:pt-24">
           <div className="prose max-w-none">
             <MDXRemote
               {...componentSource}
@@ -100,7 +100,7 @@ export async function getStaticProps({ params: { category, slug } }: Params) {
   const componentSlug = slug
 
   const componentSource = fs.readFileSync(
-    `data/components/${categorySlug}-${componentSlug}.mdx`
+    `./src/data/components/${categorySlug}-${componentSlug}.mdx`
   )
 
   const { content: componentContent, data: componentData } =
@@ -124,7 +124,7 @@ export async function getStaticProps({ params: { category, slug } }: Params) {
 }
 
 export async function getStaticPaths() {
-  const componentPaths = componentSlugs()
+  const componentPaths = getComponentPaths()
 
   return {
     paths: componentPaths,

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { getAllPosts } from '@/lib/posts'
+import { getBlogs } from '@/lib/getBlogs'
 
 import { BlogCard } from '@/interface/blog'
 
@@ -32,7 +32,7 @@ function BlogIndex({ blogPosts }: Props) {
         write cleaner, more maintainable code and help you be more productive.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto">
+      <div className="mx-auto max-w-screen-xl px-4 py-12">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {blogPosts.map((blogPost: BlogCard) => (
             <li key={blogPost.slug}>
@@ -46,7 +46,7 @@ function BlogIndex({ blogPosts }: Props) {
 }
 
 export async function getStaticProps() {
-  const blogPosts = getAllPosts(['title', 'slug', 'date', 'emoji'])
+  const blogPosts = getBlogs(['title', 'slug', 'date', 'emoji'])
 
   return {
     props: { blogPosts },

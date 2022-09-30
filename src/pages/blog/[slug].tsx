@@ -9,7 +9,7 @@ import matter from 'gray-matter'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { postSlugs } from '@/lib/posts'
+import { getBlogPaths } from '@/lib/getBlogs'
 import { BlogFrontmatter } from '@/interface/blog'
 
 type Props = {
@@ -50,8 +50,8 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
         />
       </Head>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto">
-        <article className="mx-auto prose prose-img:rounded-lg prose-img:w-full">
+      <div className="mx-auto max-w-screen-xl px-4 py-12">
+        <article className="prose mx-auto prose-img:w-full prose-img:rounded-lg">
           <header>
             <time className="text-sm text-gray-500">
               {blogFrontmatter.date}
@@ -76,7 +76,7 @@ type Params = {
 export async function getStaticProps({ params: { slug } }: Params) {
   const blogSlug = slug
 
-  const blogSource = fs.readFileSync(`data/posts/${blogSlug}.mdx`)
+  const blogSource = fs.readFileSync(`./src/data/posts/${blogSlug}.mdx`)
 
   const { content: blogContent, data: blogData } = matter(blogSource)
 
@@ -97,10 +97,10 @@ export async function getStaticProps({ params: { slug } }: Params) {
 }
 
 export async function getStaticPaths() {
-  const paths = postSlugs()
+  const blogPaths = getBlogPaths()
 
   return {
-    paths,
+    paths: blogPaths,
     fallback: false,
   }
 }

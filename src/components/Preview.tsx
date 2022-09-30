@@ -7,8 +7,8 @@ import { useInView } from 'react-intersection-observer'
 
 import { Component } from '../interface/component'
 
-import { transformComponentHtml } from '../utils/componentHelpers'
-import { allBreakpoints } from '../lib/breakpoints'
+import { transformComponentHtml } from '@/utils/componentHelpers'
+import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
 import Breakpoint from './PreviewBreakpoint'
 import Dark from './PreviewDark'
@@ -40,8 +40,6 @@ function Preview({ componentData, componentSpacing }: Props) {
     threshold: 0,
     triggerOnce: true,
   })
-
-  const componentBreakpoints = allBreakpoints
 
   const {
     id: componentId,
@@ -118,13 +116,13 @@ function Preview({ componentData, componentSpacing }: Props) {
   }
 
   return (
-    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
+    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <h2 className="text-lg font-bold text-black sm:text-xl">
-          <a href={`#${componentHash}`} className="relative inline-block group">
+          <a href={`#${componentHash}`} className="group relative inline-block">
             <span
               aria-hidden="true"
-              className="hidden lg:inset-y-0 lg:block lg:transition lg:opacity-0 lg:absolute lg:-left-6 group-hover:opacity-25"
+              className="hidden group-hover:opacity-25 lg:absolute lg:inset-y-0 lg:-left-6 lg:block lg:opacity-0 lg:transition"
             >
               #
             </span>
@@ -164,7 +162,7 @@ function Preview({ componentData, componentSpacing }: Props) {
             )}
           </div>
 
-          <div className="hidden lg:items-center lg:gap-4 lg:flex">
+          <div className="hidden lg:flex lg:items-center lg:gap-4">
             {componentBreakpoints.map(
               ({
                 name: breakpointName,
@@ -190,7 +188,7 @@ function Preview({ componentData, componentSpacing }: Props) {
           <div>
             {showPreview ? (
               <iframe
-                className="bg-white w-full h-[400px] lg:transition-all lg:h-[600px] ring-2 ring-black rounded-lg"
+                className="h-[400px] w-full rounded-lg bg-white ring-2 ring-black lg:h-[600px] lg:transition-all"
                 loading="lazy"
                 srcDoc={componentHtml}
                 style={{ maxWidth: previewWidth }}
@@ -198,7 +196,7 @@ function Preview({ componentData, componentSpacing }: Props) {
                 ref={refIframe}
               ></iframe>
             ) : (
-              <pre className="p-4 overflow-auto h-[400px] lg:h-[600px] ring-2 ring-black rounded-lg">
+              <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-black lg:h-[600px]">
                 <code className="language-html">{componentCode}</code>
               </pre>
             )}

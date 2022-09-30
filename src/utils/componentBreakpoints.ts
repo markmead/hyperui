@@ -1,6 +1,6 @@
 import { Breakpoint } from '@/interface/breakpoint'
 
-export const allBreakpoints: Array<Breakpoint> = [
+export const componentBreakpoints: Array<Breakpoint> = [
   {
     name: 'Mobile',
     emoji: '📱',
