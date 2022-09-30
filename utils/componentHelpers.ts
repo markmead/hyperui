@@ -21,6 +21,6 @@ export function transformComponentHtml(
   `
 }
 
-export function componentSlug(slug: string, category: string) {
+export function transformComponentSlug(slug: string, category: string) {
   return slug.replace(`${category}-`, '')
 }

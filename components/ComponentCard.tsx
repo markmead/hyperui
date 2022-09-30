@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
 import { ComponentCard } from '../interface/component'
-import { componentSlug } from '../utils/componentHelpers'
+import { transformComponentSlug } from '../utils/componentHelpers'
 
 type Props = {
   componentData: ComponentCard
 }
 
 function ComponentCard({ componentData }: Props) {
-  const trueComponentSlug = componentSlug(
+  const trueComponentSlug = transformComponentSlug(
     componentData.slug,
     componentData.category
   )
