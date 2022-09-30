@@ -10,12 +10,12 @@ import { allBreakpoints } from '../lib/breakpoints'
 
 import { Component } from '../interface/component'
 
-import Breakpoint from './Breakpoint'
-import Dark from './Dark'
-import Copy from './Copy'
-import Code from './View'
-import Variants from './Variants'
-import Range from './Range'
+import Breakpoint from './PreviewBreakpoint'
+import Dark from './PreviewDark'
+import Copy from './PreviewCopy'
+import Code from './PreviewView'
+import Variants from './PreviewVariants'
+import Range from './PreviewSlider'
 import { useRouter } from 'next/router'
 
 type Props = {
