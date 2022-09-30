@@ -1,9 +1,13 @@
 import Link from 'next/link'
 
-function BrandLogo() {
+type Props = {
+  fontSize: string
+}
+
+function BrandLogo({ fontSize }: Props) {
   return (
     <Link href="/">
-      <a className="text-sm font-medium inline-flex gap-1.5">
+      <a className={`${fontSize} text-sm font-medium inline-flex gap-1.5`}>
         <span>HyperUI</span>
 
         <span aria-hidden="true" role="img">

@@ -1,6 +1,6 @@
 import { Link } from '../interface/global'
 
-import HeaderMenuLinks from './HeaderMenuLinks'
+import MenuLinks from './HeaderMenuLinks'
 
 type Props = {
   showMenu: boolean
@@ -34,7 +34,7 @@ function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }: Props) {
       </button>
 
       {showMenu && (
-        <HeaderMenuLinks
+        <MenuLinks
           menuLinks={menuLinks}
           navClass="absolute inset-x-0 p-4 top-[calc(4rem_+_2px)] bg-white border-b-2 border-gray-100"
           ulClass="space-y-4"
