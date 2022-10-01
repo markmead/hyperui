@@ -190,7 +190,7 @@ function Preview({ componentData, componentSpacing }: Props) {
           {isLoading && <PreviewLoading previewWidth={previewWidth} />}
 
           <div>
-            {showPreview ? (
+            <div className={showPreview ? 'block' : 'hidden'}>
               <iframe
                 className="h-[400px] w-full rounded-lg bg-white ring-2 ring-black lg:h-[600px] lg:transition-all"
                 loading="lazy"
@@ -199,11 +199,13 @@ function Preview({ componentData, componentSpacing }: Props) {
                 title={`${componentTitle} Component`}
                 ref={refIframe}
               ></iframe>
-            ) : (
+            </div>
+
+            <div className={showPreview ? 'hidden' : 'block'}>
               <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-black lg:h-[600px]">
                 <code className="language-html">{componentCode}</code>
               </pre>
-            )}
+            </div>
           </div>
         </div>
 
