@@ -2,11 +2,11 @@
 
 <div
   x-data="{ isActive: false }"
-  class="inline-flex items-stretch bg-white border rounded-md dark:bg-gray-900 dark:border-gray-800"
+  class="inline-flex items-stretch rounded-md border bg-white dark:border-gray-800 dark:bg-gray-900"
 >
   <a
     href="/edit"
-    class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md"
+    class="rounded-l-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
   >
     Edit
   </a>
@@ -15,11 +15,11 @@
     <button
       type="button"
       x-on:click="isActive = !isActive"
-      class="inline-flex items-center justify-center h-full px-2 text-gray-600 border-l border-gray-100 dark:text-gray-300 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 rounded-r-md hover:bg-gray-50"
+      class="inline-flex h-full items-center justify-center rounded-r-md border-l border-gray-100 px-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="w-4 h-4"
+        class="h-4 w-4"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -38,12 +38,12 @@
       x-show="isActive"
       x-on:click.away="isActive = false"
       x-on:keydown.escape.window="isActive = false"
-      class="absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-800"
+      class="absolute right-0 z-10 mt-4 w-56 origin-top-right rounded-md border border-gray-100 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900"
     >
       <div class="p-2">
         <a
           href="#"
-          class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
+          class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
           role="menuitem"
         >
           View on Storefront
@@ -51,7 +51,7 @@
 
         <a
           href="#"
-          class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
+          class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
           role="menuitem"
         >
           View Warehouse Info
@@ -59,7 +59,7 @@
 
         <a
           href="#"
-          class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
+          class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
           role="menuitem"
         >
           Duplicate Product
@@ -67,7 +67,7 @@
 
         <a
           href="#"
-          class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
+          class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
           role="menuitem"
         >
           Unpublish Product
@@ -76,12 +76,12 @@
         <form method="POST" action="#">
           <button
             type="submit"
-            class="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-700 rounded-lg dark:text-red-500 dark:hover:bg-red-600/10 hover:bg-red-50"
+            class="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50 dark:text-red-500 dark:hover:bg-red-600/10"
             role="menuitem"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4"
+              class="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

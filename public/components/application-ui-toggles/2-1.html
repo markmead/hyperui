@@ -3,22 +3,22 @@
 <label
   x-data="{ isChecked: false }"
   for="AcceptConditions"
-  class="relative w-16 h-8 cursor-pointer"
+  class="relative h-8 w-16 cursor-pointer"
 >
   <input
     x-model="isChecked"
     type="checkbox"
     id="AcceptConditions"
-    class="sr-only peer"
+    class="peer sr-only"
   />
 
   <span
     :class="{ 'bg-blue-400': !isChecked, 'bg-blue-600': isChecked }"
-    class="absolute inset-0 transition rounded-md"
+    class="absolute inset-0 rounded-md transition"
   ></span>
 
   <span
     :class="{ 'translate-x-8': isChecked }"
-    class="absolute inset-0 w-6 h-6 m-1 transition bg-white rounded"
+    class="absolute inset-0 m-1 h-6 w-6 rounded bg-white transition"
   ></span>
 </label>

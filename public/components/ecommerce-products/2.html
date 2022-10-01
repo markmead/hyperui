@@ -1,25 +1,25 @@
 <section>
-  <div class="relative max-w-screen-xl px-4 py-8 mx-auto">
+  <div class="relative mx-auto max-w-screen-xl px-4 py-8">
     <div>
       <h1 class="text-2xl font-bold lg:text-3xl">Simple Clothes Basic Tee</h1>
 
       <p class="mt-1 text-sm text-gray-500">SKU: #012345</p>
     </div>
 
-    <div class="grid gap-8 lg:items-start lg:grid-cols-4">
+    <div class="grid gap-8 lg:grid-cols-4 lg:items-start">
       <div class="lg:col-span-3">
         <div class="relative mt-4">
           <img
             alt="Tee"
             src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            class="w-full rounded-xl h-72 lg:h-[540px] object-cover"
+            class="h-72 w-full rounded-xl object-cover lg:h-[540px]"
           />
 
           <div
-            class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/75 text-white px-3 py-1.5 inline-flex items-center"
+            class="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-black/75 px-3 py-1.5 text-white"
           >
             <svg
-              class="w-4 h-4"
+              class="h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -33,16 +33,16 @@
               />
             </svg>
 
-            <span class="text-xs ml-1.5"> Hover to zoom </span>
+            <span class="ml-1.5 text-xs"> Hover to zoom </span>
           </div>
         </div>
 
-        <ul class="flex gap-1 mt-1">
+        <ul class="mt-1 flex gap-1">
           <li>
             <img
               alt="Tee"
               src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              class="object-cover w-16 h-16 rounded-md"
+              class="h-16 w-16 rounded-md object-cover"
             />
           </li>
 
@@ -50,7 +50,7 @@
             <img
               alt="Tee"
               src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              class="object-cover w-16 h-16 rounded-md"
+              class="h-16 w-16 rounded-md object-cover"
             />
           </li>
 
@@ -58,7 +58,7 @@
             <img
               alt="Tee"
               src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              class="object-cover w-16 h-16 rounded-md"
+              class="h-16 w-16 rounded-md object-cover"
             />
           </li>
 
@@ -66,29 +66,29 @@
             <img
               alt="Tee"
               src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              class="object-cover w-16 h-16 rounded-md"
+              class="h-16 w-16 rounded-md object-cover"
             />
           </li>
         </ul>
       </div>
 
-      <div class="lg:top-0 lg:sticky">
+      <div class="lg:sticky lg:top-0">
         <form class="space-y-4 lg:pt-8">
           <fieldset>
             <legend class="text-lg font-bold">Color</legend>
 
-            <div class="flex gap-1 mt-2">
+            <div class="mt-2 flex gap-1">
               <label for="color_green" class="cursor-pointer">
                 <input
                   type="radio"
                   id="color_green"
                   name="color"
-                  class="sr-only peer"
+                  class="peer sr-only"
                   checked
                 />
 
                 <span
-                  class="block w-6 h-6 bg-green-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                  class="block h-6 w-6 rounded-full border border-gray-200 bg-green-700 ring-1 ring-transparent ring-offset-1 peer-checked:ring-gray-300"
                 ></span>
               </label>
 
@@ -97,11 +97,11 @@
                   type="radio"
                   id="color_blue"
                   name="color"
-                  class="sr-only peer"
+                  class="peer sr-only"
                 />
 
                 <span
-                  class="block w-6 h-6 bg-blue-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                  class="block h-6 w-6 rounded-full border border-gray-200 bg-blue-700 ring-1 ring-transparent ring-offset-1 peer-checked:ring-gray-300"
                 ></span>
               </label>
 
@@ -110,11 +110,11 @@
                   type="radio"
                   id="color_pink"
                   name="color"
-                  class="sr-only peer"
+                  class="peer sr-only"
                 />
 
                 <span
-                  class="block w-6 h-6 bg-pink-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                  class="block h-6 w-6 rounded-full border border-gray-200 bg-pink-700 ring-1 ring-transparent ring-offset-1 peer-checked:ring-gray-300"
                 ></span>
               </label>
 
@@ -123,11 +123,11 @@
                   type="radio"
                   id="color_red"
                   name="color"
-                  class="sr-only peer"
+                  class="peer sr-only"
                 />
 
                 <span
-                  class="block w-6 h-6 bg-red-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                  class="block h-6 w-6 rounded-full border border-gray-200 bg-red-700 ring-1 ring-transparent ring-offset-1 peer-checked:ring-gray-300"
                 ></span>
               </label>
 
@@ -136,11 +136,11 @@
                   type="radio"
                   id="color_indigo"
                   name="color"
-                  class="sr-only peer"
+                  class="peer sr-only"
                 />
 
                 <span
-                  class="block w-6 h-6 bg-indigo-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300"
+                  class="block h-6 w-6 rounded-full border border-gray-200 bg-indigo-700 ring-1 ring-transparent ring-offset-1 peer-checked:ring-gray-300"
                 ></span>
               </label>
             </div>
@@ -149,18 +149,18 @@
           <fieldset>
             <legend class="text-lg font-bold">Material</legend>
 
-            <div class="flex gap-1 mt-2">
+            <div class="mt-2 flex gap-1">
               <label for="material_cotton" class="cursor-pointer">
                 <input
                   type="radio"
                   id="material_cotton"
                   name="material"
-                  class="sr-only peer"
+                  class="peer sr-only"
                   checked
                 />
 
                 <span
-                  class="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100"
+                  class="block rounded-full border border-gray-200 px-3 py-1 text-xs peer-checked:bg-gray-100"
                 >
                   Cotton
                 </span>
@@ -171,12 +171,12 @@
                   type="radio"
                   id="material_wool"
                   name="material"
-                  class="sr-only peer"
+                  class="peer sr-only"
                   checked
                 />
 
                 <span
-                  class="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100"
+                  class="block rounded-full border border-gray-200 px-3 py-1 text-xs peer-checked:bg-gray-100"
                 >
                   Wool
                 </span>
@@ -184,11 +184,11 @@
             </div>
           </fieldset>
 
-          <div class="p-4 bg-gray-100 border rounded">
+          <div class="rounded border bg-gray-100 p-4">
             <p class="text-sm">
               <span class="block"> Pay as low as $3/mo with 0% APR. </span>
 
-              <a href="" class="inline-block mt-1 underline"> Find out more </a>
+              <a href="" class="mt-1 inline-block underline"> Find out more </a>
             </p>
           </div>
 
@@ -198,14 +198,14 @@
 
           <button
             type="submit"
-            class="w-full px-6 py-3 text-sm font-bold tracking-wide text-white uppercase bg-red-700 rounded"
+            class="w-full rounded bg-red-700 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white"
           >
             Add to cart
           </button>
 
           <button
             type="button"
-            class="w-full px-6 py-3 text-sm font-bold tracking-wide uppercase bg-gray-100 border border-gray-300 rounded"
+            class="w-full rounded border border-gray-300 bg-gray-100 px-6 py-3 text-sm font-bold uppercase tracking-wide"
           >
             Notify when on sale
           </button>
@@ -214,7 +214,7 @@
 
       <div class="lg:col-span-3">
         <div
-          class="prose max-w-none [&>iframe]:w-full [&>iframe]:mt-6 [&>iframe]:rounded-xl [&>iframe]:aspect-video"
+          class="prose max-w-none [&>iframe]:mt-6 [&>iframe]:aspect-video [&>iframe]:w-full [&>iframe]:rounded-xl"
         >
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem ad

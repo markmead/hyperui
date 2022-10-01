@@ -1,0 +1,96 @@
+---
+title: How to Contribute to HyperUI
+description: It can be daunting contributing to an open source project, find out how you can get involved with the development of HyperUI.
+date: 07/25/2022
+emoji: 🫵
+tags: [hyperui, github]
+---
+
+For some, the idea of contributing to an open source project can be very daunting but please don't let that put you off. Let's walk through how you can contribute to HyperUI and get some open source work on your CV/GitHub.
+
+## Spotted a Bug?
+
+If you notice something that looks a little off:
+
+- Spelling
+- Accessibility
+- SEO
+
+Plus plenty more, then please do [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
+
+Once an issue has been created I can start working on a fix. However, if you'd like to work on the fix then let me know.
+
+## Want to Add Something?
+
+If you have something that you want to add to HyperUI then that's awesome, but before you dive too deep into the development, I'd recommend that you [create an issue](https://github.com/markmead/hyperui/issues/new/choose) to outline what it is that you are adding.
+
+If you plan to add a new component then please include some examples of what the component will look like.
+
+### Pull Request Feedback
+
+Here's the scary part 👻
+
+All pull requests need to be reviewed before being merged into HyperU, which does mean that on occasion there will be feedback. Please do not be disheartened by feedback, we're all developing each other's skill set and trying to make HyperUI (and other open source projects) better.
+
+### Getting HyperUI Running Locally
+
+HyperUI is a Next JS + Typescript project and can be set up quickly with the following commands.
+
+```shell
+git clone git@github.com:markmead/hyperui.git
+yarn
+yarn dev
+```
+
+If you are working on some changes that need to compile CSS, then you'll need to open a new terminal window and run the following.
+
+```shell
+yarn css:watch
+```
+
+### Creating a New Component
+
+For this example, we will be adding a new footer component in the marketing category.
+
+1. Create a new file in `/public/components/marketing-footers`
+2. Add the new component to the components group in `/src/data/components/marketing-footers.mdx`
+
+It should look like this.
+
+```shell
+components:
+  21:
+    title: An Amazing Footer
+  22:
+    title: My Awesome New Footer ✨
+```
+
+As you will see, component files are named incrementally, please follow this method.
+
+If needed you can use `spacing: ...` to position the component within the preview, but note, that any classes added here will be ignored when copying or viewing the components code.
+
+#### Notes on New Components
+
+1. Components need to be written with Tailwind CSS
+2. Don't make changes to the `/public/tailwind.css`
+3. Reference used Tailwind CSS plugins in the HTML
+
+You can see examples of points 3 and 4 in the HTML of this [input component](https://www.hyperui.dev/components/application-ui/pagination#component-3).
+
+### Creating a New Collection
+
+If you want to create a new collection then please [create an issue](https://github.com/markmead/hyperui/issues/new/choose) on GitHub, then we can discuss the new collection and get some ideas for what components can be added.
+
+### New Component Feedback
+
+If you are looking to add a component to HyperUI then I will give feedback on both the design and development of the component.
+
+For new component pull requests, I will review the work three times. If on the third review there is feedback from the first review that is still not addressed, then I will close it and ask for it to be re-opened once feedback has been addressed.
+
+If on the third review there is new feedback then that's not an issue, it's only if you have continued to ignore feedback from the first review.
+
+I believe this to be fair.
+
+## Final Notes
+
+Contributing to open source is one of the best feelings for a developer, but as mentioned, it can be very daunting. I really don't want anyone to feel that way with HyperUI, so please do get involved, and let's all push HyperUI to become a better project.

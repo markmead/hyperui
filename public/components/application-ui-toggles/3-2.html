@@ -3,28 +3,28 @@
 <label
   x-data="{ isChecked: false }"
   for="AcceptConditions"
-  class="relative w-16 h-8 cursor-pointer"
+  class="relative h-8 w-16 cursor-pointer"
 >
   <input
     x-model="isChecked"
     type="checkbox"
     id="AcceptConditions"
-    class="sr-only peer"
+    class="peer sr-only"
   />
 
   <span
     :class="{ 'bg-blue-400': !isChecked, 'bg-blue-600': isChecked }"
-    class="absolute inset-0 transition rounded-full"
+    class="absolute inset-0 rounded-full transition"
   ></span>
 
   <span
     :class="{ 'text-blue-400': !isChecked, 'translate-x-8 text-blue-600': isChecked }"
-    class="absolute inset-0 inline-flex items-center justify-center w-6 h-6 m-1 transition bg-white rounded-full"
+    class="absolute inset-0 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white transition"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x-show="!isChecked"
-      class="w-4 h-4"
+      class="h-4 w-4"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -38,7 +38,7 @@
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x-show="isChecked"
-      class="w-4 h-4"
+      class="h-4 w-4"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

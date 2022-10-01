@@ -1,15 +1,15 @@
 <section class="bg-white dark:bg-gray-900">
   <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
     <section
-      class="relative flex items-end h-32 bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
+      class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
     >
       <img
         alt="Night"
         src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-        class="absolute inset-0 object-cover w-full h-full opacity-80"
+        class="absolute inset-0 h-full w-full object-cover opacity-80"
       />
 
-      <div class="hidden lg:block lg:relative lg:p-12">
+      <div class="hidden lg:relative lg:block lg:p-12">
         <a class="block text-white" href="/">
           <span class="sr-only">Home</span>
           <svg
@@ -40,9 +40,9 @@
       class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
     >
       <div class="max-w-xl lg:max-w-3xl">
-        <div class="relative block -mt-16 lg:hidden">
+        <div class="relative -mt-16 block lg:hidden">
           <a
-            class="inline-flex items-center justify-center w-16 h-16 text-blue-600 bg-white rounded-full sm:w-20 sm:h-20 dark:bg-gray-900"
+            class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-blue-600 dark:bg-gray-900 sm:h-20 sm:w-20"
             href="/"
           >
             <span class="sr-only">Home</span>
@@ -60,7 +60,7 @@
           </a>
 
           <h1
-            class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl dark:text-white"
+            class="mt-2 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl"
           >
             Welcome to Squid 🦑
           </h1>
@@ -71,7 +71,7 @@
           </p>
         </div>
 
-        <form action="#" class="grid grid-cols-6 gap-6 mt-8">
+        <form action="#" class="mt-8 grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
             <label
               for="FirstName"
@@ -84,7 +84,7 @@
               type="text"
               id="FirstName"
               name="first_name"
-              class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
 
@@ -100,7 +100,7 @@
               type="text"
               id="LastName"
               name="last_name"
-              class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
 
@@ -116,7 +116,7 @@
               type="email"
               id="Email"
               name="email"
-              class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
 
@@ -132,7 +132,7 @@
               type="password"
               id="Password"
               name="password"
-              class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
 
@@ -148,7 +148,7 @@
               type="password"
               id="PasswordConfirmation"
               name="password_confirmation"
-              class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
 
@@ -158,7 +158,7 @@
                 type="checkbox"
                 id="MarketingAccept"
                 name="marketing_accept"
-                class="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700"
+                class="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800"
               />
 
               <span class="text-sm text-gray-700 dark:text-gray-200">
@@ -183,7 +183,7 @@
 
           <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
             <button
-              class="inline-block px-12 py-3 text-sm font-medium text-white transition bg-blue-600 border border-blue-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
+              class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
             >
               Create an account
             </button>
