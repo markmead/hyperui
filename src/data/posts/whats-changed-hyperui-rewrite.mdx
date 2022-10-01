@@ -1,0 +1,155 @@
+---
+title: What's Changed in the Rewrite of HyperUI?
+description: Find out what's new in HyperUI as the project goes through its biggest update to date, featuring an easier process for contributors.
+date: 10/05/2022
+emoji: 🤯
+tags: [hyperui]
+---
+
+**Added**
+
+- `src` folder to hold the main code base
+- Tailwind Prettier plugin
+- `_document.tsx` file to control the HTML (locale added here)
+- "Skip to main content" button
+- More type checking
+- Added `fast-glob`
+
+**Updated**
+
+- Improved function names to be more declarative
+- Improved component names to be more declarative
+- Formatted all files with the new Tailwind Prettier plugin
+- Next config to use a new compiler, remove the locale, and include scroll restoration
+- Improved header to have less clutter
+- Switched to a more familiar syntax for function components
+- Cleaned up the Tailwind config thanks to `fast-glob`
+- Added build CSS to `.gitignorge`
+- The "how to contribute" blog
+- Renamed main CSS file
+- Renamed the sitemap config
+- Rewrote interfaces
+- Rewrote lib function for fetching data
+- Fixed an issue with dark mode being reset when switching viewing mode
+- Cleaned up the preview component as it was too confusing
+
+**Removed**
+
+- Old code that was not used
+- Options from the TS config
+- Layout component
+- Interfaces that were underused
+- Pointless info in the README
+- Breakpoint slider component
+
+### Descriptive Variables
+
+Before
+
+```js
+let router = useRouter()
+let refIframe = useRef(null)
+
+let [code, setCode] = useState<string>()
+let [html, setHtml] = useState<string>()
+let [view, setView] = useState<boolean>(true)
+let [width, setWidth] = useState<string>('100%')
+let [range, setRange] = useState<number>(1348)
+let [variant, setVariant] = useState<string>('base')
+let [themed, setThemed] = useState<boolean>(false)
+let [dark, setDark] = useState<boolean>(false)
+let [loading, setLoading] = useState<boolean>(false)
+```
+
+After
+
+```js
+const nextRouter = useRouter()
+const refIframe = useRef(null)
+
+const [componentCode, setComponentCode] = useState<string>()
+const [componentHtml, setComponentHtml] = useState<string>()
+const [showPreview, setShowPreview] = useState<boolean>(true)
+const [previewWidth, setPreviewWidth] = useState<string>('100%')
+const [selectedVariant, setSelectedVariant] = useState<string>('base')
+const [hasDarkMode, setHasDarkMode] = useState<boolean>(false)
+const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+const [isLoading, setIsLoading] = useState<boolean>(false)
+```
+
+- More obvious what it's doing
+- Switched to `const` for all variables for safety and better highlighting
+
+### New Component Syntax
+
+Before
+
+```js
+import type { FunctionComponent } from 'react'
+
+import styles from '../../../styles/button.module.css'
+
+type Props = {
+  themed: boolean
+  dark: boolean
+  handleSetDark: CallableFunction
+}
+
+const Dark: FunctionComponent<Props> = ({ themed, dark, handleSetDark }) => {
+  return (
+    <>
+      <button
+        onClick={() => handleSetDark(!dark)}
+        className={`${styles.pill} ${
+          dark && themed ? 'bg-black text-white' : 'text-black'
+        } disabled:opacity-25 disabled:pointer-events-none`}
+        disabled={!themed}
+      >
+        <span aria-hidden="true" className="text-sm" role="img">
+          {dark && themed ? '🌕' : '🌞'}
+        </span>
+
+        <span className="text-xs font-medium">
+          {dark && themed ? 'Dark' : 'Light'}
+        </span>
+      </button>
+    </>
+  )
+}
+
+export default Dark
+```
+
+After
+
+```js
+import styles from '@/styles/button.module.css'
+
+type Props = {
+  hasDarkMode: boolean
+  isDarkMode: boolean
+  handleSetIsDarkMode: CallableFunction
+}
+
+function Dark({ hasDarkMode, isDarkMode, handleSetIsDarkMode }: Props) {
+  return (
+    <button
+      onClick={() => handleSetIsDarkMode(!isDarkMode)}
+      className={`${styles.pill} ${
+        isDarkMode && hasDarkMode ? 'bg-black text-white' : 'text-black'
+      } disabled:pointer-events-none disabled:opacity-25`}
+      disabled={!hasDarkMode}
+    >
+      <span aria-hidden="true" className="text-sm" role="img">
+        {isDarkMode && hasDarkMode ? '🌕' : '🌞'}
+      </span>
+
+      <span className="text-xs font-medium">
+        {isDarkMode && hasDarkMode ? 'Dark' : 'Light'}
+      </span>
+    </button>
+  )
+}
+
+export default Dark
+```
