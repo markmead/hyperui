@@ -3,7 +3,7 @@ title: How to Create Custom Gradients in Tailwind CSS with JIT
 description: Tailwind CSS v3 meant JIT become the standard, learn how to use JIT to create custom gradients in Tailwind CSS without any custom CSS.
 date: 03/05/2022
 emoji: 🎨
-tags: [tailwind, tailwindcss]
+tags: [css, tailwindcss]
 ---
 
 ## What is JIT?
@@ -13,7 +13,7 @@ Since v3, JIT has been the default in Tailwind CSS and has bought a lot of power
 ### Without Tailwind CSS JIT
 
 ```html
-<div class="absolute p-4 floating-alert">Hello World! 👋</div>
+<div class="floating-alert absolute p-4">Hello World! 👋</div>
 ```
 
 And for the CSS...
@@ -28,7 +28,7 @@ And for the CSS...
 ### With Tailwind CSS JIT
 
 ```html
-<div class="absolute p-4 bottom-[5px] right-[5px]">Hello World! 👋</div>
+<div class="absolute bottom-[5px] right-[5px] p-4">Hello World! 👋</div>
 ```
 
 The benefit here is keeping everything within the HTML, this means:
