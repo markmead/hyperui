@@ -1,6 +1,6 @@
 type Props = {
   showPreview: boolean
-  componentCode: string
+  componentCode: string | undefined
 }
 
 function PreviewCode({ showPreview, componentCode }: Props) {

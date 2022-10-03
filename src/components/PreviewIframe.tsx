@@ -2,7 +2,7 @@ import { RefObject } from 'react'
 
 type Props = {
   showPreview: boolean
-  componentHtml: string
+  componentHtml: string | undefined
   componentTitle: string
   previewWidth: string
   refIframe: RefObject<HTMLIFrameElement>
