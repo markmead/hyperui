@@ -182,19 +182,15 @@ function Preview({ componentData, componentSpacing }: Props) {
           {isLoading && <Loading previewWidth={previewWidth} />}
 
           <div>
-            {componentCode && componentHtml && (
-              <>
-                <Iframe
-                  showPreview={showPreview}
-                  componentHtml={componentHtml}
-                  componentTitle={componentTitle}
-                  previewWidth={previewWidth}
-                  refIframe={refIframe}
-                />
+            <Iframe
+              showPreview={showPreview}
+              componentHtml={componentHtml}
+              componentTitle={componentTitle}
+              previewWidth={previewWidth}
+              refIframe={refIframe}
+            />
 
-                <Code showPreview={showPreview} componentCode={componentCode} />
-              </>
-            )}
+            <Code showPreview={showPreview} componentCode={componentCode} />
           </div>
         </div>
 

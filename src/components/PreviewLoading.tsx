@@ -5,9 +5,9 @@ type Props = {
 function PreviewLoading({ previewWidth }: Props) {
   return (
     <div
-      style={{ maxWidth: previewWidth }}
-      className="absolute inset-0 flex items-center justify-center rounded-lg bg-white"
       aria-hidden="true"
+      className="absolute inset-0 grid place-content-center rounded-lg bg-white"
+      style={{ maxWidth: previewWidth }}
     >
       <svg
         className="h-12 w-12 animate-spin text-gray-300"
