@@ -194,7 +194,7 @@ function Preview({ componentData, componentContainer }: Props) {
                   refIframe={refIframe}
                 />
 
-                <Code showPreview={showPreview} componentCode={componentCode} />
+                {!showPreview && <Code componentCode={componentCode} />}
               </>
             )}
           </div>

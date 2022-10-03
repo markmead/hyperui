@@ -22,7 +22,7 @@ function Copy({ componentCode }: Props) {
         setTimeout(() => {
           setButtonEmoji('📋')
           setButtonText('Copy')
-        }, 3000)
+        }, 2000)
       },
       function () {
         setHasError(true)
