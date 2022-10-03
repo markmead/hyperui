@@ -42,7 +42,7 @@ components:
         title: Dark
   12:
     title: Company Info and Links
-    spacing: bg-gray-50
+    container: bg-gray-50
     variants:
       1:
         title: Dark
@@ -65,4 +65,7 @@ components:
 
 # Footer Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

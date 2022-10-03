@@ -10,7 +10,7 @@ export interface ComponentCard extends Core {
 }
 
 export interface Component extends Core {
-  spacing?: string
+  container?: string
   creator?: string
   variants?: Array<ComponentVariant>
 }
@@ -18,5 +18,5 @@ export interface Component extends Core {
 export interface ComponentVariant {
   id: string
   title: string
-  spacing?: string
+  container?: string
 }

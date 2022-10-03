@@ -2,7 +2,7 @@
 title: Cards
 emoji: 🃏
 category: marketing
-spacing: max-w-md mx-auto p-8
+container: max-w-md mx-auto p-8
 seo:
   title: Card Components
   description: Card components created with Tailwind CSS
@@ -19,10 +19,10 @@ components:
     title: Bordered with Image and Content with Call to Action
   7:
     title: With Content, Image, Details and Gradient Border
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   8:
     title: With Icon, Content and Background
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   9:
     title: Stacked with Large Image and Content
   10:
@@ -31,7 +31,7 @@ components:
     title: Bordered with Content on Hover
   12:
     title: Bordered with Content Over Image
-    spacing: max-w-xl mx-auto p-8
+    container: max-w-xl mx-auto p-8
   13:
     title: Stat, Content with Call to Action
   14:
@@ -40,35 +40,38 @@ components:
     title: Bordered with Image, Price, Content and Details
   16:
     title: Split with Image and Tags with Content
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   17:
     title: Image, Name, with Social Links and Project Links
   18:
     title: Content Over Image with Review Score
   19:
     title: Gradient Border with Content and Tags
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   20:
     title: Shaped with Image and Content
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   21:
     title: Bordered with Icon, Content and Call to Action
   22:
     title: Content and Background with Image
   23:
     title: Cartoon with Shadow and Content Reveal on Hover
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   24:
     title: Stacked Effect with Content Reveal on Hover
-    spacing: max-w-lg mx-auto p-8
+    container: max-w-lg mx-auto p-8
   25:
     title: Podcast Post
-    spacing: max-w-3xl mx-auto p-8
+    container: max-w-3xl mx-auto p-8
   26:
     title: Forum Post
-    spacing: max-w-2xl mx-auto p-8
+    container: max-w-2xl mx-auto p-8
 ---
 
 # Card Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

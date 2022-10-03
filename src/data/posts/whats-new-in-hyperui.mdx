@@ -84,8 +84,8 @@ The rebuild needed to replicate what was currently working on HyperUI, therefore
 
 - Manage Collection
 - Manage Components
-- Collection Spacing
-- Component Spacing
+- Collection Container (Updated to `Collection Spacing` 5/10/2022)
+- Component Container (Updated to `Component Spacing` 5/10/2022)
 
 And the new features I wanted are:
 
@@ -102,7 +102,7 @@ Here's how the MDX file looked with the collection, components and SEO data:
 ---
 title: Announcements
 emoji: 📣
-spacing: flex flex-col gap-4
+container: flex flex-col gap-4
 seo:
   title: Announcement Components
   description: Announcement components created with Tailwind CSS
@@ -113,14 +113,14 @@ components:
     title: With Icon
   3:
     title: Floating with Close
-    spacing: relative
+    container: relative
   4:
     title: With Slider
 ---
 
 # Announcement Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List componentsData={componentsArray} componentContainer={componentContainer} />
 ```
 
 This has now ticked everything off the checklist as it's taken the old collection object writing JavaScript and converted it to frontmatter.

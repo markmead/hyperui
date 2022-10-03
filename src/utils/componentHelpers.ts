@@ -1,6 +1,6 @@
 export function transformComponentHtml(
   componentHtml: string,
-  componentSpacing: string = 'relative'
+  componentContainer: string = 'relative'
 ) {
   return `
     <script>
@@ -15,7 +15,7 @@ export function transformComponentHtml(
 
     <link rel="stylesheet" href="/tailwind.css">
 
-    <body class="${componentSpacing}">
+    <body class="${componentContainer}">
       ${componentHtml}
     </body>
   `

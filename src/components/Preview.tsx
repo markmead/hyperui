@@ -27,10 +27,10 @@ type ComponentData = Component & {
 
 type Props = {
   componentData: ComponentData
-  componentSpacing: string
+  componentContainer: string
 }
 
-function Preview({ componentData, componentSpacing }: Props) {
+function Preview({ componentData, componentContainer }: Props) {
   const nextRouter = useRouter()
   const refIframe = useRef(null)
 
@@ -51,7 +51,7 @@ function Preview({ componentData, componentSpacing }: Props) {
   const {
     id: componentId,
     title: componentTitle,
-    spacing: componentSpace,
+    container: selfComponentContainer,
     creator: componentCreator,
     variants: componentVariants,
   } = componentData
@@ -59,9 +59,9 @@ function Preview({ componentData, componentSpacing }: Props) {
   const { query: routerQuery } = nextRouter
   const { category: componentCategory, slug: componentSlug } = routerQuery
 
-  const trueComponentSpacing: string = componentSpace
-    ? componentSpace
-    : componentSpacing
+  const trueComponentContainer: string = selfComponentContainer
+    ? selfComponentContainer
+    : componentContainer
 
   const componentHash = `component-${componentId}`
 
@@ -106,7 +106,9 @@ function Preview({ componentData, componentSpacing }: Props) {
     const textResponse = await fetchResponse.text()
 
     setComponentCode(textResponse)
-    setComponentHtml(transformComponentHtml(textResponse, trueComponentSpacing))
+    setComponentHtml(
+      transformComponentHtml(textResponse, trueComponentContainer)
+    )
 
     simulateFakeLoading()
 
