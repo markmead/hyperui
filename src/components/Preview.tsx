@@ -5,18 +5,21 @@ import Prism from 'prismjs'
 
 import { useInView } from 'react-intersection-observer'
 
-import { Component } from '@/interface/component'
-
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
+import { Component } from '@/interface/component'
+
 import Breakpoint from '@/components/PreviewBreakpoint'
-import Dark from '@/components/PreviewDark'
-import Copy from '@/components/PreviewCopy'
-import Code from '@/components/PreviewView'
-import Variants from '@/components/PreviewVariants'
-import ComponentCreator from '@/components/ComponentCreator'
-import PreviewLoading from '@/components/PreviewLoading'
+import DarkToggle from '@/components/PreviewDark'
+import CopyCode from '@/components/PreviewCopy'
+import ViewSwitcher from '@/components/PreviewView'
+import VariantsSwitcher from '@/components/PreviewVariants'
+import Creator from '@/components/ComponentCreator'
+import Loading from '@/components/PreviewLoading'
+import Iframe from '@/components/PreviewIframe'
+import Code from '@/components/PreviewCode'
+import Title from '@/components/PreviewTitle'
 
 type ComponentData = Component & {
   id: string
@@ -122,18 +125,7 @@ function Preview({ componentData, componentSpacing }: Props) {
   return (
     <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
-        <h2 className="text-lg font-bold text-black sm:text-xl">
-          <a href={`#${componentHash}`} className="group relative inline-block">
-            <span
-              aria-hidden="true"
-              className="hidden group-hover:opacity-25 lg:absolute lg:inset-y-0 lg:-left-6 lg:block lg:opacity-0 lg:transition"
-            >
-              #
-            </span>
-
-            {componentTitle}
-          </a>
-        </h2>
+        <Title componentTitle={componentTitle} componentHash={componentHash} />
 
         <div className="flex items-center justify-between">
           <div>
@@ -141,14 +133,14 @@ function Preview({ componentData, componentSpacing }: Props) {
               <div className="flex items-center gap-4">
                 {componentVariants.length > 0 && (
                   <>
-                    <Variants
+                    <VariantsSwitcher
                       componentVariants={componentVariants}
                       handleSetVariant={setSelectedVariant}
                       handleSetHasDarkMode={setHasDarkMode}
                       componentId={componentId}
                     />
 
-                    <Dark
+                    <DarkToggle
                       hasDarkMode={hasDarkMode}
                       isDarkMode={isDarkMode}
                       handleSetIsDarkMode={setIsDarkMode}
@@ -156,12 +148,12 @@ function Preview({ componentData, componentSpacing }: Props) {
                   </>
                 )}
 
-                <Code
+                <ViewSwitcher
                   handleSetShowPreview={setShowPreview}
                   showPreview={showPreview}
                 />
 
-                <Copy componentCode={componentCode} />
+                <CopyCode componentCode={componentCode} />
               </div>
             )}
           </div>
@@ -187,31 +179,26 @@ function Preview({ componentData, componentSpacing }: Props) {
         </div>
 
         <div className="relative">
-          {isLoading && <PreviewLoading previewWidth={previewWidth} />}
+          {isLoading && <Loading previewWidth={previewWidth} />}
 
           <div>
-            <div className={showPreview ? 'block' : 'hidden'}>
-              <iframe
-                className="h-[400px] w-full rounded-lg bg-white ring-2 ring-black lg:h-[600px] lg:transition-all"
-                loading="lazy"
-                srcDoc={componentHtml}
-                style={{ maxWidth: previewWidth }}
-                title={`${componentTitle} Component`}
-                ref={refIframe}
-              ></iframe>
-            </div>
+            {componentCode && componentHtml && (
+              <>
+                <Iframe
+                  showPreview={showPreview}
+                  componentHtml={componentHtml}
+                  componentTitle={componentTitle}
+                  previewWidth={previewWidth}
+                  refIframe={refIframe}
+                />
 
-            <div className={showPreview ? 'hidden' : 'block'}>
-              <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-black lg:h-[600px]">
-                <code className="language-html">{componentCode}</code>
-              </pre>
-            </div>
+                <Code showPreview={showPreview} componentCode={componentCode} />
+              </>
+            )}
           </div>
         </div>
 
-        {componentCreator && (
-          <ComponentCreator creatorGithub={componentCreator} />
-        )}
+        {componentCreator && <Creator creatorGithub={componentCreator} />}
       </div>
     </div>
   )
