@@ -1,0 +1,97 @@
+---
+title: HyperUI Rewritten... What's Changed?
+description: Find out what's new in HyperUI as the project goes through its biggest update to date, featuring an easier process for contributors.
+date: 10/05/2022
+emoji: 🤯
+tags: [hyperui]
+---
+
+As developers we fall into the trap of feeling the need to constantly rewrite what we've done. As an example of that, I've had three different personal website in a year... Why? Boredom.
+
+I wanted the rewrite of HyperUI to not be driven by boredom, it needed to have a meaning and to provide a benefit to myself and contributors.
+
+The meaning I found was to rewrite HyperUI how I would write a React with Typescript application. It was 75% there, but there was some code that I used from a Next JS starter kit that wasn't in the style that I like to write in. Therefore, here's what's been changed... 🥁
+
+### Added
+
+- Added the [fast-glob](https://github.com/mrmlnc/fast-glob) package to slim down the `tailwind.config.js`
+- Added a `src` folder to hold the React code base that powers the site
+- Added a `_document.tsx` file to control the base HTML including the `lang` attribute
+- Added the [tailwind-prettier-plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) as not everyone uses [headwind](https://github.com/heybourn/headwind)
+- Added a "Skip to main content" button for those using keyboards
+- Added more type checking through Typescript `type` and `interface`
+- Added scroll restoration through the `next.config.js` (experimental feature)
+
+### Updated
+
+- Formatted all files with the [tailwind-prettier-plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+- Swapped to [SWC](https://swc.rs/) compiler for JavaScript
+- Removed the local declaration from the `next.config.js`
+- Improved the names of functions, components and variables to be more declarative
+
+```js
+// Before
+const [code, setCode] = useState<string>()
+const [html, setHtml] = useState<string>()
+const [view, setView] = useState<boolean>(true)
+const [width, setWidth] = useState<string>('100%')
+const [variant, setVariant] = useState<string>('base')
+const [themed, setThemed] = useState<boolean>(false)
+const [dark, setDark] = useState<boolean>(false)
+const [loading, setLoading] = useState<boolean>(false)
+
+// After
+const [componentCode, setComponentCode] = useState<string>()
+const [componentHtml, setComponentHtml] = useState<string>()
+const [showPreview, setShowPreview] = useState<boolean>(true)
+const [previewWidth, setPreviewWidth] = useState<string>('100%')
+const [selectedVariant, setSelectedVariant] = useState<string>('base')
+const [hasDarkMode, setHasDarkMode] = useState<boolean>(false)
+const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+const [isLoading, setIsLoading] = useState<boolean>(false)
+```
+
+- Cleaned up the site header to be less cluttered on desktop and mobile
+- Switched to a more familiar syntax for React components
+
+```js
+type Props = {
+  hasDarkMode: boolean
+  isDarkMode: boolean
+  handleSetIsDarkMode: CallableFunction
+}
+
+// Before
+const Dark: FunctionComponent<Props> = ({
+  hasDarkMode,
+  isDarkMode,
+  handleSetIsDarkMode,
+}) => {}
+
+// After
+function Dark({ hasDarkMode, isDarkMode, handleSetIsDarkMode }: Props) {}
+```
+
+- Swapped the name of `{global,build}.css` files to `tailwind.css`
+- Included the `tailwind.css` build file to `.gitignorge`
+- Renamed the sitemap config from `next-sitemap.config.js` to `sitemap.config.js` to be more inline with other configs
+- Cleaned up the [How to Contribute](https://www.hyperui.dev/blog/how-to-contribute) blog following changes
+- Improved the Typescript `type` and `interface` objects
+- Improve the `lib` functions that were used for data fetching
+- Fixed an issue with dark mode not applying when switching preview mode
+- Cleaned up the React for the preview component
+
+### Removed
+
+- Remove old code that was no longer use before or after the update
+- Removed options from `tsconfig.json` that were relaxing the rules
+- Removed the `layout.tsx` component
+- Remove unused `interface` objects that were underused
+- Removed unnecessary information from the README
+- Removed the breakpoint slider component `range.tsx`
+
+---
+
+Yup... Quite a few changes. However, so far, so good. I've been enjoying working with React and Typescript a lot more on HyperUI.
+
+You can see the [full pull request](https://github.com/markmead/hyperui/pull/173) on GitHub.
