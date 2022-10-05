@@ -1,0 +1,101 @@
+---
+title: How to Clean Up Your Tailwind CSS Code
+description: Find out what's new in HyperUI as the project goes through its biggest update to date, featuring an easier process for contributors.
+date: 10/05/2022
+emoji: 👌
+tags: [tailwindcss]
+---
+
+It's no secret that Tailwind CSS can make your markup very messy, but we can take some steps into improving this. Probably the most common is to delegate classes to the parent element.
+
+Take the following example.
+
+```html
+<ul>
+  <li class="text-sm font-medium text-gray-900">...</li>
+  <li class="text-sm font-medium text-gray-900">...</li>
+  <li class="bg-gray-100 text-sm font-medium text-gray-900">...</li>
+</ul>
+```
+
+There's a lot of repetition here, this can be helped by moving the repeated classes to the parent element.
+
+```html
+<ul class="text-sm font-medium text-gray-900">
+  <li>...</li>
+  <li>...</li>
+  <li class="bg-gray-100">...</li>
+</ul>
+```
+
+Much better.
+
+But what if we are using classes that cannot be delegated to the parent?
+
+Classes such as `whitespace-nowrap`, `px-8`, `rotate-3` can't be shared down to child elements... Until now.
+
+Let's take this example.
+
+```html
+<ul>
+  <li class="whitespace-nowrap p-4 text-sm font-medium">...</li>
+  <li class="whitespace-nowrap p-4 text-sm font-medium">...</li>
+  <li class="whitespace-nowrap bg-gray-100 p-4 text-sm font-medium">...</li>
+</ul>
+```
+
+First pass we can clean it up like this.
+
+```html
+<ul class="text-sm font-medium">
+  <li class="whitespace-nowrap p-4">...</li>
+  <li class="whitespace-nowrap p-4">...</li>
+  <li class="whitespace-nowrap bg-gray-100 p-4">...</li>
+</ul>
+```
+
+But what about the rest of the classes? Well, we can use arbitrary classes which are thanks to JIT.
+
+Here's how we can clean this up.
+
+```html
+<ul class="text-sm font-medium [&>*]:whitespace-nowrap [&>*]:p-4">
+  <li>...</li>
+  <li>...</li>
+  <li class="bg-gray-100">...</li>
+</ul>
+```
+
+And there we have it, a nice clean set of HTML. But what's happening?
+
+It's simple, read the `[&>*]` as CSS.
+
+```CSS
+& > * {
+...
+}
+```
+
+This translates to `select all first-level children on this element` therefore, it would look like this if we were being very specific.
+
+```css
+ul > li {
+  ...;
+}
+```
+
+And from that, all we're doing is applying the CSS classes within that.
+
+```css
+ul {
+  font-weight: 500;
+  ...;
+}
+
+ul > li {
+  padding: 1rem;
+  ...;
+}
+```
+
+Here's a more [built-out example using a table component](https://play.tailwindcss.com/pJxSAPRw22) from HyperUI.
