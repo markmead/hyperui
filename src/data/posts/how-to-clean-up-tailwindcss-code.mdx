@@ -6,7 +6,7 @@ emoji: 🧼
 tags: [tailwindcss]
 ---
 
-It's no secret that Tailwind CSS can make your markup very messy, but we can take some steps into improving this. Probably the most common is to delegate classes to the parent element.
+It's no secret that Tailwind CSS can make your markup very messy, but we can take some steps to prevent this. Probably the most common is to delegate classes to the parent element.
 
 Take the following example.
 
@@ -18,7 +18,13 @@ Take the following example.
 </ul>
 ```
 
-There's a lot of repetition here, this can be helped by moving the repeated classes to the parent element.
+Here we have three repeating classes on the `<li>` elements.
+
+- `text-sm`
+- `font-medium`
+- `text-gray-900`
+
+This can be helped by moving these classes to the parent `<ul>` element and have the CSS cascade down.
 
 ```html
 <ul class="text-sm font-medium text-gray-900">
@@ -28,26 +34,19 @@ There's a lot of repetition here, this can be helped by moving the repeated clas
 </ul>
 ```
 
-In my opinion, this is much better and is the way that I write Tailwind CSS. However, what if we are using classes that cannot be delegated to the parent?
+Boom! HTML cleaned up. However, what if we are using classes that cannot be delegated to the parent?
 
-Classes such as `whitespace-nowrap`, `px-8`, `rotate-3` and many more, cannot be applied to child elements from the parent, you have some classes like `whitespace-nowrap` that will do nothing, and other such as `rotate-3` that will break your UI 🤯.
+Classes such as `whitespace-nowrap`, `px-8`, `rotate-3` and many more, cannot be applied to child elements from the parent through cascading.
 
 However, there's a solution...
 
 ### Enter JIT
 
-If you're not too sure what JIT is then here's a brief description from my [How to Create Custom Gradients in Tailwind CSS with JIT](/blog/custom-gradients-with-tailwindcss-jit).
+If you're not too sure what JIT is then here's a brief description from my [How to Create Custom Gradients in Tailwind CSS with JIT](/blog/custom-gradients-with-tailwindcss-jit) blog.
 
 > Since v3, JIT has been the default in Tailwind CSS and has bought a lot of power to the framework. One of the best additions are [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values), these allow you to replace custom CSS with Tailwind CSS like classes.
 
-In the following example there are a few classes we can delegate to the parent.
-
-- `whitespace-nowrap`
-- `p-4`
-- `text-sm`
-- `font-medium`
-
-Looking at those we know that `whitespace-nowrap` and `p-4` cannot be delegated to the parent without JIT.
+Let's use this example.
 
 ```html
 <ul>
@@ -57,7 +56,19 @@ Looking at those we know that `whitespace-nowrap` and `p-4` cannot be delegated 
 </ul>
 ```
 
-Here's how it could look without JIT.
+Here we have four repeating classes.
+
+- `whitespace-nowrap`
+- `p-4`
+- `text-sm`
+- `font-medium`
+
+However, there are only two that can be delegated to the parent.
+
+- `text-sm`
+- `font-medium`
+
+Here's how it would look without JIT.
 
 ```html
 <ul class="text-sm font-medium">
@@ -67,7 +78,13 @@ Here's how it could look without JIT.
 </ul>
 ```
 
-It's OK, but we can do better... 🥁
+As you can see we still have `p-4` and `whitespace-nowrap` repeated on all the `<li>` elements.
+
+### Delegating Classes with JIT
+
+Here's how the example looks with JIT.
+
+_If you a believe Tailwind CSS is "inline styles" then this should really fuel that **pointless** anger._
 
 ```html
 <ul class="text-sm font-medium [&>*]:whitespace-nowrap [&>*]:p-4">
@@ -77,35 +94,27 @@ It's OK, but we can do better... 🥁
 </ul>
 ```
 
-And that's it. Job done.
-
-Now you might be asking... "What is `[&>*]`? It's not Tailwind"
-
-And you're kind of right, it's actually CSS.
-
-_If you're a believer of Tailwind CSS being "inline CSS" then this should really fuel that pointless anger_
-
-So it's CSS, but what does it look like.
+This might look like confusing but it's quite simple as `[&>*]` is just CSS. It's the same as writing this.
 
 ```css
 & > * {
-  ...;
+  //
 }
 ```
 
-This should look quite familiar, but in case you haven't used it, or have used it but you're not too sure what it does, here's a brief description.
+If you're unsure what this is doing it translates to.
 
-> `[&>*]` or `& > * {}` translates to "select all **first level** children in this element"
+> Select all first level children within this element
 
 In our example the `&` is the `<ul>` and the `*` is the `<li>` elements. Here's how that would look in CSS.
 
 ```css
 ul > li {
-  ...;
+  //
 }
 ```
 
-And from that, all we're doing is applying CSS but with Tailwind CSS utilities.
+And from that all we're doing is applying CSS but with Tailwind CSS utilities.
 
 ```css
 ul {
@@ -132,6 +141,6 @@ I'm on the fence about this approach, as arbitrary classes have some downsides:
 
 > This post is called "One Simple Trick to Cleaning Up Tailwind CSS Code" and yet a downside of arbitrary classes is "messy markup"
 
-It's more of an opinion, when I first saw them I thought they looked messy, but when used correctly they can really help clean up your markup.
+It's more of an opinion, I initially arbitrary classes looked messy, but when used correctly they can really help clean up your Tailwind CSS code.
 
 And of course, they're optional. If you don't want to use them, you don't have to.
