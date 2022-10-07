@@ -34,7 +34,9 @@ This can be helped by moving these classes to the parent `<ul>` element and have
 </ul>
 ```
 
-Boom! HTML cleaned up. However, what if we are using classes that cannot be delegated to the parent?
+Boom! HTML cleaned up.
+
+However, what if we are using classes that cannot be delegated to the parent?
 
 Classes such as `whitespace-nowrap`, `px-8`, `rotate-3` and many more, cannot be applied to child elements from the parent through cascading.
 
@@ -84,8 +86,6 @@ As you can see we still have `p-4` and `whitespace-nowrap` repeated on all the `
 
 Here's how the example looks with JIT.
 
-_If you a believe Tailwind CSS is "inline styles" then this should really fuel that **pointless** anger._
-
 ```html
 <ul class="text-sm font-medium [&>*]:whitespace-nowrap [&>*]:p-4">
   <li>...</li>
@@ -94,7 +94,9 @@ _If you a believe Tailwind CSS is "inline styles" then this should really fuel t
 </ul>
 ```
 
-This might look like confusing but it's quite simple as `[&>*]` is just CSS. It's the same as writing this.
+This might look like confusing but it's simple as `[&>*]` is just CSS.
+
+It's the same as writing this.
 
 ```css
 & > * {
@@ -102,11 +104,13 @@ This might look like confusing but it's quite simple as `[&>*]` is just CSS. It'
 }
 ```
 
-If you're unsure what this is doing it translates to.
+Which translates to.
 
 > Select all first level children within this element
 
-In our example the `&` is the `<ul>` and the `*` is the `<li>` elements. Here's how that would look in CSS.
+In our example the `&` is the `<ul>` and the `*` is the `<li>` elements.
+
+Here's how that would look in CSS.
 
 ```css
 ul > li {
@@ -129,11 +133,11 @@ ul > li {
 }
 ```
 
-Here's a more [built-out example using a table component](https://play.tailwindcss.com/pJxSAPRw22) from HyperUI as you can see, it cleans up a lot.
+Here's a more [built-out example using a table component](https://play.tailwindcss.com/pJxSAPRw22) from HyperUI.
 
 ---
 
-I'm on the fence about this approach, as arbitrary classes have some downsides:
+I'm on the fence about this approach, as arbitrary classes have some downsides.
 
 - Confusing to read
 - Confusing to write
@@ -141,6 +145,6 @@ I'm on the fence about this approach, as arbitrary classes have some downsides:
 
 > This post is called "One Simple Trick to Cleaning Up Tailwind CSS Code" and yet a downside of arbitrary classes is "messy markup"
 
-It's more of an opinion, I initially arbitrary classes looked messy, but when used correctly they can really help clean up your Tailwind CSS code.
+It's more of an opinion. I initially thought arbitrary classes looked messy, but when used correctly they can really help clean up your Tailwind CSS code.
 
-And of course, they're optional. If you don't want to use them, you don't have to.
+And of course, they're optional. There's no need/requirement to use them.
