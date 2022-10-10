@@ -4,19 +4,18 @@ import {
   getComponentsByCategory,
 } from '@/lib/getComponents'
 
+import { Category } from '@/interface/category'
 import { ComponentCard } from '@/interface/component'
 
 import Banner from '@/components/HeroBanner'
 import Grid from '@/components/CollectionGrid'
 
 type Props = {
-  componentsByCategory: any
+  componentsByCategory: Array<CategoryProps>
 }
 
 type CategoryProps = {
-  categoryDetail: {
-    title: string
-  }
+  categoryDetail: Category
   categoryComponents: Array<ComponentCard>
 }
 
@@ -41,7 +40,10 @@ function Home({ componentsByCategory }: Props) {
                   {categoryDetail.title}
                 </h2>
 
-                <Grid componentsData={categoryComponents} />
+                <Grid
+                  componentsData={categoryComponents}
+                  categoryDetail={categoryDetail}
+                />
               </div>
             )
           }

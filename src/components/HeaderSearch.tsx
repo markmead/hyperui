@@ -108,8 +108,12 @@ function HeaderSearch() {
                   <Link
                     href={`/components/${searchResult.category}/${searchResult.slug}`}
                   >
-                    <a className="block rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
-                      {searchResult.name}
+                    <a className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
+                      <span>{searchResult.name}</span>
+
+                      <span className="block rounded bg-black px-1.5 py-0.5 text-[10px] text-white">
+                        {searchResult.category.title}
+                      </span>
                     </a>
                   </Link>
                 </li>
