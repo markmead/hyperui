@@ -41,7 +41,10 @@ function Category({ categoryComponents, categoryDetail }: Props) {
       </Banner>
 
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12">
-        <Grid componentsData={categoryComponents} />
+        <Grid
+          componentsData={categoryComponents}
+          categoryDetail={categoryDetail}
+        />
       </div>
     </>
   )

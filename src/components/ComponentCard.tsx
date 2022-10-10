@@ -2,28 +2,30 @@ import Link from 'next/link'
 
 import { ComponentCard as iComponentCard } from '@/interface/component'
 import { transformComponentSlug } from '@/utils/componentHelpers'
+import { getCategoryBySlug } from '@/lib/getComponents'
 
 type Props = {
   componentData: iComponentCard
+  categoryTitle: string
 }
 
-function ComponentCard({ componentData }: Props) {
+function ComponentCard({ componentData, categoryTitle }: Props) {
   const trueComponentSlug = transformComponentSlug(
     componentData.slug,
     componentData.category
   )
-  const componentCount = `${componentData.count} ${
+
+  const componentCountPluralize =
     componentData.count > 1 ? 'Components' : 'Component'
-  }`
+
+  const componentCount = `${componentData.count} ${componentCountPluralize}`
 
   return (
     <Link href={`/components/${componentData.category}/${trueComponentSlug}`}>
-      <a className="group relative block">
-        <span
-          className="absolute inset-0 rounded-lg border-2 border-dashed border-black"
-          aria-hidden="true"
-        ></span>
-
+      <a
+        title={`Tailwind CSS ${categoryTitle} Components - ${componentData.title}`}
+        className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-black"
+      >
         <div className="rounded-lg border-2 border-black bg-white transition group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-6">
             <span className="text-xl" role="img" aria-hidden="true">
