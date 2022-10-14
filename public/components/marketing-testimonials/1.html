@@ -23,9 +23,9 @@
 
         <div class="hidden lg:mt-8 lg:flex lg:gap-4">
           <button
-            aria-label="Previous slide"
             class="prev-button rounded-full border border-pink-600 p-3 text-pink-600 hover:bg-pink-600 hover:text-white"
           >
+            <span class="sr-only">Previous Slide</span>
             <svg
               class="h-5 w-5 -rotate-180 transform"
               fill="none"
@@ -43,9 +43,9 @@
           </button>
 
           <button
-            aria-label="Next slide"
             class="next-button rounded-full border border-pink-600 p-3 text-pink-600 hover:bg-pink-600 hover:text-white"
           >
+            <span class="sr-only">Next Slide</span>
             <svg
               class="h-5 w-5"
               fill="none"
@@ -66,8 +66,8 @@
 
       <div class="-mx-6 lg:col-span-2 lg:mx-0">
         <div class="swiper-container !overflow-hidden">
-          <ul class="swiper-wrapper">
-            <li class="swiper-slide">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
               <blockquote
                 class="flex h-full flex-col justify-between bg-white p-12"
               >
@@ -147,9 +147,9 @@
                   &mdash; Michael Scott
                 </footer>
               </blockquote>
-            </li>
+            </div>
 
-            <li class="swiper-slide">
+            <div class="swiper-slide">
               <blockquote
                 class="flex h-full flex-col justify-between bg-white p-12"
               >
@@ -229,9 +229,9 @@
                   &mdash; Michael Scott
                 </footer>
               </blockquote>
-            </li>
+            </div>
 
-            <li class="swiper-slide">
+            <div class="swiper-slide">
               <blockquote
                 class="flex h-full flex-col justify-between bg-white p-12"
               >
@@ -311,8 +311,8 @@
                   &mdash; Michael Scott
                 </footer>
               </blockquote>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
