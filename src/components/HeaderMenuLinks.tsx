@@ -10,7 +10,7 @@ type Props = {
 
 function HeaderMenuLinks({ menuLinks, navClass, ulClass }: Props) {
   return (
-    <nav className={navClass}>
+    <nav aria-label="Page Nav" className={navClass}>
       <ul className={ulClass}>
         {menuLinks.map((menuLink) => (
           <li key={menuLink.href}>
