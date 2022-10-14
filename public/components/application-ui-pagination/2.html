@@ -23,9 +23,10 @@
 
 <div class="inline-flex justify-center gap-1">
   <a
-    href="/?page=1"
+    href="#"
     class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
   >
+    <span class="sr-only">Prev Page</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-3 w-3"
@@ -40,17 +41,23 @@
     </svg>
   </a>
 
-  <input
-    type="number"
-    class="w-12 rounded border border-gray-100 p-0 text-center text-xs font-medium [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-    min="1"
-    value="2"
-  />
+  <div>
+    <label for="PaginationPage" class="sr-only">Page</label>
+
+    <input
+      type="number"
+      class="w-12 rounded border border-gray-100 p-0 text-center text-xs font-medium [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+      min="1"
+      value="2"
+      id="PaginationPage"
+    />
+  </div>
 
   <a
-    href="/?page=3"
+    href="#"
     class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
   >
+    <span class="sr-only">Next Page</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-3 w-3"

@@ -24,7 +24,8 @@
 <div
   class="inline-flex items-center justify-center rounded bg-blue-600 py-1 text-white"
 >
-  <a href="/?page=1" class="inline-flex h-8 w-8 items-center justify-center">
+  <a href="#" class="inline-flex h-8 w-8 items-center justify-center">
+    <span class="sr-only">Prev Page</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-3 w-3"
@@ -39,18 +40,24 @@
     </svg>
   </a>
 
+  <span class="h-4 w-px bg-white/25" aria-hidden="true"></span>
+
+  <div>
+    <label for="PaginationPage" class="sr-only">Page</label>
+
+    <input
+      type="number"
+      class="w-12 rounded border-none bg-transparent p-0 text-center text-xs font-medium [-moz-appearance:_textfield] focus:outline-none focus:ring-inset focus:ring-white [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+      min="1"
+      value="2"
+      id="PaginationPage"
+    />
+  </div>
+
   <span class="h-4 w-px bg-white/25"></span>
 
-  <input
-    type="number"
-    class="w-12 rounded border-none bg-transparent p-0 text-center text-xs font-medium [-moz-appearance:_textfield] focus:outline-none focus:ring-inset focus:ring-white [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-    min="1"
-    value="2"
-  />
-
-  <span class="h-4 w-px bg-white/25"></span>
-
-  <a href="/?page=3" class="inline-flex h-8 w-8 items-center justify-center">
+  <a href="#" class="inline-flex h-8 w-8 items-center justify-center">
+    <span class="sr-only">Next Page</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-3 w-3"

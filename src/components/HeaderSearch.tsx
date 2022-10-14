@@ -85,12 +85,17 @@ function HeaderSearch() {
   return (
     <div ref={refDropdown} className="hidden sm:relative sm:block">
       <form role="search">
+        <label htmlFor="SiteSearch" className="sr-only">
+          Search
+        </label>
+
         <input
           type="text"
           onInput={(e) => setSearchQuery(e.currentTarget.value)}
           onFocus={() => setShowDropdown(true)}
           value={searchQuery}
           placeholder="Search..."
+          id="SiteSearch"
           className="rounded-md border-gray-200 text-sm"
         />
 

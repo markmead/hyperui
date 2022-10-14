@@ -51,7 +51,7 @@ function PreviewVariants({
 
   return (
     <div>
-      <label htmlFor="VariantSelect" className="sr-only">
+      <label htmlFor={`VariantSelect${componentId}`} className="sr-only">
         Variants
       </label>
 

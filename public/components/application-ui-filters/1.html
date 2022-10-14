@@ -10,7 +10,7 @@
 <form
   class="relative mx-auto w-screen max-w-lg divide-y divide-gray-100 overflow-auto rounded-lg border border-gray-100 bg-white shadow-lg"
 >
-  <header class="px-6 py-4">
+  <header class="px-6 py-4" aria-label="Filter University Courses">
     <strong class="text-lg font-medium text-gray-900">
       Filter University Courses
     </strong>
@@ -20,7 +20,7 @@
     </p>
   </header>
 
-  <main class="flow-root h-96 overflow-y-auto px-6">
+  <div class="flow-root h-96 overflow-y-auto px-6">
     <div class="divide-y divide-gray-100">
       <div class="py-8">
         <fieldset>
@@ -296,9 +296,9 @@
         </fieldset>
       </div>
     </div>
-  </main>
+  </div>
 
-  <footer class="flex items-center justify-between px-6 py-4">
+  <div class="flex items-center justify-between px-6 py-4">
     <input
       type="reset"
       value="Clear all"
@@ -311,5 +311,5 @@
     >
       Show 300+ results
     </button>
-  </footer>
+  </div>
 </form>
