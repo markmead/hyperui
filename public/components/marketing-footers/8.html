@@ -7,7 +7,7 @@
   plugins: [require('@tailwindcss/forms')]
 -->
 
-<footer class="bg-gray-900">
+<footer aria-label="Site Footer" class="bg-gray-900">
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="lg:grid lg:grid-cols-2">
       <div
@@ -67,7 +67,7 @@
           <span class="rounded bg-teal-500 lg:block lg:h-1 lg:w-10"></span>
 
           <div class="text-center lg:text-left">
-            <h5 class="text-2xl font-medium text-white">Request a Demo</h5>
+            <h2 class="text-2xl font-medium text-white">Request a Demo</h2>
 
             <p
               class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-gray-400 lg:mx-0"
@@ -91,9 +91,10 @@
               />
 
               <button
-                class="absolute top-1/2 right-1.5 -translate-y-1/2 rounded bg-indigo-600 p-3 text-white transition hover:bg-indigo-700"
                 type="button"
+                class="absolute top-1/2 right-1.5 -translate-y-1/2 rounded bg-indigo-600 p-3 text-white transition hover:bg-indigo-700"
               >
+                <span class="sr-only">Submit Search</span>
                 <svg
                   class="h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +170,7 @@
           <div class="text-center lg:text-left">
             <p class="text-lg font-medium text-white">About Us</p>
 
-            <nav class="mt-4">
+            <nav aria-label="Footer About Nav" class="mt-4">
               <ul class="space-y-1.5 text-sm">
                 <li>
                   <a class="text-white transition hover:text-white/75" href="/">
@@ -201,7 +202,7 @@
           <div class="text-center lg:text-left">
             <p class="text-lg font-medium text-white">Our Services</p>
 
-            <nav class="mt-4">
+            <nav aria-label="Footer Services Nav" class="mt-4">
               <ul class="space-y-1.5 text-sm">
                 <li>
                   <a class="text-white transition hover:text-white/75" href="/">
@@ -233,7 +234,7 @@
           <div class="text-center lg:text-left">
             <p class="text-lg font-medium text-white">Helpful Links</p>
 
-            <nav class="mt-4">
+            <nav aria-label="Footer Helpful Nav" class="mt-4">
               <ul class="space-y-1.5 text-sm">
                 <li>
                   <a class="text-white transition hover:text-white/75" href="/">
