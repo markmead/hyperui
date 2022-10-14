@@ -1,11 +1,17 @@
-<header class="shadow-sm">
+<header aria-label="Site Header" class="shadow-sm">
   <div class="mx-auto max-w-screen-xl p-4">
     <div class="flex items-center justify-between gap-4 lg:gap-10">
       <div class="flex lg:w-0 lg:flex-1">
-        <span class="h-10 w-20 rounded-lg bg-gray-200"></span>
+        <a href="#">
+          <span class="sr-only">Logo</span>
+          <span class="h-10 w-20 rounded-lg bg-gray-200"></span>
+        </a>
       </div>
 
-      <nav class="hidden gap-8 text-sm font-medium md:flex">
+      <nav
+        aria-label="Site Nav"
+        class="hidden gap-8 text-sm font-medium md:flex"
+      >
         <a class="text-gray-500" href="">About</a>
         <a class="text-gray-500" href="">Blog</a>
         <a class="text-gray-500" href="">Projects</a>
