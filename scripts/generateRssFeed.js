@@ -3,7 +3,7 @@ const path = require('path')
 const Feed = require('feed').Feed
 const matter = require('gray-matter')
 
-async function generate() {
+async function generateRssFeed() {
   const rssFeed = new Feed({
     title: 'RSS Feed | HyperUI',
     description: 'RSS feed for Tailwind CSS blog posts on HyperUI.',
@@ -65,4 +65,4 @@ async function generate() {
   await fs.writeFile('./public/rss.atom', rssFeed.atom1())
 }
 
-generate()
+generateRssFeed()

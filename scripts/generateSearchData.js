@@ -2,7 +2,7 @@ const { promises: fs } = require('fs')
 const path = require('path')
 const matter = require('gray-matter')
 
-async function generate() {
+async function generateSearchData() {
   const componentsDirectory = path.join(process.cwd(), '/src/data/components')
   const componentSlugs = await fs.readdir(componentsDirectory)
 
@@ -59,4 +59,4 @@ async function generate() {
   await fs.writeFile('./public/search.json', JSON.stringify(searchObject))
 }
 
-generate()
+generateSearchData()
