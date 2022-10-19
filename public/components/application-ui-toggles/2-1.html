@@ -1,9 +1,7 @@
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
 <label
   x-data="{ isChecked: false }"
   for="AcceptConditions"
-  class="relative h-8 w-16 cursor-pointer"
+  class="relative h-6 w-14 cursor-pointer"
 >
   <input
     x-model="isChecked"
@@ -13,12 +11,12 @@
   />
 
   <span
-    :class="{ 'bg-blue-400': !isChecked, 'bg-blue-600': isChecked }"
-    class="absolute inset-0 rounded-md transition"
+    :class="{ 'bg-blue-600': isChecked }"
+    class="absolute inset-0 my-auto h-1.5 rounded-full bg-blue-400 transition"
   ></span>
 
   <span
-    :class="{ 'translate-x-8': isChecked }"
-    class="absolute inset-0 m-1 h-6 w-6 rounded bg-white transition"
+    :class="{ 'translate-x-8 border-blue-600': isChecked  }"
+    class="absolute inset-0 h-6 w-6 rounded-full border border-blue-400 bg-white transition peer-checked:translate-x-8"
   ></span>
 </label>
