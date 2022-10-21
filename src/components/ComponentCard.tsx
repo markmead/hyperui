@@ -2,7 +2,6 @@ import Link from 'next/link'
 
 import { ComponentCard as iComponentCard } from '@/interface/component'
 import { transformComponentSlug } from '@/utils/componentHelpers'
-import { getCategoryBySlug } from '@/lib/getComponents'
 
 type Props = {
   componentData: iComponentCard
