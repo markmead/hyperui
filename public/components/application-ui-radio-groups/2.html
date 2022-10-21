@@ -1,65 +1,42 @@
-<div class="grid grid-cols-2 gap-8">
-  <div class="relative">
+<fieldset class="grid grid-cols-2 gap-4">
+  <legend class="sr-only">Delivery</legend>
+
+  <div>
     <input
-      class="group peer hidden"
       type="radio"
-      name="shippingOption"
-      value="standard_alt"
-      id="standard_alt"
+      name="DeliveryOption"
+      value="DeliveryStandard"
+      id="DeliveryStandard"
+      class="peer hidden"
+      checked
     />
 
     <label
-      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-      for="standard_alt"
+      for="DeliveryStandard"
+      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <span> Standard </span>
+      <p class="text-gray-700">Standard</p>
 
-      <span class="mt-1 block text-xs text-gray-500"> Free </span>
+      <p class="mt-1 text-gray-900">Free</p>
     </label>
-
-    <svg
-      class="absolute top-4 right-4 h-5 w-5 text-blue-600 opacity-0 peer-checked:opacity-100"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-        clip-rule="evenodd"
-      />
-    </svg>
   </div>
 
-  <div class="relative">
+  <div>
     <input
-      class="group peer hidden"
       type="radio"
-      name="shippingOption"
-      value="next_day_alt"
-      id="next_day_alt"
+      name="DeliveryOption"
+      value="DeliveryPriority"
+      id="DeliveryPriority"
+      class="peer hidden"
     />
 
     <label
-      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-      for="next_day_alt"
+      for="DeliveryPriority"
+      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <span> Next Day </span>
+      <p class="text-gray-700">Next Day</p>
 
-      <span class="mt-1 block text-xs text-gray-500"> $ 5.99 </span>
+      <p class="mt-1 text-gray-900">£9.99</p>
     </label>
-
-    <svg
-      class="absolute top-4 right-4 h-5 w-5 text-blue-600 opacity-0 peer-checked:opacity-100"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-        clip-rule="evenodd"
-      />
-    </svg>
   </div>
-</div>
+</fieldset>

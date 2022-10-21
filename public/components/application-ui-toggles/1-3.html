@@ -1,16 +1,29 @@
-<label for="AcceptConditions" class="relative h-8 w-14 cursor-pointer">
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<label
+  x-data="{ isChecked: false }"
+  for="AcceptConditions"
+  class="relative h-8 w-14 cursor-pointer"
+>
   <input
+    x-model="isChecked"
     type="checkbox"
     id="AcceptConditions"
-    class="peer sr-only [&:checked_+_span_svg[data-unchecked-icon]]:hidden [&:checked_+_span_svg[data-checked-icon]]:block"
+    class="peer sr-only"
   />
 
   <span
-    class="absolute inset-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition peer-checked:translate-x-6 peer-checked:text-green-600"
+    :class="{ 'bg-gray-300': !isChecked, 'bg-green-500': isChecked }"
+    class="absolute inset-0 rounded-full transition"
+  ></span>
+
+  <span
+    :class="{ 'text-gray-400': !isChecked, 'translate-x-6 text-green-600': isChecked }"
+    class="absolute inset-0 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white transition"
   >
     <svg
-      data-unchecked-icon
       xmlns="http://www.w3.org/2000/svg"
+      x-show="!isChecked"
       class="h-4 w-4"
       viewBox="0 0 20 20"
       fill="currentColor"
@@ -23,9 +36,9 @@
     </svg>
 
     <svg
-      data-checked-icon
       xmlns="http://www.w3.org/2000/svg"
-      class="hidden h-4 w-4"
+      x-show="isChecked"
+      class="h-4 w-4"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -36,8 +49,4 @@
       />
     </svg>
   </span>
-
-  <span
-    class="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500"
-  ></span>
 </label>

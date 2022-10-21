@@ -1,39 +1,42 @@
-<div class="space-y-4">
+<fieldset class="space-y-4">
+  <legend class="sr-only">Delivery</legend>
+
   <div>
     <input
-      class="peer hidden"
       type="radio"
-      name="shippingOption"
-      value="standard"
-      id="standard"
+      name="DeliveryOption"
+      value="DeliveryStandard"
+      id="DeliveryStandard"
+      class="peer hidden"
+      checked
     />
 
     <label
-      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-      for="standard"
+      for="DeliveryStandard"
+      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <span> Standard </span>
+      <p class="text-gray-700">Standard</p>
 
-      <span> Free </span>
+      <p class="text-gray-900">Free</p>
     </label>
   </div>
 
   <div>
     <input
-      class="peer hidden"
       type="radio"
-      name="shippingOption"
-      value="next_day"
-      id="next_day"
+      name="DeliveryOption"
+      value="DeliveryPriority"
+      id="DeliveryPriority"
+      class="peer hidden"
     />
 
     <label
-      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-      for="next_day"
+      for="DeliveryPriority"
+      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <span> Next Day </span>
+      <p class="text-gray-700">Next Day</p>
 
-      <span> $5.99 </span>
+      <p class="text-gray-900">£9.99</p>
     </label>
   </div>
-</div>
+</fieldset>
