@@ -3,7 +3,7 @@
 <label
   x-data="{ isChecked: false }"
   for="AcceptConditions"
-  class="relative h-8 w-16 cursor-pointer"
+  class="relative h-8 w-14 cursor-pointer"
 >
   <input
     x-model="isChecked"
@@ -13,12 +13,12 @@
   />
 
   <span
-    :class="{ 'bg-blue-400': !isChecked, 'bg-blue-600': isChecked }"
+    :class="{ 'bg-gray-300': !isChecked, 'bg-green-500': isChecked }"
     class="absolute inset-0 rounded-full transition"
   ></span>
 
   <span
-    :class="{ 'text-blue-500': !isChecked, 'translate-x-8 text-blue-600': isChecked }"
+    :class="{ 'text-gray-400': !isChecked, 'translate-x-6 text-green-600': isChecked }"
     class="absolute inset-0 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white transition"
   >
     <svg
