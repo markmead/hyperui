@@ -127,38 +127,36 @@ function Preview({ componentData, componentSpacing }: Props) {
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
-        <div className="flex items-center justify-between">
-          <div>
-            {componentCode && componentVariants && (
-              <div className="flex items-center gap-4">
-                {componentVariants.length > 0 && (
-                  <>
-                    <VariantsSwitcher
-                      componentVariants={componentVariants}
-                      handleSetVariant={setSelectedVariant}
-                      handleSetHasDarkMode={setHasDarkMode}
-                      componentId={componentId}
-                    />
+        <div className="lg:flex lg:items-end lg:justify-between">
+          {componentCode && componentVariants && (
+            <div className="flex items-end gap-4">
+              <ViewSwitcher
+                handleSetShowPreview={setShowPreview}
+                showPreview={showPreview}
+              />
 
-                    <DarkToggle
-                      hasDarkMode={hasDarkMode}
-                      isDarkMode={isDarkMode}
-                      handleSetIsDarkMode={setIsDarkMode}
-                    />
-                  </>
-                )}
+              <CopyCode componentCode={componentCode} />
 
-                <ViewSwitcher
-                  handleSetShowPreview={setShowPreview}
-                  showPreview={showPreview}
-                />
+              {componentVariants.length > 0 && (
+                <>
+                  <DarkToggle
+                    hasDarkMode={hasDarkMode}
+                    isDarkMode={isDarkMode}
+                    handleSetIsDarkMode={setIsDarkMode}
+                  />
 
-                <CopyCode componentCode={componentCode} />
-              </div>
-            )}
-          </div>
+                  <VariantsSwitcher
+                    componentVariants={componentVariants}
+                    handleSetVariant={setSelectedVariant}
+                    handleSetHasDarkMode={setHasDarkMode}
+                    componentId={componentId}
+                  />
+                </>
+              )}
+            </div>
+          )}
 
-          <div className="hidden lg:flex lg:items-center lg:gap-4">
+          <div className="hidden lg:flex lg:items-end lg:gap-4">
             {componentBreakpoints.map(
               ({
                 name: breakpointName,

@@ -50,15 +50,18 @@ function PreviewVariants({
   }, [selectedVariant])
 
   return (
-    <div>
-      <label htmlFor={`VariantSelect${componentId}`} className="sr-only">
+    <div className="flex-1 lg:flex-auto">
+      <label
+        htmlFor={`VariantSelect${componentId}`}
+        className="block text-xs font-medium text-gray-700"
+      >
         Variants
       </label>
 
       <select
         onChange={(e) => setSelectedVariant(e.currentTarget.value)}
         id={`VariantSelect${componentId}`}
-        className="h-9 w-full rounded-lg border-2 border-black pl-3 text-xs font-medium"
+        className="mt-0.5 h-9 w-full rounded-lg border-2 border-black text-xs font-medium sm:w-44"
       >
         <option value="base">Base</option>
 
