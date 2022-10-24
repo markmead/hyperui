@@ -111,7 +111,7 @@ function HeaderSearch() {
               {searchResults.map((searchResult: SearchResult) => (
                 <li key={searchResult.id}>
                   <Link
-                    href={`/components/${searchResult.category}/${searchResult.slug}`}
+                    href={`/components/${searchResult.category.slug}/${searchResult.slug}`}
                   >
                     <a className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
                       <span>{searchResult.name}</span>
