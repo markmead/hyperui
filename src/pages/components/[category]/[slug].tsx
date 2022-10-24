@@ -63,6 +63,7 @@ function Component({
               return {
                 id: variantId,
                 title: variantData.title,
+                spacing: variantData.spacing ?? '',
               }
             })
           : [],
