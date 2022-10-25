@@ -16,7 +16,7 @@ export default function handler(
 
   const categorySlugs = getCategorySlugs()
 
-  const componentsByCategory = categorySlugs.map((categorySlug) => {
+  const componentsByCategory = categorySlugs.map(function (categorySlug) {
     const categoryDetail = getCategoryBySlug(`${categorySlug}`, [
       'title',
       'slug',

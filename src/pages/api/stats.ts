@@ -28,16 +28,14 @@ export default function handler(
   categorySlugs.map(function (categorySlug) {
     const foundCategory = getCategoryBySlug(`${categorySlug}`, ['title'])
 
-    const foundCategoryData: CategoryData = {
+    categoryData.push({
       name: `${foundCategory.title}`,
       slug: `${categorySlug}`,
       count: 0,
-    }
-
-    categoryData.push(foundCategoryData)
+    })
   })
 
-  const componentsByCategory = categorySlugs.map((categorySlug) => {
+  const componentsByCategory = categorySlugs.map(function (categorySlug) {
     const categoryDetail = getCategoryBySlug(`${categorySlug}`, [
       'title',
       'slug',
@@ -68,12 +66,7 @@ export default function handler(
     totalCount += Number(categoryComponentCount)
   })
 
-  const allComponentData = [
-    ...categoryData,
-    {
-      total: totalCount,
-    },
-  ]
+  const allComponentData = [...categoryData, { total: totalCount }]
 
   apiResponse.status(200).json(JSON.stringify(allComponentData, null, 2))
 }
