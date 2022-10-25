@@ -6,7 +6,7 @@ import {
   getComponentsByCategory,
 } from '@/lib/getComponents'
 
-type CategoryData = {
+type CategoryItem = {
   name: string
   slug: string
   count: number
@@ -22,17 +22,18 @@ export default function handler(
 
   const categorySlugs = getCategorySlugs()
 
-  let categoryData: Array<CategoryData> = []
   let totalCount = 0
 
-  categorySlugs.map(function (categorySlug) {
+  const categoryItems: Array<CategoryItem> = categorySlugs.map(function (
+    categorySlug
+  ) {
     const foundCategory = getCategoryBySlug(`${categorySlug}`, ['title'])
 
-    categoryData.push({
+    return {
       name: `${foundCategory.title}`,
       slug: `${categorySlug}`,
       count: 0,
-    })
+    }
   })
 
   const componentsByCategory = categorySlugs.map(function (categorySlug) {
@@ -54,8 +55,8 @@ export default function handler(
   })
 
   componentsByCategory.map(function ({ categoryDetail, categoryComponents }) {
-    const foundCategory = categoryData.filter(
-      (categoryItem: CategoryData) => categoryItem.slug === categoryDetail.slug
+    const foundCategory = categoryItems.filter(
+      (categoryItem: CategoryItem) => categoryItem.slug === categoryDetail.slug
     )[0]
 
     const categoryComponentCount = categoryComponents
@@ -66,7 +67,7 @@ export default function handler(
     totalCount += Number(categoryComponentCount)
   })
 
-  const allComponentData = [...categoryData, { total: totalCount }]
+  const categoryData = [...categoryItems, { total: totalCount }]
 
-  apiResponse.status(200).json(JSON.stringify(allComponentData, null, 2))
+  apiResponse.status(200).json(JSON.stringify(categoryData, null, 2))
 }
