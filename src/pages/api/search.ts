@@ -6,7 +6,14 @@ import {
   getComponentsByCategory,
 } from '@/lib/getComponents'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  apiRequest: NextApiRequest,
+  apiResponse: NextApiResponse
+) {
+  if (apiRequest.method !== 'GET') {
+    return
+  }
+
   const categorySlugs = getCategorySlugs()
 
   const componentsByCategory = categorySlugs.map((categorySlug) => {
@@ -17,6 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const categoryComponents = getComponentsByCategory(`${categorySlug}`, [
       'title',
+      'category',
       'slug',
     ])
 
@@ -43,5 +51,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     })
   })
 
-  res.status(200).json(JSON.stringify(searchData, null, 2))
+  apiResponse.status(200).json(JSON.stringify(searchData, null, 2))
 }

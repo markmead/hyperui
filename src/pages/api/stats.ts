@@ -12,7 +12,14 @@ type CategoryData = {
   count: number
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  apiRequest: NextApiRequest,
+  apiResponse: NextApiResponse
+) {
+  if (apiRequest.method !== 'GET') {
+    return
+  }
+
   const categorySlugs = getCategorySlugs()
 
   let categoryData: Array<CategoryData> = []
@@ -59,5 +66,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     foundCategory.count = Number(categoryComponentCount)
   })
 
-  res.status(200).json(JSON.stringify(categoryData, null, 2))
+  apiResponse.status(200).json(JSON.stringify(categoryData, null, 2))
 }
