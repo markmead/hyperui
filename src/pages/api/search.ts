@@ -39,14 +39,18 @@ export default function handler(
     categoryComponents,
   }) {
     return categoryComponents.map((componentData) => {
+      const componentSlug = `${componentData.slug}`
+      const categorySlug = `${categoryDetail.slug}`
+      const trueSlug = componentSlug.replace(`${categorySlug}-`, '')
+
       return {
-        slug: componentData.slug,
+        slug: trueSlug,
         name: componentData.title,
         category: {
           slug: categoryDetail.slug,
           title: categoryDetail.title,
         },
-        id: componentData.slug,
+        id: componentSlug,
       }
     })
   })
