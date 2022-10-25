@@ -38,12 +38,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # rss
-public/rss.xml
-public/rss.json
-public/rss.atom
-
-# search
-public/search.json
+public/rss.*
 
 # seo
 public/sitemap.xml

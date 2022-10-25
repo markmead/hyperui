@@ -1,0 +1,246 @@
+{
+  "title": "Component Search | HyperUI",
+  "description": "JSON data for Tailwind CSS component searching on HyperUI.",
+  "items": [
+    {
+      "slug": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-breadcrumbs"
+    },
+    {
+      "slug": "button-groups",
+      "name": "Button Groups",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-button-groups"
+    },
+    {
+      "slug": "dropdown",
+      "name": "Dropdowns",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-dropdown"
+    },
+    {
+      "slug": "empty-states",
+      "name": "Empty States",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-empty-states"
+    },
+    {
+      "slug": "error-pages",
+      "name": "Error Pages",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-error-pages"
+    },
+    {
+      "slug": "filters",
+      "name": "Filters",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-filters"
+    },
+    {
+      "slug": "headers",
+      "name": "Header",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-headers"
+    },
+    {
+      "slug": "inputs",
+      "name": "Inputs",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-inputs"
+    },
+    {
+      "slug": "login-forms",
+      "name": "Login/Register Forms",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-login-forms"
+    },
+    {
+      "slug": "pagination",
+      "name": "Pagination",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-pagination"
+    },
+    {
+      "slug": "radio-groups",
+      "name": "Radio Groups",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-radio-groups"
+    },
+    {
+      "slug": "side-menu",
+      "name": "Side Menu",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-side-menu"
+    },
+    {
+      "slug": "stats",
+      "name": "Stats",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-stats"
+    },
+    {
+      "slug": "steps",
+      "name": "Steps",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-steps"
+    },
+    {
+      "slug": "tables",
+      "name": "Tables",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-tables"
+    },
+    {
+      "slug": "toggles",
+      "name": "Toggles",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-toggles"
+    },
+    {
+      "slug": "vertical-menu",
+      "name": "Vertical Menu",
+      "category": { "slug": "application-ui", "title": "Application UI" },
+      "id": "application-ui-vertical-menu"
+    },
+    {
+      "slug": "cards",
+      "name": "Cards",
+      "category": { "slug": "ecommerce", "title": "eCommerce" },
+      "id": "ecommerce-cards"
+    },
+    {
+      "slug": "carts",
+      "name": "Carts",
+      "category": { "slug": "ecommerce", "title": "eCommerce" },
+      "id": "ecommerce-carts"
+    },
+    {
+      "slug": "checkouts",
+      "name": "Checkouts",
+      "category": { "slug": "ecommerce", "title": "eCommerce" },
+      "id": "ecommerce-checkouts"
+    },
+    {
+      "slug": "product-collections",
+      "name": "Product Collections",
+      "category": { "slug": "ecommerce", "title": "eCommerce" },
+      "id": "ecommerce-product-collections"
+    },
+    {
+      "slug": "products",
+      "name": "Products",
+      "category": { "slug": "ecommerce", "title": "eCommerce" },
+      "id": "ecommerce-products"
+    },
+    {
+      "slug": "alerts",
+      "name": "Alerts",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-alerts"
+    },
+    {
+      "slug": "announcements",
+      "name": "Announcements",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-announcements"
+    },
+    {
+      "slug": "badges",
+      "name": "Badges",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-badges"
+    },
+    {
+      "slug": "banners",
+      "name": "Banners",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-banners"
+    },
+    {
+      "slug": "buttons",
+      "name": "Buttons",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-buttons"
+    },
+    {
+      "slug": "cards",
+      "name": "Cards",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-cards"
+    },
+    {
+      "slug": "ctas",
+      "name": "CTAs",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-ctas"
+    },
+    {
+      "slug": "faqs",
+      "name": "FAQs",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-faqs"
+    },
+    {
+      "slug": "footers",
+      "name": "Footers",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-footers"
+    },
+    {
+      "slug": "forms",
+      "name": "Forms",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-forms"
+    },
+    {
+      "slug": "navigations",
+      "name": "Navigation",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-navigations"
+    },
+    {
+      "slug": "off-canvas-menus",
+      "name": "Off Canvas Menus",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-off-canvas-menus"
+    },
+    {
+      "slug": "popups",
+      "name": "Popups",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-popups"
+    },
+    {
+      "slug": "reviews",
+      "name": "Reviews",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-reviews"
+    },
+    {
+      "slug": "sections",
+      "name": "Sections",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-sections"
+    },
+    {
+      "slug": "stats",
+      "name": "Stats",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-stats"
+    },
+    {
+      "slug": "tabs",
+      "name": "Tabs",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-tabs"
+    },
+    {
+      "slug": "testimonials",
+      "name": "Testimonials",
+      "category": { "slug": "marketing", "title": "Marketing" },
+      "id": "marketing-testimonials"
+    }
+  ]
+}
