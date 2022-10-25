@@ -15,10 +15,10 @@ function HeaderSearch() {
   const [searchResults, setSearchResults] = useState<Array<SearchResult>>([])
 
   useEffect(() => {
-    fetch('/search.json')
+    fetch('/api/search')
       .then((result) => result.json())
       .then((data) => {
-        const sortedData = data.items.sort(function (
+        const sortedData = data.sort(function (
           resultA: SearchResult,
           resultB: SearchResult
         ) {
