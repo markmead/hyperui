@@ -23,6 +23,7 @@ export default function handler(
   const categorySlugs = getCategorySlugs()
 
   let categoryData: Array<CategoryData> = []
+  let totalCount = 0
 
   categorySlugs.map(function (categorySlug) {
     const foundCategory = getCategoryBySlug(`${categorySlug}`, ['title'])
@@ -64,7 +65,15 @@ export default function handler(
       .reduce((valueA, valueB) => Number(valueA) + Number(valueB), 0)
 
     foundCategory.count = Number(categoryComponentCount)
+    totalCount += Number(categoryComponentCount)
   })
 
-  apiResponse.status(200).json(JSON.stringify(categoryData, null, 2))
+  const allComponentData = [
+    ...categoryData,
+    {
+      total: totalCount,
+    },
+  ]
+
+  apiResponse.status(200).json(JSON.stringify(allComponentData, null, 2))
 }
