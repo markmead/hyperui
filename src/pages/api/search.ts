@@ -17,7 +17,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const categoryComponents = getComponentsByCategory(`${categorySlug}`, [
       'title',
-      'category',
       'slug',
     ])
 
