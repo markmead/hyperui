@@ -59,7 +59,7 @@ function Preview({ componentData, componentSpacing }: Props) {
   const { query: routerQuery } = nextRouter
   const { category: componentCategory, slug: componentSlug } = routerQuery
 
-  const trueComponentSpacing: string = componentSpace
+  let trueComponentSpacing: string = componentSpace
     ? componentSpace
     : componentSpacing
 
@@ -78,6 +78,8 @@ function Preview({ componentData, componentSpacing }: Props) {
   useEffect(() => {
     setIsDarkMode(false)
     setIsLoading(true)
+
+    handleComponentSpacing()
 
     fetchHtml()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -120,6 +122,23 @@ function Preview({ componentData, componentSpacing }: Props) {
       setIsLoading(false)
       setIsDarkMode(hasDarkMode)
     }, randomDuration)
+  }
+
+  function handleComponentSpacing() {
+    if (!componentVariants) {
+      return
+    }
+
+    if (selectedVariant === 'base') {
+      trueComponentSpacing = componentSpace ? componentSpace : componentSpacing
+    }
+
+    const variantIndex = Number(selectedVariant) - 1
+    const variantSpacing = componentVariants[variantIndex]?.spacing
+
+    if (variantSpacing) {
+      trueComponentSpacing = variantSpacing
+    }
   }
 
   return (
