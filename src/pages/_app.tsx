@@ -7,7 +7,6 @@ import 'prismjs/themes/prism-okaidia.css'
 
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import SkipLink from '@/components/SkipLink'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -46,8 +45,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.hyperui.dev/" />
       </Head>
-
-      <SkipLink />
 
       <Header />
 
