@@ -1,8 +1,19 @@
+<!--
+  This component uses @tailwindcss/line-clamp
+
+  yarn add @tailwindcss/line-clamp
+  npm install @tailwindcss/line-clamp
+
+  plugins: [require('@tailwindcss/line-clamp')]
+
+  The `animate-background` class can be found here - https://github.com/markmead/hyperui/blob/main/tailwind.preset.js
+-->
+
 <article
-  class="hover:animate-background rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:shadow-sm bg-gradient-to-r hover:bg-[length:400%_400%] hover:[animation-duration:_4s]"
+  class="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
 >
-  <div class="bg-white p-4 !pt-20 sm:p-6 rounded-[10px]">
-    <time datetime="2022-10-10" class="text-xs text-gray-500 block">
+  <div class="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
+    <time datetime="2022-10-10" class="block text-xs text-gray-500">
       10th Oct 2022
     </time>
 
@@ -12,15 +23,15 @@
       </h3>
     </a>
 
-    <div class="mt-4 gap-1 flex flex-wrap">
+    <div class="mt-4 flex flex-wrap gap-1">
       <span
-        class="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600 whitespace-nowrap"
+        class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
       >
         Snippet
       </span>
 
       <span
-        class="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600 whitespace-nowrap"
+        class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
       >
         JavaScript
       </span>

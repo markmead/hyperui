@@ -1,24 +1,22 @@
 <!--
-  This component uses @tailwindcss/forms
+  This component uses @tailwindcss/forms and @tailwindcss/typography
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
+  yarn add @tailwindcss/forms @tailwindcss/typography
+  npm install @tailwindcss/forms @tailwindcss/typography
 
-  plugins: [require('@tailwindcss/forms')]
--->
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')]
 
-<!--
-@layer components {
-  .no-spinner {
-    -moz-appearance: textfield;
+  @layer components {
+    .no-spinner {
+      -moz-appearance: textfield;
+    }
+
+    .no-spinner::-webkit-outer-spin-button,
+    .no-spinner::-webkit-inner-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
+    }
   }
-
-  .no-spinner::-webkit-outer-spin-button,
-  .no-spinner::-webkit-inner-spin-button {
-    margin: 0;
-    -webkit-appearance: none;
-  }
-}
 -->
 
 <section>
