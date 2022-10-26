@@ -2,7 +2,7 @@
 title: Announcements
 emoji: 📣
 category: marketing
-spacing: flex flex-col gap-4
+container: flex flex-col gap-4
 seo:
   title: Announcement Components
   description: Announcement components created with Tailwind CSS
@@ -15,14 +15,17 @@ components:
     title: With Action
   4:
     title: Fixed to Bottom
-    spacing: relative
+    container: relative
   5:
     title: Floating Bottom
-    spacing: relative
+    container: relative
   6:
     title: With Slider
 ---
 
 # Announcement Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

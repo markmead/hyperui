@@ -2,7 +2,7 @@
 title: Radio Groups
 emoji: 📻
 category: application-ui
-spacing: max-w-lg mx-auto p-8 dark:bg-gray-900
+container: max-w-lg mx-auto p-8 dark:bg-gray-900
 seo:
   title: Radio Group Components
   description: Radio Group components created with Tailwind CSS
@@ -27,7 +27,7 @@ components:
         title: Dark + Checked Icon
   3:
     title: Variants
-    spacing: flex justify-center p-8 dark:bg-gray-900
+    container: flex justify-center p-8 dark:bg-gray-900
     variants:
       1:
         title: Dark
@@ -41,4 +41,7 @@ components:
 
 # Radio Group Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

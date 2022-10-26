@@ -17,14 +17,14 @@ const mdxComponents = {
 type CategoryData = {
   title: string
   emoji: string
-  spacing: string
+  container: string
   seo: {
     title: string
     description: string
   }
   components: {
     title: string
-    spacing?: string
+    container?: string
   }
 }
 
@@ -43,7 +43,7 @@ function Component({
 }: Props) {
   const {
     seo: componentSeo,
-    spacing: componentSpacing,
+    container: componentContainer,
     components: componentsData,
   } = componentFrontmatter
 
@@ -53,7 +53,7 @@ function Component({
       return {
         id: componentId,
         title: componentData.title,
-        spacing: componentData.spacing ?? '',
+        container: componentData.container ?? '',
         creator: componentData.creator ?? '',
         variants: componentData.variants
           ? Object.entries(componentData.variants).map(function ([
@@ -63,7 +63,7 @@ function Component({
               return {
                 id: variantId,
                 title: variantData.title,
-                spacing: variantData.spacing ?? '',
+                container: variantData.container ?? '',
               }
             })
           : [],
@@ -73,7 +73,7 @@ function Component({
 
   const componentData = {
     componentSlug,
-    componentSpacing,
+    componentContainer,
     componentsArray,
   }
 

@@ -2,7 +2,7 @@
 title: Cards
 emoji: 🃏
 category: ecommerce
-spacing: max-w-md mx-auto p-4
+container: max-w-md mx-auto p-4
 seo:
   title: Cards Components
   description: Cards components created with Tailwind CSS
@@ -22,9 +22,12 @@ components:
     title: Bordered with Wishlist Action and Tag
   6:
     title: With Large Call to Action and Image
-    spacing: max-w-3xl mx-auto p-8
+    container: max-w-3xl mx-auto p-8
 ---
 
 # Card Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>
