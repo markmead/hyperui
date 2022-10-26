@@ -50,7 +50,7 @@ const collections = [
     name: 'Alerts',
     id: 'alerts',
     emoji: '🚨',
-    spacing: 'max-w-sm mx-auto p-8',
+    container: 'max-w-sm mx-auto p-8',
     count: alertComponents.length,
     components: alertComponents,
   },
@@ -102,7 +102,7 @@ Here's how the MDX file looked with the collection, components and SEO data:
 ---
 title: Announcements
 emoji: 📣
-spacing: flex flex-col gap-4
+container: flex flex-col gap-4
 seo:
   title: Announcement Components
   description: Announcement components created with Tailwind CSS
@@ -113,14 +113,14 @@ components:
     title: With Icon
   3:
     title: Floating with Close
-    spacing: relative
+    container: relative
   4:
     title: With Slider
 ---
 
 # Announcement Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List componentsData={componentsArray} componentContainer={componentContainer} />
 ```
 
 This has now ticked everything off the checklist as it's taken the old collection object writing JavaScript and converted it to frontmatter.

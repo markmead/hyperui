@@ -2,7 +2,7 @@
 title: Blog Cards
 emoji: 📰
 category: marketing
-spacing: p-8 max-w-md mx-auto dark:bg-gray-900
+container: p-8 max-w-md mx-auto dark:bg-gray-900
 seo:
   title: Blog Card Components
   description: Blog card components created with Tailwind CSS
@@ -42,7 +42,7 @@ components:
         title: Dark
   6:
     title: Modern
-    spacing: p-8 max-w-2xl mx-auto bg-gray-100 dark:bg-gray-900
+    container: p-8 max-w-2xl mx-auto bg-gray-100 dark:bg-gray-900
     variants:
       1:
         title: Dark
@@ -50,4 +50,7 @@ components:
 
 # Blog Card Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

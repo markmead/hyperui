@@ -27,10 +27,10 @@ type ComponentData = Component & {
 
 type Props = {
   componentData: ComponentData
-  componentSpacing: string
+  componentContainer: string
 }
 
-function Preview({ componentData, componentSpacing }: Props) {
+function Preview({ componentData, componentContainer }: Props) {
   const nextRouter = useRouter()
   const refIframe = useRef(null)
 
@@ -51,7 +51,7 @@ function Preview({ componentData, componentSpacing }: Props) {
   const {
     id: componentId,
     title: componentTitle,
-    spacing: componentSpace,
+    container: componentSpace,
     creator: componentCreator,
     variants: componentVariants,
   } = componentData
@@ -59,9 +59,9 @@ function Preview({ componentData, componentSpacing }: Props) {
   const { query: routerQuery } = nextRouter
   const { category: componentCategory, slug: componentSlug } = routerQuery
 
-  let trueComponentSpacing: string = componentSpace
+  let trueComponentContainer: string = componentSpace
     ? componentSpace
-    : componentSpacing
+    : componentContainer
 
   const componentHash = `component-${componentId}`
 
@@ -79,7 +79,7 @@ function Preview({ componentData, componentSpacing }: Props) {
     setIsDarkMode(false)
     setIsLoading(true)
 
-    handleComponentSpacing()
+    handleComponentContainer()
 
     fetchHtml()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,7 +108,9 @@ function Preview({ componentData, componentSpacing }: Props) {
     const textResponse = await fetchResponse.text()
 
     setComponentCode(textResponse)
-    setComponentHtml(transformComponentHtml(textResponse, trueComponentSpacing))
+    setComponentHtml(
+      transformComponentHtml(textResponse, trueComponentContainer)
+    )
 
     simulateFakeLoading()
 
@@ -124,20 +126,22 @@ function Preview({ componentData, componentSpacing }: Props) {
     }, randomDuration)
   }
 
-  function handleComponentSpacing() {
+  function handleComponentContainer() {
     if (!componentVariants) {
       return
     }
 
     if (selectedVariant === 'base') {
-      trueComponentSpacing = componentSpace ? componentSpace : componentSpacing
+      trueComponentContainer = componentSpace
+        ? componentSpace
+        : componentContainer
     }
 
     const variantIndex = Number(selectedVariant) - 1
-    const variantSpacing = componentVariants[variantIndex]?.spacing
+    const variantContainer = componentVariants[variantIndex]?.container
 
-    if (variantSpacing) {
-      trueComponentSpacing = variantSpacing
+    if (variantContainer) {
+      trueComponentContainer = variantContainer
     }
   }
 
