@@ -2,7 +2,7 @@
 
 HyperUI is a large collection of free Tailwind CSS components for marketing, eCommerce and application UI 🐳
 
-![HyperUI](https://hyperui.dev/og.png)
+![HyperUI](https://hyperui.dev/og.jpg)
 
 ### Contributing
 

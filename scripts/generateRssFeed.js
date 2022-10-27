@@ -10,7 +10,7 @@ async function generateRssFeed() {
     id: 'https://www.hyperui.dev/',
     link: 'https://www.hyperui.dev/rss.xml',
     language: 'en',
-    image: 'https://www.hyperui.dev/og.png',
+    image: 'https://www.hyperui.dev/og.jpg',
     favicon: 'https://www.hyperui.dev/favicon.ico',
     feedLinks: {
       xml: 'https://www.hyperui.dev/rss.xml',
