@@ -42,16 +42,35 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
         <title>{blogFrontmatter.title} | HyperUI</title>
-
         <meta
+          name="description"
           content={blogFrontmatter.description}
           key="description"
-          name="description"
+        />
+        <meta
+          property="og:title"
+          content={`${blogFrontmatter.title} | HyperUI`}
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content={blogFrontmatter.description}
+          key="og:description"
+        />
+        <meta
+          name="twitter:title"
+          content={`${blogFrontmatter.title} | HyperUI`}
+          key="twitter:title"
+        />
+        <meta
+          name="twitter:description"
+          content={blogFrontmatter.description}
+          key="twitter:description"
         />
       </Head>
 
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
-        <article className="prose mx-auto prose-img:w-full prose-img:rounded-lg">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
+        <article className="mx-auto prose prose-img:w-full prose-img:rounded-lg">
           <header>
             <time className="text-sm text-gray-500">
               {blogFrontmatter.date}

@@ -80,17 +80,36 @@ function Component({
   return (
     <>
       <Head>
-        <title>Free Tailwind CSS {componentSeo.title} | HyperUI</title>
-
+        <title>Tailwind CSS {componentSeo.title} | HyperUI</title>
         <meta
           name="description"
-          key="description"
           content={componentSeo.description}
+          key="description"
+        />
+        <meta
+          property="og:title"
+          content={`Tailwind CSS ${componentSeo.title} | HyperUI`}
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content={componentSeo.description}
+          key="og:description"
+        />
+        <meta
+          name="twitter:title"
+          content={`Tailwind CSS ${componentSeo.title} | HyperUI`}
+          key="twitter:title"
+        />
+        <meta
+          name="twitter:description"
+          content={componentSeo.description}
+          key="twitter:description"
         />
       </Head>
 
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-12 lg:pt-24">
+        <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
           <div className="prose max-w-none">
             <MDXRemote
               {...componentSource}
