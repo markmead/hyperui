@@ -24,12 +24,31 @@ function Category({ categoryComponents, categoryDetail }: Props) {
   return (
     <>
       <Head>
-        <title>Free Tailwind CSS {categoryDetail.title} | HyperUI</title>
-
+        <title>Tailwind CSS {categoryDetail.title} Components | HyperUI</title>
         <meta
           name="description"
-          key="description"
           content={categoryDetail.description}
+          key="description"
+        />
+        <meta
+          property="og:title"
+          content={`Tailwind CSS ${categoryDetail.title} Components | HyperUI`}
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content={categoryDetail.description}
+          key="og:description"
+        />
+        <meta
+          name="twitter:title"
+          content={`Tailwind CSS ${categoryDetail.title} Components | HyperUI`}
+          key="twitter:title"
+        />
+        <meta
+          name="twitter:description"
+          content={categoryDetail.description}
+          key="twitter:description"
         />
       </Head>
 
@@ -40,7 +59,7 @@ function Category({ categoryComponents, categoryDetail }: Props) {
         {categoryDetail.description}
       </Banner>
 
-      <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
         <Grid
           componentsData={categoryComponents}
           categoryDetail={categoryDetail}
