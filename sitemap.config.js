@@ -8,7 +8,6 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/search.json'],
       },
     ],
   },
