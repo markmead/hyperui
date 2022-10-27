@@ -22,7 +22,7 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
     '@context': 'http://schema.org',
     '@type': 'NewsArticle',
     headline: `${blogFrontmatter.title}`,
-    image: ['https://www.hyperui.dev/og.png'],
+    image: ['https://www.hyperui.dev/og.jpg'],
     datePublished: `${blogFrontmatter.date}`,
     dateModified: `${blogFrontmatter.date}`,
     author: {
