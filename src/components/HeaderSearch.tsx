@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+
+import Link from 'next/link'
 
 import { SearchResult } from '@/interface/search'
 
@@ -96,7 +97,7 @@ function HeaderSearch() {
           value={searchQuery}
           placeholder="Search..."
           id="SiteSearch"
-          className="rounded-md border-gray-200 text-sm"
+          className="text-sm border-gray-200 rounded-md"
         />
 
         <button tabIndex={-1} className="sr-only">
@@ -105,15 +106,15 @@ function HeaderSearch() {
       </form>
 
       {showDropdown && (
-        <div className="absolute right-0 top-full mt-2 w-64 rounded-lg border-2 border-gray-100 bg-white">
+        <div className="absolute right-0 w-64 mt-2 bg-white border-2 border-gray-100 rounded-lg top-full">
           {searchResults.length > 0 ? (
-            <ul className="max-h-64 space-y-1 overflow-auto p-2">
+            <ul className="p-2 space-y-1 overflow-auto max-h-64">
               {searchResults.map((searchResult: SearchResult) => (
                 <li key={searchResult.id}>
                   <Link
                     href={`/components/${searchResult.category.slug}/${searchResult.slug}`}
                   >
-                    <a className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
+                    <a className="flex items-center justify-between px-4 py-2 text-xs font-medium text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-50">
                       <span>{searchResult.name}</span>
 
                       <span className="block rounded bg-black px-1.5 py-0.5 text-[10px] text-white">
@@ -125,7 +126,7 @@ function HeaderSearch() {
               ))}
             </ul>
           ) : (
-            <div className="p-4 text-center text-sm text-gray-500">
+            <div className="p-4 text-sm text-center text-gray-500">
               Uh-no! There are no results 😢
             </div>
           )}

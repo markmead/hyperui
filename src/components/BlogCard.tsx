@@ -11,9 +11,9 @@ function BlogCard({ blogPost }: Props) {
     <Link href="/blog/[slug]" as={`/blog/${blogPost.slug}`}>
       <a
         title={`Tailwind CSS Blog - ${blogPost.title}`}
-        className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-black"
+        className="relative block h-full bg-white group before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-black"
       >
-        <div className="h-full rounded-lg border-2 border-black bg-white transition group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="h-full transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="px-8 pt-32 pb-8">
             <span aria-hidden="true" role="img" className="text-4xl">
               {blogPost.emoji}

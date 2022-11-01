@@ -1,12 +1,12 @@
 import Head from 'next/head'
 
+import { ComponentCard } from '@/interface/component'
+
 import {
   getCategoryBySlug,
   getCategoryPaths,
   getComponentsByCategory,
 } from '@/lib/getComponents'
-
-import { ComponentCard } from '@/interface/component'
 
 import Banner from '@/components/HeroBanner'
 import Grid from '@/components/CollectionGrid'

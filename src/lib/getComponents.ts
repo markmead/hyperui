@@ -2,8 +2,9 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 
-import { transformComponentSlug } from '@/utils/componentHelpers'
 import { Component } from '@/interface/component'
+
+import { transformComponentSlug } from '@/utils/componentHelpers'
 
 type DynamicData = {
   [key: string]: string | number

@@ -6,11 +6,11 @@ function PreviewLoading({ previewWidth }: Props) {
   return (
     <div
       aria-hidden="true"
-      className="absolute inset-0 grid place-content-center rounded-lg bg-white"
+      className="absolute inset-0 grid bg-white rounded-lg place-content-center"
       style={{ maxWidth: previewWidth }}
     >
       <svg
-        className="h-12 w-12 animate-spin text-gray-300"
+        className="w-12 h-12 text-gray-300 animate-spin"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

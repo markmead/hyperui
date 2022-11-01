@@ -24,7 +24,7 @@ function HeroBanner({ children, subtitle, title }: Props) {
           </p>
         )}
 
-        <div className="mt-8 sm:justify-center sm:items-center sm:flex sm:gap-2">
+        <div className="mt-8 sm:flex sm:items-center sm:justify-center sm:gap-2">
           <p className="text-xs tracking-wide text-gray-500 uppercase">
             Proudly supported by
           </p>

@@ -7,7 +7,7 @@ type Props = {
 function BrandLogo({ fontSize }: Props) {
   return (
     <Link href="/">
-      <a className={`${fontSize} text-sm font-medium inline-flex gap-1.5`}>
+      <a className={`${fontSize} inline-flex gap-1.5 text-sm font-medium`}>
         <span>HyperUI</span>
 
         <span aria-hidden="true" role="img">

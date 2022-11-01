@@ -6,6 +6,7 @@ import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import { Component, ComponentVariant } from '@/interface/component'
+
 import { getComponentPaths } from '@/lib/getComponents'
 
 import List from '@/components/CollectionList'

@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
+
 import { useRouter } from 'next/router'
 
 import Prism from 'prismjs'
 
 import { useInView } from 'react-intersection-observer'
 
+import { Component } from '@/interface/component'
+
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
-
-import { Component } from '@/interface/component'
 
 import Breakpoint from '@/components/PreviewBreakpoint'
 import DarkToggle from '@/components/PreviewDark'
@@ -146,7 +147,7 @@ function Preview({ componentData, componentContainer }: Props) {
   }
 
   return (
-    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
+    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
