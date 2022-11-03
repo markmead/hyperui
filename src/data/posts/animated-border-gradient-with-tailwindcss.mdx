@@ -6,9 +6,7 @@ emoji: 🪄
 tags: [css, tailwindcss]
 ---
 
-For the rename of "GetCandy" to "Lunar" we built a [landing page](https://lunarphp.io/) that features buttons/links with an animated gradient border hover effect... 🫠
-
-And, surprisingly, it was easy. Here's how I did it...
+Creating a nice animated border should be difficult and with Tailwind CSS... messy. However, here's the approach that I took which was easy and clean.
 
 ## Faking the Border
 
@@ -16,7 +14,7 @@ First, we need our interactive element, for this example, I'll use an `<a>` to h
 
 ```html
 <a href="#" class="inline-block bg-white p-0.5">
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
@@ -35,7 +33,7 @@ We apply the gradient to the interactive element with the fake border.
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5"
 >
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
@@ -50,7 +48,7 @@ We can take what we've done and add two more classes, one is a default Tailwind 
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 hover:bg-gradient-to-r"
 >
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 
@@ -99,7 +97,7 @@ The full example looks like this.
   href="#"
   class="animate-border inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 hover:bg-gradient-to-r"
 >
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
 </a>
 ```
 

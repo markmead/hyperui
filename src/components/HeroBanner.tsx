@@ -23,26 +23,6 @@ function HeroBanner({ children, subtitle, title }: Props) {
             {children}
           </p>
         )}
-
-        <div className="mt-8 sm:flex sm:items-center sm:justify-center sm:gap-2">
-          <p className="text-xs tracking-wide text-gray-500 uppercase">
-            Proudly supported by
-          </p>
-
-          {/* eslint-disable-next-line react/jsx-no-target-blank */}
-          <a
-            href="https://lunarphp.io/?ref=hyperui.dev"
-            rel="noopener"
-            target="_blank"
-            className="relative block w-24 h-8 mx-auto mt-4 sm:m-0"
-          >
-            <Image
-              alt="Lunar - Laravel eCommerce"
-              layout="fill"
-              src="/images/brands/lunar.svg"
-            />
-          </a>
-        </div>
       </div>
     </section>
   )
