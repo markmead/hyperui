@@ -6,10 +6,17 @@ import {
   getComponentsByCategory,
 } from '@/lib/getComponents'
 
+type ComponentItem = {
+  name: string
+  slug: string
+  count: number
+}
+
 type CategoryItem = {
   name: string
   slug: string
   count: number
+  components: Array<ComponentItem>
 }
 
 export default function handler(
@@ -29,11 +36,14 @@ export default function handler(
   ) {
     const foundCategory = getCategoryBySlug(`${categorySlug}`, ['title'])
 
-    return {
-      name: `${foundCategory.title}`,
-      slug: `${categorySlug}`,
+    const categoryItem: CategoryItem = {
+      name: foundCategory.title,
+      slug: categorySlug,
       count: 0,
-    }
+      components: [],
+    } as CategoryItem
+
+    return categoryItem
   })
 
   const componentsByCategory = categorySlugs.map(function (categorySlug) {
@@ -46,6 +56,7 @@ export default function handler(
       'title',
       'count',
       'category',
+      'slug',
     ])
 
     return {
@@ -58,6 +69,15 @@ export default function handler(
     const foundCategory = categoryItems.filter(
       (categoryItem: CategoryItem) => categoryItem.slug === categoryDetail.slug
     )[0]
+    categoryComponents.map(function (componentData) {
+      const componentItem: CategoryItem = {
+        name: componentData.title,
+        slug: componentData.slug,
+        count: componentData.count,
+      } as CategoryItem
+
+      foundCategory.components = [...foundCategory.components, componentItem]
+    })
 
     const categoryComponentCount = categoryComponents
       .map((categoryData) => categoryData.count)
