@@ -5,24 +5,30 @@
     class="h-[350px] w-full object-cover sm:h-[450px]"
   />
 
-  <div class="mt-1.5">
-    <p class="text-xs text-gray-500">Space Grey</p>
+  <div class="mt-3 space-y-3">
+    <div class="flex justify-between text-sm">
+      <h3
+        class="text-gray-900 group-hover:underline group-hover:underline-offset-4"
+      >
+        Small Headphones
+      </h3>
 
-    <div class="mt-1.5 flex gap-1">
+      <p class="text-gray-900">$299</p>
+    </div>
+
+    <div class="flex gap-1">
       <form>
         <fieldset>
           <legend class="sr-only">Color</legend>
         </fieldset>
 
-        <div
-          class="flex flex-wrap justify-center gap-1 [&:hover_label]:opacity-75"
-        >
+        <div class="flex flex-wrap justify-center gap-2">
           <div>
-            <input type="checkbox" id="ColorSg" class="sr-only" />
+            <input type="checkbox" id="ColorSg" class="sr-only" checked />
 
             <label
               for="ColorSg"
-              class="block h-4 w-4 cursor-pointer rounded-full bg-[#595759] transition hover:!opacity-100"
+              class="block h-4 w-4 cursor-pointer rounded-full bg-[#595759] ring-1 ring-gray-900 ring-offset-2 ring-offset-white transition"
             >
               <span class="sr-only"> Space Gray </span>
             </label>
@@ -33,7 +39,7 @@
 
             <label
               for="ColorS"
-              class="block h-4 w-4 cursor-pointer rounded-full bg-[#d2d3d4] transition hover:!opacity-100"
+              class="block h-4 w-4 cursor-pointer rounded-full bg-[#d2d3d4]"
             >
               <span class="sr-only"> Silver </span>
             </label>
@@ -44,7 +50,7 @@
 
             <label
               for="ColorP"
-              class="block h-4 w-4 cursor-pointer rounded-full bg-[#d89f97] transition hover:!opacity-100"
+              class="block h-4 w-4 cursor-pointer rounded-full bg-[#d89f97]"
             >
               <span class="sr-only"> Pink </span>
             </label>
@@ -55,7 +61,7 @@
 
             <label
               for="ColorG"
-              class="block h-4 w-4 cursor-pointer rounded-full bg-[#afbfab] transition hover:!opacity-100"
+              class="block h-4 w-4 cursor-pointer rounded-full bg-[#afbfab]"
             >
               <span class="sr-only"> Pink </span>
             </label>
@@ -66,23 +72,13 @@
 
             <label
               for="ColorSb"
-              class="block h-4 w-4 cursor-pointer rounded-full bg-[#91a5bb] transition hover:!opacity-100"
+              class="block h-4 w-4 cursor-pointer rounded-full bg-[#91a5bb]"
             >
               <span class="sr-only"> Pink </span>
             </label>
           </div>
         </div>
       </form>
-    </div>
-
-    <div class="flex justify-between mt-3 text-sm">
-      <h3
-        class="text-gray-900 group-hover:underline group-hover:underline-offset-4"
-      >
-        Small Headphones
-      </h3>
-
-      <p class="text-gray-900">$299</p>
     </div>
   </div>
 </a>
