@@ -1,61 +1,63 @@
-<!--
-  This component uses @tailwindcss/forms
+<footer
+  aria-label="Site Footer"
+  class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"
+>
+  <div class="max-w-screen-xl px-4 pt-16 pb-8 mx-auto sm:px-6 lg:px-8 lg:pt-24">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold text-white sm:text-5xl">
+        Customise Your Product
+      </h2>
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
+      <p class="max-w-sm mx-auto mt-4 text-white/90">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum maiores
+        ipsum eos temporibus ea nihil.
+      </p>
 
-  plugins: [require('@tailwindcss/forms')]
--->
-
-<footer aria-label="Site Footer" class="bg-white">
-  <div class="mx-auto max-w-screen-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-md">
-      <strong
-        class="block text-center text-xl font-medium text-gray-900 sm:text-3xl"
+      <a
+        href="#"
+        class="inline-block px-12 py-3 mt-8 text-sm font-medium text-white border border-white rounded-full hover:bg-white hover:text-pink-500 focus:outline-none focus:ring active:bg-white/90"
       >
-        Want us to email you with the latest blockbuster news?
-      </strong>
-
-      <form class="mt-6">
-        <div class="relative max-w-lg">
-          <label class="sr-only" for="email"> Email </label>
-
-          <input
-            class="w-full rounded-full border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium"
-            id="email"
-            type="email"
-            placeholder="john@doe.com"
-          />
-
-          <button
-            class="absolute top-1/2 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
-            type="button"
-          >
-            Subscribe
-          </button>
-        </div>
-      </form>
+        Get Started
+      </a>
     </div>
 
-    <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
-      <div class="mx-auto max-w-sm lg:max-w-none">
-        <p class="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium
-          natus quod eveniet aut perferendis distinctio iusto repudiandae,
-          provident velit earum?
-        </p>
+    <div
+      class="pt-8 mt-16 border-t border-white/10 sm:flex sm:items-center sm:justify-between lg:mt-24"
+    >
+      <nav aria-label="Footer Navigation - Support">
+        <ul class="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
+          <li>
+            <a href="#" class="text-white transition hover:opacity-75">
+              Terms & Conditions
+            </a>
+          </li>
 
-        <div class="mt-6 flex justify-center gap-4 lg:justify-start">
+          <li>
+            <a href="#" class="text-white transition hover:opacity-75">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="text-white transition hover:opacity-75">
+              Cookies
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <ul class="flex justify-center gap-6 mt-8 sm:mt-0 lg:justify-end">
+        <li>
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="text-white transition hover:opacity-75"
           >
-            <span class="sr-only"> Facebook </span>
+            <span class="sr-only">Facebook</span>
 
             <svg
-              class="h-6 w-6"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -67,17 +69,19 @@
               />
             </svg>
           </a>
+        </li>
 
+        <li>
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="text-white transition hover:opacity-75"
           >
-            <span class="sr-only"> Instagram </span>
+            <span class="sr-only">Instagram</span>
 
             <svg
-              class="h-6 w-6"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -89,17 +93,19 @@
               />
             </svg>
           </a>
+        </li>
 
+        <li>
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="text-white transition hover:opacity-75"
           >
-            <span class="sr-only"> Twitter </span>
+            <span class="sr-only">Twitter</span>
 
             <svg
-              class="h-6 w-6"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -109,17 +115,19 @@
               />
             </svg>
           </a>
+        </li>
 
+        <li>
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="text-white transition hover:opacity-75"
           >
-            <span class="sr-only"> GitHub </span>
+            <span class="sr-only">GitHub</span>
 
             <svg
-              class="h-6 w-6"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -131,17 +139,19 @@
               />
             </svg>
           </a>
+        </li>
 
+        <li>
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="text-white transition hover:opacity-75"
           >
-            <span class="sr-only"> Dribbble </span>
+            <span class="sr-only">Dribbble</span>
 
             <svg
-              class="h-6 w-6"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -153,98 +163,8 @@
               />
             </svg>
           </a>
-        </div>
-      </div>
-
-      <div
-        class="grid grid-cols-1 gap-8 text-center lg:grid-cols-3 lg:text-left"
-      >
-        <div>
-          <strong class="font-medium text-gray-900"> Services </strong>
-
-          <nav
-            aria-label="Footer Services Nav"
-            class="mt-6 flex flex-col space-y-1"
-          >
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Marketing
-            </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Graphic Design
-            </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              App Development
-            </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Web Development
-            </a>
-          </nav>
-        </div>
-
-        <div>
-          <strong class="font-medium text-gray-900"> About </strong>
-
-          <nav
-            aria-label="Footer About Nav"
-            class="mt-6 flex flex-col space-y-1"
-          >
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              About
-            </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Careers
-            </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              History
-            </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Our Team
-            </a>
-          </nav>
-        </div>
-
-        <div>
-          <strong class="font-medium text-gray-900"> Support </strong>
-
-          <nav
-            aria-label="Footer Support Nav"
-            class="mt-6 flex flex-col space-y-1"
-          >
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              FAQs
-            </a>
-
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Contact
-            </a>
-
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-              Live Chat
-            </a>
-          </nav>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-16 border-t border-gray-100 pt-8">
-      <p class="text-center text-xs leading-relaxed text-gray-500">
-        © Company 2022. All rights reserved.
-
-        <br />
-
-        Created with
-        <a
-          href=""
-          class="text-gray-700 underline transition hover:text-gray-700/75"
-          >Laravel</a
-        >
-        and
-        <a
-          href=""
-          class="text-gray-700 underline transition hover:text-gray-700/75"
-          >Laravel Livewire</a
-        >.
-      </p>
+        </li>
+      </ul>
     </div>
   </div>
 </footer>
