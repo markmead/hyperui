@@ -1,0 +1,31 @@
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<div x-data="{ productQuantity: 1 }">
+  <label for="Quantity" class="sr-only"> Quantity </label>
+
+  <div class="flex items-center gap-1">
+    <button
+      type="button"
+      x-on:click="productQuantity--"
+      :disabled="productQuantity === 0"
+      class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+    >
+      &minus;
+    </button>
+
+    <input
+      type="number"
+      id="Quantity"
+      x-model="productQuantity"
+      class="w-24 h-10 border-gray-200 rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+    />
+
+    <button
+      type="button"
+      x-on:click="productQuantity++"
+      class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+    >
+      &plus;
+    </button>
+  </div>
+</div>
