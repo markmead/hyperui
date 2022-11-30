@@ -7,19 +7,23 @@ seo:
   description: Product Collection components created with Tailwind CSS
 components:
   1:
-    title: Grid with Cards
+    title: Simple
+    variants:
+      1:
+        title: Centered Title
   2:
-    title: Split with Content, Call to Action and Grid
+    title: Sort & Layout
   3:
-    title: Slider with Pagination
+    title: Pagination
   4:
-    title: Slider with Progress Bar
+    title: Filtering (Dropdown)
   5:
-    title: Split with Filter and Grid
-  6:
-    title: Grid with Action
+    title: Filtering (Side)
 ---
 
 # Product Collection Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

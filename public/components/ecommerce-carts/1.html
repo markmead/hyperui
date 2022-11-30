@@ -1,96 +1,126 @@
 <div
-  class="block w-screen max-w-sm border border-stone-600 bg-stone-100 p-10 sm:px-12"
+  class="relative block w-screen max-w-sm p-8 pt-4 bg-gray-100 border border-gray-600"
   aria-modal="true"
-  aria-label="Item added to your cart"
   role="dialog"
   tabindex="-1"
 >
-  <div class="flex items-start justify-between">
-    <h2 class="flex items-center text-gray-700">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 13l4 4L19 7"
-        />
-      </svg>
+  <button
+    class="relative block ml-auto -mr-4 text-gray-600 transition hover:scale-110"
+  >
+    <span class="sr-only">Close cart</span>
 
-      <span class="ml-2 text-sm"> Item added to your cart </span>
-    </h2>
-
-    <button
-      class="-mt-6 -mr-6 transition-transform hover:scale-110 sm:-mr-8"
-      type="button"
-      aria-label="Close"
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-5 h-5"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+
+  <div class="mt-6 space-y-6">
+    <ul class="space-y-4">
+      <li class="flex items-center">
+        <img
+          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
+          alt=""
+          class="object-cover w-16 h-16 rounded"
         />
-      </svg>
-    </button>
-  </div>
 
-  <div class="flex items-start pt-8 pb-12">
-    <img
-      alt="Tee"
-      src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
-      class="h-16 w-16 rounded-lg object-cover"
-    />
+        <div class="ml-4">
+          <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
 
-    <div class="ml-4">
-      <h3 class="text-sm">Basic Tee 6-Pack</h3>
+          <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+            <div>
+              <dt class="inline">Size:</dt>
+              <dd class="inline">XXS</dd>
+            </div>
 
-      <dl class="mt-1 space-y-1 text-xs text-gray-500">
-        <div>
-          <dt class="inline">Size:</dt>
-          <dd class="inline">XXS</dd>
+            <div>
+              <dt class="inline">Color:</dt>
+              <dd class="inline">White</dd>
+            </div>
+          </dl>
         </div>
+      </li>
 
-        <div>
-          <dt class="inline">Color:</dt>
-          <dd class="inline">White</dd>
+      <li class="flex items-center">
+        <img
+          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
+          alt=""
+          class="object-cover w-16 h-16 rounded"
+        />
+
+        <div class="ml-4">
+          <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+
+          <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+            <div>
+              <dt class="inline">Size:</dt>
+              <dd class="inline">XXS</dd>
+            </div>
+
+            <div>
+              <dt class="inline">Color:</dt>
+              <dd class="inline">White</dd>
+            </div>
+          </dl>
         </div>
-      </dl>
+      </li>
+
+      <li class="flex items-center">
+        <img
+          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
+          alt=""
+          class="object-cover w-16 h-16 rounded"
+        />
+
+        <div class="ml-4">
+          <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+
+          <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+            <div>
+              <dt class="inline">Size:</dt>
+              <dd class="inline">XXS</dd>
+            </div>
+
+            <div>
+              <dt class="inline">Color:</dt>
+              <dd class="inline">White</dd>
+            </div>
+          </dl>
+        </div>
+      </li>
+    </ul>
+
+    <div class="space-y-4 text-center">
+      <a
+        href="#"
+        class="block px-5 py-3 text-sm text-gray-600 transition border border-gray-600 rounded hover:ring-1 hover:ring-gray-400"
+      >
+        View my cart (2)
+      </a>
+
+      <a
+        href="#"
+        class="block px-5 py-3 text-sm text-gray-100 transition bg-gray-700 rounded hover:bg-gray-600"
+      >
+        Checkout
+      </a>
+
+      <a
+        href="#"
+        class="inline-block text-sm text-gray-500 underline transition underline-offset-4 hover:text-gray-600"
+      >
+        Continue shopping
+      </a>
     </div>
-  </div>
-
-  <div class="space-y-4 text-center">
-    <a
-      href="#"
-      class="block rounded-lg border border-stone-600 p-3 text-sm text-stone-500 hover:text-stone-600 hover:ring-1 hover:ring-stone-400"
-    >
-      View my cart (2)
-    </a>
-
-    <a
-      href="#"
-      class="block w-full rounded-lg bg-stone-600 p-3 text-sm text-stone-100 hover:bg-stone-500"
-    >
-      Checkout
-    </a>
-
-    <a
-      href="#"
-      class="inline-block text-sm tracking-wide text-stone-500 underline underline-offset-4 hover:text-stone-600"
-    >
-      Continue shopping
-    </a>
   </div>
 </div>

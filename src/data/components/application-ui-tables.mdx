@@ -2,7 +2,7 @@
 title: Tables
 emoji: 🍽
 category: application-ui
-spacing: max-w-xl mx-auto p-8 dark:bg-gray-900
+container: max-w-xl mx-auto p-8 dark:bg-gray-900
 seo:
   title: Table Components
   description: Table components created with Tailwind CSS
@@ -40,7 +40,7 @@ components:
         title: Dark + Sticky Checkbox
   4:
     title: Data Table
-    spacing: max-w-5xl mx-auto p-8 dark:bg-gray-900
+    container: max-w-5xl mx-auto p-8 dark:bg-gray-900
     variants:
       1:
         title: Dark
@@ -52,4 +52,7 @@ components:
 
 # Table Components
 
-<List componentsData={componentsArray} componentSpacing={componentSpacing} />
+<List
+  componentsData={componentsArray}
+  componentContainer={componentContainer}
+/>

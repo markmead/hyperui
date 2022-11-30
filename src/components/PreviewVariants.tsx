@@ -1,5 +1,6 @@
-import { ComponentVariant } from '@/interface/component'
 import { useEffect, useState } from 'react'
+
+import { ComponentVariant } from '@/interface/component'
 
 type Props = {
   componentVariants: Array<ComponentVariant> | []

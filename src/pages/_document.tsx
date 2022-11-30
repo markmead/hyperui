@@ -21,6 +21,9 @@ export default function Document() {
           type="application/feed+atom"
           href="https://www.hyperui.dev/rss.atom"
         />
+
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       <body className="antialiased">
         <Main />

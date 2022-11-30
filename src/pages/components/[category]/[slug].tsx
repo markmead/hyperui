@@ -6,6 +6,7 @@ import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import { Component, ComponentVariant } from '@/interface/component'
+
 import { getComponentPaths } from '@/lib/getComponents'
 
 import List from '@/components/CollectionList'
@@ -17,14 +18,14 @@ const mdxComponents = {
 type CategoryData = {
   title: string
   emoji: string
-  spacing: string
+  container: string
   seo: {
     title: string
     description: string
   }
   components: {
     title: string
-    spacing?: string
+    container?: string
   }
 }
 
@@ -43,7 +44,7 @@ function Component({
 }: Props) {
   const {
     seo: componentSeo,
-    spacing: componentSpacing,
+    container: componentContainer,
     components: componentsData,
   } = componentFrontmatter
 
@@ -53,7 +54,7 @@ function Component({
       return {
         id: componentId,
         title: componentData.title,
-        spacing: componentData.spacing ?? '',
+        container: componentData.container ?? '',
         creator: componentData.creator ?? '',
         variants: componentData.variants
           ? Object.entries(componentData.variants).map(function ([
@@ -63,6 +64,7 @@ function Component({
               return {
                 id: variantId,
                 title: variantData.title,
+                container: variantData.container ?? '',
               }
             })
           : [],
@@ -72,24 +74,43 @@ function Component({
 
   const componentData = {
     componentSlug,
-    componentSpacing,
+    componentContainer,
     componentsArray,
   }
 
   return (
     <>
       <Head>
-        <title>Free Tailwind CSS {componentSeo.title} | HyperUI</title>
-
+        <title>Tailwind CSS {componentSeo.title} | HyperUI</title>
         <meta
           name="description"
-          key="description"
           content={componentSeo.description}
+          key="description"
+        />
+        <meta
+          property="og:title"
+          content={`Tailwind CSS ${componentSeo.title} | HyperUI`}
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content={componentSeo.description}
+          key="og:description"
+        />
+        <meta
+          name="twitter:title"
+          content={`Tailwind CSS ${componentSeo.title} | HyperUI`}
+          key="twitter:title"
+        />
+        <meta
+          name="twitter:description"
+          content={componentSeo.description}
+          key="twitter:description"
         />
       </Head>
 
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-12 lg:pt-24">
+        <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
           <div className="prose max-w-none">
             <MDXRemote
               {...componentSource}

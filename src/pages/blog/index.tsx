@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-import { getBlogs } from '@/lib/getBlogs'
-
 import { BlogCard } from '@/interface/blog'
+
+import { getBlogs } from '@/lib/getBlogs'
 
 import Banner from '@/components/HeroBanner'
 import Card from '@/components/BlogCard'
@@ -32,7 +32,7 @@ function BlogIndex({ blogPosts }: Props) {
         write cleaner, more maintainable code and help you be more productive.
       </Banner>
 
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {blogPosts.map((blogPost: BlogCard) => (
             <li key={blogPost.slug}>

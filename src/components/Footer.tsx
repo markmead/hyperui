@@ -5,7 +5,7 @@ import Twitter from '@/components/BrandTwitter'
 function Footer() {
   return (
     <footer className="border-t border-gray-100">
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <div>
           <Logo fontSize="text-lg" />
 
@@ -16,7 +16,7 @@ function Footer() {
                 eCommerce websites, as well as application UI.
               </p>
 
-              <div className="mt-4 flex gap-4">
+              <div className="flex gap-4 mt-4">
                 <Twitter />
 
                 <GitHub />

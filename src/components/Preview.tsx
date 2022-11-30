@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
+
 import { useRouter } from 'next/router'
 
 import Prism from 'prismjs'
 
 import { useInView } from 'react-intersection-observer'
 
+import { Component } from '@/interface/component'
+
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
-
-import { Component } from '@/interface/component'
 
 import Breakpoint from '@/components/PreviewBreakpoint'
 import DarkToggle from '@/components/PreviewDark'
@@ -27,10 +28,10 @@ type ComponentData = Component & {
 
 type Props = {
   componentData: ComponentData
-  componentSpacing: string
+  componentContainer: string
 }
 
-function Preview({ componentData, componentSpacing }: Props) {
+function Preview({ componentData, componentContainer }: Props) {
   const nextRouter = useRouter()
   const refIframe = useRef(null)
 
@@ -51,7 +52,7 @@ function Preview({ componentData, componentSpacing }: Props) {
   const {
     id: componentId,
     title: componentTitle,
-    spacing: componentSpace,
+    container: componentSpace,
     creator: componentCreator,
     variants: componentVariants,
   } = componentData
@@ -59,9 +60,9 @@ function Preview({ componentData, componentSpacing }: Props) {
   const { query: routerQuery } = nextRouter
   const { category: componentCategory, slug: componentSlug } = routerQuery
 
-  const trueComponentSpacing: string = componentSpace
+  let trueComponentContainer: string = componentSpace
     ? componentSpace
-    : componentSpacing
+    : componentContainer
 
   const componentHash = `component-${componentId}`
 
@@ -78,6 +79,8 @@ function Preview({ componentData, componentSpacing }: Props) {
   useEffect(() => {
     setIsDarkMode(false)
     setIsLoading(true)
+
+    handleComponentContainer()
 
     fetchHtml()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,7 +109,9 @@ function Preview({ componentData, componentSpacing }: Props) {
     const textResponse = await fetchResponse.text()
 
     setComponentCode(textResponse)
-    setComponentHtml(transformComponentHtml(textResponse, trueComponentSpacing))
+    setComponentHtml(
+      transformComponentHtml(textResponse, trueComponentContainer)
+    )
 
     simulateFakeLoading()
 
@@ -122,8 +127,27 @@ function Preview({ componentData, componentSpacing }: Props) {
     }, randomDuration)
   }
 
+  function handleComponentContainer() {
+    if (!componentVariants) {
+      return
+    }
+
+    if (selectedVariant === 'base') {
+      trueComponentContainer = componentSpace
+        ? componentSpace
+        : componentContainer
+    }
+
+    const variantIndex = Number(selectedVariant) - 1
+    const variantContainer = componentVariants[variantIndex]?.container
+
+    if (variantContainer) {
+      trueComponentContainer = variantContainer
+    }
+  }
+
   return (
-    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
+    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
