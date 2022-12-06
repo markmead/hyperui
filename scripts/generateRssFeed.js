@@ -38,10 +38,6 @@ async function generateRssFeed() {
 
       const postSlug = name.replace(/\.mdx?/, '')
 
-      const convertedPostTags = postData.tags.map((postTag) => ({
-        name: postTag,
-      }))
-
       rssFeed.addItem({
         title: postData.title,
         id: postSlug,
@@ -55,7 +51,6 @@ async function generateRssFeed() {
           },
         ],
         date: new Date(postData.date),
-        category: convertedPostTags,
       })
     })
   )

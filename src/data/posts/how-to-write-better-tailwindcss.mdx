@@ -3,7 +3,6 @@ title: Tips & Tricks for Writing Better Tailwind CSS
 description: I've been writing Tailwind CSS for since 2018 and have come across a few tips and tricks to make your code look and perform better.
 date: 04/15/2022
 emoji: 🧐
-tags: [css, tailwindcss]
 ---
 
 Writing Tailwind CSS? Here are some tips and tricks that I apply when using Tailwind CSS to make my code look and perform better.
@@ -16,9 +15,9 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ```html
 <ul>
-  <li class="whitespace-nowrap text-sm font-medium">First</li>
-  <li class="whitespace-nowrap text-sm font-medium">Second</li>
-  <li class="whitespace-nowrap text-sm font-medium">Third</li>
+  <li class="text-sm font-medium whitespace-nowrap">First</li>
+  <li class="text-sm font-medium whitespace-nowrap">Second</li>
+  <li class="text-sm font-medium whitespace-nowrap">Third</li>
 </ul>
 ```
 
@@ -144,13 +143,13 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 ### Incorrect
 
 ```html
-<button class="bg-red-500 transition-all hover:bg-red-600">Click</button>
+<button class="transition-all bg-red-500 hover:bg-red-600">Click</button>
 ```
 
 ### Correct
 
 ```html
-<button class="bg-red-500 transition-colors hover:bg-red-600">Click</button>
+<button class="transition-colors bg-red-500 hover:bg-red-600">Click</button>
 ```
 
 > But the class name is longer?
@@ -265,7 +264,7 @@ And for the CSS...
 ### Correct
 
 ```html
-<div class="rounded p-4">
+<div class="p-4 rounded">
   <div class="text-lg">Title</div>
   <div class="mt-1">Title</div>
   <div class="flex items-center justify-between">
