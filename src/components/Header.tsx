@@ -20,23 +20,23 @@ function Header() {
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
       <div className="max-w-screen-xl px-4 mx-auto">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between h-16 gap-8">
+          <div className="flex items-center flex-1 gap-4">
             <Logo fontSize="text-sm" />
 
             <span
               aria-hidden="true"
-              className="hidden sm:block sm:h-6 sm:w-px sm:bg-gray-100"
+              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
             ></span>
 
             <MenuLinks
               menuLinks={menuLinks}
-              navClass="hidden sm:block"
+              navClass="hidden lg:block lg:flex-1"
               ulClass="gap-4 flex"
             />
           </div>
 
-          <div className="flex items-center justify-end flex-1 gap-4">
+          <div className="flex items-center justify-end gap-4">
             <Search />
 
             <div className="flex gap-4">

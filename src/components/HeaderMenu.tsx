@@ -10,7 +10,7 @@ type Props = {
 
 function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }: Props) {
   return (
-    <div className="flex items-center sm:hidden">
+    <div className="flex items-center lg:hidden">
       <button
         onClick={() => handleSetShowMenu(!showMenu)}
         className="inline-flex items-center gap-1.5"
