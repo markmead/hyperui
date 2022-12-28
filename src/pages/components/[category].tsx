@@ -16,6 +16,7 @@ type Props = {
     title: string
     subtitle: string
     description: string
+    emoji: string
   }
   categoryComponents: Array<ComponentCard>
 }
