@@ -12,7 +12,7 @@ function ComponentLinks() {
   const [showLinks, setShowLinks] = useState(true)
 
   useEffect(() => {
-    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') ?? '') ?? true)
+    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'true'))
 
     fetch('/api/search')
       .then((result) => result.json())
