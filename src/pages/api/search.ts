@@ -20,6 +20,7 @@ export default function handler(
     const categoryDetail = getCategoryBySlug(`${categorySlug}`, [
       'title',
       'slug',
+      'emoji',
     ])
 
     const categoryComponents = getComponentsByCategory(`${categorySlug}`, [
@@ -49,6 +50,7 @@ export default function handler(
         category: {
           slug: categoryDetail.slug,
           title: categoryDetail.title,
+          emoji: categoryDetail.emoji,
         },
         id: componentSlug,
       }
