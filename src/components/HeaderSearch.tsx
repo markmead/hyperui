@@ -106,7 +106,7 @@ function HeaderSearch() {
       </form>
 
       {showDropdown && (
-        <div className="absolute right-0 w-64 mt-2 bg-white border-2 border-gray-100 rounded-lg top-full">
+        <div className="absolute right-0 z-50 w-64 mt-2 bg-white border border-gray-100 rounded-lg shadow-lg top-full">
           {!!searchResults.length ? (
             <ul className="p-2 space-y-1 overflow-auto max-h-64">
               {searchResults.map((searchResult: SearchResult) => (

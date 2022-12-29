@@ -39,81 +39,83 @@ function ComponentLinks() {
   }
 
   return (
-    <div className="relative">
+    <>
       {showLinks && (
-        <div className="space-y-4">
-          <button
-            className={styles.pill}
-            onClick={() => setDropdownLinks(!dropdownLinks)}
-          >
-            <span aria-hidden="true" className="text-sm" role="img">
-              {dropdownLinks ? '🙈' : '🙉'}
-            </span>
+        <div className="relative">
+          <div className="space-y-4">
+            <button
+              className={styles.pill}
+              onClick={() => setDropdownLinks(!dropdownLinks)}
+            >
+              <span aria-hidden="true" className="text-sm" role="img">
+                {dropdownLinks ? '🙈' : '🙉'}
+              </span>
 
-            <span className="text-xs font-medium">
-              {dropdownLinks ? 'Hide' : 'Show'} Links
-            </span>
-          </button>
+              <span className="text-xs font-medium">
+                {dropdownLinks ? 'Hide' : 'Show'} Links
+              </span>
+            </button>
 
-          {dropdownLinks && (
-            <div className="absolute z-50 overflow-hidden bg-white border-2 border-gray-100 rounded-lg top-full sm:relative sm:rounded-none sm:border-none">
-              {!!categoriesData.length && (
-                <div className="sticky inset-x-0 top-0 bg-white border-b-2 border-gray-100 sm:relative sm:border-none">
-                  <ul className="flex gap-4 p-2 sm:p-0">
-                    {categoriesData.map(
-                      (categoryData: SearchResultCategory) => (
-                        <li
-                          key={categoryData.slug}
-                          className="inline-flex items-center gap-1.5"
+            {dropdownLinks && (
+              <div className="absolute z-40 overflow-hidden bg-white border border-gray-100 rounded-lg shadow-lg top-full md:relative md:rounded-none md:border-none md:shadow-none">
+                {!!categoriesData.length && (
+                  <div className="sticky inset-x-0 top-0 bg-white border-b border-gray-100 md:relative md:border-none">
+                    <ul className="flex gap-4 p-2 md:p-0">
+                      {categoriesData.map(
+                        (categoryData: SearchResultCategory) => (
+                          <li
+                            key={categoryData.slug}
+                            className="inline-flex items-center gap-1.5"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="text-sm"
+                              role="img"
+                            >
+                              {categoryData.emoji}
+                            </span>
+
+                            <span className="text-xs font-medium">
+                              = {categoryData.title}
+                            </span>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+
+                {!!componentLinks.length && (
+                  <ul className="flex flex-wrap gap-1 p-2 mt-0 overflow-auto max-h-64 md:mt-4 md:max-h-full md:p-0">
+                    {componentLinks.map((componentLink: SearchResult) => (
+                      <li key={componentLink.id}>
+                        <Link
+                          href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
                         >
-                          <span
-                            aria-hidden="true"
-                            className="text-sm"
-                            role="img"
-                          >
-                            {categoryData.emoji}
-                          </span>
+                          <a className={styles.pill}>
+                            <span
+                              aria-hidden="true"
+                              className="text-sm"
+                              role="img"
+                            >
+                              {componentLink.category.emoji}
+                            </span>
 
-                          <span className="text-xs font-medium">
-                            = {categoryData.title}
-                          </span>
-                        </li>
-                      )
-                    )}
+                            <span className="text-xs font-medium">
+                              {componentLink.name}
+                            </span>
+                          </a>
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
-                </div>
-              )}
-
-              {!!componentLinks.length && (
-                <ul className="flex flex-wrap gap-1 p-2 mt-0 overflow-auto max-h-64 sm:mt-4 sm:max-h-full sm:p-0">
-                  {componentLinks.map((componentLink: SearchResult) => (
-                    <li key={componentLink.id}>
-                      <Link
-                        href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
-                      >
-                        <a className={styles.pill}>
-                          <span
-                            aria-hidden="true"
-                            className="text-sm"
-                            role="img"
-                          >
-                            {componentLink.category.emoji}
-                          </span>
-
-                          <span className="text-xs font-medium">
-                            {componentLink.name}
-                          </span>
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          )}
+                )}
+              </div>
+            )}
+          </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 
