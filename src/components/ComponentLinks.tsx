@@ -17,22 +17,20 @@ function ComponentLinks() {
     fetch('/api/search')
       .then((result) => result.json())
       .then((data) => {
-        setCategoriesData(
-          data
-            .map((searchResult: SearchResult) => searchResult.category)
-            .filter(
-              (
-                resultA: SearchResultCategory,
-                arrayIndex: number,
-                componentArray: Array<SearchResultCategory>
-              ) =>
-                componentArray.findIndex(
-                  (resultB: SearchResultCategory) =>
-                    resultB.slug === resultA.slug
-                ) === arrayIndex
-            )
-        )
+        const categoriesData = data
+          .map((searchResult: SearchResult) => searchResult.category)
+          .filter(
+            (
+              resultA: SearchResultCategory,
+              arrayIndex: number,
+              componentArray: Array<SearchResultCategory>
+            ) =>
+              componentArray.findIndex(
+                (resultB: SearchResultCategory) => resultB.slug === resultA.slug
+              ) === arrayIndex
+          )
 
+        setCategoriesData(categoriesData)
         setComponentLinks(data)
       })
   }, [])
@@ -53,44 +51,48 @@ function ComponentLinks() {
 
   return (
     <>
-      {showLinks && componentLinks.length && (
+      {!!showLinks && (
         <div className="space-y-4">
-          <ul className="flex gap-4">
-            {categoriesData.map((categoryData: SearchResultCategory) => (
-              <li
-                key={categoryData.slug}
-                className="inline-flex items-center gap-1.5"
-              >
-                <span aria-hidden="true" className="text-sm" role="img">
-                  {categoryData.emoji}
-                </span>
-
-                <span className="text-xs font-medium">
-                  = {categoryData.title}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <ul className="flex flex-wrap gap-1">
-            {componentLinks.map((componentLink: SearchResult) => (
-              <li key={componentLink.id}>
-                <Link
-                  href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
+          {categoriesData.length && (
+            <ul className="flex gap-4">
+              {categoriesData.map((categoryData: SearchResultCategory) => (
+                <li
+                  key={categoryData.slug}
+                  className="inline-flex items-center gap-1.5"
                 >
-                  <a className={styles.pill}>
-                    <span aria-hidden="true" className="text-sm" role="img">
-                      {componentLink.category.emoji}
-                    </span>
+                  <span aria-hidden="true" className="text-sm" role="img">
+                    {categoryData.emoji}
+                  </span>
 
-                    <span className="text-xs font-medium">
-                      {componentLink.name}
-                    </span>
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  <span className="text-xs font-medium">
+                    = {categoryData.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {componentLinks.length && (
+            <ul className="flex flex-wrap gap-1">
+              {componentLinks.map((componentLink: SearchResult) => (
+                <li key={componentLink.id}>
+                  <Link
+                    href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
+                  >
+                    <a className={styles.pill}>
+                      <span aria-hidden="true" className="text-sm" role="img">
+                        {componentLink.category.emoji}
+                      </span>
+
+                      <span className="text-xs font-medium">
+                        {componentLink.name}
+                      </span>
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </>
