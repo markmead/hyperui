@@ -86,7 +86,7 @@ function ComponentLinks() {
                 )}
 
                 {!!componentLinks.length && (
-                  <ul className="flex flex-wrap gap-1 p-2 mt-0 overflow-auto max-h-48 sm:max-h-64 md:mt-4 md:max-h-full md:p-0">
+                  <ul className="flex flex-wrap gap-1 p-2 mt-0 overflow-auto max-h-56 sm:max-h-64 md:mt-4 md:max-h-full md:p-0">
                     {componentLinks.map((componentLink: SearchResult) => (
                       <li key={componentLink.id}>
                         <Link
