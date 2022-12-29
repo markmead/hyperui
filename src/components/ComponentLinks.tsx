@@ -40,7 +40,7 @@ function ComponentLinks() {
   return (
     <>
       {showLinks && (
-        <div className="hidden sm:block">
+        <div className="hidden md:block">
           {!!categoriesData.length && (
             <div>
               <ul className="flex gap-4">

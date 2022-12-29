@@ -49,10 +49,10 @@ function HeaderSettings() {
   }
 
   return (
-    <div ref={refDropdown} className="relative">
+    <div ref={refDropdown} className="flex">
       <button
         onClick={() => setShowDropdown(!showDropdown)}
-        className="inline-flex h-[38px] items-center gap-1.5"
+        className="inline-flex items-center gap-1.5"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ function HeaderSettings() {
       </button>
 
       {showDropdown && (
-        <div className="absolute right-0 z-50 mt-2 bg-white border border-gray-100 rounded-lg shadow-lg top-full w-80 sm:w-96">
+        <div className="absolute right-0 z-50 max-w-sm bg-white border border-gray-100 rounded-lg shadow-lg top-14">
           <div className="flow-root">
             <ul className="overflow-auto divide-y divide-gray-100 -p-4 max-h-64">
               <li className="p-4">

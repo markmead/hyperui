@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 function ComponentLinksToggle() {
-  const [showLinks, setShowLinks] = useState<boolean | null>(false)
+  const [showLinks, setShowLinks] = useState<boolean>(false)
 
   useEffect(() => {
     setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'false'))

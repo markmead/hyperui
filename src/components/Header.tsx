@@ -21,7 +21,7 @@ function Header() {
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
       <div className="max-w-screen-xl px-4 mx-auto">
-        <div className="flex items-center justify-between h-16 gap-8">
+        <div className="relative flex items-center justify-between h-16 gap-8">
           <div className="flex items-center flex-1 gap-4">
             <Logo fontSize="text-sm" />
 
