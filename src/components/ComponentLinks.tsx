@@ -9,7 +9,7 @@ import { SearchResult, SearchResultCategory } from '@/interface/search'
 function ComponentLinks() {
   const [componentLinks, setComponentLinks] = useState([])
   const [categoriesData, setCategoriesData] = useState([])
-  const [showLinks, setShowLinks] = useState(true)
+  const [showLinks, setShowLinks] = useState(false)
   const [dropdownLinks, setDropdownLinks] = useState(false)
 
   useEffect(() => {
