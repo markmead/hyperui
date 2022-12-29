@@ -49,7 +49,7 @@ function HeaderSettings() {
   }
 
   return (
-    <div ref={refDropdown} className="relative flex">
+    <div ref={refDropdown} className="relative">
       <button
         onClick={() => setShowDropdown(!showDropdown)}
         className="inline-flex h-[38px] items-center gap-1.5"

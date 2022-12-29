@@ -52,9 +52,14 @@ function Header() {
               menuLinks={menuLinks}
             />
 
-            <span aria-hidden="true" className="w-px h-6 bg-gray-100"></span>
+            <span
+              aria-hidden="true"
+              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
+            ></span>
 
-            <Settings />
+            <div className="hidden md:block">
+              <Settings />
+            </div>
           </div>
         </div>
       </div>
