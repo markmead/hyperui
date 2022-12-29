@@ -4,7 +4,7 @@ function ComponentLinksToggle() {
   const [showLinks, setShowLinks] = useState(false)
 
   useEffect(() => {
-    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'true'))
+    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'false'))
   }, [])
 
   useEffect(() => {
