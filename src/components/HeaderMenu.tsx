@@ -36,7 +36,7 @@ function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }: Props) {
       {showMenu && (
         <MenuLinks
           menuLinks={menuLinks}
-          navClass="absolute inset-x-0 p-4 top-[calc(4rem_+_2px)] bg-white border-b-2 border-gray-100"
+          navClass="absolute inset-x-0 p-4 top-14 bg-white border border-gray-100 shadow-lg rounded-lg"
           ulClass="space-y-4"
         />
       )}

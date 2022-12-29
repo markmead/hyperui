@@ -84,7 +84,10 @@ function HeaderSearch() {
   }
 
   return (
-    <div ref={refDropdown} className="hidden sm:relative sm:block">
+    <div
+      ref={refDropdown}
+      className="hidden sm:relative sm:flex sm:h-16 sm:items-center"
+    >
       <form role="search">
         <label htmlFor="SiteSearch" className="sr-only">
           Search
@@ -106,7 +109,7 @@ function HeaderSearch() {
       </form>
 
       {showDropdown && (
-        <div className="absolute right-0 z-50 w-64 mt-2 bg-white border border-gray-100 rounded-lg shadow-lg top-full">
+        <div className="absolute right-0 z-50 w-64 bg-white border border-gray-100 rounded-lg shadow-lg top-14">
           {!!searchResults.length ? (
             <ul className="p-2 space-y-1 overflow-auto max-h-64">
               {searchResults.map((searchResult: SearchResult) => (

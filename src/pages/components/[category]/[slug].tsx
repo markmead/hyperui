@@ -123,8 +123,6 @@ function Component({
             />
           </div>
         </div>
-
-        <ComponentLinksToggle />
       </section>
     </>
   )

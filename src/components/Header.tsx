@@ -10,6 +10,7 @@ import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
 import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
+import Settings from '@/components/HeaderSettings'
 
 function Header() {
   const nextRouter = useRouter()
@@ -20,7 +21,7 @@ function Header() {
   return (
     <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
       <div className="max-w-screen-xl px-4 mx-auto">
-        <div className="flex items-center justify-between h-16 gap-8">
+        <div className="relative flex items-center justify-between h-16 gap-8">
           <div className="flex items-center flex-1 gap-4">
             <Logo fontSize="text-sm" />
 
@@ -50,6 +51,15 @@ function Header() {
               handleSetShowMenu={setShowMenu}
               menuLinks={menuLinks}
             />
+
+            <span
+              aria-hidden="true"
+              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
+            ></span>
+
+            <div className="hidden md:block">
+              <Settings />
+            </div>
           </div>
         </div>
       </div>
