@@ -13,7 +13,7 @@ function ComponentLinks() {
   const [dropdownLinks, setDropdownLinks] = useState(false)
 
   useEffect(() => {
-    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'true'))
+    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'false'))
 
     fetch('/api/search')
       .then((result) => result.json())
