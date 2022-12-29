@@ -107,7 +107,7 @@ function HeaderSearch() {
 
       {showDropdown && (
         <div className="absolute right-0 w-64 mt-2 bg-white border-2 border-gray-100 rounded-lg top-full">
-          {searchResults.length > 0 ? (
+          {!!searchResults.length ? (
             <ul className="p-2 space-y-1 overflow-auto max-h-64">
               {searchResults.map((searchResult: SearchResult) => (
                 <li key={searchResult.id}>

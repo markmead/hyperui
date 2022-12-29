@@ -39,9 +39,9 @@ function ComponentLinks() {
 
   return (
     <>
-      {!!showLinks && (
+      {showLinks && (
         <div className="space-y-4">
-          {categoriesData.length && (
+          {!!categoriesData.length && (
             <ul className="flex gap-4">
               {categoriesData.map((categoryData: SearchResultCategory) => (
                 <li
@@ -60,7 +60,7 @@ function ComponentLinks() {
             </ul>
           )}
 
-          {componentLinks.length && (
+          {!!componentLinks.length && (
             <ul className="flex flex-wrap gap-1">
               {componentLinks.map((componentLink: SearchResult) => (
                 <li key={componentLink.id}>
