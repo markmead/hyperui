@@ -16,23 +16,11 @@ function ComponentLinks() {
 
     fetch('/api/search')
       .then((result) => result.json())
-      .then((data) => {
-        const categoriesData = data
-          .map((searchResult: SearchResult) => searchResult.category)
-          .filter(
-            (
-              resultA: SearchResultCategory,
-              arrayIndex: number,
-              componentArray: Array<SearchResultCategory>
-            ) =>
-              componentArray.findIndex(
-                (resultB: SearchResultCategory) => resultB.slug === resultA.slug
-              ) === arrayIndex
-          )
+      .then((data) => setComponentLinks(data))
 
-        setCategoriesData(categoriesData)
-        setComponentLinks(data)
-      })
+    fetch('/api/categories')
+      .then((result) => result.json())
+      .then((data) => setCategoriesData(data))
   }, [])
 
   useEffect(() => {
