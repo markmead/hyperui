@@ -34,8 +34,8 @@ function ComponentLinks() {
     }
   }, [])
 
-  function toggleComponents(event: CustomEvent) {
-    setShowLinks(event.detail.show)
+  function toggleComponents(e: CustomEvent) {
+    setShowLinks(e.detail.show)
 
     if (showLinks && window.innerWidth >= 768) {
       setDropdownLinks(true)
