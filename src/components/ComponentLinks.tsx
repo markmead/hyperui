@@ -54,7 +54,7 @@ function ComponentLinks() {
   return (
     <>
       {showLinks && componentLinks.length && (
-        <div className="hidden lg:block">
+        <div className="space-y-4">
           <ul className="flex gap-4">
             {categoriesData.map((categoryData: SearchResultCategory) => (
               <li
@@ -72,7 +72,7 @@ function ComponentLinks() {
             ))}
           </ul>
 
-          <ul className="flex flex-wrap gap-1 mt-4">
+          <ul className="flex flex-wrap gap-1">
             {componentLinks.map((componentLink: SearchResult) => (
               <li key={componentLink.id}>
                 <Link
