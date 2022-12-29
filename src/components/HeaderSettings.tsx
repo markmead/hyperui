@@ -15,16 +15,16 @@ function HeaderSettings() {
   }, [nextRouter.asPath])
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutsideSearch)
-    document.addEventListener('keydown', handleEscapeSearch)
+    document.addEventListener('click', handleClickOutsideSettings)
+    document.addEventListener('keydown', handleEscapeSettings)
 
     return () => {
-      document.removeEventListener('click', handleClickOutsideSearch)
-      document.removeEventListener('keydown', handleEscapeSearch)
+      document.removeEventListener('click', handleClickOutsideSettings)
+      document.removeEventListener('keydown', handleEscapeSettings)
     }
   })
 
-  function handleClickOutsideSearch(e: Event) {
+  function handleClickOutsideSettings(e: Event) {
     const dropdownEl = refDropdown.current as HTMLDivElement | null
     const clickEl = e.target as HTMLElement
 
@@ -33,7 +33,7 @@ function HeaderSettings() {
     }
   }
 
-  function handleEscapeSearch(e: KeyboardEvent) {
+  function handleEscapeSettings(e: KeyboardEvent) {
     if (!showDropdown) {
       return
     }
