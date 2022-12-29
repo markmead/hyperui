@@ -69,13 +69,13 @@ function ComponentLinks() {
                           >
                             <span
                               aria-hidden="true"
-                              className="text-sm"
+                              className="text-xs sm:text-sm"
                               role="img"
                             >
                               {categoryData.emoji}
                             </span>
 
-                            <span className="text-xs font-medium">
+                            <span className="text-[10px] font-medium sm:text-xs">
                               = {categoryData.title}
                             </span>
                           </li>
@@ -86,7 +86,7 @@ function ComponentLinks() {
                 )}
 
                 {!!componentLinks.length && (
-                  <ul className="flex flex-wrap gap-1 p-2 mt-0 overflow-auto max-h-64 md:mt-4 md:max-h-full md:p-0">
+                  <ul className="flex flex-wrap gap-1 p-2 mt-0 overflow-auto max-h-48 sm:max-h-64 md:mt-4 md:max-h-full md:p-0">
                     {componentLinks.map((componentLink: SearchResult) => (
                       <li key={componentLink.id}>
                         <Link
@@ -95,13 +95,13 @@ function ComponentLinks() {
                           <a className={styles.pill}>
                             <span
                               aria-hidden="true"
-                              className="text-sm"
+                              className="text-xs sm:text-sm"
                               role="img"
                             >
                               {componentLink.category.emoji}
                             </span>
 
-                            <span className="text-xs font-medium">
+                            <span className="text-[10px] font-medium sm:text-xs">
                               {componentLink.name}
                             </span>
                           </a>

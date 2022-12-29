@@ -35,6 +35,8 @@ function ComponentLinksToggle() {
             htmlFor="ShowLinks"
             className="relative w-12 cursor-pointer h-7 shrink-0"
           >
+            <span className="sr-only">Show Component Links</span>
+
             <input
               type="checkbox"
               id="ShowLinks"
