@@ -112,7 +112,7 @@ function Component({
       </Head>
 
       <section>
-        <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-12 lg:pt-24">
+        <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 lg:pt-24">
           <ComponentLinks />
 
           <div className="prose max-w-none">

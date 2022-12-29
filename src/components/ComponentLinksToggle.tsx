@@ -19,44 +19,46 @@ function ComponentLinksToggle() {
   }, [showLinks])
 
   return (
-    <div className="fixed z-50 p-4 bg-white border border-gray-100 rounded-lg shadow-sm bottom-4 right-4 sm:max-w-sm">
-      <form>
-        <div className="flex items-center gap-4">
-          <p className="text-xs font-medium">
-            Show component links on this page?
-          </p>
+    <div className="fixed inset-x-0 bottom-0 z-50 p-2">
+      <div className="max-w-sm p-4 ml-auto bg-white border border-gray-100 rounded-lg shadow-sm">
+        <form>
+          <div className="flex items-center gap-4">
+            <p className="text-xs font-medium">
+              Show component links on this page?
+            </p>
 
-          <label
-            htmlFor="ShowLinks"
-            className="relative h-8 cursor-pointer w-14"
+            <label
+              htmlFor="ShowLinks"
+              className="relative h-8 cursor-pointer w-14"
+            >
+              <input
+                type="checkbox"
+                id="ShowLinks"
+                className="sr-only peer"
+                checked={showLinks}
+                onChange={() => setShowLinks(!showLinks)}
+              />
+
+              <span className="absolute inset-0 transition bg-gray-300 rounded-full peer-checked:bg-green-500"></span>
+
+              <span className="absolute inset-0 w-6 h-6 m-1 transition bg-white rounded-full peer-checked:translate-x-6"></span>
+            </label>
+          </div>
+        </form>
+
+        <p className="mt-4 text-xs font-medium text-gray-700">
+          This is an experimental feature, have your say on{' '}
+          <a
+            href="https://github.com/markmead/hyperui/pull/229"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block text-black underline"
           >
-            <input
-              type="checkbox"
-              id="ShowLinks"
-              className="sr-only peer"
-              checked={showLinks}
-              onChange={() => setShowLinks(!showLinks)}
-            />
-
-            <span className="absolute inset-0 transition bg-gray-300 rounded-full peer-checked:bg-green-500"></span>
-
-            <span className="absolute inset-0 w-6 h-6 m-1 transition bg-white rounded-full peer-checked:translate-x-6"></span>
-          </label>
-        </div>
-      </form>
-
-      <p className="mt-4 text-xs font-medium text-gray-700">
-        This is an experimental feature, have your say on{' '}
-        <a
-          href=""
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block text-black underline"
-        >
-          GitHub
-        </a>
-        .
-      </p>
+            GitHub
+          </a>
+          .
+        </p>
+      </div>
     </div>
   )
 }
