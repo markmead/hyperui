@@ -124,7 +124,7 @@ function Component({
           </div>
         </div>
 
-        <ComponentLinksToggle />
+        {/* <ComponentLinksToggle /> */}
       </section>
     </>
   )

@@ -19,52 +19,49 @@ function ComponentLinksToggle() {
   }, [showLinks])
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 p-2">
-      <div className="max-w-sm p-4 ml-auto space-y-4 overflow-hidden bg-white border border-gray-100 rounded-lg shadow-lg">
-        <div className="flex items-start gap-4">
-          <div>
-            <p className="text-sm font-medium">Show Component Links</p>
+    <>
+      <div className="flex items-start gap-4">
+        <div>
+          <p className="text-sm font-medium">Show Component Links</p>
 
-            <p className="mt-1 text-xs text-gray-700">
-              Enabling this will show all the component links on this page for
-              quick navigation between pages.
-            </p>
-          </div>
-
-          <label
-            htmlFor="ShowLinks"
-            className="relative w-12 cursor-pointer h-7 shrink-0"
-          >
-            <span className="sr-only">Show Component Links</span>
-
-            <input
-              type="checkbox"
-              id="ShowLinks"
-              className="sr-only peer"
-              checked={showLinks}
-              onChange={() => setShowLinks(!showLinks)}
-            />
-
-            <span className="absolute inset-0 transition bg-gray-300 rounded-full peer-checked:bg-green-500"></span>
-
-            <span className="absolute inset-0 w-5 h-5 m-1 transition bg-white rounded-full peer-checked:translate-x-5"></span>
-          </label>
+          <p className="mt-1 text-xs text-gray-700">
+            Enabling this will show all component links on the component pages.
+          </p>
         </div>
 
-        <p className="text-xs font-medium text-gray-700">
-          Have thoughts on this feature? Share them on{' '}
-          <a
-            href="https://github.com/markmead/hyperui/pull/229"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block text-black underline"
-          >
-            GitHub
-          </a>
-          .
-        </p>
+        <label
+          htmlFor="ShowLinks"
+          className="relative w-12 cursor-pointer h-7 shrink-0"
+        >
+          <span className="sr-only">Show Component Links</span>
+
+          <input
+            type="checkbox"
+            id="ShowLinks"
+            className="sr-only peer"
+            checked={showLinks}
+            onChange={() => setShowLinks(!showLinks)}
+          />
+
+          <span className="absolute inset-0 transition bg-gray-300 rounded-full peer-checked:bg-green-500"></span>
+
+          <span className="absolute inset-0 w-5 h-5 m-1 transition bg-white rounded-full peer-checked:translate-x-5"></span>
+        </label>
       </div>
-    </div>
+
+      <p className="mt-2 text-xs font-medium text-gray-700">
+        Have thoughts on this feature? Share them on{' '}
+        <a
+          href="https://github.com/markmead/hyperui/pull/229"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block text-black underline"
+        >
+          GitHub
+        </a>
+        .
+      </p>
+    </>
   )
 }
 

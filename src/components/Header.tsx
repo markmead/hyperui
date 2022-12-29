@@ -10,6 +10,7 @@ import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
 import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
+import Settings from '@/components/HeaderSettings'
 
 function Header() {
   const nextRouter = useRouter()
@@ -50,6 +51,10 @@ function Header() {
               handleSetShowMenu={setShowMenu}
               menuLinks={menuLinks}
             />
+
+            <span aria-hidden="true" className="w-px h-6 bg-gray-100"></span>
+
+            <Settings />
           </div>
         </div>
       </div>
