@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import ComponentLinksToggle from '@/components/ComponentLinksToggle'
+import ComponentLinks from '@/components/SettingComponentLinks'
+import { useClickOutside } from '@/hooks/useClickOutside'
 
 function HeaderSettings() {
   const nextRouter = useRouter()
@@ -10,43 +11,9 @@ function HeaderSettings() {
 
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
 
-  useEffect(() => {
-    setShowDropdown(false)
-  }, [nextRouter.asPath])
+  useEffect(() => setShowDropdown(false), [nextRouter.asPath])
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutsideSettings)
-    document.addEventListener('keydown', handleEscapeSettings)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutsideSettings)
-      document.removeEventListener('keydown', handleEscapeSettings)
-    }
-  })
-
-  function handleClickOutsideSettings(e: Event) {
-    const dropdownEl = refDropdown.current as HTMLDivElement | null
-    const clickEl = e.target as HTMLElement
-
-    if (dropdownEl && !dropdownEl.contains(clickEl)) {
-      setShowDropdown(false)
-    }
-  }
-
-  function handleEscapeSettings(e: KeyboardEvent) {
-    if (!showDropdown) {
-      return
-    }
-
-    const isEscape = e.key === 'Escape'
-    const inputEl = e.target as HTMLElement
-
-    if (isEscape) {
-      inputEl.blur()
-
-      setShowDropdown(false)
-    }
-  }
+  useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
 
   return (
     <div ref={refDropdown} className="flex">
@@ -56,7 +23,7 @@ function HeaderSettings() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
@@ -78,11 +45,11 @@ function HeaderSettings() {
       </button>
 
       {showDropdown && (
-        <div className="absolute right-0 z-50 max-w-sm bg-white border border-gray-100 rounded-lg shadow-lg top-14">
+        <div className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg">
           <div className="flow-root">
-            <ul className="overflow-auto divide-y divide-gray-100 -p-4 max-h-64">
+            <ul className="-p-4 max-h-64 divide-y divide-gray-100 overflow-auto">
               <li className="p-4">
-                <ComponentLinksToggle />
+                <ComponentLinks />
               </li>
             </ul>
           </div>

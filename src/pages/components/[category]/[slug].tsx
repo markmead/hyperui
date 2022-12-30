@@ -11,7 +11,7 @@ import { getComponentPaths } from '@/lib/getComponents'
 
 import List from '@/components/CollectionList'
 import ComponentLinks from '@/components/ComponentLinks'
-import ComponentLinksToggle from '@/components/ComponentLinksToggle'
+import ComponentLinksToggle from '@/components/SettingComponentLinks'
 
 const mdxComponents = {
   List,
@@ -112,7 +112,7 @@ function Component({
       </Head>
 
       <section>
-        <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 lg:pt-24">
+        <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12 lg:pt-24">
           <ComponentLinks />
 
           <div className="prose max-w-none">
