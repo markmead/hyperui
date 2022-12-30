@@ -11,7 +11,7 @@ function PreviewView({ showPreview, handleSetShowPreview }: Props) {
       onClick={() => handleSetShowPreview(!showPreview)}
       className={styles.pill}
     >
-      <span aria-hidden="true" className="text-sm" role="img">
+      <span aria-hidden="true" role="img" className="text-sm">
         👀
       </span>
 

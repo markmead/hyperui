@@ -1,6 +1,10 @@
-import { useEffect } from 'react'
+import { RefObject, useEffect } from 'react'
 
-export function useClickOutside(targetRef, targetValue, targetHandler) {
+export function useClickOutside(
+  targetRef: RefObject<HTMLElement>,
+  targetValue: boolean,
+  targetHandler: CallableFunction
+) {
   const handleClickOutside = (e: Event) => {
     const dropdownEl = targetRef.current as HTMLDivElement | null
     const clickEl = e.target as HTMLElement

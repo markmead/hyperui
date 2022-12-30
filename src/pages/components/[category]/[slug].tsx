@@ -11,7 +11,6 @@ import { getComponentPaths } from '@/lib/getComponents'
 
 import List from '@/components/CollectionList'
 import ComponentLinks from '@/components/ComponentLinks'
-import ComponentLinksToggle from '@/components/SettingComponentLinks'
 
 const mdxComponents = {
   List,

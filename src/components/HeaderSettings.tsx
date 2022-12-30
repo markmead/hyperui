@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import ComponentLinks from '@/components/SettingComponentLinks'
 import { useClickOutside } from '@/hooks/useClickOutside'
+
+import ComponentLinks from '@/components/SettingComponentLinks'
 
 function HeaderSettings() {
   const nextRouter = useRouter()
@@ -47,7 +48,7 @@ function HeaderSettings() {
       {showDropdown && (
         <div className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg">
           <div className="flow-root">
-            <ul className="-p-4 max-h-64 divide-y divide-gray-100 overflow-auto">
+            <ul className="-py-4 max-h-64 divide-y divide-gray-100 overflow-auto">
               <li className="p-4">
                 <ComponentLinks />
               </li>

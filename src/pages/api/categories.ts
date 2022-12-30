@@ -1,10 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import {
-  getCategoryBySlug,
-  getCategorySlugs,
-  getComponentsByCategory,
-} from '@/lib/getComponents'
+import { getCategoryBySlug, getCategorySlugs } from '@/lib/getComponents'
 
 export default function handler(
   apiRequest: NextApiRequest,

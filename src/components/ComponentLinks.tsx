@@ -31,10 +31,10 @@ function ComponentLinks() {
       // @ts-ignore
       window.removeEventListener('toggle:links', toggleComponents)
     }
-  }, [])
+  })
 
   function toggleComponents(e: CustomEvent) {
-    setShowLinks(e.detail.show)
+    setShowLinks(e.detail.showLinks)
   }
 
   return (
@@ -42,35 +42,33 @@ function ComponentLinks() {
       {showLinks && (
         <div className="hidden md:block">
           {!!categoriesData.length && (
-            <div>
-              <ul className="flex gap-4">
-                {categoriesData.map((categoryData: SearchResultCategory) => (
-                  <li
-                    key={categoryData.slug}
-                    className="inline-flex items-center gap-1.5"
-                  >
-                    <span aria-hidden="true" role="img" className="text-sm">
-                      {categoryData.emoji}
-                    </span>
+            <ul className="flex gap-4">
+              {categoriesData.map((categoryData: SearchResultCategory) => (
+                <li
+                  key={categoryData.slug}
+                  className="inline-flex items-center gap-1.5"
+                >
+                  <span aria-hidden="true" role="img" className="text-sm">
+                    {categoryData.emoji}
+                  </span>
 
-                    <span className="text-xs font-medium">
-                      {categoryData.title}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                  <span className="text-xs font-medium">
+                    {categoryData.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
           )}
 
           {!!componentLinks.length && (
-            <ul className="flex flex-wrap gap-1 mt-4">
+            <ul className="mt-4 flex flex-wrap gap-1">
               {componentLinks.map((componentLink: SearchResult) => (
                 <li key={componentLink.id}>
                   <Link
                     href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
                   >
                     <a className={styles.pill}>
-                      <span aria-hidden="true" className="text-sm" role="img">
+                      <span aria-hidden="true" role="img" className="text-sm">
                         {componentLink.category.emoji}
                       </span>
 
