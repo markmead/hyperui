@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import SettingToggle from '@/components/SettingToggle'
+
 function SettingComponentLinks() {
   const [showLinks, setShowLinks] = useState<boolean>(false)
 
@@ -29,24 +31,12 @@ function SettingComponentLinks() {
           </p>
         </div>
 
-        <label
-          htmlFor="ShowLinks"
-          className="relative h-7 w-12 shrink-0 cursor-pointer"
-        >
-          <span className="sr-only">Show Component Links</span>
-
-          <input
-            type="checkbox"
-            id="ShowLinks"
-            className="peer sr-only"
-            checked={showLinks}
-            onChange={() => setShowLinks(!showLinks)}
-          />
-
-          <span className="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500"></span>
-
-          <span className="absolute inset-0 m-1 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-5"></span>
-        </label>
+        <SettingToggle
+          toggleValue={showLinks}
+          toggleHandler={setShowLinks}
+          toggleId="ShowLinks"
+          toggleLabel="Show Component Links"
+        />
       </div>
 
       <p className="mt-2 text-xs font-medium text-gray-700">

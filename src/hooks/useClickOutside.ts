@@ -5,7 +5,17 @@ export function useClickOutside(
   targetValue: boolean,
   targetHandler: CallableFunction
 ) {
-  const handleClickOutside = (e: Event) => {
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  })
+
+  function handleClickOutside(e: Event) {
     const dropdownEl = targetRef.current as HTMLDivElement | null
     const clickEl = e.target as HTMLElement
 
@@ -14,7 +24,7 @@ export function useClickOutside(
     }
   }
 
-  const handleEscape = (e: KeyboardEvent) => {
+  function handleEscape(e: KeyboardEvent) {
     if (!targetValue) {
       return
     }
@@ -28,14 +38,4 @@ export function useClickOutside(
       targetHandler()
     }
   }
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside)
-    document.addEventListener('keydown', handleEscape)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-      document.removeEventListener('keydown', handleEscape)
-    }
-  })
 }

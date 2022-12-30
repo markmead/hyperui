@@ -16,7 +16,5 @@ export default function handler(
     return getCategoryBySlug(`${categorySlug}`, ['title', 'slug', 'emoji'])
   })
 
-  const searchData = componentsByCategory
-
-  apiResponse.status(200).json(JSON.stringify(searchData, null, 2))
+  apiResponse.status(200).json(JSON.stringify(componentsByCategory, null, 2))
 }
