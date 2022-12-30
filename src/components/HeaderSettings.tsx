@@ -45,17 +45,20 @@ function HeaderSettings() {
         <span className="sr-only">Settings</span>
       </button>
 
-      {showDropdown && (
-        <div className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg">
-          <div className="flow-root">
-            <ul className="-py-4 max-h-64 divide-y divide-gray-100 overflow-auto">
-              <li className="p-4">
-                <ComponentLinks />
-              </li>
-            </ul>
-          </div>
+      <div
+        {...(!showDropdown && {
+          hidden: true,
+        })}
+        className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg"
+      >
+        <div className="flow-root">
+          <ul className="-py-4 max-h-64 divide-y divide-gray-100 overflow-auto">
+            <li className="p-4">
+              <ComponentLinks />
+            </li>
+          </ul>
         </div>
-      )}
+      </div>
     </div>
   )
 }
