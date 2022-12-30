@@ -147,11 +147,11 @@ function Preview({ componentData, componentContainer }: Props) {
   }
 
   return (
-    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
+    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
-        <div className="lg:flex lg:items-end lg:justify-between">
+        <div className="lg:flex lg:items-end">
           {componentCode && componentVariants && (
             <div className="flex items-end gap-4">
               <ViewSwitcher
@@ -180,7 +180,7 @@ function Preview({ componentData, componentContainer }: Props) {
             </div>
           )}
 
-          <div className="hidden lg:flex lg:items-end lg:gap-4">
+          <div className="hidden lg:flex lg:flex-1 lg:items-end lg:justify-end lg:gap-4">
             {componentBreakpoints.map(
               ({
                 name: breakpointName,
