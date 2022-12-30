@@ -9,8 +9,8 @@ import { Component, ComponentVariant } from '@/interface/component'
 
 import { getComponentPaths } from '@/lib/getComponents'
 
-import List from '@/components/CollectionList'
 import ComponentLinks from '@/components/ComponentLinks'
+import List from '@/components/CollectionList'
 
 const mdxComponents = {
   List,

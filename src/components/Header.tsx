@@ -5,12 +5,12 @@ import { useRouter } from 'next/router'
 import { menuLinks } from '@/utils/menuLinks'
 
 import GitHub from '@/components/BrandGithub'
-import Twitter from '@/components/BrandTwitter'
 import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
 import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
 import Settings from '@/components/HeaderSettings'
+import Twitter from '@/components/BrandTwitter'
 
 function Header() {
   const nextRouter = useRouter()

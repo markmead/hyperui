@@ -12,15 +12,15 @@ import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
 import Breakpoint from '@/components/PreviewBreakpoint'
-import DarkToggle from '@/components/PreviewDark'
-import CopyCode from '@/components/PreviewCopy'
-import ViewSwitcher from '@/components/PreviewView'
-import VariantsSwitcher from '@/components/PreviewVariants'
-import Creator from '@/components/ComponentCreator'
-import Loading from '@/components/PreviewLoading'
-import Iframe from '@/components/PreviewIframe'
 import Code from '@/components/PreviewCode'
+import CopyCode from '@/components/PreviewCopy'
+import Creator from '@/components/ComponentCreator'
+import DarkToggle from '@/components/PreviewDark'
+import Iframe from '@/components/PreviewIframe'
+import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
+import VariantsSwitcher from '@/components/PreviewVariants'
+import ViewSwitcher from '@/components/PreviewView'
 
 type ComponentData = Component & {
   id: string

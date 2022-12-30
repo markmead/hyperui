@@ -19,7 +19,7 @@ function SettingComponentLinks() {
   }, [showLinks])
 
   return (
-    <>
+    <div>
       <div className="flex items-start gap-4">
         <div>
           <p className="text-sm font-medium">Show Component Links</p>
@@ -61,7 +61,7 @@ function SettingComponentLinks() {
         </a>
         .
       </p>
-    </>
+    </div>
   )
 }
 
