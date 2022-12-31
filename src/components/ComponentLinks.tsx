@@ -26,17 +26,17 @@ function ComponentLinks() {
   }, [])
 
   useEffect(() => {
-    // @ts-ignore
     window.addEventListener('setting:component-links', toggleComponents)
 
     return () => {
-      // @ts-ignore
       window.removeEventListener('setting:component-links', toggleComponents)
     }
   })
 
-  function toggleComponents(e: CustomEvent) {
-    setShowLinks(e.detail.showLinks)
+  function toggleComponents() {
+    setShowLinks(
+      JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
+    )
   }
 
   return (

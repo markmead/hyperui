@@ -14,12 +14,7 @@ function SettingComponentLinks() {
   useEffect(() => {
     localStorage.setItem('_SETTING_COMPONENT_LINKS', `${showLinks}`)
 
-    dispatchEvent(
-      new CustomEvent('setting:component-links', {
-        bubbles: true,
-        detail: { showLinks },
-      })
-    )
+    dispatchEvent(new CustomEvent('setting:component-links'))
   }, [showLinks])
 
   return (

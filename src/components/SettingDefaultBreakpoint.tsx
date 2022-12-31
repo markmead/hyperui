@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { componentBreakpoints } from '@/utils/componentBreakpoints'
 import { Breakpoint } from '@/interface/breakpoint'
+import { componentBreakpoints } from '@/utils/componentBreakpoints'
+
+import SettingSelect from '@/components/SettingSelect'
 
 function SettingDefaultBreakpoint() {
   const [defaultBreakpoint, setDefaultBreakpoint] = useState<string>('100%')
@@ -15,12 +17,7 @@ function SettingDefaultBreakpoint() {
   useEffect(() => {
     localStorage.setItem('_SETTING_DEFAULT_BREAKPOINT', `${defaultBreakpoint}`)
 
-    dispatchEvent(
-      new CustomEvent('setting:default-breakpoint', {
-        bubbles: true,
-        detail: { defaultBreakpoint },
-      })
-    )
+    dispatchEvent(new CustomEvent('setting:default-breakpoint'))
   }, [defaultBreakpoint])
 
   return (
@@ -34,24 +31,18 @@ function SettingDefaultBreakpoint() {
           </p>
         </div>
 
-        <div className="shrink-0">
-          <label htmlFor="DefaultBreakpoint" className="sr-only">
-            Default Breakpoint
-          </label>
-
-          <select
-            id="DefaultBreakpoint"
-            value={defaultBreakpoint}
-            onChange={(e) => setDefaultBreakpoint(e.currentTarget.value)}
-            className="w-full border-gray-200 rounded-md shadow-sm sm:text-sm"
-          >
-            {componentBreakpoints.map((breakpointItem: Breakpoint) => (
-              <option key={breakpointItem.name} value={breakpointItem.width}>
-                {breakpointItem.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <SettingSelect
+          selectId="DefaultBreakpoint"
+          selectLabel="Default Breakpoint"
+          selectValue={defaultBreakpoint}
+          selectHandler={setDefaultBreakpoint}
+        >
+          {componentBreakpoints.map((breakpointItem: Breakpoint) => (
+            <option key={breakpointItem.name} value={breakpointItem.width}>
+              {breakpointItem.name}
+            </option>
+          ))}
+        </SettingSelect>
       </div>
     </div>
   )
