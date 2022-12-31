@@ -25,11 +25,6 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
     image: ['https://www.hyperui.dev/og.jpg'],
     datePublished: `${blogFrontmatter.date}`,
     dateModified: `${blogFrontmatter.date}`,
-    author: {
-      '@type': 'Person',
-      name: 'Mark Mead',
-      url: 'https://twitter.com/itsmarkmead',
-    },
   }
 
   useEffect(() => Prism.highlightAll())
@@ -69,8 +64,8 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
         />
       </Head>
 
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
-        <article className="prose mx-auto prose-img:w-full prose-img:rounded-lg">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
+        <article className="mx-auto prose prose-img:w-full prose-img:rounded-lg">
           <header>
             <time className="text-sm text-gray-500">
               {blogFrontmatter.date}
