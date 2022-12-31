@@ -7,14 +7,16 @@ function SettingDefaultBreakpoint() {
   const [defaultBreakpoint, setDefaultBreakpoint] = useState<string>('100%')
 
   useEffect(() => {
-    setDefaultBreakpoint(localStorage.getItem('_DEFAULT_BREAKPOINT') || '100%')
+    setDefaultBreakpoint(
+      localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
+    )
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('_DEFAULT_BREAKPOINT', `${defaultBreakpoint}`)
+    localStorage.setItem('_SETTING_DEFAULT_BREAKPOINT', `${defaultBreakpoint}`)
 
     dispatchEvent(
-      new CustomEvent('toggle:links', {
+      new CustomEvent('setting:default-breakpoint', {
         bubbles: true,
         detail: { defaultBreakpoint },
       })
@@ -43,9 +45,8 @@ function SettingDefaultBreakpoint() {
             onChange={(e) => setDefaultBreakpoint(e.currentTarget.value)}
             className="w-full border-gray-200 rounded-md shadow-sm sm:text-sm"
           >
-            <option value="">Please Select</option>
             {componentBreakpoints.map((breakpointItem: Breakpoint) => (
-              <option value={breakpointItem.width}>
+              <option key={breakpointItem.name} value={breakpointItem.width}>
                 {breakpointItem.name}
               </option>
             ))}

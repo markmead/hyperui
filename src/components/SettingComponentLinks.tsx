@@ -6,14 +6,16 @@ function SettingComponentLinks() {
   const [showLinks, setShowLinks] = useState<boolean>(false)
 
   useEffect(() => {
-    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'false'))
+    setShowLinks(
+      JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
+    )
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('_SHOW_LINKS', `${showLinks}`)
+    localStorage.setItem('_SETTING_COMPONENT_LINKS', `${showLinks}`)
 
     dispatchEvent(
-      new CustomEvent('toggle:links', {
+      new CustomEvent('setting:component-links', {
         bubbles: true,
         detail: { showLinks },
       })

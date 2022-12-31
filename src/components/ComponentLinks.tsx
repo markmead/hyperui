@@ -12,7 +12,9 @@ function ComponentLinks() {
   const [categoriesData, setCategoriesData] = useState([])
 
   useEffect(() => {
-    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'false'))
+    setShowLinks(
+      JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
+    )
 
     fetch('/api/search')
       .then((result) => result.json())
@@ -25,11 +27,11 @@ function ComponentLinks() {
 
   useEffect(() => {
     // @ts-ignore
-    window.addEventListener('toggle:links', toggleComponents)
+    window.addEventListener('setting:component-links', toggleComponents)
 
     return () => {
       // @ts-ignore
-      window.removeEventListener('toggle:links', toggleComponents)
+      window.removeEventListener('setting:component-links', toggleComponents)
     }
   })
 
@@ -61,7 +63,7 @@ function ComponentLinks() {
           )}
 
           {!!componentLinks.length && (
-            <ul className="mt-4 flex flex-wrap gap-1">
+            <ul className="flex flex-wrap gap-1 mt-4">
               {componentLinks.map((componentLink: SearchResult) => (
                 <li key={componentLink.id}>
                   <Link

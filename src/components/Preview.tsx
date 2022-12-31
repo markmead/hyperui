@@ -72,7 +72,9 @@ function Preview({ componentData, componentContainer }: Props) {
     if (inView) {
       fetchHtml()
 
-      setPreviewWidth(localStorage.getItem('_DEFAULT_BREAKPOINT') || '100%')
+      setPreviewWidth(
+        localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
+      )
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,15 +104,17 @@ function Preview({ componentData, componentContainer }: Props) {
   useEffect(() => Prism.highlightAll())
 
   useEffect(() => {
-    window.addEventListener('toggle:links', setBreakpoint)
+    window.addEventListener('setting:default-breakpoint', setBreakpoint)
 
     return () => {
-      window.removeEventListener('toggle:links', setBreakpoint)
+      window.removeEventListener('setting:default-breakpoint', setBreakpoint)
     }
   })
 
   function setBreakpoint() {
-    setPreviewWidth(localStorage.getItem('_DEFAULT_BREAKPOINT') || '100%')
+    setPreviewWidth(
+      localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
+    )
   }
 
   async function fetchHtml() {
