@@ -36,7 +36,7 @@ function HeaderSettings() {
         className="absolute right-0 z-50 max-w-sm bg-white border border-gray-100 rounded-lg shadow-lg top-14"
       >
         <div className="flow-root">
-          <ul className="overflow-auto divide-y divide-gray-100 -py-4 max-h-64">
+          <ul className="divide-y divide-gray-100 -py-4">
             <li className="p-4">
               <ComponentLinks />
             </li>
