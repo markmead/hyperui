@@ -35,19 +35,6 @@ function SettingComponentLinks() {
           toggleLabel="Show Component Links"
         />
       </div>
-
-      <p className="mt-2 text-xs font-medium text-gray-700">
-        Have thoughts on this feature? Share them on{' '}
-        <a
-          href="https://github.com/markmead/hyperui/pull/229"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block text-black underline"
-        >
-          GitHub
-        </a>
-        .
-      </p>
     </div>
   )
 }
