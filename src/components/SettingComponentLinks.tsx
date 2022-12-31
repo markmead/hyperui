@@ -6,23 +6,20 @@ function SettingComponentLinks() {
   const [showLinks, setShowLinks] = useState<boolean>(false)
 
   useEffect(() => {
-    setShowLinks(JSON.parse(localStorage.getItem('_SHOW_LINKS') || 'false'))
+    setShowLinks(
+      JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
+    )
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('_SHOW_LINKS', `${showLinks}`)
+    localStorage.setItem('_SETTING_COMPONENT_LINKS', `${showLinks}`)
 
-    dispatchEvent(
-      new CustomEvent('toggle:links', {
-        bubbles: true,
-        detail: { showLinks },
-      })
-    )
+    dispatchEvent(new CustomEvent('setting:component-links'))
   }, [showLinks])
 
   return (
     <div>
-      <div className="flex items-start gap-4">
+      <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-medium">Show Component Links</p>
 
