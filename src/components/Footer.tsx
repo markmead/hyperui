@@ -1,11 +1,10 @@
 import GitHub from '@/components/BrandGithub'
 import Logo from '@/components/BrandLogo'
-import Twitter from '@/components/BrandTwitter'
 
 function Footer() {
   return (
     <footer className="border-t border-gray-100">
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
+      <div className="max-w-screen-xl px-4 py-12 mx-auto">
         <Logo fontSize="text-lg" />
 
         <div className="mt-6 lg:flex lg:items-end lg:justify-between">
@@ -15,9 +14,7 @@ function Footer() {
               eCommerce websites, as well as application UI.
             </p>
 
-            <div className="mt-4 flex gap-4">
-              <Twitter />
-
+            <div className="mt-4">
               <GitHub />
             </div>
           </div>
