@@ -71,6 +71,8 @@ function Preview({ componentData, componentContainer }: Props) {
 
     if (inView) {
       fetchHtml()
+
+      setPreviewWidth(localStorage.getItem('_DEFAULT_BREAKPOINT') || '100%')
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,6 +100,18 @@ function Preview({ componentData, componentContainer }: Props) {
   }, [isDarkMode])
 
   useEffect(() => Prism.highlightAll())
+
+  useEffect(() => {
+    window.addEventListener('toggle:links', setBreakpoint)
+
+    return () => {
+      window.removeEventListener('toggle:links', setBreakpoint)
+    }
+  })
+
+  function setBreakpoint() {
+    setPreviewWidth(localStorage.getItem('_DEFAULT_BREAKPOINT') || '100%')
+  }
 
   async function fetchHtml() {
     const componentUrl =
@@ -147,7 +161,7 @@ function Preview({ componentData, componentContainer }: Props) {
   }
 
   return (
-    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
+    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
@@ -210,6 +224,7 @@ function Preview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
+              isLoading={isLoading}
             />
 
             <Code showPreview={showPreview} componentCode={componentCode} />

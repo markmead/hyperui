@@ -6,6 +6,7 @@ import { useClickOutside } from '@/hooks/useClickOutside'
 
 import ComponentLinks from '@/components/SettingComponentLinks'
 import IconCog from '@/components/IconCog'
+import DefaultBreakpoint from '@/components/SettingDefaultBreakpoint'
 
 function HeaderSettings() {
   const nextRouter = useRouter()
@@ -32,12 +33,16 @@ function HeaderSettings() {
         {...(!showDropdown && {
           hidden: true,
         })}
-        className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg"
+        className="absolute right-0 z-50 max-w-sm bg-white border border-gray-100 rounded-lg shadow-lg top-14"
       >
         <div className="flow-root">
-          <ul className="-py-4 max-h-64 divide-y divide-gray-100 overflow-auto">
+          <ul className="overflow-auto divide-y divide-gray-100 -py-4 max-h-64">
             <li className="p-4">
               <ComponentLinks />
+            </li>
+
+            <li className="p-4">
+              <DefaultBreakpoint />
             </li>
           </ul>
         </div>

@@ -22,7 +22,7 @@ function SettingComponentLinks() {
 
   return (
     <div>
-      <div className="flex items-start gap-4">
+      <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-medium">Show Component Links</p>
 
