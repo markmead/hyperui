@@ -9,6 +9,7 @@ import { Component, ComponentVariant } from '@/interface/component'
 
 import { getComponentPaths } from '@/lib/getComponents'
 
+import ComponentLinks from '@/components/ComponentLinks'
 import List from '@/components/CollectionList'
 
 const mdxComponents = {
@@ -110,7 +111,9 @@ function Component({
       </Head>
 
       <section>
-        <div className="max-w-screen-xl px-4 py-12 mx-auto lg:pt-24">
+        <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12 lg:pt-24">
+          <ComponentLinks />
+
           <div className="prose max-w-none">
             <MDXRemote
               {...componentSource}

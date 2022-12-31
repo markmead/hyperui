@@ -22,7 +22,7 @@ function PreviewBreakpoint({
         breakpointActive ? 'bg-black text-white' : 'text-black'
       }`}
     >
-      <span aria-hidden="true" className="text-sm" role="img">
+      <span aria-hidden="true" role="img" className="text-sm">
         {breakpointEmoji}
       </span>
 

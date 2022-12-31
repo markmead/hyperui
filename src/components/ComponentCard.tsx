@@ -23,11 +23,11 @@ function ComponentCard({ componentData, categoryTitle }: Props) {
     <Link href={`/components/${componentData.category}/${trueComponentSlug}`}>
       <a
         title={`Tailwind CSS ${categoryTitle} Components - ${componentData.title}`}
-        className="relative block h-full bg-white group before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-black"
+        className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-black"
       >
-        <div className="transition bg-white border-2 border-black rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <div className="rounded-lg border-2 border-black bg-white transition group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-6">
-            <span className="text-xl" role="img" aria-hidden="true">
+            <span aria-hidden="true" role="img" className="text-xl">
               {componentData.emoji}
             </span>
 

@@ -15,7 +15,7 @@ function Dark({ hasDarkMode, isDarkMode, handleSetIsDarkMode }: Props) {
       } disabled:pointer-events-none disabled:opacity-25`}
       disabled={!hasDarkMode}
     >
-      <span aria-hidden="true" className="text-sm" role="img">
+      <span aria-hidden="true" role="img" className="text-sm">
         {isDarkMode && hasDarkMode ? '🌕' : '🌞'}
       </span>
 

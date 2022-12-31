@@ -25,7 +25,7 @@ function Copy({ componentCode }: Props) {
   return (
     <div className="hidden sm:block">
       <button className={styles.pill} onClick={copyToClipboard}>
-        <span aria-hidden="true" className="text-sm" role="img">
+        <span aria-hidden="true" role="img" className="text-sm">
           {buttonEmoji}
         </span>
 

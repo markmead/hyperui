@@ -5,7 +5,8 @@ export interface SearchResult {
   category: SearchResultCategory
 }
 
-interface SearchResultCategory {
+export interface SearchResultCategory {
   slug: string
   title: string
+  emoji: string
 }

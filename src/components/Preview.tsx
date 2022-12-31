@@ -12,15 +12,15 @@ import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
 import Breakpoint from '@/components/PreviewBreakpoint'
-import DarkToggle from '@/components/PreviewDark'
-import CopyCode from '@/components/PreviewCopy'
-import ViewSwitcher from '@/components/PreviewView'
-import VariantsSwitcher from '@/components/PreviewVariants'
-import Creator from '@/components/ComponentCreator'
-import Loading from '@/components/PreviewLoading'
-import Iframe from '@/components/PreviewIframe'
 import Code from '@/components/PreviewCode'
+import CopyCode from '@/components/PreviewCopy'
+import Creator from '@/components/ComponentCreator'
+import DarkToggle from '@/components/PreviewDark'
+import Iframe from '@/components/PreviewIframe'
+import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
+import VariantsSwitcher from '@/components/PreviewVariants'
+import ViewSwitcher from '@/components/PreviewView'
 
 type ComponentData = Component & {
   id: string
@@ -71,6 +71,8 @@ function Preview({ componentData, componentContainer }: Props) {
 
     if (inView) {
       fetchHtml()
+
+      setDefaultBreakpoint()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,6 +100,23 @@ function Preview({ componentData, componentContainer }: Props) {
   }, [isDarkMode])
 
   useEffect(() => Prism.highlightAll())
+
+  useEffect(() => {
+    window.addEventListener('setting:default-breakpoint', setDefaultBreakpoint)
+
+    return () => {
+      window.removeEventListener(
+        'setting:default-breakpoint',
+        setDefaultBreakpoint
+      )
+    }
+  })
+
+  function setDefaultBreakpoint() {
+    setPreviewWidth(
+      localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
+    )
+  }
 
   async function fetchHtml() {
     const componentUrl =
@@ -151,7 +170,7 @@ function Preview({ componentData, componentContainer }: Props) {
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
-        <div className="lg:flex lg:items-end lg:justify-between">
+        <div className="lg:flex lg:items-end">
           {componentCode && componentVariants && (
             <div className="flex items-end gap-4">
               <ViewSwitcher
@@ -180,7 +199,7 @@ function Preview({ componentData, componentContainer }: Props) {
             </div>
           )}
 
-          <div className="hidden lg:flex lg:items-end lg:gap-4">
+          <div className="hidden lg:flex lg:flex-1 lg:items-end lg:justify-end lg:gap-4">
             {componentBreakpoints.map(
               ({
                 name: breakpointName,
@@ -210,6 +229,7 @@ function Preview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
+              isLoading={isLoading}
             />
 
             <Code showPreview={showPreview} componentCode={componentCode} />
