@@ -21,6 +21,7 @@ import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
 import VariantsSwitcher from '@/components/PreviewVariants'
 import ViewSwitcher from '@/components/PreviewView'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 
 type ComponentData = Component & {
   id: string
@@ -72,7 +73,9 @@ function Preview({ componentData, componentContainer }: Props) {
     if (inView) {
       fetchHtml()
 
-      setDefaultBreakpoint()
+      setPreviewWidth(
+        localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
+      )
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,22 +104,11 @@ function Preview({ componentData, componentContainer }: Props) {
 
   useEffect(() => Prism.highlightAll())
 
-  useEffect(() => {
-    window.addEventListener('setting:default-breakpoint', setDefaultBreakpoint)
-
-    return () => {
-      window.removeEventListener(
-        'setting:default-breakpoint',
-        setDefaultBreakpoint
-      )
-    }
-  })
-
-  function setDefaultBreakpoint() {
+  useLocalStorage('setting:default-breakpoint', () =>
     setPreviewWidth(
       localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
     )
-  }
+  )
 
   async function fetchHtml() {
     const componentUrl =

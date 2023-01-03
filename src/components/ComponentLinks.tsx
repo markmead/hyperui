@@ -6,14 +6,14 @@ import styles from '@/styles/button.module.css'
 
 import { SearchResult, SearchResultCategory } from '@/interface/search'
 
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+
 function ComponentLinks() {
   const [showLinks, setShowLinks] = useState(false)
   const [componentLinks, setComponentLinks] = useState([])
   const [categoriesData, setCategoriesData] = useState([])
 
   useEffect(() => {
-    toggleComponentsLinks()
-
     fetch('/api/search')
       .then((result) => result.json())
       .then((data) => setComponentLinks(data))
@@ -23,22 +23,11 @@ function ComponentLinks() {
       .then((data) => setCategoriesData(data))
   }, [])
 
-  useEffect(() => {
-    window.addEventListener('setting:component-links', toggleComponentsLinks)
-
-    return () => {
-      window.removeEventListener(
-        'setting:component-links',
-        toggleComponentsLinks
-      )
-    }
-  })
-
-  function toggleComponentsLinks() {
+  useLocalStorage('setting:component-links', () =>
     setShowLinks(
       JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
     )
-  }
+  )
 
   return (
     <>
