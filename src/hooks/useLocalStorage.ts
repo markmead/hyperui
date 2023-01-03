@@ -7,9 +7,7 @@ export function useLocalStorage(
   useEffect(() => {
     window.addEventListener(eventKey, handlerFunction)
 
-    return () => {
-      window.removeEventListener(eventKey, handlerFunction)
-    }
+    return () => window.removeEventListener(eventKey, handlerFunction)
   })
 
   function handlerFunction() {
