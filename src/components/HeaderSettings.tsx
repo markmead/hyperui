@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 
 import { useClickOutside } from '@/hooks/useClickOutside'
 
-import ComponentLinks from '@/components/SettingComponentLinks'
 import IconCog from '@/components/IconCog'
+import ComponentLinks from '@/components/SettingComponentLinks'
 import DefaultBreakpoint from '@/components/SettingDefaultBreakpoint'
 
 function HeaderSettings() {
