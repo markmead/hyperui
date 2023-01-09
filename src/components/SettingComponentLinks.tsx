@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react'
-
 import SettingToggle from '@/components/SettingToggle'
 
-function SettingComponentLinks() {
-  const [showLinks, setShowLinks] = useState<boolean>(false)
+type Props = {
+  showLinks: boolean
+  handleShowLinks: CallableFunction
+}
 
-  useEffect(() => {
-    setShowLinks(
-      JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
-    )
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('_SETTING_COMPONENT_LINKS', `${showLinks}`)
-
-    dispatchEvent(new CustomEvent('setting:component-links'))
-  }, [showLinks])
-
+function SettingComponentLinks({ showLinks, handleShowLinks }: Props) {
   return (
     <div>
       <div className="flex items-start justify-between gap-4">
@@ -30,7 +19,7 @@ function SettingComponentLinks() {
 
         <SettingToggle
           toggleValue={showLinks}
-          toggleHandler={setShowLinks}
+          toggleHandler={handleShowLinks}
           toggleId="ShowLinks"
           toggleLabel="Show Component Links"
         />

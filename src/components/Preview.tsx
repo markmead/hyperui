@@ -71,8 +71,6 @@ function Preview({ componentData, componentContainer }: Props) {
 
     if (inView) {
       fetchHtml()
-
-      setDefaultBreakpoint()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,20 +100,12 @@ function Preview({ componentData, componentContainer }: Props) {
   useEffect(() => Prism.highlightAll())
 
   useEffect(() => {
-    window.addEventListener('setting:default-breakpoint', setDefaultBreakpoint)
+    // @ts-ignore
+    window.addEventListener('_settingChanged', handleSettingChange)
+  }, [])
 
-    return () => {
-      window.removeEventListener(
-        'setting:default-breakpoint',
-        setDefaultBreakpoint
-      )
-    }
-  })
-
-  function setDefaultBreakpoint() {
-    setPreviewWidth(
-      localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
-    )
+  function handleSettingChange(e: CustomEvent) {
+    setPreviewWidth(e.detail.settingDefaultBreakpoint)
   }
 
   async function fetchHtml() {

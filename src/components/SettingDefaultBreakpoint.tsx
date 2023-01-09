@@ -1,25 +1,18 @@
-import { useEffect, useState } from 'react'
-
 import { Breakpoint } from '@/interface/breakpoint'
+
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
 import SettingSelect from '@/components/SettingSelect'
 
-function SettingDefaultBreakpoint() {
-  const [defaultBreakpoint, setDefaultBreakpoint] = useState<string>('100%')
+type Props = {
+  defaultBreakpoint: string
+  handleDefaultBreakpoint: CallableFunction
+}
 
-  useEffect(() => {
-    setDefaultBreakpoint(
-      localStorage.getItem('_SETTING_DEFAULT_BREAKPOINT') || '100%'
-    )
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('_SETTING_DEFAULT_BREAKPOINT', `${defaultBreakpoint}`)
-
-    dispatchEvent(new CustomEvent('setting:default-breakpoint'))
-  }, [defaultBreakpoint])
-
+function SettingDefaultBreakpoint({
+  defaultBreakpoint,
+  handleDefaultBreakpoint,
+}: Props) {
   return (
     <div>
       <div className="flex items-start justify-between gap-4">
@@ -35,7 +28,7 @@ function SettingDefaultBreakpoint() {
           selectId="DefaultBreakpoint"
           selectLabel="Default Breakpoint"
           selectValue={defaultBreakpoint}
-          selectHandler={setDefaultBreakpoint}
+          selectHandler={handleDefaultBreakpoint}
         >
           {componentBreakpoints.map((breakpointItem: Breakpoint) => (
             <option key={breakpointItem.name} value={breakpointItem.width}>
