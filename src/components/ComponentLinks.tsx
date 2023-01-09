@@ -12,8 +12,6 @@ function ComponentLinks() {
   const [categoriesData, setCategoriesData] = useState([])
 
   useEffect(() => {
-    toggleComponentsLinks()
-
     fetch('/api/search')
       .then((result) => result.json())
       .then((data) => setComponentLinks(data))
@@ -24,20 +22,12 @@ function ComponentLinks() {
   }, [])
 
   useEffect(() => {
-    window.addEventListener('setting:component-links', toggleComponentsLinks)
+    // @ts-ignore
+    window.addEventListener('_settingChanged', handleSettingChange)
+  }, [])
 
-    return () => {
-      window.removeEventListener(
-        'setting:component-links',
-        toggleComponentsLinks
-      )
-    }
-  })
-
-  function toggleComponentsLinks() {
-    setShowLinks(
-      JSON.parse(localStorage.getItem('_SETTING_COMPONENT_LINKS') || 'false')
-    )
+  function handleSettingChange(e: CustomEvent) {
+    setShowLinks(e.detail.settingShowLinks)
   }
 
   return (
