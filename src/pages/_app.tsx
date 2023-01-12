@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 
 import Head from 'next/head'
 
-import '@/styles/tailwind.css'
+import '@/styles/site.css'
 import 'prismjs/themes/prism-okaidia.css'
 
 import Footer from '@/components/Footer'
