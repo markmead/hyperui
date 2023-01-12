@@ -4,7 +4,7 @@ function BrandGithub() {
       href="https://github.com/markmead/hyperui"
       rel="noreferrer"
       target="_blank"
-      className="hover:opacity-75"
+      className="inline-block hover:opacity-75"
     >
       <span className="sr-only"> GitHub </span>
 
