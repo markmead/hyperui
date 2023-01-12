@@ -2,13 +2,13 @@
   "name": "hyperui",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "css": "npx tailwindcss -i src/styles/tailwind.css -o public/tailwind.css -m",
     "dev": "next dev",
-    "lint": "next lint",
+    "build": "next build",
     "postbuild": "yarn css && yarn rss && next-sitemap --config sitemap.config.js",
     "rss": "node ./scripts/generateRssFeed.js",
-    "watch": "yarn css -w"
+    "css": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
+    "watch": "yarn css -w",
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "12.1.0",
@@ -38,7 +38,7 @@
     "react-intersection-observer": "^8.33.1",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
-    "tailwindcss": "^3.1.8",
+    "tailwindcss": "^3.2.4",
     "typescript": "4.6.2"
   }
 }

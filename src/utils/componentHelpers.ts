@@ -13,7 +13,7 @@ export function transformComponentHtml(
       })
     </script>
 
-    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="stylesheet" href="/components.css">
 
     <body class="${componentContainer}">
       ${componentHtml}

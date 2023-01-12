@@ -1,0 +1,7 @@
+@config "../../tailwind.site.config.js";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './prism.css';
