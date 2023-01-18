@@ -23,7 +23,7 @@ function Home({ componentsByCategory }: Props) {
   return (
     <>
       <Banner
-        title="HyperUI"
+        title="HyperUI 1"
         subtitle="Free Open Source Tailwind CSS Components"
       >
         HyperUI is a collection of free Tailwind CSS components that can be used
