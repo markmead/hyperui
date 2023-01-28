@@ -2,14 +2,19 @@ import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
-import styles from '@/styles/button.module.css'
-
 import { SearchResult, SearchResultCategory } from '@/interface/search'
 
+import { useAppSelector } from '@/hooks/app'
+import { settingsState } from '@/store/slices/settings'
+
+import styles from '@/styles/button.module.css'
+
 function ComponentLinks() {
-  const [showLinks, setShowLinks] = useState(false)
+  const { links } = useAppSelector(settingsState)
+
   const [componentLinks, setComponentLinks] = useState([])
   const [categoriesData, setCategoriesData] = useState([])
+  const [showLinks, setShowLinks] = useState<boolean>(false)
 
   useEffect(() => {
     fetch('/api/search')
@@ -21,14 +26,7 @@ function ComponentLinks() {
       .then((data) => setCategoriesData(data))
   }, [])
 
-  useEffect(() => {
-    // @ts-ignore
-    window.addEventListener('_settingChanged', handleSettingChange)
-  }, [])
-
-  function handleSettingChange(e: CustomEvent) {
-    setShowLinks(e.detail.settingShowLinks)
-  }
+  useEffect(() => setShowLinks(links), [links])
 
   return (
     <>
@@ -54,7 +52,7 @@ function ComponentLinks() {
           )}
 
           {!!componentLinks.length && (
-            <ul className="flex flex-wrap gap-1 mt-4">
+            <ul className="mt-4 flex flex-wrap gap-1">
               {componentLinks.map((componentLink: SearchResult) => (
                 <li key={componentLink.id}>
                   <Link
