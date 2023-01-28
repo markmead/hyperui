@@ -13,37 +13,10 @@ function HeaderSettings() {
   const refDropdown = useRef(null)
 
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
-  const [settingShowLinks, setSettingShowLinks] = useState<boolean>(false)
-  const [settingDefaultBreakpoint, setSettingDefaultBreakpoint] =
-    useState<string>('100%')
 
   useEffect(() => setShowDropdown(false), [nextRouter.asPath])
 
   useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
-
-  useEffect(() => {
-    setSettingShowLinks(
-      JSON.parse(localStorage.getItem('_showLinks') || 'false')
-    )
-
-    setSettingDefaultBreakpoint(
-      localStorage.getItem('_defaultBreakpoint') || '100%'
-    )
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('_showLinks', `${settingShowLinks}`)
-    localStorage.setItem('_defaultBreakpoint', `${settingDefaultBreakpoint}`)
-
-    dispatchEvent(
-      new CustomEvent('_settingChanged', {
-        detail: {
-          settingShowLinks,
-          settingDefaultBreakpoint,
-        },
-      })
-    )
-  }, [settingShowLinks, settingDefaultBreakpoint])
 
   return (
     <div ref={refDropdown} className="flex">
@@ -60,22 +33,16 @@ function HeaderSettings() {
         {...(!showDropdown && {
           hidden: true,
         })}
-        className="absolute right-0 z-50 max-w-sm bg-white border border-gray-100 rounded-lg shadow-lg top-14"
+        className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg"
       >
         <div className="flow-root">
-          <ul className="divide-y divide-gray-100 -py-4">
+          <ul className="-py-4 divide-y divide-gray-100">
             <li className="p-4">
-              <ComponentLinks
-                showLinks={settingShowLinks}
-                handleShowLinks={setSettingShowLinks}
-              />
+              <ComponentLinks />
             </li>
 
             <li className="p-4">
-              <DefaultBreakpoint
-                defaultBreakpoint={settingDefaultBreakpoint}
-                handleDefaultBreakpoint={setSettingDefaultBreakpoint}
-              />
+              <DefaultBreakpoint />
             </li>
           </ul>
         </div>

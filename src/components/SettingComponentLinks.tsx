@@ -1,11 +1,12 @@
+import { useAppSelector, useAppDispatch } from '@/hooks/app'
+import { toggleLinks, settingsState } from '@/store/slices/settings'
+
 import SettingToggle from '@/components/SettingToggle'
 
-type Props = {
-  showLinks: boolean
-  handleShowLinks: CallableFunction
-}
+function SettingComponentLinks() {
+  const dispatch = useAppDispatch()
+  const { links } = useAppSelector(settingsState)
 
-function SettingComponentLinks({ showLinks, handleShowLinks }: Props) {
   return (
     <div>
       <div className="flex items-start justify-between gap-4">
@@ -18,8 +19,8 @@ function SettingComponentLinks({ showLinks, handleShowLinks }: Props) {
         </div>
 
         <SettingToggle
-          toggleValue={showLinks}
-          toggleHandler={handleShowLinks}
+          toggleValue={links}
+          toggleHandler={() => dispatch(toggleLinks())}
           toggleId="ShowLinks"
           toggleLabel="Show Component Links"
         />

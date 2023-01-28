@@ -11,6 +11,9 @@ import { Component } from '@/interface/component'
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
+import { useAppSelector } from '@/hooks/app'
+import { settingsState } from '@/store/slices/settings'
+
 import Breakpoint from '@/components/PreviewBreakpoint'
 import Code from '@/components/PreviewCode'
 import CopyCode from '@/components/PreviewCopy'
@@ -32,8 +35,12 @@ type Props = {
 }
 
 function Preview({ componentData, componentContainer }: Props) {
-  const nextRouter = useRouter()
   const refIframe = useRef(null)
+
+  const { query } = useRouter()
+  const { category, slug } = query
+
+  const { breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -56,9 +63,6 @@ function Preview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     variants: componentVariants,
   } = componentData
-
-  const { query: routerQuery } = nextRouter
-  const { category: componentCategory, slug: componentSlug } = routerQuery
 
   let trueComponentContainer: string = componentSpace
     ? componentSpace
@@ -97,22 +101,14 @@ function Preview({ componentData, componentContainer }: Props) {
     }
   }, [isDarkMode])
 
-  useEffect(() => Prism.highlightAll())
-
-  useEffect(() => {
-    // @ts-ignore
-    window.addEventListener('_settingChanged', handleSettingChange)
-  }, [])
-
-  function handleSettingChange(e: CustomEvent) {
-    setPreviewWidth(e.detail.settingDefaultBreakpoint)
-  }
+  useEffect(() => Prism.highlightAll(), [componentHtml])
+  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
   async function fetchHtml() {
     const componentUrl =
       selectedVariant === 'base'
-        ? `/components/${componentCategory}-${componentSlug}/${componentId}.html`
-        : `/components/${componentCategory}-${componentSlug}/${componentId}-${selectedVariant}.html`
+        ? `/components/${category}-${slug}/${componentId}.html`
+        : `/components/${category}-${slug}/${componentId}-${selectedVariant}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
@@ -156,7 +152,7 @@ function Preview({ componentData, componentContainer }: Props) {
   }
 
   return (
-    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
+    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
