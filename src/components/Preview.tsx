@@ -11,6 +11,9 @@ import { Component } from '@/interface/component'
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
+import { useAppSelector } from '@/hooks/app'
+import { settingsState } from '@/store/slices/settings'
+
 import Breakpoint from '@/components/PreviewBreakpoint'
 import Code from '@/components/PreviewCode'
 import CopyCode from '@/components/PreviewCopy'
@@ -32,6 +35,7 @@ type Props = {
 }
 
 function Preview({ componentData, componentContainer }: Props) {
+  const { breakpoint } = useAppSelector(settingsState)
   const nextRouter = useRouter()
   const refIframe = useRef(null)
 
@@ -97,16 +101,8 @@ function Preview({ componentData, componentContainer }: Props) {
     }
   }, [isDarkMode])
 
-  useEffect(() => Prism.highlightAll())
-
-  useEffect(() => {
-    // @ts-ignore
-    window.addEventListener('_settingChanged', handleSettingChange)
-  }, [])
-
-  function handleSettingChange(e: CustomEvent) {
-    setPreviewWidth(e.detail.settingDefaultBreakpoint)
-  }
+  useEffect(() => Prism.highlightAll(), [componentHtml])
+  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
   async function fetchHtml() {
     const componentUrl =
@@ -156,7 +152,7 @@ function Preview({ componentData, componentContainer }: Props) {
   }
 
   return (
-    <div className="pt-20 -mt-20" ref={ref} id={componentHash}>
+    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 

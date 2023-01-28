@@ -2,6 +2,9 @@ import { Breakpoint } from '@/interface/breakpoint'
 
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
+import { useAppSelector, useAppDispatch } from '@/hooks/app'
+import { setBreakpoint, settingsState } from '@/store/slices/settings'
+
 import SettingSelect from '@/components/SettingSelect'
 
 type Props = {
@@ -9,10 +12,10 @@ type Props = {
   handleDefaultBreakpoint: CallableFunction
 }
 
-function SettingDefaultBreakpoint({
-  defaultBreakpoint,
-  handleDefaultBreakpoint,
-}: Props) {
+function SettingDefaultBreakpoint() {
+  const dispatch = useAppDispatch()
+  const { breakpoint } = useAppSelector(settingsState)
+
   return (
     <div>
       <div className="flex items-start justify-between gap-4">
@@ -27,8 +30,8 @@ function SettingDefaultBreakpoint({
         <SettingSelect
           selectId="DefaultBreakpoint"
           selectLabel="Default Breakpoint"
-          selectValue={defaultBreakpoint}
-          selectHandler={handleDefaultBreakpoint}
+          selectValue={breakpoint}
+          selectHandler={(value: string) => dispatch(setBreakpoint(value))}
         >
           {componentBreakpoints.map((breakpointItem: Breakpoint) => (
             <option key={breakpointItem.name} value={breakpointItem.width}>

@@ -111,7 +111,7 @@ function Component({
       </Head>
 
       <section>
-        <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12 lg:pt-24">
+        <div className="mx-auto max-w-screen-xl px-4 py-12 lg:pt-24">
           <ComponentLinks />
 
           <div className="prose max-w-none">

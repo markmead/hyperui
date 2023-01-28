@@ -1,6 +1,10 @@
 import type { AppProps } from 'next/app'
 
+import { Provider } from 'react-redux'
+
 import Head from 'next/head'
+
+// import { wrapper } from '@/store/app'
 
 import '@/styles/site.css'
 import 'prismjs/themes/prism-okaidia.css'
@@ -8,9 +12,11 @@ import 'prismjs/themes/prism-okaidia.css'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
+import store from '@/store/app'
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>Free Open Source Tailwind CSS Components | HyperUI</title>
         <meta
@@ -53,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </main>
 
       <Footer />
-    </>
+    </Provider>
   )
 }
 
