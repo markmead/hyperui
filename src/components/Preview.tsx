@@ -35,9 +35,12 @@ type Props = {
 }
 
 function Preview({ componentData, componentContainer }: Props) {
-  const { breakpoint } = useAppSelector(settingsState)
-  const nextRouter = useRouter()
   const refIframe = useRef(null)
+
+  const { query } = useRouter()
+  const { category, slug } = query
+
+  const { breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -60,9 +63,6 @@ function Preview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     variants: componentVariants,
   } = componentData
-
-  const { query: routerQuery } = nextRouter
-  const { category: componentCategory, slug: componentSlug } = routerQuery
 
   let trueComponentContainer: string = componentSpace
     ? componentSpace
@@ -107,8 +107,8 @@ function Preview({ componentData, componentContainer }: Props) {
   async function fetchHtml() {
     const componentUrl =
       selectedVariant === 'base'
-        ? `/components/${componentCategory}-${componentSlug}/${componentId}.html`
-        : `/components/${componentCategory}-${componentSlug}/${componentId}-${selectedVariant}.html`
+        ? `/components/${category}-${slug}/${componentId}.html`
+        : `/components/${category}-${slug}/${componentId}-${selectedVariant}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()

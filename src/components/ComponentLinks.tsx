@@ -29,9 +29,9 @@ function ComponentLinks() {
   useEffect(() => setShowLinks(links), [links])
 
   return (
-    <div>
+    <>
       {showLinks && (
-        <div className="hidden md:mb-8 md:block">
+        <div className="hidden md:block">
           {!!categoriesData.length && (
             <ul className="flex gap-4">
               {categoriesData.map((categoryData: SearchResultCategory) => (
@@ -74,7 +74,7 @@ function ComponentLinks() {
           )}
         </div>
       )}
-    </div>
+    </>
   )
 }
 
