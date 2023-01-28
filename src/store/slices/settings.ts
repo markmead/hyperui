@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { AppState } from '@/store/app'
 
-interface State {
+interface SettingsState {
   links: boolean
   breakpoint: string
 }
 
-const initialState: State = {
+const initialState: SettingsState = {
   links: false,
   breakpoint: '100%',
 }

@@ -7,11 +7,6 @@ import { setBreakpoint, settingsState } from '@/store/slices/settings'
 
 import SettingSelect from '@/components/SettingSelect'
 
-type Props = {
-  defaultBreakpoint: string
-  handleDefaultBreakpoint: CallableFunction
-}
-
 function SettingDefaultBreakpoint() {
   const dispatch = useAppDispatch()
   const { breakpoint } = useAppSelector(settingsState)
