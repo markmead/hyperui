@@ -1,3 +1,5 @@
+import { AppState } from '@/store/app'
+
 export function loadState() {
   try {
     const serializedState = localStorage.getItem('state')
@@ -10,7 +12,7 @@ export function loadState() {
   } catch {}
 }
 
-export function saveState(state) {
+export function saveState(state: AppState) {
   try {
     const serializedState = JSON.stringify(state)
 
