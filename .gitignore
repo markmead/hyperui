@@ -37,9 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# rss
-public/rss.*
-
 # seo
 public/sitemap.xml
 public/robots.txt

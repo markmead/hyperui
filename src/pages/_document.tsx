@@ -4,24 +4,6 @@ export default function Document() {
   return (
     <Html className="h-full scroll-smooth" lang="en">
       <Head>
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          href="https://www.hyperui.dev/rss.xml"
-        />
-
-        <link
-          rel="alternate"
-          type="application/feed+json"
-          href="https://www.hyperui.dev/rss.json"
-        />
-
-        <link
-          rel="alternate"
-          type="application/feed+atom"
-          href="https://www.hyperui.dev/rss.atom"
-        />
-
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>

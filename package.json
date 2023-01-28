@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "yarn css && yarn rss && next-sitemap --config sitemap.config.js",
-    "rss": "node ./scripts/generateRssFeed.js",
+    "postbuild": "yarn css && next-sitemap --config sitemap.config.js",
     "css": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
     "watch": "yarn css -w",
     "lint": "next lint"
@@ -27,7 +26,6 @@
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "fast-glob": "^3.2.12",
-    "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",
     "next-sitemap": "^3.1.20",
