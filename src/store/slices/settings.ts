@@ -16,11 +16,11 @@ export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    toggleLinks(state) {
+    toggleLinks(state: SettingsState) {
       state.links = !state.links
     },
 
-    setBreakpoint(state, action: PayloadAction<string>) {
+    setBreakpoint(state: SettingsState, action: PayloadAction<string>) {
       state.breakpoint = action.payload
     },
   },
