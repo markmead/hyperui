@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import type { AppState } from '@/store/app'
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SettingsState {
   links: boolean
