@@ -13,9 +13,9 @@ export function getBlogSlugs() {
 }
 
 export function getBlogPaths() {
-  const blogSlugs = getBlogSlugs().map(function (blogSlug: string) {
-    return blogSlug.replace(/\.mdx$/, '')
-  })
+  const blogSlugs = getBlogSlugs().map((blogSlug: string) =>
+    blogSlug.replace(/\.mdx$/, '')
+  )
 
   return blogSlugs.map((blogSlug: string) => {
     return {
@@ -34,7 +34,7 @@ export function getPostBySlug(blogSlug: string, dataFields: string[] = []) {
 
   const blogsData: DynamicData = {}
 
-  dataFields.forEach((dataField: string) => {
+  dataFields.forEach(function (dataField: string) {
     if (dataField === 'slug') {
       blogsData[dataField] = trueSlug
     }
@@ -55,12 +55,10 @@ export function getBlogs(dataFields: string[] = []) {
   const blogSlugs = getBlogSlugs()
 
   const blogPosts = blogSlugs
-    .map(function (blogSlug: string) {
-      return getPostBySlug(blogSlug, dataFields)
-    })
-    .sort(function (blogPostA, blogPostB) {
-      return new Date(blogPostA.date) < new Date(blogPostB.date) ? 1 : -1
-    })
+    .map((blogSlug: string) => getPostBySlug(blogSlug, dataFields))
+    .sort((blogPostA, blogPostB) =>
+      new Date(blogPostA.date) < new Date(blogPostB.date) ? 1 : -1
+    )
 
   return blogPosts
 }

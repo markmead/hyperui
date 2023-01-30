@@ -50,7 +50,7 @@ export function getComponentBySlug(
 
   const componentData: DynamicData = {}
 
-  dataFields.forEach((dataField: string) => {
+  dataFields.forEach(function (dataField: string) {
     if (dataField === 'slug') {
       componentData[dataField] = trueSlug
     }
@@ -77,12 +77,8 @@ export function getComponentBySlug(
 
 export function getCategorySlugs() {
   const categorySlugs = getComponents(['category'])
-    .map(function (componentObject: DynamicData) {
-      return componentObject.category
-    })
-    .filter(function (categorySlug) {
-      return categorySlug
-    })
+    .map((componentObject: DynamicData) => componentObject.category)
+    .filter((categorySlug) => categorySlug)
 
   return Array.from(new Set(categorySlugs))
 }
@@ -108,7 +104,7 @@ export function getComponentsByCategory(
   const components = slugs
     .map((slug) => getComponentBySlug(slug, fields))
     .filter((component) => component.category === category)
-    .sort((componentA, componentB) => {
+    .sort(function (componentA, componentB) {
       const titleA: string = componentA.title as string
       const titleB: string = componentB.title as string
 
@@ -129,7 +125,7 @@ export function getCategoryBySlug(
 
   const categoryData: DynamicData = {}
 
-  dataFields.forEach((dataField: string) => {
+  dataFields.forEach(function (dataField: string) {
     if (dataField === 'slug') {
       categoryData[dataField] = trueSlug
     }
