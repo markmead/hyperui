@@ -80,6 +80,7 @@ function Preview({ componentData, componentContainer }: Props) {
       fetchHtml()
       setIsDarkMode(usingDarkMode)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
@@ -87,6 +88,7 @@ function Preview({ componentData, componentContainer }: Props) {
       useDark: isDarkMode,
       useInteractive: isInteractive,
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, isInteractive])
 
   async function fetchHtml(
