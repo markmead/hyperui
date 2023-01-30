@@ -3,11 +3,13 @@ import type { AppState } from '@/store/app'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SettingsState {
+  dark: boolean
   links: boolean
   breakpoint: string
 }
 
 const initialState: SettingsState = {
+  dark: false,
   links: false,
   breakpoint: '100%',
 }
@@ -16,6 +18,10 @@ export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
+    toggleDark(state: SettingsState) {
+      state.dark = !state.dark
+    },
+
     toggleLinks(state: SettingsState) {
       state.links = !state.links
     },
@@ -26,7 +32,7 @@ export const settingsSlice = createSlice({
   },
 })
 
-export const { toggleLinks, setBreakpoint } = settingsSlice.actions
+export const { toggleDark, toggleLinks, setBreakpoint } = settingsSlice.actions
 
 export const settingsState = (state: AppState) => state.settings
 

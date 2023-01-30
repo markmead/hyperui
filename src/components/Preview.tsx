@@ -40,7 +40,7 @@ function Preview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { breakpoint } = useAppSelector(settingsState)
+  const { dark, breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -60,7 +60,6 @@ function Preview({ componentData, componentContainer }: Props) {
     title: componentTitle,
     container: componentSpace,
     creator: componentCreator,
-    dark,
   } = componentData
 
   let trueComponentContainer: string = componentSpace
@@ -69,14 +68,16 @@ function Preview({ componentData, componentContainer }: Props) {
 
   const componentHash = `component-${componentId}`
 
+  useEffect(() => Prism.highlightAll(), [componentHtml])
+  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
+
   useEffect(() => {
-    setIsLoading(true)
+    const usingDarkMode = dark || isDarkMode
 
     if (inView) {
       fetchHtml()
+      setIsDarkMode(usingDarkMode)
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
@@ -85,9 +86,6 @@ function Preview({ componentData, componentContainer }: Props) {
       useInteractive: isInteractive,
     })
   }, [isDarkMode, isInteractive])
-
-  useEffect(() => Prism.highlightAll(), [componentHtml])
-  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
   async function fetchHtml(
     useOptions: {
@@ -101,27 +99,25 @@ function Preview({ componentData, componentContainer }: Props) {
       useOptions.useInteractive && 'interactive',
     ].filter(Boolean)
     const joinedComponentIds = componentIds.join('-')
+
     const componentUrl = `/components/${category}-${slug}/${joinedComponentIds}.html`
 
     setIsLoading(true)
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
-
-    setComponentCode(textResponse)
-    setComponentHtml(
-      transformComponentHtml(textResponse, trueComponentContainer, isDarkMode)
+    const transformedHtml = await transformComponentHtml(
+      textResponse,
+      trueComponentContainer,
+      isDarkMode
     )
 
-    simulateFakeLoading()
+    setComponentCode(textResponse)
+    setComponentHtml(transformedHtml)
+
+    setTimeout(() => setIsLoading(false), 150)
 
     return
-  }
-
-  function simulateFakeLoading() {
-    const randomDuration = Math.floor(Math.random() * (250 - 150) + 150)
-
-    setTimeout(() => setIsLoading(false), randomDuration)
   }
 
   return (

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useClickOutside } from '@/hooks/useClickOutside'
 
 import IconCog from '@/components/IconCog'
+import DarkMode from '@/components/SettingDarkMode'
 import ComponentLinks from '@/components/SettingComponentLinks'
 import DefaultBreakpoint from '@/components/SettingDefaultBreakpoint'
 
@@ -37,6 +38,10 @@ function HeaderSettings() {
       >
         <div className="flow-root">
           <ul className="-py-4 divide-y divide-gray-100">
+            <li className="p-4">
+              <DarkMode />
+            </li>
+
             <li className="p-4">
               <ComponentLinks />
             </li>
