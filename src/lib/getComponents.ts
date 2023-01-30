@@ -63,15 +63,8 @@ export function getComponentBySlug(
       const componentsData: Array<Component> = Object.values(
         fileData.components
       )
-      let componentCount = componentsData.length
 
-      componentsData.forEach(function (componentData: Component) {
-        if (componentData.hasOwnProperty('variants')) {
-          componentCount += Object.keys(componentData.variants ?? []).length
-        }
-      })
-
-      componentData[dataField] = componentCount
+      componentData[dataField] = componentsData.length
     }
 
     if (typeof fileData[dataField] !== 'undefined') {
