@@ -14,8 +14,12 @@ function SettingDarkMode() {
           <p className="text-sm font-medium">Default Dark Mode</p>
 
           <p className="mt-1 text-xs text-gray-700">
-            When possible, the components will render in dark mode first.
+            Components will be rendered in dark mode by default.
           </p>
+
+          <span className="mt-1 inline-block whitespace-nowrap rounded-full bg-blue-100 px-2.5 py-0.5 text-xs text-blue-700">
+            Note: Requires Refresh
+          </span>
         </div>
 
         <SettingToggle

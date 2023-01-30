@@ -20,7 +20,6 @@ import CopyCode from '@/components/PreviewCopy'
 import Creator from '@/components/ComponentCreator'
 import DarkToggle from '@/components/PreviewDark'
 import Iframe from '@/components/PreviewIframe'
-import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
@@ -48,7 +47,6 @@ function Preview({ componentData, componentContainer }: Props) {
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -74,11 +72,18 @@ function Preview({ componentData, componentContainer }: Props) {
   useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
   useEffect(() => {
-    const usingDarkMode = dark || isDarkMode
+    const usingDarkMode = componentHasDark ? dark || isDarkMode : false
 
     if (inView) {
-      fetchHtml()
-      setIsDarkMode(usingDarkMode)
+      loadComponent()
+    }
+
+    async function loadComponent() {
+      const { isLoaded } = await fetchHtml()
+
+      if (isLoaded) {
+        setIsDarkMode(usingDarkMode)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
@@ -106,8 +111,6 @@ function Preview({ componentData, componentContainer }: Props) {
 
     const componentUrl = `/components/${category}-${slug}/${joinedComponentIds}.html`
 
-    setIsLoading(true)
-
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
     const transformedHtml = await transformComponentHtml(
@@ -119,9 +122,9 @@ function Preview({ componentData, componentContainer }: Props) {
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
 
-    setTimeout(() => setIsLoading(false), 150)
-
-    return
+    return {
+      isLoaded: true,
+    }
   }
 
   return (
@@ -176,10 +179,6 @@ function Preview({ componentData, componentContainer }: Props) {
         </div>
 
         <div className="relative">
-          {isLoading && (
-            <Loading previewWidth={previewWidth} isDarkMode={isDarkMode} />
-          )}
-
           <div>
             <Iframe
               showPreview={showPreview}
@@ -187,7 +186,6 @@ function Preview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
-              isLoading={isLoading}
             />
 
             <Code showPreview={showPreview} componentCode={componentCode} />
