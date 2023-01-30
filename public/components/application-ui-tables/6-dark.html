@@ -1,27 +1,18 @@
-<!--
-  This component uses @tailwindcss/forms
-
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
--->
-
-<div
-  class="overflow-hidden overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700"
->
+<div class="overflow-x-auto">
   <table
-    class="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700"
+    class="min-w-full divide-y-2 divide-gray-200 text-sm dark:divide-gray-700"
   >
-    <thead class="bg-gray-100 dark:bg-gray-800">
+    <thead>
       <tr>
-        <th class="bg-gray-100 px-4 py-2 text-left dark:bg-gray-800">
-          <label class="sr-only" for="SelectAll">Select All</label>
+        <th
+          class="sticky inset-y-0 left-0 bg-white px-4 py-2 text-left dark:bg-gray-900"
+        >
+          <label for="SelectAll" class="sr-only">Select All</label>
 
           <input
-            class="h-5 w-5 rounded border-gray-200 dark:border-gray-700"
             type="checkbox"
             id="SelectAll"
+            class="h-5 w-5 rounded border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
           />
         </th>
         <th
@@ -48,12 +39,12 @@
     </thead>
 
     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-      <tr class="dark:bg-gray-900">
-        <td class="bg-white px-4 py-2 dark:bg-gray-900">
+      <tr>
+        <td class="sticky inset-y-0 left-0 bg-white px-4 py-2 dark:bg-gray-900">
           <label class="sr-only" for="Row1">Row 1</label>
 
           <input
-            class="h-5 w-5 rounded border-gray-200 dark:border-gray-700"
+            class="h-5 w-5 rounded border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
             type="checkbox"
             id="Row1"
           />
@@ -80,12 +71,12 @@
         </td>
       </tr>
 
-      <tr class="dark:bg-gray-900">
-        <td class="bg-white px-4 py-2 dark:bg-gray-900">
+      <tr>
+        <td class="sticky inset-y-0 left-0 bg-white px-4 py-2 dark:bg-gray-900">
           <label class="sr-only" for="Row2">Row 2</label>
 
           <input
-            class="h-5 w-5 rounded border-gray-200 dark:border-gray-700"
+            class="h-5 w-5 rounded border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
             type="checkbox"
             id="Row2"
           />
@@ -112,12 +103,12 @@
         </td>
       </tr>
 
-      <tr class="dark:bg-gray-900">
-        <td class="bg-white px-4 py-2 dark:bg-gray-900">
+      <tr>
+        <td class="sticky inset-y-0 left-0 bg-white px-4 py-2 dark:bg-gray-900">
           <label class="sr-only" for="Row3">Row 3</label>
 
           <input
-            class="h-5 w-5 rounded border-gray-200 dark:border-gray-700"
+            class="h-5 w-5 rounded border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
             type="checkbox"
             id="Row3"
           />

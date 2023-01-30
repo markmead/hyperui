@@ -1,7 +1,16 @@
-<div class="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
-  <table class="min-w-full divide-y divide-gray-200 text-sm">
-    <thead class="bg-gray-100">
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y-2 divide-gray-200 text-sm">
+    <thead>
       <tr>
+        <th class="px-4 py-2 text-left">
+          <label for="SelectAll" class="sr-only">Select All</label>
+
+          <input
+            type="checkbox"
+            id="SelectAll"
+            class="h-5 w-5 rounded border-gray-300"
+          />
+        </th>
         <th
           class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
         >
@@ -27,6 +36,15 @@
 
     <tbody class="divide-y divide-gray-200">
       <tr>
+        <td class="px-4 py-2">
+          <label class="sr-only" for="Row1">Row 1</label>
+
+          <input
+            class="h-5 w-5 rounded border-gray-300"
+            type="checkbox"
+            id="Row1"
+          />
+        </td>
         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           John Doe
         </td>
@@ -36,6 +54,15 @@
       </tr>
 
       <tr>
+        <td class="px-4 py-2">
+          <label class="sr-only" for="Row2">Row 2</label>
+
+          <input
+            class="h-5 w-5 rounded border-gray-300"
+            type="checkbox"
+            id="Row2"
+          />
+        </td>
         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Jane Doe
         </td>
@@ -45,6 +72,15 @@
       </tr>
 
       <tr>
+        <td class="px-4 py-2">
+          <label class="sr-only" for="Row3">Row 3</label>
+
+          <input
+            class="h-5 w-5 rounded border-gray-300"
+            type="checkbox"
+            id="Row3"
+          />
+        </td>
         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Gary Barlow
         </td>

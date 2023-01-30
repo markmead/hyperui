@@ -1,25 +1,7 @@
-<!--
-  This component uses @tailwindcss/forms
-
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
--->
-
-<div class="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
-  <table class="min-w-full divide-y divide-gray-200 text-sm">
-    <thead class="bg-gray-100">
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y-2 divide-gray-200 text-sm">
+    <thead>
       <tr>
-        <th class="bg-gray-100 px-4 py-2 text-left">
-          <label class="sr-only" for="SelectAll">Select All</label>
-
-          <input
-            class="h-5 w-5 rounded border-gray-200"
-            type="checkbox"
-            id="SelectAll"
-          />
-        </th>
         <th
           class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
         >
@@ -44,16 +26,7 @@
     </thead>
 
     <tbody class="divide-y divide-gray-200">
-      <tr>
-        <td class="bg-white px-4 py-2">
-          <label class="sr-only" for="Row1">Row 1</label>
-
-          <input
-            class="h-5 w-5 rounded border-gray-200"
-            type="checkbox"
-            id="Row1"
-          />
-        </td>
+      <tr class="odd:bg-gray-50">
         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           John Doe
         </td>
@@ -62,16 +35,7 @@
         <td class="whitespace-nowrap px-4 py-2 text-gray-700">$120,000</td>
       </tr>
 
-      <tr>
-        <td class="bg-white px-4 py-2">
-          <label class="sr-only" for="Row2">Row 2</label>
-
-          <input
-            class="h-5 w-5 rounded border-gray-200"
-            type="checkbox"
-            id="Row2"
-          />
-        </td>
+      <tr class="odd:bg-gray-50">
         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Jane Doe
         </td>
@@ -80,16 +44,7 @@
         <td class="whitespace-nowrap px-4 py-2 text-gray-700">$100,000</td>
       </tr>
 
-      <tr>
-        <td class="bg-white px-4 py-2">
-          <label class="sr-only" for="Row3">Row 3</label>
-
-          <input
-            class="h-5 w-5 rounded border-gray-200"
-            type="checkbox"
-            id="Row3"
-          />
-        </td>
+      <tr class="odd:bg-gray-50">
         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Gary Barlow
         </td>
