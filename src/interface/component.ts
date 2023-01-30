@@ -13,11 +13,5 @@ export interface Component extends Core {
   container?: string
   creator?: string
   dark?: boolean
-  variants?: Array<ComponentVariant>
-}
-
-export interface ComponentVariant {
-  id: string
-  title: string
-  container?: string
+  interactive?: boolean
 }

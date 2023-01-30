@@ -60,6 +60,8 @@ function Preview({ componentData, componentContainer }: Props) {
     title: componentTitle,
     container: componentSpace,
     creator: componentCreator,
+    dark: componentHasDark,
+    interactive: componentHasInteractive,
   } = componentData
 
   let trueComponentContainer: string = componentSpace
@@ -135,15 +137,19 @@ function Preview({ componentData, componentContainer }: Props) {
 
               <CopyCode componentCode={componentCode} />
 
-              <DarkToggle
-                isDarkMode={isDarkMode}
-                handleSetIsDarkMode={setIsDarkMode}
-              />
+              {componentHasDark && (
+                <DarkToggle
+                  isDarkMode={isDarkMode}
+                  handleSetIsDarkMode={setIsDarkMode}
+                />
+              )}
 
-              <InteractiveToggle
-                isInteractive={isInteractive}
-                handleSetIsInteractive={setIsInteractive}
-              />
+              {componentHasInteractive && (
+                <InteractiveToggle
+                  isInteractive={isInteractive}
+                  handleSetIsInteractive={setIsInteractive}
+                />
+              )}
             </div>
           )}
 

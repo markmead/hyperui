@@ -58,6 +58,7 @@ function Component({
         container: componentData.container ?? '',
         creator: componentData.creator ?? '',
         dark: componentData.dark ?? false,
+        interactive: componentData.interactive ?? false,
       }
     }
   )
