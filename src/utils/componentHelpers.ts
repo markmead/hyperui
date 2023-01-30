@@ -3,17 +3,19 @@ export function transformComponentHtml(
   componentContainer: string = 'relative'
 ) {
   return `
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        let links = [...document.querySelectorAll('a')]
-        let forms = [...document.querySelectorAll('form')]
+    <head>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          let links = [...document.querySelectorAll('a')]
+          let forms = [...document.querySelectorAll('form')]
 
-        links.forEach(link => link.addEventListener('click', (e) => e.preventDefault()))
-        forms.forEach(form => form.addEventListener('submit', (e) => e.preventDefault()))
-      })
-    </script>
+          links.forEach(link => link.addEventListener('click', (e) => e.preventDefault()))
+          forms.forEach(form => form.addEventListener('submit', (e) => e.preventDefault()))
+        })
+      </script>
 
-    <link rel="stylesheet" href="/components.css">
+      <link rel="stylesheet" href="/components.css">
+    </head>
 
     <body class="${componentContainer}">
       ${componentHtml}

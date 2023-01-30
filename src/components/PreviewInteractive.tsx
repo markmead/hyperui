@@ -18,7 +18,7 @@ function Interactive({ isInteractive, handleSetIsInteractive }: Props) {
       </span>
 
       <span className="text-xs font-medium">
-        {isInteractive ? 'Interactive' : 'No'}
+        {isInteractive ? 'Interactive' : 'Dumb'}
       </span>
     </button>
   )

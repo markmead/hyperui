@@ -92,23 +92,43 @@ function Preview({ componentData, componentContainer }: Props) {
         isDarkMode
       )
     }
-  }, [isDarkMode])
+
+    fetchHtml({
+      useDark: isDarkMode,
+      useInteractive: isInteractive,
+    })
+  }, [isDarkMode, isInteractive])
 
   useEffect(() => Prism.highlightAll(), [componentHtml])
   useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
-  async function fetchHtml() {
-    const componentUrl = `/components/${category}-${slug}/${componentId}.html`
+  async function fetchHtml(
+    useOptions: {
+      useDark?: boolean
+      useInteractive?: boolean
+    } = {}
+  ) {
+    const componentIds = [
+      componentId,
+      useOptions.useDark && 'dark',
+      useOptions.useInteractive && 'interactive',
+    ].filter(Boolean)
 
-    const fetchResponse = await fetch(componentUrl)
-    const textResponse = await fetchResponse.text()
+    const componentUrl = `/components/${category}-${slug}/${componentIds.join(
+      '-'
+    )}.html`
 
-    setComponentCode(textResponse)
-    setComponentHtml(
-      transformComponentHtml(textResponse, trueComponentContainer)
-    )
+    console.log(componentUrl)
 
-    simulateFakeLoading()
+    // const fetchResponse = await fetch(componentUrl)
+    // const textResponse = await fetchResponse.text()
+
+    // setComponentCode(textResponse)
+    // setComponentHtml(
+    //   transformComponentHtml(textResponse, trueComponentContainer)
+    // )
+
+    // simulateFakeLoading()
 
     return
   }
@@ -116,9 +136,7 @@ function Preview({ componentData, componentContainer }: Props) {
   function simulateFakeLoading() {
     const randomDuration = Math.floor(Math.random() * (250 - 150) + 150)
 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, randomDuration)
+    setTimeout(() => setIsLoading(false), randomDuration)
   }
 
   return (
