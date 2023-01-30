@@ -1,4 +1,4 @@
-<fieldset class="grid grid-cols-2 gap-4">
+<fieldset class="space-y-4">
   <legend class="sr-only">Delivery</legend>
 
   <div>
@@ -7,17 +7,32 @@
       name="DeliveryOption"
       value="DeliveryStandard"
       id="DeliveryStandard"
-      class="peer hidden"
+      class="peer hidden [&:checked_+_label_svg]:block"
       checked
     />
 
     <label
       for="DeliveryStandard"
-      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <p class="text-gray-700">Standard</p>
+      <div class="flex items-center gap-2">
+        <svg
+          class="hidden h-5 w-5 text-blue-600"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+            clip-rule="evenodd"
+          />
+        </svg>
 
-      <p class="mt-1 text-gray-900">Free</p>
+        <p class="text-gray-700">Standard</p>
+      </div>
+
+      <p class="text-gray-900">Free</p>
     </label>
   </div>
 
@@ -27,16 +42,31 @@
       name="DeliveryOption"
       value="DeliveryPriority"
       id="DeliveryPriority"
-      class="peer hidden"
+      class="peer hidden [&:checked_+_label_svg]:block"
     />
 
     <label
       for="DeliveryPriority"
-      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <p class="text-gray-700">Next Day</p>
+      <div class="flex items-center gap-2">
+        <svg
+          class="hidden h-5 w-5 text-blue-600"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+            clip-rule="evenodd"
+          />
+        </svg>
 
-      <p class="mt-1 text-gray-900">£9.99</p>
+        <p class="text-gray-700">Next Day</p>
+      </div>
+
+      <p class="text-gray-900">£9.99</p>
     </label>
   </div>
 </fieldset>

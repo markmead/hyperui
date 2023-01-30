@@ -1,72 +1,42 @@
-<fieldset class="flex flex-wrap gap-3">
-  <legend class="sr-only">Color</legend>
+<fieldset class="grid grid-cols-2 gap-4">
+  <legend class="sr-only">Delivery</legend>
 
   <div>
     <input
       type="radio"
-      name="ColorOption"
-      value="ColorBlack"
-      id="ColorBlack"
+      name="DeliveryOption"
+      value="DeliveryStandard"
+      id="DeliveryStandard"
       class="peer hidden"
       checked
     />
 
     <label
-      for="ColorBlack"
-      class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+      for="DeliveryStandard"
+      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <p class="text-sm font-medium">Texas Tea</p>
+      <p class="text-gray-700">Standard</p>
+
+      <p class="mt-1 text-gray-900">Free</p>
     </label>
   </div>
 
   <div>
     <input
       type="radio"
-      name="ColorOption"
-      value="ColorRed"
-      id="ColorRed"
+      name="DeliveryOption"
+      value="DeliveryPriority"
+      id="DeliveryPriority"
       class="peer hidden"
     />
 
     <label
-      for="ColorRed"
-      class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+      for="DeliveryPriority"
+      class="block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
     >
-      <p class="text-sm font-medium">Fiesta Red</p>
-    </label>
-  </div>
+      <p class="text-gray-700">Next Day</p>
 
-  <div>
-    <input
-      type="radio"
-      name="ColorOption"
-      value="ColorBlue"
-      id="ColorBlue"
-      class="peer hidden"
-    />
-
-    <label
-      for="ColorBlue"
-      class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
-    >
-      <p class="text-sm font-medium">Cobalt Blue</p>
-    </label>
-  </div>
-
-  <div>
-    <input
-      type="radio"
-      name="ColorOption"
-      value="ColorGold"
-      id="ColorGold"
-      class="peer hidden"
-    />
-
-    <label
-      for="ColorGold"
-      class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
-    >
-      <p class="text-sm font-medium">Goldtop</p>
+      <p class="mt-1 text-gray-900">£9.99</p>
     </label>
   </div>
 </fieldset>
