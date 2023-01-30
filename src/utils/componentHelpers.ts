@@ -1,25 +1,28 @@
 export function transformComponentHtml(
   componentHtml: string,
-  componentContainer: string = 'relative'
+  componentContainer: string = 'relative',
+  isDarkMode: boolean = false
 ) {
   return `
-    <head>
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          let links = [...document.querySelectorAll('a')]
-          let forms = [...document.querySelectorAll('form')]
+    <html class="${isDarkMode && 'dark'}">
+      <head>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            let links = [...document.querySelectorAll('a')]
+            let forms = [...document.querySelectorAll('form')]
 
-          links.forEach(link => link.addEventListener('click', (e) => e.preventDefault()))
-          forms.forEach(form => form.addEventListener('submit', (e) => e.preventDefault()))
-        })
-      </script>
+            links.forEach(link => link.addEventListener('click', (e) => e.preventDefault()))
+            forms.forEach(form => form.addEventListener('submit', (e) => e.preventDefault()))
+          })
+        </script>
 
-      <link rel="stylesheet" href="/components.css">
-    </head>
+        <link rel="stylesheet" href="/components.css">
+      </head>
 
-    <body class="${componentContainer}">
-      ${componentHtml}
-    </body>
+      <body class="${componentContainer}">
+        ${componentHtml}
+      </body>
+    </html>
   `
 }
 

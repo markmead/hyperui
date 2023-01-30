@@ -70,10 +70,6 @@ function Preview({ componentData, componentContainer }: Props) {
   const componentHash = `component-${componentId}`
 
   useEffect(() => {
-    console.log(1)
-  }, [])
-
-  useEffect(() => {
     setIsLoading(true)
 
     if (inView) {
@@ -84,15 +80,6 @@ function Preview({ componentData, componentContainer }: Props) {
   }, [inView])
 
   useEffect(() => {
-    if (refIframe && refIframe.current) {
-      const iframeEl = refIframe.current as HTMLIFrameElement
-
-      iframeEl.contentWindow?.document.documentElement.classList.toggle(
-        'dark',
-        isDarkMode
-      )
-    }
-
     fetchHtml({
       useDark: isDarkMode,
       useInteractive: isInteractive,
@@ -113,22 +100,20 @@ function Preview({ componentData, componentContainer }: Props) {
       useOptions.useDark && 'dark',
       useOptions.useInteractive && 'interactive',
     ].filter(Boolean)
+    const joinedComponentIds = componentIds.join('-')
+    const componentUrl = `/components/${category}-${slug}/${joinedComponentIds}.html`
 
-    const componentUrl = `/components/${category}-${slug}/${componentIds.join(
-      '-'
-    )}.html`
+    setIsLoading(true)
 
-    console.log(componentUrl)
+    const fetchResponse = await fetch(componentUrl)
+    const textResponse = await fetchResponse.text()
 
-    // const fetchResponse = await fetch(componentUrl)
-    // const textResponse = await fetchResponse.text()
+    setComponentCode(textResponse)
+    setComponentHtml(
+      transformComponentHtml(textResponse, trueComponentContainer, isDarkMode)
+    )
 
-    // setComponentCode(textResponse)
-    // setComponentHtml(
-    //   transformComponentHtml(textResponse, trueComponentContainer)
-    // )
-
-    // simulateFakeLoading()
+    simulateFakeLoading()
 
     return
   }
@@ -154,12 +139,10 @@ function Preview({ componentData, componentContainer }: Props) {
 
               <CopyCode componentCode={componentCode} />
 
-              {dark && (
-                <DarkToggle
-                  isDarkMode={isDarkMode}
-                  handleSetIsDarkMode={setIsDarkMode}
-                />
-              )}
+              <DarkToggle
+                isDarkMode={isDarkMode}
+                handleSetIsDarkMode={setIsDarkMode}
+              />
 
               <InteractiveToggle
                 isInteractive={isInteractive}
@@ -189,7 +172,9 @@ function Preview({ componentData, componentContainer }: Props) {
         </div>
 
         <div className="relative">
-          {isLoading && <Loading previewWidth={previewWidth} />}
+          {isLoading && (
+            <Loading previewWidth={previewWidth} isDarkMode={isDarkMode} />
+          )}
 
           <div>
             <Iframe
