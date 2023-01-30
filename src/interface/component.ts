@@ -12,6 +12,7 @@ export interface ComponentCard extends Core {
 export interface Component extends Core {
   container?: string
   creator?: string
+  dark?: boolean
   variants?: Array<ComponentVariant>
 }
 

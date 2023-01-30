@@ -1,26 +1,24 @@
 import styles from '@/styles/button.module.css'
 
 type Props = {
-  hasDarkMode: boolean
   isDarkMode: boolean
   handleSetIsDarkMode: CallableFunction
 }
 
-function Dark({ hasDarkMode, isDarkMode, handleSetIsDarkMode }: Props) {
+function Dark({ isDarkMode, handleSetIsDarkMode }: Props) {
   return (
     <button
       onClick={() => handleSetIsDarkMode(!isDarkMode)}
       className={`${styles.pill} ${
-        isDarkMode && hasDarkMode ? 'bg-black text-white' : 'text-black'
+        isDarkMode ? 'bg-black text-white' : 'text-black'
       } disabled:pointer-events-none disabled:opacity-25`}
-      disabled={!hasDarkMode}
     >
       <span aria-hidden="true" role="img" className="text-sm">
-        {isDarkMode && hasDarkMode ? '🌕' : '🌞'}
+        {isDarkMode ? '🌕' : '🌞'}
       </span>
 
       <span className="text-xs font-medium">
-        {isDarkMode && hasDarkMode ? 'Dark' : 'Light'}
+        {isDarkMode ? 'Dark' : 'Light'}
       </span>
     </button>
   )

@@ -57,18 +57,7 @@ function Component({
         title: componentData.title,
         container: componentData.container ?? '',
         creator: componentData.creator ?? '',
-        variants: componentData.variants
-          ? Object.entries(componentData.variants).map(function ([
-              variantId,
-              variantData,
-            ]: [string, ComponentVariant]) {
-              return {
-                id: variantId,
-                title: variantData.title,
-                container: variantData.container ?? '',
-              }
-            })
-          : [],
+        dark: componentData.dark ?? false,
       }
     }
   )
