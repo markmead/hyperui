@@ -19,11 +19,14 @@ function SettingInteractiveMode() {
 
   useEffect(() => {
     setInitialInteractive(interactive)
+    setShouldRefresh(false)
+  }, [asPath])
 
+  useEffect(() => {
     const valueHasChanged = initialInteractive !== interactive
 
     setShouldRefresh(valueHasChanged)
-  }, [interactive, asPath])
+  }, [interactive])
 
   return (
     <div>

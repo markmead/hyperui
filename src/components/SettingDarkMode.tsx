@@ -19,11 +19,14 @@ function SettingDarkMode() {
 
   useEffect(() => {
     setInitialDark(dark)
+    setShouldRefresh(false)
+  }, [asPath])
 
+  useEffect(() => {
     const valueHasChanged = initialDark !== dark
 
     setShouldRefresh(valueHasChanged)
-  }, [dark, asPath])
+  }, [dark])
 
   return (
     <div className="flex items-start gap-4">
