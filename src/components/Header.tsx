@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 
 import { menuLinks } from '@/utils/menuLinks'
 
-import GitHub from '@/components/BrandGithub'
 import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
 import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
 import Settings from '@/components/HeaderSettings'
+import IconGithub from '@/components/IconGithub'
 
 function Header() {
   const nextRouter = useRouter()
@@ -18,10 +18,10 @@ function Header() {
   useEffect(() => setShowMenu(false), [nextRouter.asPath])
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-      <div className="max-w-screen-xl px-4 mx-auto">
-        <div className="relative flex items-center justify-between h-16 gap-8">
-          <div className="flex items-center flex-1 gap-4">
+    <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white">
+      <div className="mx-auto max-w-screen-xl px-4">
+        <div className="relative flex h-16 items-center justify-between gap-8">
+          <div className="flex flex-1 items-center gap-4">
             <Logo fontSize="text-sm" />
 
             <span
@@ -39,7 +39,7 @@ function Header() {
           <div className="flex items-center justify-end gap-4">
             <Search />
 
-            <GitHub />
+            <GithubLink />
 
             <Menu
               showMenu={showMenu}
@@ -59,6 +59,21 @@ function Header() {
         </div>
       </div>
     </header>
+  )
+}
+
+function GithubLink() {
+  return (
+    <a
+      href="https://github.com/markmead/hyperui"
+      rel="noreferrer"
+      target="_blank"
+      className="inline-block hover:opacity-75"
+    >
+      <span className="sr-only"> GitHub </span>
+
+      <IconGithub />
+    </a>
   )
 }
 

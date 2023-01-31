@@ -17,7 +17,7 @@ function SettingBreakpoint() {
       <div className="flex-1">
         <SettingTitle
           title="Preview Breakpoint"
-          description="Set the breakpoint for all component previews."
+          description="Set the breakpoint for all component previews on the component page."
         />
       </div>
 

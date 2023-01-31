@@ -18,7 +18,7 @@ function SettingInteractiveMode() {
         <div className="flex-1">
           <SettingTitle
             title="Interactive Mode"
-            description="Components will be rendered in interactive mode by default."
+            description="Components will be rendered in interactive mode by default if they have an interactive mode variant."
             refresh={interactiveMode !== interactive}
           />
         </div>

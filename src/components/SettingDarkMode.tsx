@@ -17,7 +17,7 @@ function SettingDarkMode() {
       <div className="flex-1">
         <SettingTitle
           title="Dark Mode"
-          description="Components will be rendered in dark mode by default."
+          description="Components will be rendered in dark mode by default if they have a dark mode variant."
           refresh={darkMode !== dark}
         />
       </div>

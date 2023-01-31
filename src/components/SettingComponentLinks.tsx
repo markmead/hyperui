@@ -13,7 +13,7 @@ function SettingComponentLinks() {
       <div className="flex-1">
         <SettingTitle
           title="Show Links"
-          description="Show links to all components on the component page."
+          description="Show links to all components on the component page for easy navigation."
         />
       </div>
 
