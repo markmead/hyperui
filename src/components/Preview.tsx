@@ -106,18 +106,19 @@ function Preview({ componentData, componentContainer }: Props) {
       useInteractive?: boolean
     } = {}
   ) {
-    const componentIds = [
+    const componentPath = [
       componentId,
       useOptions.useDark && 'dark',
       useOptions.useInteractive && 'interactive',
-    ].filter(Boolean)
-    const joinedComponentIds = componentIds.join('-')
+    ]
+      .filter(Boolean)
+      .join('-')
 
-    const componentUrl = `/components/${category}-${slug}/${joinedComponentIds}.html`
+    const componentUrl = `/components/${category}-${slug}/${componentPath}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = await transformComponentHtml(
+    const transformedHtml = transformComponentHtml(
       textResponse,
       trueComponentContainer,
       isDarkMode
