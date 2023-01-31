@@ -39,7 +39,7 @@ function Preview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { dark, breakpoint } = useAppSelector(settingsState)
+  const { dark, interactive, breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -73,6 +73,9 @@ function Preview({ componentData, componentContainer }: Props) {
 
   useEffect(() => {
     const usingDarkMode = componentHasDark ? dark || isDarkMode : false
+    const usingInteractive = componentHasInteractive
+      ? interactive || isInteractive
+      : false
 
     if (inView) {
       loadComponent()
@@ -83,6 +86,7 @@ function Preview({ componentData, componentContainer }: Props) {
 
       if (isLoaded) {
         setIsDarkMode(usingDarkMode)
+        setIsInteractive(usingInteractive)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,6 +6,7 @@ import { useClickOutside } from '@/hooks/useClickOutside'
 
 import IconCog from '@/components/IconCog'
 import DarkMode from '@/components/SettingDarkMode'
+import InteractiveMode from '@/components/SettingInteractiveMode'
 import ComponentLinks from '@/components/SettingComponentLinks'
 import DefaultBreakpoint from '@/components/SettingDefaultBreakpoint'
 
@@ -40,6 +41,10 @@ function HeaderSettings() {
           <ul className="-py-4 divide-y divide-gray-100">
             <li className="p-4">
               <DarkMode />
+            </li>
+
+            <li className="p-4">
+              <InteractiveMode />
             </li>
 
             <li className="p-4">
