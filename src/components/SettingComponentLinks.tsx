@@ -1,6 +1,7 @@
 import { useAppSelector, useAppDispatch } from '@/hooks/app'
 import { toggleLinks, settingsState } from '@/store/slices/settings'
 
+import SettingTitle from '@/components/SettingTitle'
 import SettingToggle from '@/components/SettingToggle'
 
 function SettingComponentLinks() {
@@ -8,16 +9,15 @@ function SettingComponentLinks() {
   const { links } = useAppSelector(settingsState)
 
   return (
-    <div>
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-medium">Show Component Links</p>
+    <div className="flex items-start gap-4">
+      <div className="flex-1">
+        <SettingTitle
+          title="Show Links"
+          description="Show links to all components on the component page."
+        />
+      </div>
 
-          <p className="mt-1 text-xs text-gray-700">
-            Enabling this will show all component links on the component pages.
-          </p>
-        </div>
-
+      <div className="shrink-0">
         <SettingToggle
           toggleValue={links}
           toggleHandler={() => dispatch(toggleLinks())}

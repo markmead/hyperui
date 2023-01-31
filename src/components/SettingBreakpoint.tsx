@@ -5,23 +5,23 @@ import { componentBreakpoints } from '@/utils/componentBreakpoints'
 import { useAppSelector, useAppDispatch } from '@/hooks/app'
 import { setBreakpoint, settingsState } from '@/store/slices/settings'
 
+import SettingTitle from '@/components/SettingTitle'
 import SettingSelect from '@/components/SettingSelect'
 
-function SettingDefaultBreakpoint() {
+function SettingBreakpoint() {
   const dispatch = useAppDispatch()
   const { breakpoint } = useAppSelector(settingsState)
 
   return (
-    <div>
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-medium">Default Breakpoint</p>
+    <div className="flex items-start gap-4">
+      <div className="flex-1">
+        <SettingTitle
+          title="Preview Breakpoint"
+          description="Set the breakpoint for all component previews."
+        />
+      </div>
 
-          <p className="mt-1 text-xs text-gray-700">
-            Set the default breakpoint for all components.
-          </p>
-        </div>
-
+      <div className="shrink-0">
         <SettingSelect
           selectId="DefaultBreakpoint"
           selectLabel="Default Breakpoint"
@@ -39,4 +39,4 @@ function SettingDefaultBreakpoint() {
   )
 }
 
-export default SettingDefaultBreakpoint
+export default SettingBreakpoint

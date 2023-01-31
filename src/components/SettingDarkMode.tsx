@@ -1,27 +1,28 @@
+import { useState } from 'react'
+
 import { useAppSelector, useAppDispatch } from '@/hooks/app'
 import { toggleDark, settingsState } from '@/store/slices/settings'
 
+import SettingTitle from '@/components/SettingTitle'
 import SettingToggle from '@/components/SettingToggle'
 
 function SettingDarkMode() {
   const dispatch = useAppDispatch()
   const { dark } = useAppSelector(settingsState)
 
+  const [darkMode] = useState(dark)
+
   return (
-    <div>
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-medium">Default Dark Mode</p>
+    <div className="flex items-start gap-4">
+      <div className="flex-1">
+        <SettingTitle
+          title="Dark Mode"
+          description="Components will be rendered in dark mode by default."
+          refresh={darkMode !== dark}
+        />
+      </div>
 
-          <p className="mt-1 text-xs text-gray-700">
-            Components will be rendered in dark mode by default.
-          </p>
-
-          <span className="mt-1 inline-block whitespace-nowrap rounded-full bg-blue-100 px-2.5 py-0.5 text-xs text-blue-700">
-            Note: Requires Refresh
-          </span>
-        </div>
-
+      <div className="shrink-0">
         <SettingToggle
           toggleValue={dark}
           toggleHandler={() => dispatch(toggleDark())}
