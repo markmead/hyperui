@@ -21,10 +21,10 @@ function HeaderSettings() {
   useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
 
   const settingComponents = [
-    <SettingDarkMode />,
-    <SettingInteractiveMode />,
-    <SettingComponentLinks />,
-    <SettingBreakpoint />,
+    <SettingDarkMode key="darkMode" />,
+    <SettingInteractiveMode key="interactiveMode" />,
+    <SettingComponentLinks key="componentLinks" />,
+    <SettingBreakpoint key="previewBreakpoint" />,
   ]
 
   return (
