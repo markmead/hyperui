@@ -45,8 +45,8 @@ function HeaderSettings() {
         className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg"
       >
         <ul className="divide-y divide-gray-100">
-          {settingComponents.map((settingComponent, index) => (
-            <li key={index} className="p-4">
+          {settingComponents.map((settingComponent, componentIndex) => (
+            <li key={componentIndex} className="p-4">
               {settingComponent}
             </li>
           ))}

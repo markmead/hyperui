@@ -24,10 +24,7 @@ function Header() {
           <div className="flex flex-1 items-center gap-4">
             <Logo fontSize="text-sm" />
 
-            <span
-              aria-hidden="true"
-              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
-            ></span>
+            <Separator />
 
             <MenuLinks
               menuLinks={menuLinks}
@@ -47,10 +44,7 @@ function Header() {
               menuLinks={menuLinks}
             />
 
-            <span
-              aria-hidden="true"
-              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
-            ></span>
+            <Separator />
 
             <div className="hidden md:block">
               <Settings />
@@ -74,6 +68,15 @@ function GithubLink() {
 
       <IconGithub />
     </a>
+  )
+}
+
+function Separator() {
+  return (
+    <span
+      aria-hidden="true"
+      className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
+    ></span>
   )
 }
 
