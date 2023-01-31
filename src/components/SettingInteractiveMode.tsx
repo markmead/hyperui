@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { useRouter } from 'next/router'
 
 import { useAppSelector, useAppDispatch } from '@/hooks/app'
 import { toggleInteractive, settingsState } from '@/store/slices/settings'
@@ -10,7 +12,18 @@ function SettingInteractiveMode() {
   const dispatch = useAppDispatch()
   const { interactive } = useAppSelector(settingsState)
 
-  const [interactiveMode] = useState(interactive)
+  const { asPath } = useRouter()
+
+  const [initialInteractive, setInitialInteractive] = useState(interactive)
+  const [shouldRefresh, setShouldRefresh] = useState(false)
+
+  useEffect(() => {
+    setInitialInteractive(interactive)
+
+    const valueHasChanged = initialInteractive !== interactive
+
+    setShouldRefresh(valueHasChanged)
+  }, [interactive, asPath])
 
   return (
     <div>
@@ -19,7 +32,7 @@ function SettingInteractiveMode() {
           <SettingTitle
             settingTitle="Interactive Mode"
             settingDescription="Components will be rendered in interactive mode by default if they have an interactive mode variant."
-            shouldRefresh={interactiveMode !== interactive}
+            shouldRefresh={shouldRefresh}
           />
         </div>
 

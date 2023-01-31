@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -13,8 +14,6 @@ function SettingTitle({
 }: Props) {
   const { reload } = useRouter()
 
-  const reloadPage = () => reload()
-
   return (
     <div>
       <div
@@ -26,7 +25,7 @@ function SettingTitle({
 
         {shouldRefresh && (
           <button
-            onClick={() => reloadPage()}
+            onClick={() => reload()}
             className="inline-block rounded-full bg-blue-100 px-2.5 py-0.5 text-xs text-blue-700 hover:bg-blue-200 hover:text-blue-800"
           >
             Requires Refresh

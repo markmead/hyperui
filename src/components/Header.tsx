@@ -12,10 +12,10 @@ import Settings from '@/components/HeaderSettings'
 import IconGithub from '@/components/IconGithub'
 
 function Header() {
-  const nextRouter = useRouter()
+  const { asPath } = useRouter()
   const [showMenu, setShowMenu] = useState(false)
 
-  useEffect(() => setShowMenu(false), [nextRouter.asPath])
+  useEffect(() => setShowMenu(false), [asPath])
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white">

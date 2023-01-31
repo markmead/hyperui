@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { useRouter } from 'next/router'
 
 import { useAppSelector, useAppDispatch } from '@/hooks/app'
 import { toggleDark, settingsState } from '@/store/slices/settings'
@@ -10,7 +12,18 @@ function SettingDarkMode() {
   const dispatch = useAppDispatch()
   const { dark } = useAppSelector(settingsState)
 
-  const [darkMode] = useState(dark)
+  const { asPath } = useRouter()
+
+  const [initialDark, setInitialDark] = useState(dark)
+  const [shouldRefresh, setShouldRefresh] = useState(false)
+
+  useEffect(() => {
+    setInitialDark(dark)
+
+    const valueHasChanged = initialDark !== dark
+
+    setShouldRefresh(valueHasChanged)
+  }, [dark, asPath])
 
   return (
     <div className="flex items-start gap-4">
@@ -18,7 +31,7 @@ function SettingDarkMode() {
         <SettingTitle
           settingTitle="Dark Mode"
           settingDescription="Components will be rendered in dark mode by default if they have a dark mode variant."
-          shouldRefresh={darkMode !== dark}
+          shouldRefresh={shouldRefresh}
         />
       </div>
 
