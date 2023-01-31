@@ -16,7 +16,7 @@ function SettingSelect({
   children,
 }: Props) {
   return (
-    <div className="shrink-0">
+    <div>
       <label htmlFor={selectId} className="sr-only">
         {selectLabel}
       </label>
@@ -25,7 +25,7 @@ function SettingSelect({
         id={selectId}
         value={selectValue}
         onChange={(e) => selectHandler(e.currentTarget.value)}
-        className="w-full border-gray-200 rounded-md shadow-sm sm:text-sm"
+        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
       >
         {children}
       </select>

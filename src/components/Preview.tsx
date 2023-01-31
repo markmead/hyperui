@@ -20,10 +20,9 @@ import CopyCode from '@/components/PreviewCopy'
 import Creator from '@/components/ComponentCreator'
 import DarkToggle from '@/components/PreviewDark'
 import Iframe from '@/components/PreviewIframe'
-import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
-import VariantsSwitcher from '@/components/PreviewVariants'
 import ViewSwitcher from '@/components/PreviewView'
+import InteractiveToggle from '@/components/PreviewInteractive'
 
 type ComponentData = Component & {
   id: string
@@ -40,16 +39,14 @@ function Preview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { breakpoint } = useAppSelector(settingsState)
+  const { dark, interactive, breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
   const [showPreview, setShowPreview] = useState<boolean>(true)
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
-  const [selectedVariant, setSelectedVariant] = useState<string>('base')
-  const [hasDarkMode, setHasDarkMode] = useState<boolean>(false)
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isInteractive, setIsInteractive] = useState<boolean>(false)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -61,7 +58,8 @@ function Preview({ componentData, componentContainer }: Props) {
     title: componentTitle,
     container: componentSpace,
     creator: componentCreator,
-    variants: componentVariants,
+    dark: componentHasDark,
+    interactive: componentHasInteractive,
   } = componentData
 
   let trueComponentContainer: string = componentSpace
@@ -70,84 +68,67 @@ function Preview({ componentData, componentContainer }: Props) {
 
   const componentHash = `component-${componentId}`
 
+  useEffect(() => Prism.highlightAll(), [componentHtml])
+  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
+
   useEffect(() => {
-    setIsLoading(true)
+    const usingDarkMode = componentHasDark ? dark || isDarkMode : false
+    const usingInteractive = componentHasInteractive
+      ? interactive || isInteractive
+      : false
 
     if (inView) {
-      fetchHtml()
+      loadComponent()
     }
 
+    async function loadComponent() {
+      const { isLoaded } = await fetchHtml()
+
+      if (isLoaded) {
+        setIsDarkMode(usingDarkMode)
+        setIsInteractive(usingInteractive)
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
-    setIsDarkMode(false)
-    setIsLoading(true)
-
-    handleComponentContainer()
-
-    fetchHtml()
+    fetchHtml({
+      useDark: isDarkMode,
+      useInteractive: isInteractive,
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedVariant])
+  }, [isDarkMode, isInteractive])
 
-  useEffect(() => {
-    if (refIframe && refIframe.current) {
-      const iframeEl = refIframe.current as HTMLIFrameElement
+  async function fetchHtml(
+    useOptions: {
+      useDark?: boolean
+      useInteractive?: boolean
+    } = {}
+  ) {
+    const componentPath = [
+      componentId,
+      useOptions.useDark && 'dark',
+      useOptions.useInteractive && 'interactive',
+    ]
+      .filter(Boolean)
+      .join('-')
 
-      iframeEl.contentWindow?.document.documentElement.classList.toggle(
-        'dark',
-        isDarkMode
-      )
-    }
-  }, [isDarkMode])
-
-  useEffect(() => Prism.highlightAll(), [componentHtml])
-  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
-
-  async function fetchHtml() {
-    const componentUrl =
-      selectedVariant === 'base'
-        ? `/components/${category}-${slug}/${componentId}.html`
-        : `/components/${category}-${slug}/${componentId}-${selectedVariant}.html`
+    const componentUrl = `/components/${category}-${slug}/${componentPath}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
-
-    setComponentCode(textResponse)
-    setComponentHtml(
-      transformComponentHtml(textResponse, trueComponentContainer)
+    const transformedHtml = transformComponentHtml(
+      textResponse,
+      trueComponentContainer,
+      isDarkMode
     )
 
-    simulateFakeLoading()
+    setComponentCode(textResponse)
+    setComponentHtml(transformedHtml)
 
-    return
-  }
-
-  function simulateFakeLoading() {
-    const randomDuration = Math.floor(Math.random() * (250 - 150) + 150)
-
-    setTimeout(() => {
-      setIsLoading(false)
-      setIsDarkMode(hasDarkMode)
-    }, randomDuration)
-  }
-
-  function handleComponentContainer() {
-    if (!componentVariants) {
-      return
-    }
-
-    if (selectedVariant === 'base') {
-      trueComponentContainer = componentSpace
-        ? componentSpace
-        : componentContainer
-    }
-
-    const variantIndex = Number(selectedVariant) - 1
-    const variantContainer = componentVariants[variantIndex]?.container
-
-    if (variantContainer) {
-      trueComponentContainer = variantContainer
+    return {
+      isLoaded: true,
     }
   }
 
@@ -157,7 +138,7 @@ function Preview({ componentData, componentContainer }: Props) {
         <Title componentTitle={componentTitle} componentHash={componentHash} />
 
         <div className="lg:flex lg:items-end">
-          {componentCode && componentVariants && (
+          {componentCode && (
             <div className="flex items-end gap-4">
               <ViewSwitcher
                 handleSetShowPreview={setShowPreview}
@@ -166,21 +147,18 @@ function Preview({ componentData, componentContainer }: Props) {
 
               <CopyCode componentCode={componentCode} />
 
-              {componentVariants.length > 0 && (
-                <>
-                  <DarkToggle
-                    hasDarkMode={hasDarkMode}
-                    isDarkMode={isDarkMode}
-                    handleSetIsDarkMode={setIsDarkMode}
-                  />
+              {componentHasDark && (
+                <DarkToggle
+                  isDarkMode={isDarkMode}
+                  handleSetIsDarkMode={setIsDarkMode}
+                />
+              )}
 
-                  <VariantsSwitcher
-                    componentVariants={componentVariants}
-                    handleSetVariant={setSelectedVariant}
-                    handleSetHasDarkMode={setHasDarkMode}
-                    componentId={componentId}
-                  />
-                </>
+              {componentHasInteractive && (
+                <InteractiveToggle
+                  isInteractive={isInteractive}
+                  handleSetIsInteractive={setIsInteractive}
+                />
               )}
             </div>
           )}
@@ -206,8 +184,6 @@ function Preview({ componentData, componentContainer }: Props) {
         </div>
 
         <div className="relative">
-          {isLoading && <Loading previewWidth={previewWidth} />}
-
           <div>
             <Iframe
               showPreview={showPreview}
@@ -215,7 +191,6 @@ function Preview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
-              isLoading={isLoading}
             />
 
             <Code showPreview={showPreview} componentCode={componentCode} />

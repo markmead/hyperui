@@ -4,30 +4,27 @@ import { useRouter } from 'next/router'
 
 import { menuLinks } from '@/utils/menuLinks'
 
-import GitHub from '@/components/BrandGithub'
 import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
 import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
 import Settings from '@/components/HeaderSettings'
+import IconGithub from '@/components/IconGithub'
 
 function Header() {
-  const nextRouter = useRouter()
+  const { asPath } = useRouter()
   const [showMenu, setShowMenu] = useState(false)
 
-  useEffect(() => setShowMenu(false), [nextRouter.asPath])
+  useEffect(() => setShowMenu(false), [asPath])
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 bg-white border-b-2 border-gray-100">
-      <div className="max-w-screen-xl px-4 mx-auto">
-        <div className="relative flex items-center justify-between h-16 gap-8">
-          <div className="flex items-center flex-1 gap-4">
+    <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white">
+      <div className="mx-auto max-w-screen-xl px-4">
+        <div className="relative flex h-16 items-center justify-between gap-8">
+          <div className="flex flex-1 items-center gap-4">
             <Logo fontSize="text-sm" />
 
-            <span
-              aria-hidden="true"
-              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
-            ></span>
+            <Separator />
 
             <MenuLinks
               menuLinks={menuLinks}
@@ -39,7 +36,7 @@ function Header() {
           <div className="flex items-center justify-end gap-4">
             <Search />
 
-            <GitHub />
+            <GithubLink />
 
             <Menu
               showMenu={showMenu}
@@ -47,10 +44,7 @@ function Header() {
               menuLinks={menuLinks}
             />
 
-            <span
-              aria-hidden="true"
-              className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
-            ></span>
+            <Separator />
 
             <div className="hidden md:block">
               <Settings />
@@ -59,6 +53,30 @@ function Header() {
         </div>
       </div>
     </header>
+  )
+}
+
+function GithubLink() {
+  return (
+    <a
+      href="https://github.com/markmead/hyperui"
+      rel="noreferrer"
+      target="_blank"
+      className="inline-block hover:opacity-75"
+    >
+      <span className="sr-only"> GitHub </span>
+
+      <IconGithub />
+    </a>
+  )
+}
+
+function Separator() {
+  return (
+    <span
+      aria-hidden="true"
+      className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
+    ></span>
   )
 }
 

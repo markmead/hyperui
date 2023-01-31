@@ -5,8 +5,10 @@ import { useRouter } from 'next/router'
 import { useClickOutside } from '@/hooks/useClickOutside'
 
 import IconCog from '@/components/IconCog'
-import ComponentLinks from '@/components/SettingComponentLinks'
-import DefaultBreakpoint from '@/components/SettingDefaultBreakpoint'
+import SettingDarkMode from '@/components/SettingDarkMode'
+import SettingInteractiveMode from '@/components/SettingInteractiveMode'
+import SettingComponentLinks from '@/components/SettingComponentLinks'
+import SettingBreakpoint from '@/components/SettingBreakpoint'
 
 function HeaderSettings() {
   const nextRouter = useRouter()
@@ -17,6 +19,13 @@ function HeaderSettings() {
   useEffect(() => setShowDropdown(false), [nextRouter.asPath])
 
   useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
+
+  const settingComponents = [
+    <SettingDarkMode key="darkMode" />,
+    <SettingInteractiveMode key="interactiveMode" />,
+    <SettingComponentLinks key="componentLinks" />,
+    <SettingBreakpoint key="previewBreakpoint" />,
+  ]
 
   return (
     <div ref={refDropdown} className="flex">
@@ -35,17 +44,13 @@ function HeaderSettings() {
         })}
         className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg"
       >
-        <div className="flow-root">
-          <ul className="-py-4 divide-y divide-gray-100">
-            <li className="p-4">
-              <ComponentLinks />
+        <ul className="divide-y divide-gray-100">
+          {settingComponents.map((settingComponent, componentIndex) => (
+            <li key={componentIndex} className="p-4">
+              {settingComponent}
             </li>
-
-            <li className="p-4">
-              <DefaultBreakpoint />
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
     </div>
   )

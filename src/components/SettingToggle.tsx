@@ -14,7 +14,7 @@ function SettingToggle({
   return (
     <label
       htmlFor={toggleId}
-      className="relative h-7 w-12 shrink-0 cursor-pointer"
+      className="relative block h-7 w-12 cursor-pointer"
     >
       <span className="sr-only">{toggleLabel}</span>
 

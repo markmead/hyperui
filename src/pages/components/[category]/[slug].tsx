@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { Component, ComponentVariant } from '@/interface/component'
+import { Component } from '@/interface/component'
 
 import { getComponentPaths } from '@/lib/getComponents'
 
@@ -57,18 +57,8 @@ function Component({
         title: componentData.title,
         container: componentData.container ?? '',
         creator: componentData.creator ?? '',
-        variants: componentData.variants
-          ? Object.entries(componentData.variants).map(function ([
-              variantId,
-              variantData,
-            ]: [string, ComponentVariant]) {
-              return {
-                id: variantId,
-                title: variantData.title,
-                container: variantData.container ?? '',
-              }
-            })
-          : [],
+        dark: !!componentData.dark,
+        interactive: !!componentData.interactive,
       }
     }
   )
