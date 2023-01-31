@@ -1,12 +1,14 @@
-<label for="AcceptConditions" class="relative h-8 cursor-pointer w-14">
+<label for="AcceptConditions" class="relative w-12 h-8 cursor-pointer">
   <input type="checkbox" id="AcceptConditions" class="sr-only peer" />
 
-  <span
-    class="absolute inset-0 transition bg-gray-300 rounded-full peer-checked:bg-blue-500"
-  ></span>
+  <span class="absolute inset-0 h-2 m-auto bg-gray-300 rounded-full"></span>
 
   <span
-    class="absolute inset-0 m-1 h-6 w-6 rounded-full bg-gray-300 ring-[6px] ring-inset ring-white transition-all peer-checked:w-2 peer-checked:translate-x-8 peer-checked:bg-white peer-checked:ring-transparent"
+    class="absolute inset-y-0 m-auto h-6 w-6 rounded-full bg-gray-500 transition peer-checked:translate-x-6 peer-checked:[&_>_*]:scale-0"
   >
+    <span
+      class="absolute inset-0 w-4 h-4 m-auto transition bg-gray-200 rounded-full"
+    >
+    </span>
   </span>
 </label>
