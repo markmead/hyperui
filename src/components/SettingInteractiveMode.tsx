@@ -19,7 +19,7 @@ function SettingInteractiveMode() {
           <SettingTitle
             title="Interactive Mode"
             description="Components will be rendered in interactive mode by default if they have an interactive mode variant."
-            refresh={interactiveMode !== interactive}
+            shouldRefresh={interactiveMode !== interactive}
           />
         </div>
 

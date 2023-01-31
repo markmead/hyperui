@@ -18,7 +18,7 @@ function SettingDarkMode() {
         <SettingTitle
           title="Dark Mode"
           description="Components will be rendered in dark mode by default if they have a dark mode variant."
-          refresh={darkMode !== dark}
+          shouldRefresh={darkMode !== dark}
         />
       </div>
 
