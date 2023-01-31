@@ -12,8 +12,8 @@ function SettingComponentLinks() {
     <div className="flex items-start gap-4">
       <div className="flex-1">
         <SettingTitle
-          title="Show Links"
-          description="Show links to all components on the component page for easy navigation."
+          settingTitle="Show Links"
+          settingDescription="Show links to all components on the component page for easy navigation."
         />
       </div>
 

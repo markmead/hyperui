@@ -16,8 +16,8 @@ function SettingBreakpoint() {
     <div className="flex items-start gap-4">
       <div className="flex-1">
         <SettingTitle
-          title="Preview Breakpoint"
-          description="Set the breakpoint for all component previews on the component page."
+          settingTitle="Preview Breakpoint"
+          settingDescription="Set the breakpoint for all component previews on the component page."
         />
       </div>
 

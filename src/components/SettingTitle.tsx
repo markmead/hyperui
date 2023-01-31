@@ -1,12 +1,16 @@
 import { useRouter } from 'next/router'
 
 type Props = {
-  title: string
-  description: string
+  settingTitle: string
+  settingDescription: string
   shouldRefresh?: boolean
 }
 
-function SettingTitle({ title, description, shouldRefresh = false }: Props) {
+function SettingTitle({
+  settingTitle,
+  settingDescription,
+  shouldRefresh = false,
+}: Props) {
   const { reload } = useRouter()
 
   const reloadPage = () => reload()
@@ -18,7 +22,7 @@ function SettingTitle({ title, description, shouldRefresh = false }: Props) {
           className: 'flex gap-2',
         })}
       >
-        <p className="text-sm font-medium">{title}</p>
+        <p className="text-sm font-medium">{settingTitle}</p>
 
         {shouldRefresh && (
           <button
@@ -30,7 +34,7 @@ function SettingTitle({ title, description, shouldRefresh = false }: Props) {
         )}
       </div>
 
-      <p className="mt-1 text-xs text-gray-700">{description}</p>
+      <p className="mt-1 text-xs text-gray-700">{settingDescription}</p>
     </div>
   )
 }

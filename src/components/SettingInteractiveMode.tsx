@@ -17,8 +17,8 @@ function SettingInteractiveMode() {
       <div className="flex items-start gap-4">
         <div className="flex-1">
           <SettingTitle
-            title="Interactive Mode"
-            description="Components will be rendered in interactive mode by default if they have an interactive mode variant."
+            settingTitle="Interactive Mode"
+            settingDescription="Components will be rendered in interactive mode by default if they have an interactive mode variant."
             shouldRefresh={interactiveMode !== interactive}
           />
         </div>
