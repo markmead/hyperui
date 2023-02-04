@@ -20,12 +20,14 @@ function SettingDarkMode() {
   useEffect(() => {
     setInitialDark(dark)
     setShouldRefresh(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asPath])
 
   useEffect(() => {
     const valueHasChanged = initialDark !== dark
 
     setShouldRefresh(valueHasChanged)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dark])
 
   return (
