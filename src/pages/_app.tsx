@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import store from '@/store/app'
 
 import '@/styles/site.css'
+import '@/styles/prism.css'
 import 'prismjs/themes/prism-okaidia.css'
 
 import Footer from '@/components/Footer'
