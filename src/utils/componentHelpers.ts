@@ -1,7 +1,8 @@
 export function transformComponentHtml(
   componentHtml: string,
   componentContainer: string = 'relative',
-  isDarkMode: boolean = false
+  isDarkMode: boolean = false,
+  isEditorMode: boolean = false
 ) {
   return `
     <html class="${isDarkMode && 'dark'}">
@@ -16,7 +17,11 @@ export function transformComponentHtml(
           })
         </script>
 
-        <link rel="stylesheet" href="/components.css">
+        ${
+          isEditorMode
+            ? '<script src="https://cdn.tailwindcss.com?plugins=forms,typography,line-clamp"></script>'
+            : '<link rel="stylesheet" href="/components.css">'
+        }
       </head>
 
       <body class="${componentContainer}">

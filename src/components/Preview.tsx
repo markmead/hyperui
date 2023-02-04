@@ -23,6 +23,8 @@ import Iframe from '@/components/PreviewIframe'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
+import PreviewEdit from '@/components/PreviewEdit'
+import EditorToggle from '@/components/PreviewEditor'
 
 type ComponentData = Component & {
   id: string
@@ -44,6 +46,7 @@ function Preview({ componentData, componentContainer }: Props) {
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
   const [showPreview, setShowPreview] = useState<boolean>(true)
+  const [showEditor, setShowEditor] = useState<boolean>(false)
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
@@ -93,6 +96,21 @@ function Preview({ componentData, componentContainer }: Props) {
   }, [inView])
 
   useEffect(() => {
+    if (!componentCode) {
+      return
+    }
+
+    const transformedHtml = transformComponentHtml(
+      componentCode,
+      trueComponentContainer,
+      isDarkMode,
+      showEditor
+    )
+
+    setComponentHtml(transformedHtml)
+  }, [showEditor])
+
+  useEffect(() => {
     fetchHtml({
       useDark: isDarkMode,
       useInteractive: isInteractive,
@@ -132,6 +150,20 @@ function Preview({ componentData, componentContainer }: Props) {
     }
   }
 
+  function handleEditedCode(editedCode: string) {
+    setComponentCode(editedCode)
+
+    const isEditorMode = true
+    const transformedHtml = transformComponentHtml(
+      editedCode,
+      trueComponentContainer,
+      isDarkMode,
+      isEditorMode
+    )
+
+    setComponentHtml(transformedHtml)
+  }
+
   return (
     <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
@@ -146,6 +178,11 @@ function Preview({ componentData, componentContainer }: Props) {
               />
 
               <CopyCode componentCode={componentCode} />
+
+              <EditorToggle
+                handleSetShowEditor={setShowEditor}
+                showEditor={showEditor}
+              />
 
               {componentHasDark && (
                 <DarkToggle
@@ -183,18 +220,27 @@ function Preview({ componentData, componentContainer }: Props) {
           </div>
         </div>
 
-        <div className="relative">
-          <div>
-            <Iframe
-              showPreview={showPreview}
-              componentHtml={componentHtml}
-              componentTitle={componentTitle}
-              previewWidth={previewWidth}
-              refIframe={refIframe}
-            />
+        <div className={showEditor ? 'grid grid-cols-2 gap-4' : 'relative'}>
+          <Iframe
+            showPreview={showPreview}
+            componentHtml={componentHtml}
+            componentTitle={componentTitle}
+            previewWidth={previewWidth}
+            refIframe={refIframe}
+          />
 
-            <Code showPreview={showPreview} componentCode={componentCode} />
-          </div>
+          {componentCode && (
+            <>
+              {showEditor && (
+                <PreviewEdit
+                  componentCode={componentCode}
+                  handleEditCode={handleEditedCode}
+                />
+              )}
+
+              <Code showPreview={showPreview} componentCode={componentCode} />
+            </>
+          )}
         </div>
 
         {componentCreator && <Creator creatorGithub={componentCreator} />}
