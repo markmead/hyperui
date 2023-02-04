@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { menuLinks } from '@/utils/menuLinks'
+import { menuLinks } from '@/data/site/menu'
 
 import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'

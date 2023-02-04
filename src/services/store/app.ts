@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { loadState, saveState } from '@/store/loaders'
-import settingsReducer from '@/store/slices/settings'
+import { loadState, saveState } from '@/services/store/loaders'
+import settingsReducer from '@/services/store/slices/settings'
 
 const persistedState = loadState()
 

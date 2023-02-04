@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { useAppSelector, useAppDispatch } from '@/hooks/app'
-import { toggleDark, settingsState } from '@/store/slices/settings'
+import { useAppSelector, useAppDispatch } from '@/services/hooks/app'
+import { toggleDark, settingsState } from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingToggle from '@/components/SettingToggle'
@@ -20,6 +20,7 @@ function SettingDarkMode() {
   useEffect(() => {
     setInitialDark(dark)
     setShouldRefresh(false)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asPath])
 
@@ -27,6 +28,7 @@ function SettingDarkMode() {
     const valueHasChanged = initialDark !== dark
 
     setShouldRefresh(valueHasChanged)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dark])
 

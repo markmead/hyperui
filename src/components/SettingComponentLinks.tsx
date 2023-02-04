@@ -1,5 +1,5 @@
-import { useAppSelector, useAppDispatch } from '@/hooks/app'
-import { toggleLinks, settingsState } from '@/store/slices/settings'
+import { useAppSelector, useAppDispatch } from '@/services/hooks/app'
+import { toggleLinks, settingsState } from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingToggle from '@/components/SettingToggle'

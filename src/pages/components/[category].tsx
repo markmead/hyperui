@@ -6,7 +6,7 @@ import {
   getCategoryBySlug,
   getCategoryPaths,
   getComponentsByCategory,
-} from '@/lib/getComponents'
+} from '@/services/api/components'
 
 import Banner from '@/components/HeroBanner'
 import Grid from '@/components/CollectionGrid'

@@ -5,7 +5,7 @@ import {
   getCategoryBySlug,
   getCategorySlugs,
   getComponentsByCategory,
-} from '@/lib/getComponents'
+} from '@/services/api/components'
 
 import Banner from '@/components/HeroBanner'
 import Grid from '@/components/CollectionGrid'
@@ -31,7 +31,7 @@ function Home({ componentsByCategory }: Props) {
         next marketing website, admin dashboard, eCommerce store and much more.
       </Banner>
 
-      <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8">
+      <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12">
         {componentsByCategory.map(
           ({ categoryDetail, categoryComponents }: CategoryProps) => {
             return (

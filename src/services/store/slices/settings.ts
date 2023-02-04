@@ -1,4 +1,4 @@
-import type { AppState } from '@/store/app'
+import type { AppState } from '@/services/store/app'
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 

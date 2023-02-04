@@ -8,11 +8,11 @@ import { useInView } from 'react-intersection-observer'
 
 import { Component } from '@/interface/component'
 
-import { transformComponentHtml } from '@/utils/componentHelpers'
-import { componentBreakpoints } from '@/utils/componentBreakpoints'
+import { transformComponentHtml } from '@/services/helpers/transformers'
+import { componentBreakpoints } from '@/data/site/breakpoints'
 
-import { useAppSelector } from '@/hooks/app'
-import { settingsState } from '@/store/slices/settings'
+import { useAppSelector } from '@/services/hooks/app'
+import { settingsState } from '@/services/store/slices/settings'
 
 import Breakpoint from '@/components/PreviewBreakpoint'
 import Code from '@/components/PreviewCode'

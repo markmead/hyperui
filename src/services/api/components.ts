@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 
 import { Component } from '@/interface/component'
 
-import { transformComponentSlug } from '@/utils/componentHelpers'
+import { transformComponentSlug } from '@/services/helpers/transformers'
 
 type DynamicData = {
   [key: string]: string | number

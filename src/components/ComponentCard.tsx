@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { ComponentCard as iComponentCard } from '@/interface/component'
-import { transformComponentSlug } from '@/utils/componentHelpers'
+import { transformComponentSlug } from '@/services/helpers/transformers'
 
 type Props = {
   componentData: iComponentCard
