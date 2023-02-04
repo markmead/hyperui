@@ -1,4 +1,4 @@
-import { MenuLink } from '../../interface/global'
+import { MenuLink } from '@/interface/global'
 
 export const menuLinks: Array<MenuLink> = [
   {
