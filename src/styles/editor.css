@@ -1,4 +1,5 @@
-.cm-editor {
+.cm-focused {
+  @apply !outline-none;
 }
 
 .cm-scroller {
@@ -9,10 +10,20 @@
   @apply !border-r-gray-800 !bg-gray-900;
 }
 
-.cm-gutter {
+.cm-gutterElement {
+  @apply !mx-1 !p-0 !text-white/50;
 }
 
-.cm-gutterElement {
+.cm-gutterElement span {
+  @apply !bg-[length:_10px] !bg-center !bg-no-repeat !p-0 !text-transparent;
+}
+
+.cm-gutterElement span[title='Unfold line'] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23FFF' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5' /%3E%3C/svg%3E%0A");
+}
+
+.cm-gutterElement span[title='Fold line'] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23FFF' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E%0A");
 }
 
 .cm-content {
@@ -32,17 +43,15 @@
 }
 
 .cm-selectionLayer {
+  @apply !z-0;
 }
 
 .cm-selectionBackground {
-  @apply !bg-purple-600;
+  @apply !bg-white/25;
 }
 
 .cm-selectionMatch {
-  @apply !bg-blue-600;
-}
-
-.cm-cursorLayer {
+  @apply !bg-amber-400/25;
 }
 
 .cm-cursor {
@@ -54,19 +63,28 @@
   @apply !bg-gray-700;
 }
 
-/* <div class="cm-editor [cm-focused] [generated classes]">
-    <div class="cm-content" contenteditable="true">
-      <!-- The actual document content -->
-      <div class="cm-line">Content goes here</div>
-      <div class="cm-line">...</div>
-    </div>
-    <div class="cm-selectionLayer">
-      <!-- Positioned rectangles to draw the selection -->
-      <div class="cm-selectionBackground"></div>
-    </div>
-    <div class="cm-cursorLayer">
-      <!-- Positioned elements to draw cursors -->
-      <div class="cm-cursor"></div>
-    </div>
-  </div>
-</div> */
+.cm-foldPlaceholder {
+  @apply !border-none !bg-gray-700 !px-1 !text-white !transition hover:!bg-gray-600;
+}
+
+.cm-panels-bottom {
+  @apply !rounded-lg !border-4 !border-gray-900 !bg-gray-800 !text-white;
+}
+
+.cm-search {
+  @apply !p-4;
+}
+
+.cm-search input[type='checkbox'],
+.cm-search .cm-textfield {
+  @apply !rounded !border-gray-700 !bg-gray-900 !text-white;
+}
+
+.cm-search input[type='checkbox'] {
+  @apply !h-4 !w-4;
+}
+
+.cm-search .cm-button {
+  @apply !bg-red-500;
+  background-image: none;
+}

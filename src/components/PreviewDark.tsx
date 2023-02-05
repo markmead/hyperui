@@ -11,7 +11,7 @@ function Dark({ isDarkMode, handleSetIsDarkMode }: Props) {
       onClick={() => handleSetIsDarkMode(!isDarkMode)}
       className={`${styles.pill} ${
         isDarkMode ? 'bg-black text-white' : 'text-black'
-      } disabled:pointer-events-none disabled:opacity-25`}
+      }`}
     >
       <span aria-hidden="true" role="img" className="text-sm">
         {isDarkMode ? '🌕' : '🌞'}

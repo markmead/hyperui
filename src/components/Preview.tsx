@@ -23,8 +23,8 @@ import Iframe from '@/components/PreviewIframe'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
-import PreviewEdit from '@/components/PreviewEdit'
-import EditorToggle from '@/components/PreviewEditor'
+import Editor from '@/components/PreviewEditor'
+import EditorToggle from '@/components/PreviewEdit'
 
 type ComponentData = Component & {
   id: string
@@ -99,8 +99,6 @@ function Preview({ componentData, componentContainer }: Props) {
     if (!componentCode) {
       return
     }
-
-    console.log(isDarkMode)
 
     const transformedHtml = transformComponentHtml(
       componentCode,
@@ -238,7 +236,7 @@ function Preview({ componentData, componentContainer }: Props) {
           {componentCode && (
             <>
               {showEditor && showPreview && (
-                <PreviewEdit
+                <Editor
                   componentCode={componentCode}
                   handleEditCode={handleEditedCode}
                 />

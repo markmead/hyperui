@@ -1,23 +1,77 @@
+import { useEffect, useRef, useState } from 'react'
+
+import { basicSetup, EditorView } from 'codemirror'
+import { EditorState } from '@codemirror/state'
+import { drawSelection, highlightActiveLine } from '@codemirror/view'
+import { html } from '@codemirror/lang-html'
+
 import styles from '@/styles/button.module.css'
 
 type Props = {
-  showEditor: boolean
-  handleSetShowEditor: CallableFunction
+  componentCode: string
+  handleEditCode: CallableFunction
 }
 
-function PreviewEditor({ showEditor, handleSetShowEditor }: Props) {
-  return (
-    <button
-      onClick={() => handleSetShowEditor(!showEditor)}
-      className={styles.pill}
-    >
-      <span aria-hidden="true" role="img" className="text-sm">
-        🧼
-      </span>
+function PreviewEdit({ componentCode, handleEditCode }: Props) {
+  const codeEditor = useRef(null)
 
-      <span className="text-xs font-medium">Editor</span>
-    </button>
+  const [editedCode, setEditedCode] = useState<string>('')
+
+  useEffect(() => {
+    const codeEditorElement = codeEditor.current
+
+    const editorState = EditorState.create({
+      doc: componentCode,
+      extensions: [
+        basicSetup,
+        drawSelection(),
+        highlightActiveLine(),
+        html(),
+        EditorView.updateListener.of(function (e) {
+          setEditedCode(e.state.doc.toString())
+        }),
+      ],
+    })
+
+    const editorView = new EditorView({
+      state: editorState,
+      parent: codeEditorElement,
+    })
+
+    async function disableGrammarly() {
+      const codeEditorInteractive =
+        // @ts-ignore
+        await codeEditorElement.getElementsByClassName('cm-content')[0]
+      codeEditorInteractive.setAttribute('data-enable-grammarly', false)
+    }
+
+    disableGrammarly()
+
+    return () => {
+      editorView.destroy()
+    }
+  }, [])
+
+  useEffect(() => setEditedCode(componentCode), [componentCode])
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => handleEditCode(editedCode)}
+        className={`${styles.pill} absolute bottom-4 right-4 z-50 bg-black text-white`}
+      >
+        <span aria-hidden="true" role="img" className="text-sm">
+          💾
+        </span>
+
+        <span className="text-xs font-medium">Save</span>
+      </button>
+
+      <div className="h-[400px] w-full overflow-auto rounded-lg border-none bg-gray-900 ring-2 ring-black focus:ring-2 lg:h-[600px]">
+        <div ref={codeEditor}></div>
+      </div>
+    </div>
   )
 }
 
-export default PreviewEditor
+export default PreviewEdit
