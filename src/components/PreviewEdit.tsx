@@ -25,11 +25,13 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
         <span className="text-xs font-medium">Save</span>
       </button>
 
-      <textarea
-        onInput={(e) => setEditedCode(e.currentTarget.value)}
-        defaultValue={editedCode}
-        className="h-[400px] w-full overflow-auto rounded-lg border-none p-4 ring-2 ring-black focus:ring-2 lg:h-[600px]"
-      ></textarea>
+      <div>
+        <textarea
+          onInput={(e) => setEditedCode(e.currentTarget.value)}
+          defaultValue={editedCode}
+          className="h-[400px] w-full overflow-auto rounded-lg border-none ring-2 ring-black focus:ring-2 lg:h-[600px]"
+        ></textarea>
+      </div>
     </div>
   )
 }
