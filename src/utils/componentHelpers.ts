@@ -5,7 +5,7 @@ export function transformComponentHtml(
   isEditorMode: boolean = false
 ) {
   return `
-    <html class="${isDarkMode && 'dark'}">
+    <html class="${isDarkMode ? 'dark' : 'relative'}">
       <head>
         <script>
           document.addEventListener('DOMContentLoaded', () => {
@@ -21,6 +21,12 @@ export function transformComponentHtml(
           isEditorMode
             ? '<script src="https://cdn.tailwindcss.com?plugins=forms,typography,line-clamp"></script>'
             : '<link rel="stylesheet" href="/components.css">'
+        }
+
+        ${
+          isEditorMode
+            ? '<script>tailwind.config = { darkMode: "class" }</script>'
+            : ''
         }
       </head>
 

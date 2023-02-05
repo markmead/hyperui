@@ -100,6 +100,8 @@ function Preview({ componentData, componentContainer }: Props) {
       return
     }
 
+    console.log(isDarkMode)
+
     const transformedHtml = transformComponentHtml(
       componentCode,
       trueComponentContainer,
@@ -220,7 +222,11 @@ function Preview({ componentData, componentContainer }: Props) {
           </div>
         </div>
 
-        <div className={showEditor ? 'grid grid-cols-2 gap-4' : 'relative'}>
+        <div
+          className={
+            showEditor && showPreview ? 'grid grid-cols-2 gap-4' : 'relative'
+          }
+        >
           <Iframe
             showPreview={showPreview}
             componentHtml={componentHtml}
@@ -231,7 +237,7 @@ function Preview({ componentData, componentContainer }: Props) {
 
           {componentCode && (
             <>
-              {showEditor && (
+              {showEditor && showPreview && (
                 <PreviewEdit
                   componentCode={componentCode}
                   handleEditCode={handleEditedCode}
