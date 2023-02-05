@@ -1,0 +1,72 @@
+.cm-editor {
+}
+
+.cm-scroller {
+  @apply !bg-gray-900;
+}
+
+.cm-gutters {
+  @apply !border-r-gray-800 !bg-gray-900;
+}
+
+.cm-gutter {
+}
+
+.cm-gutterElement {
+}
+
+.cm-content {
+  @apply !p-4;
+}
+
+.cm-line {
+  @apply !p-0 !text-white;
+}
+
+.cm-line .ͼi {
+  @apply !text-red-400;
+}
+
+.cm-line .ͼe {
+  @apply !text-green-400;
+}
+
+.cm-selectionLayer {
+}
+
+.cm-selectionBackground {
+  @apply !bg-purple-600;
+}
+
+.cm-selectionMatch {
+  @apply !bg-blue-600;
+}
+
+.cm-cursorLayer {
+}
+
+.cm-cursor {
+  @apply !border-l-white;
+}
+
+.cm-activeLine,
+.cm-activeLineGutter {
+  @apply !bg-gray-700;
+}
+
+/* <div class="cm-editor [cm-focused] [generated classes]">
+    <div class="cm-content" contenteditable="true">
+      <!-- The actual document content -->
+      <div class="cm-line">Content goes here</div>
+      <div class="cm-line">...</div>
+    </div>
+    <div class="cm-selectionLayer">
+      <!-- Positioned rectangles to draw the selection -->
+      <div class="cm-selectionBackground"></div>
+    </div>
+    <div class="cm-cursorLayer">
+      <!-- Positioned elements to draw cursors -->
+      <div class="cm-cursor"></div>
+    </div>
+  </div>
+</div> */

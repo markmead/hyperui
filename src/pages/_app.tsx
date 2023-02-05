@@ -10,6 +10,8 @@ import store from '@/store/app'
 import '@/styles/site.css'
 import 'prismjs/themes/prism-okaidia.css'
 
+import '@/styles/editor.css'
+
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
