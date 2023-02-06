@@ -121,6 +121,10 @@ function Preview({ componentData, componentContainer }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, isInteractive])
 
+  useEffect(() => {
+    !showPreview && setShowEditor(false)
+  }, [showPreview])
+
   async function fetchHtml(
     useOptions: {
       useDark?: boolean
@@ -227,9 +231,7 @@ function Preview({ componentData, componentContainer }: Props) {
 
         <div
           className={
-            showEditor && showPreview
-              ? 'lg:grid lg:grid-cols-2 lg:gap-4'
-              : 'relative'
+            showEditor ? 'lg:grid lg:grid-cols-2 lg:gap-4' : 'relative'
           }
         >
           <Iframe
@@ -242,7 +244,7 @@ function Preview({ componentData, componentContainer }: Props) {
 
           {componentCode && (
             <>
-              {showEditor && showPreview && (
+              {showEditor && (
                 <div className="hidden lg:block">
                   <Editor
                     componentCode={componentCode}
