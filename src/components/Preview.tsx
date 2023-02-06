@@ -182,10 +182,12 @@ function Preview({ componentData, componentContainer }: Props) {
 
               <CopyCode componentCode={componentCode} />
 
-              <EditorToggle
-                handleSetShowEditor={setShowEditor}
-                showEditor={showEditor}
-              />
+              <div className="hidden lg:block">
+                <EditorToggle
+                  handleSetShowEditor={setShowEditor}
+                  showEditor={showEditor}
+                />
+              </div>
 
               {componentHasDark && (
                 <DarkToggle
@@ -225,7 +227,9 @@ function Preview({ componentData, componentContainer }: Props) {
 
         <div
           className={
-            showEditor && showPreview ? 'grid grid-cols-2 gap-4' : 'relative'
+            showEditor && showPreview
+              ? 'lg:grid lg:grid-cols-2 lg:gap-4'
+              : 'relative'
           }
         >
           <Iframe
@@ -239,10 +243,12 @@ function Preview({ componentData, componentContainer }: Props) {
           {componentCode && (
             <>
               {showEditor && showPreview && (
-                <Editor
-                  componentCode={componentCode}
-                  handleEditCode={handleEditedCode}
-                />
+                <div className="hidden lg:block">
+                  <Editor
+                    componentCode={componentCode}
+                    handleEditCode={handleEditedCode}
+                  />
+                </div>
               )}
 
               <Code showPreview={showPreview} componentCode={componentCode} />

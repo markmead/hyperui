@@ -73,7 +73,7 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
         <span className="text-xs font-medium">Save</span>
       </button>
 
-      <div className="h-[400px] overflow-auto rounded-lg bg-gray-900 p-4 ring-2 ring-black lg:h-[600px]">
+      <div className="h-[400px] overflow-auto rounded-lg bg-gray-900 ring-2 ring-gray-900 lg:h-[600px]">
         <div ref={codeEditor}></div>
       </div>
     </div>

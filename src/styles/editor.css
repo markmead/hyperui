@@ -7,11 +7,11 @@
 }
 
 .cm-gutters {
-  @apply !border-r-gray-800 !bg-gray-900;
+  @apply !border-r !border-r-gray-800 !bg-gray-900 !text-white;
 }
 
 .cm-gutterElement {
-  @apply !mx-1 !p-0 !text-white/50;
+  @apply !p-0 !px-1 !text-white/50;
 }
 
 .cm-gutterElement span {
