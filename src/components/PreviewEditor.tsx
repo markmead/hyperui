@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { basicSetup, EditorView } from 'codemirror'
 import { EditorState } from '@codemirror/state'
-import { drawSelection, highlightActiveLine } from '@codemirror/view'
+// import { drawSelection, highlightActiveLine } from '@codemirror/view'
 import { html } from '@codemirror/lang-html'
 
 import styles from '@/styles/button.module.css'
@@ -20,16 +20,12 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
   useEffect(() => {
     const codeEditorElement = codeEditor.current
 
-    if (!codeEditorElement) {
-      return
-    }
-
     const editorState = EditorState.create({
       doc: componentCode,
       extensions: [
         basicSetup,
-        drawSelection(),
-        highlightActiveLine(),
+        // drawSelection(),
+        // highlightActiveLine(),
         html(),
         EditorView.updateListener.of(function (e) {
           setEditedCode(e.state.doc.toString())
@@ -39,7 +35,7 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
 
     const editorView = new EditorView({
       state: editorState,
-      parent: codeEditorElement,
+      parent: codeEditorElement as unknown as HTMLElement,
     })
 
     async function disableGrammarly() {

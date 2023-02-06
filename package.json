@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "start": "next start",
     "postbuild": "yarn css && next-sitemap --config sitemap.config.js",
     "css": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
     "watch": "yarn css -w",
