@@ -39,7 +39,7 @@ export default async function handler(
 
   async function getComponentData(componentPath: string) {
     let componentData: any = []
-    const componentUrl = `http://localhost:3000/components/${componentPath}.html`
+    const componentUrl = `https://www.hyperui.dev/components/${componentPath}.html`
     const fetchResponse = await fetch(componentUrl)
 
     if (!fetchResponse.ok) {
