@@ -70,7 +70,7 @@ function HeaderSearch() {
           value={searchQuery}
           placeholder="Search..."
           id="SiteSearch"
-          className="rounded-md border-gray-200 text-sm"
+          className="form-input rounded-md border-gray-200 text-sm"
         />
 
         <button tabIndex={-1} className="sr-only">

@@ -11,7 +11,7 @@ import 'prismjs/themes/prism-okaidia.css'
 
 import '@/styles/site.css'
 import '@/styles/prism.css'
-// import '@/styles/editor.css'
+import '@/styles/editor.css'
 
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
