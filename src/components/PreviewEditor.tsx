@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import dynamic from 'next/dynamic'
 
+import sanitizeHtml from 'sanitize-html'
+
 import '@uiw/react-textarea-code-editor/dist.css'
 
 import styles from '@/styles/button.module.css'
@@ -35,7 +37,65 @@ export default function PreviewEditor({
   return (
     <div className="relative h-[400px] overflow-auto rounded-lg bg-gray-900 ring-2 ring-gray-900 lg:h-[600px]">
       <button
-        onClick={() => handleEditCode(editCode)}
+        onClick={() =>
+          handleEditCode(
+            sanitizeHtml(editCode, {
+              allowedTags: [
+                'address',
+                'article',
+                'aside',
+                'footer',
+                'header',
+                'h1',
+                'h2',
+                'h3',
+                'h4',
+                'h5',
+                'h6',
+                'main',
+                'nav',
+                'section',
+                'blockquote',
+                'dd',
+                'div',
+                'dl',
+                'dt',
+                'figcaption',
+                'figure',
+                'img',
+                'hr',
+                'li',
+                'main',
+                'ol',
+                'p',
+                'pre',
+                'ul',
+                'a',
+                'br',
+                'cite',
+                'code',
+                'em',
+                'small',
+                'span',
+                'strong',
+                'sub',
+                'sup',
+                'time',
+                'table',
+                'tbody',
+                'td',
+                'tfoot',
+                'th',
+                'thead',
+                'tr',
+              ],
+              allowedAttributes: {
+                '*': ['class', 'id', 'href', 'data-*', 'disabled', 'aria-*'],
+                img: ['src', 'alt', 'title', 'width', 'height', 'loading'],
+              },
+            })
+          )
+        }
         className={`${styles.pill} absolute bottom-4 right-4 z-50 bg-black text-white`}
       >
         <span aria-hidden="true" role="img" className="text-sm">
