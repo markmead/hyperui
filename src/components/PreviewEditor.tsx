@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { basicSetup, EditorView } from 'codemirror'
 import { EditorState } from '@codemirror/state'
-// import { drawSelection, highlightActiveLine } from '@codemirror/view'
+import { drawSelection, highlightActiveLine } from '@codemirror/view'
 import { html } from '@codemirror/lang-html'
 
 import styles from '@/styles/button.module.css'
@@ -15,6 +15,7 @@ type Props = {
 function PreviewEdit({ componentCode, handleEditCode }: Props) {
   const codeEditor = useRef(null)
 
+  const [staticCode, setStaticCode] = useState<string>('')
   const [editedCode, setEditedCode] = useState<string>('')
 
   useEffect(() => {
@@ -25,11 +26,11 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
     }
 
     const editorState = EditorState.create({
-      doc: componentCode,
+      doc: staticCode,
       extensions: [
         basicSetup,
-        // drawSelection(),
-        // highlightActiveLine(),
+        drawSelection(),
+        highlightActiveLine(),
         html(),
         EditorView.updateListener.of(function (e) {
           setEditedCode(e.state.doc.toString())
@@ -42,13 +43,6 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
       parent: codeEditorElement,
     })
 
-    // async function disableGrammarly() {
-    //   const codeEditorInteractive =
-    //     // @ts-ignore
-    //     await codeEditorElement.getElementsByClassName('cm-content')[0]
-    //   codeEditorInteractive.setAttribute('data-enable-grammarly', false)
-    // }
-
     // disableGrammarly()
 
     return () => {
@@ -56,9 +50,19 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [staticCode])
 
-  useEffect(() => setEditedCode(componentCode), [componentCode])
+  useEffect(() => {
+    setStaticCode(componentCode)
+    setEditedCode(componentCode)
+  }, [componentCode])
+
+  // async function disableGrammarly() {
+  //   const codeEditorInteractive =
+  //     // @ts-ignore
+  //     await codeEditorElement.getElementsByClassName('cm-content')[0]
+  //   codeEditorInteractive.setAttribute('data-enable-grammarly', false)
+  // }
 
   return (
     <div className="relative">

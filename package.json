@@ -14,12 +14,13 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "tslib": "^2.3.1"
-  },
-  "devDependencies": {
+    "tslib": "^2.3.1",
     "@codemirror/lang-html": "^6.4.1",
     "@codemirror/state": "^6.2.0",
     "@codemirror/view": "^6.7.3",
+    "codemirror": "^6.0.1"
+  },
+  "devDependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
@@ -30,7 +31,6 @@
     "@types/react": "17.0.40",
     "@vercel/analytics": "^0.1.8",
     "autoprefixer": "^10.4.12",
-    "codemirror": "^6.0.1",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "fast-glob": "^3.2.12",
