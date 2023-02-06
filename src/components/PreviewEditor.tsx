@@ -20,6 +20,10 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
   useEffect(() => {
     const codeEditorElement = codeEditor.current
 
+    if (!codeEditorElement) {
+      return
+    }
+
     const editorState = EditorState.create({
       doc: componentCode,
       extensions: [
@@ -35,17 +39,17 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
 
     const editorView = new EditorView({
       state: editorState,
-      parent: codeEditorElement as unknown as HTMLElement,
+      parent: codeEditorElement,
     })
 
-    async function disableGrammarly() {
-      const codeEditorInteractive =
-        // @ts-ignore
-        await codeEditorElement.getElementsByClassName('cm-content')[0]
-      codeEditorInteractive.setAttribute('data-enable-grammarly', false)
-    }
+    // async function disableGrammarly() {
+    //   const codeEditorInteractive =
+    //     // @ts-ignore
+    //     await codeEditorElement.getElementsByClassName('cm-content')[0]
+    //   codeEditorInteractive.setAttribute('data-enable-grammarly', false)
+    // }
 
-    disableGrammarly()
+    // disableGrammarly()
 
     return () => {
       editorView.destroy()
