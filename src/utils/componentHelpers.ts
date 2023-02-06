@@ -19,14 +19,11 @@ export function transformComponentHtml(
 
         ${
           isEditorMode
-            ? '<script src="https://cdn.tailwindcss.com?plugins=forms,typography,line-clamp"></script>'
+            ? `
+              <script src="https://cdn.tailwindcss.com?plugins=forms,typography,line-clamp"></script>
+              <script>tailwind.config = { darkMode: "class" }</script>
+            `
             : '<link rel="stylesheet" href="/components.css">'
-        }
-
-        ${
-          isEditorMode
-            ? '<script>tailwind.config = { darkMode: "class" }</script>'
-            : ''
         }
       </head>
 
