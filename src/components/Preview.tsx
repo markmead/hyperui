@@ -108,6 +108,8 @@ function Preview({ componentData, componentContainer }: Props) {
     )
 
     setComponentHtml(transformedHtml)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showEditor])
 
   useEffect(() => {
@@ -115,6 +117,7 @@ function Preview({ componentData, componentContainer }: Props) {
       useDark: isDarkMode,
       useInteractive: isInteractive,
     })
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, isInteractive])
 

@@ -20,6 +20,10 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
   useEffect(() => {
     const codeEditorElement = codeEditor.current
 
+    if (!codeEditorElement) {
+      return
+    }
+
     const editorState = EditorState.create({
       doc: componentCode,
       extensions: [
@@ -50,7 +54,7 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
     return () => {
       editorView.destroy()
     }
-  }, [])
+  }, [componentCode])
 
   useEffect(() => setEditedCode(componentCode), [componentCode])
 

@@ -20,12 +20,16 @@ function SettingInteractiveMode() {
   useEffect(() => {
     setInitialInteractive(interactive)
     setShouldRefresh(false)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asPath])
 
   useEffect(() => {
     const valueHasChanged = initialInteractive !== interactive
 
     setShouldRefresh(valueHasChanged)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interactive])
 
   return (
