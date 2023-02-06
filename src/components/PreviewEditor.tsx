@@ -54,7 +54,9 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
     return () => {
       editorView.destroy()
     }
-  }, [componentCode])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => setEditedCode(componentCode), [componentCode])
 
