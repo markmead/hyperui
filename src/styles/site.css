@@ -3,5 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './prism.css';
