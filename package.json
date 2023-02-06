@@ -32,6 +32,7 @@
     "eslint-config-next": "12.1.0",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
+    "htmlparser2": "^8.0.1",
     "next-mdx-remote": "^4.0.0",
     "next-remove-imports": "^1.0.8",
     "next-sitemap": "^3.1.20",
