@@ -19,11 +19,11 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
   const [editedCode, setEditedCode] = useState<string>('')
 
   useEffect(() => {
-    const codeEditorElement = codeEditor.current
-
-    if (!codeEditorElement) {
+    if (!codeEditor.current) {
       return
     }
+
+    const codeEditorElement = codeEditor.current as HTMLDivElement
 
     const editorState = EditorState.create({
       doc: staticCode,
@@ -43,7 +43,7 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
       parent: codeEditorElement,
     })
 
-    // disableGrammarly()
+    disableGrammarly()
 
     return () => {
       editorView.destroy()
@@ -57,12 +57,15 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
     setEditedCode(componentCode)
   }, [componentCode])
 
-  // async function disableGrammarly() {
-  //   const codeEditorInteractive =
-  //     // @ts-ignore
-  //     await codeEditorElement.getElementsByClassName('cm-content')[0]
-  //   codeEditorInteractive.setAttribute('data-enable-grammarly', false)
-  // }
+  async function disableGrammarly() {
+    if (codeEditor.current) {
+      const codeEditorEl = codeEditor.current as HTMLDivElement
+      const codeEditorInteractive =
+        codeEditorEl.getElementsByClassName('cm-content')[0]
+      // @ts-ignore
+      codeEditorInteractive.setAttribute('data-enable-grammarly', false)
+    }
+  }
 
   return (
     <div className="relative">
@@ -77,7 +80,7 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
         <span className="text-xs font-medium">Save</span>
       </button>
 
-      <div className="h-[400px] overflow-auto rounded-lg bg-gray-900 ring-2 ring-gray-900 lg:h-[600px]">
+      <div className="h-[400px] overflow-auto rounded-lg ring-2 ring-black lg:h-[600px]">
         <div ref={codeEditor}></div>
       </div>
     </div>
