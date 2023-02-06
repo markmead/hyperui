@@ -19,9 +19,8 @@ function PreviewEdit({ componentCode, handleEditCode }: Props) {
   const [editedCode, setEditedCode] = useState<string>('')
 
   const onChange = useCallback((newValue, viewUpdate) => {
-    if (viewUpdate) {
-      setEditedCode(newValue)
-    }
+    console.log(newValue)
+    setEditedCode(newValue)
   }, [])
 
   // useEffect(() => {
