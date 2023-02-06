@@ -7,6 +7,7 @@ import '@uiw/react-textarea-code-editor/dist.css'
 import styles from '@/styles/button.module.css'
 
 const CodeEditor = dynamic(
+  // @ts-ignore
   () =>
     import('@uiw/react-textarea-code-editor').then(
       (packageModule) => packageModule.default
@@ -27,6 +28,8 @@ export default function PreviewEditor({
 
   useEffect(() => {
     setEditCode(componentCode)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -43,8 +46,10 @@ export default function PreviewEditor({
       </button>
 
       <CodeEditor
+        // @ts-ignore
         value={editCode}
         language="html"
+        // @ts-ignore
         onChange={(e) => setEditCode(e.target.value)}
         padding={0}
         style={{
