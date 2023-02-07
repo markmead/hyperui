@@ -8,7 +8,7 @@ module.exports = {
       {
         source: '/components',
         destination: '/',
-        permanent: true,
+        permanent: false,
       },
       {
         source: '/marketing',
@@ -26,14 +26,19 @@ module.exports = {
         permanent: true,
       },
       {
+        source: '/components/cards',
+        destination: '/components/marketing/cards',
+        permanent: true,
+      },
+      {
         source: '/blog/whats-new-in-hyperui',
         destination: '/blog',
-        permanent: true,
+        permanent: false,
       },
       {
         source: '/blog/hyperui-rewrite-whats-changed',
         destination: '/blog',
-        permanent: true,
+        permanent: false,
       },
     ]
   },
