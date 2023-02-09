@@ -30,16 +30,6 @@ module.exports = {
         destination: '/components/marketing/cards',
         permanent: true,
       },
-      {
-        source: '/blog/whats-new-in-hyperui',
-        destination: '/blog',
-        permanent: false,
-      },
-      {
-        source: '/blog/hyperui-rewrite-whats-changed',
-        destination: '/blog',
-        permanent: false,
-      },
     ]
   },
 }

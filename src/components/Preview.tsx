@@ -11,7 +11,7 @@ import { Component } from '@/interface/component'
 import { transformComponentHtml } from '@/utils/componentHelpers'
 import { componentBreakpoints } from '@/utils/componentBreakpoints'
 
-import { useAppSelector } from '@/hooks/app'
+import { useAppSelector } from '@/hooks/useStore'
 import { settingsState } from '@/store/slices/settings'
 
 import Breakpoint from '@/components/PreviewBreakpoint'

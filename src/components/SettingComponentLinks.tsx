@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from '@/hooks/app'
+import { useAppSelector, useAppDispatch } from '@/hooks/useStore'
 import { toggleLinks, settingsState } from '@/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
