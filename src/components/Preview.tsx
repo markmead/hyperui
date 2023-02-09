@@ -20,6 +20,7 @@ import CopyCode from '@/components/PreviewCopy'
 import Creator from '@/components/ComponentCreator'
 import DarkToggle from '@/components/PreviewDark'
 import Iframe from '@/components/PreviewIframe'
+import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
@@ -47,6 +48,7 @@ function Preview({ componentData, componentContainer }: Props) {
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -62,7 +64,7 @@ function Preview({ componentData, componentContainer }: Props) {
     interactive: componentHasInteractive,
   } = componentData
 
-  let trueComponentContainer: string = componentSpace
+  const trueComponentContainer: string = componentSpace
     ? componentSpace
     : componentContainer
 
@@ -93,10 +95,13 @@ function Preview({ componentData, componentContainer }: Props) {
   }, [inView])
 
   useEffect(() => {
+    setIsLoading(true)
+
     fetchHtml({
       useDark: isDarkMode,
       useInteractive: isInteractive,
     })
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, isInteractive])
 
@@ -126,6 +131,8 @@ function Preview({ componentData, componentContainer }: Props) {
 
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
+
+    setTimeout(() => setIsLoading(false), 350)
 
     return {
       isLoaded: true,
@@ -184,6 +191,10 @@ function Preview({ componentData, componentContainer }: Props) {
         </div>
 
         <div className="relative">
+          {isLoading && (
+            <Loading previewWidth={previewWidth} isDarkMode={isDarkMode} />
+          )}
+
           <div>
             <Iframe
               showPreview={showPreview}
