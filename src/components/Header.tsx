@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { menuLinks } from '@/utils/menuLinks'
+import { MenuLink } from '@/interface/global'
 
 import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
@@ -16,6 +16,34 @@ function Header() {
   const [showMenu, setShowMenu] = useState(false)
 
   useEffect(() => setShowMenu(false), [asPath])
+
+  const menuLinks: Array<MenuLink> = [
+    {
+      title: 'Marketing',
+      href: '/components/marketing',
+      external: false,
+    },
+    {
+      title: 'eCommerce',
+      href: '/components/ecommerce',
+      external: false,
+    },
+    {
+      title: 'Application UI',
+      href: '/components/application-ui',
+      external: false,
+    },
+    {
+      title: 'Blog',
+      href: '/blog',
+      external: false,
+    },
+    {
+      title: 'HyperJS',
+      href: 'https://js.hyperui.dev',
+      external: true,
+    },
+  ]
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white">

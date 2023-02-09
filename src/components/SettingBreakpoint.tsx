@@ -1,9 +1,9 @@
 import { Breakpoint } from '@/interface/breakpoint'
 
-import { componentBreakpoints } from '@/utils/componentBreakpoints'
+import { componentBreakpoints } from '@/services/utils/breakpoints'
 
-import { useAppSelector, useAppDispatch } from '@/hooks/useStore'
-import { setBreakpoint, settingsState } from '@/store/slices/settings'
+import { useAppSelector, useAppDispatch } from '@/services/hooks/useStore'
+import { setBreakpoint, settingsState } from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingSelect from '@/components/SettingSelect'

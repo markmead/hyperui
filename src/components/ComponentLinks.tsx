@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 import { SearchResult, SearchResultCategory } from '@/interface/search'
 
-import { useAppSelector } from '@/hooks/useStore'
-import { settingsState } from '@/store/slices/settings'
+import { useAppSelector } from '@/services/hooks/useStore'
+import { settingsState } from '@/services/store/slices/settings'
 
 import styles from '@/styles/button.module.css'
 

@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { useAppSelector, useAppDispatch } from '@/hooks/useStore'
-import { toggleInteractive, settingsState } from '@/store/slices/settings'
+import { useAppSelector, useAppDispatch } from '@/services/hooks/useStore'
+import {
+  toggleInteractive,
+  settingsState,
+} from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingToggle from '@/components/SettingToggle'

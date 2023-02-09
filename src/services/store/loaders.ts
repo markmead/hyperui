@@ -1,4 +1,4 @@
-import { AppState } from '@/store/app'
+import { AppState } from '@/services/store/app'
 
 export function loadState() {
   try {

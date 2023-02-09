@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 import { Provider } from 'react-redux'
 
-import store from '@/store/app'
+import store from '@/services/store/app'
 
 import 'prismjs/themes/prism-okaidia.css'
 

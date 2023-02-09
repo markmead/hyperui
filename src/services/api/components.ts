@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 
 import { Component } from '@/interface/component'
 
-import { transformComponentSlug } from '@/utils/componentHelpers'
+import { componentSlug } from '@/services/utils/transformers'
 
 type DynamicData = {
   [key: string]: string | number
@@ -25,7 +25,7 @@ export function getComponentPaths() {
   ])
 
   return componentsData.map(function (componentData: DynamicData) {
-    const trueSlug = transformComponentSlug(
+    const trueSlug = componentSlug(
       `${componentData.slug}`,
       `${componentData.category}`
     )

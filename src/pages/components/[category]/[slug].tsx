@@ -7,7 +7,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import { Component } from '@/interface/component'
 
-import { getComponentPaths } from '@/lib/getComponents'
+import { getComponentPaths } from '@/services/api/components'
 
 import ComponentLinks from '@/components/ComponentLinks'
 import List from '@/components/CollectionList'

@@ -4,7 +4,7 @@ import {
   getCategoryBySlug,
   getCategorySlugs,
   getComponentsByCategory,
-} from '@/lib/getComponents'
+} from '@/services/api/components'
 
 export default function handler(
   apiRequest: NextApiRequest,

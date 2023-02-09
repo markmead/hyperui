@@ -1,4 +1,4 @@
-export function transformComponentHtml(
+export function componentHtml(
   componentHtml: string,
   componentContainer: string = 'relative',
   isDarkMode: boolean = false
@@ -17,7 +17,7 @@ export function transformComponentHtml(
   `
 }
 
-export function transformComponentSlug(
+export function componentSlug(
   componentSlug: string,
   componentCategory: string
 ) {
