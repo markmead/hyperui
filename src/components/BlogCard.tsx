@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { BlogCard as iBlogCard } from '@/interface/blog'
+import { BlogCard as BlogCardInterface } from '@/interface/blog'
 
 type Props = {
-  blogPost: iBlogCard
+  blogPost: BlogCardInterface
 }
 
 function BlogCard({ blogPost }: Props) {

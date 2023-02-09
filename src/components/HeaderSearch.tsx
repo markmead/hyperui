@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { SearchResult } from '@/interface/search'
 
-import { useClickOutside } from '@/hooks/useClickOutside'
+import { useClickOutside } from '@/services/hooks/useClickOutside'
 
 function HeaderSearch() {
   const nextRouter = useRouter()

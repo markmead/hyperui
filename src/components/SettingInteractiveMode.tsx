@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { useAppSelector, useAppDispatch } from '@/hooks/app'
-import { toggleInteractive, settingsState } from '@/store/slices/settings'
+import { useAppSelector, useAppDispatch } from '@/services/hooks/useStore'
+import {
+  toggleInteractive,
+  settingsState,
+} from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingToggle from '@/components/SettingToggle'
@@ -20,12 +23,16 @@ function SettingInteractiveMode() {
   useEffect(() => {
     setInitialInteractive(interactive)
     setShouldRefresh(false)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asPath])
 
   useEffect(() => {
     const valueHasChanged = initialInteractive !== interactive
 
     setShouldRefresh(valueHasChanged)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interactive])
 
   return (

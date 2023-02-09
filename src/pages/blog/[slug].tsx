@@ -9,7 +9,7 @@ import matter from 'gray-matter'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { getBlogPaths } from '@/lib/getBlogs'
+import { getBlogPaths } from '@/services/api/blogs'
 import { BlogFrontmatter } from '@/interface/blog'
 
 type Props = {

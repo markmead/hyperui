@@ -1,15 +1,15 @@
 import Link from 'next/link'
 
-import { ComponentCard as iComponentCard } from '@/interface/component'
-import { transformComponentSlug } from '@/utils/componentHelpers'
+import { ComponentCard as ComponentCardInterface } from '@/interface/component'
+import { componentSlug } from '@/services/utils/transformers'
 
 type Props = {
-  componentData: iComponentCard
+  componentData: ComponentCardInterface
   categoryTitle: string
 }
 
 function ComponentCard({ componentData, categoryTitle }: Props) {
-  const trueComponentSlug = transformComponentSlug(
+  const trueComponentSlug = componentSlug(
     componentData.slug,
     componentData.category
   )

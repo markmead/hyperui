@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { useClickOutside } from '@/hooks/useClickOutside'
+import { useClickOutside } from '@/services/hooks/useClickOutside'
 
 import IconCog from '@/components/IconCog'
 import SettingDarkMode from '@/components/SettingDarkMode'
