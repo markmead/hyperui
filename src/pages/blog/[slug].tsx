@@ -88,33 +88,31 @@ type Params = {
 }
 
 export async function getStaticProps({ params: { slug } }: Params) {
-  const blogSlug = slug
+  const source = fs.readFileSync(`./src/data/blog/${slug}.mdx`)
 
-  const blogSource = fs.readFileSync(`./src/data/posts/${blogSlug}.mdx`)
+  const { content, data } = matter(source)
 
-  const { content: blogContent, data: blogData } = matter(blogSource)
-
-  const mdxSource = await serialize(blogContent, {
+  const mdxSource = await serialize(content, {
     mdxOptions: {
       rehypePlugins: [],
       remarkPlugins: [],
     },
-    scope: blogData,
+    scope: data,
   })
 
   return {
     props: {
-      blogFrontmatter: blogData,
+      blogFrontmatter: data,
       blogSource: mdxSource,
     },
   }
 }
 
 export async function getStaticPaths() {
-  const blogPaths = getBlogPaths()
+  const paths = getBlogPaths()
 
   return {
-    paths: blogPaths,
+    paths,
     fallback: false,
   }
 }
