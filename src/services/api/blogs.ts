@@ -6,10 +6,10 @@ type DynamicData = {
   [key: string]: string | number
 }
 
-const postsDirectory = join(process.cwd(), '/src/data/posts')
+const blogsDirectory = join(process.cwd(), '/src/data/blog')
 
 export function getBlogSlugs() {
-  return fs.readdirSync(postsDirectory)
+  return fs.readdirSync(blogsDirectory)
 }
 
 export function getBlogPaths() {
@@ -28,27 +28,27 @@ export function getBlogPaths() {
 
 export function getPostBySlug(blogSlug: string, dataFields: string[] = []) {
   const trueSlug = blogSlug.replace(/\.mdx$/, '')
-  const fullPath = join(postsDirectory, `${trueSlug}.mdx`)
+  const fullPath = join(blogsDirectory, `${trueSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data: fileData, content: fileContent } = matter(fileContents)
 
-  const blogsData: DynamicData = {}
+  const blogData: DynamicData = {}
 
   dataFields.forEach(function (dataField: string) {
     if (dataField === 'slug') {
-      blogsData[dataField] = trueSlug
+      blogData[dataField] = trueSlug
     }
 
     if (dataField === 'content') {
-      blogsData[dataField] = fileContent
+      blogData[dataField] = fileContent
     }
 
     if (typeof fileData[dataField] !== 'undefined') {
-      blogsData[dataField] = fileData[dataField]
+      blogData[dataField] = fileData[dataField]
     }
   })
 
-  return blogsData
+  return blogData
 }
 
 export function getBlogs(dataFields: string[] = []) {
@@ -56,8 +56,8 @@ export function getBlogs(dataFields: string[] = []) {
 
   const blogPosts = blogSlugs
     .map((blogSlug: string) => getPostBySlug(blogSlug, dataFields))
-    .sort((blogPostA, blogPostB) =>
-      new Date(blogPostA.date) < new Date(blogPostB.date) ? 1 : -1
+    .sort((blogA, blogB) =>
+      new Date(blogA.date) < new Date(blogB.date) ? 1 : -1
     )
 
   return blogPosts

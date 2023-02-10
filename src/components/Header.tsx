@@ -39,6 +39,11 @@ function Header() {
       external: false,
     },
     {
+      title: 'Changelog',
+      href: '/changelog',
+      external: false,
+    },
+    {
       title: 'HyperJS',
       href: 'https://js.hyperui.dev',
       external: true,
