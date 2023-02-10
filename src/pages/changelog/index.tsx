@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
 import { getChangelogs } from '@/services/api/changelogs'
 import { ChangelogCard } from '@/interface/changelog'
 
 import Banner from '@/components/HeroBanner'
+import Card from '@/components/ChangelogCard'
 
 type Props = {
   changelogPosts: Array<ChangelogCard>
@@ -25,26 +25,17 @@ function ChangelogIndex({ changelogPosts }: Props) {
 
       <Banner
         title="HyperUI Changelog"
-        subtitle="Project Updates and Changelog"
+        subtitle="Changelog Entries for HyperUI"
       >
-        Learn Tailwind CSS tips and tricks that you can use in your work to help
-        write cleaner, more maintainable code and help you be more productive.
+        Find out what changes have been made to HyperUI throughout the month, as
+        well as new features and ones that have been deleted.
       </Banner>
 
       <div className="mx-auto max-w-screen-xl px-4 py-12">
-        <ul className="list-disc space-y-8">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {changelogPosts.map((changelogPost) => (
             <li key={changelogPost.slug}>
-              <Link
-                href="/changelog/[slug]"
-                as={`/changelog/${changelogPost.slug}`}
-              >
-                <a title={`HyperUI Changelog ${changelogPost.title}`}>
-                  <h2>{changelogPost.title}</h2>
-
-                  <p>{changelogPost.description}</p>
-                </a>
-              </Link>
+              <Card changelogPost={changelogPost} />
             </li>
           ))}
         </ul>
@@ -54,7 +45,7 @@ function ChangelogIndex({ changelogPosts }: Props) {
 }
 
 export async function getStaticProps() {
-  const changelogPosts = getChangelogs(['title', 'slug', 'description'])
+  const changelogPosts = getChangelogs(['title', 'slug', 'description', 'date'])
 
   return {
     props: { changelogPosts },

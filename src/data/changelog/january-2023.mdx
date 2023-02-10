@@ -1,9 +1,28 @@
 ---
 title: January 2023
-description: How to create an animated border gradient with Tailwind CSS with no custom CSS.
+description: Redux, variants updates and new site settings.
 date: 01/31/2023
 ---
 
 ### Added
 
-- New Variants
+- Tailwind CSS config for the `/public/components` folder to reduce the CSS loaded into each component preview
+- Redux to manage the site settings state
+- Default dark mode site setting
+- Default interactive mode site setting
+
+### Fixed
+
+- Shrunk the size of the social preview image
+- Incorrect component description for navigation by [leonardomerlin](https://github.com/markmead/hyperui/commit/c67f33a32d9c088224b1b7f282c78a15e4536330)
+
+### Updated
+
+- Switch variants to use dark or interactive modes
+
+### Removed
+
+- Link to GitHub in the footer
+- RSS feed for blog posts
+- Variants that don't match the new approach of dark or interactive mode
+- Loading spinner on component previews
