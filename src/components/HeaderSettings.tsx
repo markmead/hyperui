@@ -29,10 +29,7 @@ function HeaderSettings() {
 
   return (
     <div ref={refDropdown} className="flex">
-      <button
-        onClick={() => setShowDropdown(!showDropdown)}
-        className="inline-flex items-center gap-1.5"
-      >
+      <button onClick={() => setShowDropdown(!showDropdown)}>
         <IconCog />
 
         <span className="sr-only">Settings</span>
