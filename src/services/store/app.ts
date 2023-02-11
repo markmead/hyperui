@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { loadState, saveState } from '@/services/store/loaders'
+
 import settingsReducer from '@/services/store/slices/settings'
+import siteReducer from '@/services/store/slices/site'
 
 const persistedState = loadState()
 
 export function makeStore() {
   return configureStore({
-    reducer: { settings: settingsReducer },
+    reducer: { settings: settingsReducer, site: siteReducer },
     preloadedState: persistedState,
   })
 }

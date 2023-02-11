@@ -13,6 +13,7 @@ import '@/styles/site.css'
 
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import StarBanner from '@/components/StarBanner'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -59,6 +60,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       </main>
 
       <Footer />
+
+      <StarBanner />
 
       <Analytics />
     </Provider>
