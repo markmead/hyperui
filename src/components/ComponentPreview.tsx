@@ -34,7 +34,7 @@ type Props = {
   componentContainer: string
 }
 
-function Preview({ componentData, componentContainer }: Props) {
+function ComponentPreview({ componentData, componentContainer }: Props) {
   const refIframe = useRef(null)
 
   const { query } = useRouter()
@@ -214,4 +214,4 @@ function Preview({ componentData, componentContainer }: Props) {
   )
 }
 
-export default Preview
+export default ComponentPreview
