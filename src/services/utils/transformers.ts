@@ -1,4 +1,11 @@
-export function componentHtml(
+export function componentSlug(
+  componentSlug: string,
+  componentCategory: string
+) {
+  return componentSlug.replace(`${componentCategory}-`, '')
+}
+
+export function componentPreviewHtml(
   componentHtml: string,
   componentContainer: string = 'relative',
   isDarkMode: boolean = false
@@ -7,7 +14,7 @@ export function componentHtml(
     <html class="${isDarkMode && 'dark'}">
       <head>
         <link rel="stylesheet" href="/components.css">
-        <script src="/components.js"></script>
+        <script src="/iframe.js"></script>
       </head>
 
       <body class="${componentContainer}">
@@ -17,19 +24,12 @@ export function componentHtml(
   `
 }
 
-export function componentSlug(
-  componentSlug: string,
-  componentCategory: string
-) {
-  return componentSlug.replace(`${componentCategory}-`, '')
-}
-
-export function blogHtml(componentHtml: string) {
+export function blogPreviewHtml(componentHtml: string) {
   return `
-    <html >
+    <html>
       <head>
         <link rel="stylesheet" href="/blogs.css">
-        <script src="/components.js"></script>
+        <script src="/iframe.js"></script>
       </head>
 
       <body>

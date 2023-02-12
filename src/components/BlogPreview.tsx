@@ -4,11 +4,13 @@ import { useInView } from 'react-intersection-observer'
 
 import Prism from 'prismjs'
 
-import { blogHtml } from '@/services/utils/transformers'
+import { blogPreviewHtml } from '@/services/utils/transformers'
 
+import Code from '@/components/PreviewCode'
+import CopyCode from '@/components/PreviewCopy'
+import Iframe from '@/components/PreviewIframe'
 import Loading from '@/components/PreviewLoading'
 import ViewSwitcher from '@/components/PreviewView'
-import CopyCode from '@/components/PreviewCopy'
 
 type Props = {
   previewId: string
@@ -45,7 +47,7 @@ function BlogPreview({ previewId, previewTitle }: Props) {
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = blogHtml(textResponse)
+    const transformedHtml = blogPreviewHtml(textResponse)
 
     setPreviewCode(textResponse)
     setPreviewHtml(transformedHtml)
@@ -56,7 +58,7 @@ function BlogPreview({ previewId, previewTitle }: Props) {
   return (
     <div className="not-prose space-y-4 lg:-ml-[10ch] lg:w-[85ch]" ref={ref}>
       {previewCode && (
-        <div className="flex justify-end gap-4">
+        <div className="flex gap-4">
           <ViewSwitcher
             handleSetShowPreview={setShowPreview}
             showPreview={showPreview}
@@ -70,21 +72,14 @@ function BlogPreview({ previewId, previewTitle }: Props) {
         {isLoading && <Loading />}
 
         <div>
-          <div className={showPreview ? 'block' : 'hidden'}>
-            <iframe
-              className="h-[500px] w-full rounded-lg bg-white ring-2 ring-black"
-              loading="lazy"
-              srcDoc={previewHtml}
-              title={previewTitle}
-              ref={refIframe}
-            ></iframe>
-          </div>
+          <Iframe
+            showPreview={showPreview}
+            componentHtml={previewHtml}
+            componentTitle={previewTitle}
+            refIframe={refIframe}
+          />
 
-          <div className={showPreview ? 'hidden' : 'block'}>
-            <pre className="h-[500px] overflow-auto rounded-lg p-4 ring-2 ring-black">
-              <code className="language-html">{previewCode}</code>
-            </pre>
-          </div>
+          <Code showPreview={showPreview} componentCode={previewCode} />
         </div>
       </div>
     </div>

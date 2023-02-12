@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer'
 
 import { Component } from '@/interface/component'
 
-import { componentHtml as transformComponentHtml } from '@/services/utils/transformers'
+import { componentPreviewHtml } from '@/services/utils/transformers'
 import { componentBreakpoints } from '@/services/utils/breakpoints'
 
 import { useAppSelector } from '@/services/hooks/useStore'
@@ -123,7 +123,7 @@ function Preview({ componentData, componentContainer }: Props) {
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = transformComponentHtml(
+    const transformedHtml = componentPreviewHtml(
       textResponse,
       trueComponentContainer,
       isDarkMode

@@ -4,7 +4,7 @@ type Props = {
   showPreview: boolean
   componentHtml: string | undefined
   componentTitle: string
-  previewWidth: string
+  previewWidth?: string
   refIframe: RefObject<HTMLIFrameElement>
 }
 
@@ -12,7 +12,7 @@ function PreviewIframe({
   showPreview,
   componentHtml,
   componentTitle,
-  previewWidth,
+  previewWidth = '100%',
   refIframe,
 }: Props) {
   return (
