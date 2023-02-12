@@ -23,3 +23,18 @@ export function componentSlug(
 ) {
   return componentSlug.replace(`${componentCategory}-`, '')
 }
+
+export function blogHtml(componentHtml: string) {
+  return `
+    <html >
+      <head>
+        <link rel="stylesheet" href="/blogs.css">
+        <script src="/components.js"></script>
+      </head>
+
+      <body>
+        ${componentHtml}
+      </body>
+    </html>
+  `
+}
