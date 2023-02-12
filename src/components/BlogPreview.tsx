@@ -40,6 +40,8 @@ function BlogPreview({ previewId, previewTitle }: Props) {
     if (inView) {
       loadPreview()
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   async function fetchHtml() {
