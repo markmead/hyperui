@@ -13,8 +13,6 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { getBlogPaths } from '@/services/api/blogs'
 import { BlogFrontmatter } from '@/interface/blog'
 
-// import Preview from '@/components/BlogPreview'
-
 const mdxComponents = {
   Preview: dynamic(() => import('@/components/BlogPreview')),
 }
