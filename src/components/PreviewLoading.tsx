@@ -1,9 +1,9 @@
 type Props = {
-  previewWidth: string
-  isDarkMode: boolean
+  previewWidth?: string
+  isDarkMode?: boolean
 }
 
-function PreviewLoading({ previewWidth, isDarkMode }: Props) {
+function PreviewLoading({ previewWidth = '100%', isDarkMode = false }: Props) {
   return (
     <div
       aria-hidden="true"

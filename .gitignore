@@ -15,6 +15,7 @@
 # production
 /build
 public/components.css
+public/blogs.css
 
 # misc
 .DS_Store

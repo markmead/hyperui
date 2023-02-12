@@ -1,6 +1,6 @@
 import { Component } from '@/interface/component'
 
-import Preview from '@/components/Preview'
+import Preview from '@/components/ComponentPreview'
 
 type ComponentData = Component & {
   id: string

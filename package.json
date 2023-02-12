@@ -2,12 +2,14 @@
   "name": "hyperui",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
+    "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
+    "css": "yarn css:components && yarn css:blogs",
+    "dev": "next dev",
+    "lint": "next lint",
     "postbuild": "yarn css && next-sitemap --config sitemap.config.js",
-    "css": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
-    "watch": "yarn css -w",
-    "lint": "next lint"
+    "watch": "yarn css -w"
   },
   "dependencies": {
     "next": "12.1.0",

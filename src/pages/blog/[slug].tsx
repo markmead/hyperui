@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
 import Prism from 'prismjs'
 
@@ -11,6 +12,10 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import { getBlogPaths } from '@/services/api/blogs'
 import { BlogFrontmatter } from '@/interface/blog'
+
+const mdxComponents = {
+  Preview: dynamic(() => import('@/components/BlogPreview')),
+}
 
 type Props = {
   blogSource: MDXRemoteProps
@@ -74,7 +79,7 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
             <h1 className="mt-1">{blogFrontmatter.title}</h1>
           </header>
 
-          <MDXRemote {...blogSource} />
+          <MDXRemote {...blogSource} components={mdxComponents} />
         </article>
       </div>
     </>
