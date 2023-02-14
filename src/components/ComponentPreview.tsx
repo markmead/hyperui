@@ -41,7 +41,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { dark, interactive, breakpoint } = useAppSelector(settingsState)
+  const { dark, interactive, rtl, breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -82,7 +82,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const usingInteractive = componentHasInteractive
       ? interactive || isInteractive
       : false
-    // const usingRtl = componentHasRtl && componentHasRtlVariant ? true : false
+    const usingRtl = componentHasRtl ? rtl || isRtl : false
 
     if (inView) {
       loadComponent()
@@ -94,7 +94,11 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       if (isLoaded) {
         setIsDarkMode(usingDarkMode)
         setIsInteractive(usingInteractive)
-        // setIsRtl(usingRtl)
+        setIsRtl(usingRtl)
+
+        if (usingRtl && componentHasRtlVariant) {
+          setIsRtlComponent(true)
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

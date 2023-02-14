@@ -5,6 +5,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface SettingsState {
   dark: boolean
   interactive: boolean
+  rtl: boolean
   links: boolean
   breakpoint: string
 }
@@ -12,6 +13,7 @@ interface SettingsState {
 const initialState: SettingsState = {
   dark: false,
   interactive: false,
+  rtl: false,
   links: false,
   breakpoint: '100%',
 }
@@ -28,6 +30,10 @@ export const settingsSlice = createSlice({
       state.interactive = !state.interactive
     },
 
+    toggleRtl(state: SettingsState) {
+      state.rtl = !state.rtl
+    },
+
     toggleLinks(state: SettingsState) {
       state.links = !state.links
     },
@@ -38,8 +44,13 @@ export const settingsSlice = createSlice({
   },
 })
 
-export const { toggleDark, toggleInteractive, toggleLinks, setBreakpoint } =
-  settingsSlice.actions
+export const {
+  toggleDark,
+  toggleInteractive,
+  toggleRtl,
+  toggleLinks,
+  setBreakpoint,
+} = settingsSlice.actions
 
 export const settingsState = (state: AppState) => state.settings
 
