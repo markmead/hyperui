@@ -65,7 +65,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
-    rtl: { enabled: componentHasRtl, component: componentHasRtlVariant },
+    rtl: { enabled: componentHasRtl, component: componentHasRtlVariant } = {},
   } = componentData
 
   const trueComponentContainer: string = componentSpace
