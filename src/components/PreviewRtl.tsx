@@ -17,7 +17,7 @@ function PreviewRtl({ isRtl, handleSetIsRtl }: Props) {
         {isRtl ? '👈' : '👉'}
       </span>
 
-      <span className="text-xs font-medium">RTL</span>
+      <span className="text-xs font-medium">{isRtl ? 'RTL' : 'LTR'}</span>
     </button>
   )
 }
