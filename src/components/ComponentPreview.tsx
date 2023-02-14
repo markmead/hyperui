@@ -24,6 +24,7 @@ import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
+import RtlToggle from '@/components/PreviewRtl'
 
 type ComponentData = Component & {
   id: string
@@ -48,6 +49,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
+  const [isRtl, setIsRtl] = useState<boolean>(false)
+  const [isRtlComponent, setIsRtlComponent] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { ref, inView } = useInView({
@@ -62,6 +65,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
+    rtl: { enabled: componentHasRtl, component: componentHasRtlVariant },
   } = componentData
 
   const trueComponentContainer: string = componentSpace
@@ -78,6 +82,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const usingInteractive = componentHasInteractive
       ? interactive || isInteractive
       : false
+    // const usingRtl = componentHasRtl && componentHasRtlVariant ? true : false
 
     if (inView) {
       loadComponent()
@@ -89,6 +94,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       if (isLoaded) {
         setIsDarkMode(usingDarkMode)
         setIsInteractive(usingInteractive)
+        // setIsRtl(usingRtl)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,21 +106,39 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     fetchHtml({
       useDark: isDarkMode,
       useInteractive: isInteractive,
+      useRtl: isRtlComponent,
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive])
+  }, [isDarkMode, isInteractive, isRtlComponent])
+
+  useEffect(() => {
+    if (!componentCode) {
+      return
+    }
+
+    const transformedHtml = componentPreviewHtml(
+      componentCode,
+      trueComponentContainer,
+      isDarkMode,
+      isRtl
+    )
+
+    setComponentHtml(transformedHtml)
+  }, [isRtl])
 
   async function fetchHtml(
     useOptions: {
       useDark?: boolean
       useInteractive?: boolean
+      useRtl?: boolean
     } = {}
   ) {
     const componentPath = [
       componentId,
       useOptions.useDark && 'dark',
       useOptions.useInteractive && 'interactive',
+      useOptions.useRtl && 'rtl',
     ]
       .filter(Boolean)
       .join('-')
@@ -126,7 +150,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const transformedHtml = componentPreviewHtml(
       textResponse,
       trueComponentContainer,
-      isDarkMode
+      isDarkMode,
+      isRtlComponent
     )
 
     setComponentCode(textResponse)
@@ -166,6 +191,19 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                   isInteractive={isInteractive}
                   handleSetIsInteractive={setIsInteractive}
                 />
+              )}
+
+              {componentHasRtl && (
+                <>
+                  {componentHasRtlVariant ? (
+                    <RtlToggle
+                      isRtl={isRtlComponent}
+                      handleSetIsRtl={setIsRtlComponent}
+                    />
+                  ) : (
+                    <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
+                  )}
+                </>
               )}
             </div>
           )}
