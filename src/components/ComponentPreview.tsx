@@ -176,7 +176,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
         <div className="lg:flex lg:items-end">
           {componentCode && (
-            <div className="flex items-end gap-4">
+            <div className="flex flex-wrap items-end gap-4">
               <ViewSwitcher
                 handleSetShowPreview={setShowPreview}
                 showPreview={showPreview}
