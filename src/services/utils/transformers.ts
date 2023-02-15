@@ -11,8 +11,11 @@ export function componentPreviewHtml(
   isDarkMode: boolean = false,
   isRtl: boolean = false
 ) {
+  const htmlClass = isDarkMode ? 'dark' : 'relative'
+  const htmlDirection = isRtl ? 'rtl' : 'ltr'
+
   return `
-    <html class="${isDarkMode && 'dark'}" dir="${isRtl && 'rtl'}">
+    <html class="${htmlClass}" dir="${htmlDirection}">
       <head>
         <link rel="stylesheet" href="/components.css">
         <script src="/iframe.js"></script>

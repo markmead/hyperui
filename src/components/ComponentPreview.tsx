@@ -138,11 +138,12 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       useRtl?: boolean
     } = {}
   ) {
+    const { useDark, useInteractive, useRtl } = useOptions
     const componentPath = [
       componentId,
-      useOptions.useDark && 'dark',
-      useOptions.useInteractive && 'interactive',
-      useOptions.useRtl && 'rtl',
+      useDark && 'dark',
+      useInteractive && 'interactive',
+      useRtl && 'rtl',
     ]
       .filter(Boolean)
       .join('-')
@@ -154,8 +155,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const transformedHtml = componentPreviewHtml(
       textResponse,
       trueComponentContainer,
-      isDarkMode,
-      isRtlComponent
+      useDark,
+      useRtl
     )
 
     setComponentCode(textResponse)

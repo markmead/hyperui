@@ -14,7 +14,7 @@
         <label class="sr-only" for="search"> Search </label>
 
         <input
-          class="h-10 w-full rounded-lg border-none bg-white pl-4 pr-10 text-sm shadow-sm sm:w-56"
+          class="h-10 w-full rounded-lg border-none bg-white text-sm shadow-sm ltr:pl-4 ltr:pr-10 rtl:pl-10 rtl:pr-4 sm:w-56"
           id="search"
           type="search"
           placeholder="Search website..."
@@ -22,7 +22,7 @@
 
         <button
           type="button"
-          class="absolute top-1/2 right-1 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
+          class="absolute top-1/2 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700 ltr:right-1 rtl:left-1"
         >
           <span class="sr-only">Search</span>
           <svg
@@ -125,7 +125,9 @@
             class="h-10 w-10 rounded-full object-cover"
           />
 
-          <p class="ml-2 hidden text-left text-xs sm:block">
+          <p
+            class="hidden text-xs ltr:ml-2 ltr:text-left rtl:mr-2 rtl:text-right sm:block"
+          >
             <strong class="block font-medium">Eric Frusciante</strong>
 
             <span class="text-gray-500"> eric@frusciante.com </span>
@@ -133,7 +135,7 @@
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="ml-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 sm:block"
+            class="hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 ltr:ml-4 rtl:mr-4 sm:block"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
