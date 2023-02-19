@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :where([dir='rtl']) select {
+    @apply bg-[left_0.5rem_center] pl-10 pr-3;
+  }
+}

@@ -5,6 +5,12 @@
   npm install @tailwindcss/forms
 
   plugins: [require('@tailwindcss/forms')]
+
+  @layer base {
+    :where([dir='rtl']) select {
+      @apply bg-[left_0.5rem_center] pl-10 pr-3;
+    }
+  }
 -->
 
 <section>

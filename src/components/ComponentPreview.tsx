@@ -129,6 +129,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     )
 
     setComponentHtml(transformedHtml)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRtl])
 
   async function fetchHtml(
@@ -156,7 +158,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       textResponse,
       trueComponentContainer,
       useDark,
-      useRtl
+      useRtl || isRtl
     )
 
     setComponentCode(textResponse)
