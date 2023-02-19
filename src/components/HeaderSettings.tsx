@@ -7,6 +7,7 @@ import { useClickOutside } from '@/services/hooks/useClickOutside'
 import IconCog from '@/components/IconCog'
 import SettingDarkMode from '@/components/SettingDarkMode'
 import SettingInteractiveMode from '@/components/SettingInteractiveMode'
+import SettingRtlMode from '@/components/SettingRtlMode'
 import SettingComponentLinks from '@/components/SettingComponentLinks'
 import SettingBreakpoint from '@/components/SettingBreakpoint'
 
@@ -23,6 +24,7 @@ function HeaderSettings() {
   const settingComponents = [
     <SettingDarkMode key="darkMode" />,
     <SettingInteractiveMode key="interactiveMode" />,
+    <SettingRtlMode key="rtlMode" />,
     <SettingComponentLinks key="componentLinks" />,
     <SettingBreakpoint key="previewBreakpoint" />,
   ]

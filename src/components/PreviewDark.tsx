@@ -5,7 +5,7 @@ type Props = {
   handleSetIsDarkMode: CallableFunction
 }
 
-function Dark({ isDarkMode, handleSetIsDarkMode }: Props) {
+function PreviewDark({ isDarkMode, handleSetIsDarkMode }: Props) {
   return (
     <button
       onClick={() => handleSetIsDarkMode(!isDarkMode)}
@@ -24,4 +24,4 @@ function Dark({ isDarkMode, handleSetIsDarkMode }: Props) {
   )
 }
 
-export default Dark
+export default PreviewDark

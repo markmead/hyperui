@@ -64,10 +64,17 @@
 
           <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
             <div>
-              <input class="sr-only" id="option1" type="radio" tabindex="-1" />
+              <input
+                class="peer sr-only"
+                id="option1"
+                type="radio"
+                tabindex="-1"
+                name="option"
+              />
+
               <label
                 for="option1"
-                class="block w-full rounded-lg border border-gray-200 p-3"
+                class="block w-full rounded-lg border border-gray-200 p-3 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
                 tabindex="0"
               >
                 <span class="text-sm font-medium"> Option 1 </span>
@@ -75,10 +82,17 @@
             </div>
 
             <div>
-              <input class="sr-only" id="option2" type="radio" tabindex="-1" />
+              <input
+                class="peer sr-only"
+                id="option2"
+                type="radio"
+                tabindex="-1"
+                name="option"
+              />
+
               <label
                 for="option2"
-                class="block w-full rounded-lg border border-gray-200 p-3"
+                class="block w-full rounded-lg border border-gray-200 p-3 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
                 tabindex="0"
               >
                 <span class="text-sm font-medium"> Option 2 </span>
@@ -86,10 +100,17 @@
             </div>
 
             <div>
-              <input class="sr-only" id="option3" type="radio" tabindex="-1" />
+              <input
+                class="peer sr-only"
+                id="option3"
+                type="radio"
+                tabindex="-1"
+                name="option"
+              />
+
               <label
                 for="option3"
-                class="block w-full rounded-lg border border-gray-200 p-3"
+                class="block w-full rounded-lg border border-gray-200 p-3 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
                 tabindex="0"
               >
                 <span class="text-sm font-medium"> Option 3 </span>
@@ -99,6 +120,7 @@
 
           <div>
             <label class="sr-only" for="message">Message</label>
+
             <textarea
               class="w-full rounded-lg border-gray-200 p-3 text-sm"
               placeholder="Message"
@@ -110,24 +132,9 @@
           <div class="mt-4">
             <button
               type="submit"
-              class="inline-flex w-full items-center justify-center rounded-lg bg-black px-5 py-3 text-white sm:w-auto"
+              class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
             >
-              <span class="font-medium"> Send Enquiry </span>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="ml-3 h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
+              Send Enquiry
             </button>
           </div>
         </form>

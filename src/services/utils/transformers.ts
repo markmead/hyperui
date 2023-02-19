@@ -8,10 +8,14 @@ export function componentSlug(
 export function componentPreviewHtml(
   componentHtml: string,
   componentContainer: string = 'relative',
-  isDarkMode: boolean = false
+  isDarkMode: boolean = false,
+  isRtl: boolean = false
 ) {
+  const htmlClass = isDarkMode ? 'dark' : 'relative'
+  const htmlDirection = isRtl ? 'rtl' : 'ltr'
+
   return `
-    <html class="${isDarkMode && 'dark'}">
+    <html class="${htmlClass}" dir="${htmlDirection}">
       <head>
         <link rel="stylesheet" href="/components.css">
         <script src="/iframe.js"></script>

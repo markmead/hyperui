@@ -24,6 +24,7 @@ import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
+import RtlToggle from '@/components/PreviewRtl'
 
 type ComponentData = Component & {
   id: string
@@ -40,7 +41,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { dark, interactive, breakpoint } = useAppSelector(settingsState)
+  const { dark, interactive, rtl, breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -48,6 +49,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
+  const [isRtl, setIsRtl] = useState<boolean>(false)
+  const [isRtlComponent, setIsRtlComponent] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { ref, inView } = useInView({
@@ -62,6 +65,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
+    rtl: { enabled: componentHasRtl, component: componentHasRtlVariant } = {},
   } = componentData
 
   const trueComponentContainer: string = componentSpace
@@ -78,6 +82,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const usingInteractive = componentHasInteractive
       ? interactive || isInteractive
       : false
+    const usingRtl = componentHasRtl ? rtl || isRtl : false
 
     if (inView) {
       loadComponent()
@@ -89,6 +94,11 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       if (isLoaded) {
         setIsDarkMode(usingDarkMode)
         setIsInteractive(usingInteractive)
+        setIsRtl(usingRtl)
+
+        if (usingRtl && componentHasRtlVariant) {
+          setIsRtlComponent(true)
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,21 +110,42 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     fetchHtml({
       useDark: isDarkMode,
       useInteractive: isInteractive,
+      useRtl: isRtlComponent,
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive])
+  }, [isDarkMode, isInteractive, isRtlComponent])
+
+  useEffect(() => {
+    if (!componentCode) {
+      return
+    }
+
+    const transformedHtml = componentPreviewHtml(
+      componentCode,
+      trueComponentContainer,
+      isDarkMode,
+      isRtl
+    )
+
+    setComponentHtml(transformedHtml)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRtl])
 
   async function fetchHtml(
     useOptions: {
       useDark?: boolean
       useInteractive?: boolean
+      useRtl?: boolean
     } = {}
   ) {
+    const { useDark, useInteractive, useRtl } = useOptions
     const componentPath = [
       componentId,
-      useOptions.useDark && 'dark',
-      useOptions.useInteractive && 'interactive',
+      useDark && 'dark',
+      useInteractive && 'interactive',
+      useRtl && 'rtl',
     ]
       .filter(Boolean)
       .join('-')
@@ -126,7 +157,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const transformedHtml = componentPreviewHtml(
       textResponse,
       trueComponentContainer,
-      isDarkMode
+      useDark,
+      useRtl || isRtl
     )
 
     setComponentCode(textResponse)
@@ -146,7 +178,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
         <div className="lg:flex lg:items-end">
           {componentCode && (
-            <div className="flex items-end gap-4">
+            <div className="flex flex-wrap items-end gap-4">
               <ViewSwitcher
                 handleSetShowPreview={setShowPreview}
                 showPreview={showPreview}
@@ -166,6 +198,19 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                   isInteractive={isInteractive}
                   handleSetIsInteractive={setIsInteractive}
                 />
+              )}
+
+              {componentHasRtl && (
+                <>
+                  {componentHasRtlVariant ? (
+                    <RtlToggle
+                      isRtl={isRtlComponent}
+                      handleSetIsRtl={setIsRtlComponent}
+                    />
+                  ) : (
+                    <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
+                  )}
+                </>
               )}
             </div>
           )}

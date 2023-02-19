@@ -5,7 +5,7 @@ type Props = {
   handleSetIsInteractive: CallableFunction
 }
 
-function Interactive({ isInteractive, handleSetIsInteractive }: Props) {
+function PreviewInteractive({ isInteractive, handleSetIsInteractive }: Props) {
   return (
     <button
       onClick={() => handleSetIsInteractive(!isInteractive)}
@@ -22,4 +22,4 @@ function Interactive({ isInteractive, handleSetIsInteractive }: Props) {
   )
 }
 
-export default Interactive
+export default PreviewInteractive

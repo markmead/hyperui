@@ -18,24 +18,28 @@
       dolores deleniti inventore quaerat mollitia?
     </p>
 
-    <form action="" class="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-2xl">
-      <p class="text-lg font-medium">Sign in to your account</p>
+    <form
+      action=""
+      class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+    >
+      <p class="text-center text-lg font-medium">Sign in to your account</p>
 
       <div>
-        <label for="email" class="text-sm font-medium">Email</label>
+        <label for="email" class="sr-only">Email</label>
 
-        <div class="relative mt-1">
+        <div class="relative">
           <input
             type="email"
-            id="email"
             class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
             placeholder="Enter email"
           />
 
-          <span class="absolute inset-y-0 right-4 inline-flex items-center">
+          <span
+            class="absolute inset-y-0 right-0 grid place-content-center px-4"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-gray-400"
+              class="h-4 w-4 text-gray-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -52,20 +56,21 @@
       </div>
 
       <div>
-        <label for="password" class="text-sm font-medium">Password</label>
+        <label for="password" class="sr-only">Password</label>
 
-        <div class="relative mt-1">
+        <div class="relative">
           <input
             type="password"
-            id="password"
             class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
             placeholder="Enter password"
           />
 
-          <span class="absolute inset-y-0 right-4 inline-flex items-center">
+          <span
+            class="absolute inset-y-0 right-0 grid place-content-center px-4"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-gray-400"
+              class="h-4 w-4 text-gray-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

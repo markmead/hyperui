@@ -3,7 +3,7 @@
 <nav aria-label="Main Nav" class="flex flex-col space-y-1">
   <a
     href=""
-    class="flex items-center rounded-lg bg-gray-100 px-4 py-2 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
+    class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,35 +25,35 @@
       />
     </svg>
 
-    <span class="ml-3 text-sm font-medium"> General </span>
+    <span class="text-sm font-medium"> General </span>
   </a>
 
   <div x-data="{ isActive: false }">
     <button
       type="button"
       x-on:click="isActive = !isActive"
-      class="group flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+      class="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 opacity-75"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-        />
-      </svg>
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 opacity-75"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
 
-      <span class="ml-3 text-sm font-medium"> Teams </span>
+        <span class="text-sm font-medium"> Teams </span>
+      </div>
 
-      <span
-        class="ml-auto shrink-0 transition duration-300 group-open:-rotate-180"
-      >
+      <span class="shrink-0 transition duration-300 group-open:-rotate-180">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5"
@@ -74,7 +74,7 @@
       x-show="isActive"
       x-on:keydown.escape.window="isActive = false"
       aria-label="Users Nav"
-      class="mt-2 ml-8 flex flex-col space-y-1"
+      class="mt-2 flex flex-col space-y-1 px-4"
     >
       <a
         href=""
@@ -94,7 +94,7 @@
 
   <a
     href=""
-    class="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+    class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -111,12 +111,12 @@
       />
     </svg>
 
-    <span class="ml-3 text-sm font-medium"> Billing </span>
+    <span class="text-sm font-medium"> Billing </span>
   </a>
 
   <a
     href=""
-    class="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+    class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -133,35 +133,35 @@
       />
     </svg>
 
-    <span class="ml-3 text-sm font-medium"> Invoices </span>
+    <span class="text-sm font-medium"> Invoices </span>
   </a>
 
   <div x-data="{ isActive: false }">
     <button
       type="button"
       x-on:click="isActive = !isActive"
-      class="group flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+      class="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 opacity-75"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-        />
-      </svg>
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 opacity-75"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          />
+        </svg>
 
-      <span class="ml-3 text-sm font-medium"> Account </span>
+        <span class="text-sm font-medium"> Account </span>
+      </div>
 
-      <span
-        class="ml-auto shrink-0 transition duration-300 group-open:-rotate-180"
-      >
+      <span class="shrink-0 transition duration-300 group-open:-rotate-180">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5"
@@ -182,7 +182,7 @@
       x-show="isActive"
       x-on:keydown.escape.window="isActive = false"
       aria-label="Account Nav"
-      class="mt-2 ml-8 flex flex-col space-y-1"
+      class="mt-2 flex flex-col space-y-1 px-4"
     >
       <a
         href=""
@@ -201,7 +201,7 @@
       <form action="/logout">
         <button
           type="submit"
-          class="w-full rounded-lg px-4 py-2 text-left text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+          class="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
         >
           Logout
         </button>

@@ -1,0 +1,24 @@
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<label
+  x-data="{ isChecked: false }"
+  for="AcceptConditions"
+  class="relative h-8 w-14 cursor-pointer"
+>
+  <input
+    x-model="isChecked"
+    type="checkbox"
+    id="AcceptConditions"
+    class="peer sr-only"
+  />
+
+  <span
+    :class="{ 'bg-gray-300': !isChecked, 'bg-green-500': isChecked }"
+    class="absolute inset-0 rounded-full transition"
+  ></span>
+
+  <span
+    :class="{ 'rtl:-translate-x-6 ltr:translate-x-6': isChecked }"
+    class="absolute inset-0 m-1 h-6 w-6 rounded-full bg-white transition"
+  ></span>
+</label>
