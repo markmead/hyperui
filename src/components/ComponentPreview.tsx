@@ -65,7 +65,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
-    rtl: { enabled: componentHasRtl, component: componentHasRtlVariant } = {},
+    rtl: componentHasRtl,
   } = componentData
 
   const trueComponentContainer: string = componentSpace
@@ -96,7 +96,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
         setIsInteractive(usingInteractive)
         setIsRtl(usingRtl)
 
-        if (usingRtl && componentHasRtlVariant) {
+        if (usingRtl && componentHasRtl) {
           setIsRtlComponent(true)
         }
       }
@@ -200,17 +200,13 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                 />
               )}
 
-              {componentHasRtl && (
-                <>
-                  {componentHasRtlVariant ? (
-                    <RtlToggle
-                      isRtl={isRtlComponent}
-                      handleSetIsRtl={setIsRtlComponent}
-                    />
-                  ) : (
-                    <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
-                  )}
-                </>
+              {componentHasRtl ? (
+                <RtlToggle
+                  isRtl={isRtlComponent}
+                  handleSetIsRtl={setIsRtlComponent}
+                />
+              ) : (
+                <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
               )}
             </div>
           )}
