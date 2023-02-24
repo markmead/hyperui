@@ -28,7 +28,10 @@ export function componentPreviewHtml(
   `
 }
 
-export function blogPreviewHtml(componentHtml: string) {
+export function blogPreviewHtml(
+  componentHtml: string,
+  componentContainer: string = 'relative'
+) {
   return `
     <html>
       <head>
@@ -36,7 +39,7 @@ export function blogPreviewHtml(componentHtml: string) {
         <script src="/iframe.js"></script>
       </head>
 
-      <body>
+      <body class="${componentContainer}">
         ${componentHtml}
       </body>
     </html>
