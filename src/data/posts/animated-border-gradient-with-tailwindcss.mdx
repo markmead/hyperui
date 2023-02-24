@@ -13,7 +13,7 @@ First, we need our interactive element, for this example, I'll use an `<a>` to h
 
 ```html
 <a href="#" class="inline-block bg-white p-0.5">
-  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
+  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -32,7 +32,7 @@ We apply the gradient to the interactive element with the fake border.
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5"
 >
-  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
+  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -47,7 +47,7 @@ We can take what we've done and add two more classes, one is a default Tailwind 
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 hover:bg-gradient-to-r"
 >
-  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
+  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -71,10 +71,10 @@ First, we need to make some additions to our Tailwind CSS config.
 theme: {
   extend: {
     animation: {
-      border: 'border 4s ease infinite',
+      border: 'background ease infinite',
     },
     keyframes: {
-      border: {
+      background: {
         '0%, 100%': { backgroundPosition: '0% 50%' },
         '50%': { backgroundPosition: '100% 50%' },
       },
@@ -83,21 +83,33 @@ theme: {
 }
 ```
 
-Here we're creating an animation with the class `animate-border` which is using the `border` object in the `keyframes` object. In short, this moves the gradient.
+Here we're creating an animation with the class `animate-background` which is using the `background` object in the `keyframes` object. In short, this moves the gradient.
 
-Finally, we can add the `animate-border` class to the interactive element with the gradient classes.
+Finally, we can add the `animate-background` class to the interactive element with the gradient classes.
 
-You can use `hover:animate-border` if preferred, but note that will reset the animation when you are no longer on hover, which can cause it to look a little jumpy.
+You can use `hover:animate-background` if preferred, but note that will reset the animation when you are no longer on hover, which can cause it to look a little jumpy.
 
 The full example looks like this.
 
 ```html
 <a
   href="#"
-  class="animate-border inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 hover:bg-gradient-to-r"
+  class="animate-background inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 [animation-duration:_6s] hover:bg-gradient-to-r"
 >
-  <span class="block px-5 py-3 text-white bg-slate-900"> Get Started </span>
+  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
-And here is the [full example](https://play.tailwindcss.com/YooA6NXDHi?layout=preview) (with some extra spice) on Tailwind Play.
+We're making use of an arbitrary properties syntax to write `[animation-duration:_6s]` so we can change the `animation-duration` for each use of the effect.
+
+And here is how it looks. I've added some extra classes to make the `<a>` look nicer.
+
+<Preview previewId="animated-border" previewTitle="Animated Border Example" />
+
+---
+
+You can see these effects in action on the following blog card components:
+
+- [Gradient Border](http://localhost:3000/components/marketing/blog-cards#component-4)
+- [Gradient Border Animated](http://localhost:3000/components/marketing/blog-cards#component-5)
+- [Gradient Border Animated on Hover](http://localhost:3000/components/marketing/blog-cards#component-6)
