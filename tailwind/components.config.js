@@ -7,5 +7,5 @@ module.exports = {
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
   ],
-  presets: [require('./components.preset.js')],
+  presets: [require('./extras.preset.js')],
 }

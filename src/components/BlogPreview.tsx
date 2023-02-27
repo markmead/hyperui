@@ -15,9 +15,10 @@ import ViewSwitcher from '@/components/PreviewView'
 type Props = {
   previewId: string
   previewTitle: string
+  previewContainer?: string
 }
 
-function BlogPreview({ previewId, previewTitle }: Props) {
+function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
   const refIframe = useRef(null)
 
   const [previewCode, setPreviewCode] = useState<string>()
@@ -49,7 +50,7 @@ function BlogPreview({ previewId, previewTitle }: Props) {
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = blogPreviewHtml(textResponse)
+    const transformedHtml = blogPreviewHtml(textResponse, previewContainer)
 
     setPreviewCode(textResponse)
     setPreviewHtml(transformedHtml)

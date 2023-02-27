@@ -75,12 +75,20 @@ Our code added the following Tailwind CSS classes:
 - `text-shadow-sm`
 - `text-shadow-lg`
 
-But you can add as many as you like.
+But you can add as many as you like. Here's how they look.
+
+<Preview
+  previewId="text-shadow"
+  previewTitle="Text Shadow Example"
+  previewContainer="grid min-h-screen place-content-center p-8"
+/>
 
 The classes that have been added will appear in [Tailwind CSS IntelliSense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code) when writing something like `text-sh` for example.
 
 It's worth noting the use of `var(--tw-shadow-color)`. This is important as it allows us to use Tailwind CSS `shadow-[color]` classes with the `text-shadow` classes we've added.
 
-Something else to note is we can use arbitrary values such as; `text-shadow-[0_4px_8px_#6366f1]` to create text shadows.
+---
 
-Want to see more? You can view the [full example](https://play.tailwindcss.com/wJi9jhaOyb) on the Tailwind CSS play sandbox.
+And there we have it.
+
+That's all it takes to add `text-shadow` support to Tailwind CSS while it's not in the core.

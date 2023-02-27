@@ -7,9 +7,11 @@ emoji: 🔦
 
 On the web you might come across a hover effect where the element you are hovering has full opacity and the sibling elements have a lower opacity. It could look something like this.
 
-![](/images/posts/highlight-hover-example.webp)
-
-As you can see the second from the left item is at full opacity, while the others are faded.
+<Preview
+  previewId="highlight-hover"
+  previewTitle="Highlight Hover Example"
+  previewContainer="min-h-screen grid place-content-center p-8 bg-gray-900"
+/>
 
 ## How?... in Tailwind CSS
 
@@ -42,8 +44,6 @@ When the `ul` is on hover target the `li` elements and lower their opacity to `0
 When the `li` element is on hover, force the opacity back to `1`. We force it with the `!` modifier which applies `!important`.
 
 That's the base for any hover effect like this with Tailwind CSS, now we can take that logic and apply it to a built out design.
-
-[Highlight Hover Example](https://play.tailwindcss.com/rc93nyfqOu?layout=preview)
 
 ---
 

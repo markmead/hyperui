@@ -16,7 +16,7 @@ export default function StarBanner() {
   return (
     <>
       {showBanner && (
-        <div className="fixed inset-x-0 bottom-0 z-50 p-4">
+        <div className="fixed inset-x-0 bottom-0 z-50 p-6">
           <div className="mx-auto max-w-xl">
             <div className="flex overflow-hidden rounded-lg shadow-lg">
               <a

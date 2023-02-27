@@ -15,9 +15,9 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ```html
 <ul>
-  <li class="text-sm font-medium whitespace-nowrap">First</li>
-  <li class="text-sm font-medium whitespace-nowrap">Second</li>
-  <li class="text-sm font-medium whitespace-nowrap">Third</li>
+  <li class="whitespace-nowrap text-sm font-medium">First</li>
+  <li class="whitespace-nowrap text-sm font-medium">Second</li>
+  <li class="whitespace-nowrap text-sm font-medium">Third</li>
 </ul>
 ```
 
@@ -143,13 +143,13 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 ### Incorrect
 
 ```html
-<button class="transition-all bg-red-500 hover:bg-red-600">Click</button>
+<button class="bg-red-500 transition-all hover:bg-red-600">Click</button>
 ```
 
 ### Correct
 
 ```html
-<button class="transition-colors bg-red-500 hover:bg-red-600">Click</button>
+<button class="bg-red-500 transition-colors hover:bg-red-600">Click</button>
 ```
 
 > But the class name is longer?
@@ -235,36 +235,35 @@ components, such as Blade, React, Liquid OR Vue.**
 And for the CSS...
 
 ```css
-  .card {
-    @apply p-4 rounded;
-  }
+.card {
+  @apply rounded p-4;
+}
 
-  .card-title {
-    @apply text-lg;
-  }
+.card-title {
+  @apply text-lg;
+}
 
-  .card-body {
-    @apply mt-1;
-  }
+.card-body {
+  @apply mt-1;
+}
 
-  .card-footer {
-    @apply flex items-center justify-between;
-  }
+.card-footer {
+  @apply flex items-center justify-between;
+}
 
-  .card-timestamp {
-    @apply text-sm;
-  }
+.card-timestamp {
+  @apply text-sm;
+}
 
-  .card-actions {
-    @apply flex gap-4;
-  }
-</style>
+.card-actions {
+  @apply flex gap-4;
+}
 ```
 
 ### Correct
 
 ```html
-<div class="p-4 rounded">
+<div class="rounded p-4">
   <div class="text-lg">Title</div>
   <div class="mt-1">Title</div>
   <div class="flex items-center justify-between">
@@ -349,8 +348,7 @@ You can use something like [Headwind](https://github.com/heybourn/headwind) to d
 
 > What's the issue here?
 
-You are loading extra CSS on mobile that isn't being used. This might not seem drastic in this example but imagine the
-whole frontend is written like the first example... That's a lot of extra CSS being loaded on mobile.
+You are loading extra CSS on mobile that isn't being used. This might not seem drastic in this example but imagine the whole frontend is written like the first example... That's a lot of extra CSS being loaded on mobile.
 
 ---
 
