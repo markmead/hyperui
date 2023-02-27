@@ -5,6 +5,39 @@ date: 03/05/2022
 emoji: 🎨
 ---
 
+## What is JIT?
+
+Since v3, JIT has been the default in Tailwind CSS and has bought a lot of power to the framework. One of the best additions are [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values), these allow you to replace custom CSS with Tailwind CSS like classes.
+
+### Without Tailwind CSS JIT
+
+```html
+<div class="floating-alert absolute p-4">Hello World! 👋</div>
+```
+
+And for the CSS...
+
+```css
+.floating-alert {
+  bottom: 5px;
+  right: 5px;
+}
+```
+
+### With Tailwind CSS JIT
+
+```html
+<div class="absolute bottom-[5px] right-[5px] p-4">Hello World! 👋</div>
+```
+
+The benefit here is keeping everything within the HTML, this means:
+
+- Less switching between files
+- No need to update Tailwind CSS config
+- Easily use Tailwind CSS breakpoints `top-[2px] sm:top-[3px] lg:top-[5px]`
+
+## Creating Gradients with Tailwind CSS JIT
+
 _If you are using these gradients more than once, it's worth adding them to the Tailwind CSS config._
 
 The syntax for creating a gradient looks confusing, but it's easy to understand once you realise that spaces are replaced with underscores. Take the following example:
