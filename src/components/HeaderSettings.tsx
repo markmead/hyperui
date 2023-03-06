@@ -10,6 +10,7 @@ import SettingInteractiveMode from '@/components/SettingInteractiveMode'
 import SettingRtlMode from '@/components/SettingRtlMode'
 import SettingComponentLinks from '@/components/SettingComponentLinks'
 import SettingBreakpoint from '@/components/SettingBreakpoint'
+import SettingUseJsx from './SettingUseJsx'
 
 function HeaderSettings() {
   const nextRouter = useRouter()
@@ -26,6 +27,7 @@ function HeaderSettings() {
     <SettingInteractiveMode key="interactiveMode" />,
     <SettingRtlMode key="rtlMode" />,
     <SettingComponentLinks key="componentLinks" />,
+    <SettingUseJsx key="toggleUseJsx" />,
     <SettingBreakpoint key="previewBreakpoint" />,
   ]
 

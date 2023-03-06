@@ -8,6 +8,7 @@ interface SettingsState {
   rtl: boolean
   links: boolean
   breakpoint: string
+  useJsx: boolean
 }
 
 const initialState: SettingsState = {
@@ -16,6 +17,7 @@ const initialState: SettingsState = {
   rtl: false,
   links: false,
   breakpoint: '100%',
+  useJsx: false,
 }
 
 export const settingsSlice = createSlice({
@@ -41,6 +43,10 @@ export const settingsSlice = createSlice({
     setBreakpoint(state: SettingsState, action: PayloadAction<string>) {
       state.breakpoint = action.payload
     },
+
+    toggleUseJsx(state: SettingsState) {
+      state.useJsx = !state.useJsx
+    },
   },
 })
 
@@ -50,6 +56,7 @@ export const {
   toggleRtl,
   toggleLinks,
   setBreakpoint,
+  toggleUseJsx,
 } = settingsSlice.actions
 
 export const settingsState = (state: AppState) => state.settings

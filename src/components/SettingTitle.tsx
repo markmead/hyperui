@@ -4,23 +4,31 @@ type Props = {
   settingTitle: string
   settingDescription: string
   shouldRefresh?: boolean
+  experimental?: boolean
 }
 
 function SettingTitle({
   settingTitle,
   settingDescription,
   shouldRefresh = false,
+  experimental = false,
 }: Props) {
   const { reload } = useRouter()
 
   return (
     <div>
       <div
-        {...(shouldRefresh && {
+        {...((shouldRefresh || experimental) && {
           className: 'flex gap-2',
         })}
       >
         <p className="text-sm font-medium">{settingTitle}</p>
+
+        {experimental && (
+          <span className="inline-block rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs text-yellow-700">
+            Experimental
+          </span>
+        )}
 
         {shouldRefresh && (
           <button

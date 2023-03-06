@@ -1,23 +1,31 @@
 import { useState } from 'react'
 
 import styles from '@/styles/button.module.css'
+import { settingsState } from '@/services/store/slices/settings'
+import { useAppSelector } from '@/services/hooks/useStore'
 
 type Props = {
   componentCode: string
 }
 
 function Copy({ componentCode }: Props) {
-  const [buttonText, setButtonText] = useState('Copy')
+  const { useJsx } = useAppSelector(settingsState)
+
+  const [buttonText, setButtonText] = useState(useJsx ? 'Copy JSX' : 'Copy')
   const [buttonEmoji, setButtonEmoji] = useState('📋')
 
   function copyToClipboard() {
-    navigator.clipboard.writeText(componentCode).then(function () {
+    const finalComponentCode = useJsx
+      ? componentCode.replaceAll(/class="/gi, 'className="')
+      : componentCode
+
+    navigator.clipboard.writeText(finalComponentCode).then(function () {
       setButtonEmoji('✅')
       setButtonText('Copied')
 
       setTimeout(() => {
         setButtonEmoji('📋')
-        setButtonText('Copy')
+        setButtonText(useJsx ? 'Copy JSX' : 'Copy')
       }, 3000)
     })
   }
