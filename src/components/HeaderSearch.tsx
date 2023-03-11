@@ -35,6 +35,12 @@ function HeaderSearch() {
   }, [])
 
   useEffect(() => {
+    if (!searchQuery) {
+      setSearchResults(initialResults)
+
+      return
+    }
+
     const filteredResults = initialResults.filter(function (
       initialResult: SearchResult
     ) {
