@@ -18,19 +18,20 @@ function HeaderSearch() {
   const [searchResults, setSearchResults] = useState<Array<SearchResult>>([])
 
   useEffect(() => {
-    fetch('/api/search')
-      .then((result) => result.json())
-      .then((data) => {
-        const sortedData = data.sort(function (
-          resultA: SearchResult,
-          resultB: SearchResult
-        ) {
-          return resultA.name.localeCompare(resultB.name)
-        })
+    const getSearchResults = async () => {
+      const searchResults = await fetchSearchResults()
+      const sortedSearchResults = searchResults.sort(
+        (resultA: SearchResult, resultB: SearchResult) =>
+          resultA.name.localeCompare(resultB.name)
+      )
 
-        setInitialResults(sortedData)
-        setSearchResults(sortedData)
-      })
+      setSearchResults(sortedSearchResults)
+      setInitialResults(sortedSearchResults)
+    }
+
+    getSearchResults()
+
+    return () => {}
   }, [])
 
   useEffect(() => {
@@ -52,6 +53,13 @@ function HeaderSearch() {
   }, [nextRouter.asPath])
 
   useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
+
+  async function fetchSearchResults() {
+    const searchResults = await fetch('/api/search')
+    const resultsData = await searchResults.json()
+
+    return resultsData
+  }
 
   return (
     <div
