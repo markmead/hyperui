@@ -17,16 +17,39 @@ function ComponentLinks() {
   const [showLinks, setShowLinks] = useState<boolean>(false)
 
   useEffect(() => {
-    fetch('/api/search')
-      .then((result) => result.json())
-      .then((data) => setComponentLinks(data))
+    const getComponentLinks = async () => {
+      const componentResults = await fetchComponents()
 
-    fetch('/api/categories')
-      .then((result) => result.json())
-      .then((data) => setCategoriesData(data))
+      setComponentLinks(componentResults)
+    }
+
+    const getCategoriesData = async () => {
+      const categoriesResults = await fetchCategories()
+
+      setCategoriesData(categoriesResults)
+    }
+
+    getComponentLinks()
+    getCategoriesData()
+
+    return () => {}
   }, [])
 
   useEffect(() => setShowLinks(links), [links])
+
+  async function fetchComponents() {
+    const componentsResult = await fetch('/api/search')
+    const resultsData = await componentsResult.json()
+
+    return resultsData
+  }
+
+  async function fetchCategories() {
+    const categoriesResult = await fetch('/api/categories')
+    const resultsData = await categoriesResult.json()
+
+    return resultsData
+  }
 
   return (
     <>
