@@ -37,8 +37,8 @@ function SettingBionicMode() {
       <div className="flex items-start gap-4">
         <div className="flex-1">
           <SettingTitle
-            settingTitle="Bionic Mode"
-            settingDescription="Components will be rendered in bionic mode by default if they have an bionic mode variant."
+            settingTitle="Bionic Reading"
+            settingDescription="Blog content will render in bionic reading mode."
             shouldRefresh={shouldRefresh}
           />
         </div>
