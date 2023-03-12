@@ -8,6 +8,7 @@ interface SettingsState {
   rtl: boolean
   links: boolean
   breakpoint: string
+  bionic: boolean
 }
 
 const initialState: SettingsState = {
@@ -16,6 +17,7 @@ const initialState: SettingsState = {
   rtl: false,
   links: false,
   breakpoint: '100%',
+  bionic: false,
 }
 
 export const settingsSlice = createSlice({
@@ -41,6 +43,10 @@ export const settingsSlice = createSlice({
     setBreakpoint(state: SettingsState, action: PayloadAction<string>) {
       state.breakpoint = action.payload
     },
+
+    toggleBionic(state: SettingsState) {
+      state.bionic = !state.bionic
+    },
   },
 })
 
@@ -50,6 +56,7 @@ export const {
   toggleRtl,
   toggleLinks,
   setBreakpoint,
+  toggleBionic,
 } = settingsSlice.actions
 
 export const settingsState = (state: AppState) => state.settings

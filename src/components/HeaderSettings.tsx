@@ -10,6 +10,7 @@ import SettingInteractiveMode from '@/components/SettingInteractiveMode'
 import SettingRtlMode from '@/components/SettingRtlMode'
 import SettingComponentLinks from '@/components/SettingComponentLinks'
 import SettingBreakpoint from '@/components/SettingBreakpoint'
+import SettingBionicMode from '@/components/SettingBionicMode'
 
 function HeaderSettings() {
   const nextRouter = useRouter()
@@ -26,6 +27,7 @@ function HeaderSettings() {
     <SettingInteractiveMode key="interactiveMode" />,
     <SettingRtlMode key="rtlMode" />,
     <SettingComponentLinks key="componentLinks" />,
+    <SettingBionicMode key="bionicMode" />,
     <SettingBreakpoint key="previewBreakpoint" />,
   ]
 
@@ -41,11 +43,11 @@ function HeaderSettings() {
         {...(!showDropdown && {
           hidden: true,
         })}
-        className="absolute right-0 top-14 z-50 max-w-sm rounded-lg border border-gray-100 bg-white shadow-lg"
+        className="absolute right-0 top-14 z-50 max-w-3xl overflow-hidden rounded-lg border border-gray-100 bg-gray-100 shadow-lg"
       >
-        <ul className="divide-y divide-gray-100">
+        <ul className="grid grid-cols-2 gap-px">
           {settingComponents.map((settingComponent, componentIndex) => (
-            <li key={componentIndex} className="p-4">
+            <li key={componentIndex} className="bg-white p-4">
               {settingComponent}
             </li>
           ))}

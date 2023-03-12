@@ -27,6 +27,7 @@
     "@types/react": "17.0.40",
     "@vercel/analytics": "^0.1.8",
     "autoprefixer": "^10.4.12",
+    "data-bionic-reading": "^1.0.2",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "fast-glob": "^3.2.12",
