@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
@@ -45,9 +45,10 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
   useEffect(() => Prism.highlightAll())
 
   useEffect(() => {
-    const articleEl = refArticle.current as unknown as HTMLElement
+    const articleEl = refArticle.current
 
     if (articleEl && bionic) {
+      // @ts-ignore
       articleEl.setAttribute('data-bionic-reading', 'true')
 
       bionicReading()
