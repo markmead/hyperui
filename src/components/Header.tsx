@@ -74,7 +74,7 @@ function Header() {
 
             <Separator />
 
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <Settings />
             </div>
           </div>
@@ -103,7 +103,7 @@ function Separator() {
   return (
     <span
       aria-hidden="true"
-      className="hidden md:block md:h-6 md:w-px md:bg-gray-100"
+      className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-100"
     ></span>
   )
 }
