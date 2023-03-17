@@ -40,6 +40,10 @@ export const settingsSlice = createSlice({
       state.links = !state.links
     },
 
+    setDark(state: SettingsState, action: PayloadAction<boolean>) {
+      state.dark = action.payload
+    },
+
     setBreakpoint(state: SettingsState, action: PayloadAction<string>) {
       state.breakpoint = action.payload
     },
@@ -55,6 +59,7 @@ export const {
   toggleInteractive,
   toggleRtl,
   toggleLinks,
+  setDark,
   setBreakpoint,
   setTheme,
 } = settingsSlice.actions
