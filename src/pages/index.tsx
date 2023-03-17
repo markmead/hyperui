@@ -36,7 +36,7 @@ function Home({ componentsByCategory }: Props) {
           ({ categoryDetail, categoryComponents }: CategoryProps) => {
             return (
               <div className="space-y-4" key={categoryDetail.title}>
-                <h2 className="text-lg font-bold sm:text-xl">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white sm:text-xl">
                   {categoryDetail.title}
                 </h2>
 

@@ -26,9 +26,9 @@ function SettingToggle({
         onChange={() => toggleHandler(!toggleValue)}
       />
 
-      <span className="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500"></span>
+      <span className="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500 dark:bg-gray-600"></span>
 
-      <span className="absolute inset-0 m-1 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-5"></span>
+      <span className="absolute inset-0 m-1 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-5 dark:bg-gray-900"></span>
     </label>
   )
 }

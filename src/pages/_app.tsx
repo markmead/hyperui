@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Header />
 
-      <main role="main" id="MainContent">
+      <main class="bg-white dark:bg-gray-900">
         <Component {...pageProps} />
       </main>
 

@@ -1,3 +1,3 @@
 .pill {
-  @apply inline-flex items-center gap-1.5 rounded-lg border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white;
+  @apply inline-flex items-center gap-1.5 rounded-lg border-2 border-gray-900 px-3 py-1.5 hover:bg-gray-900 hover:text-white;
 }

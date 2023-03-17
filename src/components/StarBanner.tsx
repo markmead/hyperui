@@ -23,7 +23,7 @@ export default function StarBanner() {
                 href="https://github.com/markmead/hyperui"
                 rel="noreferrer"
                 target="_blank"
-                className="flex-1 bg-black p-3 text-white transition hover:text-white/75"
+                className="flex-1 bg-gray-900 p-3 text-white transition hover:text-white/75 dark:bg-gray-800"
               >
                 <span className="text-sm font-medium">
                   Enjoy HyperUI? Give it a star on GitHub
@@ -34,7 +34,7 @@ export default function StarBanner() {
 
               <button
                 onClick={() => dispatch(toggleBanner())}
-                className="shrink-0 border-l border-white/10 bg-black p-3 text-white transition hover:text-white/75"
+                className="shrink-0 border-l border-white/10 bg-gray-900 p-3 text-white transition hover:text-white/75 dark:bg-gray-800"
               >
                 <IconClose />
 

@@ -25,7 +25,7 @@ function SettingSelect({
         id={selectId}
         value={selectValue}
         onChange={(e) => selectHandler(e.currentTarget.value)}
-        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+        className="w-full rounded-md border-gray-200 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-white sm:text-sm"
       >
         {children}
       </select>
