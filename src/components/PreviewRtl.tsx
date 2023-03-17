@@ -1,4 +1,4 @@
-import styles from '@/styles/button.module.css'
+import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   isRtl: boolean
@@ -6,18 +6,17 @@ type Props = {
 }
 
 function PreviewRtl({ isRtl, handleSetIsRtl }: Props) {
-  return (
-    <button
-      onClick={() => handleSetIsRtl(!isRtl)}
-      className={`${styles.pill} ${
-        isRtl ? 'bg-black text-white' : 'text-black'
-      } disabled:pointer-events-none disabled:opacity-25`}
-    >
-      <span aria-hidden="true" role="img" className="text-sm">
-        {isRtl ? '👈' : '👉'}
-      </span>
+  const buttonStyle = isRtl
+    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
+    : ''
 
-      <span className="text-xs font-medium">{isRtl ? 'RTL' : 'LTR'}</span>
+  return (
+    <button onClick={() => handleSetIsRtl(!isRtl)}>
+      <ButtonStyle
+        emoji={isRtl ? '👈' : '👉'}
+        text={isRtl ? 'RTL' : 'LTR'}
+        style={buttonStyle}
+      />
     </button>
   )
 }

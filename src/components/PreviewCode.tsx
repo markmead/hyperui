@@ -6,7 +6,7 @@ type Props = {
 function PreviewCode({ showPreview, componentCode }: Props) {
   return (
     <div className={showPreview ? 'hidden' : 'block'}>
-      <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-black lg:h-[600px]">
+      <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-gray-900 dark:bg-gray-800 dark:ring-gray-800 lg:h-[600px]">
         <code className="language-html">{componentCode}</code>
       </pre>
     </div>
