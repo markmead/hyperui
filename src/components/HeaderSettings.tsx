@@ -23,12 +23,12 @@ function HeaderSettings() {
   useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
 
   const settingComponents = [
+    <SettingTheme key="siteTheme" />,
+    <SettingComponentLinks key="componentLinks" />,
+    <SettingBreakpoint key="previewBreakpoint" />,
     <SettingDarkMode key="darkMode" />,
     <SettingInteractiveMode key="interactiveMode" />,
     <SettingRtlMode key="rtlMode" />,
-    <SettingBreakpoint key="previewBreakpoint" />,
-    <SettingComponentLinks key="componentLinks" />,
-    <SettingTheme key="siteTheme" />,
   ]
 
   return (

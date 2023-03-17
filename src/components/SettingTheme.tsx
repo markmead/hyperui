@@ -36,7 +36,7 @@ function SettingTheme() {
       themeSelected === 'system' ? getSystemTheme() : themeSelected
 
     updateBodyClass(siteTheme)
-    dispatch(setTheme(siteTheme))
+    dispatch(setTheme(themeSelected))
   }
 
   function updateBodyClass(siteTheme: string) {
@@ -57,7 +57,7 @@ function SettingTheme() {
     <div className="flex items-start gap-4">
       <div className="flex-1">
         <SettingTitle
-          settingTitle="Preview Theme"
+          settingTitle="Site Theme"
           settingDescription="Set the theme of the site from dark, light or system settings."
         />
       </div>
