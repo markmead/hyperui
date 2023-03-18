@@ -23,12 +23,31 @@ function HeaderSettings() {
   useClickOutside(refDropdown, showDropdown, () => setShowDropdown(false))
 
   const settingComponents = [
-    <SettingTheme key="siteTheme" />,
-    <SettingDarkMode key="darkMode" />,
-    <SettingInteractiveMode key="interactiveMode" />,
-    <SettingRtlMode key="rtlMode" />,
-    <SettingComponentLinks key="componentLinks" />,
-    <SettingBreakpoint key="previewBreakpoint" />,
+    {
+      title: 'Theme',
+      component: <SettingTheme key="siteTheme" />,
+    },
+    {
+      title: 'Dark Mode',
+      component: <SettingDarkMode key="darkMode" />,
+    },
+    {
+      title: 'Interactive Mode',
+      component: <SettingInteractiveMode key="interactiveMode" />,
+    },
+    {
+      title: 'RTL Mode',
+      component: <SettingRtlMode key="rtlMode" />,
+    },
+    {
+      title: 'Component Links',
+      component: <SettingComponentLinks key="componentLinks" />,
+    },
+    {
+      title: 'Breakpoint',
+      component: <SettingBreakpoint key="breakpoint" />,
+      style: 'hidden lg:block',
+    },
   ]
 
   return (
@@ -43,14 +62,23 @@ function HeaderSettings() {
         {...(!showDropdown && {
           hidden: true,
         })}
-        className="absolute right-0 top-14 z-50 max-w-3xl overflow-hidden rounded-lg border border-gray-100 bg-gray-100 shadow-lg dark:border-gray-800 dark:bg-gray-800"
+        className="absolute right-0 top-14 z-50 max-w-sm overflow-hidden rounded-lg border border-gray-100 bg-gray-100 shadow-lg dark:border-gray-800 dark:bg-gray-800"
       >
-        <ul className="grid grid-cols-2 gap-px">
-          {settingComponents.map((settingComponent, componentIndex) => (
-            <li key={componentIndex} className="bg-white p-4 dark:bg-gray-900">
-              {settingComponent}
-            </li>
-          ))}
+        <ul className="space-y-px">
+          {settingComponents.map(
+            ({
+              title: settingTitle,
+              component: settingComponent,
+              style: settingStyle,
+            }) => (
+              <li
+                key={settingTitle}
+                className={`${settingStyle} bg-white p-4 dark:bg-gray-900`}
+              >
+                {settingComponent}
+              </li>
+            )
+          )}
         </ul>
       </div>
     </div>

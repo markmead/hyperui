@@ -52,7 +52,9 @@ function Header() {
           <div className="flex flex-1 items-center gap-4">
             <Logo fontSize="text-sm" />
 
-            <Separator />
+            <span className="hidden lg:block">
+              <Separator />
+            </span>
 
             <MenuLinks
               menuLinks={menuLinks}
@@ -74,9 +76,7 @@ function Header() {
 
             <Separator />
 
-            <div className="hidden lg:block">
-              <Settings />
-            </div>
+            <Settings />
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@ function Separator() {
   return (
     <span
       aria-hidden="true"
-      className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-100 lg:dark:bg-gray-800"
+      className="h-6 w-px bg-gray-100 dark:bg-gray-800"
     ></span>
   )
 }
