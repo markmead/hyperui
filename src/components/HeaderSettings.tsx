@@ -5,11 +5,7 @@ import { useRouter } from 'next/router'
 import { useClickOutside } from '@/services/hooks/useClickOutside'
 
 import IconCog from '@/components/IconCog'
-import SettingDarkMode from '@/components/SettingDarkMode'
-import SettingInteractiveMode from '@/components/SettingInteractiveMode'
-import SettingRtlMode from '@/components/SettingRtlMode'
 import SettingComponentLinks from '@/components/SettingComponentLinks'
-import SettingBreakpoint from '@/components/SettingBreakpoint'
 import SettingTheme from '@/components/SettingTheme'
 
 function HeaderSettings() {
@@ -28,25 +24,8 @@ function HeaderSettings() {
       component: <SettingTheme key="siteTheme" />,
     },
     {
-      title: 'Dark Mode',
-      component: <SettingDarkMode key="darkMode" />,
-    },
-    {
-      title: 'Interactive Mode',
-      component: <SettingInteractiveMode key="interactiveMode" />,
-    },
-    {
-      title: 'RTL Mode',
-      component: <SettingRtlMode key="rtlMode" />,
-    },
-    {
       title: 'Component Links',
       component: <SettingComponentLinks key="componentLinks" />,
-    },
-    {
-      title: 'Breakpoint',
-      component: <SettingBreakpoint key="breakpoint" />,
-      style: 'hidden lg:block',
     },
   ]
 
@@ -66,15 +45,8 @@ function HeaderSettings() {
       >
         <ul className="space-y-px">
           {settingComponents.map(
-            ({
-              title: settingTitle,
-              component: settingComponent,
-              style: settingStyle,
-            }) => (
-              <li
-                key={settingTitle}
-                className={`${settingStyle} bg-white p-4 dark:bg-gray-900`}
-              >
+            ({ title: settingTitle, component: settingComponent }) => (
+              <li key={settingTitle} className="bg-white p-4 dark:bg-gray-900">
                 {settingComponent}
               </li>
             )

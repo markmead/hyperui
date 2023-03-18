@@ -9,15 +9,15 @@ function SettingComponentLinks() {
   const { links } = useAppSelector(settingsState)
 
   return (
-    <div className="flex items-start gap-4">
-      <div className="flex-1">
+    <div className="grid grid-cols-3 items-center gap-4">
+      <div className="col-span-2">
         <SettingTitle
           settingTitle="Show Links"
-          settingDescription="Show links to all components on the component page for easy navigation."
+          settingDescription="Show links to all components on component pages for easy navigation."
         />
       </div>
 
-      <div className="shrink-0">
+      <div className="flex justify-end">
         <SettingToggle
           toggleValue={links}
           toggleHandler={() => dispatch(toggleLinks())}

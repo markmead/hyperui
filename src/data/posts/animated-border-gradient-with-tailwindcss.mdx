@@ -13,7 +13,7 @@ First, we need our interactive element, for this example, I'll use an `<a>` to h
 
 ```html
 <a href="#" class="inline-block bg-white p-0.5">
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -32,7 +32,7 @@ We apply the gradient to the interactive element with the fake border.
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5"
 >
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -47,7 +47,7 @@ We can take what we've done and add two more classes, one is a default Tailwind 
   href="#"
   class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 hover:bg-gradient-to-r"
 >
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -96,7 +96,7 @@ The full example looks like this.
   href="#"
   class="animate-background inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] p-0.5 [animation-duration:_6s] hover:bg-gradient-to-r"
 >
-  <span class="block bg-slate-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
 </a>
 ```
 
@@ -107,7 +107,7 @@ And here is how it looks. I've added some extra classes to make the `<a>` look n
 <Preview
   previewId="animated-border"
   previewTitle="Animated Border Example"
-  previewContainer="grid min-h-screen place-content-center bg-gray-900 p-8"
+  previewContainer="grid min-h-screen place-content-center p-8"
 />
 
 ---

@@ -12,7 +12,7 @@ import SettingSelect from '@/components/SettingSelect'
 
 function SettingTheme() {
   const dispatch = useAppDispatch()
-  const { theme } = useAppSelector(settingsState)
+  const { theme, dark } = useAppSelector(settingsState)
 
   const siteThemes = [
     {
@@ -29,48 +29,51 @@ function SettingTheme() {
     },
   ]
 
-  useEffect(() => {
-    const siteTheme = theme === 'system' ? getSystemTheme() : theme
-
-    updateBodyClass(siteTheme)
-  }, [])
+  useEffect(() => updateBodyClass(dark), [])
 
   function handleThemeChange(themeSelected: string) {
-    const siteTheme =
-      themeSelected === 'system' ? getSystemTheme() : themeSelected
+    const useSystem = themeSelected === 'system'
 
-    const isDark = siteTheme === 'dark'
+    if (!useSystem) {
+      const isDark = themeSelected === 'dark'
 
-    updateBodyClass(siteTheme)
+      dispatch(setDark(isDark))
+      dispatch(setTheme(themeSelected))
 
-    dispatch(setTheme(themeSelected))
-    dispatch(setDark(isDark))
-  }
+      updateBodyClass(isDark)
 
-  function updateBodyClass(siteTheme: string) {
-    const bodyEl = document.body as HTMLBodyElement
+      return
+    }
 
-    siteTheme === 'dark'
-      ? bodyEl.classList.add('dark')
-      : bodyEl.classList.remove('dark')
-  }
-
-  function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+      .matches
       ? 'dark'
       : 'light'
+
+    const isDark = systemTheme === 'dark'
+
+    dispatch(setDark(isDark))
+    dispatch(setTheme(themeSelected))
+
+    updateBodyClass(isDark)
+  }
+
+  function updateBodyClass(isDark: boolean) {
+    const bodyEl = document.body as HTMLBodyElement
+
+    bodyEl.classList.toggle('dark', isDark)
   }
 
   return (
-    <div className="flex items-start gap-4">
-      <div className="flex-1">
+    <div className="grid grid-cols-3 items-center gap-4">
+      <div className="col-span-2">
         <SettingTitle
           settingTitle="Site Theme"
-          settingDescription="Set the theme of the site from dark, light or system settings."
+          settingDescription="Set the theme of the site, components will render in dark mode if supported."
         />
       </div>
 
-      <div className="shrink-0">
+      <div className="flex justify-end">
         <SettingSelect
           selectId="DefaultTheme"
           selectLabel="Default Theme"

@@ -60,7 +60,7 @@ function ComponentLinks() {
                     {categoryData.emoji}
                   </span>
 
-                  <span className="text-xs font-medium">
+                  <span className="text-xs font-medium text-gray-900 dark:text-white">
                     {categoryData.title}
                   </span>
                 </li>
@@ -75,10 +75,12 @@ function ComponentLinks() {
                   <Link
                     href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
                   >
-                    <ButtonStyle
-                      emoji={componentLink.category.emoji}
-                      text={componentLink.name}
-                    />
+                    <a>
+                      <ButtonStyle
+                        emoji={componentLink.category.emoji}
+                        text={componentLink.name}
+                      />
+                    </a>
                   </Link>
                 </li>
               ))}

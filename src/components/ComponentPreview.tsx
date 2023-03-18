@@ -20,7 +20,6 @@ import CopyCode from '@/components/PreviewCopy'
 import Creator from '@/components/ComponentCreator'
 import DarkToggle from '@/components/PreviewDark'
 import Iframe from '@/components/PreviewIframe'
-import Loading from '@/components/PreviewLoading'
 import Title from '@/components/PreviewTitle'
 import ViewSwitcher from '@/components/PreviewView'
 import InteractiveToggle from '@/components/PreviewInteractive'
@@ -41,7 +40,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { dark, interactive, rtl, breakpoint } = useAppSelector(settingsState)
+  const { dark } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -50,8 +49,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
   const [isRtl, setIsRtl] = useState<boolean>(false)
-  const [isRtlComponent, setIsRtlComponent] = useState<boolean>(false)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -74,64 +71,28 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const componentHash = `component-${componentId}`
 
+  useEffect(() => setIsDarkMode(dark), [dark])
   useEffect(() => Prism.highlightAll(), [componentHtml])
-  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
   useEffect(() => {
-    const usingDarkMode = componentHasDark ? dark || isDarkMode : false
-    const usingInteractive = componentHasInteractive
-      ? interactive || isInteractive
-      : false
-    const usingRtl = componentHasRtl ? rtl || isRtl : false
-
     if (inView) {
-      loadComponent()
+      fetchHtml({
+        useDark: isDarkMode,
+      })
     }
-
-    async function loadComponent() {
-      const { isLoaded } = await fetchHtml()
-
-      if (isLoaded) {
-        setIsDarkMode(usingDarkMode)
-        setIsInteractive(usingInteractive)
-        setIsRtl(usingRtl)
-
-        if (usingRtl && componentHasRtl) {
-          setIsRtlComponent(true)
-        }
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
-    setIsLoading(true)
-
-    fetchHtml({
-      useDark: isDarkMode,
-      useInteractive: isInteractive,
-      useRtl: isRtlComponent,
-    })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive, isRtlComponent])
-
-  useEffect(() => {
-    if (!componentCode) {
-      return
+    if (inView) {
+      fetchHtml({
+        useDark: isDarkMode,
+        useInteractive: isInteractive,
+        useRtl: isRtl,
+      })
     }
 
-    const transformedHtml = componentPreviewHtml(
-      componentCode,
-      trueComponentContainer,
-      isDarkMode,
-      isRtl
-    )
-
-    setComponentHtml(transformedHtml)
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRtl])
+  }, [isDarkMode, isInteractive, isRtl])
 
   async function fetchHtml(
     useOptions: {
@@ -141,11 +102,14 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     } = {}
   ) {
     const { useDark, useInteractive, useRtl } = useOptions
+
+    const useRtlComponent = componentHasRtl && useRtl
+
     const componentPath = [
       componentId,
       useDark && 'dark',
       useInteractive && 'interactive',
-      useRtl && 'rtl',
+      useRtlComponent && 'rtl',
     ]
       .filter(Boolean)
       .join('-')
@@ -158,17 +122,11 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       textResponse,
       trueComponentContainer,
       useDark,
-      useRtl || isRtl
+      useRtl
     )
 
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
-
-    setTimeout(() => setIsLoading(false), 350)
-
-    return {
-      isLoaded: true,
-    }
   }
 
   return (
@@ -200,14 +158,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                 />
               )}
 
-              {componentHasRtl ? (
-                <RtlToggle
-                  isRtl={isRtlComponent}
-                  handleSetIsRtl={setIsRtlComponent}
-                />
-              ) : (
-                <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
-              )}
+              <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
             </div>
           )}
 
@@ -232,10 +183,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
         </div>
 
         <div className="relative">
-          {isLoading && (
-            <Loading previewWidth={previewWidth} isDarkMode={isDarkMode} />
-          )}
-
           <div>
             <Iframe
               showPreview={showPreview}
@@ -243,6 +190,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
+              previewDark={isDarkMode}
             />
 
             <Code showPreview={showPreview} componentCode={componentCode} />
