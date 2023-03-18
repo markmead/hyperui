@@ -50,7 +50,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
   const [isRtl, setIsRtl] = useState<boolean>(false)
-  const [isRtlComponent, setIsRtlComponent] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { ref, inView } = useInView({
@@ -95,38 +94,26 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
         setIsDarkMode(usingDarkMode)
         setIsInteractive(usingInteractive)
         setIsRtl(usingRtl)
-
-        // We check if RTL is enabled and if the component
-        // has a RTL variant, if it does we re-render
-        // the component preview
-        if (usingRtl && componentHasRtl) {
-          setIsRtlComponent(true)
-        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
-    setIsLoading(true)
-
-    fetchHtml({
-      useDark: isDarkMode,
-      useInteractive: isInteractive,
-      useRtl: isRtlComponent,
-    })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive, isRtlComponent])
-
-  useEffect(() => {
     if (!componentCode) {
       return
     }
 
-    // We transform the HTML to render in RTL mode
-    // but we don't trigger a re-render of the
-    // component preview
+    // We re-render the component preview
+    // as this component has a RTL variant
+    if (componentHasRtl) {
+      renderComponent()
+
+      return
+    }
+
+    // We transform the HTML as this component
+    // doesn't have a RTL variant
     const transformedHtml = componentPreviewHtml(
       componentCode,
       trueComponentContainer,
@@ -139,20 +126,30 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRtl])
 
+  useEffect(() => renderComponent(), [isDarkMode, isInteractive])
+
+  function renderComponent() {
+    setIsLoading(true)
+
+    fetchHtml({
+      useDark: isDarkMode,
+      useInteractive: isInteractive,
+    })
+  }
+
   async function fetchHtml(
     useOptions: {
       useDark?: boolean
       useInteractive?: boolean
-      useRtl?: boolean
     } = {}
   ) {
-    const { useDark, useInteractive, useRtl } = useOptions
+    const { useDark, useInteractive } = useOptions
 
     const componentPath = [
       componentId,
       useDark && 'dark',
       useInteractive && 'interactive',
-      useRtl && 'rtl',
+      isRtl && componentHasRtl && 'rtl',
     ]
       .filter(Boolean)
       .join('-')
@@ -165,7 +162,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       textResponse,
       trueComponentContainer,
       useDark,
-      useRtl
+      isRtl
     )
 
     setComponentCode(textResponse)
@@ -209,14 +206,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                 />
               )}
 
-              {componentHasRtl ? (
-                <RtlToggle
-                  isRtl={isRtlComponent}
-                  handleSetIsRtl={setIsRtlComponent}
-                />
-              ) : (
-                <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
-              )}
+              <RtlToggle isRtl={isRtl} handleSetIsRtl={setIsRtl} />
             </div>
           )}
 
