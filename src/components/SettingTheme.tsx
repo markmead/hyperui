@@ -1,11 +1,7 @@
 import { useEffect } from 'react'
 
 import { useAppSelector, useAppDispatch } from '@/services/hooks/useStore'
-import {
-  setDark,
-  setTheme,
-  settingsState,
-} from '@/services/store/slices/settings'
+import { setTheme, settingsState } from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingSelect from '@/components/SettingSelect'
@@ -39,12 +35,9 @@ function SettingTheme() {
     const siteTheme =
       themeSelected === 'system' ? getSystemTheme() : themeSelected
 
-    const isDark = siteTheme === 'dark'
-
     updateBodyClass(siteTheme)
 
     dispatch(setTheme(themeSelected))
-    dispatch(setDark(isDark))
   }
 
   function updateBodyClass(siteTheme: string) {

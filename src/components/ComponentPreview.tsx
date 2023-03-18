@@ -11,9 +11,6 @@ import { Component } from '@/interface/component'
 import { componentPreviewHtml } from '@/services/utils/transformers'
 import { componentBreakpoints } from '@/services/utils/breakpoints'
 
-import { useAppSelector } from '@/services/hooks/useStore'
-import { settingsState } from '@/services/store/slices/settings'
-
 import Breakpoint from '@/components/PreviewBreakpoint'
 import Code from '@/components/PreviewCode'
 import CopyCode from '@/components/PreviewCopy'
@@ -39,8 +36,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const { query } = useRouter()
   const { category, slug } = query
-
-  const { breakpoint } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -72,7 +67,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const componentHash = `component-${componentId}`
 
   useEffect(() => Prism.highlightAll(), [componentHtml])
-  useEffect(() => setPreviewWidth(breakpoint), [breakpoint])
 
   useEffect(() => {
     if (inView) {
