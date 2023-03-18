@@ -61,7 +61,7 @@ function SettingTheme() {
   function updateBodyClass(isDark: boolean) {
     const bodyEl = document.body as HTMLBodyElement
 
-    isDark ? bodyEl.classList.add('dark') : bodyEl.classList.remove('dark')
+    bodyEl.classList.toggle('dark', isDark)
   }
 
   return (
