@@ -9,7 +9,6 @@ import { blogPreviewHtml } from '@/services/utils/transformers'
 import Code from '@/components/PreviewCode'
 import CopyCode from '@/components/PreviewCopy'
 import Iframe from '@/components/PreviewIframe'
-import Loading from '@/components/PreviewLoading'
 import ViewSwitcher from '@/components/PreviewView'
 
 type Props = {
@@ -24,7 +23,6 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
   const [previewCode, setPreviewCode] = useState<string>()
   const [previewHtml, setPreviewHtml] = useState<string>()
   const [showPreview, setShowPreview] = useState<boolean>(true)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -34,12 +32,8 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
   useEffect(() => Prism.highlightAll(), [previewHtml])
 
   useEffect(() => {
-    async function loadPreview() {
-      await fetchHtml()
-    }
-
     if (inView) {
-      loadPreview()
+      fetchHtml()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,8 +48,6 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
 
     setPreviewCode(textResponse)
     setPreviewHtml(transformedHtml)
-
-    setTimeout(() => setIsLoading(false), 350)
   }
 
   return (
@@ -72,8 +64,6 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
       )}
 
       <div className="relative">
-        {isLoading && <Loading />}
-
         <div>
           <Iframe
             showPreview={showPreview}
