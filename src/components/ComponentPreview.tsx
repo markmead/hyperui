@@ -11,6 +11,9 @@ import { Component } from '@/interface/component'
 import { componentPreviewHtml } from '@/services/utils/transformers'
 import { componentBreakpoints } from '@/services/utils/breakpoints'
 
+import { useAppSelector } from '@/services/hooks/useStore'
+import { settingsState } from '@/services/store/slices/settings'
+
 import Breakpoint from '@/components/PreviewBreakpoint'
 import Code from '@/components/PreviewCode'
 import CopyCode from '@/components/PreviewCopy'
@@ -36,6 +39,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const { query } = useRouter()
   const { category, slug } = query
+
+  const { theme } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -69,17 +74,25 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   useEffect(() => Prism.highlightAll(), [componentHtml])
 
   useEffect(() => {
+    theme === 'dark' ? setIsDarkMode(true) : setIsDarkMode(false)
+  }, [theme])
+
+  useEffect(() => {
     if (inView) {
-      fetchHtml()
+      fetchHtml({
+        useDark: isDarkMode,
+      })
     }
   }, [inView])
 
   useEffect(() => {
-    fetchHtml({
-      useDark: isDarkMode,
-      useInteractive: isInteractive,
-      useRtl: isRtl,
-    })
+    if (inView) {
+      fetchHtml({
+        useDark: isDarkMode,
+        useInteractive: isInteractive,
+        useRtl: isRtl,
+      })
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, isInteractive, isRtl])

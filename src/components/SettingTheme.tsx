@@ -55,15 +55,15 @@ function SettingTheme() {
   }
 
   return (
-    <div className="flex items-start gap-4">
-      <div className="flex-1">
+    <div className="grid grid-cols-3 items-center gap-4">
+      <div className="col-span-2">
         <SettingTitle
           settingTitle="Site Theme"
-          settingDescription="Set the theme of the site from dark, light or system settings."
+          settingDescription="Set the theme of the site, components will render in dark mode if supported."
         />
       </div>
 
-      <div className="shrink-0">
+      <div className="flex justify-end">
         <SettingSelect
           selectId="DefaultTheme"
           selectLabel="Default Theme"
