@@ -60,7 +60,7 @@ function ComponentLinks() {
                     {categoryData.emoji}
                   </span>
 
-                  <span className="text-xs font-medium">
+                  <span className="text-xs font-medium text-gray-900 dark:text-white">
                     {categoryData.title}
                   </span>
                 </li>
