@@ -103,12 +103,14 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   ) {
     const { useDark, useInteractive, useRtl } = useOptions
 
+    const useDarkMode = componentHasDark && useDark
+    const useInteractiveMode = componentHasInteractive && useInteractive
     const useRtlComponent = componentHasRtl && useRtl
 
     const componentPath = [
       componentId,
-      useDark && 'dark',
-      useInteractive && 'interactive',
+      useDarkMode && 'dark',
+      useInteractiveMode && 'interactive',
       useRtlComponent && 'rtl',
     ]
       .filter(Boolean)
