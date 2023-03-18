@@ -6,6 +6,7 @@ type Props = {
   componentTitle: string
   previewWidth?: string
   refIframe: RefObject<HTMLIFrameElement>
+  previewDark?: boolean
 }
 
 function PreviewIframe({
@@ -14,11 +15,14 @@ function PreviewIframe({
   componentTitle,
   previewWidth = '100%',
   refIframe,
+  previewDark,
 }: Props) {
   return (
     <div className={showPreview ? 'block' : 'hidden'}>
       <iframe
-        className="h-[400px] w-full rounded-lg bg-white ring-2 ring-gray-900 dark:ring-gray-800 lg:h-[600px] lg:transition-all"
+        className={`h-[400px] w-full rounded-lg ring-2 ring-gray-900 dark:ring-gray-800 lg:h-[600px] lg:transition-all ${
+          previewDark ? 'bg-gray-900' : 'bg-white'
+        }`}
         loading="lazy"
         srcDoc={componentHtml}
         style={{ maxWidth: previewWidth }}

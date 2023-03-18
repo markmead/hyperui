@@ -8,7 +8,7 @@ import Logo from '@/components/BrandLogo'
 import Menu from '@/components/HeaderMenu'
 import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
-import Settings from '@/components/HeaderSettings'
+// import Settings from '@/components/HeaderSettings'
 import IconGithub from '@/components/IconGithub'
 
 function Header() {
@@ -74,9 +74,9 @@ function Header() {
               menuLinks={menuLinks}
             />
 
-            <Separator />
+            {/* <Separator /> */}
 
-            <Settings />
+            {/* <Settings /> */}
           </div>
         </div>
       </div>
