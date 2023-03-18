@@ -1,12 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
 import Prism from 'prismjs'
-
-// @ts-ignore
-import bionicReading from 'data-bionic-reading'
 
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -15,9 +12,6 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import { getBlogPaths } from '@/services/api/blogs'
 import { BlogFrontmatter } from '@/interface/blog'
-
-import { useAppSelector } from '@/services/hooks/useStore'
-import { settingsState } from '@/services/store/slices/settings'
 
 const mdxComponents = {
   Preview: dynamic(() => import('@/components/BlogPreview')),
@@ -38,22 +32,7 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
     dateModified: `${blogFrontmatter.date}`,
   }
 
-  const { bionic } = useAppSelector(settingsState)
-
-  const refArticle = useRef(null)
-
   useEffect(() => Prism.highlightAll())
-
-  useEffect(() => {
-    const articleEl = refArticle.current
-
-    if (articleEl && bionic) {
-      // @ts-ignore
-      articleEl.setAttribute('data-bionic-reading', 'true')
-
-      bionicReading()
-    }
-  }, [])
 
   return (
     <>
@@ -91,12 +70,9 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
       </Head>
 
       <div className="mx-auto max-w-screen-xl px-4 py-12">
-        <article
-          className="prose prose-img:w-full prose-img:rounded-lg mx-auto"
-          ref={refArticle}
-        >
+        <article className="prose  prose-img:rounded-lg dark:prose-invert dark:prose-headings:text-white mx-auto">
           <header>
-            <time className="text-sm text-gray-500">
+            <time className="text-sm text-gray-700 dark:text-gray-200">
               {blogFrontmatter.date}
             </time>
 

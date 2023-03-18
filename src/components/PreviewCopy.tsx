@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import styles from '@/styles/button.module.css'
+import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   componentCode: string
@@ -23,15 +23,9 @@ function Copy({ componentCode }: Props) {
   }
 
   return (
-    <div className="hidden sm:block">
-      <button className={styles.pill} onClick={copyToClipboard}>
-        <span aria-hidden="true" role="img" className="text-sm">
-          {buttonEmoji}
-        </span>
-
-        <span className="text-xs font-medium">{buttonText}</span>
-      </button>
-    </div>
+    <button className="hidden sm:block" onClick={copyToClipboard}>
+      <ButtonStyle emoji={buttonEmoji} text={buttonText} />
+    </button>
   )
 }
 

@@ -105,7 +105,7 @@ function Component({
         <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12 lg:pt-24">
           <ComponentLinks />
 
-          <div className="prose max-w-none">
+          <div className="prose dark:prose-invert dark:prose-headings:text-white max-w-none">
             <MDXRemote
               {...componentSource}
               components={mdxComponents}

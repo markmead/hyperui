@@ -1,4 +1,4 @@
-import styles from '@/styles/button.module.css'
+import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   isInteractive: boolean
@@ -6,18 +6,17 @@ type Props = {
 }
 
 function PreviewInteractive({ isInteractive, handleSetIsInteractive }: Props) {
-  return (
-    <button
-      onClick={() => handleSetIsInteractive(!isInteractive)}
-      className={`${styles.pill} ${
-        isInteractive ? 'bg-black text-white' : 'text-black'
-      } disabled:pointer-events-none disabled:opacity-25`}
-    >
-      <span aria-hidden="true" role="img" className="text-sm">
-        {isInteractive ? '🙋‍♀️' : '🙅‍♀️'}
-      </span>
+  const buttonStyle = isInteractive
+    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
+    : ''
 
-      <span className="text-xs font-medium">Alpine JS</span>
+  return (
+    <button onClick={() => handleSetIsInteractive(!isInteractive)}>
+      <ButtonStyle
+        emoji={isInteractive ? '🙋‍♀️' : '🙅‍♀️'}
+        text="Alpine JS"
+        style={buttonStyle}
+      />
     </button>
   )
 }

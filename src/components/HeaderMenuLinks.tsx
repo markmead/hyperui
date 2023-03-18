@@ -19,7 +19,7 @@ function HeaderMenuLinks({ menuLinks, navClass, ulClass }: Props) {
             <li key={menuLink.href} className={isLast ? 'lg:ml-auto' : ''}>
               <Link href={menuLink.href}>
                 <a
-                  className="block text-xs font-medium hover:opacity-75"
+                  className="block text-xs font-medium text-gray-900 hover:opacity-75 dark:text-white"
                   {...(menuLink.external && {
                     target: '_blank',
                     rel: 'noreferrer',

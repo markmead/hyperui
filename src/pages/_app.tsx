@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Free Open Source Tailwind CSS Components | HyperUI</title>
         <meta
           name="description"
-          content="Free Tailwind CSS components that can be used in your next project. Perfect for Laravel, Rails, React, Vue and more."
+          content="Free Tailwind CSS components that can be used in your next project."
           key="description"
         />
         <meta
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta
           property="og:description"
-          content="Free Tailwind CSS components that can be used in your next project. Perfect for Laravel, Rails, React, Vue and more."
+          content="Free Tailwind CSS components that can be used in your next project."
           key="og:description"
         />
         <meta property="og:type" content="website" />
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta
           name="twitter:description"
-          content="Free Tailwind CSS components that can be used in your next project. Perfect for Laravel, Rails, React, Vue and more."
+          content="Free Tailwind CSS components that can be used in your next project."
           key="twitter:description"
         />
         <meta name="twitter:image" content="https://www.hyperui.dev/og.jpg" />
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Header />
 
-      <main role="main" id="MainContent">
+      <main className="bg-white dark:bg-gray-900">
         <Component {...pageProps} />
       </main>
 

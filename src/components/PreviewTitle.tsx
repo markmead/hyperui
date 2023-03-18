@@ -5,7 +5,7 @@ type Props = {
 
 function PreviewTitle({ componentTitle, componentHash }: Props) {
   return (
-    <h2 className="text-lg font-bold text-black sm:text-xl">
+    <h2 className="text-lg font-bold text-gray-900 dark:text-white sm:text-xl">
       <a href={`#${componentHash}`} className="group relative inline-block">
         <span
           aria-hidden="true"

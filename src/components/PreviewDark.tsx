@@ -1,4 +1,4 @@
-import styles from '@/styles/button.module.css'
+import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   isDarkMode: boolean
@@ -6,20 +6,17 @@ type Props = {
 }
 
 function PreviewDark({ isDarkMode, handleSetIsDarkMode }: Props) {
-  return (
-    <button
-      onClick={() => handleSetIsDarkMode(!isDarkMode)}
-      className={`${styles.pill} ${
-        isDarkMode ? 'bg-black text-white' : 'text-black'
-      } disabled:pointer-events-none disabled:opacity-25`}
-    >
-      <span aria-hidden="true" role="img" className="text-sm">
-        {isDarkMode ? '🌕' : '🌞'}
-      </span>
+  const buttonStyle = isDarkMode
+    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
+    : ''
 
-      <span className="text-xs font-medium">
-        {isDarkMode ? 'Dark' : 'Light'}
-      </span>
+  return (
+    <button onClick={() => handleSetIsDarkMode(!isDarkMode)}>
+      <ButtonStyle
+        emoji={isDarkMode ? '🌕' : '🌞'}
+        text={isDarkMode ? 'Dark' : 'Light'}
+        style={buttonStyle}
+      />
     </button>
   )
 }

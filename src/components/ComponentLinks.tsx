@@ -7,7 +7,7 @@ import { SearchResult, SearchResultCategory } from '@/interface/search'
 import { useAppSelector } from '@/services/hooks/useStore'
 import { settingsState } from '@/services/store/slices/settings'
 
-import styles from '@/styles/button.module.css'
+import ButtonStyle from '@/components/ButtonStyle'
 
 function ComponentLinks() {
   const { links } = useAppSelector(settingsState)
@@ -75,15 +75,10 @@ function ComponentLinks() {
                   <Link
                     href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
                   >
-                    <a className={styles.pill}>
-                      <span aria-hidden="true" role="img" className="text-sm">
-                        {componentLink.category.emoji}
-                      </span>
-
-                      <span className="text-xs font-medium">
-                        {componentLink.name}
-                      </span>
-                    </a>
+                    <ButtonStyle
+                      emoji={componentLink.category.emoji}
+                      text={componentLink.name}
+                    />
                   </Link>
                 </li>
               ))}

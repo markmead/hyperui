@@ -18,7 +18,7 @@ function PreviewIframe({
   return (
     <div className={showPreview ? 'block' : 'hidden'}>
       <iframe
-        className="h-[400px] w-full rounded-lg bg-white ring-2 ring-black lg:h-[600px] lg:transition-all"
+        className="h-[400px] w-full rounded-lg bg-white ring-2 ring-gray-900 dark:ring-gray-800 lg:h-[600px] lg:transition-all"
         loading="lazy"
         srcDoc={componentHtml}
         style={{ maxWidth: previewWidth }}

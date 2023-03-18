@@ -46,13 +46,15 @@ function Header() {
   ]
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white">
+    <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4">
         <div className="relative flex h-16 items-center justify-between gap-8">
           <div className="flex flex-1 items-center gap-4">
             <Logo fontSize="text-sm" />
 
-            <Separator />
+            <span className="hidden lg:block">
+              <Separator />
+            </span>
 
             <MenuLinks
               menuLinks={menuLinks}
@@ -74,9 +76,7 @@ function Header() {
 
             <Separator />
 
-            <div className="hidden lg:block">
-              <Settings />
-            </div>
+            <Settings />
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@ function GithubLink() {
       href="https://github.com/markmead/hyperui"
       rel="noreferrer"
       target="_blank"
-      className="inline-block hover:opacity-75"
+      className="inline-block text-gray-900 hover:opacity-75 dark:text-white"
     >
       <span className="sr-only"> GitHub </span>
 
@@ -103,7 +103,7 @@ function Separator() {
   return (
     <span
       aria-hidden="true"
-      className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-100"
+      className="h-6 w-px bg-gray-100 dark:bg-gray-800"
     ></span>
   )
 }

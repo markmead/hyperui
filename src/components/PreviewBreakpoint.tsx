@@ -1,4 +1,4 @@
-import styles from '@/styles/button.module.css'
+import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   breakpointActive: boolean
@@ -15,18 +15,17 @@ function PreviewBreakpoint({
   breakpointWidth,
   breakpointText,
 }: Props) {
-  return (
-    <button
-      onClick={() => handleSetPreviewWidth(breakpointWidth)}
-      className={`${styles.pill} ${
-        breakpointActive ? 'bg-black text-white' : 'text-black'
-      }`}
-    >
-      <span aria-hidden="true" role="img" className="text-sm">
-        {breakpointEmoji}
-      </span>
+  const buttonStyle = breakpointActive
+    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
+    : ''
 
-      <span className="text-xs font-medium">{breakpointText}</span>
+  return (
+    <button onClick={() => handleSetPreviewWidth(breakpointWidth)}>
+      <ButtonStyle
+        emoji={breakpointEmoji}
+        text={breakpointText}
+        style={buttonStyle}
+      />
     </button>
   )
 }
