@@ -75,10 +75,12 @@ function ComponentLinks() {
                   <Link
                     href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
                   >
-                    <ButtonStyle
-                      emoji={componentLink.category.emoji}
-                      text={componentLink.name}
-                    />
+                    <a>
+                      <ButtonStyle
+                        emoji={componentLink.category.emoji}
+                        text={componentLink.name}
+                      />
+                    </a>
                   </Link>
                 </li>
               ))}
