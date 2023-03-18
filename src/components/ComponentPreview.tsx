@@ -40,7 +40,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const { query } = useRouter()
   const { category, slug } = query
 
-  const { theme } = useAppSelector(settingsState)
+  const { dark } = useAppSelector(settingsState)
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
@@ -71,13 +71,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const componentHash = `component-${componentId}`
 
+  useEffect(() => setIsDarkMode(dark), [dark])
   useEffect(() => Prism.highlightAll(), [componentHtml])
-
-  useEffect(() => {
-    const isDark = componentHasDark ? theme === 'dark' : false
-
-    setIsDarkMode(isDark)
-  }, [theme])
 
   useEffect(() => {
     if (inView) {

@@ -1,14 +1,18 @@
 import { useEffect } from 'react'
 
 import { useAppSelector, useAppDispatch } from '@/services/hooks/useStore'
-import { setTheme, settingsState } from '@/services/store/slices/settings'
+import {
+  setDark,
+  setTheme,
+  settingsState,
+} from '@/services/store/slices/settings'
 
 import SettingTitle from '@/components/SettingTitle'
 import SettingSelect from '@/components/SettingSelect'
 
 function SettingTheme() {
   const dispatch = useAppDispatch()
-  const { theme } = useAppSelector(settingsState)
+  const { theme, dark } = useAppSelector(settingsState)
 
   const siteThemes = [
     {
@@ -25,33 +29,39 @@ function SettingTheme() {
     },
   ]
 
-  useEffect(() => {
-    const siteTheme = theme === 'system' ? getSystemTheme() : theme
-
-    updateBodyClass(siteTheme)
-  }, [])
+  useEffect(() => updateBodyClass(dark), [])
 
   function handleThemeChange(themeSelected: string) {
-    const siteTheme =
-      themeSelected === 'system' ? getSystemTheme() : themeSelected
+    const useSystem = themeSelected === 'system'
 
-    updateBodyClass(siteTheme)
+    if (!useSystem) {
+      const isDark = themeSelected === 'dark'
 
-    dispatch(setTheme(themeSelected))
-  }
+      dispatch(setDark(isDark))
+      dispatch(setTheme(themeSelected))
 
-  function updateBodyClass(siteTheme: string) {
-    const bodyEl = document.body as HTMLBodyElement
+      updateBodyClass(isDark)
 
-    siteTheme === 'dark'
-      ? bodyEl.classList.add('dark')
-      : bodyEl.classList.remove('dark')
-  }
+      return
+    }
 
-  function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+      .matches
       ? 'dark'
       : 'light'
+
+    const isDark = systemTheme === 'dark'
+
+    dispatch(setDark(isDark))
+    dispatch(setTheme(themeSelected))
+
+    updateBodyClass(isDark)
+  }
+
+  function updateBodyClass(isDark: boolean) {
+    const bodyEl = document.body as HTMLBodyElement
+
+    isDark ? bodyEl.classList.add('dark') : bodyEl.classList.remove('dark')
   }
 
   return (
