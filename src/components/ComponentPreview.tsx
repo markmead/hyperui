@@ -74,7 +74,9 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   useEffect(() => Prism.highlightAll(), [componentHtml])
 
   useEffect(() => {
-    theme === 'dark' ? setIsDarkMode(true) : setIsDarkMode(false)
+    const isDark = theme === 'dark'
+
+    setIsDarkMode(isDark)
   }, [theme])
 
   useEffect(() => {
