@@ -82,7 +82,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     const usingInteractive = componentHasInteractive
       ? interactive || isInteractive
       : false
-    const usingRtl = componentHasRtl ? rtl || isRtl : false
+    const usingRtl = rtl || isRtl
 
     if (inView) {
       loadComponent()
@@ -96,6 +96,9 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
         setIsInteractive(usingInteractive)
         setIsRtl(usingRtl)
 
+        // We check if RTL is enabled and if the component
+        // has a RTL variant, if it does we re-render
+        // the component preview
         if (usingRtl && componentHasRtl) {
           setIsRtlComponent(true)
         }
@@ -121,6 +124,9 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       return
     }
 
+    // We transform the HTML to render in RTL mode
+    // but we don't trigger a re-render of the
+    // component preview
     const transformedHtml = componentPreviewHtml(
       componentCode,
       trueComponentContainer,
@@ -141,6 +147,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     } = {}
   ) {
     const { useDark, useInteractive, useRtl } = useOptions
+
     const componentPath = [
       componentId,
       useDark && 'dark',
@@ -158,12 +165,14 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       textResponse,
       trueComponentContainer,
       useDark,
-      useRtl || isRtl
+      useRtl
     )
 
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
 
+    // We fake a loading state to avoid the UI
+    // flashing when the component is rendered
     setTimeout(() => setIsLoading(false), 350)
 
     return {
