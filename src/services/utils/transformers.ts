@@ -30,10 +30,13 @@ export function componentPreviewHtml(
 
 export function blogPreviewHtml(
   componentHtml: string,
-  componentContainer: string = 'relative'
+  componentContainer: string = 'relative',
+  isDarkMode: boolean = false
 ) {
+  const htmlClass = isDarkMode ? 'dark' : 'relative'
+
   return `
-    <html>
+    <html class="${htmlClass}">
       <head>
         <link rel="stylesheet" href="/blogs.css">
         <script src="/iframe.js"></script>

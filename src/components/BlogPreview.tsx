@@ -6,6 +6,9 @@ import Prism from 'prismjs'
 
 import { blogPreviewHtml } from '@/services/utils/transformers'
 
+import { useAppSelector } from '@/services/hooks/useStore'
+import { settingsState } from '@/services/store/slices/settings'
+
 import Code from '@/components/PreviewCode'
 import CopyCode from '@/components/PreviewCopy'
 import Iframe from '@/components/PreviewIframe'
@@ -20,15 +23,19 @@ type Props = {
 function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
   const refIframe = useRef(null)
 
+  const { dark } = useAppSelector(settingsState)
+
   const [previewCode, setPreviewCode] = useState<string>()
   const [previewHtml, setPreviewHtml] = useState<string>()
   const [showPreview, setShowPreview] = useState<boolean>(true)
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
 
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
   })
 
+  useEffect(() => setIsDarkMode(dark), [dark])
   useEffect(() => Prism.highlightAll(), [previewHtml])
 
   useEffect(() => {
@@ -39,12 +46,22 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
+  useEffect(() => {
+    if (inView) {
+      fetchHtml()
+    }
+  }, [isDarkMode])
+
   async function fetchHtml() {
     const previewUrl = `/blogs/${previewId}.html`
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = blogPreviewHtml(textResponse, previewContainer)
+    const transformedHtml = blogPreviewHtml(
+      textResponse,
+      previewContainer,
+      isDarkMode
+    )
 
     setPreviewCode(textResponse)
     setPreviewHtml(transformedHtml)
@@ -70,6 +87,7 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
             componentHtml={previewHtml}
             componentTitle={previewTitle}
             refIframe={refIframe}
+            previewDark={isDarkMode}
           />
 
           <Code showPreview={showPreview} componentCode={previewCode} />
