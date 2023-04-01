@@ -1,0 +1,38 @@
+<div class="flex justify-center items-center h-screen">
+    <div class="dark-light">
+        <i class='bx bx-moon moon'></i>
+        <i class='bx bx-sun sun'></i>
+    </div>
+</div>
+
+<style>
+    .dark-light i {
+        position: absolute;
+        font-size: 44px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dark-light i.sun {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .dark-light.active i.sun {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .dark-light.active i.moon {
+        opacity: 0;
+        pointer-events: none;
+    }
+</style>
+
+<script>
+    const modeToggle = document.querySelector(".dark-light");
+
+    modeToggle.addEventListener("click", () => {
+        modeToggle.classList.toggle("active");
+    });
+</script>
