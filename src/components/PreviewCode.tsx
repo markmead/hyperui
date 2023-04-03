@@ -4,8 +4,8 @@ import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   showPreview: boolean
-  componentCode: string | undefined
-  componentJsx: string | undefined
+  componentCode?: string
+  componentJsx?: string
 }
 
 function PreviewCode({
