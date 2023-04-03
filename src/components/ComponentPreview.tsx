@@ -3,12 +3,16 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import Prism from 'prismjs'
+require('prismjs/components/prism-jsx.min')
 
 import { useInView } from 'react-intersection-observer'
 
 import { Component } from '@/interface/component'
 
-import { componentPreviewHtml } from '@/services/utils/transformers'
+import {
+  componentPreviewHtml,
+  componentTextJsx,
+} from '@/services/utils/transformers'
 import { componentBreakpoints } from '@/services/utils/breakpoints'
 
 import { useAppSelector } from '@/services/hooks/useStore'
@@ -44,6 +48,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const [componentCode, setComponentCode] = useState<string>()
   const [componentHtml, setComponentHtml] = useState<string>()
+  const [componentJsx, setComponentJsx] = useState<string>()
   const [showPreview, setShowPreview] = useState<boolean>(true)
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
@@ -126,9 +131,13 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       useDark,
       useRtl
     )
+    const transformedJsx = componentTextJsx(textResponse)
 
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
+    setComponentJsx(transformedJsx)
+
+    console.log(textResponse)
   }
 
   return (
@@ -195,7 +204,11 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
               previewDark={isDarkMode}
             />
 
-            <Code showPreview={showPreview} componentCode={componentCode} />
+            <Code
+              showPreview={showPreview}
+              componentCode={componentCode}
+              componentJsx={componentJsx}
+            />
           </div>
         </div>
 

@@ -48,3 +48,12 @@ export function blogPreviewHtml(
     </html>
   `
 }
+
+export function componentTextJsx(componentHtml: string) {
+  let clonedHtml = componentHtml
+
+  clonedHtml = clonedHtml.replace(/class=/g, 'className=')
+  clonedHtml = clonedHtml.replace(/for=/g, 'htmlFor=')
+
+  return clonedHtml
+}
