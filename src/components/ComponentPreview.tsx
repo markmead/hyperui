@@ -51,6 +51,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
   const [isRtl, setIsRtl] = useState<boolean>(false)
+  const [isJsx, setIsJsx] = useState<boolean>(false)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -147,7 +148,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                 showPreview={showPreview}
               />
 
-              <CopyCode componentCode={componentCode} />
+              <CopyCode componentCode={isJsx ? componentJsx : componentCode} />
 
               {componentHasDark && (
                 <DarkToggle
@@ -200,9 +201,10 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
             <Code
               showPreview={showPreview}
+              handleSetIsJsx={setIsJsx}
+              isJsx={isJsx}
               showToggle={!isInteractive}
-              componentCode={componentCode}
-              componentJsx={componentJsx}
+              componentCode={isJsx ? componentJsx : componentCode}
             />
           </div>
         </div>

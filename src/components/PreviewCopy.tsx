@@ -6,7 +6,7 @@ type Props = {
   componentCode: string
 }
 
-function Copy({ componentCode }: Props) {
+function Copy({ componentCode = '' }: Props) {
   const [buttonText, setButtonText] = useState('Copy')
   const [buttonEmoji, setButtonEmoji] = useState('📋')
 
