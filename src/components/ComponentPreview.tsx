@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import Prism from 'prismjs'
-require('prismjs/components/prism-jsx.min')
-
 import { useInView } from 'react-intersection-observer'
 
 import { Component } from '@/interface/component'
@@ -77,7 +74,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const componentHash = `component-${componentId}`
 
   useEffect(() => setIsDarkMode(dark), [dark])
-  useEffect(() => Prism.highlightAll(), [componentHtml])
 
   useEffect(() => {
     if (inView) {
@@ -136,8 +132,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
-
-    console.log(textResponse)
   }
 
   return (
@@ -206,6 +200,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
             <Code
               showPreview={showPreview}
+              showToggle={!isInteractive}
               componentCode={componentCode}
               componentJsx={componentJsx}
             />
