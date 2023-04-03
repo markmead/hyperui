@@ -43,9 +43,9 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const { dark } = useAppSelector(settingsState)
 
-  const [componentCode, setComponentCode] = useState<string>()
-  const [componentHtml, setComponentHtml] = useState<string>()
-  const [componentJsx, setComponentJsx] = useState<string>()
+  const [componentCode, setComponentCode] = useState<string>('')
+  const [componentHtml, setComponentHtml] = useState<string>('')
+  const [componentJsx, setComponentJsx] = useState<string>('')
   const [showPreview, setShowPreview] = useState<boolean>(true)
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
