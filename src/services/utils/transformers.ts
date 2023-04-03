@@ -65,6 +65,8 @@ export function componentTextJsx(componentHtml: string) {
   clonedHtml = clonedHtml.replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
   clonedHtml = clonedHtml.replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
   clonedHtml = clonedHtml.replace(/stroke-opacity=/g, 'strokeOpacity=')
+  clonedHtml = clonedHtml.replace(/<!--/g, '{/*')
+  clonedHtml = clonedHtml.replace(/-->/g, '*/}')
 
   return clonedHtml
 }
