@@ -25,8 +25,8 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
 
   const { dark } = useAppSelector(settingsState)
 
-  const [previewCode, setPreviewCode] = useState<string>()
-  const [previewHtml, setPreviewHtml] = useState<string>()
+  const [previewCode, setPreviewCode] = useState<string>('')
+  const [previewHtml, setPreviewHtml] = useState<string>('')
   const [showPreview, setShowPreview] = useState<boolean>(true)
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
 

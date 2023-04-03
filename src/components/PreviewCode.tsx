@@ -7,24 +7,24 @@ import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
   showPreview: boolean
-  handleSetIsJsx: CallableFunction
-  isJsx: boolean
-  showToggle?: boolean
   componentCode?: string
+  handleSetIsJsx?: CallableFunction
+  showToggle?: boolean
+  isJsx?: boolean
 }
 
 function PreviewCode({
   showPreview,
-  handleSetIsJsx,
-  isJsx,
-  showToggle = false,
   componentCode = '',
+  handleSetIsJsx,
+  showToggle = false,
+  isJsx = false,
 }: Props) {
   useEffect(() => Prism.highlightAll(), [componentCode])
 
   return (
     <div className={`relative ${showPreview ? 'hidden' : 'block'}`}>
-      {showToggle && (
+      {showToggle && handleSetIsJsx && (
         <button
           className="absolute top-4 right-4"
           onClick={() => handleSetIsJsx(!isJsx)}

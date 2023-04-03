@@ -3,7 +3,7 @@ import { useState } from 'react'
 import ButtonStyle from '@/components/ButtonStyle'
 
 type Props = {
-  componentCode: string
+  componentCode?: string
 }
 
 function Copy({ componentCode = '' }: Props) {
