@@ -54,6 +54,10 @@ export function componentTextJsx(componentHtml: string) {
 
   clonedHtml = clonedHtml.replace(/class=/g, 'className=')
   clonedHtml = clonedHtml.replace(/for=/g, 'htmlFor=')
+  clonedHtml = clonedHtml.replace(/viewBox=/g, 'viewBox=')
+  clonedHtml = clonedHtml.replace(/stroke-linecap=/g, 'strokeLinecap=')
+  clonedHtml = clonedHtml.replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+  clonedHtml = clonedHtml.replace(/stroke-width=/g, 'strokeWidth=')
 
   return clonedHtml
 }
