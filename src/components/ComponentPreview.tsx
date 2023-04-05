@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import Prism from 'prismjs'
-
 import { useInView } from 'react-intersection-observer'
 
 import { Component } from '@/interface/component'
 
-import { componentPreviewHtml } from '@/services/utils/transformers'
+import {
+  componentPreviewHtml,
+  componentTextJsx,
+} from '@/services/utils/transformers'
 import { componentBreakpoints } from '@/services/utils/breakpoints'
 
 import { useAppSelector } from '@/services/hooks/useStore'
@@ -42,13 +43,15 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
 
   const { dark } = useAppSelector(settingsState)
 
-  const [componentCode, setComponentCode] = useState<string>()
-  const [componentHtml, setComponentHtml] = useState<string>()
+  const [componentCode, setComponentCode] = useState<string>('')
+  const [componentHtml, setComponentHtml] = useState<string>('')
+  const [componentJsx, setComponentJsx] = useState<string>('')
   const [showPreview, setShowPreview] = useState<boolean>(true)
   const [previewWidth, setPreviewWidth] = useState<string>('100%')
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [isInteractive, setIsInteractive] = useState<boolean>(false)
   const [isRtl, setIsRtl] = useState<boolean>(false)
+  const [isJsx, setIsJsx] = useState<boolean>(false)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -72,7 +75,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
   const componentHash = `component-${componentId}`
 
   useEffect(() => setIsDarkMode(dark), [dark])
-  useEffect(() => Prism.highlightAll(), [componentHtml])
 
   useEffect(() => {
     if (inView) {
@@ -126,9 +128,11 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       useDark,
       useRtl
     )
+    const transformedJsx = componentTextJsx(textResponse)
 
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
+    setComponentJsx(transformedJsx)
   }
 
   return (
@@ -144,7 +148,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
                 showPreview={showPreview}
               />
 
-              <CopyCode componentCode={componentCode} />
+              <CopyCode componentCode={isJsx ? componentJsx : componentCode} />
 
               {componentHasDark && (
                 <DarkToggle
@@ -195,7 +199,13 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
               previewDark={isDarkMode}
             />
 
-            <Code showPreview={showPreview} componentCode={componentCode} />
+            <Code
+              showPreview={showPreview}
+              handleSetIsJsx={setIsJsx}
+              isJsx={isJsx}
+              showToggle={!isInteractive}
+              componentCode={isJsx ? componentJsx : componentCode}
+            />
           </div>
         </div>
 
