@@ -19,7 +19,7 @@ function HeroBanner({ children, subtitle, title }: Props) {
         )}
 
         {children && (
-          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+          <p className="mx-auto mt-4 max-w-lg text-sm/relaxed text-gray-500 dark:text-gray-400">
             {children}
           </p>
         )}
