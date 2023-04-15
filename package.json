@@ -20,7 +20,6 @@
   "devDependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@types/node": "17.0.21",
     "@types/prismjs": "^1.26.0",
@@ -41,8 +40,8 @@
     "react-redux": "^8.0.5",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
-    "tailwindcss": "^3.2.4",
-    "typescript": "4.6.2"
+    "tailwindcss": "^3.3.1",
+    "typescript": "4.9.3"
   },
   "resolutions": {
     "@types/react": "17.0.2",

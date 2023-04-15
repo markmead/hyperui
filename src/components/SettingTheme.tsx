@@ -29,7 +29,11 @@ function SettingTheme() {
     },
   ]
 
-  useEffect(() => updateBodyClass(dark), [])
+  useEffect(() => {
+    updateBodyClass(dark)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function handleThemeChange(themeSelected: string) {
     const useSystem = themeSelected === 'system'

@@ -1,10 +1,8 @@
 <!--
-  This component uses @tailwindcss/forms
+  Heads up! 👋
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
+  Plugins:
+    - @tailwindcss/forms
 -->
 
 <div class="space-y-2">
@@ -12,7 +10,7 @@
     class="overflow-hidden rounded border border-gray-300 dark:border-gray-600 [&_summary::-webkit-details-marker]:hidden"
   >
     <summary
-      class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer dark:text-white"
+      class="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition dark:text-white"
     >
       <span class="text-sm font-medium"> Availability </span>
 
@@ -23,7 +21,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-4 h-4"
+          class="h-4 w-4"
         >
           <path
             stroke-linecap="round"
@@ -35,7 +33,7 @@
     </summary>
 
     <div
-      class="bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900"
+      class="border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900"
     >
       <header class="flex items-center justify-between p-4">
         <span class="text-sm text-gray-700 dark:text-gray-200">
@@ -50,13 +48,13 @@
         </button>
       </header>
 
-      <ul class="p-4 space-y-1 border-t border-gray-200 dark:border-gray-700">
+      <ul class="space-y-1 border-t border-gray-200 p-4 dark:border-gray-700">
         <li>
           <label for="FilterInStock" class="inline-flex items-center gap-2">
             <input
               type="checkbox"
               id="FilterInStock"
-              class="w-5 h-5 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
+              class="h-5 w-5 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
             />
 
             <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -70,7 +68,7 @@
             <input
               type="checkbox"
               id="FilterPreOrder"
-              class="w-5 h-5 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
+              class="h-5 w-5 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
             />
 
             <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -84,7 +82,7 @@
             <input
               type="checkbox"
               id="FilterOutOfStock"
-              class="w-5 h-5 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
+              class="h-5 w-5 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900"
             />
 
             <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -100,7 +98,7 @@
     class="overflow-hidden rounded border border-gray-300 dark:border-gray-600 [&_summary::-webkit-details-marker]:hidden"
   >
     <summary
-      class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer dark:text-white"
+      class="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition dark:text-white"
     >
       <span class="text-sm font-medium"> Price </span>
 
@@ -111,7 +109,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-4 h-4"
+          class="h-4 w-4"
         >
           <path
             stroke-linecap="round"
@@ -123,7 +121,7 @@
     </summary>
 
     <div
-      class="bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900"
+      class="border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900"
     >
       <header class="flex items-center justify-between p-4">
         <span class="text-sm text-gray-700 dark:text-gray-200">
@@ -138,7 +136,7 @@
         </button>
       </header>
 
-      <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+      <div class="border-t border-gray-200 p-4 dark:border-gray-700">
         <div class="flex justify-between gap-4">
           <label for="FilterPriceFrom" class="flex items-center gap-2">
             <span class="text-sm text-gray-600 dark:text-gray-300">$</span>
@@ -147,7 +145,7 @@
               type="number"
               id="FilterPriceFrom"
               placeholder="From"
-              class="w-full border-gray-200 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:focus:ring-offset-gray-900 sm:text-sm"
+              class="w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:focus:ring-offset-gray-900 sm:text-sm"
             />
           </label>
 
@@ -158,7 +156,7 @@
               type="number"
               id="FilterPriceTo"
               placeholder="To"
-              class="w-full border-gray-200 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:focus:ring-offset-gray-900 sm:text-sm"
+              class="w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:focus:ring-offset-gray-900 sm:text-sm"
             />
           </label>
         </div>

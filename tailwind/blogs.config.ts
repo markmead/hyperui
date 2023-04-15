@@ -1,6 +1,7 @@
+import type { Config } from 'tailwindcss'
+
 const plugin = require('tailwindcss/plugin')
 
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
   content: ['./public/blogs/*.html', './src/data/posts/*.mdx'],
@@ -13,10 +14,16 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    plugin(function ({ matchUtilities, theme }) {
+    plugin(function ({
+      matchUtilities,
+      theme,
+    }: {
+      matchUtilities: CallableFunction
+      theme: CallableFunction
+    }) {
       matchUtilities(
         {
-          'text-shadow': (value) => ({
+          'text-shadow': (value: string) => ({
             textShadow: value,
           }),
         },
@@ -25,4 +32,4 @@ module.exports = {
     }),
   ],
   presets: [require('./extras.preset.js')],
-}
+} satisfies Config

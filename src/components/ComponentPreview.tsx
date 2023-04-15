@@ -65,7 +65,6 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
-    rtl: componentHasRtl,
   } = componentData
 
   const trueComponentContainer: string = componentSpace
@@ -82,6 +81,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
         useDark: isDarkMode,
       })
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
@@ -89,31 +90,42 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       fetchHtml({
         useDark: isDarkMode,
         useInteractive: isInteractive,
-        useRtl: isRtl,
       })
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive, isRtl])
+  }, [isDarkMode, isInteractive])
+
+  useEffect(() => {
+    if (inView) {
+      const transformedHtml = componentPreviewHtml(
+        componentCode,
+        trueComponentContainer,
+        isDarkMode,
+        isRtl
+      )
+
+      setComponentHtml(transformedHtml)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRtl])
 
   async function fetchHtml(
     useOptions: {
       useDark?: boolean
       useInteractive?: boolean
-      useRtl?: boolean
     } = {}
   ) {
-    const { useDark, useInteractive, useRtl } = useOptions
+    const { useDark, useInteractive } = useOptions
 
     const useDarkMode = componentHasDark && useDark
     const useInteractiveMode = componentHasInteractive && useInteractive
-    const useRtlComponent = componentHasRtl && useRtl
 
     const componentPath = [
       componentId,
       useDarkMode && 'dark',
       useInteractiveMode && 'interactive',
-      useRtlComponent && 'rtl',
     ]
       .filter(Boolean)
       .join('-')
@@ -126,7 +138,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
       textResponse,
       trueComponentContainer,
       useDark,
-      useRtl
+      isRtl
     )
     const transformedJsx = componentTextJsx(textResponse)
 
@@ -196,7 +208,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
-              previewDark={isDarkMode}
+              previewDark={componentHasDark && isDarkMode}
             />
 
             <Code

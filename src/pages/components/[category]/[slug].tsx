@@ -59,7 +59,6 @@ function Component({
         creator: componentData.creator ?? '',
         dark: !!componentData.dark,
         interactive: !!componentData.interactive,
-        rtl: !!componentData.rtl,
       }
     }
   )

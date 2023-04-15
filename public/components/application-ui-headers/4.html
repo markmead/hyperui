@@ -1,10 +1,8 @@
 <!--
-  This component uses @tailwindcss/forms
+  Heads up! 👋
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
+  Plugins:
+    - @tailwindcss/forms
 -->
 
 <header aria-label="Page Header" class="bg-gray-50">
@@ -14,7 +12,7 @@
         <label class="sr-only" for="search"> Search </label>
 
         <input
-          class="h-10 w-full rounded-lg border-none bg-white pl-4 pr-10 text-sm shadow-sm sm:w-56"
+          class="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
           id="search"
           type="search"
           placeholder="Search website..."
@@ -22,7 +20,7 @@
 
         <button
           type="button"
-          class="absolute top-1/2 right-1 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
+          class="absolute end-1 top-1/2 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
         >
           <span class="sr-only">Search</span>
           <svg
@@ -125,7 +123,7 @@
             class="h-10 w-10 rounded-full object-cover"
           />
 
-          <p class="ml-2 hidden text-left text-xs sm:block">
+          <p class="ms-2 hidden text-left text-xs sm:block">
             <strong class="block font-medium">Eric Frusciante</strong>
 
             <span class="text-gray-500"> eric@frusciante.com </span>
@@ -133,7 +131,7 @@
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="ml-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 sm:block"
+            class="ms-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 sm:block"
             viewBox="0 0 20 20"
             fill="currentColor"
           >

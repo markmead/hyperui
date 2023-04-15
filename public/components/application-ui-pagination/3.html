@@ -1,28 +1,19 @@
 <!--
-  This component uses @tailwindcss/forms
+  Heads up! 👋
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
+  This component comes with some `rtl` classes. Please remove them they are not needed in your project.
 
-  plugins: [require('@tailwindcss/forms')]
-
-  @layer components {
-    .no-spinner {
-      -moz-appearance: textfield;
-    }
-
-    .no-spinner::-webkit-outer-spin-button,
-    .no-spinner::-webkit-inner-spin-button {
-      margin: 0;
-      -webkit-appearance: none;
-    }
-  }
+  Plugins:
+    - @tailwindcss/forms
 -->
 
 <div
   class="inline-flex items-center justify-center rounded bg-blue-600 py-1 text-white"
 >
-  <a href="#" class="inline-flex h-8 w-8 items-center justify-center">
+  <a
+    href="#"
+    class="inline-flex h-8 w-8 items-center justify-center rtl:rotate-180"
+  >
     <span class="sr-only">Prev Page</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +36,7 @@
 
     <input
       type="number"
-      class="h-8 w-12 rounded border-none bg-transparent p-0 text-center text-xs font-medium [-moz-appearance:_textfield] focus:outline-none focus:ring-inset focus:ring-white [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+      class="h-8 w-12 rounded border-none bg-transparent p-0 text-center text-xs font-medium [-moz-appearance:_textfield] focus:outline-none focus:ring-inset focus:ring-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
       min="1"
       value="2"
       id="PaginationPage"
@@ -54,7 +45,10 @@
 
   <span class="h-4 w-px bg-white/25"></span>
 
-  <a href="#" class="inline-flex h-8 w-8 items-center justify-center">
+  <a
+    href="#"
+    class="inline-flex h-8 w-8 items-center justify-center rtl:rotate-180"
+  >
     <span class="sr-only">Next Page</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"

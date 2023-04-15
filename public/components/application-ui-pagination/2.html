@@ -1,28 +1,16 @@
 <!--
-  This component uses @tailwindcss/forms
+  Heads up! 👋
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
+  This component comes with some `rtl` classes. Please remove them they are not needed in your project.
 
-  plugins: [require('@tailwindcss/forms')]
-
-  @layer components {
-    .no-spinner {
-      -moz-appearance: textfield;
-    }
-
-    .no-spinner::-webkit-outer-spin-button,
-    .no-spinner::-webkit-inner-spin-button {
-      margin: 0;
-      -webkit-appearance: none;
-    }
-  }
+  Plugins:
+    - @tailwindcss/forms
 -->
 
 <div class="inline-flex justify-center gap-1">
   <a
     href="#"
-    class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
+    class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 rtl:rotate-180"
   >
     <span class="sr-only">Prev Page</span>
     <svg
@@ -44,7 +32,7 @@
 
     <input
       type="number"
-      class="h-8 w-12 rounded border border-gray-100 p-0 text-center text-xs font-medium [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+      class="h-8 w-12 rounded border border-gray-100 p-0 text-center text-xs font-medium [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
       min="1"
       value="2"
       id="PaginationPage"
@@ -53,7 +41,7 @@
 
   <a
     href="#"
-    class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
+    class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 rtl:rotate-180"
   >
     <span class="sr-only">Next Page</span>
     <svg

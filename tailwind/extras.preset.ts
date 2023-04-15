@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
+
 module.exports = {
+  content: [],
   theme: {
     extend: {
       animation: {
@@ -13,4 +15,4 @@ module.exports = {
       },
     },
   },
-}
+} satisfies Config
