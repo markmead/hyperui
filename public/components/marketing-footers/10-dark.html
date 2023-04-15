@@ -1,5 +1,11 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them they are not needed in your project.
+-->
+
 <footer aria-label="Site Footer" class="bg-white dark:bg-gray-900">
-  <div class="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
+  <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div>
         <div
@@ -299,7 +305,7 @@
 
               <li>
                 <a
-                  class="group flex justify-center gap-1.5 sm:justify-start"
+                  class="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                   href="/"
                 >
                   <span
@@ -330,7 +336,7 @@
           <ul class="mt-8 space-y-4 text-sm">
             <li>
               <a
-                class="flex items-center justify-center gap-1.5 sm:justify-start"
+                class="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                 href="/"
               >
                 <svg
@@ -348,7 +354,7 @@
                   />
                 </svg>
 
-                <span class="text-gray-700 dark:text-gray-300">
+                <span class="flex-1 text-gray-700 dark:text-gray-300">
                   john@doe.com
                 </span>
               </a>
@@ -356,7 +362,7 @@
 
             <li>
               <a
-                class="flex items-center justify-center gap-1.5 sm:justify-start"
+                class="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                 href="/"
               >
                 <svg
@@ -374,12 +380,14 @@
                   />
                 </svg>
 
-                <span class="text-gray-700 dark:text-gray-300">0123456789</span>
+                <span class="flex-1 text-gray-700 dark:text-gray-300"
+                  >0123456789</span
+                >
               </a>
             </li>
 
             <li
-              class="flex items-start justify-center gap-1.5 sm:justify-start"
+              class="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -402,7 +410,7 @@
               </svg>
 
               <address
-                class="-mt-0.5 not-italic text-gray-700 dark:text-gray-300"
+                class="-mt-0.5 flex-1 not-italic text-gray-700 dark:text-gray-300"
               >
                 213 Lane, London, United Kingdom
               </address>
