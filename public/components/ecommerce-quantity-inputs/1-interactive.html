@@ -1,10 +1,8 @@
 <!--
-  This component uses @tailwindcss/forms
+  Heads up! 👋
 
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
+  Plugins:
+    - @tailwindcss/forms
 -->
 
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -17,7 +15,7 @@
       type="button"
       x-on:click="productQuantity--"
       :disabled="productQuantity === 0"
-      class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75"
+      class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
     >
       &minus;
     </button>
@@ -26,13 +24,13 @@
       type="number"
       id="Quantity"
       x-model="productQuantity"
-      class="w-24 h-10 border-gray-200 rounded sm:text-sm"
+      class="h-10 w-24 rounded border-gray-200 sm:text-sm"
     />
 
     <button
       type="button"
       x-on:click="productQuantity++"
-      class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75"
+      class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
     >
       &plus;
     </button>
