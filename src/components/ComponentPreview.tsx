@@ -196,7 +196,7 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               refIframe={refIframe}
-              previewDark={isDarkMode}
+              previewDark={componentHasDark && isDarkMode}
             />
 
             <Code
