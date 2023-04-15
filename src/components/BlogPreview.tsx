@@ -50,6 +50,8 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
     if (inView) {
       fetchHtml()
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode])
 
   async function fetchHtml() {

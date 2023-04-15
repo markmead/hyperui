@@ -81,6 +81,8 @@ function ComponentPreview({ componentData, componentContainer }: Props) {
         useDark: isDarkMode,
       })
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-@config "../../tailwind/components.config.js";
+@config "../../tailwind/components.config.ts";
 
 @tailwind base;
 @tailwind components;
