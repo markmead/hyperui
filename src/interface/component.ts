@@ -14,5 +14,4 @@ export interface Component extends Core {
   creator?: string
   dark?: boolean
   interactive?: boolean
-  rtl?: boolean
 }
