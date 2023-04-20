@@ -39,6 +39,11 @@ function Header() {
       external: false,
     },
     {
+      title: 'FAQs',
+      href: '/about/faqs',
+      external: false,
+    },
+    {
       title: 'HyperJS',
       href: 'https://js.hyperui.dev',
       external: true,
