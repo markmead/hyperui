@@ -24,7 +24,7 @@ export const faqItems: Array<FaqItem> = [
   {
     question: 'How can I support HyperUI?',
     answer:
-      'You can support HyperUI by starring the project on GitHub and sharing it on Twitter. It helps me to know that people are using the project and it increases the visibility of the project.',
+      'You can support HyperUI by starring the project on GitHub and/or sharing it on Twitter. It helps me to know that people are using the project and it increases the visibility of the project.',
   },
   {
     question: 'How do I get Support?',
@@ -34,7 +34,7 @@ export const faqItems: Array<FaqItem> = [
   {
     question: 'How do I contribute?',
     answer:
-      'You can contribute by adding new components, fixing bugs or improving the documentation.',
+      'You can contribute by adding new components, fixing bugs or improving the documentation. Please create an issue before starting any work.',
   },
   {
     question: 'How do I get updates?',
