@@ -36,7 +36,7 @@ function Faqs() {
           content="Get your questions about HyperUI answered with these FAQs."
           key="description"
         />
-        <meta property="og:title" content={`$FAQs | HyperUI`} key="og:title" />
+        <meta property="og:title" content="FAQs | HyperUI" key="og:title" />
         <meta
           property="og:description"
           content="Get your questions about HyperUI answered with these FAQs."
@@ -44,7 +44,7 @@ function Faqs() {
         />
         <meta
           name="twitter:title"
-          content={`$FAQs | HyperUI`}
+          content="FAQs | HyperUI"
           key="twitter:title"
         />
         <meta
@@ -55,8 +55,8 @@ function Faqs() {
       </Head>
 
       <Banner title="FAQs" subtitle="Quick Info for HyperUI">
-        Got questions? I've got answers. Hopefully these answer any questions
-        you have about HyperUI. If not, then please reach out on GitHub.
+        Got questions? I have answers. Hopefully these answer any questions you
+        have about HyperUI. If not, then please reach out on GitHub.
       </Banner>
 
       <div className="mx-auto max-w-screen-xl px-4 py-12">
