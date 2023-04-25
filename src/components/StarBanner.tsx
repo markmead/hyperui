@@ -29,7 +29,7 @@ export default function StarBanner() {
                   Enjoy HyperUI? Give it a star on GitHub
                 </span>
 
-                <span className="ml-1.5 text-sm">⭐️</span>
+                <span className="ms-1.5 text-sm">⭐️</span>
               </a>
 
               <button

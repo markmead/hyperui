@@ -16,7 +16,7 @@ function HeaderMenuLinks({ menuLinks, navClass, ulClass }: Props) {
           const isLast = index === length - 1
 
           return (
-            <li key={menuLink.href} className={isLast ? 'lg:ml-auto' : ''}>
+            <li key={menuLink.href} className={isLast ? 'lg:ms-auto' : ''}>
               <Link href={menuLink.href}>
                 <a
                   className="block text-xs font-medium text-gray-900 hover:opacity-75 dark:text-white"

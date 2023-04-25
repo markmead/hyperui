@@ -70,7 +70,7 @@ function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
   }
 
   return (
-    <div className="not-prose space-y-4 lg:-ml-[10ch] lg:w-[85ch]" ref={ref}>
+    <div className="not-prose space-y-4 lg:-ms-[10ch] lg:w-[85ch]" ref={ref}>
       {previewCode && (
         <div className="flex gap-4">
           <ViewSwitcher
