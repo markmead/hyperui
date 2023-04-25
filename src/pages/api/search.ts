@@ -27,6 +27,7 @@ export default function handler(
       'title',
       'category',
       'slug',
+      'count',
     ])
 
     return {
@@ -53,6 +54,7 @@ export default function handler(
           emoji: categoryDetail.emoji,
         },
         id: componentSlug,
+        count: componentData.count,
       }
     })
   })
