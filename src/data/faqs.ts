@@ -17,6 +17,11 @@ export const faqItems: Array<FaqItem> = [
       'Browse the website for the components you need, copy the code and paste it into your project. Some components will have support for dark mode and Alpine JS variants.',
   },
   {
+    question: 'How to install HyperUI?',
+    answer:
+      'There is no HyperUI installation, if you have a Tailwind CSS project, you can copy the code and paste it into your project. Some components do use Alpine JS.',
+  },
+  {
     question: 'Do I need to credit HyperUI?',
     answer:
       'No, you do not need to credit HyperUI. However, it would be appreciated if you could star the project on GitHub and/or share it on Twitter.',
@@ -37,8 +42,43 @@ export const faqItems: Array<FaqItem> = [
       'You can contribute by adding new components, fixing bugs or improving the documentation. Please create an issue before starting any work.',
   },
   {
+    question: 'How often is HyperUI updated?',
+    answer:
+      'I update HyperUI frequently with new features, components and collections. You can follow the project on GitHub to keep updated.',
+  },
+  {
     question: 'How do I get updates?',
     answer:
       'I no longer use Twitter, therefore the best way to get updates is by following the project on GitHub.',
+  },
+  {
+    question: 'Why use HyperUI?',
+    answer:
+      'I built HyperUI to boost my productivity when building projects and therefore, I created a set of components that are easy to customise. I hope you find it useful too.',
+  },
+  {
+    question: 'HyperUI vs Tailwind UI?',
+    answer:
+      'Tailwind UI is a premium set of components built by Tailwind Labs, creators/maintainers of Tailwind CSS. HyperUI is a free, open source set of components built by me.',
+  },
+  {
+    question: 'Does HyperUI have React components?',
+    answer:
+      'Components are written in HTML, but there is a JSX toggle that will convert the HTML to JSX. You can then copy the JSX into your React project.',
+  },
+  {
+    question: 'Which version of Tailwind CSS does HyperUI use?',
+    answer:
+      'HyperUI uses Tailwind CSS v3.3.1. If you are using a different version, you may need to make some changes to the code but these should be minimal.',
+  },
+  {
+    question: "I've copied the code, but it doesn't work?",
+    answer:
+      'Check that you have the correct Tailwind CSS version installed, HyperUI uses Tailwind CSS v3.3.1. If you are still having issues, please create an issue on GitHub.',
+  },
+  {
+    question: 'Does HyperUI have dark mode?',
+    answer:
+      'Yes, some components have support for dark mode. You can toggle dark mode on the entire website or for individual components.',
   },
 ]
