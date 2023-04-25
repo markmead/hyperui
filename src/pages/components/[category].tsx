@@ -54,7 +54,7 @@ function Category({ categoryComponents, categoryDetail }: Props) {
       </Head>
 
       <Banner
-        title={`${categoryDetail.title} Components`}
+        title={`${categoryDetail.title}`}
         subtitle={categoryDetail.subtitle}
       >
         {categoryDetail.description}
