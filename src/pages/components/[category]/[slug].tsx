@@ -11,6 +11,7 @@ import { getComponentPaths } from '@/services/api/components'
 
 import ComponentLinks from '@/components/ComponentLinks'
 import List from '@/components/CollectionList'
+import Container from '@/components/Container'
 
 const mdxComponents = {
   List,
@@ -101,7 +102,7 @@ function Component({
       </Head>
 
       <section>
-        <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12 lg:pt-24">
+        <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
           <ComponentLinks />
 
           <div className="prose dark:prose-invert dark:prose-headings:text-white max-w-none">
@@ -111,7 +112,7 @@ function Component({
               scope={componentData}
             />
           </div>
-        </div>
+        </Container>
       </section>
     </>
   )
