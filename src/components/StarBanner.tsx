@@ -34,7 +34,7 @@ export default function StarBanner() {
 
               <button
                 onClick={() => dispatch(toggleBanner())}
-                className="shrink-0 border-l border-white/10 bg-gray-900 p-3 text-white transition hover:text-white/75 dark:bg-gray-800"
+                className="shrink-0 border-s border-white/10 bg-gray-900 p-3 text-white transition hover:text-white/75 dark:bg-gray-800"
               >
                 <IconClose />
 

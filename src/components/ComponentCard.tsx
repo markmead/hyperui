@@ -25,7 +25,7 @@ function ComponentCard({ componentData, categoryTitle }: Props) {
         title={`Tailwind CSS ${categoryTitle} Components - ${componentData.title}`}
         className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-gray-900 dark:bg-gray-900 dark:before:border-gray-700"
       >
-        <div className="rounded-lg border-2 border-gray-900 bg-white transition group-hover:-translate-x-2 group-hover:-translate-y-2 dark:border-gray-700 dark:bg-gray-900">
+        <div className="rounded-lg border-2 border-gray-900 bg-white transition group-hover:-translate-y-2 ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2 dark:border-gray-700 dark:bg-gray-900">
           <div className="p-6">
             <span aria-hidden="true" role="img" className="text-xl">
               {componentData.emoji}
