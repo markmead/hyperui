@@ -41,7 +41,7 @@ function HeaderSettings() {
         {...(!showDropdown && {
           hidden: true,
         })}
-        className="absolute right-0 top-14 z-50 max-w-sm overflow-hidden rounded-lg border border-gray-100 bg-gray-100 shadow-lg dark:border-gray-800 dark:bg-gray-800"
+        className="absolute end-0 top-14 z-50 max-w-sm overflow-hidden rounded-lg border border-gray-100 bg-gray-100 shadow-lg dark:border-gray-800 dark:bg-gray-800"
       >
         <ul className="space-y-px">
           {settingComponents.map(

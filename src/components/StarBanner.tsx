@@ -29,12 +29,12 @@ export default function StarBanner() {
                   Enjoy HyperUI? Give it a star on GitHub
                 </span>
 
-                <span className="ml-1.5 text-sm">⭐️</span>
+                <span className="ms-1.5 text-sm">⭐️</span>
               </a>
 
               <button
                 onClick={() => dispatch(toggleBanner())}
-                className="shrink-0 border-l border-white/10 bg-gray-900 p-3 text-white transition hover:text-white/75 dark:bg-gray-800"
+                className="shrink-0 border-s border-white/10 bg-gray-900 p-3 text-white transition hover:text-white/75 dark:bg-gray-800"
               >
                 <IconClose />
 
