@@ -3,6 +3,7 @@ export interface SearchResult {
   slug: string
   name: string
   category: SearchResultCategory
+  count?: number
 }
 
 export interface SearchResultCategory {

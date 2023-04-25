@@ -70,20 +70,24 @@ function ComponentLinks() {
 
           {!!componentLinks.length && (
             <ul className="mt-4 flex flex-wrap gap-1">
-              {componentLinks.map((componentLink: SearchResult) => (
-                <li key={componentLink.id}>
-                  <Link
-                    href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
-                  >
-                    <a>
-                      <ButtonStyle
-                        emoji={componentLink.category.emoji}
-                        text={componentLink.name}
-                      />
-                    </a>
-                  </Link>
-                </li>
-              ))}
+              {componentLinks.map((componentLink: SearchResult) => {
+                const buttonText = `${componentLink.name} (${componentLink.count})`
+
+                return (
+                  <li key={componentLink.id}>
+                    <Link
+                      href={`/components/${componentLink.category.slug}/${componentLink.slug}`}
+                    >
+                      <a>
+                        <ButtonStyle
+                          emoji={componentLink.category.emoji}
+                          text={buttonText}
+                        />
+                      </a>
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           )}
         </div>
