@@ -10,6 +10,7 @@ import MenuLinks from '@/components/HeaderMenuLinks'
 import Search from '@/components/HeaderSearch'
 import Settings from '@/components/HeaderSettings'
 import IconGithub from '@/components/IconGithub'
+import Container from '@/components/Container'
 
 function Header() {
   const { asPath } = useRouter()
@@ -52,39 +53,37 @@ function Header() {
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-900">
-      <div className="mx-auto max-w-screen-xl px-4">
-        <div className="relative flex h-16 items-center justify-between gap-8">
-          <div className="flex flex-1 items-center gap-4">
-            <Logo fontSize="text-sm" />
+      <Container classNames="relative flex h-16 items-center justify-between gap-8">
+        <div className="flex flex-1 items-center gap-4">
+          <Logo fontSize="text-sm" />
 
-            <span className="hidden lg:block">
-              <Separator />
-            </span>
-
-            <MenuLinks
-              menuLinks={menuLinks}
-              navClass="hidden lg:block lg:flex-1"
-              ulClass="gap-4 flex"
-            />
-          </div>
-
-          <div className="flex items-center justify-end gap-4">
-            <Search />
-
-            <GithubLink />
-
-            <Menu
-              showMenu={showMenu}
-              handleSetShowMenu={setShowMenu}
-              menuLinks={menuLinks}
-            />
-
+          <span className="hidden lg:block">
             <Separator />
+          </span>
 
-            <Settings />
-          </div>
+          <MenuLinks
+            menuLinks={menuLinks}
+            navClass="hidden lg:block lg:flex-1"
+            ulClass="gap-4 flex"
+          />
         </div>
-      </div>
+
+        <div className="flex items-center justify-end gap-4">
+          <Search />
+
+          <GithubLink />
+
+          <Menu
+            showMenu={showMenu}
+            handleSetShowMenu={setShowMenu}
+            menuLinks={menuLinks}
+          />
+
+          <Separator />
+
+          <Settings />
+        </div>
+      </Container>
     </header>
   )
 }
