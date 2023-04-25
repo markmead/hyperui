@@ -4,17 +4,17 @@ HyperUI is a collection of free Tailwind CSS components that can be used in your
 
 ![HyperUI](https://hyperui.dev/og.jpg)
 
-### FAQs
+## FAQs
 
-#### Is HyperUI free?
+### Is HyperUI free?
 
 Yes, HyperUI is completely free to use. You can use it in your personal or commercial projects.
 
-#### How do I use HyperUI?
+### How do I use HyperUI?
 
 Browse the website for the components you need, copy the code and paste it into your project. Some components will have support for dark mode and Alpine JS variants.
 
-#### How do I install HyperUI?
+### How do I install HyperUI?
 
 There is no HyperUI installation, if you have a Tailwind CSS project, you can copy the code and paste it into your project. Some components do use Alpine JS.
 
@@ -24,7 +24,7 @@ Got more questions?
 
 [HyperUI FAQs](https://www.hyperui.dev/about/faqs).
 
-### Contributing
+## Contributing
 
 Contributions are welcome! 👋
 
