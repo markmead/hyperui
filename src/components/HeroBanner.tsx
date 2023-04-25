@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import Container from '@/components/Container'
+
 type Props = {
   children?: ReactNode
   subtitle: string
@@ -9,7 +11,7 @@ type Props = {
 function HeroBanner({ children, subtitle, title }: Props) {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
+      <Container classNames="py-8 lg:py-12">
         <div className="flex flex-col">
           <h1 className="order-last mt-4 text-gray-700 dark:text-gray-200">
             {subtitle}
@@ -25,7 +27,7 @@ function HeroBanner({ children, subtitle, title }: Props) {
             {children}
           </p>
         )}
-      </div>
+      </Container>
     </section>
   )
 }
