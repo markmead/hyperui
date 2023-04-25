@@ -20,7 +20,7 @@ function PreviewIframe({
   return (
     <div className={showPreview ? 'block' : 'hidden'}>
       <iframe
-        className={`h-[400px] w-full rounded-lg ring-2 ring-gray-900 dark:ring-gray-800 lg:h-[600px] lg:transition-all ${
+        className={`h-[400px] w-full rounded-lg ring-2 ring-gray-900 lg:h-[600px] lg:transition-all ${
           previewDark ? 'bg-gray-950' : 'bg-white'
         }`}
         loading="lazy"
