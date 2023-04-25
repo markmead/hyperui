@@ -60,15 +60,20 @@ function Faqs() {
       </Banner>
 
       <div className="mx-auto max-w-screen-xl px-4 py-12">
-        <ul className="-mt-4 grid gap-px bg-gray-100 sm:-mt-6 sm:grid-cols-2 lg:-mt-8">
+        <ul className="-mt-4 grid gap-px bg-gray-100 dark:bg-gray-800 sm:-mt-6 sm:grid-cols-2 lg:-mt-8">
           {faqItems.map((faqItem: FaqItem) => {
             return (
-              <li className="bg-white p-4 sm:p-6 lg:p-8" key={faqItem.question}>
-                <h2 className="text-lg font-medium text-gray-900">
+              <li
+                className="bg-white p-4 dark:bg-gray-900 sm:p-6 lg:p-8"
+                key={faqItem.question}
+              >
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">
                   {faqItem.question}
                 </h2>
 
-                <p className="mt-4 text-gray-600">{faqItem.answer}</p>
+                <p className="mt-4 text-gray-600 dark:text-gray-400">
+                  {faqItem.answer}
+                </p>
               </li>
             )
           })}
