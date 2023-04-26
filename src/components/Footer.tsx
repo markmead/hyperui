@@ -1,9 +1,10 @@
 import Logo from '@/components/BrandLogo'
+import Container from '@/components/Container'
 
 function Footer() {
   return (
     <footer className="border-t border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-900">
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
+      <Container classNames="py-8 lg:py-12">
         <Logo fontSize="text-lg" />
 
         <div className="mt-6 lg:flex lg:items-end lg:justify-between">
@@ -16,7 +17,7 @@ function Footer() {
             Created by Mark Mead.
           </p>
         </div>
-      </div>
+      </Container>
     </footer>
   )
 }

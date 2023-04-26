@@ -13,6 +13,8 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { getBlogPaths } from '@/services/api/blogs'
 import { BlogFrontmatter } from '@/interface/blog'
 
+import Container from '@/components/Container'
+
 const mdxComponents = {
   Preview: dynamic(() => import('@/components/BlogPreview')),
 }
@@ -69,7 +71,7 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
         />
       </Head>
 
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
+      <Container classNames="py-8 lg:py-12">
         <article className="prose  prose-img:rounded-lg dark:prose-invert dark:prose-headings:text-white mx-auto">
           <header>
             <time className="text-sm text-gray-700 dark:text-gray-200">
@@ -81,7 +83,7 @@ function BlogShow({ blogSource, blogFrontmatter }: Props) {
 
           <MDXRemote {...blogSource} components={mdxComponents} />
         </article>
-      </div>
+      </Container>
     </>
   )
 }

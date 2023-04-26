@@ -6,6 +6,7 @@ import { getBlogs } from '@/services/api/blogs'
 
 import Banner from '@/components/HeroBanner'
 import Card from '@/components/BlogCard'
+import Container from '@/components/Container'
 
 type Props = {
   blogPosts: Array<BlogCard>
@@ -32,7 +33,7 @@ function BlogIndex({ blogPosts }: Props) {
         write cleaner, more maintainable code and help you be more productive.
       </Banner>
 
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
+      <Container classNames="py-8 lg:py-12">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {blogPosts.map((blogPost: BlogCard) => (
             <li key={blogPost.slug}>
@@ -40,7 +41,7 @@ function BlogIndex({ blogPosts }: Props) {
             </li>
           ))}
         </ul>
-      </div>
+      </Container>
     </>
   )
 }

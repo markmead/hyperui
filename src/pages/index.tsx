@@ -9,6 +9,7 @@ import {
 
 import Banner from '@/components/HeroBanner'
 import Grid from '@/components/CollectionGrid'
+import Container from '@/components/Container'
 
 type Props = {
   componentsByCategory: Array<CategoryProps>
@@ -31,7 +32,7 @@ function Home({ componentsByCategory }: Props) {
         next marketing website, admin dashboard, eCommerce store and much more.
       </Banner>
 
-      <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-12">
+      <Container classNames="py-8 lg:py-12 space-y-8">
         {componentsByCategory.map(
           ({ categoryDetail, categoryComponents }: CategoryProps) => {
             return (
@@ -48,7 +49,7 @@ function Home({ componentsByCategory }: Props) {
             )
           }
         )}
-      </div>
+      </Container>
     </>
   )
 }

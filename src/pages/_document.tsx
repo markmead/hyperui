@@ -7,6 +7,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
+
       <body className="antialiased">
         <Main />
 
