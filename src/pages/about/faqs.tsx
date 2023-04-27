@@ -1,9 +1,10 @@
 import Head from 'next/head'
 
-import Banner from '@/components/HeroBanner'
-
 import { faqItems } from '@/data/faqs'
 import { FaqItem } from '@/interface/global'
+
+import Banner from '@/components/HeroBanner'
+import Container from '@/components/Container'
 
 function Faqs() {
   const schemaData = {
@@ -59,12 +60,12 @@ function Faqs() {
         have about HyperUI. If not, then please reach out on GitHub.
       </Banner>
 
-      <div className="mx-auto max-w-screen-xl px-4 py-12">
-        <ul className="-mt-4 grid gap-px bg-gray-100 dark:bg-gray-800 sm:-mt-6 sm:grid-cols-2 lg:-mt-8">
+      <Container>
+        <ul className="grid gap-px bg-gray-100 dark:bg-gray-800 sm:grid-cols-2">
           {faqItems.map((faqItem: FaqItem) => {
             return (
               <li
-                className="bg-white p-4 dark:bg-gray-900 sm:p-6 lg:p-8"
+                className="bg-white py-4 dark:bg-gray-900 lg:py-8 lg:odd:pe-8 lg:even:ps-8"
                 key={faqItem.question}
               >
                 <h2 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -78,7 +79,7 @@ function Faqs() {
             )
           })}
         </ul>
-      </div>
+      </Container>
     </>
   )
 }

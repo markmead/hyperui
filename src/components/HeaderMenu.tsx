@@ -14,11 +14,11 @@ function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }: Props) {
     <div className="flex items-center lg:hidden">
       <button
         onClick={() => handleSetShowMenu(!showMenu)}
-        className="inline-flex items-center gap-1.5 text-gray-900 dark:text-white"
+        className="text-gray-900 dark:text-white"
       >
         <IconMenu />
 
-        <span className="text-xs font-medium">Menu</span>
+        <span className="sr-only">Menu</span>
       </button>
 
       {showMenu && (
