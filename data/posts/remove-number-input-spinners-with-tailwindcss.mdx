@@ -1,0 +1,81 @@
+---
+title: How to Remove Spinners on Number Input with Tailwind CSS (3 Levels)
+description: How to remove the spinners that appear on number inputs with Tailwind CSS.
+date: 12/05/2022
+emoji: 🎚️
+---
+
+It's not required, but I'd recommend using [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) when working with inputs, it comes with some great defaults and speeds up the styling process.
+
+---
+
+If you ever find yourself working with a number input and thinking...
+
+> Ah! I wish those stupid spinners would go away!
+
+Then you are not alone.
+
+They definitely have their use, but they can become a problem. Let's get rid of them.
+
+## CSS Class (Level 1)
+
+The solution that does not care what CSS framework you are using.
+
+```css
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+```
+
+Now you can add the `no-spinner` class to your number inputs to remove the spinners.
+
+## Tailwind CSS Class (Level 2)
+
+```css
+@layer components {
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+}
+```
+
+This "Tailwind-ifys" the solution and makes the `no-spinner` class part of Tailwind CSS.
+
+Which means it will now appear as a suggested class when using [Tailwind CSS Intellisense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code).
+
+## Tailwind CSS Class Names (Level 3)
+
+Brace yourself.
+
+```html
+<input
+  type="number"
+  class="[-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+/>
+```
+
+You can see this approach in action on this [quantity input component](/components/ecommerce/quantity-inputs#component-2), but don't worry, I include the CSS snippet as well.
+
+---
+
+Here's some examples using the Tailwind CSS approaches.
+
+<BlogPreview
+  previewId="remove-number-spinners"
+  previewTitle="Remove Number Spinners Example"
+  previewContainer="grid min-h-screen place-content-center p-8"
+/>
+
+That's it. Which approach should you use? I'd vote for adding a Tailwind CSS class with `@layer` but the choice is yours.

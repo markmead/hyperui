@@ -1,0 +1,30 @@
+---
+title: Pixelated Image Lazy Loading with Tailwind CSS
+description: How to create a pixelated image lazy loading effect with Tailwind CSS with no custom CSS.
+date: 02/10/2023
+emoji: 🌄
+---
+
+A few years back I had to build a pixelated image lazy loader which I was certain would be the end of me. However, the solution was quite simple.
+
+1. Set the image `src` to a tiny version of the image
+2. Add the CSS `image-rendering: pixelated` to the image
+3. Add your logic for lazy loading
+4. When loaded, swap the image `src` and change the CSS to `image-rendering: auto`
+
+Here's a CodePen I made a few years back showing of this effect - [Pixelated Lazy Loading](https://codepen.io/markmead/pen/JjPmObK).
+
+However, that's CSS. How does it work in Tailwind CSS? It's exactly the same.
+
+---
+
+Here's a version using Tailwind CSS creating the same effect. I'm using Alpine JS here instead of JavaScript.
+
+<BlogPreview
+  previewId="pixelated-lazy-load"
+  previewTitle="Pixelated Lazy Loading Example"
+/>
+
+If you ignore Alpine JS as that's only used for the lazy loading logic, the approach is identical. Currently, there is no support for `image-rendering` classes in Tailwind CSS so we use the arbitrary properties syntax to write the CSS we need.
+
+And that's all... I'd recommend having a play with the size of the small image as it can drastically change the pixelated effect.

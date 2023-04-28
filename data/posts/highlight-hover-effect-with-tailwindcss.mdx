@@ -1,0 +1,52 @@
+---
+title: How to Create a Highlight Hover Effect with Tailwind CSS
+description: Create a hover effect where one element is highlighted and the sibling elements are faded in Tailwind CSS.
+date: 09/25/2022
+emoji: 🔦
+---
+
+On the web you might come across a hover effect where the element you are hovering has full opacity and the sibling elements have a lower opacity. It could look something like this.
+
+<BlogPreview
+  previewId="highlight-hover"
+  previewTitle="Highlight Hover Example"
+  previewContainer="min-h-screen grid place-content-center p-8"
+/>
+
+## How?... in Tailwind CSS
+
+Thanks to the new hideous syntax where we can write stuff like `[&:hover>li]` we can get this working quite easily, without any custom CSS 🎉
+
+So what do we need?
+
+1. Parent element that on hover lowers the opacity of child elements
+2. Child elements that on hover override their opacity
+
+Here's a simple version of that.
+
+```html
+<ul class="[&:hover>li]:opacity-50">
+  <li class="hover:!opacity-100">...</li>
+  <li class="hover:!opacity-100">...</li>
+  <li class="hover:!opacity-100">...</li>
+  <li class="hover:!opacity-100">...</li>
+</li>
+```
+
+There's not much happening here but let's break it down.
+
+**`[&:hover>li]:opacity-50]`**
+
+When the `ul` is on hover target the `li` elements and lower their opacity to `0.5`.
+
+**`hover:!opacity-100`**
+
+When the `li` element is on hover, force the opacity back to `1`. We force it with the `!` modifier which applies `!important`.
+
+That's the base for any hover effect like this with Tailwind CSS, now we can take that logic and apply it to a built out design.
+
+---
+
+One thing you'll notice, when hovering in the gaps between the `li` elements that one of them will be on hover, this is to ensure an element is highlighted when the cursor is within the `ul`.
+
+You can get around this with JavaScript using something like the [Negative Hover](https://github.com/markmead/negative-hover) package that I wrote.

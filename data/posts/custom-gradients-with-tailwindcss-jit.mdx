@@ -1,0 +1,92 @@
+---
+title: How to Create Custom Gradients in Tailwind CSS with JIT
+description: Tailwind CSS v3 meant JIT become the standard, learn how to use JIT to create custom gradients in Tailwind CSS without any custom CSS.
+date: 03/05/2022
+emoji: 🎨
+---
+
+## What is JIT?
+
+Since v3, JIT has been the default in Tailwind CSS and has bought a lot of power to the framework. One of the best additions are [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values), these allow you to replace custom CSS with Tailwind CSS like classes.
+
+### Without Tailwind CSS JIT
+
+```html
+<div class="floating-alert absolute p-4">Hello World! 👋</div>
+```
+
+And for the CSS...
+
+```css
+.floating-alert {
+  bottom: 5px;
+  right: 5px;
+}
+```
+
+### With Tailwind CSS JIT
+
+```html
+<div class="absolute bottom-[5px] right-[5px] p-4">Hello World! 👋</div>
+```
+
+The benefit here is keeping everything within the HTML, this means:
+
+- Less switching between files
+- No need to update Tailwind CSS config
+- Easily use Tailwind CSS breakpoints `top-[2px] sm:top-[3px] lg:top-[5px]`
+
+## Creating Gradients with Tailwind CSS JIT
+
+_If you are using these gradients more than once, it's worth adding them to the Tailwind CSS config._
+
+The syntax for creating a gradient looks confusing, but it's easy to understand once you realise that spaces are replaced with underscores. Take the following example:
+
+<BlogPreview
+  previewId="jit-basic-gradient"
+  previewTitle="JIT Basic Gradient Example"
+/>
+
+In CSS this would be:
+
+```css
+background-image: linear-gradient(180deg, #eab308 40%, #a855f7 60%, #3b82f6);
+```
+
+The underscores after commas are personal choice, I leave them in for readability but you can remove them.
+
+## Conic Gradients in Tailwind CSS with JIT
+
+For this I've used [Hypercolor](https://hypercolor.dev) to find a `conic-gradient` for the example.
+
+Here's a preview of how that looks:
+
+<BlogPreview
+  previewId="jit-conic-gradient"
+  previewTitle="JIT Conic Gradient Example"
+/>
+
+Which results in the follow CSS:
+
+```css
+background-image: conic-gradient(at left center, #eab308, #a855f7, #3b82f6);
+```
+
+## Radial Gradients in Tailwind CSS with JIT
+
+Once again I'm using [Hypercolor](https://hypercolor.dev) to find a `radial-gradient` for the example.
+
+Here's a preview of how that looks:
+
+<BlogPreview
+  previewId="jit-radial-gradient"
+  previewTitle="JIT Radial Gradient Example"
+/>
+
+Which results in the follow CSS:
+
+```css
+background-image: radial-gradient(at center bottom, #fde68a, #7c3aed, #0c4a6e);
+```
+
+Checkout [Hypercolor](https://hypercolor.dev) for more Tailwind CSS gradients.

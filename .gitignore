@@ -35,9 +35,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-
 # seo
 public/sitemap.xml
 public/robots.txt
