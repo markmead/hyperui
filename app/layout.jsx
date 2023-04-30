@@ -3,7 +3,6 @@ import '@/styles/site.css'
 
 import Footer from '@component/Footer'
 import Header from '@component/Header'
-import Banner from '@component/Banner'
 
 export const metadata = {
   title: 'Free Open Source Tailwind CSS Components | HyperUI',
@@ -40,8 +39,6 @@ export default function RootLayout({ children }) {
         <main className="bg-white dark:bg-gray-900">{children}</main>
 
         <Footer />
-
-        <Banner />
       </body>
     </html>
   )
