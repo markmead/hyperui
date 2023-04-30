@@ -4,8 +4,8 @@ function HeroBanner({ children, subtitle, title }) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <Container classNames="py-8 lg:py-12">
-        <div className="flex flex-col">
-          <h1 className="order-last mt-4 text-gray-700 dark:text-gray-200">
+        <div className="flex flex-col space-y-4 space-y-reverse">
+          <h1 className="order-last text-lg text-gray-700 dark:text-gray-200">
             {subtitle}
           </h1>
 
@@ -15,7 +15,7 @@ function HeroBanner({ children, subtitle, title }) {
         </div>
 
         {children && (
-          <p className="mt-6 max-w-lg text-sm/relaxed text-gray-600 dark:text-gray-400">
+          <p className="mt-6 max-w-lg text-base/relaxed text-gray-600 dark:text-gray-400">
             {children}
           </p>
         )}
