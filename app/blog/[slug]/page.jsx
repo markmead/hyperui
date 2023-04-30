@@ -11,7 +11,7 @@ const mdxComponents = {
   BlogPreview,
 }
 
-const postsPath = join(process.cwd(), '/data/posts')
+const postsPath = join(process.cwd(), '/src/data/posts')
 
 export async function generateMetadata({ params }) {
   const { blogData } = await getPost(params)

@@ -24,7 +24,7 @@ export const metadata = {
   },
 }
 
-const postsPath = join(process.cwd(), '/data/posts')
+const postsPath = join(process.cwd(), '/src/data/posts')
 
 async function getPosts() {
   const blogSlugs = await fs.readdir(postsPath)

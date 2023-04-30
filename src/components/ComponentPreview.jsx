@@ -4,11 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import {
-  componentPreviewHtml,
-  componentTextJsx,
-} from '@/services/utils/transformers'
-import { componentBreakpoints } from '@/services/utils/breakpoints'
+import { componentPreviewHtml, componentTextJsx } from '@util/transformers'
+import { componentBreakpoints } from '@data/breakpoints'
 
 import ComponentCreator from '@component/ComponentCreator'
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
@@ -58,10 +55,6 @@ export default function ComponentPreview({
     : componentContainer
 
   const componentHash = `component-${componentId}`
-
-  useEffect(() => {
-    setIsDarkMode(localStorage.getItem('darkMode') === 'true')
-  }, [])
 
   useEffect(() => {
     if (inView) {

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { componentSlug } from '@/services/utils/transformers'
+import { componentSlug } from '@util/transformers'
 
 export default function ComponentCard({ componentData }) {
   const trueComponentSlug = componentSlug(

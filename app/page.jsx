@@ -7,8 +7,8 @@ import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 
 async function getComponents() {
-  const componentsPath = join(process.cwd(), '/data/components')
-  const categoriesPath = join(process.cwd(), '/data/categories')
+  const componentsPath = join(process.cwd(), '/src/data/components')
+  const categoriesPath = join(process.cwd(), '/src/data/categories')
 
   const categorySlugs = ['application-ui', 'marketing', 'ecommerce']
   const componentSlugs = await fs.readdir(componentsPath)
@@ -25,7 +25,6 @@ async function getComponents() {
           .filter((componentSlug) => componentSlug.includes(categorySlug))
           .map(async (componentSlug) => {
             const componentPath = join(componentsPath, componentSlug)
-
             const componentItem = await fs.readFile(componentPath, 'utf-8')
 
             const { data: componentData } = matter(componentItem)

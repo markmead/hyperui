@@ -1,5 +1,5 @@
 import 'prismjs/themes/prism-okaidia.css'
-import '@/styles/site.css'
+import '@style/site.css'
 
 import Footer from '@component/Footer'
 import Header from '@component/Header'

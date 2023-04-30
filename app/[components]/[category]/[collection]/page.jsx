@@ -12,7 +12,7 @@ const mdxComponents = {
   CollectionList,
 }
 
-const componentsDirectory = join(process.cwd(), '/data/components')
+const componentsDirectory = join(process.cwd(), '/src/data/components')
 
 export async function generateMetadata({ params }) {
   const { collectionData } = await getCollection(params)

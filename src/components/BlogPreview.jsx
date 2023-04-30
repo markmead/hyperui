@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import { blogPreviewHtml } from '@/services/utils/transformers'
+import { blogPreviewHtml } from '@util/transformers'
 
 import PreviewCode from './PreviewCode'
 import PreviewCopy from './PreviewCopy'

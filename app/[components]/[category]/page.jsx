@@ -33,8 +33,8 @@ export async function generateStaticParams() {
 }
 
 async function getCategory(params) {
-  const componentsPath = join(process.cwd(), '/data/components')
-  const categoriesPath = join(process.cwd(), '/data/categories')
+  const componentsPath = join(process.cwd(), '/src/data/components')
+  const categoriesPath = join(process.cwd(), '/src/data/categories')
 
   const categorySlug = params.category
   const componentSlugs = await fs.readdir(componentsPath)
