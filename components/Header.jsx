@@ -10,8 +10,6 @@ import HeaderMenu from '@component/HeaderMenu'
 import HeaderMenuLinks from '@component/HeaderMenuLinks'
 import HeaderSearch from '@component/HeaderSearch'
 import IconGithub from '@component/IconGithub'
-import IconSun from '@component/IconSun'
-import IconMoon from '@component/IconMoon'
 
 function Header() {
   const routerPathname = usePathname()
