@@ -37,7 +37,7 @@ export default function ComponentPreview({
   const [isRtl, setIsRtl] = useState(false)
   const [isJsx, setIsJsx] = useState(false)
 
-  const { refComponent, inView } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
   })
@@ -131,7 +131,7 @@ export default function ComponentPreview({
   }
 
   return (
-    <div className="-mt-20 pt-20" ref={refComponent} id={componentHash}>
+    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <PreviewTitle
           componentTitle={componentTitle}
