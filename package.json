@@ -4,13 +4,13 @@
   "scripts": {
     "build": "next build",
     "start": "next start",
-    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
-    "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
-    "css": "yarn css:components && yarn css:blogs",
     "dev": "next dev",
     "lint": "next lint",
-    "postbuild": "yarn css && next-sitemap --config sitemap.config.js",
-    "watch": "yarn css -w"
+    "css": "yarn css:components && yarn css:blogs",
+    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
+    "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
+    "watch": "yarn css -w",
+    "postbuild": "yarn css && next-sitemap --config sitemap.config.js"
   },
   "dependencies": {
     "next": "^13.3.1",
