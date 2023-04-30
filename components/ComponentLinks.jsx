@@ -1,41 +1,18 @@
-'use client'
-
 import Link from 'next/link'
-
-import { useState, useEffect } from 'react'
 
 import ButtonStyle from '@component/ButtonStyle'
 
-export default function ComponentLinks() {
-  const [categoriesData, setCategoriesData] = useState([])
-  const [componentLinks, setComponentLinks] = useState([])
+async function getComponents() {
+  return await fetch('/api/search')
+}
 
-  useEffect(() => {
-    async function getCategoriesData() {
-      setCategoriesData(await fetchCategoryResults())
-    }
+async function getCategories() {
+  return await fetch('/api/categories')
+}
 
-    async function getComponentLinks() {
-      setComponentLinks(await fetchComponentResults())
-    }
-
-    getCategoriesData()
-    getComponentLinks()
-
-    return () => {}
-  }, [])
-
-  async function fetchCategoryResults() {
-    const categoriesResult = await fetch('/api/categories')
-
-    return categoriesResult.json()
-  }
-
-  async function fetchComponentResults() {
-    const componentsResult = await fetch('/api/search')
-
-    return componentsResult.json()
-  }
+export default async function ComponentLinks() {
+  const categoriesData = await getCategories()
+  const componentLinks = await getComponents()
 
   return (
     <div className="hidden md:block">
