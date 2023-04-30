@@ -4,9 +4,7 @@ export default function PreviewInteractive({
   isInteractive,
   handleSetIsInteractive,
 }) {
-  const buttonStyle = isInteractive
-    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
-    : ''
+  const buttonStyle = isInteractive ? 'bg-gray-900 text-white' : ''
 
   return (
     <button onClick={() => handleSetIsInteractive(!isInteractive)}>

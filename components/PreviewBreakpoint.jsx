@@ -7,9 +7,7 @@ export default function PreviewBreakpoint({
   breakpointWidth,
   breakpointText,
 }) {
-  const buttonStyle = breakpointActive
-    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
-    : ''
+  const buttonStyle = breakpointActive ? 'bg-gray-900 text-white' : ''
 
   return (
     <button onClick={() => handleSetPreviewWidth(breakpointWidth)}>

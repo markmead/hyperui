@@ -53,7 +53,7 @@ export default async function Page() {
       </HeroBanner>
 
       <Container>
-        <ul className="grid gap-px bg-gray-100 dark:bg-gray-800 sm:grid-cols-2">
+        <ul className="grid gap-px bg-gray-100 sm:grid-cols-2">
           {faqItems.map((faqItem, faqIndex) => (
             <FaqCard
               key={faqIndex}

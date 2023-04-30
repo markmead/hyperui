@@ -1,9 +1,7 @@
 import ButtonStyle from '@component/ButtonStyle'
 
 export default function PreviewRtl({ isRtl, handleSetIsRtl }) {
-  const buttonStyle = isRtl
-    ? 'bg-gray-900 text-white dark:bg-gray-700 dark:text-white'
-    : ''
+  const buttonStyle = isRtl ? 'bg-gray-900 text-white' : ''
 
   return (
     <button onClick={() => handleSetIsRtl(!isRtl)}>

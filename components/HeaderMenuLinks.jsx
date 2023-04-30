@@ -11,7 +11,7 @@ export default function HeaderMenuLinks({ menuLinks, navClass, ulClass }) {
             <li key={menuLink.href} className={isLast ? 'lg:ms-auto' : ''}>
               <Link href={menuLink.href}>
                 <div
-                  className="block text-xs font-medium text-gray-900 hover:opacity-75 dark:text-white"
+                  className="block text-xs font-medium text-gray-900 hover:opacity-75"
                   {...(menuLink.external && {
                     target: '_blank',
                     rel: 'noreferrer',

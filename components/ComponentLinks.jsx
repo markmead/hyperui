@@ -49,7 +49,7 @@ export default function ComponentLinks() {
               {categoryData.emoji}
             </span>
 
-            <span className="text-xs font-medium text-gray-900 dark:text-white">
+            <span className="text-xs font-medium text-gray-900">
               {categoryData.title}
             </span>
           </li>

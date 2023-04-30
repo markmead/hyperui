@@ -93,7 +93,7 @@ export default async function Page({ params }) {
       <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
         <ComponentLinks />
 
-        <div className="prose dark:prose-invert dark:prose-headings:text-white max-w-none">
+        <div className="prose max-w-none">
           <MdxRemoteRender
             mdxSource={collectionContent}
             mdxComponents={mdxComponents}

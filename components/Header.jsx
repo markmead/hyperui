@@ -52,7 +52,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <header className="sticky inset-x-0 top-0 z-50 bg-white">
       <Container classNames="relative flex h-16 items-center justify-between gap-8">
         <div className="flex flex-1 items-center gap-4">
           <BrandLogo fontSize="text-sm" />
@@ -86,7 +86,7 @@ function GithubLink() {
       href="https://github.com/markmead/hyperui"
       rel="noreferrer"
       target="_blank"
-      className="inline-block text-gray-900 hover:opacity-75 dark:text-white"
+      className="inline-block text-gray-900 hover:opacity-75"
     >
       <span className="sr-only"> GitHub </span>
 

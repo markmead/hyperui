@@ -6,7 +6,7 @@ export default function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }) {
     <div className="flex items-center lg:hidden">
       <button
         onClick={() => handleSetShowMenu(!showMenu)}
-        className="text-gray-900 dark:text-white"
+        className="text-gray-900"
       >
         <IconMenu />
 
@@ -16,7 +16,7 @@ export default function HeaderMenu({ showMenu, handleSetShowMenu, menuLinks }) {
       {showMenu && (
         <MenuLinks
           menuLinks={menuLinks}
-          navClass="absolute inset-x-0 p-4 top-14 bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-800 shadow-lg rounded-lg"
+          navClass="absolute inset-x-0 p-4 top-14 bg-white border border-gray-100 shadow-lg rounded-lg"
           ulClass="space-y-4"
         />
       )}

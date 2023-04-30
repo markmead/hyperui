@@ -25,7 +25,7 @@ export default function PreviewCode({
         </button>
       )}
 
-      <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-gray-900 dark:bg-gray-800 dark:ring-gray-800 lg:h-[600px]">
+      <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-gray-900 lg:h-[600px]">
         <code className={`${isJsx ? 'language-jsx' : 'language-html'}`}>
           {componentCode}
         </code>

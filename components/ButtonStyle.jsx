@@ -1,8 +1,7 @@
 export default function ButtonStyle({ emoji, text, style, dark }) {
   const buttonClasses = {
     dark: 'border-gray-700 text-white hover:bg-gray-700',
-    DEFAULT:
-      'border-gray-900 hover:bg-gray-900 hover:text-white dark:border-gray-700 dark:text-white dark:hover:bg-gray-700',
+    DEFAULT: 'border-gray-900 hover:bg-gray-900 hover:text-white',
   }
 
   const buttonClass = dark ? buttonClasses.dark : buttonClasses.DEFAULT

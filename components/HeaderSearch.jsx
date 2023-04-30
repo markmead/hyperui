@@ -79,7 +79,7 @@ export default function HeaderSearch() {
           value={searchQuery}
           placeholder="Search..."
           id="SiteSearch"
-          className="w-full rounded-md border-gray-200 text-sm dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+          className="w-full rounded-md border-gray-200 text-sm"
         />
 
         <button tabIndex={-1} className="sr-only">
@@ -88,7 +88,7 @@ export default function HeaderSearch() {
       </form>
 
       {showDropdown && (
-        <div className="absolute right-0 top-14 z-50 w-64 rounded-lg border border-gray-100 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900">
+        <div className="absolute right-0 top-14 z-50 w-64 rounded-lg border border-gray-100 bg-white shadow-lg">
           {!!searchResults.length ? (
             <ul className="max-h-64 space-y-1 overflow-auto p-2">
               {searchResults.map((searchResult) => (
@@ -96,10 +96,10 @@ export default function HeaderSearch() {
                   <Link
                     href={`/components/${searchResult.category.slug}/${searchResult.slug}`}
                   >
-                    <div className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus:bg-gray-700">
+                    <div className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
                       <span>{searchResult.title}</span>
 
-                      <span className="block rounded bg-gray-900 px-1.5 py-0.5 text-[10px] text-white dark:bg-gray-800">
+                      <span className="block rounded bg-gray-900 px-1.5 py-0.5 text-[10px] text-white">
                         {searchResult.category.title}
                       </span>
                     </div>
@@ -108,7 +108,7 @@ export default function HeaderSearch() {
               ))}
             </ul>
           ) : (
-            <div className="p-4 text-center text-sm text-gray-500 dark:text-gray-400">
+            <div className="p-4 text-center text-sm text-gray-500">
               Uh-no! There are no results 😢
             </div>
           )}
