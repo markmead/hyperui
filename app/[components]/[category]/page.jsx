@@ -6,6 +6,28 @@ import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 
+export async function generateMetadata({ params }) {
+  const { categoryData } = await getCategory(params)
+
+  return {
+    title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
+    description: categoryData.description,
+    openGraph: {
+      title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
+      description: categoryData.description,
+      url: 'https://www.hyperui.dev/',
+      siteName: 'HyperUI',
+      type: 'website',
+      image: 'https://www.hyperui.dev/og.jpg',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
+      description: categoryData.description,
+    },
+  }
+}
+
 export async function generateStaticParams() {
   return ['application-ui', 'marketing', 'ecommerce']
 }

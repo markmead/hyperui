@@ -6,6 +6,24 @@ import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import BlogCard from '@component/BlogCard'
 
+export const metadata = {
+  title: 'Tailwind CSS Blog | HyperUI',
+  description: 'Tips and tricks for using Tailwind CSS in your projects.',
+  openGraph: {
+    title: 'Tailwind CSS Blog | HyperUI',
+    description: 'Tips and tricks for using Tailwind CSS in your projects.',
+    url: 'https://www.hyperui.dev/',
+    siteName: 'HyperUI',
+    type: 'website',
+    image: 'https://www.hyperui.dev/og.jpg',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tailwind CSS Blog | HyperUI',
+    description: 'Tips and tricks for using Tailwind CSS in your projects.',
+  },
+}
+
 const postsPath = join(process.cwd(), '/data/posts')
 
 async function getPosts() {

@@ -14,6 +14,28 @@ const mdxComponents = {
 
 const componentsDirectory = join(process.cwd(), '/data/components')
 
+export async function generateMetadata({ params }) {
+  const { collectionData } = await getCollection(params)
+
+  return {
+    title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
+    description: collectionData.seo.description,
+    openGraph: {
+      title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
+      description: collectionData.seo.description,
+      url: 'https://www.hyperui.dev/',
+      siteName: 'HyperUI',
+      type: 'website',
+      image: 'https://www.hyperui.dev/og.jpg',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
+      description: collectionData.seo.description,
+    },
+  }
+}
+
 export async function generateStaticParams() {
   return await fs.readdir(componentsDirectory)
 }

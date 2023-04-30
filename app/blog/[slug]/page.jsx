@@ -13,6 +13,28 @@ const mdxComponents = {
 
 const postsPath = join(process.cwd(), '/data/posts')
 
+export async function generateMetadata({ params }) {
+  const { blogData } = await getPost(params)
+
+  return {
+    title: `${blogData.title} | HyperUI`,
+    description: blogData.description,
+    openGraph: {
+      title: `${blogData.title} | HyperUI`,
+      description: blogData.description,
+      url: 'https://www.hyperui.dev/',
+      siteName: 'HyperUI',
+      type: 'website',
+      image: 'https://www.hyperui.dev/og.jpg',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${blogData.title} | HyperUI`,
+      description: blogData.description,
+    },
+  }
+}
+
 export async function generateStaticParams() {
   return await fs.readdir(postsPath)
 }

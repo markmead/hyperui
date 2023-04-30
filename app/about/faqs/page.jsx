@@ -10,6 +10,10 @@ export const metadata = {
   openGraph: {
     title: 'FAQs | HyperUI',
     description: 'Get your questions about HyperUI answered with these FAQs.',
+    url: 'https://www.hyperui.dev/',
+    siteName: 'HyperUI',
+    type: 'website',
+    image: 'https://www.hyperui.dev/og.jpg',
   },
   twitter: {
     card: 'summary_large_image',
