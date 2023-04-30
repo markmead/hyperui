@@ -1,10 +1,12 @@
+import { NextResponse } from 'next/server'
+
 import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
 
 async function getComponents() {
-  const componentsPath = join(process.cwd(), '/data/components')
-  const categoriesPath = join(process.cwd(), '/data/categories')
+  const componentsPath = join(process.cwd(), '/src/data/components')
+  const categoriesPath = join(process.cwd(), '/src/data/categories')
 
   const categorySlugs = ['application-ui', 'marketing', 'ecommerce']
   const componentSlugs = await fs.readdir(componentsPath)
@@ -56,12 +58,8 @@ async function getComponents() {
   return componentsByCategory.flatMap((componentItem) => componentItem)
 }
 
-export default async function handler(apiRequest, apiResponse) {
-  if (apiRequest.method !== 'GET') {
-    return
-  }
-
+export async function GET() {
   const componentsData = await getComponents()
 
-  apiResponse.status(200).json(componentsData)
+  return NextResponse.json(componentsData)
 }

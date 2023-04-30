@@ -24,8 +24,8 @@ export default function HeaderSearch() {
         resultA.title.localeCompare(resultB.title)
       )
 
-      setSearchResults(sortedSearchResults)
-      setInitialResults(sortedSearchResults)
+      setSearchResults(searchResults)
+      setInitialResults(searchResults)
     }
 
     getSearchResults()
@@ -61,8 +61,9 @@ export default function HeaderSearch() {
 
   async function fetchSearchResults() {
     const searchResults = await fetch('/api/search')
+    const searchJson = await searchResults.json()
 
-    return searchResults.json()
+    return searchJson
   }
 
   return (
