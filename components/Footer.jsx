@@ -1,7 +1,7 @@
 import Container from '@component/Container'
 import BrandLogo from '@component/BrandLogo'
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className="border-t border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-900">
       <Container classNames="py-8 lg:py-12">
@@ -21,5 +21,3 @@ function Footer() {
     </footer>
   )
 }
-
-export default Footer

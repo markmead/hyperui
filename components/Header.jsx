@@ -11,7 +11,7 @@ import HeaderMenuLinks from '@component/HeaderMenuLinks'
 import HeaderSearch from '@component/HeaderSearch'
 import IconGithub from '@component/IconGithub'
 
-function Header() {
+export default function Header() {
   const routerPathname = usePathname()
 
   const [showMenu, setShowMenu] = useState(false)
@@ -52,7 +52,7 @@ function Header() {
   ]
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 border-b-2 border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <header className="sticky inset-x-0 top-0 z-50 bg-white dark:border-gray-800 dark:bg-gray-900">
       <Container classNames="relative flex h-16 items-center justify-between gap-8">
         <div className="flex flex-1 items-center gap-4">
           <BrandLogo fontSize="text-sm" />
@@ -94,5 +94,3 @@ function GithubLink() {
     </a>
   )
 }
-
-export default Header
