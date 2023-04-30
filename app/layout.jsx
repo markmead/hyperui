@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
 
-      <body className="antialiased" id="AppBody">
+      <body className="antialiased">
         <Header />
 
         <main className="bg-white dark:bg-gray-900">{children}</main>

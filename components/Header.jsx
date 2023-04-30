@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
 
-import { useLocalStorage } from 'react-use'
-
 import Container from '@component/Container'
 import BrandLogo from '@component/BrandLogo'
 import HeaderMenu from '@component/HeaderMenu'
@@ -19,15 +17,8 @@ function Header() {
   const routerPathname = usePathname()
 
   const [showMenu, setShowMenu] = useState(false)
-  const [darkMode, setDarkMode] = useLocalStorage('darkMode', false)
 
   useEffect(() => setShowMenu(false), [routerPathname])
-
-  useEffect(() => {
-    const appBody = document.getElementById('AppBody')
-
-    appBody.classList.toggle('dark', darkMode)
-  }, [darkMode])
 
   const menuLinks = [
     {
@@ -85,15 +76,6 @@ function Header() {
             handleSetShowMenu={setShowMenu}
             menuLinks={menuLinks}
           />
-
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="inline-block text-gray-900 hover:opacity-75 dark:text-white"
-          >
-            {darkMode ? <IconSun /> : <IconMoon />}
-
-            <span className="sr-only">Toggle theme</span>
-          </button>
         </div>
       </Container>
     </header>
