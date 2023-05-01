@@ -1,20 +1,13 @@
 import Link from 'next/link'
 
-import { componentSlug } from '@util/transformers'
-
 export default function ComponentCard({ componentData }) {
-  const trueComponentSlug = componentSlug(
-    componentData.slug,
-    componentData.category
-  )
-
   const componentCountPluralize =
     componentData.count > 1 ? 'Components' : 'Component'
 
   const componentCount = `${componentData.count} ${componentCountPluralize}`
 
   return (
-    <Link href={`/components/${componentData.category}/${trueComponentSlug}`}>
+    <Link href={`/components/${componentData.category}/${componentData.slug}`}>
       <div className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-gray-900">
         <div className="rounded-lg border-2 border-gray-900 bg-white transition group-hover:-translate-y-2 ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
           <div className="p-6">

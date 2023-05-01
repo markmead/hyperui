@@ -1,7 +1,3 @@
-export function componentSlug(componentSlug, componentCategory) {
-  return componentSlug.replace(`${componentCategory}-`, '')
-}
-
 export function componentPreviewHtml(
   componentHtml,
   componentContainer = 'relative',
