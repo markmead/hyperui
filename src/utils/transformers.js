@@ -21,28 +21,7 @@ export function componentPreviewHtml(
   `
 }
 
-export function blogPreviewHtml(
-  componentHtml,
-  componentContainer = 'relative',
-  isDarkMode = false
-) {
-  const htmlClass = isDarkMode ? 'dark' : 'relative'
-
-  return `
-    <html class="${htmlClass}">
-      <head>
-        <link rel="stylesheet" href="/blogs.css">
-        <script src="/iframe.js"></script>
-      </head>
-
-      <body class="${componentContainer}">
-        ${componentHtml}
-      </body>
-    </html>
-  `
-}
-
-export function componentTextJsx(componentHtml) {
+export function componentPreviewJsx(componentHtml) {
   let clonedHtml = componentHtml
 
   clonedHtml = clonedHtml.replace(/class=/g, 'className=')
@@ -62,4 +41,25 @@ export function componentTextJsx(componentHtml) {
   clonedHtml = clonedHtml.replace(/-->/g, '*/}')
 
   return clonedHtml
+}
+
+export function blogPreviewHtml(
+  componentHtml,
+  componentContainer = 'relative',
+  isDarkMode = false
+) {
+  const htmlClass = isDarkMode ? 'dark' : 'relative'
+
+  return `
+    <html class="${htmlClass}">
+      <head>
+        <link rel="stylesheet" href="/blogs.css">
+        <script src="/iframe.js"></script>
+      </head>
+
+      <body class="${componentContainer}">
+        ${componentHtml}
+      </body>
+    </html>
+  `
 }

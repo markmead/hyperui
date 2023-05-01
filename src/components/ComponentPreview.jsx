@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import { componentPreviewHtml, componentTextJsx } from '@util/transformers'
+import { componentPreviewHtml, componentPreviewJsx } from '@util/transformers'
 import { componentBreakpoints } from '@data/breakpoints'
 
 import PreviewCreator from '@/components/PreviewCreator'
@@ -114,7 +114,7 @@ export default function ComponentPreview({
       useDark,
       isRtl
     )
-    const transformedJsx = componentTextJsx(textResponse)
+    const transformedJsx = componentPreviewJsx(textResponse)
 
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
