@@ -66,9 +66,8 @@ export default async function Page({ params }) {
     '@context': 'http://schema.org',
     '@type': 'NewsArticle',
     headline: `${blogData.title}`,
-    image: ['https://www.hyperui.dev/og.jpg'],
+    image: 'https://www.hyperui.dev/og.jpg',
     datePublished: `${blogData.date}`,
-    dateModified: `${blogData.date}`,
   }
 
   return (
