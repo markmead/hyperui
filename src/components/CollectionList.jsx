@@ -2,7 +2,7 @@
 
 import ComponentPreview from '@component/ComponentPreview'
 
-function CollectionList({ componentsData, componentContainer }) {
+export default function CollectionList({ componentsData, componentContainer }) {
   return (
     <div className="not-prose mx-auto xl:max-w-[1348px]">
       <ul className="space-y-16">
@@ -18,5 +18,3 @@ function CollectionList({ componentsData, componentContainer }) {
     </div>
   )
 }
-
-export default CollectionList
