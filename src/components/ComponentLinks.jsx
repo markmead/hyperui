@@ -90,7 +90,10 @@ export default async function ComponentLinks() {
               <Link
                 href={`/components/${componentData.category}/${componentData.slug}`}
               >
-                <ButtonStyle emoji={componentData.emoji} text={buttonText} />
+                <ButtonStyle
+                  buttonEmoji={componentData.emoji}
+                  buttonText={buttonText}
+                />
               </Link>
             </li>
           )

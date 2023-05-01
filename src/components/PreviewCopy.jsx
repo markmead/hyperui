@@ -9,6 +9,8 @@ export default function PreviewCopy({ componentCode = '' }) {
   const [buttonEmoji, setButtonEmoji] = useState('📋')
   const [copyStatus, copyToClipboard] = useCopyToClipboard()
 
+  const buttonActive = buttonText === 'Copied'
+
   function handleCopyToClipboard() {
     copyToClipboard(componentCode)
 
@@ -30,7 +32,11 @@ export default function PreviewCopy({ componentCode = '' }) {
 
   return (
     <button className="hidden sm:block" onClick={handleCopyToClipboard}>
-      <ButtonStyle emoji={buttonEmoji} text={buttonText} />
+      <ButtonStyle
+        buttonEmoji={buttonEmoji}
+        buttonText={buttonText}
+        buttonActive={buttonActive}
+      />
     </button>
   )
 }

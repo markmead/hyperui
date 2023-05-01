@@ -21,7 +21,12 @@ export default function PreviewCode({
           className="absolute right-4 top-4"
           onClick={() => handleSetIsJsx(!isJsx)}
         >
-          <ButtonStyle emoji="💫" text={isJsx ? 'JSX' : 'HTML'} dark />
+          <ButtonStyle
+            buttonEmoji="💫"
+            buttonText={isJsx ? 'JSX' : 'HTML'}
+            buttonActive={isJsx}
+            isDark
+          />
         </button>
       )}
 

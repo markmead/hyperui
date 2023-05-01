@@ -1,20 +1,31 @@
-export default function ButtonStyle({ emoji, text, style, dark }) {
+export default function ButtonStyle({
+  buttonEmoji,
+  buttonText,
+  buttonActive,
+  isDark,
+}) {
   const buttonClasses = {
-    dark: 'border-gray-700 text-white hover:bg-gray-700',
-    DEFAULT: 'border-gray-900 hover:bg-gray-900 hover:text-white',
+    DEFAULT: `border-gray-900 ${
+      buttonActive
+        ? 'text-white bg-gray-900'
+        : 'bg-white text-gray-900 hover:bg-gray-900 hover:text-white'
+    }`,
+    darkButton: `border-gray-800 text-white ${
+      buttonActive ? 'bg-gray-800' : 'bg-gray-900 hover:bg-gray-800'
+    }`,
   }
 
-  const buttonClass = dark ? buttonClasses.dark : buttonClasses.DEFAULT
+  const buttonClass = isDark ? buttonClasses.darkButton : buttonClasses.DEFAULT
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-lg border-2 px-3 py-1.5 ${buttonClass} ${style}`}
+      className={`inline-flex items-center gap-1.5 rounded-lg border-2 px-3 py-1.5 ${buttonClass}`}
     >
       <span aria-hidden="true" role="img" className="text-sm">
-        {emoji}
+        {buttonEmoji}
       </span>
 
-      <span className="text-xs font-medium">{text}</span>
+      <span className="text-xs font-medium">{buttonText}</span>
     </span>
   )
 }
