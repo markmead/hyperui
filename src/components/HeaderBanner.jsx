@@ -2,7 +2,7 @@ import Container from '@component/Container'
 
 export default function HeaderBanner() {
   return (
-    <section className="border-y border-gray-200 bg-gray-100">
+    <section className="-mt-px border-y border-gray-200 bg-gray-100">
       <Container classNames="py-1.5">
         <a
           href="https://github.com/markmead/hyperui/issues/new/choose"
