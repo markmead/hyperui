@@ -3,7 +3,7 @@ import BrandLogo from '@component/BrandLogo'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-white">
+    <footer className="border-t border-gray-200 bg-white">
       <Container classNames="py-8 lg:py-12">
         <BrandLogo fontSize="text-lg" />
 
