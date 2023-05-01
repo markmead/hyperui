@@ -37,9 +37,9 @@ async function getCategory(params) {
   const categoriesPath = join(process.cwd(), '/src/data/categories')
 
   const categorySlug = params.category
-  const componentSlugs = await fs.readdir(componentsPath)
   const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
 
+  const componentSlugs = await fs.readdir(componentsPath)
   const categoryItem = await fs.readFile(categoryPath, 'utf-8')
 
   const { data: categoryData } = matter(categoryItem)
