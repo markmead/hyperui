@@ -6,10 +6,10 @@ import { useInView } from 'react-intersection-observer'
 
 import { blogPreviewHtml } from '@util/transformers'
 
-import PreviewCode from './PreviewCode'
-import PreviewCopy from './PreviewCopy'
-import PreviewIframe from './PreviewIframe'
-import PreviewView from './PreviewView'
+import PreviewCode from '@component/PreviewCode'
+import PreviewCopy from '@component/PreviewCopy'
+import PreviewIframe from '@component/PreviewIframe'
+import PreviewView from '@component/PreviewView'
 
 export default function BlogPreview({
   previewId,
