@@ -1,4 +1,4 @@
-export default function ComponentCreator({ creatorGithub }) {
+export default function PreviewCreator({ creatorGithub }) {
   return (
     <div>
       <p className="text-sm text-gray-500">

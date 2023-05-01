@@ -3,7 +3,6 @@ import Link from 'next/link'
 export default function ComponentCard({ componentData }) {
   const componentCountPluralize =
     componentData.count > 1 ? 'Components' : 'Component'
-
   const componentCount = `${componentData.count} ${componentCountPluralize}`
 
   return (

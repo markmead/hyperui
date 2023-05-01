@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import { componentPreviewHtml, componentTextJsx } from '@util/transformers'
 import { componentBreakpoints } from '@data/breakpoints'
 
-import ComponentCreator from '@component/ComponentCreator'
+import PreviewCreator from '@/components/PreviewCreator'
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
@@ -200,9 +200,7 @@ export default function ComponentPreview({
           </div>
         </div>
 
-        {componentCreator && (
-          <ComponentCreator creatorGithub={componentCreator} />
-        )}
+        {componentCreator && <PreviewCreator creatorGithub={previewCreator} />}
       </div>
     </div>
   )
