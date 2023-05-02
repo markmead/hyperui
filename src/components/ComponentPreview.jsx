@@ -200,7 +200,9 @@ export default function ComponentPreview({
           </div>
         </div>
 
-        {componentCreator && <PreviewCreator creatorGithub={previewCreator} />}
+        {componentCreator && (
+          <PreviewCreator creatorGithub={componentCreator} />
+        )}
       </div>
     </div>
   )
