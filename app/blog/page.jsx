@@ -61,7 +61,7 @@ export default async function Page() {
         write cleaner, more maintainable code and help you be more productive.
       </HeroBanner>
 
-      <Container classNames="py-8 lg:py-12">
+      <Container classNames="pb-8 lg:pb-12">
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {blogPosts.map((blogPost) => (
             <li key={blogPost.slug}>

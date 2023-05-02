@@ -72,7 +72,7 @@ export default async function Page() {
         next marketing website, admin dashboard, eCommerce store and much more.
       </HeroBanner>
 
-      <Container classNames="py-8 lg:py-12">
+      <Container classNames="pb-8 lg:pb-12">
         <ul className="space-y-8">
           {componentsByCategory.map(({ categoryTitle, componentItems }) => {
             return (
