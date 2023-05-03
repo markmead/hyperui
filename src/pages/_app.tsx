@@ -52,6 +52,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:url" content="https://www.hyperui.dev/" />
       </Head>
 
+      <div className="bg-black">
+        <div className="mx-auto max-w-3xl p-4">
+          <a
+            href="https://github.com/markmead/hyperui/discussions/304"
+            target="_blank"
+            rel="noreferrer"
+            className="block text-center text-sm font-medium text-white hover:opacity-75"
+          >
+            HyperUI is being updated to Next JS 13. Find out more &rarr;
+          </a>
+        </div>
+      </div>
+
       <Header />
 
       <main className="bg-white dark:bg-gray-900">
