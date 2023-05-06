@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import CollectionLinks from '@/components/CollectionLinks'
+import CollectionLinks from '@component/CollectionLinks'
 import CollectionList from '@component/CollectionList'
 
 const mdxComponents = {
