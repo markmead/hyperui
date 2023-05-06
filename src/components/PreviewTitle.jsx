@@ -1,7 +1,9 @@
-export default function PreviewTitle({ componentTitle, componentHash }) {
+export default function PreviewTitle({ componentTitle, componentId }) {
+  const hrefHash = `#${componentId}`
+
   return (
     <h2 className="text-lg font-bold text-gray-900 sm:text-xl">
-      <a href={`#${componentHash}`} className="group relative inline-block">
+      <a href={hrefHash} className="group relative inline-block">
         <span
           aria-hidden="true"
           className="hidden group-hover:opacity-25 lg:absolute lg:inset-y-0 lg:-left-6 lg:block lg:opacity-0 lg:transition"
