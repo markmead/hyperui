@@ -1,14 +1,11 @@
 <!--
-  This component uses @tailwindcss/line-clamp
+  Heads up! 👋
 
-  yarn add @tailwindcss/line-clamp
-  npm install @tailwindcss/line-clamp
-
-  plugins: [require('@tailwindcss/line-clamp')]
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
 -->
 
 <article
-  class="rounded-lg border border-gray-100 p-4 shadow-sm transition hover:shadow-lg dark:border-gray-800 dark:shadow-gray-700/25 sm:p-6"
+  class="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25 sm:p-6"
 >
   <span
     class="inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700"
@@ -39,9 +36,7 @@
     </h3>
   </a>
 
-  <p
-    class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3 dark:text-gray-400"
-  >
+  <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 dark:text-gray-400">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
     dolores, possimus pariatur animi temporibus nesciunt praesentium dolore sed
     nulla ipsum eveniet corporis quidem, mollitia itaque minus soluta,
@@ -57,7 +52,7 @@
 
     <span
       aria-hidden="true"
-      class="block transition group-hover:translate-x-0.5"
+      class="block transition-all group-hover:ms-0.5 rtl:rotate-180"
     >
       &rarr;
     </span>

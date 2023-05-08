@@ -1,8 +1,14 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
 <div class="overflow-x-auto">
-  <table class="min-w-full divide-y-2 divide-gray-200 text-sm">
-    <thead>
+  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
       <tr>
-        <th class="sticky inset-y-0 left-0 bg-white px-4 py-2 text-left">
+        <th class="sticky inset-y-0 start-0 bg-white px-4 py-2">
           <label for="SelectAll" class="sr-only">Select All</label>
 
           <input
@@ -11,24 +17,16 @@
             class="h-5 w-5 rounded border-gray-300"
           />
         </th>
-        <th
-          class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
-        >
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Name
         </th>
-        <th
-          class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
-        >
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Date of Birth
         </th>
-        <th
-          class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
-        >
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Role
         </th>
-        <th
-          class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
-        >
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Salary
         </th>
       </tr>
@@ -36,7 +34,7 @@
 
     <tbody class="divide-y divide-gray-200">
       <tr>
-        <td class="sticky inset-y-0 left-0 bg-white px-4 py-2">
+        <td class="sticky inset-y-0 start-0 bg-white px-4 py-2">
           <label class="sr-only" for="Row1">Row 1</label>
 
           <input
@@ -54,7 +52,7 @@
       </tr>
 
       <tr>
-        <td class="sticky inset-y-0 left-0 bg-white px-4 py-2">
+        <td class="sticky inset-y-0 start-0 bg-white px-4 py-2">
           <label class="sr-only" for="Row2">Row 2</label>
 
           <input
@@ -72,7 +70,7 @@
       </tr>
 
       <tr>
-        <td class="sticky inset-y-0 left-0 bg-white px-4 py-2">
+        <td class="sticky inset-y-0 start-0 bg-white px-4 py-2">
           <label class="sr-only" for="Row3">Row 3</label>
 
           <input

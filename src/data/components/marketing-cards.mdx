@@ -25,7 +25,6 @@ components:
     title: Bordered with Content on Hover
   8:
     title: Stat, Content with Call to Action
-    rtl: true
   9:
     title: Stat, Content with Accent Border and Icon
   10:
@@ -46,12 +45,11 @@ components:
   16:
     title: Forum Post
     container: max-w-2xl mx-auto p-8
-    rtl: true
 ---
 
 # Card Components
 
-<List
-  componentsData={componentsArray}
+<CollectionList
+  componentsData={componentsData}
   componentContainer={componentContainer}
 />

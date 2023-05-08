@@ -18,7 +18,7 @@
   ></span>
 
   <span
-    :class="{ 'translate-x-6': isChecked }"
-    class="absolute inset-0 m-1 h-6 w-6 rounded-full bg-white transition"
+    :class="{ 'start-0': !isChecked, 'start-6': isChecked }"
+    class="absolute inset-y-0 m-1 h-6 w-6 rounded-full bg-white transition-all"
   ></span>
 </label>

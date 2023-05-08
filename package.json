@@ -3,32 +3,26 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
-    "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
-    "css": "yarn css:components && yarn css:blogs",
+    "start": "next start",
     "dev": "next dev",
     "lint": "next lint",
-    "postbuild": "yarn css && next-sitemap --config sitemap.config.js",
-    "watch": "yarn css -w"
+    "css": "yarn css:components && yarn css:blogs",
+    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
+    "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
+    "watch": "yarn css -w",
+    "postbuild": "yarn css && next-sitemap --config sitemap.config.js"
   },
   "dependencies": {
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "tslib": "^2.3.1"
+    "next": "^13.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
-    "@types/node": "17.0.21",
-    "@types/prismjs": "^1.26.0",
-    "@types/react": "17.0.40",
-    "@vercel/analytics": "^0.1.8",
     "autoprefixer": "^10.4.12",
     "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
+    "eslint-config-next": "^13.3.1",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",
@@ -38,14 +32,9 @@
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prismjs": "^1.27.0",
     "react-intersection-observer": "^8.33.1",
-    "react-redux": "^8.0.5",
+    "react-use": "^17.4.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
-    "tailwindcss": "^3.2.4",
-    "typescript": "4.6.2"
-  },
-  "resolutions": {
-    "@types/react": "17.0.2",
-    "@types/react-dom": "17.0.2"
+    "tailwindcss": "^3.3.1"
   }
 }

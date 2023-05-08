@@ -1,15 +1,21 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
 <section class="bg-gray-100">
   <div
-    class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:mr-0 lg:pl-8 lg:pr-0"
+    class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8"
   >
     <div
       class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16"
     >
-      <div class="max-w-xl text-center sm:text-left">
+      <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
         <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
           Don't just take our word for it...
           <br class="hidden sm:block lg:hidden" />
@@ -27,17 +33,17 @@
           >
             <span class="sr-only">Previous Slide</span>
             <svg
-              class="h-5 w-5 -rotate-180 transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-5 w-5 rtl:rotate-180"
             >
               <path
-                d="M9 5l7 7-7 7"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
               />
             </svg>
           </button>
@@ -47,7 +53,7 @@
           >
             <span class="sr-only">Next Slide</span>
             <svg
-              class="h-5 w-5"
+              class="h-5 w-5 rtl:rotate-180"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

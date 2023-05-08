@@ -2,7 +2,7 @@
 title: Collection Filters
 emoji: 🎛️
 category: ecommerce
-container: p-8 max-w-md mx-auto dark:bg-gray-900
+container: p-8 max-w-md mx-auto
 seo:
   title: Collection Filter Components
   description: Collection Filter components created with Tailwind CSS
@@ -11,7 +11,6 @@ components:
     title: Inline Dropdown
     dark: true
     interactive: true
-    rtl: true
   2:
     title: Stacked Dropdown
     dark: true
@@ -20,7 +19,7 @@ components:
 
 # Collection Filter Components
 
-<List
-  componentsData={componentsArray}
+<CollectionList
+  componentsData={componentsData}
   componentContainer={componentContainer}
 />
