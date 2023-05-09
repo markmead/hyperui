@@ -52,6 +52,8 @@ export default function ComponentPreview({
     ? componentSpace
     : componentContainer
 
+  const componentHash = `component-${componentId}`
+
   useEffect(() => {
     if (inView) {
       fetchHtml({
@@ -120,11 +122,11 @@ export default function ComponentPreview({
   }
 
   return (
-    <div className="-mt-20 pt-20" ref={ref} id={componentId}>
+    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
       <div className="space-y-4">
         <PreviewTitle
           componentTitle={componentTitle}
-          componentId={componentId}
+          componentHash={componentHash}
         />
 
         <div className="lg:flex lg:items-end">
