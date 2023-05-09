@@ -1,14 +1,13 @@
-import CollectionCard from '@/components/CollectionCard'
+import CollectionCard from '@component/CollectionCard'
 
 export default function CollectionGrid({ componentItems }) {
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {componentItems.map((componentData) => (
-        <CollectionCard
-          componentData={componentData}
-          key={componentData.slug}
-        />
+        <li key={componentData.slug}>
+          <CollectionCard componentData={componentData} />
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
