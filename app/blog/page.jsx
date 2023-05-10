@@ -4,7 +4,7 @@ import { join } from 'path'
 
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
-import BlogCard from '@component/BlogCard'
+import BlogGrid from '@component/BlogGrid'
 
 export const metadata = {
   title: 'Tailwind CSS Blog | HyperUI',
@@ -62,13 +62,7 @@ export default async function Page() {
       </HeroBanner>
 
       <Container classNames="pb-8 lg:pb-12">
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {blogPosts.map((blogPost) => (
-            <li key={blogPost.slug}>
-              <BlogCard blogPost={blogPost} />
-            </li>
-          ))}
-        </ul>
+        <BlogGrid blogPosts={blogPosts} />
       </Container>
     </>
   )

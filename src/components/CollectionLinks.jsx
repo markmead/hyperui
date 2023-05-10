@@ -59,7 +59,7 @@ async function getComponents() {
   }
 }
 
-export default async function ComponentLinks() {
+export default async function CollectionLinks() {
   const { categoriesData, componentsData } = await getComponents()
 
   return (

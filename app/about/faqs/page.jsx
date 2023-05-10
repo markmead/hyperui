@@ -2,7 +2,7 @@ import { faqItems } from '@data/faqs'
 
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
-import FaqCard from '@component/FaqCard'
+import FaqGrid from '@component/FaqGrid'
 
 export const metadata = {
   title: 'FAQs | HyperUI',
@@ -53,15 +53,7 @@ export default async function Page() {
       </HeroBanner>
 
       <Container>
-        <ul className="grid gap-px bg-gray-100 sm:grid-cols-2">
-          {faqItems.map((faqItem, faqIndex) => (
-            <FaqCard
-              key={faqIndex}
-              faqQuestion={faqItem.question}
-              faqAnswer={faqItem.answer}
-            />
-          ))}
-        </ul>
+        <FaqGrid faqItems={faqItems} />
       </Container>
     </>
   )

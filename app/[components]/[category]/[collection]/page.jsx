@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import ComponentLinks from '@component/ComponentLinks'
+import CollectionLinks from '@component/CollectionLinks'
 import CollectionList from '@component/CollectionList'
 
 const mdxComponents = {
@@ -89,18 +89,16 @@ export default async function Page({ params }) {
   }
 
   return (
-    <>
-      <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
-        <ComponentLinks />
+    <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
+      <CollectionLinks />
 
-        <div className="prose max-w-none">
-          <MdxRemoteRender
-            mdxSource={collectionContent}
-            mdxComponents={mdxComponents}
-            mdxScope={componentsData}
-          />
-        </div>
-      </Container>
-    </>
+      <div className="prose max-w-none">
+        <MdxRemoteRender
+          mdxSource={collectionContent}
+          mdxComponents={mdxComponents}
+          mdxScope={componentsData}
+        />
+      </div>
+    </Container>
   )
 }

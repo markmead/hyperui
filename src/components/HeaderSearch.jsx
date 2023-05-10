@@ -24,8 +24,8 @@ export default function HeaderSearch() {
         resultA.title.localeCompare(resultB.title)
       )
 
-      setSearchResults(searchResults)
-      setInitialResults(searchResults)
+      setSearchResults(sortedSearchResults)
+      setInitialResults(sortedSearchResults)
     }
 
     getSearchResults()

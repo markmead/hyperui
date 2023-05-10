@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import { componentPreviewHtml, componentPreviewJsx } from '@util/transformers'
 import { componentBreakpoints } from '@data/breakpoints'
 
-import PreviewCreator from '@/components/PreviewCreator'
+import PreviewCreator from '@component/PreviewCreator'
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
