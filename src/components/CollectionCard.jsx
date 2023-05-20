@@ -10,7 +10,7 @@ export default function CollectionCard({ componentData }) {
     <Link href={`/components/${componentData.category}/${componentData.slug}`}>
       <div className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-dashed before:border-gray-900">
         {isNew && (
-          <span className="absolute -end-1.5 -top-1.5 z-10 block -skew-x-6 rounded-md border-2 border-black bg-yellow-400 px-2 py-1.5 text-xs/none font-medium uppercase tracking-wide text-gray-900 transition group-hover:-translate-y-2 ltr:group-hover:translate-x-2 rtl:group-hover:-translate-x-2">
+          <span className="absolute -end-1.5 -top-1.5 z-10 block -skew-x-6 rounded-md border-2 border-gray-900 bg-yellow-400 px-2 py-1.5 text-xs/none font-medium uppercase tracking-wide text-gray-900 transition group-hover:-translate-y-2 ltr:group-hover:translate-x-2 rtl:group-hover:-translate-x-2">
             New
           </span>
         )}
