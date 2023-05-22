@@ -6,6 +6,6 @@
 
 @layer base {
   :where([dir='rtl']) select {
-    @apply bg-[left_0.5rem_center] pe-3 ps-10;
+    @apply bg-[left_0.5rem_center] pe-10 ps-3;
   }
 }
