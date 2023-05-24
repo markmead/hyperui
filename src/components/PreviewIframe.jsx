@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { useEvent } from 'react-use'
+import { useMeasure } from 'react-use'
 
 export default function PreviewIframe({
   showPreview,
@@ -11,6 +11,14 @@ export default function PreviewIframe({
   previewDark,
 }) {
   const [iframeHeight, setIframeHeight] = useState(0)
+
+  const [localRefIframe, { width }] = useMeasure()
+
+  useEffect(() => {
+    handleResize()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [width])
 
   function handleLoad() {
     if (!refIframe.current) return
@@ -28,7 +36,11 @@ export default function PreviewIframe({
     setIframeHeight(refIframe.current.contentWindow.document.body.scrollHeight)
   }
 
-  useEvent('resize', handleResize, window, { capture: true })
+  function setRefs(iframeEl) {
+    localRefIframe(iframeEl)
+
+    refIframe.current = iframeEl
+  }
 
   return (
     <div className={showPreview ? 'block' : 'hidden'}>
@@ -43,7 +55,7 @@ export default function PreviewIframe({
           height: iframeHeight ? iframeHeight : '400px',
         }}
         title={`${componentTitle} Component`}
-        ref={refIframe}
+        ref={(iframeEl) => setRefs(iframeEl)}
         onLoad={handleLoad}
       ></iframe>
     </div>
