@@ -15,6 +15,8 @@ export default function PreviewIframe({
   function handleLoad() {
     if (!refIframe.current) return
 
+    // We check if the iframeHeight is already set to avoid
+    // it resetting when loading a component variant
     if (iframeHeight) return
 
     setIframeHeight(refIframe.current.contentWindow.document.body.scrollHeight)
