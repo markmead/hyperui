@@ -15,7 +15,12 @@ export default function PreviewCode({
   useEffect(() => Prism.highlightAll(), [componentCode])
 
   return (
-    <div className={`relative ${showPreview ? 'hidden' : 'block'}`}>
+    <div
+      className="relative"
+      {...(showPreview && {
+        hidden: true,
+      })}
+    >
       {showToggle && handleSetIsJsx && (
         <button
           className="absolute right-4 top-4"

@@ -7,7 +7,11 @@ export default function PreviewIframe({
   previewDark,
 }) {
   return (
-    <div className={showPreview ? 'block' : 'hidden'}>
+    <div
+      {...(!showPreview && {
+        hidden: true,
+      })}
+    >
       <iframe
         className={`h-[400px] w-full rounded-lg ring-2 ring-gray-900 lg:h-[600px] lg:transition-all ${
           previewDark ? 'bg-gray-950' : 'bg-white'
