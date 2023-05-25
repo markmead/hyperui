@@ -6,6 +6,8 @@ export default function PreviewIframe({
   refIframe,
   previewDark,
 }) {
+  const iframeTheme = previewDark ? 'bg-gray-950' : 'bg-white'
+
   return (
     <div
       {...(!showPreview && {
@@ -13,9 +15,7 @@ export default function PreviewIframe({
       })}
     >
       <iframe
-        className={`h-[400px] w-full rounded-lg ring-2 ring-gray-900 lg:h-[600px] lg:transition-all ${
-          previewDark ? 'bg-gray-950' : 'bg-white'
-        }`}
+        className={`h-[400px] w-full rounded-lg ring-2 ring-gray-900 lg:h-[600px] lg:transition-all ${iframeTheme}`}
         loading="lazy"
         srcDoc={componentHtml}
         style={{ maxWidth: previewWidth }}
