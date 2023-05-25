@@ -1,3 +1,5 @@
+import { Inter } from 'next/font/google'
+
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
@@ -26,6 +28,11 @@ export const metadata = {
   },
 }
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
 export default function RootLayout({ children }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
@@ -34,7 +41,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
 
-      <body className="antialiased">
+      <body className={`${inter.variable} font-sans antialiased`}>
         <Header />
         <HeaderBanner />
 
