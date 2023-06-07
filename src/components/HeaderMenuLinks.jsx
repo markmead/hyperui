@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function HeaderMenuLinks({ menuLinks, navClass, ulClass }) {
   return (
-    <nav aria-label="Page Nav" className={navClass && navClass}>
+    <nav aria-label="Global" className={navClass && navClass}>
       <ul className={ulClass && ulClass}>
         {menuLinks.map((menuLink, index, { length }) => {
           const isLast = index === length - 1
