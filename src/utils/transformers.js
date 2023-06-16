@@ -41,6 +41,7 @@ export function componentPreviewJsx(componentHtml) {
   clonedHtml = clonedHtml.replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
   clonedHtml = clonedHtml.replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
   clonedHtml = clonedHtml.replace(/stroke-opacity=/g, 'strokeOpacity=')
+  clonedHtml = clonedHtml.replace(/tabindex=/g, 'tabIndex=')
   clonedHtml = clonedHtml.replace(/<!--/g, '{/*')
   clonedHtml = clonedHtml.replace(/-->/g, '*/}')
 
