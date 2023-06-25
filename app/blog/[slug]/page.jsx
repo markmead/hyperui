@@ -3,6 +3,8 @@ import { promises as fs } from 'fs'
 import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 
+import rehypeExternalLinks from 'rehype-external-links'
+
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -48,7 +50,7 @@ async function getPost(params) {
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
+      rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
     },
     scope: frontmatter,
   })

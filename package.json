@@ -33,6 +33,7 @@
     "prismjs": "^1.27.0",
     "react-intersection-observer": "^8.33.1",
     "react-use": "^17.4.0",
+    "rehype-external-links": "^2.1.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "tailwindcss": "^3.3.1"
