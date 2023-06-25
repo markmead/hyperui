@@ -1,3 +1,5 @@
+const activeVersion = 'v3.3.2'
+
 export const faqItems = [
   {
     question: 'What is HyperUI?',
@@ -66,17 +68,15 @@ export const faqItems = [
   },
   {
     question: 'Which version of Tailwind CSS does HyperUI use?',
-    answer:
-      'HyperUI uses Tailwind CSS v3.3.1. If you are using a different version, you may need to make some changes to the code but these should be minimal.',
+    answer: `HyperUI uses Tailwind CSS ${activeVersion}. If you are using a different version, you may need to make some changes to the code but these should be minimal.`,
   },
   {
     question: "I've copied the code, but it doesn't work?",
-    answer:
-      'Check that you have the correct Tailwind CSS version installed, HyperUI uses Tailwind CSS v3.3.1. If you are still having issues, please create an issue on GitHub.',
+    answer: `Check that you have the correct Tailwind CSS version installed, HyperUI uses Tailwind CSS ${activeVersion}. If you are still having issues, please create an issue on GitHub.`,
   },
   {
     question: 'Does HyperUI have dark mode?',
     answer:
-      'Yes, some components have support for dark mode. You can toggle dark mode on the entire website or for individual components.',
+      'Yes, some components have support for dark mode. You can toggle dark mode on/off. Not all components have support but this is being worked on.',
   },
 ]
