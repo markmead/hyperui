@@ -1,36 +1,45 @@
 <a
-  class="relative flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
   href="#"
+  class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
 >
-  <div class="pt-4 text-gray-500">
-    <svg
-      class="h-8 w-8 sm:h-10 sm:w-10"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-      ></path>
-    </svg>
+  <span
+    class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+  ></span>
 
-    <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-      Science of Chemistry
-    </h3>
+  <div class="sm:flex sm:justify-between sm:gap-4">
+    <div>
+      <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
+        Building a SaaS product as a software developer
+      </h3>
 
-    <p class="mt-2 hidden text-sm sm:block">
-      You can manage phone, email and chat conversations all from a single
-      mailbox.
+      <p class="mt-1 text-xs font-medium text-gray-600">By John Doe</p>
+    </div>
+
+    <div class="hidden sm:block sm:shrink-0">
+      <img
+        alt="Paul Clapton"
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+        class="h-16 w-16 rounded-lg object-cover shadow-sm"
+      />
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <p class="max-w-[40ch] text-sm text-gray-500">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. At velit illum
+      provident a, ipsa maiores deleniti consectetur nobis et eaque.
     </p>
   </div>
 
-  <span
-    class="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
-  >
-    4.3
-  </span>
+  <dl class="mt-6 flex gap-4 sm:gap-6">
+    <div class="flex flex-col-reverse">
+      <dt class="text-sm font-medium text-gray-600">Published</dt>
+      <dd class="text-xs text-gray-500">31st June, 2021</dd>
+    </div>
+
+    <div class="flex flex-col-reverse">
+      <dt class="text-sm font-medium text-gray-600">Reading time</dt>
+      <dd class="text-xs text-gray-500">3 minute</dd>
+    </div>
+  </dl>
 </a>
