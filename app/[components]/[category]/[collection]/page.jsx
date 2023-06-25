@@ -90,7 +90,7 @@ export default async function Page({ params }) {
 
   return (
     <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
-      <CollectionLinks />
+      <CollectionLinks activeCollection={params.collection} activeCategory={params.category} />
 
       <div className="prose max-w-none">
         <MdxRemoteRender
