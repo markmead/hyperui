@@ -6,7 +6,7 @@ export default function PreviewIframe({
   refIframe,
   previewDark,
 }) {
-  const iframeTheme = previewDark ? 'bg-gray-900' : 'bg-white'
+  const iframeTheme = previewDark ? 'bg-gray-950' : 'bg-white'
 
   return (
     <div
