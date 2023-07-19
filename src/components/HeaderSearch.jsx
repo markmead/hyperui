@@ -43,7 +43,7 @@ export default function HeaderSearch() {
     const filteredResults = initialResults.filter(function (initialResult) {
       const { title: initialTitle } = initialResult
 
-      return initialTitle.toLowerCase().includes(searchQuery.toLowerCase())
+      return initialTitle.toLowerCase().includes(searchQuery.toLowerCase().trim())
     })
 
     setSearchResults(filteredResults)
