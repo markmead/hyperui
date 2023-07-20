@@ -45,6 +45,7 @@ async function getComponents() {
               emoji: componentData.emoji,
               count: componentCount,
               tag: componentData.tag,
+              id: componentSlugFormatted,
             }
           })
       )
