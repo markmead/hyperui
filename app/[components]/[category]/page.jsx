@@ -67,6 +67,7 @@ async function getCategory(params) {
           emoji: componentData.emoji,
           count: componentCount,
           tag: componentData.tag,
+          id: componentSlugFormatted,
         }
       })
   )
