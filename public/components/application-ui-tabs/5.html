@@ -1,0 +1,53 @@
+<!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
+
+<div>
+  <div class="sm:hidden">
+    <label for="Tab" class="sr-only">Tab</label>
+
+    <select id="Tab" class="w-full rounded-md border-gray-200">
+      <option>Settings</option>
+      <option>Messages</option>
+      <option>Archive</option>
+      <option select>Notifications</option>
+    </select>
+  </div>
+
+  <div class="hidden sm:block">
+    <div class="border-b border-gray-200">
+      <nav class="-mb-px flex gap-6">
+        <a
+          href="#"
+          class="shrink-0 border border-transparent p-3 text-sm font-medium text-gray-500 hover:text-gray-700"
+        >
+          Settings
+        </a>
+
+        <a
+          href="#"
+          class="shrink-0 border border-transparent p-3 text-sm font-medium text-gray-500 hover:text-gray-700"
+        >
+          Messages
+        </a>
+
+        <a
+          href="#"
+          class="shrink-0 border border-transparent p-3 text-sm font-medium text-gray-500 hover:text-gray-700"
+        >
+          Archive
+        </a>
+
+        <a
+          href="#"
+          class="shrink-0 rounded-t-lg border border-gray-300 border-b-white p-3 text-sm font-medium text-sky-600"
+        >
+          Notifications
+        </a>
+      </nav>
+    </div>
+  </div>
+</div>
