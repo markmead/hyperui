@@ -49,6 +49,7 @@ async function getComponents() {
         emoji: categoryData.emoji,
         count: componentCount,
         category: componentData.category,
+        id: componentSlugFormatted,
       }
     })
   )
@@ -59,7 +60,10 @@ async function getComponents() {
   }
 }
 
-export default async function CollectionLinks({ activeCollection, activeCategory }) {
+export default async function CollectionLinks({
+  activeCollection,
+  activeCategory,
+}) {
   const { categoriesData, componentsData } = await getComponents()
 
   return (
@@ -84,7 +88,9 @@ export default async function CollectionLinks({ activeCollection, activeCategory
       <ul className="mt-4 flex flex-wrap gap-1">
         {componentsData.map((componentData) => {
           const buttonText = `${componentData.title} (${componentData.count})`
-          const isActive = activeCategory === componentData.category && activeCollection === componentData.slug
+          const isActive =
+            activeCategory === componentData.category &&
+            activeCollection === componentData.slug
 
           return (
             <li key={componentData.id}>
