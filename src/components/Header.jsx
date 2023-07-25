@@ -20,6 +20,11 @@ export default function Header() {
 
   const menuLinks = [
     {
+      title: 'Application UI',
+      href: '/components/application-ui',
+      external: false,
+    },
+    {
       title: 'Marketing',
       href: '/components/marketing',
       external: false,
@@ -27,11 +32,6 @@ export default function Header() {
     {
       title: 'eCommerce',
       href: '/components/ecommerce',
-      external: false,
-    },
-    {
-      title: 'Application UI',
-      href: '/components/application-ui',
       external: false,
     },
     {
