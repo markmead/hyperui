@@ -52,7 +52,7 @@ export default async function Page() {
         have about HyperUI. If not, then please reach out on GitHub.
       </HeroBanner>
 
-      <Container>
+      <Container classNames="pb-8 lg:pb-12">
         <FaqGrid faqItems={faqItems} />
       </Container>
     </>
