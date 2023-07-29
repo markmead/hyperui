@@ -13,26 +13,19 @@ export default function BlogTableContent() {
       (headingItems, headingItem) => {
         const itemLevel = headingItem.tagName.slice(1)
 
+        const newItem = {
+          itemText: headingItem.textContent,
+          itemId: headingItem.id,
+        }
+
         if (itemLevel === '2') {
-          headingItems.push([
-            {
-              itemText: headingItem.textContent,
-              itemId: headingItem.id,
-            },
-            [],
-          ])
+          headingItems.push([newItem, []])
         }
 
         if (itemLevel === '3') {
           const lastHeadingItem = headingItems[headingItems.length - 1]
 
-          lastHeadingItem[1].push([
-            {
-              itemText: headingItem.textContent,
-              itemId: headingItem.id,
-            },
-            [],
-          ])
+          lastHeadingItem[1].push([newItem, []])
         }
 
         if (itemLevel === '4') {
@@ -40,13 +33,7 @@ export default function BlogTableContent() {
           const lastChildHeadingItem =
             lastHeadingItem[1][lastHeadingItem[1].length - 1]
 
-          lastChildHeadingItem[1].push([
-            {
-              itemText: headingItem.textContent,
-              itemId: headingItem.id,
-            },
-            [],
-          ])
+          lastChildHeadingItem[1].push([newItem, []])
         }
 
         return headingItems
