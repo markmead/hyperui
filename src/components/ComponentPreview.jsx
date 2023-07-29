@@ -122,7 +122,7 @@ export default function ComponentPreview({
   }
 
   return (
-    <div className="-mt-20 pt-20" ref={ref} id={componentHash}>
+    <div ref={ref} id={componentHash}>
       <div className="space-y-4">
         <PreviewTitle
           componentTitle={componentTitle}
