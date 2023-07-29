@@ -13,7 +13,7 @@ Take the following example.
 <ul>
   <li class="text-sm font-medium text-gray-900">...</li>
   <li class="text-sm font-medium text-gray-900">...</li>
-  <li class="text-sm font-medium text-gray-900 bg-gray-100">...</li>
+  <li class="bg-gray-100 text-sm font-medium text-gray-900">...</li>
 </ul>
 ```
 
@@ -51,9 +51,9 @@ Let's use this example.
 
 ```html
 <ul>
-  <li class="p-4 text-sm font-medium whitespace-nowrap">...</li>
-  <li class="p-4 text-sm font-medium whitespace-nowrap">...</li>
-  <li class="p-4 text-sm font-medium bg-gray-100 whitespace-nowrap">...</li>
+  <li class="whitespace-nowrap p-4 text-sm font-medium">...</li>
+  <li class="whitespace-nowrap p-4 text-sm font-medium">...</li>
+  <li class="whitespace-nowrap bg-gray-100 p-4 text-sm font-medium">...</li>
 </ul>
 ```
 
@@ -73,9 +73,9 @@ Here's how it would look without JIT.
 
 ```html
 <ul class="text-sm font-medium">
-  <li class="p-4 whitespace-nowrap">...</li>
-  <li class="p-4 whitespace-nowrap">...</li>
-  <li class="p-4 bg-gray-100 whitespace-nowrap">...</li>
+  <li class="whitespace-nowrap p-4">...</li>
+  <li class="whitespace-nowrap p-4">...</li>
+  <li class="whitespace-nowrap bg-gray-100 p-4">...</li>
 </ul>
 ```
 
