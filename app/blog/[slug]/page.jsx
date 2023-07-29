@@ -4,9 +4,11 @@ import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import rehypeExternalLinks from 'rehype-external-links'
+import remarkSlug from 'remark-slug'
 
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
+import TableContent from '@/components/BlogTableContent'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const mdxComponents = {
@@ -49,7 +51,7 @@ async function getPost(params) {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [],
+      remarkPlugins: [remarkSlug],
       rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
     },
     scope: frontmatter,
@@ -86,6 +88,8 @@ export default async function Page({ params }) {
 
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
+
+          <TableContent />
 
           <MdxRemoteRender
             mdxSource={blogContent}

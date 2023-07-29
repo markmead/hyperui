@@ -5,3 +5,7 @@
 @tailwind utilities;
 
 @import './prism.css';
+
+html {
+  scroll-padding-top: 65px;
+}
