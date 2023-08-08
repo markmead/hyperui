@@ -38,14 +38,19 @@ async function getPosts() {
 
       return {
         title: blogData.title,
-        slug: blogSlug.replace('.mdx', ''),
         date: blogData.date,
         emoji: blogData.emoji,
+        slug: blogSlug.replace('.mdx', ''),
       }
     })
   )
 
-  return blogPosts
+  return blogPosts.sort((blogA, blogB) => {
+    const dateA = new Date(blogA.date)
+    const dateB = new Date(blogB.date)
+
+    return dateB - dateA
+  })
 }
 
 export default async function Page() {

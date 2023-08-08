@@ -13,7 +13,18 @@ export default function Footer() {
             websites, as well as application UI.
           </p>
 
-          <p className="mt-4 text-sm text-gray-600">Created by Mark Mead.</p>
+          <p className="mt-4 text-sm text-gray-600">
+            Created by{' '}
+            <a
+              href="https://github.com/markmead"
+              rel="noreferrer"
+              target="_blank"
+              className="inline-block font-medium text-gray-700 hover:text-gray-900"
+            >
+              Mark Mead
+            </a>
+            .
+          </p>
         </div>
       </Container>
     </footer>
