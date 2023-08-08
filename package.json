@@ -9,10 +9,10 @@
     "css": "yarn css:components && yarn css:blogs",
     "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
     "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
-    "postbuild": "yarn css && next-sitemap --config sitemap.config.js"
+    "postbuild": "yarn css"
   },
   "dependencies": {
-    "next": "^13.3.1",
+    "next": "^13.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -25,7 +25,6 @@
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",
-    "next-sitemap": "^4.1.8",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
