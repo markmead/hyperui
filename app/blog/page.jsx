@@ -34,18 +34,24 @@ async function getPosts() {
       const postPath = join(postsPath, blogSlug)
       const blogItem = await fs.readFile(postPath, 'utf-8')
 
-      const { data: blogData } = matter(blogItem)
+      const { data } = matter(blogItem)
+      const { title, date, emoji } = data
 
       return {
-        title: blogData.title,
+        title,
+        date,
+        emoji,
         slug: blogSlug.replace('.mdx', ''),
-        date: blogData.date,
-        emoji: blogData.emoji,
       }
     })
   )
 
-  return blogPosts
+  return blogPosts.sort((blogA, blogB) => {
+    const dateA = new Date(blogA.date)
+    const dateB = new Date(blogB.date)
+
+    return dateB - dateA
+  })
 }
 
 export default async function Page() {
