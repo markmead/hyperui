@@ -68,8 +68,6 @@ export default async function sitemap() {
     })
   })
 
-  console.log(transformedSlugs)
-
   return [
     {
       url: 'https://www.hyperui.dev',
