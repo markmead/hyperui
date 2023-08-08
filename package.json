@@ -25,7 +25,7 @@
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^4.0.0",
-    "next-sitemap": "^3.1.20",
+    "next-sitemap": "^4.1.8",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
