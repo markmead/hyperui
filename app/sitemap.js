@@ -59,14 +59,30 @@ export default async function sitemap() {
     getBlogs(),
   ])
 
-  const [categorySlugs, componentSlugs, blogSlugs] = siteSlugs
+  const transformedSlugs = siteSlugs.flatMap((siteSlug) => {
+    return siteSlug.flatMap((pageSlug) => {
+      return {
+        url: `https://www.hyperui.dev/${pageSlug}`,
+        lastModified: new Date(),
+      }
+    })
+  })
 
-  const categoryUrls = categorySlugs.map((categorySlug) => ({
-    url: `https://www.hyperui.dev/${categorySlug}`,
-    lastModified: new Date(),
-  }))
+  console.log(transformedSlugs)
 
-  console.log(categoryUrls)
-
-  return [...categoryUrls]
+  return [
+    {
+      url: 'https://www.hyperui.dev',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.hyperui.dev/about/faqs',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.hyperui.dev/blog',
+      lastModified: new Date(),
+    },
+    ...transformedSlugs,
+  ]
 }
