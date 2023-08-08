@@ -9,7 +9,6 @@
     "css": "yarn css:components && yarn css:blogs",
     "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
     "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
-    "watch": "yarn css -w",
     "postbuild": "yarn css && next-sitemap --config sitemap.config.js"
   },
   "dependencies": {
