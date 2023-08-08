@@ -34,13 +34,12 @@ async function getPosts() {
       const postPath = join(postsPath, blogSlug)
       const blogItem = await fs.readFile(postPath, 'utf-8')
 
-      const { data } = matter(blogItem)
-      const { title, date, emoji } = data
+      const { data: blogData } = matter(blogItem)
 
       return {
-        title,
-        date,
-        emoji,
+        title: blogData.title,
+        date: blogData.date,
+        emoji: blogData.emoji,
         slug: blogSlug.replace('.mdx', ''),
       }
     })
