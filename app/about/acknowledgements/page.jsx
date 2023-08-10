@@ -1,12 +1,12 @@
 import Container from '@component/Container'
-import HeroBanner from '@component/HeroBanner'
 
 export const metadata = {
   title: 'Acknowledgements | HyperUI',
-  description: 'Saying thanks to the tools used to make HyperUI.',
+  description: 'Quick mention to some of the tools that helped build HyperUI.',
   openGraph: {
     title: 'Acknowledgements | HyperUI',
-    description: 'Saying thanks to the tools used to make HyperUI.',
+    description:
+      'Quick mention to some of the tools that helped build HyperUI.',
     url: 'https://www.hyperui.dev/',
     siteName: 'HyperUI',
     type: 'website',
@@ -15,7 +15,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Acknowledgements | HyperUI',
-    description: 'Saying thanks to the tools used to make HyperUI.',
+    description:
+      'Quick mention to some of the tools that helped build HyperUI.',
   },
 }
 
