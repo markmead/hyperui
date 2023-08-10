@@ -24,23 +24,23 @@ export default async function Page() {
   const pageLinks = [
     {
       name: 'PrismJS',
-      url: 'https://github.com/PrismJS/prism',
+      href: 'https://github.com/PrismJS/prism',
     },
     {
       name: 'React Use',
-      url: 'https://github.com/streamich/react-use',
+      href: 'https://github.com/streamich/react-use',
     },
     {
       name: 'Next MDX Remote',
-      url: 'https://github.com/hashicorp/next-mdx-remote',
+      href: 'https://github.com/hashicorp/next-mdx-remote',
     },
     {
       name: 'Prettier (TailwindCSS)',
-      url: 'https://github.com/tailwindlabs/prettier-plugin-tailwindcss',
+      href: 'https://github.com/tailwindlabs/prettier-plugin-tailwindcss',
     },
     {
       name: 'React Intersection Observer',
-      url: 'https://github.com/thebuilder/react-intersection-observer',
+      href: 'https://github.com/thebuilder/react-intersection-observer',
     },
   ]
 
@@ -58,8 +58,8 @@ export default async function Page() {
 
           <ul>
             {pageLinks.map((pageLink) => (
-              <li>
-                <a href={pageLink.url} target="_blank" rel="noreferrer">
+              <li key={pageLink.href}>
+                <a href={pageLink.href} target="_blank" rel="noreferrer">
                   {pageLink.name}
                 </a>
               </li>
