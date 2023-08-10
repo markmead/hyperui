@@ -30,13 +30,7 @@ export default function Footer() {
             <ul class="flex gap-4">
               {menuLinks.map((menuLink) => (
                 <li key={menuLink.href}>
-                  <Link
-                    href={menuLink.href}
-                    {...(menuLink.external && {
-                      target: '_blank',
-                      rel: 'noreferrer',
-                    })}
-                  >
+                  <Link href={menuLink.href}>
                     <div className="block text-sm font-medium text-gray-900 hover:opacity-75">
                       {menuLink.title}
                     </div>
