@@ -6,8 +6,13 @@ import { serialize } from 'next-mdx-remote/serialize'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkSlug from 'remark-slug'
 
+import FaqList from '@/components/FaqList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
+
+const mdxComponents = {
+  FaqList,
+}
 
 const pagesPath = join(process.cwd(), '/src/data/pages')
 
@@ -39,9 +44,9 @@ export async function generateStaticParams() {
 
 async function getPage(params) {
   const postPath = join(pagesPath, `${params.slug}.mdx`)
-  const postItem = await fs.readFile(postPath, 'utf-8')
+  const pageItem = await fs.readFile(postPath, 'utf-8')
 
-  const { content, data: frontmatter } = matter(postItem)
+  const { content, data: frontmatter } = matter(pageItem)
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
@@ -58,12 +63,16 @@ async function getPage(params) {
 }
 
 export default async function Page({ params }) {
-  const { pageContent } = await getPage(params)
+  const { pageData, pageContent } = await getPage(params)
 
   return (
     <Container classNames="py-8 lg:py-12">
       <article class="prose">
-        <MdxRemoteRender mdxSource={pageContent} />
+        <MdxRemoteRender
+          mdxSource={pageContent}
+          mdxComponents={mdxComponents}
+          mdxScope={pageData || {}}
+        />
       </article>
     </Container>
   )
