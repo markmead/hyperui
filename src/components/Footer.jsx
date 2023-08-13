@@ -26,8 +26,8 @@ export default function Footer() {
             websites, as well as application UI.
           </p>
 
-          <div class="mt-4 lg:flex lg:items-end lg:justify-between">
-            <ul class="flex gap-4">
+          <div className="mt-4 lg:flex lg:items-end lg:justify-between">
+            <ul className="flex gap-4">
               {menuLinks.map((menuLink) => (
                 <li key={menuLink.href}>
                   <Link href={menuLink.href}>
