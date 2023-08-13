@@ -1,18 +1,13 @@
 'use client'
 
-export default function FaqList({ faqItems }) {
-  const transformedFaqItems = Object.values(faqItems).map((faqItem) => {
-    return {
-      question: faqItem.question,
-      answer: faqItem.answer,
-    }
-  })
+import { faqItems } from '@/data/faqs'
 
+export default function FaqList() {
   const schemaData = {
     '@context': 'http://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      transformedFaqItems.map((faqItem) => {
+      faqItems.map((faqItem) => {
         return {
           '@type': 'Question',
           name: faqItem.question,
@@ -33,7 +28,7 @@ export default function FaqList({ faqItems }) {
       />
 
       <ul>
-        {transformedFaqItems.map((faqItem, faqIndex) => (
+        {faqItems.map((faqItem, faqIndex) => (
           <li key={faqIndex}>
             <details class="group" open={faqIndex === 0}>
               <summary className="flex cursor-pointer items-center justify-between text-gray-900">
