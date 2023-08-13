@@ -71,7 +71,6 @@ export default async function Page({ params }) {
         <MdxRemoteRender
           mdxSource={pageContent}
           mdxComponents={mdxComponents}
-          mdxScope={pageData || {}}
         />
       </article>
     </Container>
