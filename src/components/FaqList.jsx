@@ -30,7 +30,7 @@ export default function FaqList() {
       <ul>
         {faqItems.map((faqItem, faqIndex) => (
           <li key={faqIndex}>
-            <details class="group" open={faqIndex === 0}>
+            <details className="group" open={faqIndex === 0}>
               <summary className="flex cursor-pointer items-center justify-between text-gray-900">
                 <strong className="text-lg font-medium">
                   {faqItem.question}

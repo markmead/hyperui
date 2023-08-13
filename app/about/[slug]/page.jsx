@@ -67,7 +67,7 @@ export default async function Page({ params }) {
 
   return (
     <Container classNames="py-8 lg:py-12">
-      <article class="prose">
+      <article className="prose">
         <MdxRemoteRender
           mdxSource={pageContent}
           mdxComponents={mdxComponents}
