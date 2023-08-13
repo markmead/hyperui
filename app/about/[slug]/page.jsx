@@ -43,8 +43,8 @@ export async function generateStaticParams() {
 }
 
 async function getPage(params) {
-  const postPath = join(pagesPath, `${params.slug}.mdx`)
-  const pageItem = await fs.readFile(postPath, 'utf-8')
+  const pagePath = join(pagesPath, `${params.slug}.mdx`)
+  const pageItem = await fs.readFile(pagePath, 'utf-8')
 
   const { content, data: frontmatter } = matter(pageItem)
 
