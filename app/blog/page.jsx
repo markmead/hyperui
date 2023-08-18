@@ -18,6 +18,7 @@ export const metadata = {
   },
   twitter: {
     title: 'Tailwind CSS Blog | HyperUI',
+    description: 'Tips and tricks for using Tailwind CSS in your projects.',
     ...twitterMeta,
   },
 }
