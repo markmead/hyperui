@@ -6,6 +6,8 @@ import { serialize } from 'next-mdx-remote/serialize'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkSlug from 'remark-slug'
 
+import { ogMeta, twitterMeta } from '@/data/metadata'
+
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
 import TableContent from '@/components/BlogTableContent'
@@ -26,15 +28,12 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${blogData.title} | HyperUI`,
       description: blogData.description,
-      url: 'https://www.hyperui.dev/',
-      siteName: 'HyperUI',
-      type: 'website',
-      image: 'https://www.hyperui.dev/og.jpg',
+      ...ogMeta,
     },
     twitter: {
-      card: 'summary_large_image',
       title: `${blogData.title} | HyperUI`,
       description: blogData.description,
+      ...twitterMeta,
     },
   }
 }

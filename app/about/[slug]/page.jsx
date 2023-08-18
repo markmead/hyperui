@@ -6,6 +6,8 @@ import { serialize } from 'next-mdx-remote/serialize'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkSlug from 'remark-slug'
 
+import { ogMeta, twitterMeta } from '@/data/metadata'
+
 import FaqList from '@/components/FaqList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -25,15 +27,12 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${pageData.title} | HyperUI`,
       description: pageData.description,
-      url: 'https://www.hyperui.dev/',
-      siteName: 'HyperUI',
-      type: 'website',
-      image: 'https://www.hyperui.dev/og.jpg',
+      ...ogMeta,
     },
     twitter: {
-      card: 'summary_large_image',
       title: `${pageData.title} | HyperUI`,
       description: pageData.description,
+      ...twitterMeta,
     },
   }
 }
@@ -63,11 +62,11 @@ async function getPage(params) {
 }
 
 export default async function Page({ params }) {
-  const { pageData, pageContent } = await getPage(params)
+  const { pageContent } = await getPage(params)
 
   return (
     <Container classNames="py-8 lg:py-12">
-      <article className="prose">
+      <article className="prose mx-auto">
         <MdxRemoteRender
           mdxSource={pageContent}
           mdxComponents={mdxComponents}

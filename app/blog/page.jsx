@@ -2,6 +2,8 @@ import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
 
+import { ogMeta, twitterMeta } from '@/data/metadata'
+
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import BlogGrid from '@component/BlogGrid'
@@ -12,15 +14,12 @@ export const metadata = {
   openGraph: {
     title: 'Tailwind CSS Blog | HyperUI',
     description: 'Tips and tricks for using Tailwind CSS in your projects.',
-    url: 'https://www.hyperui.dev/',
-    siteName: 'HyperUI',
-    type: 'website',
-    image: 'https://www.hyperui.dev/og.jpg',
+    ...ogMeta,
   },
   twitter: {
-    card: 'summary_large_image',
     title: 'Tailwind CSS Blog | HyperUI',
     description: 'Tips and tricks for using Tailwind CSS in your projects.',
+    ...twitterMeta,
   },
 }
 
