@@ -2,6 +2,8 @@ import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
 
+import { ogMeta, twitterMeta } from '@/data/metadata'
+
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
@@ -15,15 +17,12 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
       description: categoryData.description,
-      url: 'https://www.hyperui.dev/',
-      siteName: 'HyperUI',
-      type: 'website',
-      image: 'https://www.hyperui.dev/og.jpg',
+      ...ogMeta,
     },
     twitter: {
-      card: 'summary_large_image',
       title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
       description: categoryData.description,
+      ...twitterMeta,
     },
   }
 }
