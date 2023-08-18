@@ -18,7 +18,7 @@ export const metadata = {
     url: 'https://www.hyperui.dev/',
     siteName: 'HyperUI',
     type: 'website',
-    image: 'https://www.hyperui.dev/og.jpg',
+    images: ['https://www.hyperui.dev/og.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
