@@ -98,8 +98,8 @@ export default function ComponentPreview({
 
   useEffect(() => {
     codeType === 'html' && setPreviewCode(componentCode)
-    codeType === 'vue' && setPreviewCode(componentVue)
     codeType === 'jsx' && setPreviewCode(componentJsx)
+    codeType === 'vue' && setPreviewCode(componentVue)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
