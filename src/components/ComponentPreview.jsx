@@ -26,17 +26,17 @@ export default function ComponentPreview({
 }) {
   const refIframe = useRef(null)
 
+  const [codeType, setCodeType] = useState('html')
   const [componentCode, setComponentCode] = useState('')
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
-  const [previewCode, setPreviewCode] = useState('')
-  const [showPreview, setShowPreview] = useState(true)
-  const [previewWidth, setPreviewWidth] = useState('100%')
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isInteractive, setIsInteractive] = useState(false)
   const [isRtl, setIsRtl] = useState(false)
-  const [codeType, setCodeType] = useState('html')
+  const [previewCode, setPreviewCode] = useState('')
+  const [previewWidth, setPreviewWidth] = useState('100%')
+  const [showPreview, setShowPreview] = useState(true)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -98,8 +98,8 @@ export default function ComponentPreview({
 
   useEffect(() => {
     codeType === 'html' && setPreviewCode(componentCode)
-    codeType === 'jsx' && setPreviewCode(componentJsx)
     codeType === 'vue' && setPreviewCode(componentVue)
+    codeType === 'jsx' && setPreviewCode(componentJsx)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
@@ -131,11 +131,11 @@ export default function ComponentPreview({
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
 
+    setPreviewCode(textResponse)
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
     setComponentVue(transformedVue)
-    setPreviewCode(textResponse)
   }
 
   return (

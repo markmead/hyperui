@@ -16,8 +16,8 @@ export default function PreviewCode({
 
   useEffect(() => {
     codeType === 'html' && setPrismClass('language-html')
-    codeType === 'jsx' && setPrismClass('language-jsx')
     codeType === 'vue' && setPrismClass('language-html')
+    codeType === 'jsx' && setPrismClass('language-jsx')
   }, [codeType])
 
   return (
