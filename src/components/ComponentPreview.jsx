@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import { componentPreviewHtml, componentPreviewJsx } from '@util/transformers'
+import {
+  componentPreviewHtml,
+  componentPreviewJsx,
+  componentPreviewVue,
+} from '@util/transformers'
 import { componentBreakpoints } from '@data/breakpoints'
 
 import PreviewCreator from '@component/PreviewCreator'
@@ -22,15 +26,17 @@ export default function ComponentPreview({
 }) {
   const refIframe = useRef(null)
 
+  const [codeType, setCodeType] = useState('html')
   const [componentCode, setComponentCode] = useState('')
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
-  const [showPreview, setShowPreview] = useState(true)
-  const [previewWidth, setPreviewWidth] = useState('100%')
+  const [componentVue, setComponentVue] = useState('')
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isInteractive, setIsInteractive] = useState(false)
   const [isRtl, setIsRtl] = useState(false)
-  const [isJsx, setIsJsx] = useState(false)
+  const [previewCode, setPreviewCode] = useState('')
+  const [previewWidth, setPreviewWidth] = useState('100%')
+  const [showPreview, setShowPreview] = useState(true)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -90,6 +96,14 @@ export default function ComponentPreview({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRtl])
 
+  useEffect(() => {
+    codeType === 'html' && setPreviewCode(componentCode)
+    codeType === 'jsx' && setPreviewCode(componentJsx)
+    codeType === 'vue' && setPreviewCode(componentVue)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [codeType])
+
   async function fetchHtml(useOptions = {}) {
     const { useDark, useInteractive } = useOptions
 
@@ -115,10 +129,13 @@ export default function ComponentPreview({
       isRtl
     )
     const transformedJsx = componentPreviewJsx(textResponse)
+    const transformedVue = componentPreviewVue(textResponse)
 
+    setPreviewCode(textResponse)
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
+    setComponentVue(transformedVue)
   }
 
   return (
@@ -137,9 +154,7 @@ export default function ComponentPreview({
                 showPreview={showPreview}
               />
 
-              <PreviewCopy
-                componentCode={isJsx ? componentJsx : componentCode}
-              />
+              <PreviewCopy componentCode={previewCode} />
 
               {componentHasDark && (
                 <PreviewDark
@@ -192,10 +207,10 @@ export default function ComponentPreview({
 
             <PreviewCode
               showPreview={showPreview}
-              handleSetIsJsx={setIsJsx}
-              isJsx={isJsx}
+              handleSetType={setCodeType}
+              codeType={codeType}
               showToggle={!isInteractive}
-              componentCode={isJsx ? componentJsx : componentCode}
+              componentCode={previewCode}
             />
           </div>
         </div>

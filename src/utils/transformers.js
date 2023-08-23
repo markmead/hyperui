@@ -48,6 +48,22 @@ export function componentPreviewJsx(componentHtml) {
   return clonedHtml
 }
 
+export function componentPreviewVue(componentHtml) {
+  const newComponentHtml = `<template>\n${componentHtml}</template>`
+  const formattedComponentHtml = newComponentHtml
+    .split('\n')
+    .map((codeLine) => {
+      if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
+        return codeLine.trim()
+      }
+
+      return `  ${codeLine}`
+    })
+    .join('\n')
+
+  return formattedComponentHtml
+}
+
 export function blogPreviewHtml(
   componentHtml,
   componentContainer = 'relative',
