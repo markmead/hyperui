@@ -41,14 +41,16 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-RRPEYREY7B" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_KEY}`}
+        />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-RRPEYREY7B');
+            gtag('config', '${process.env.GA_KEY}');
         `}
         </Script>
       </head>
