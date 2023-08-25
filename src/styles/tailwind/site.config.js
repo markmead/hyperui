@@ -10,5 +10,6 @@ module.exports = {
       },
     },
   },
+  presets: [require('./extend.preset.js')],
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
