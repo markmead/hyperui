@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 
 import 'prismjs/themes/prism-okaidia.css'
@@ -39,6 +40,17 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-RRPEYREY7B" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-RRPEYREY7B');
+        `}
+        </Script>
       </head>
 
       <body className={`${inter.variable} font-sans antialiased`}>
