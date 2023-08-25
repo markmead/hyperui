@@ -98,7 +98,7 @@ function SponsorLink() {
       href="https://github.com/sponsors/markmead"
       rel="noreferrer"
       target="_blank"
-      className="animate-background rounded-md bg-white bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-[length:200%_200%] p-0.5 [animation-duration:_2s]"
+      className="animate-background rounded-md bg-white bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-[length:_200%_200%] p-0.5 [animation-duration:_2s]"
     >
       <span className="inline-flex items-center gap-1.5 rounded-[4px] bg-white px-3 py-1.5 text-gray-900">
         <span className="text-xs font-medium">Sponsor</span>
