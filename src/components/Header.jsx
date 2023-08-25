@@ -104,7 +104,7 @@ function SponsorLink() {
         <span className="text-xs font-medium">Sponsor</span>
 
         <span aria-hidden="true" role="img" className="text-sm">
-          🔥
+          💖
         </span>
       </span>
     </a>
