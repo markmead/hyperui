@@ -1,0 +1,131 @@
+---
+title: How to Add Animation Duration, Delay and Easing Support to Tailwind CSS
+description: Currently there is no support for animation duration, delay and easing in Tailwind CSS. Find out how to add it yourself.
+date: 08/25/2023
+emoji: 🦆
+---
+
+I think it's a little odd that Tailwind CSS doesn't include this but here we go.
+
+## Adding Animation Duration Classes to Tailwind CSS
+
+In your `tailwind.config.js` add the following:
+
+```js
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'animate-duration': (value) => ({
+            animationDuration: value,
+          }),
+        },
+        { values: theme('transitionDuration') }
+      )
+    }),
+  ],
+}
+```
+
+This will add the `duration` classes used for transitions to animations with the prefix `animate-`:
+
+- `animate-duration-0`
+- `animate-duration-75`
+- `animate-duration-100`
+- `animate-duration-150`
+- `animate-duration-200`
+- `animate-duration-300`
+- `animate-duration-500`
+- `animate-duration-700`
+- `animate-duration-1000`
+
+## Adding Animation Delay Classes to Tailwind CSS
+
+In your `tailwind.config.js` add the following:
+
+```js
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'animate-delay': (value) => ({
+            animationDelay: value,
+          }),
+        },
+        { values: theme('transitionDelay') }
+      )
+    }),
+  ],
+}
+```
+
+This will add the `delay` classes used for transitions to animations with the prefix `animate-`:
+
+- `animate-delay-0`
+- `animate-delay-75`
+- `animate-delay-100`
+- `animate-delay-150`
+- `animate-delay-200`
+- `animate-delay-300`
+- `animate-delay-500`
+- `animate-delay-700`
+- `animate-delay-1000`
+
+## Adding Animation Easing Classes to Tailwind CSS
+
+In your `tailwind.config.js` add the following:
+
+```js
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'animate-ease': (value) => ({
+            animationTimingFunction: value,
+          }),
+        },
+        { values: theme('transitionTimingFunction') }
+      )
+    }),
+  ],
+}
+```
+
+This will add the `ease` classes used for transitions to animations with the prefix `animate-`:
+
+- `animate-ease`
+- `animate-ease-linear`
+- `animate-ease-in`
+- `animate-ease-out`
+- `animate-ease-in-out`
+
+<BlogPreview
+  previewId="animation-extensions"
+  previewTitle="Animation Extensions Example"
+  previewContainer="space-y-8 p-8"
+/>
+
+Missed an example? Take a look at this [Tailwind Play](https://play.tailwindcss.com/ZD4We65876) example.
+
+The classes that have been added will appear in [Tailwind CSS IntelliSense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code).
+
+It also means you can use JIT, for example:
+
+- `animation-duration-[5s]`
+- `animation-delay-[0.25s]`
+- `animation-ease-[cubic-bezier(.17,_.67,_.83,_.67)]`
+
+---
+
+And there we have it.
+
+That's all it takes to add animation duration, delay and easing support to Tailwind CSS while it's not in the core. Maybe it will be in the future.

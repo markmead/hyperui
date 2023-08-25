@@ -1,0 +1,86 @@
+<!--
+plugins: [
+	plugin(function ({ matchUtilities, theme }) {
+		matchUtilities(
+			{
+				'animate-duration': (value) => ({
+					animationDuration: value,
+				}),
+			},
+			{ values: theme('transitionDuration') }
+		)
+	}),
+	plugin(function ({ matchUtilities, theme }) {
+		matchUtilities(
+			{
+				'animate-delay': (value) => ({
+					animationDelay: value,
+				}),
+			},
+			{ values: theme('transitionDelay') }
+		)
+	}),
+	plugin(function ({ matchUtilities, theme }) {
+		matchUtilities(
+			{
+				'animate-ease': (value) => ({
+					animationTimingFunction: value,
+				}),
+			},
+			{ values: theme('transitionTimingFunction') }
+		)
+	}),
+],
+-->
+
+<div class="space-y-8">
+  <h2 class="text-lg font-medium text-gray-900">Duration</h2>
+
+  <div
+    class="grid grid-cols-5 gap-8 [&>*]:grid [&>*]:aspect-square [&>*]:place-content-center [&>*]:rounded-lg [&>*]:bg-indigo-500 [&>*]:text-white"
+  >
+    <div class="animate-delay-0 animate-bounce">0ms</div>
+    <div class="animate-delay-75 animate-bounce">75ms</div>
+    <div class="animate-delay-100 animate-bounce">100ms</div>
+    <div class="animate-delay-150 animate-bounce">150ms</div>
+    <div class="animate-delay-200 animate-bounce">200ms</div>
+    <div class="animate-delay-300 animate-bounce">300ms</div>
+    <div class="animate-delay-500 animate-bounce">500ms</div>
+    <div class="animate-delay-700 animate-bounce">700ms</div>
+    <div class="animate-duration-1000 animate-bounce">1000ms</div>
+    <div class="animate-duration-[2000ms] animate-bounce">2000ms</div>
+  </div>
+</div>
+
+<div class="space-y-8">
+  <h2 class="text-lg font-medium text-gray-900">Delay</h2>
+
+  <div
+    class="grid grid-cols-5 gap-8 [&>*]:grid [&>*]:aspect-square [&>*]:place-content-center [&>*]:rounded-lg [&>*]:bg-indigo-500 [&>*]:text-white"
+  >
+    <div class="animate-delay-0 animate-bounce">0ms</div>
+    <div class="animate-delay-75 animate-bounce">75ms</div>
+    <div class="animate-delay-100 animate-bounce">100ms</div>
+    <div class="animate-delay-150 animate-bounce">150ms</div>
+    <div class="animate-delay-200 animate-bounce">200ms</div>
+    <div class="animate-delay-300 animate-bounce">300ms</div>
+    <div class="animate-delay-500 animate-bounce">500ms</div>
+    <div class="animate-delay-700 animate-bounce">700ms</div>
+    <div class="animate-delay-1000 animate-bounce">1000ms</div>
+    <div class="animate-delay-[2000ms] animate-bounce">2000ms</div>
+  </div>
+</div>
+
+<div class="space-y-8">
+  <h2 class="text-lg font-medium text-gray-900">Ease</h2>
+
+  <div
+    class="grid grid-cols-5 gap-8 [&>*]:grid [&>*]:aspect-square [&>*]:place-content-center [&>*]:rounded-lg [&>*]:bg-indigo-500 [&>*]:text-white"
+  >
+    <div class="animate-ease animate-pulse">Ease</div>
+    <div class="animate-ease-linear animate-pulse">Linear</div>
+    <div class="animate-ease-in animate-pulse">Ease In</div>
+    <div class="animate-ease-out animate-pulse">Ease Out</div>
+    <div class="animate-ease-in-out animate-pulse">Ease In Out</div>
+  </div>
+</div>
