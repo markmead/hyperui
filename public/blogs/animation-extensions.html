@@ -1,0 +1,202 @@
+<!--
+plugins: [
+	plugin(function ({ matchUtilities, theme }) {
+		matchUtilities(
+			{
+				'animate-duration': (value) => ({
+					animationDuration: value,
+				}),
+			},
+			{ values: theme('transitionDuration') }
+		)
+	}),
+	plugin(function ({ matchUtilities, theme }) {
+		matchUtilities(
+			{
+				'animate-delay': (value) => ({
+					animationDelay: value,
+				}),
+			},
+			{ values: theme('transitionDelay') }
+		)
+	}),
+	plugin(function ({ matchUtilities, theme }) {
+		matchUtilities(
+			{
+				'animate-ease': (value) => ({
+					animationTimingFunction: value,
+				}),
+			},
+			{ values: theme('transitionTimingFunction') }
+		)
+	}),
+],
+-->
+
+<div class="space-y-8">
+  <h2 class="text-lg font-medium text-gray-900">Delay</h2>
+
+  <div class="grid grid-cols-5 gap-8">
+    <div
+      class="animate-delay-0 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      0ms
+    </div>
+
+    <div
+      class="animate-delay-75 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      75ms
+    </div>
+
+    <div
+      class="animate-delay-100 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      100ms
+    </div>
+
+    <div
+      class="animate-delay-150 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      150ms
+    </div>
+
+    <div
+      class="animate-delay-200 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      200ms
+    </div>
+
+    <div
+      class="animate-delay-300 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      300ms
+    </div>
+
+    <div
+      class="animate-delay-500 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      500ms
+    </div>
+
+    <div
+      class="animate-delay-700 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      700ms
+    </div>
+
+    <div
+      class="animate-duration-1000 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      1000ms
+    </div>
+
+    <div
+      class="animate-duration-[2000ms] grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      2000ms
+    </div>
+  </div>
+</div>
+
+<div class="space-y-8">
+  <h2 class="text-lg font-medium text-gray-900">delay</h2>
+
+  <div class="grid grid-cols-5 gap-8">
+    <div
+      class="animate-delay-0 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      0ms
+    </div>
+
+    <div
+      class="animate-delay-75 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      75ms
+    </div>
+
+    <div
+      class="animate-delay-100 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      100ms
+    </div>
+
+    <div
+      class="animate-delay-150 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      150ms
+    </div>
+
+    <div
+      class="animate-delay-200 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      200ms
+    </div>
+
+    <div
+      class="animate-delay-300 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      300ms
+    </div>
+
+    <div
+      class="animate-delay-500 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      500ms
+    </div>
+
+    <div
+      class="animate-delay-700 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      700ms
+    </div>
+
+    <div
+      class="animate-delay-1000 grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      1000ms
+    </div>
+
+    <div
+      class="animate-delay-[2000ms] grid aspect-square animate-bounce place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      2000ms
+    </div>
+  </div>
+</div>
+
+<div class="space-y-8">
+  <h2 class="text-lg font-medium text-gray-900">Ease</h2>
+
+  <div class="grid grid-cols-5 gap-8">
+    <div
+      class="animate-ease grid aspect-square animate-pulse place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      Ease
+    </div>
+
+    <div
+      class="animate-ease-linear grid aspect-square animate-pulse place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      Linear
+    </div>
+
+    <div
+      class="animate-ease-in grid aspect-square animate-pulse place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      Ease In
+    </div>
+
+    <div
+      class="animate-ease-out grid aspect-square animate-pulse place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      Ease Out
+    </div>
+
+    <div
+      class="animate-ease-in-out grid aspect-square animate-pulse place-content-center rounded-lg bg-indigo-500 text-white"
+    >
+      Ease In Out
+    </div>
+  </div>
+</div>
