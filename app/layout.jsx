@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 
 import 'prismjs/themes/prism-okaidia.css'
@@ -36,6 +37,24 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
+      {/*
+        Please note, GA is not a permanent solution,
+        I will be replacing it with Vercel in the future.
+      */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_KEY}`}
+      />
+
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${process.env.GA_KEY}');
+        `}
+      </Script>
+
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
