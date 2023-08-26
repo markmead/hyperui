@@ -8,7 +8,7 @@ export default function SponsorGrid() {
   }))
 
   return (
-    <div className="not-prose lg:-ms-[10ch] lg:w-[85ch]">
+    <div className="not-prose my-[1.25em] lg:-ms-[10ch] lg:w-[85ch]">
       <ul className="grid grid-cols-2 gap-1 sm:grid-cols-3 md:grid-cols-4 [&:hover>li]:opacity-50">
         {sponsorItems.map((sponsorItem, sponsorIndex) => (
           <li
