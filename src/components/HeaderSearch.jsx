@@ -43,7 +43,9 @@ export default function HeaderSearch() {
     const filteredResults = initialResults.filter(function (initialResult) {
       const { title: initialTitle } = initialResult
 
-      return initialTitle.toLowerCase().includes(searchQuery.toLowerCase().trim())
+      return initialTitle
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase().trim())
     })
 
     setSearchResults(filteredResults)
@@ -68,7 +70,7 @@ export default function HeaderSearch() {
 
   return (
     <div ref={refDropdown} className="relative flex h-16 items-center">
-      <form role="search" className="max-w-[120px] sm:max-w-none">
+      <form role="search" className="min-w-[100px] max-w-[120px] sm:max-w-none">
         <label htmlFor="SiteSearch" className="sr-only">
           Search
         </label>
