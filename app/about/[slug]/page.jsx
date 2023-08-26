@@ -9,11 +9,13 @@ import remarkSlug from 'remark-slug'
 import { ogMeta, twitterMeta } from '@/data/metadata'
 
 import FaqList from '@/components/FaqList'
+import SponsorGrid from '@/components/SponsorGrid'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const mdxComponents = {
   FaqList,
+  SponsorGrid,
 }
 
 const pagesPath = join(process.cwd(), '/src/data/pages')
