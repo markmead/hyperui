@@ -27,7 +27,7 @@ export default function FaqList() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <ul>
+      <ul className="list-none p-0">
         {faqItems.map((faqItem, faqIndex) => (
           <li key={faqIndex}>
             <details className="group" open={faqIndex === 0}>
