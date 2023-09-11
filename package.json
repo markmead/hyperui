@@ -1,6 +1,5 @@
 {
   "name": "hyperui",
-  "private": true,
   "scripts": {
     "build": "next build",
     "start": "next start",
@@ -12,29 +11,29 @@
     "postbuild": "yarn css"
   },
   "dependencies": {
-    "next": "^13.4.4",
+    "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/typography": "^0.5.7",
-    "autoprefixer": "^10.4.12",
-    "eslint": "8.11.0",
-    "eslint-config-next": "^13.3.1",
-    "fast-glob": "^3.2.12",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.49.0",
+    "eslint-config-next": "^13.4.19",
+    "fast-glob": "^3.3.1",
     "gray-matter": "^4.0.3",
-    "next-mdx-remote": "^4.0.0",
-    "postcss": "^8.4.16",
-    "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.13",
-    "prismjs": "^1.27.0",
-    "react-intersection-observer": "^8.33.1",
+    "next-mdx-remote": "^4.4.1",
+    "postcss": "^8.4.29",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "prismjs": "^1.29.0",
+    "react-intersection-observer": "^9.5.2",
     "react-use": "^17.4.0",
-    "rehype-external-links": "^2.1.0",
-    "remark": "^14.0.2",
+    "rehype-external-links": "^3.0.0",
+    "remark": "^14.0.3",
     "remark-html": "^15.0.1",
     "remark-slug": "^7.0.1",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.3.3"
   }
 }
