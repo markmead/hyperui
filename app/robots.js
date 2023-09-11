@@ -3,7 +3,7 @@ export default function robots() {
       rules: {
         userAgent: '*',
         allow: '/',
-        disallow: '/code/',
+        disallow: ['/components/', '/blogs/']
       },
       sitemap: 'https://www.hyperui.dev/sitemap.xml',
     }
