@@ -6,11 +6,11 @@ import { serialize } from 'next-mdx-remote/serialize'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkSlug from 'remark-slug'
 
-import { ogMeta, twitterMeta } from '@/data/metadata'
+import { ogMeta, twitterMeta } from '@data/metadata'
 
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
-import TableContent from '@/components/BlogTableContent'
+import TableContent from '@component/BlogTableContent'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const mdxComponents = {
@@ -88,11 +88,12 @@ export default async function Page({ params }) {
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
 
-          <div className="not-prose">
+          <div className="not-prose mx-auto max-w-xl text-center">
             <div
               data-ea-publisher="hyperuidev"
               data-ea-type="text"
               className="bordered horizontal"
+              id="blog-page"
             ></div>
           </div>
 

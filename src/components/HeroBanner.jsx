@@ -20,6 +20,7 @@ export default function HeroBanner({ children, subtitle, title }) {
           data-ea-publisher="hyperuidev"
           data-ea-type="image"
           className="bordered horizontal"
+          id="banner-component"
         ></div>
       </Container>
     </section>

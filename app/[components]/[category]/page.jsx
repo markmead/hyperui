@@ -2,7 +2,7 @@ import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
 
-import { ogMeta, twitterMeta } from '@/data/metadata'
+import { ogMeta, twitterMeta } from '@data/metadata'
 
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'

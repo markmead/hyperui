@@ -6,10 +6,10 @@ import { serialize } from 'next-mdx-remote/serialize'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkSlug from 'remark-slug'
 
-import { ogMeta, twitterMeta } from '@/data/metadata'
+import { ogMeta, twitterMeta } from '@data/metadata'
 
-import FaqList from '@/components/FaqList'
-import SponsorGrid from '@/components/SponsorGrid'
+import FaqList from '@component/FaqList'
+import SponsorGrid from '@component/SponsorGrid'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
@@ -73,6 +73,15 @@ export default async function Page({ params }) {
           mdxSource={pageContent}
           mdxComponents={mdxComponents}
         />
+
+        <div className="not-prose mx-auto max-w-xl text-center">
+          <div
+            data-ea-publisher="hyperuidev"
+            data-ea-type="text"
+            className="bordered horizontal"
+            id="component-page"
+          ></div>
+        </div>
       </article>
     </Container>
   )
