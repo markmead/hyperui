@@ -3,7 +3,7 @@ import { join } from 'path'
 import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { ogMeta, twitterMeta } from '@/data/metadata'
+import { ogMeta, twitterMeta } from '@data/metadata'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -95,6 +95,15 @@ export default async function Page({ params }) {
       />
 
       <div className="prose max-w-none">
+        <div className="not-prose mx-auto max-w-xl text-center">
+          <div
+            data-ea-publisher="hyperuidev"
+            data-ea-type="text"
+            className="bordered horizontal"
+            id="component-page"
+          ></div>
+        </div>
+
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}

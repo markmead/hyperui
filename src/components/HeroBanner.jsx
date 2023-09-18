@@ -15,6 +15,13 @@ export default function HeroBanner({ children, subtitle, title }) {
         <p className="mx-auto mt-6 max-w-lg text-base/relaxed text-gray-600">
           {children}
         </p>
+
+        <div
+          data-ea-publisher="hyperuidev"
+          data-ea-type="image"
+          className="bordered horizontal"
+          id="banner-component"
+        ></div>
       </Container>
     </section>
   )
