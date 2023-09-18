@@ -88,6 +88,14 @@ export default async function Page({ params }) {
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
 
+          <div className="not-prose">
+            <div
+              data-ea-publisher="hyperuidev"
+              data-ea-type="text"
+              className="bordered horizontal"
+            ></div>
+          </div>
+
           <TableContent />
 
           <MdxRemoteRender

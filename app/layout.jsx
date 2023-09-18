@@ -1,9 +1,12 @@
+import Head from 'next/head'
 import Script from 'next/script'
+
 import { Inter } from 'next/font/google'
 
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
+import Ads from '@/ads'
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
@@ -37,10 +40,6 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
-      {/*
-        Please note, GA is not a permanent solution,
-        I will be replacing it with Vercel in the future.
-      */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_KEY}`}
       />
@@ -55,12 +54,10 @@ export default function RootLayout({ children }) {
         `}
       </Script>
 
-      <Script src="https://media.ethicalads.io/media/client/ethicalads.min.js" />
-
-      <head>
+      <Head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      </head>
+      </Head>
 
       <body className={`${inter.variable} font-sans antialiased`}>
         <Header />
@@ -69,6 +66,8 @@ export default function RootLayout({ children }) {
         <main className="bg-white">{children}</main>
 
         <Footer />
+
+        <Ads />
       </body>
     </html>
   )

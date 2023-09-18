@@ -16,7 +16,11 @@ export default function HeroBanner({ children, subtitle, title }) {
           {children}
         </p>
 
-        <div data-ea-publisher="hyperuidev" data-ea-type="image" className="bordered horizontal mt-4"></div>
+        <div
+          data-ea-publisher="hyperuidev"
+          data-ea-type="image"
+          className="bordered horizontal"
+        ></div>
       </Container>
     </section>
   )
