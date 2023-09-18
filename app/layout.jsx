@@ -55,6 +55,8 @@ export default function RootLayout({ children }) {
         `}
       </Script>
 
+      <Script src="https://media.ethicalads.io/media/client/ethicalads.min.js" />
+
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
