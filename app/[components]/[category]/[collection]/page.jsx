@@ -5,6 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
+import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionLinks from '@component/CollectionLinks'
@@ -94,16 +95,9 @@ export default async function Page({ params }) {
         activeCategory={params.category}
       />
 
-      <div className="prose max-w-none">
-        <div className="not-prose mx-auto max-w-xl text-center">
-          <div
-            data-ea-publisher="hyperuidev"
-            data-ea-type="text"
-            className="bordered horizontal"
-            id="component-page"
-          ></div>
-        </div>
+      <Ad adType="text" adClass="bordered horizontal" adId="collection-page" />
 
+      <div className="prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}
