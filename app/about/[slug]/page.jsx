@@ -8,6 +8,7 @@ import remarkSlug from 'remark-slug'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
+import Ad from '@component/Ad'
 import FaqList from '@component/FaqList'
 import SponsorGrid from '@component/SponsorGrid'
 import Container from '@component/Container'
@@ -64,24 +65,19 @@ async function getPage(params) {
 }
 
 export default async function Page({ params }) {
-  const { pageContent } = await getPage(params)
+  const { pageData, pageContent } = await getPage(params)
 
   return (
     <Container classNames="py-8 lg:py-12">
       <article className="prose mx-auto">
+        <h1>{pageData.title}</h1>
+
+        <Ad adType="text" adClass="bordered horizontal" adId="blog-page" />
+
         <MdxRemoteRender
           mdxSource={pageContent}
           mdxComponents={mdxComponents}
         />
-
-        <div className="not-prose mx-auto max-w-xl text-center">
-          <div
-            data-ea-publisher="hyperuidev"
-            data-ea-type="text"
-            className="bordered horizontal"
-            id="component-page"
-          ></div>
-        </div>
       </article>
     </Container>
   )

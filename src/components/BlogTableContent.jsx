@@ -47,7 +47,7 @@ export default function BlogTableContent() {
   const hasHeadings = contentHeadings.length > 0
 
   return hasHeadings ? (
-    <details>
+    <details className="mt-4">
       <summary className="cursor-pointer text-sm font-medium text-gray-900">
         Table of Contents
       </summary>

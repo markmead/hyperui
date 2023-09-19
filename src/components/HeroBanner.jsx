@@ -1,3 +1,4 @@
+import Ad from '@component/Ad'
 import Container from '@component/Container'
 
 export default function HeroBanner({ children, subtitle, title }) {
@@ -16,12 +17,11 @@ export default function HeroBanner({ children, subtitle, title }) {
           {children}
         </p>
 
-        <div
-          data-ea-publisher="hyperuidev"
-          data-ea-type="image"
-          className="bordered horizontal"
-          id="banner-component"
-        ></div>
+        <Ad
+          adType="image"
+          adClass="bordered horizontal mt-4"
+          adId="banner-component"
+        />
       </Container>
     </section>
   )

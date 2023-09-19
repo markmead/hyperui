@@ -8,6 +8,7 @@ import remarkSlug from 'remark-slug'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
+import Ad from '@component/Ad'
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
 import TableContent from '@component/BlogTableContent'
@@ -88,14 +89,7 @@ export default async function Page({ params }) {
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
 
-          <div className="not-prose mx-auto max-w-xl text-center">
-            <div
-              data-ea-publisher="hyperuidev"
-              data-ea-type="text"
-              className="bordered horizontal"
-              id="blog-page"
-            ></div>
-          </div>
+          <Ad adType="text" adClass="bordered horizontal" adId="about-page" />
 
           <TableContent />
 
