@@ -72,7 +72,7 @@ export default async function Page({ params }) {
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
 
-        <Ad adType="text" adClass="bordered horizontal" adId="blog-page" />
+        <Ad adType="text" adClass="bordered horizontal" adId="about-page" />
 
         <MdxRemoteRender
           mdxSource={pageContent}

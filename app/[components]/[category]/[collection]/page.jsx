@@ -95,13 +95,9 @@ export default async function Page({ params }) {
         activeCategory={params.category}
       />
 
-      <div className="prose max-w-none">
-        <Ad
-          adType="image"
-          adClass="bordered horizontal"
-          adId="collection-page"
-        />
+      <Ad adType="text" adClass="bordered horizontal" adId="collection-page" />
 
+      <div className="prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}

@@ -67,7 +67,7 @@ export default async function CollectionLinks({
   const { categoriesData, componentsData } = await getComponents()
 
   return (
-    <div className="hidden md:block">
+    <div>
       <ul className="flex gap-4">
         {categoriesData.map((categoryData) => (
           <li
@@ -85,7 +85,7 @@ export default async function CollectionLinks({
         ))}
       </ul>
 
-      <ul className="mt-4 flex flex-wrap gap-1">
+      <ul className="mt-4 flex gap-1 overflow-auto md:flex-wrap md:overflow-hidden">
         {componentsData.map((componentData) => {
           const buttonText = `${componentData.title} (${componentData.count})`
           const isActive =
@@ -93,7 +93,7 @@ export default async function CollectionLinks({
             activeCollection === componentData.slug
 
           return (
-            <li key={componentData.id}>
+            <li key={componentData.id} className="shrink-0 md:shrink">
               <Link
                 href={`/components/${componentData.category}/${componentData.slug}`}
               >
