@@ -92,7 +92,7 @@ export default function HeaderSearch() {
 
       {showDropdown && (
         <div className="absolute right-0 top-14 z-50 w-64 rounded-lg border border-gray-100 bg-white shadow-lg">
-          {!!searchResults.length ? (
+          {searchResults.length ? (
             <ul className="max-h-64 space-y-1 overflow-auto p-2">
               {searchResults.map((searchResult) => (
                 <li key={searchResult.id}>

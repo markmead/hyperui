@@ -1,7 +1,8 @@
 'use client'
 
 export default function SponsorGrid() {
-  const sponsorItems = Array.from({ length: 12 }).map((_, sponsorIndex) => ({
+  // eslint-disable-next-line no-unused-vars
+  const sponsorItems = Array.from({ length: 12 }).map((_) => ({
     name: 'Name or logo here',
     href: '#',
     image: '',
