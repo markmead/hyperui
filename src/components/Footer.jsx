@@ -13,10 +13,6 @@ export default function Footer() {
       title: 'Acknowledgements',
       href: '/about/acknowledgements',
     },
-    {
-      title: 'Sponsors',
-      href: '/about/sponsors',
-    },
   ]
 
   return (

@@ -10,13 +10,11 @@ import { ogMeta, twitterMeta } from '@data/metadata'
 
 import Ad from '@component/Ad'
 import FaqList from '@component/FaqList'
-import SponsorGrid from '@component/SponsorGrid'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const mdxComponents = {
   FaqList,
-  SponsorGrid,
 }
 
 const pagesPath = join(process.cwd(), '/src/data/pages')
