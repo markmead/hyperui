@@ -15,7 +15,6 @@ export default function Ad({ adType = 'image', adClass, adId }) {
       .replace(/^-/, '')
       .replace(/components-/g, '')
       .replace(/blog-/g, '')
-      .replace(/about-/g, '')
 
     const safePathname = formattedPathname === '' ? 'home' : formattedPathname
 
