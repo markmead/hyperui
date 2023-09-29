@@ -95,7 +95,7 @@ export default async function Page({ params }) {
         activeCategory={params.category}
       />
 
-      <Ad adType="text" adClass="bordered horizontal" adId="collection-page" />
+      <Ad adClass="bordered horizontal" adId="collection-page" />
 
       <div className="prose max-w-none">
         <MdxRemoteRender
