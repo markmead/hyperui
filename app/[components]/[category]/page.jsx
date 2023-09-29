@@ -82,10 +82,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <HeroBanner
-        title={`${categoryData.title}`}
-        subtitle={categoryData.subtitle}
-      >
+      <HeroBanner title={categoryData.title} subtitle={categoryData.subtitle}>
         {categoryData.description}
       </HeroBanner>
 

@@ -10,12 +10,6 @@ export default function Ad({ adType, adClass, adId }) {
   const [adPath, setAdPath] = useState('')
 
   useEffect(() => {
-    if (routerPathname === '/') {
-      setAdPath('home')
-
-      return
-    }
-
     const formattedPathname = routerPathname
       .replace(/\//g, '-')
       .replace(/^-/, '')
@@ -23,7 +17,9 @@ export default function Ad({ adType, adClass, adId }) {
       .replace(/blog-/g, '')
       .replace(/about-/g, '')
 
-    const newAdPath = `${adId}-${formattedPathname}`
+    const safePathname = formattedPathname === '' ? 'home' : formattedPathname
+
+    const newAdPath = `${adId}-${safePathname}`
 
     setAdPath(newAdPath)
   }, [routerPathname])
