@@ -89,7 +89,7 @@ export default async function Page({ params }) {
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
 
-          <Ad adType="text" adClass="bordered horizontal" adId="blog-page" />
+          <Ad adClass="bordered horizontal" adId="blog-page" />
 
           <TableContent />
 

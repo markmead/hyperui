@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
 
-export default function Ad({ adType, adClass, adId }) {
+export default function Ad({ adType = 'image', adClass, adId }) {
   const routerPathname = usePathname()
 
   const [adPath, setAdPath] = useState('')
