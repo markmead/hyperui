@@ -21,7 +21,7 @@ export default function Ad({ adType = 'image', adClass, adId }) {
     const newAdPath = `${adId}-${safePathname}`
 
     setAdPath(newAdPath)
-  }, [routerPathname])
+  }, [routerPathname, adId])
 
   return (
     <div className="not-prose mx-auto max-w-lg text-center">
