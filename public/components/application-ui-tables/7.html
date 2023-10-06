@@ -4,66 +4,51 @@
   This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
 -->
 <div>
-  <div class="overflow-x-auto">
-    <table class="rounded w-full">
-      <thead class="border bg-gray-100">
+  <div class="overflow-x-auto rounded-lg border border-gray-200">
+    <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+      <thead class="ltr:text-left rtl:text-right">
         <tr>
-          <th class="rtl:text-right w-1/5 px-4 py-3 text-base font-medium text-gray-500 text-left">
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
             Name
           </th>
-          <th class="rtl:text-right w-3/12 px-4 py-3 text-base font-medium text-gray-500 text-left">
-            Location
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+            Date of Birth
           </th>
-          <th class="rtl:text-right w-3/12 px-4 py-3 text-base font-medium text-gray-500 text-left">
-            Description
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+            Role
           </th>
-          <th class="rtl:text-right px-4 py-3 text-base font-medium text-gray-500 text-left">
-            Contact information
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+            Salary
           </th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-300 border">
+  
+      <tbody class="divide-y divide-gray-200">
         <tr>
-          <td class="p-4 text-base font-medium text-gray-800">
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
             John Doe
           </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            United States
-          </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            Frontend Developer
-          </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            (+1) 123-456-7890
-          </td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">Web Developer</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">$120,000</td>
         </tr>
+  
         <tr>
-          <td class="p-4 text-base font-medium text-gray-800">
-            Maria Garcia
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+            Jane Doe
           </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            Spain
-          </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            UI/UX Designer
-          </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            (+34) 6789-1234
-          </td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">04/11/1980</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">Web Designer</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">$100,000</td>
         </tr>
+  
         <tr>
-          <td class="p-4 text-base font-medium text-gray-800">
-            Chen Wei
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+            Gary Barlow
           </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            China
-          </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            Data Scientist
-          </td>
-          <td class="p-4 text-base font-medium text-gray-800">
-            (+86) 1357-2468-123
-          </td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
         </tr>
       </tbody>
     </table>
