@@ -7,6 +7,7 @@ import { ogMeta, twitterMeta } from '@data/metadata'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }) {
   const { categoryData } = await getCategory(params)
@@ -39,7 +40,7 @@ async function getCategory(params) {
   const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
 
   const componentSlugs = await fs.readdir(componentsPath)
-  const categoryItem = await fs.readFile(categoryPath, 'utf-8')
+  const categoryItem = await fs.readFile(categoryPath, 'utf-8').catch(() => notFound())
 
   const { data: categoryData } = matter(categoryItem)
 

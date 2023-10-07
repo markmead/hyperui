@@ -10,6 +10,7 @@ import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionLinks from '@component/CollectionLinks'
 import CollectionList from '@component/CollectionList'
+import { notFound } from 'next/navigation'
 
 const mdxComponents = {
   CollectionList,
@@ -46,7 +47,7 @@ async function getCollection(params) {
     `${params.category}-${params.collection}.mdx`
   )
 
-  const postItem = await fs.readFile(componentPath, 'utf-8')
+  const postItem = await fs.readFile(componentPath, 'utf-8').catch(() => notFound())
 
   const { content, data: frontmatter } = matter(postItem)
 
