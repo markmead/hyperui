@@ -4,80 +4,187 @@
   This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
 -->
 
-<div>
-  <div class="overflow-x-auto rounded-lg border border-gray-700">
-    <table class="min-w-full divide-y-2 dark:divide-gray-700 bg-gray-900 text-sm">
+<div class="rounded-lg border border-gray-200 dark:border-gray-700">
+  <div class="overflow-x-auto rounded-t-lg">
+    <table
+      class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900"
+    >
       <thead class="ltr:text-left rtl:text-right">
         <tr>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-white">
+          <th
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             Name
           </th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-white">
+          <th
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             Date of Birth
           </th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-white">
+          <th
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             Role
           </th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-white">
+          <th
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             Salary
           </th>
         </tr>
       </thead>
-  
-      <tbody class="divide-y dark:divide-gray-700">
+
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
         <tr>
-          <td class="whitespace-nowrap px-4 py-2 font-medium text-white">
+          <td
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             John Doe
           </td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">24/05/1995</td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">Web Developer</td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">$120,000</td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            24/05/1995
+          </td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            Web Developer
+          </td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            $120,000
+          </td>
         </tr>
-  
-        <tr>
-          <td class="whitespace-nowrap px-4 py-2 font-medium text-white">
+
+        <tr class="[&>*]:whitespace-nowrap [&>*]:px-4 [&>*]:py-2">
+          <td
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             Jane Doe
           </td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">04/11/1980</td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">Web Designer</td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">$100,000</td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            04/11/1980
+          </td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            Web Designer
+          </td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            $100,000
+          </td>
         </tr>
-  
-        <tr>
-          <td class="whitespace-nowrap px-4 py-2 font-medium text-white">
+
+        <tr class="[&>*]:whitespace-nowrap [&>*]:px-4 [&>*]:py-2">
+          <td
+            class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"
+          >
             Gary Barlow
           </td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">24/05/1995</td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">Singer</td>
-          <td class="whitespace-nowrap px-4 py-2 text-white">$20,000</td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            24/05/1995
+          </td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            Singer
+          </td>
+          <td
+            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+          >
+            $20,000
+          </td>
         </tr>
       </tbody>
     </table>
-    <div class="flex justify-end rounded-b-lg border-t border-gray-700 bg-gray-900 px-4 py-2">
-      <div class="inline-flex justify-center gap-1">
-        <a href="#" class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-700 bg-gray-800 text-white rtl:rotate-180">
-          <span class="sr-only">Prev Page</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-  
-        <div class="flex items-center justify-center text-white">
-          <a href="" class="px-2 py-1 m-1 bg-gray-800 rounded text-xs border border-gray-700 font-medium">1</a>
-          <a href="" class="px-1 py-1 m-1 rounded text-xs font-medium">2</a>
-          <a href="" class="px-1 py-1 m-1 rounded text-xs font-medium">...</a>
-          <a href="" class="px-1 py-1 m-1 rounded text-xs font-medium">5</a>
-        </div>
-  
-        <a href="#" class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-700 bg-gray-800 text-white rtl:rotate-180">
-          <span class="sr-only">Next Page</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </div>
-    </div>
   </div>
 
+  <div
+    class="rounded-b-lg border-t border-gray-200 px-4 py-2 dark:border-gray-700"
+  >
+    <ol class="flex justify-end gap-1 text-xs font-medium">
+      <li>
+        <a
+          href="#"
+          class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+        >
+          <span class="sr-only">Prev Page</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+        >
+          1
+        </a>
+      </li>
+
+      <li
+        class="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 dark:text-white"
+      >
+        2
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+        >
+          3
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+        >
+          4
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+        >
+          <span class="sr-only">Next Page</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      </li>
+    </ol>
+  </div>
 </div>
-  
