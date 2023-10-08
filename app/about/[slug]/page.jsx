@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
@@ -42,22 +44,26 @@ export async function generateStaticParams() {
 }
 
 async function getPage(params) {
-  const pagePath = join(pagesPath, `${params.slug}.mdx`)
-  const pageItem = await fs.readFile(pagePath, 'utf-8')
+  try {
+    const pagePath = join(pagesPath, `${params.slug}.mdx`)
+    const pageItem = await fs.readFile(pagePath, 'utf-8')
 
-  const { content, data: frontmatter } = matter(pageItem)
+    const { content, data: frontmatter } = matter(pageItem)
 
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkSlug],
-      rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
-    },
-    scope: frontmatter,
-  })
+    const mdxSource = await serialize(content, {
+      mdxOptions: {
+        remarkPlugins: [remarkSlug],
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+      },
+      scope: frontmatter,
+    })
 
-  return {
-    pageData: frontmatter,
-    pageContent: mdxSource,
+    return {
+      pageData: frontmatter,
+      pageContent: mdxSource,
+    }
+  } catch {
+    notFound()
   }
 }
 
