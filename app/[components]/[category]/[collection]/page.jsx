@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
@@ -10,7 +11,6 @@ import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionLinks from '@component/CollectionLinks'
 import CollectionList from '@component/CollectionList'
-import { notFound } from 'next/navigation'
 
 const mdxComponents = {
   CollectionList,
