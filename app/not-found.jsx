@@ -22,6 +22,6 @@ export async function generateMetadata() {
 export default function Custom404() {
   return (
     <div className="grid h-screen px-4 bg-white place-content-center">
-  <h1 className="tracking-widest text-gray-500 uppercase text-3xl">404 | URL Not Found!</h1>
-</div>
+    <h1 className="tracking-widest text-gray-500 uppercase text-3xl">404 | URL Not Found!</h1>
+  </div>
 }
