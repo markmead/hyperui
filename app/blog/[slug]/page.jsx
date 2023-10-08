@@ -1,8 +1,8 @@
+import { notFound } from 'next/navigation'
 import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
-import { notFound } from 'next/navigation'
 
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkSlug from 'remark-slug'
