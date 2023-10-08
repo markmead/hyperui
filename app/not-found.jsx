@@ -4,10 +4,10 @@ import { ogMeta, twitterMeta } from '@data/metadata'
 export async function generateMetadata() {
   const description = `Uh-oh! It appears that this page doesn't exist!`
   return {
-    title: "404| HyperUI",
+    title: "404 | HyperUI",
     description: description,
     openGraph: {
-      title: "404| HyperUI",
+      title: "404 | HyperUI",
       description: description,
       ...ogMeta,
     },
