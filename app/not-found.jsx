@@ -1,28 +1,14 @@
-import { ogMeta, twitterMeta } from '@data/metadata'
-
-
 export async function generateMetadata() {
-  const description = `Uh-oh! It appears that this page doesn't exist!`
   return {
-    title: "404 | HyperUI",
-    description: description,
-    openGraph: {
-      title: "404 | HyperUI",
-      description: description,
-      ...ogMeta,
-    },
-    twitter: {
-      title: "404 | HyperUI",
-      description: description,
-      ...twitterMeta,
-    },
+    title: '404 | HyperUI',
+    description: "Uh-oh! It appears that this page doesn't exist!",
   }
 }
 
 export default function Custom404() {
   return (
-    <div className="grid h-screen px-4 bg-white place-content-center">
-      <h1 className="tracking-widest text-gray-500 uppercase text-3xl">404 | Not Found</h1>
+    <div class="grid h-[600px] place-content-center bg-white px-4">
+      <h1 class="uppercase tracking-widest text-gray-500">404 | Not Found</h1>
     </div>
   )
 }
