@@ -2,7 +2,7 @@ import { ogMeta, twitterMeta } from '@data/metadata'
 
 
 export async function generateMetadata() {
-  const description = `Uh-oh! It appears you've reached a digital crossroads, and the page you were seeking has gone missing. Don't worry, though; we're here to assist you in navigating back to our main content or helping you find the information you were looking for. Feel free to explore our site, or use the search bar to discover what you need. We apologize for any inconvenience and appreciate your patience.`
+  const description = `Uh-oh! It appears that this page doesn't exist!`
   return {
     title: `404 Page Doesn't Exist | HyperUI`,
     description: description,
