@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
@@ -41,29 +43,33 @@ export async function generateStaticParams() {
 }
 
 async function getCollection(params) {
-  const componentPath = join(
-    componentsDirectory,
-    `${params.category}-${params.collection}.mdx`
-  )
+  try {
+    const componentPath = join(
+      componentsDirectory,
+      `${params.category}-${params.collection}.mdx`
+    )
 
-  const postItem = await fs.readFile(componentPath, 'utf-8')
+    const postItem = await fs.readFile(componentPath, 'utf-8')
 
-  const { content, data: frontmatter } = matter(postItem)
+    const { content, data: frontmatter } = matter(postItem)
 
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
-    },
-    scope: frontmatter,
-  })
+    const mdxSource = await serialize(content, {
+      mdxOptions: {
+        remarkPlugins: [],
+        rehypePlugins: [],
+      },
+      scope: frontmatter,
+    })
 
-  return {
-    collectionData: {
-      ...frontmatter,
-      slug: params.collection,
-    },
-    collectionContent: mdxSource,
+    return {
+      collectionData: {
+        ...frontmatter,
+        slug: params.collection,
+      },
+      collectionContent: mdxSource,
+    }
+  } catch {
+    notFound()
   }
 }
 
