@@ -76,8 +76,9 @@ export default async function Page() {
 
       <Container classNames="pb-8 lg:pb-12">
         <ul className="space-y-8">
-          {componentsByCategory.map(({ categoryTitle, componentItems }) => {
+          {componentsByCategory.map(({  categoryTitle, componentItems }) => {
             return (
+              <>
               <li className="space-y-4" key={categoryTitle}>
                 <h2 className="text-lg font-bold text-gray-900 sm:text-xl">
                   {categoryTitle}
@@ -85,6 +86,7 @@ export default async function Page() {
 
                 <CollectionGrid componentItems={componentItems} />
               </li>
+              </>
             )
           })}
         </ul>
