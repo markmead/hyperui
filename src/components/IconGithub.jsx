@@ -4,21 +4,24 @@ export default function IconGithub() {
   const [stars, setStars] = useState(0);
 
   useEffect(() => {
-    const cachedStarCount = localStorage.getItem('starCount');
+    const cachedStarCount = sessionStorage.getItem('starCount');
     if (cachedStarCount) {
       setStars(parseInt(cachedStarCount, 10));
-    } else {
-      const fetchData = async () => {
-        try {
-          const { stargazers_count } = await (await fetch(`https://api.github.com/repos/markmead/hyperui`)).json();
-          setStars(stargazers_count); 
-          localStorage.setItem('starCount', stargazers_count.toString());
-        } catch (error) { /* empty */ } 
-      };
-      
-      fetchData();
-      
+      return;
     }
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/repos/markmead/hyperui`);
+        const { stargazers_count } = await response.json();
+        setStars(stargazers_count); 
+        sessionStorage.setItem('starCount', stargazers_count.toString());
+      } 
+      catch {
+      } 
+    };
+
+    fetchData();
   }, []);
 
   return (
