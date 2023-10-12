@@ -18,6 +18,7 @@ export default function IconGithub() {
         sessionStorage.setItem('starCount', stargazers_count.toString());
       } 
       catch {
+        // empty
       } 
     };
 
