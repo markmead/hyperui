@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
 
-import Container from '@component/Container'
 import BrandLogo from '@component/BrandLogo'
+import Container from '@component/Container'
+import GithubLink from '@component/GithubLink'
 import HeaderMenu from '@component/HeaderMenu'
 import HeaderMenuLinks from '@component/HeaderMenuLinks'
 import HeaderSearch from '@component/HeaderSearch'
-import IconGithub from '@component/IconGithub'
 
 export default function Header() {
   const routerPathname = usePathname()
@@ -72,20 +72,5 @@ export default function Header() {
         </div>
       </Container>
     </header>
-  )
-}
-
-function GithubLink() {
-  return (
-    <a
-      href="https://github.com/markmead/hyperui"
-      rel="noreferrer"
-      target="_blank"
-      className="inline-block text-gray-900 hover:opacity-75"
-    >
-      <span className="sr-only"> GitHub </span>
-
-      <IconGithub />
-    </a>
   )
 }
