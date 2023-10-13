@@ -26,8 +26,7 @@ export default function GithubSocial() {
   })
 
   useEffect(() => {
-    const formattedStarCount =
-      starCount > 999 ? `${(starCount / 1000).toFixed(1)}K` : starCount
+    const formattedStarCount = `${(starCount / 1000).toFixed(1)}K`
 
     setStarCount(formattedStarCount)
   }, [starCount])
