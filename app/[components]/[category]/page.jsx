@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
@@ -32,48 +34,52 @@ export async function generateStaticParams() {
 }
 
 async function getCategory(params) {
-  const componentsPath = join(process.cwd(), '/src/data/components')
-  const categoriesPath = join(process.cwd(), '/src/data/categories')
+  try {
+    const componentsPath = join(process.cwd(), '/src/data/components')
+    const categoriesPath = join(process.cwd(), '/src/data/categories')
 
-  const categorySlug = params.category
-  const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
+    const categorySlug = params.category
+    const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
 
-  const componentSlugs = await fs.readdir(componentsPath)
-  const categoryItem = await fs.readFile(categoryPath, 'utf-8')
+    const componentSlugs = await fs.readdir(componentsPath)
+    const categoryItem = await fs.readFile(categoryPath, 'utf-8')
 
-  const { data: categoryData } = matter(categoryItem)
+    const { data: categoryData } = matter(categoryItem)
 
-  const componentItems = await Promise.all(
-    componentSlugs
-      .filter((componentSlug) => componentSlug.includes(categorySlug))
-      .map(async (componentSlug) => {
-        const componentPath = join(componentsPath, componentSlug)
-        const componentItem = await fs.readFile(componentPath, 'utf-8')
+    const componentItems = await Promise.all(
+      componentSlugs
+        .filter((componentSlug) => componentSlug.includes(categorySlug))
+        .map(async (componentSlug) => {
+          const componentPath = join(componentsPath, componentSlug)
+          const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-        const { data: componentData } = matter(componentItem)
+          const { data: componentData } = matter(componentItem)
 
-        const componentSlugFormatted = componentSlug.replace('.mdx', '')
-        const componentSlugTrue = componentSlugFormatted.replace(
-          `${categorySlug}-`,
-          ''
-        )
-        const componentCount = Object.values(componentData.components).length
+          const componentSlugFormatted = componentSlug.replace('.mdx', '')
+          const componentSlugTrue = componentSlugFormatted.replace(
+            `${categorySlug}-`,
+            ''
+          )
+          const componentCount = Object.values(componentData.components).length
 
-        return {
-          title: componentData.title,
-          slug: componentSlugTrue,
-          category: componentData.category,
-          emoji: componentData.emoji,
-          count: componentCount,
-          tag: componentData.tag,
-          id: componentSlugFormatted,
-        }
-      })
-  )
+          return {
+            title: componentData.title,
+            slug: componentSlugTrue,
+            category: componentData.category,
+            emoji: componentData.emoji,
+            count: componentCount,
+            tag: componentData.tag,
+            id: componentSlugFormatted,
+          }
+        })
+    )
 
-  return {
-    categoryData,
-    componentItems,
+    return {
+      categoryData,
+      componentItems,
+    }
+  } catch {
+    notFound()
   }
 }
 

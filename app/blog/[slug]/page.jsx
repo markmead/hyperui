@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
@@ -44,22 +46,26 @@ export async function generateStaticParams() {
 }
 
 async function getPost(params) {
-  const postPath = join(postsPath, `${params.slug}.mdx`)
-  const postItem = await fs.readFile(postPath, 'utf-8')
+  try {
+    const postPath = join(postsPath, `${params.slug}.mdx`)
+    const postItem = await fs.readFile(postPath, 'utf-8')
 
-  const { content, data: frontmatter } = matter(postItem)
+    const { content, data: frontmatter } = matter(postItem)
 
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkSlug],
-      rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
-    },
-    scope: frontmatter,
-  })
+    const mdxSource = await serialize(content, {
+      mdxOptions: {
+        remarkPlugins: [remarkSlug],
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+      },
+      scope: frontmatter,
+    })
 
-  return {
-    blogData: frontmatter,
-    blogContent: mdxSource,
+    return {
+      blogData: frontmatter,
+      blogContent: mdxSource,
+    }
+  } catch {
+    notFound()
   }
 }
 
