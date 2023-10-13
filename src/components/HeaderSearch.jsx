@@ -18,7 +18,7 @@ export default function HeaderSearch() {
   const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
-    const getSearchResults = async () => {
+    async function getSearchResults() {
       const searchResults = await fetchSearchResults()
       const sortedSearchResults = searchResults.sort((resultA, resultB) =>
         resultA.title.localeCompare(resultB.title)
