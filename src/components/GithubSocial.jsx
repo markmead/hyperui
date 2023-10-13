@@ -1,13 +1,11 @@
-import { useState } from 'react'
-
-import { useEffectOnce } from 'react-use'
+import { useEffect, useState } from 'react'
 
 import IconGithub from '@component/IconGithub'
 
 export default function GithubSocial() {
   const [starCount, setStarCount] = useState('')
 
-  useEffectOnce(() => {
+  useEffect(() => {
     async function fetchData() {
       try {
         const githubResponse = await fetch(
@@ -25,7 +23,7 @@ export default function GithubSocial() {
     }
 
     fetchData()
-  })
+  }, [])
 
   return (
     <a
