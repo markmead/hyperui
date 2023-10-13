@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 import BrandLogo from '@component/BrandLogo'
 import Container from '@component/Container'
-import GithubLink from '@component/GithubLink'
+import GithubSocial from '@component/GithubSocial'
 import HeaderMenu from '@component/HeaderMenu'
 import HeaderMenuLinks from '@component/HeaderMenuLinks'
 import HeaderSearch from '@component/HeaderSearch'
@@ -62,7 +62,7 @@ export default function Header() {
         <div className="flex items-center justify-end gap-2 sm:gap-4">
           <HeaderSearch />
 
-          <GithubLink />
+          <GithubSocial />
 
           <HeaderMenu
             showMenu={showMenu}

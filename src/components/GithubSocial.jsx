@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import IconGithub from '@component/IconGithub'
 
-export default function GithubLink() {
+export default function GithubSocial() {
   const [starCount, setStarCount] = useState('')
 
   useEffect(() => {
