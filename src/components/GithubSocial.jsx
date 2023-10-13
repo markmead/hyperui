@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useEffectOnce } from 'react-use'
 
 import IconGithub from '@component/IconGithub'
 
 export default function GithubSocial() {
-  const [starCount, setStarCount] = useState(0)
+  const [starCount, setStarCount] = useState('')
 
   useEffectOnce(() => {
     async function fetchData() {
@@ -16,7 +16,9 @@ export default function GithubSocial() {
 
         const { stargazers_count: stargazeCount } = await githubResponse.json()
 
-        setStarCount(stargazeCount)
+        const formattedStargazeCount = `${(stargazeCount / 1000).toFixed(1)}K`
+
+        setStarCount(formattedStargazeCount)
 
         // eslint-disable-next-line no-empty
       } catch {}
@@ -24,12 +26,6 @@ export default function GithubSocial() {
 
     fetchData()
   })
-
-  useEffect(() => {
-    const formattedStarCount = `${(starCount / 1000).toFixed(1)}K`
-
-    setStarCount(formattedStarCount)
-  }, [starCount])
 
   return (
     <a
