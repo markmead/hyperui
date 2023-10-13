@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
 
+import { useEffectOnce } from 'react-use'
+
 import IconGithub from '@component/IconGithub'
 
 export default function GithubSocial() {
-  const [starCount, setStarCount] = useState('')
+  const [starCount, setStarCount] = useState(0)
 
-  useEffect(() => {
-    const cachedStarCount = sessionStorage.getItem('GitHubStarCount')
-
-    if (cachedStarCount) {
-      setStarCount(cachedStarCount)
-
-      return
-    }
-
+  useEffectOnce(() => {
     async function fetchData() {
       try {
         const githubResponse = await fetch(
@@ -24,13 +18,19 @@ export default function GithubSocial() {
 
         setStarCount(stargazeCount)
 
-        sessionStorage.setItem('GitHubStarCount', `${stargazeCount}`)
         // eslint-disable-next-line no-empty
       } catch {}
     }
 
     fetchData()
-  }, [])
+  })
+
+  useEffect(() => {
+    const formattedStarCount =
+      starCount > 999 ? `${(starCount / 1000).toFixed(1)}K` : starCount
+
+    setStarCount(formattedStarCount)
+  }, [starCount])
 
   return (
     <a
@@ -43,7 +43,9 @@ export default function GithubSocial() {
 
       <IconGithub />
 
-      {!!starCount && <span className="text-sm font-medium">{starCount}</span>}
+      {!!starCount && (
+        <span className="text-sm/none font-medium">{starCount}</span>
+      )}
     </a>
   )
 }
