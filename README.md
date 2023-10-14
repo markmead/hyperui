@@ -12,24 +12,22 @@ HyperUI is a collection of free Tailwind CSS components that can be used in your
     - [📣 Marketing](#marketing)
     - [🛍️ eCommerce](#ecommerce)
 - [Contributing](#contributing)
+    - [Getting HyperUI Running Locally](#getting-hyperui-running-locally)
 - [License](#license)
 
 ## Getting Started
-Hyper UI doesn't require any installation. All you need to do is browse components you need to implement in your project, copy its code, and simply paste it to your project.
+There is no HyperUI installation, if you have a Tailwind CSS project, you can copy the code and paste it into your project. Some components do use Alpine JS.
 
 ## Usage
-HyperUI offers a wide range of components suitable for various use cases, including application UI, marketing, and ecommerce. Here's an example of how to use a HyperUI component in your project:
+Browse the website for the components you need, copy the code and paste it into your project. Some components will have support for dark mode and Alpine JS variants.
 
-1. Choose the component you wish to use.
-2. Preview how it will appear on different screen sizes by clicking on the available screen size options. You can also check its compatibility with LTR (left-to-right) layouts and dark mode.
-
-    ![hyperui1](https://github.com/ToobaJamal/hyperui/assets/52610124/085db001-5d8d-43ca-bcef-fe7a8cc35b0a)
-
+1. Browse the website for a component you like.
+2. Preview the component at different breakpoints and check its compatibility with:
+    - LTR (left-to-right)
+    - Dark mode
+    - Interactivity with Alpine JS
 3. Click on the 'Copy' button to copy the source code.
-
-https://github.com/ToobaJamal/hyperui/assets/52610124/0ec03263-ebda-4e84-804c-126a1a2e5056
-
-5. Paste the copied code into your project.
+4. Paste the copied code into your project.
 
 ## Components
 HyperUI has a wide range of freely available components. These components include:
@@ -86,8 +84,28 @@ HyperUI has a wide range of freely available components. These components includ
 🛍️ [Quantity Inputs](https://www.hyperui.dev/components/ecommerce/quantity-inputs)  
 
 ## Contributing
-HyperUI accepts contributions. For guidance on how to contribute to the project, a detailed [contributing guide](https://www.hyperui.dev/blog/how-to-contribute) is available on the HyperUI [blog](https://www.hyperui.dev/blog).
+You can contribute by adding new components, fixing bugs or improving the documentation. Please create an issue before starting any work. Once you get approval on your issue, you can create a new branch and submit your changes in a PR. Please note that all PRs need to be reviewed to ensure the coherence and quality of HyperUI. 
+
+### Getting HyperUI Running Locally
+1. Clone the project on your machine:
+```
+git clone git@github.com:markmead/hyperui.git
+```
+2. Install project dependencies:
+```
+yarn
+```
+3. Run the project:
+```
+yarn dev
+```
+4. If you are working on changes that need to compile CSS, run the following command in a new terminal window to automatically recompile the code whenever changes are detected:
+```
+yarn watch
+```
+
+A [detailed contributing guide](https://www.hyperui.dev/blog/how-to-contribute) on how to contribute including examples of adding new components is available on the HyperUI [blog](https://www.hyperui.dev/blog).
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/markmead/hyperui/blob/main/LICENSE) file for details.
+HyperUI is an open source project licensed under the [MIT license](https://github.com/markmead/hyperui/blob/main/LICENSE).
 
