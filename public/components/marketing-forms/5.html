@@ -5,100 +5,63 @@
     - @tailwindcss/forms
 -->
 
-<div class="flex justify-center p-6 font-sans antialiased">
-  <section class="w-full max-w-md space-y-8 divide-y-2 bg-white md:max-w-4xl">
-    <hgroup>
-      <h2 class="text-2xl font-bold">Profile Settings</h2>
-      <p class="text-sm text-gray-500">Manage your account settings</p>
-    </hgroup>
-    <form action="" class="space-y-12 pt-8">
-      <div class="space-y-8 divide-y">
-        <div class="grid gap-4 md:grid-cols-6">
-          <hgroup class="md:col-span-2">
-            <h3 class="text-lg font-medium">Personal Information</h3>
-            <p class="text-sm text-gray-500">Tell us about yourself</p>
-          </hgroup>
-          <div class="space-y-3 md:col-span-4 md:max-w-md">
-            <div>
-              <label for="username" class="sr-only">Username</label>
-              <input
-                class="w-full rounded border-gray-200 p-3 text-sm"
-                placeholder="Username"
-                type="text"
-                id="username"
-              />
-            </div>
+<section class="w-full space-y-4 bg-white md:space-y-6">
+  <div>
+    <h2 class="text-2xl font-bold text-gray-900">Profile Settings</h2>
+    <p class="text-sm text-gray-700">Manage your account settings</p>
+  </div>
+  <form action="" class="border-t-2 pt-4 md:pt-6">
+    <div class="space-y-4 divide-y md:space-y-6">
+      <div class="grid gap-4 md:grid-cols-6">
+        <div class="md:col-span-2">
+          <h3 class="text-lg font-medium text-gray-900">Personal Information</h3>
+          <p class="text-sm text-gray-700">Tell us about yourself</p>
+        </div>
+        <div class="space-y-3 md:col-span-4 md:max-w-md">
+          <div>
+            <label for="username" class="sr-only">Username</label>
+            <input class="w-full rounded border-gray-200 p-3 text-sm" placeholder="Username" type="text" id="username" />
+          </div>
 
-            <div>
-              <label for="email" class="sr-only">Email</label>
-              <input
-                class="w-full rounded border-gray-200 p-3 text-sm"
-                placeholder="Email"
-                type="email"
-                id="email"
-              />
-            </div>
-            <div>
-              <label for="bio" class="sr-only">Bio</label>
-              <textarea
-                id="bio"
-                cols="30"
-                class="w-full rounded border-gray-200 p-3 text-sm"
-                placeholder="Bio"
-              ></textarea>
-            </div>
+          <div>
+            <label for="email" class="sr-only">Email</label>
+            <input class="w-full rounded border-gray-200 p-3 text-sm" placeholder="Email" type="email" id="email" />
+          </div>
+          <div>
+            <label for="bio" class="sr-only">Bio</label>
+            <textarea id="bio" cols="30" class="w-full rounded border-gray-200 p-3 text-sm" placeholder="Bio"></textarea>
           </div>
         </div>
-        <div class="grid gap-4 pt-8 md:grid-cols-6">
-          <hgroup class="md:col-span-2">
-            <h3 class="text-lg font-medium">Notifications</h3>
-            <p class="text-sm text-gray-500">
-              Configure how you receive notifications
-            </p>
-          </hgroup>
-          <div class="space-y-3 md:col-span-4 md:max-w-lg">
-            <fieldset>
-              <legend class="text-sm font-medium text-gray-500">
-                Notify me about...
-              </legend>
-              <div class="mt-3 space-y-3">
-                <div class="flex items-center gap-2">
-                  <input id="all" name="notification-type" type="radio" />
-                  <label for="all" class="text-sm text-gray-500"
-                    >All new messages</label
-                  >
-                </div>
-                <div class="flex items-center gap-2">
-                  <input id="mentions" name="notification-type" type="radio" />
-                  <label for="mentions" class="text-sm text-gray-500"
-                    >Direct messages and mentions</label
-                  >
-                </div>
-                <div class="flex items-center gap-2">
-                  <input id="none" name="notification-type" type="radio" />
-                  <label for="none" class="text-sm text-gray-500"
-                    >Nothing</label
-                  >
-                </div>
+      </div>
+      <div class="grid gap-4 pt-4 md:grid-cols-6 md:pt-6">
+        <div class="md:col-span-2">
+          <h3 class="text-lg font-medium text-gray-900">Notifications</h3>
+          <p class="text-sm text-gray-500">Configure how you receive notifications</p>
+        </div>
+        <div class="space-y-3 md:col-span-4 md:max-w-lg">
+          <fieldset>
+            <legend class="text-sm font-medium text-gray-500">Notify me about...</legend>
+            <div class="mt-3 space-y-3">
+              <div class="flex items-center gap-2">
+                <input id="all" name="notification-type" type="radio" />
+                <label for="all" class="text-sm text-gray-500">All new messages</label>
               </div>
-            </fieldset>
-          </div>
+              <div class="flex items-center gap-2">
+                <input id="mentions" name="notification-type" type="radio" />
+                <label for="mentions" class="text-sm text-gray-500">Direct messages and mentions</label>
+              </div>
+              <div class="flex items-center gap-2">
+                <input id="none" name="notification-type" type="radio" />
+                <label for="none" class="text-sm text-gray-500">Nothing</label>
+              </div>
+            </div>
+          </fieldset>
         </div>
       </div>
-      <div class="flex items-center justify-end gap-3">
-        <button
-          type="button"
-          class="inline-block rounded-lg bg-gray-300 px-6 py-3 font-medium text-gray-800 hover:opacity-80"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          class="inline-block rounded-lg bg-gray-800 px-6 py-3 font-medium text-gray-100 hover:opacity-80"
-        >
-          Save
-        </button>
-      </div>
-    </form>
-  </section>
-</div>
+    </div>
+    <div class="mt-4 flex items-center justify-end gap-3 md:mt-8">
+      <button type="reset" class="inline-block rounded border border-gray-300 bg-gray-300 px-12 py-3 text-sm font-medium text-gray-900 hover:opacity-75 focus:outline-none focus:ring focus:ring-black focus:ring-offset-2 active:text-black">Cancel</button>
+      <button type="submit" class="inline-block rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white hover:bg-opacity-75 focus:outline-none focus:ring focus:ring-black focus:ring-offset-2 active:text-black">Save</button>
+    </div>
+  </form>
+</section>
