@@ -1,9 +1,17 @@
+<!--
+  @layer components {
+    .no-tap-highlihgt {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+-->
+
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <label
   x-data="{ isChecked: false }"
   for="AcceptConditions"
-  class="relative h-8 w-14 cursor-pointer"
+  class="relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
 >
   <input
     x-model="isChecked"
