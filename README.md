@@ -12,7 +12,6 @@ HyperUI is a collection of free Tailwind CSS components that can be used in your
     - [📣 Marketing](#marketing)
     - [🛍️ eCommerce](#ecommerce)
 - [Contributing](#contributing)
-    - [Getting HyperUI Running Locally](#getting-hyperui-running-locally)
 - [License](#license)
 
 ## Getting Started
@@ -78,31 +77,13 @@ HyperUI has a wide range of freely available components. These components includ
 🛍️ [Carts](https://www.hyperui.dev/components/ecommerce/carts)  
 🛍️ [Collection Cards](https://www.hyperui.dev/components/ecommerce/collection-cards)  
 🛍️ [Collection Filters](https://www.hyperui.dev/components/ecommerce/collection-filters)  
-🛍️ [Featured Filters](https://www.hyperui.dev/components/ecommerce/featured-sections)  
+🛍️ [Featured Sections](https://www.hyperui.dev/components/ecommerce/featured-sections)  
 🛍️ [Product Cards](https://www.hyperui.dev/components/ecommerce/product-cards)  
 🛍️ [Product Collections](https://www.hyperui.dev/components/ecommerce/product-collections)  
 🛍️ [Quantity Inputs](https://www.hyperui.dev/components/ecommerce/quantity-inputs)  
 
 ## Contributing
 You can contribute by adding new components, fixing bugs or improving the documentation. Please create an issue before starting any work. Once you get approval on your issue, you can create a new branch and submit your changes in a PR. Please note that all PRs need to be reviewed to ensure the coherence and quality of HyperUI. 
-
-### Getting HyperUI Running Locally
-1. Clone the project on your machine:
-```
-git clone git@github.com:markmead/hyperui.git
-```
-2. Install project dependencies:
-```
-yarn
-```
-3. Run the project:
-```
-yarn dev
-```
-4. If you are working on changes that need to compile CSS, run the following command in a new terminal window to automatically recompile the code whenever changes are detected:
-```
-yarn watch
-```
 
 A [detailed contributing guide](https://www.hyperui.dev/blog/how-to-contribute) on how to contribute including examples of adding new components is available on the HyperUI [blog](https://www.hyperui.dev/blog).
 
