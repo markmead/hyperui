@@ -16,7 +16,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="border-t border-gray-200 bg-white">
+    <footer className="border-t border-gray-400 bg-gray-200">
       <Container classNames="py-8 lg:py-12">
         <BrandLogo fontSize="text-lg" />
 
