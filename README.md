@@ -22,7 +22,7 @@ Browse the website for the components you need, copy the code and paste it into 
 
 1. Browse the website for a component you like.
 2. Preview the component at different breakpoints and check its compatibility with:
-    - LTR (left-to-right)
+    - LTR 
     - Dark mode
     - Interactivity with Alpine JS
 3. Click on the 'Copy' button to copy the source code.
