@@ -1,0 +1,176 @@
+<!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
+
+<section class="bg-white">
+  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <header>
+      <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">
+        Profile Settings
+      </h2>
+
+      <p class="mt-1.5 text-gray-500">Manage your account settings</p>
+    </header>
+
+    <form action="#" class="mt-4 border-t-2 border-gray-200 pt-4">
+      <div class="flow-root">
+        <div class="-my-4 divide-y divide-gray-100 sm:-my-6">
+          <div class="grid grid-cols-1 gap-4 py-4 sm:py-6 md:grid-cols-3">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">
+                Personal Information
+              </h3>
+
+              <p class="mt-1.5 text-sm text-gray-500">Tell us about yourself</p>
+            </div>
+
+            <div class="space-y-3 md:col-span-2">
+              <div class="grid max-w-md grid-cols-2 gap-3">
+                <div>
+                  <label for="FirstName" class="sr-only">First name</label>
+
+                  <input
+                    class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                    placeholder="First name"
+                    type="text"
+                    id="FirstName"
+                  />
+                </div>
+
+                <div>
+                  <label for="LastName" class="sr-only">Last name</label>
+
+                  <input
+                    class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                    placeholder="Last name"
+                    type="text"
+                    id="LastName"
+                  />
+                </div>
+              </div>
+
+              <div class="max-w-md">
+                <label for="ContactEmail" class="sr-only">Email</label>
+
+                <input
+                  class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                  placeholder="Email"
+                  type="email"
+                  id="ContactEmail"
+                />
+              </div>
+
+              <div class="max-w-md">
+                <label for="ContactNumber" class="sr-only">Phone</label>
+
+                <input
+                  class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                  placeholder="0777 777 777"
+                  type="tel"
+                  id="ContactNumber"
+                />
+              </div>
+
+              <div class="max-w-md">
+                <label for="AboutMe" class="sr-only">Bio</label>
+
+                <textarea
+                  id="AboutMe"
+                  class="w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm"
+                  rows="4"
+                  placeholder="Bio"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-4 sm:py-6">
+            <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
+              <div>
+                <h3 class="text-lg font-medium text-gray-900">Notifications</h3>
+
+                <p class="mt-1.5 text-sm text-gray-500">
+                  Configure your notifications
+                </p>
+              </div>
+
+              <div class="md:col-span-2">
+                <fieldset>
+                  <legend class="text-sm font-medium text-gray-700">
+                    Notify me about...
+                  </legend>
+
+                  <div class="mt-4 space-y-3">
+                    <div class="flex items-center gap-2">
+                      <input
+                        id="NotificationAll"
+                        name="NotificationType"
+                        type="radio"
+                      />
+
+                      <label
+                        for="NotificationAll"
+                        class="cursor-pointer text-sm text-gray-700"
+                      >
+                        All new messages
+                      </label>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <input
+                        id="NotificationMentions"
+                        name="NotificationType"
+                        type="radio"
+                      />
+
+                      <label
+                        for="NotificationMentions"
+                        class="cursor-pointer text-sm text-gray-700"
+                      >
+                        Direct messages and mentions
+                      </label>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <input
+                        id="NotificationNone"
+                        name="NotificationType"
+                        type="radio"
+                      />
+
+                      <label
+                        for="NotificationNone"
+                        class="cursor-pointer text-sm text-gray-700"
+                      >
+                        Nothing
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center justify-end gap-3">
+        <button
+          type="reset"
+          class="inline-block rounded border border-transparent bg-white px-12 py-3 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring active:text-gray-800"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
