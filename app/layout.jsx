@@ -10,6 +10,7 @@ import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
 
 export const metadata = {
+  metadataBase: new URL('https://hyperui.dev'),
   title: 'Free Open Source Tailwind CSS Components | HyperUI',
   description:
     'Free Tailwind CSS components that can be used in your next project.',
