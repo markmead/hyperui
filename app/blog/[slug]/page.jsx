@@ -10,7 +10,6 @@ import remarkSlug from 'remark-slug'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
 import TableContent from '@component/BlogTableContent'
@@ -94,8 +93,6 @@ export default async function Page({ params }) {
 
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
-
-          <Ad adClass="bordered horizontal" adId="blog-page" />
 
           <TableContent />
 
