@@ -96,10 +96,7 @@ export default async function Page({ params }) {
 
           <TableContent />
 
-          <MdxRemoteRender
-            mdxSource={blogContent}
-            mdxComponents={mdxComponents}
-          />
+          <MdxRemoteRender mdxSource={blogContent} mdxComponents={mdxComponents} />
         </article>
       </Container>
     </>

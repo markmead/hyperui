@@ -8,9 +8,7 @@ export default function GithubSocial() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const githubResponse = await fetch(
-          'https://api.github.com/repos/markmead/hyperui'
-        )
+        const githubResponse = await fetch('https://api.github.com/repos/markmead/hyperui')
 
         const { stargazers_count: stargazeCount } = await githubResponse.json()
 
@@ -36,9 +34,7 @@ export default function GithubSocial() {
 
       <IconGithub />
 
-      {!!starCount && (
-        <span className="text-sm/none font-medium">{starCount}</span>
-      )}
+      {!!starCount && <span className="text-sm/none font-medium">{starCount}</span>}
     </a>
   )
 }

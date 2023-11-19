@@ -1,9 +1,4 @@
-export default function ButtonStyle({
-  buttonEmoji,
-  buttonText,
-  buttonActive,
-  isDark,
-}) {
+export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive, isDark }) {
   const buttonClasses = {
     DEFAULT: `border-gray-900 ${
       buttonActive

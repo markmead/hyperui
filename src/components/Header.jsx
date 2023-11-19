@@ -64,11 +64,7 @@ export default function Header() {
 
           <GithubSocial />
 
-          <HeaderMenu
-            showMenu={showMenu}
-            handleSetShowMenu={setShowMenu}
-            menuLinks={menuLinks}
-          />
+          <HeaderMenu showMenu={showMenu} handleSetShowMenu={setShowMenu} menuLinks={menuLinks} />
         </div>
       </Container>
     </header>

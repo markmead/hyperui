@@ -11,11 +11,7 @@ import PreviewCopy from '@component/PreviewCopy'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewView from '@component/PreviewView'
 
-export default function BlogPreview({
-  previewId,
-  previewTitle,
-  previewContainer,
-}) {
+export default function BlogPreview({ previewId, previewTitle, previewContainer }) {
   const refIframe = useRef(null)
 
   const [previewCode, setPreviewCode] = useState('')
@@ -49,11 +45,7 @@ export default function BlogPreview({
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = blogPreviewHtml(
-      textResponse,
-      previewContainer,
-      isDarkMode
-    )
+    const transformedHtml = blogPreviewHtml(textResponse, previewContainer, isDarkMode)
 
     setPreviewCode(textResponse)
     setPreviewHtml(transformedHtml)
@@ -63,10 +55,7 @@ export default function BlogPreview({
     <div className="not-prose space-y-4 lg:-ms-[10ch] lg:w-[85ch]" ref={ref}>
       {previewCode && (
         <div className="flex gap-4">
-          <PreviewView
-            handleSetShowPreview={setShowPreview}
-            showPreview={showPreview}
-          />
+          <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
 
           <PreviewCopy componentCode={previewCode} />
         </div>

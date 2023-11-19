@@ -2,11 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import {
-  componentPreviewHtml,
-  componentPreviewJsx,
-  componentPreviewVue,
-} from '@util/transformers'
+import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
 import { componentBreakpoints } from '@data/breakpoints'
 
 import PreviewCreator from '@component/PreviewCreator'
@@ -20,10 +16,7 @@ import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
 import PreviewView from '@component/PreviewView'
 
-export default function ComponentPreview({
-  componentData,
-  componentContainer,
-}) {
+export default function ComponentPreview({ componentData, componentContainer }) {
   const refIframe = useRef(null)
 
   const [codeType, setCodeType] = useState('html')
@@ -54,9 +47,7 @@ export default function ComponentPreview({
     interactive: componentHasInteractive,
   } = componentData
 
-  const trueComponentContainer = componentSpace
-    ? componentSpace
-    : componentContainer
+  const trueComponentContainer = componentSpace ? componentSpace : componentContainer
 
   const componentHash = `component-${componentId}`
 
@@ -110,11 +101,7 @@ export default function ComponentPreview({
     const useDarkMode = componentHasDark && useDark
     const useInteractiveMode = componentHasInteractive && useInteractive
 
-    const componentPath = [
-      componentId,
-      useDarkMode && 'dark',
-      useInteractiveMode && 'interactive',
-    ]
+    const componentPath = [componentId, useDarkMode && 'dark', useInteractiveMode && 'interactive']
       .filter(Boolean)
       .join('-')
 
@@ -141,26 +128,17 @@ export default function ComponentPreview({
   return (
     <div ref={ref} id={componentHash}>
       <div className="space-y-4">
-        <PreviewTitle
-          componentTitle={componentTitle}
-          componentHash={componentHash}
-        />
+        <PreviewTitle componentTitle={componentTitle} componentHash={componentHash} />
 
         <div className="lg:flex lg:items-end">
           {componentCode && (
             <div className="flex flex-wrap items-end gap-4">
-              <PreviewView
-                handleSetShowPreview={setShowPreview}
-                showPreview={showPreview}
-              />
+              <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
 
               <PreviewCopy componentCode={previewCode} />
 
               {componentHasDark && (
-                <PreviewDark
-                  isDarkMode={isDarkMode}
-                  handleSetIsDarkMode={setIsDarkMode}
-                />
+                <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
               )}
 
               {componentHasInteractive && (
@@ -176,11 +154,7 @@ export default function ComponentPreview({
 
           <div className="hidden lg:flex lg:flex-1 lg:items-end lg:justify-end lg:gap-4">
             {componentBreakpoints.map(
-              ({
-                name: breakpointName,
-                emoji: breakpointEmoji,
-                width: breakpointWidth,
-              }) => (
+              ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint
                   key={breakpointName}
                   breakpointText={breakpointName}
@@ -215,9 +189,7 @@ export default function ComponentPreview({
           </div>
         </div>
 
-        {componentCreator && (
-          <PreviewCreator creatorGithub={componentCreator} />
-        )}
+        {componentCreator && <PreviewCreator creatorGithub={componentCreator} />}
       </div>
     </div>
   )
