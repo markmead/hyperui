@@ -70,7 +70,7 @@ export default function HeaderSearch() {
 
   return (
     <div ref={refDropdown} className="relative flex h-16 items-center">
-      <form role="search" className="min-w-[100px] max-w-[120px] sm:max-w-none">
+      <form role="search" className="min-w-[120px] sm:min-w-[240px]">
         <label htmlFor="SiteSearch" className="sr-only">
           Search
         </label>

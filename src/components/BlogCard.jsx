@@ -7,11 +7,7 @@ export default function BlogCard({ blogPost }) {
         <div className="h-full rounded-lg border-2 border-gray-900 bg-white transition group-hover:-translate-y-2 ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
           <div className="p-4 sm:p-6 lg:p-8">
             <div className="mt-16 sm:mt-20 lg:mt-24">
-              <span
-                aria-hidden="true"
-                role="img"
-                className="text-3xl sm:text-4xl"
-              >
+              <span aria-hidden="true" role="img" className="text-3xl sm:text-4xl">
                 {blogPost.emoji}
               </span>
 
@@ -19,9 +15,7 @@ export default function BlogCard({ blogPost }) {
                 {blogPost.title}
               </h2>
 
-              <time className="mt-1 text-xs text-gray-700">
-                {blogPost.date}
-              </time>
+              <time className="mt-1 text-xs text-gray-700">{blogPost.date}</time>
             </div>
           </div>
         </div>

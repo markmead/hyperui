@@ -34,9 +34,7 @@ async function getComponents() {
               `${componentData.category}-`,
               ''
             )
-            const componentCount = Object.values(
-              componentData.components
-            ).length
+            const componentCount = Object.values(componentData.components).length
 
             return {
               title: componentData.title,
@@ -65,13 +63,10 @@ export default async function Page() {
 
   return (
     <>
-      <HeroBanner
-        title="HyperUI"
-        subtitle="Free Open Source Tailwind CSS Components"
-      >
-        HyperUI is a collection of free Tailwind CSS components that can be used
-        in your next project. With a range of components, you can build your
-        next marketing website, admin dashboard, eCommerce store and much more.
+      <HeroBanner title="HyperUI" subtitle="Free Open Source Tailwind CSS Components">
+        HyperUI is a collection of free Tailwind CSS components that can be used in your next
+        project. With a range of components, you can build your next marketing website, admin
+        dashboard, eCommerce store and much more.
       </HeroBanner>
 
       <Container classNames="pb-8 lg:pb-12">
@@ -79,9 +74,7 @@ export default async function Page() {
           {componentsByCategory.map(({ categoryTitle, componentItems }) => {
             return (
               <li className="space-y-4" key={categoryTitle}>
-                <h2 className="text-lg font-bold text-gray-900 sm:text-xl">
-                  {categoryTitle}
-                </h2>
+                <h2 className="text-lg font-bold text-gray-900 sm:text-xl">{categoryTitle}</h2>
 
                 <CollectionGrid componentItems={componentItems} />
               </li>

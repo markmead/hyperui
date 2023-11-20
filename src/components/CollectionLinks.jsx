@@ -32,10 +32,7 @@ async function getComponents() {
       const { data: componentData } = matter(componentItem)
 
       const componentSlugFormatted = componentSlug.replace('.mdx', '')
-      const componentSlugTrue = componentSlugFormatted.replace(
-        `${componentData.category}-`,
-        ''
-      )
+      const componentSlugTrue = componentSlugFormatted.replace(`${componentData.category}-`, '')
       const componentCount = Object.values(componentData.components).length
 
       const categoryPath = join(categoriesPath, `${componentData.category}.mdx`)
@@ -60,27 +57,19 @@ async function getComponents() {
   }
 }
 
-export default async function CollectionLinks({
-  activeCollection,
-  activeCategory,
-}) {
+export default async function CollectionLinks({ activeCollection, activeCategory }) {
   const { categoriesData, componentsData } = await getComponents()
 
   return (
     <div>
       <ul className="flex gap-4">
         {categoriesData.map((categoryData) => (
-          <li
-            key={categoryData.title}
-            className="inline-flex items-center gap-1.5"
-          >
+          <li key={categoryData.title} className="inline-flex items-center gap-1.5">
             <span aria-hidden="true" role="img" className="text-sm">
               {categoryData.emoji}
             </span>
 
-            <span className="text-xs font-medium text-gray-900">
-              {categoryData.title}
-            </span>
+            <span className="text-xs font-medium text-gray-900">{categoryData.title}</span>
           </li>
         ))}
       </ul>
@@ -89,14 +78,11 @@ export default async function CollectionLinks({
         {componentsData.map((componentData) => {
           const buttonText = `${componentData.title} (${componentData.count})`
           const isActive =
-            activeCategory === componentData.category &&
-            activeCollection === componentData.slug
+            activeCategory === componentData.category && activeCollection === componentData.slug
 
           return (
             <li key={componentData.id} className="shrink-0 md:shrink">
-              <Link
-                href={`/components/${componentData.category}/${componentData.slug}`}
-              >
+              <Link href={`/components/${componentData.category}/${componentData.slug}`}>
                 <ButtonStyle
                   buttonEmoji={componentData.emoji}
                   buttonText={buttonText}

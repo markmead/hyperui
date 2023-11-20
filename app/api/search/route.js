@@ -28,13 +28,8 @@ async function getComponents() {
             const { data: componentData } = matter(componentItem)
 
             const componentSlugFormatted = componentSlug.replace('.mdx', '')
-            const componentSlugTrue = componentSlugFormatted.replace(
-              `${categorySlug}-`,
-              ''
-            )
-            const componentCount = Object.values(
-              componentData.components
-            ).length
+            const componentSlugTrue = componentSlugFormatted.replace(`${categorySlug}-`, '')
+            const componentCount = Object.values(componentData.components).length
 
             return {
               id: componentSlugFormatted,

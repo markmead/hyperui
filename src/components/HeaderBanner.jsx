@@ -10,9 +10,7 @@ export default function HeaderBanner() {
           target="_blank"
           className="flex items-center justify-center gap-1.5 transition hover:opacity-75"
         >
-          <span className="text-sm/tight font-medium">
-            Enjoy HyperUI? Give it a star on GitHub
-          </span>
+          <span className="text-sm/tight font-medium">Enjoy HyperUI? Give it a star on GitHub</span>
 
           <span aria-hidden="true" role="img">
             🎉

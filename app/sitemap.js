@@ -23,10 +23,7 @@ export default async function sitemap() {
             .filter((componentSlug) => componentSlug.includes(categorySlug))
             .map(async (componentSlug) => {
               const componentSlugFormatted = componentSlug.replace('.mdx', '')
-              const componentSlugTrue = componentSlugFormatted.replace(
-                `${categorySlug}-`,
-                ''
-              )
+              const componentSlugTrue = componentSlugFormatted.replace(`${categorySlug}-`, '')
 
               return `components/${categorySlug}/${componentSlugTrue}`
             })
@@ -53,11 +50,7 @@ export default async function sitemap() {
     )
   }
 
-  const siteSlugs = await Promise.all([
-    getCategories(),
-    getComponents(),
-    getBlogs(),
-  ])
+  const siteSlugs = await Promise.all([getCategories(), getComponents(), getBlogs()])
 
   const transformedSlugs = siteSlugs.flatMap((siteSlug) => {
     return siteSlug.flatMap((pageSlug) => {

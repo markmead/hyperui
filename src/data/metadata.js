@@ -7,6 +7,5 @@ export const ogMeta = {
 
 export const twitterMeta = {
   title: 'Free Open Source Tailwind CSS Components | HyperUI',
-  description:
-    'Free Tailwind CSS components that can be used in your next project.',
+  description: 'Free Tailwind CSS components that can be used in your next project.',
 }

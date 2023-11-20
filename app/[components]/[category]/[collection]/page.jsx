@@ -7,7 +7,6 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionLinks from '@component/CollectionLinks'
@@ -44,10 +43,7 @@ export async function generateStaticParams() {
 
 async function getCollection(params) {
   try {
-    const componentPath = join(
-      componentsDirectory,
-      `${params.category}-${params.collection}.mdx`
-    )
+    const componentPath = join(componentsDirectory, `${params.category}-${params.collection}.mdx`)
 
     const postItem = await fs.readFile(componentPath, 'utf-8')
 
@@ -96,12 +92,7 @@ export default async function Page({ params }) {
 
   return (
     <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
-      <CollectionLinks
-        activeCollection={params.collection}
-        activeCategory={params.category}
-      />
-
-      <Ad adClass="bordered horizontal" adId="collection-page" />
+      <CollectionLinks activeCollection={params.collection} activeCategory={params.category} />
 
       <div className="prose max-w-none">
         <MdxRemoteRender
