@@ -1,9 +1,7 @@
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <div x-data="{ isActive: false }" class="relative">
-  <div
-    class="inline-flex items-center overflow-hidden rounded-md border bg-white"
-  >
+  <div class="inline-flex items-center overflow-hidden rounded-md border bg-white">
     <a
       href="#"
       class="border-e px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700"
@@ -41,9 +39,7 @@
     x-on:keydown.escape.window="isActive = false"
   >
     <div class="p-2">
-      <strong class="block p-2 text-xs font-medium uppercase text-gray-400">
-        General
-      </strong>
+      <strong class="block p-2 text-xs font-medium uppercase text-gray-400"> General </strong>
 
       <a
         href="#"
@@ -79,9 +75,7 @@
     </div>
 
     <div class="p-2">
-      <strong class="block p-2 text-xs font-medium uppercase text-gray-400">
-        Danger Zone
-      </strong>
+      <strong class="block p-2 text-xs font-medium uppercase text-gray-400"> Danger Zone </strong>
 
       <form method="POST" action="#">
         <button

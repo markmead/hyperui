@@ -43,9 +43,7 @@ export default function HeaderSearch() {
     const filteredResults = initialResults.filter(function (initialResult) {
       const { title: initialTitle } = initialResult
 
-      return initialTitle
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase().trim())
+      return initialTitle.toLowerCase().includes(searchQuery.toLowerCase().trim())
     })
 
     setSearchResults(filteredResults)
@@ -96,9 +94,7 @@ export default function HeaderSearch() {
             <ul className="max-h-64 space-y-1 overflow-auto p-2">
               {searchResults.map((searchResult) => (
                 <li key={searchResult.id}>
-                  <Link
-                    href={`/components/${searchResult.category.slug}/${searchResult.slug}`}
-                  >
+                  <Link href={`/components/${searchResult.category.slug}/${searchResult.slug}`}>
                     <div className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
                       <span>{searchResult.title}</span>
 

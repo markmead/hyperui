@@ -9,7 +9,7 @@
     "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
     "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m",
     "postbuild": "npm run css",
-    "format": "prettier '{src,app}/**/*.{css,js,jsx,mdx}' --write"
+    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
   },
   "dependencies": {
     "next": "^13.4.19",

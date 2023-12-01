@@ -24,14 +24,12 @@
 <div x-data="{ productQuantity: 1 }">
   <label for="Quantity" class="sr-only"> Quantity </label>
 
-  <div
-    class="flex items-center border border-gray-200 rounded dark:border-gray-800"
-  >
+  <div class="flex items-center rounded border border-gray-200 dark:border-gray-800">
     <button
       type="button"
       x-on:click="productQuantity--"
       :disabled="productQuantity === 0"
-      class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+      class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
     >
       &minus;
     </button>
@@ -40,13 +38,13 @@
       type="number"
       id="Quantity"
       x-model="productQuantity"
-      class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] dark:bg-gray-900 dark:text-white sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+      class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] dark:bg-gray-900 dark:text-white sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
     />
 
     <button
       type="button"
       x-on:click="productQuantity++"
-      class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+      class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
     >
       &plus;
     </button>

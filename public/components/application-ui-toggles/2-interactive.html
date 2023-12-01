@@ -5,12 +5,7 @@
   for="AcceptConditions"
   class="relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
 >
-  <input
-    x-model="isChecked"
-    type="checkbox"
-    id="AcceptConditions"
-    class="peer sr-only"
-  />
+  <input x-model="isChecked" type="checkbox" id="AcceptConditions" class="peer sr-only" />
 
   <span
     :class="{ 'bg-gray-300': !isChecked, 'bg-green-500': isChecked }"
