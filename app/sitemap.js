@@ -71,6 +71,10 @@ export default async function sitemap() {
       lastModified: new Date(),
     },
     {
+      url: 'https://www.hyperui.dev/about/acknowledgements',
+      lastModified: new Date(),
+    },
+    {
       url: 'https://www.hyperui.dev/blog',
       lastModified: new Date(),
     },
