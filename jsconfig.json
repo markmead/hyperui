@@ -7,14 +7,14 @@
       "@component/*": ["src/components/*"],
       "@data/*": ["src/data/*"],
       "@style/*": ["src/styles/*"],
-      "@util/*": ["src/utils/*"]
+      "@util/*": ["src/utils/*"],
     },
     "plugins": [
       {
-        "name": "next"
-      }
-    ]
+        "name": "next",
+      },
+    ],
   },
   "include": ["next-env.d.js", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
