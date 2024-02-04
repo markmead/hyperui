@@ -3,14 +3,10 @@
 <label
   x-data="{ isChecked: false }"
   for="AcceptConditions"
-  class="relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
+  class="relative h-8 w-14 cursor-pointer rounded-full transition [-webkit-tap-highlight-color:_transparent]"
+  :class="{ 'bg-gray-300': !isChecked, 'bg-green-500': isChecked }"
 >
-  <input x-model="isChecked" type="checkbox" id="AcceptConditions" class="peer sr-only" />
-
-  <span
-    :class="{ 'bg-gray-300': !isChecked, 'bg-green-500': isChecked }"
-    class="absolute inset-0 rounded-full transition"
-  ></span>
+  <input x-model="isChecked" type="checkbox" id="AcceptConditions" class="sr-only" />
 
   <span
     :class="{ 'text-gray-400 start-0': !isChecked, 'start-6 text-green-600': isChecked }"
