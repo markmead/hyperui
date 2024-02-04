@@ -1,38 +1,42 @@
 <fieldset class="space-y-4">
   <legend class="sr-only">Delivery</legend>
 
-  <label
-    for="DeliveryOption"
-    class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
-  >
-    <input
-      type="radio"
-      name="DeliveryOption"
-      value="DeliveryStandard"
-      id="DeliveryStandard"
-      class="hidden"
-      checked
-    />
+  <div>
+    <label
+      for="DeliveryStandard"
+      class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500 dark:bg-gray-900 dark:hover:border-gray-700"
+    >
+      <p class="text-gray-700 dark:text-gray-200">Standard</p>
 
-    <p class="text-gray-700 dark:text-gray-200">Standard</p>
+      <p class="text-gray-900 dark:text-white">Free</p>
 
-    <p class="text-gray-900 dark:text-white">Free</p>
-  </label>
+      <input
+        type="radio"
+        name="DeliveryOption"
+        value="DeliveryStandard"
+        id="DeliveryStandard"
+        class="sr-only"
+        checked
+      />
+    </label>
+  </div>
 
-  <label
-    for="DeliveryPriority"
-    class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
-  >
-    <p class="text-gray-700 dark:text-gray-200">Next Day</p>
+  <div>
+    <label
+      for="DeliveryPriority"
+      class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500 dark:bg-gray-900 dark:hover:border-gray-700"
+    >
+      <p class="text-gray-700 dark:text-gray-200">Next Day</p>
 
-    <p class="text-gray-900 dark:text-white">£9.99</p>
+      <p class="text-gray-900 dark:text-white">£9.99</p>
 
-    <input
-      type="radio"
-      name="DeliveryOption"
-      value="DeliveryPriority"
-      id="DeliveryPriority"
-      class="hidden"
-    />
-  </label>
+      <input
+        type="radio"
+        name="DeliveryOption"
+        value="DeliveryPriority"
+        id="DeliveryPriority"
+        class="sr-only"
+      />
+    </label>
+  </div>
 </fieldset>
