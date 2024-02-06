@@ -20,5 +20,7 @@ export default async function middleware(nextRequest) {
 
   return isSuccess
     ? NextResponse.next()
-    : NextResponse.redirect(new URL('/blocked', nextRequest.url))
+    : NextResponse.status(200).json({
+        message: 'The request has been rate limited.',
+      })
 }
