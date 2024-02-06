@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Ratelimit } from '@upstash/ratelimit'
 import { kv } from '@vercel/kv'
+import { NextResponse } from 'next/server'
+import { Ratelimit } from '@upstash/ratelimit'
 
 const ratelimit = new Ratelimit({
   redis: kv,
