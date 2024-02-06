@@ -20,7 +20,5 @@ export default async function middleware(nextRequest) {
 
   return isSuccess
     ? NextResponse.next()
-    : NextResponse.status(200).json({
-        message: 'The request has been rate limited.',
-      })
+    : NextResponse.json({ error: 'You have hit the rate limit.' }, { status: 200 })
 }
