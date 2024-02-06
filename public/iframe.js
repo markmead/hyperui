@@ -1,12 +1,1 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const iframeLinks = [...document.querySelectorAll('a')]
-  const iframeForms = [...document.querySelectorAll('form')]
-
-  iframeLinks.forEach(function (iframeLink) {
-    iframeLink.addEventListener('click', (e) => e.preventDefault())
-  })
-
-  iframeForms.forEach(function (iframeForm) {
-    iframeForm.addEventListener('submit', (e) => e.preventDefault())
-  })
-})
+document.addEventListener("DOMContentLoaded",(function(){const e=[...document.querySelectorAll("a")],t=[...document.querySelectorAll("form")];e.forEach((function(e){e.addEventListener("click",(e=>e.preventDefault()))})),t.forEach((function(e){e.addEventListener("submit",(e=>e.preventDefault()))}))}));
