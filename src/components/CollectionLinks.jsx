@@ -69,7 +69,7 @@ export default async function CollectionLinks({ activeCollection, activeCategory
               {categoryData.emoji}
             </span>
 
-            <span className="text-xs font-medium text-gray-900">{categoryData.title}</span>
+            <span className="text-sm font-medium text-gray-900">{categoryData.title}</span>
           </li>
         ))}
       </ul>

@@ -36,7 +36,7 @@ export default function PreviewCode({
           <select
             id="CodeType"
             onInput={(e) => handleSetType(e.target.value)}
-            className="w-32 rounded-lg border-gray-700 bg-gray-800 text-white sm:text-sm"
+            className="w-32 rounded-md border-gray-700 bg-gray-800 text-white sm:text-sm"
           >
             <option value="html">HTML</option>
             <option value="jsx">JSX</option>
@@ -45,7 +45,7 @@ export default function PreviewCode({
         </div>
       )}
 
-      <pre className="h-[400px] overflow-auto rounded-lg p-4 ring-2 ring-gray-900 lg:h-[600px]">
+      <pre className="h-[400px] overflow-auto rounded-md p-4 ring-2 ring-gray-900 lg:h-[600px]">
         <code className={prismClass}>{componentCode}</code>
       </pre>
     </div>

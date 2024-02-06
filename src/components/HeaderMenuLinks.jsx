@@ -4,8 +4,8 @@ export default function HeaderMenuLinks({ menuLinks, navClass, ulClass }) {
   return (
     <nav aria-label="Global" className={navClass && navClass}>
       <ul className={ulClass && ulClass}>
-        {menuLinks.map((menuLink, index, { length }) => {
-          const isLast = index === length - 1
+        {menuLinks.map((menuLink, linkIndex, { length }) => {
+          const isLast = linkIndex === length - 1
 
           return (
             <li key={menuLink.href} className={isLast ? 'lg:ms-auto' : ''}>
@@ -15,10 +15,9 @@ export default function HeaderMenuLinks({ menuLinks, navClass, ulClass }) {
                   target: '_blank',
                   rel: 'noreferrer',
                 })}
+                className="text-sm font-medium text-gray-900 hover:opacity-75"
               >
-                <div className="block text-xs font-medium text-gray-900 hover:opacity-75">
-                  {menuLink.title}
-                </div>
+                {menuLink.title}
               </Link>
             </li>
           )
