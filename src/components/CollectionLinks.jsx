@@ -77,7 +77,7 @@ export default async function CollectionLinks({ activeCollection, activeCategory
           </ButtonStyle>
         </summary>
 
-        <div className="pt-4">
+        <div className="pt-6">
           <ul className="flex gap-4">
             {categoriesData.map((categoryData) => (
               <li key={categoryData.title} className="inline-flex items-center gap-1.5">
