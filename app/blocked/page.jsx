@@ -8,7 +8,11 @@ export async function generateMetadata() {
 export default function page() {
   return (
     <div className="grid h-[600px] place-content-center bg-white px-4">
-      <h1 className="uppercase tracking-widest text-gray-700">Rate Limit</h1>
+      <div>
+        <h1 className="uppercase tracking-widest text-gray-700">Blocked | Rate Limit Exceeded</h1>
+
+        <p className="mt-4 text-gray-700">Please try again in a few minutes.</p>
+      </div>
     </div>
   )
 }
