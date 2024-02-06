@@ -4,8 +4,8 @@ import { Ratelimit } from '@upstash/ratelimit'
 
 const ratelimit = new Ratelimit({
   redis: kv,
-  // We limit it to 5 requests from the same IP within 10 seconds
-  limiter: Ratelimit.slidingWindow(5, '10 s'),
+  // We limit it to 10 requests from the same IP within 10 seconds
+  limiter: Ratelimit.slidingWindow(10, '10 s'),
 })
 
 // Define which routes you want to rate limit
