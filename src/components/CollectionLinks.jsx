@@ -62,37 +62,55 @@ export default async function CollectionLinks({ activeCollection, activeCategory
 
   return (
     <div>
-      <ul className="flex gap-4">
-        {categoriesData.map((categoryData) => (
-          <li key={categoryData.title} className="inline-flex items-center gap-1.5">
+      <details className="group">
+        <summary className="inline-flex cursor-pointer">
+          <ButtonStyle>
             <span aria-hidden="true" role="img" className="text-sm">
-              {categoryData.emoji}
+              <span className="group-open:hidden">🐵</span>
+              <span className="hidden group-open:inline">🙈</span>
             </span>
 
-            <span className="text-sm font-medium text-gray-900">{categoryData.title}</span>
-          </li>
-        ))}
-      </ul>
+            <span className="text-sm font-medium">
+              <span className="group-open:hidden">Show</span>
+              <span className="hidden group-open:inline">Hide</span> Collections
+            </span>
+          </ButtonStyle>
+        </summary>
 
-      <ul className="mt-4 flex gap-1 overflow-auto md:flex-wrap md:overflow-hidden">
-        {componentsData.map((componentData) => {
-          const buttonText = `${componentData.title} (${componentData.count})`
-          const isActive =
-            activeCategory === componentData.category && activeCollection === componentData.slug
+        <div className="pt-4">
+          <ul className="flex gap-4">
+            {categoriesData.map((categoryData) => (
+              <li key={categoryData.title} className="inline-flex items-center gap-1.5">
+                <span aria-hidden="true" role="img" className="text-sm">
+                  {categoryData.emoji}
+                </span>
 
-          return (
-            <li key={componentData.id} className="shrink-0 md:shrink">
-              <Link href={`/components/${componentData.category}/${componentData.slug}`}>
-                <ButtonStyle
-                  buttonEmoji={componentData.emoji}
-                  buttonText={buttonText}
-                  buttonActive={isActive}
-                />
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+                <span className="text-sm font-medium text-gray-900">{categoryData.title}</span>
+              </li>
+            ))}
+          </ul>
+
+          <ul className="mt-4 flex gap-1 overflow-auto md:flex-wrap md:overflow-hidden">
+            {componentsData.map((componentData) => {
+              const buttonText = `${componentData.title} (${componentData.count})`
+              const isActive =
+                activeCategory === componentData.category && activeCollection === componentData.slug
+
+              return (
+                <li key={componentData.id} className="shrink-0 md:shrink">
+                  <Link href={`/components/${componentData.category}/${componentData.slug}`}>
+                    <ButtonStyle
+                      buttonEmoji={componentData.emoji}
+                      buttonText={buttonText}
+                      buttonActive={isActive}
+                    />
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </details>
     </div>
   )
 }
