@@ -20,8 +20,5 @@ export default async function middleware(nextRequest) {
 
   return isSuccess
     ? NextResponse.next()
-    : NextResponse.json(
-        { error: 'You have hit the rate limit. Please try again in a few seconds.' },
-        { status: 200 }
-      )
+    : NextResponse.redirect(new URL('/blocked', nextRequest.url))
 }
