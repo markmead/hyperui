@@ -16,7 +16,7 @@ export const config = {
 export default async function middleware(nextRequest) {
   const requestIp = nextRequest.ip ?? '127.0.0.1'
 
-  const { success: isSuccess } = await rateLimitInstance.blockUntilReady(requestIp, 1000)
+  const { success: isSuccess } = await rateLimitInstance.limit(requestIp)
 
   return isSuccess
     ? NextResponse.next()
