@@ -40,7 +40,7 @@ export default function FaqList() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="h-5 w-5 transition group-open:rotate-180"
+                  className="size-5 transition group-open:rotate-180"
                 >
                   <path
                     strokeLinecap="round"

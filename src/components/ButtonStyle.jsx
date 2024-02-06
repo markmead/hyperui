@@ -1,4 +1,4 @@
-export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive, isDark }) {
+export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive, isDark, children }) {
   const buttonClasses = {
     DEFAULT: `border-gray-900 ${
       buttonActive
@@ -14,13 +14,19 @@ export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive, isD
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-lg border-2 px-3 py-1.5 ${buttonClass}`}
+      className={`inline-flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 ${buttonClass}`}
     >
-      <span aria-hidden="true" role="img" className="text-sm">
-        {buttonEmoji}
-      </span>
+      {children ? (
+        children
+      ) : (
+        <>
+          <span aria-hidden="true" role="img" className="text-sm">
+            {buttonEmoji}
+          </span>
 
-      <span className="text-xs font-medium">{buttonText}</span>
+          <span className="text-sm font-medium">{buttonText}</span>
+        </>
+      )}
     </span>
   )
 }

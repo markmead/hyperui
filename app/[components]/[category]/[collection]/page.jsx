@@ -73,7 +73,10 @@ export default async function Page({ params }) {
   const { collectionData, collectionContent } = await getCollection(params)
 
   const componentsData = {
-    componentContainer: collectionData.container || '',
+    componentContainer: {
+      previewInner: collectionData.container || '',
+      previewHeight: collectionData.wrapper || '',
+    },
     componentsData: Object.entries(collectionData.components).map(
       ([componentId, componentItem]) => {
         return {
@@ -82,6 +85,7 @@ export default async function Page({ params }) {
           slug: collectionData.slug,
           category: collectionData.category,
           container: componentItem.container || '',
+          wrapper: componentItem.wrapper || '',
           creator: componentItem.creator || '',
           dark: !!componentItem.dark,
           interactive: !!componentItem.interactive,

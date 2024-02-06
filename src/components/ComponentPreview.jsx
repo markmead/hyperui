@@ -47,7 +47,8 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     interactive: componentHasInteractive,
   } = componentData
 
-  const trueComponentContainer = componentSpace ? componentSpace : componentContainer
+  const trueComponentContainer = componentSpace || componentContainer?.previewInner
+  const componentWrapper = componentContainer?.previewHeight || 'h-[400px] lg:h-[600px]'
 
   const componentHash = `component-${componentId}`
 
@@ -175,6 +176,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               componentHtml={componentHtml}
               componentTitle={componentTitle}
               previewWidth={previewWidth}
+              previewHeight={componentWrapper}
               refIframe={refIframe}
               previewDark={componentHasDark && isDarkMode}
             />

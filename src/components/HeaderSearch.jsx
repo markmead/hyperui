@@ -80,7 +80,7 @@ export default function HeaderSearch() {
           value={searchQuery}
           placeholder="Search..."
           id="SiteSearch"
-          className="w-full rounded-md border-gray-200 text-sm"
+          className="w-full rounded-md border-gray-200 sm:text-sm"
         />
 
         <button tabIndex={-1} className="sr-only">
@@ -89,25 +89,26 @@ export default function HeaderSearch() {
       </form>
 
       {showDropdown && (
-        <div className="absolute right-0 top-14 z-50 w-64 rounded-lg border border-gray-100 bg-white shadow-lg">
+        <div className="absolute right-0 top-14 z-50 w-72 rounded-md border border-gray-100 bg-white shadow-lg">
           {searchResults.length ? (
             <ul className="max-h-64 space-y-1 overflow-auto p-2">
               {searchResults.map((searchResult) => (
                 <li key={searchResult.id}>
-                  <Link href={`/components/${searchResult.category.slug}/${searchResult.slug}`}>
-                    <div className="flex items-center justify-between rounded-md px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50">
-                      <span>{searchResult.title}</span>
+                  <Link
+                    href={`/components/${searchResult.category.slug}/${searchResult.slug}`}
+                    className="flex items-center justify-between rounded-md px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-50"
+                  >
+                    <span>{searchResult.title}</span>
 
-                      <span className="block rounded bg-gray-900 px-1.5 py-0.5 text-[10px] text-white">
-                        {searchResult.category.title}
-                      </span>
-                    </div>
+                    <span className="block rounded bg-gray-900 px-1.5 py-0.5 text-xs text-white">
+                      {searchResult.category.title}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="p-4 text-center text-sm text-gray-500">
+            <div className="p-4 text-center text-sm text-gray-700">
               Uh-no! There are no results 😢
             </div>
           )}

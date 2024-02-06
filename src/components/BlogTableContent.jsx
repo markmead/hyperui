@@ -48,7 +48,7 @@ export default function BlogTableContent() {
         Table of Contents
       </summary>
 
-      <div className="mt-1.5 rounded-lg border border-gray-100 bg-gray-50 p-1.5">
+      <div className="mt-1.5 rounded-md border border-gray-100 bg-gray-50 p-1.5">
         <HeadingsGroup groupItem={contentHeadings} />
       </div>
     </details>

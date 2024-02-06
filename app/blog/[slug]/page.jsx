@@ -87,7 +87,7 @@ export default async function Page({ params }) {
       />
 
       <Container classNames="py-8 lg:py-12">
-        <article className="prose prose-img:rounded-lg mx-auto">
+        <article className="prose mx-auto">
           <header>
             <time className="text-sm text-gray-700">{blogData.date}</time>
 
