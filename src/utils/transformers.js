@@ -15,7 +15,20 @@ export function componentPreviewHtml(
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        <script src="/iframe.js"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const iframeLinks = [...document.querySelectorAll('a')]
+            const iframeForms = [...document.querySelectorAll('form')]
+
+            iframeLinks.forEach(function (iframeLink) {
+              iframeLink.addEventListener('click', (e) => e.preventDefault())
+            })
+
+            iframeForms.forEach(function (iframeForm) {
+              iframeForm.addEventListener('submit', (e) => e.preventDefault())
+            })
+          })
+        </script>
       </head>
 
       <body class="${componentContainer} font-sans antialiased">

@@ -11,7 +11,7 @@
         :src="isLoaded ? `${imageSrc}&w=1770&q=80` : `${imageSrc}&w=10&q=80`"
         :class="{ '[image-rendering:_auto]': isLoaded, '[image-rendering:_pixelated]': !isLoaded}"
         x-intersect.full="isLoaded = true"
-        alt="Street"
+        alt=""
         class="h-80 w-full rounded-md object-cover"
       />
     </div>

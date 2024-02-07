@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){const e=[...document.querySelectorAll("a")],t=[...document.querySelectorAll("form")];e.forEach((function(e){e.addEventListener("click",(e=>e.preventDefault()))})),t.forEach((function(e){e.addEventListener("submit",(e=>e.preventDefault()))}))}));
