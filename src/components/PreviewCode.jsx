@@ -4,6 +4,7 @@ import Prism from 'prismjs'
 require('prismjs/components/prism-jsx.min')
 
 export default function PreviewCode({
+  componentId,
   showPreview,
   componentCode = '',
   handleSetType,
@@ -29,12 +30,12 @@ export default function PreviewCode({
     >
       {showToggle && (
         <div className="absolute right-4 top-4">
-          <label htmlFor="CodeType" className="sr-only">
+          <label htmlFor={`CodeType${componentId}`} className="sr-only">
             Code Type
           </label>
 
           <select
-            id="CodeType"
+            id={`CodeType${componentId}`}
             onInput={(e) => handleSetType(e.target.value)}
             className="w-32 rounded-md border-gray-700 bg-gray-800 text-white sm:text-sm"
           >

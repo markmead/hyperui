@@ -182,6 +182,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
             />
 
             <PreviewCode
+              componentId={componentId}
               showPreview={showPreview}
               handleSetType={setCodeType}
               codeType={codeType}
