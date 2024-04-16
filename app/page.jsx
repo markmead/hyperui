@@ -10,7 +10,7 @@ async function getComponents() {
   const componentsPath = join(process.cwd(), '/src/data/components')
   const categoriesPath = join(process.cwd(), '/src/data/categories')
 
-  const categorySlugs = ['application-ui', 'marketing', 'ecommerce']
+  const categorySlugs = ['application-ui', 'marketing']
   const componentSlugs = await fs.readdir(componentsPath)
 
   const componentsByCategory = await Promise.all(

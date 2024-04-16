@@ -3,7 +3,7 @@ import { promises as fs } from 'fs'
 
 export default async function sitemap() {
   async function getCategories() {
-    const categorySlugs = ['application-ui', 'marketing', 'ecommerce']
+    const categorySlugs = ['application-ui', 'marketing']
 
     return await Promise.all(
       categorySlugs.map(async (categorySlug) => `components/${categorySlug}`)
@@ -13,7 +13,7 @@ export default async function sitemap() {
   async function getComponents() {
     const componentsPath = join(process.cwd(), '/src/data/components')
 
-    const categorySlugs = ['application-ui', 'marketing', 'ecommerce']
+    const categorySlugs = ['application-ui', 'marketing']
     const componentSlugs = await fs.readdir(componentsPath)
 
     const componentsByCategory = await Promise.all(

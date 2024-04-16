@@ -11,7 +11,6 @@ HyperUI is a collection of free Tailwind CSS components that can be used in your
 - [Components](#components)
   - [🤖 Application UI](#application-ui-)
   - [📣 Marketing](#marketing-)
-  - [🛍️ eCommerce](#ecommerce-)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -83,13 +82,13 @@ HyperUI has a wide range of freely available components. These components includ
 
 ### eCommerce 🛍️
 
-- [Carts](https://www.hyperui.dev/components/ecommerce/carts)
-- [Collection Cards](https://www.hyperui.dev/components/ecommerce/collection-cards)
-- [Collection Filters](https://www.hyperui.dev/components/ecommerce/collection-filters)
-- [Featured Sections](https://www.hyperui.dev/components/ecommerce/featured-sections)
-- [Product Cards](https://www.hyperui.dev/components/ecommerce/product-cards)
-- [Product Collections](https://www.hyperui.dev/components/ecommerce/product-collections)
-- [Quantity Inputs](https://www.hyperui.dev/components/ecommerce/quantity-inputs)
+- [Carts](https://www.hyperui.dev/components/marketing/carts)
+- [Collection Cards](https://www.hyperui.dev/components/marketing/collection-cards)
+- [Collection Filters](https://www.hyperui.dev/components/application-ui/collection-filters)
+- [Featured Sections](https://www.hyperui.dev/components/marketing/featured-sections)
+- [Product Cards](https://www.hyperui.dev/components/marketing/product-cards)
+- [Product Collections](https://www.hyperui.dev/components/marketing/product-collections)
+- [Quantity Inputs](https://www.hyperui.dev/components/application-ui/quantity-inputs)
 
 ## Contributing
 
