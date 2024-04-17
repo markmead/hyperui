@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
@@ -10,7 +12,6 @@ import GithubSocial from '@component/GithubSocial'
 import HeaderMenu from '@component/HeaderMenu'
 import HeaderMenuLinks from '@component/HeaderMenuLinks'
 import HeaderSearch from '@component/HeaderSearch'
-import Link from 'next/link'
 
 export default function Header() {
   const routerPathname = usePathname()
