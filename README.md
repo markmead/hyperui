@@ -40,18 +40,23 @@ HyperUI has a wide range of freely available components. These components includ
 ### Application UI 🤖
 
 - [Alerts](https://www.hyperui.dev/components/application-ui/alerts)
+- [Auth Forms](https://www.hyperui.dev/components/application-ui/login-forms)
 - [Badges](https://www.hyperui.dev/components/application-ui/badges)
 - [Breadcrumbs](https://www.hyperui.dev/components/application-ui/breadcrumbs)
 - [Button Groups](https://www.hyperui.dev/components/application-ui/button-groups)
+- [Checkboxes](https://www.hyperui.dev/components/application-ui/checkboxes)
 - [Details Lists](https://www.hyperui.dev/components/application-ui/details-list)
+- [Dividers](https://www.hyperui.dev/components/application-ui/dividers)
 - [Dropdowns](https://www.hyperui.dev/components/application-ui/dropdown)
 - [Error Pages](https://www.hyperui.dev/components/application-ui/error-pages)
+- [Filters](https://www.hyperui.dev/components/application-ui/filters)
 - [Grids](https://www.hyperui.dev/components/application-ui/grids)
 - [Header](https://www.hyperui.dev/components/application-ui/header)
 - [Inputs](https://www.hyperui.dev/components/application-ui/inputs)
-- [Auth Forms](https://www.hyperui.dev/components/application-ui/login-forms)
+- [Media](https://www.hyperui.dev/components/application-ui/media)
 - [Pagination](https://www.hyperui.dev/components/application-ui/pagination)
 - [Progress](https://www.hyperui.dev/components/application-ui/progress)
+- [Quantity Inputs](https://www.hyperui.dev/components/application-ui/quantity-inputs)
 - [Radio Groups](https://www.hyperui.dev/components/application-ui/radio-groups)
 - [Selects](https://www.hyperui.dev/components/application-ui/selects)
 - [Side Menu](https://www.hyperui.dev/components/application-ui/side-menu)
@@ -70,6 +75,8 @@ HyperUI has a wide range of freely available components. These components includ
 - [Blog Cards](https://www.hyperui.dev/components/marketing/blog-cards)
 - [Buttons](https://www.hyperui.dev/components/marketing/buttons)
 - [Cards](https://www.hyperui.dev/components/marketing/cards)
+- [Carts](https://www.hyperui.dev/components/marketing/carts)
+- [Collection Cards](https://www.hyperui.dev/components/marketing/collection-cards)
 - [CTAs](https://www.hyperui.dev/components/marketing/ctas)
 - [FAQs](https://www.hyperui.dev/components/marketing/faqs)
 - [Footers](https://www.hyperui.dev/components/marketing/footers)
@@ -77,19 +84,15 @@ HyperUI has a wide range of freely available components. These components includ
 - [Header](https://www.hyperui.dev/components/marketing/headers)
 - [Popups](https://www.hyperui.dev/components/marketing/popups)
 - [Pricing](https://www.hyperui.dev/components/marketing/pricings)
+- [Product Cards](https://www.hyperui.dev/components/marketing/product-cards)
+- [Product Collections](https://www.hyperui.dev/components/marketing/product-collections)
 - [Sections](https://www.hyperui.dev/components/marketing/sections)
 - [Stats](https://www.hyperui.dev/components/marketing/stats)
 - [Testimonials](https://www.hyperui.dev/components/marketing/testimonials)
 
 ### eCommerce 🛍️
 
-- [Carts](https://www.hyperui.dev/components/ecommerce/carts)
-- [Collection Cards](https://www.hyperui.dev/components/ecommerce/collection-cards)
-- [Collection Filters](https://www.hyperui.dev/components/ecommerce/collection-filters)
-- [Featured Sections](https://www.hyperui.dev/components/ecommerce/featured-sections)
-- [Product Cards](https://www.hyperui.dev/components/ecommerce/product-cards)
-- [Product Collections](https://www.hyperui.dev/components/ecommerce/product-collections)
-- [Quantity Inputs](https://www.hyperui.dev/components/ecommerce/quantity-inputs)
+These components were originally part of the eCommerce category but have since moved, [find out more](https://www.hyperui.dev/blog/ecommerce-component-changes) in this blog post.
 
 ## Contributing
 

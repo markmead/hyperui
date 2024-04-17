@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
@@ -30,11 +32,6 @@ export default function Header() {
       external: false,
     },
     {
-      title: 'eCommerce',
-      href: '/components/ecommerce',
-      external: false,
-    },
-    {
       title: 'Blog',
       href: '/blog',
       external: false,
@@ -60,6 +57,8 @@ export default function Header() {
         </div>
 
         <div className="flex items-center justify-end gap-2 sm:gap-4">
+          <CategoryAnnouncement />
+
           <HeaderSearch />
 
           <GithubSocial />
@@ -68,5 +67,20 @@ export default function Header() {
         </div>
       </Container>
     </header>
+  )
+}
+
+function CategoryAnnouncement() {
+  return (
+    <Link
+      href="/blog/ecommerce-component-changes"
+      className="inline-flex items-center justify-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-200 hover:text-purple-800"
+    >
+      <p className="whitespace-nowrap text-sm">eCommerce Changes</p>
+
+      <span role="img" aria-hidden="true" className="hidden sm:block">
+        👉
+      </span>
+    </Link>
   )
 }
