@@ -48,6 +48,8 @@ async function getComponents() {
           })
       )
 
+      componentItems.sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
+
       return {
         categoryTitle: categoryData.title,
         componentItems,
