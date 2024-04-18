@@ -8,7 +8,7 @@ import '@style/site.css'
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
-import Announcement from '@component/Announcement'
+// import Announcement from '@component/Announcement'
 
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
 
         <Footer />
 
-        <Announcement />
+        {/* <Announcement /> */}
       </body>
     </html>
   )
