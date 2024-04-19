@@ -50,6 +50,7 @@ async function getComponents() {
       return {
         categoryTitle: categoryData.title,
         categoryEmoji: categoryData.emoji,
+        categorySlug: categorySlug,
         componentItems,
       }
     })
@@ -92,16 +93,15 @@ export default async function CollectionLinks({ activeCollection, activeCategory
           </ul>
 
           <ul className="mt-4 flex gap-1 overflow-auto md:flex-wrap md:overflow-hidden">
-            {componentsByCategory.map(({ categoryEmoji, componentItems }) => {
+            {componentsByCategory.map(({ categoryEmoji, categorySlug, componentItems }) => {
               return componentItems.map((componentData) => {
                 const buttonText = `${componentData.title} (${componentData.count})`
                 const isActive =
-                  activeCategory === componentData.category &&
-                  activeCollection === componentData.slug
+                  activeCategory === categorySlug && activeCollection === componentData.slug
 
                 return (
                   <li key={componentData.id} className="shrink-0 md:shrink">
-                    <Link href={`/components/${componentData.category}/${componentData.slug}`}>
+                    <Link href={`/components/${categorySlug}/${componentData.slug}`}>
                       <ButtonStyle
                         buttonEmoji={categoryEmoji}
                         buttonText={buttonText}
