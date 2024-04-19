@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
+title: 'It would be great to add...'
 labels: enhancement
 assignees: markmead
 ---
