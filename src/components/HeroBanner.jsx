@@ -1,3 +1,4 @@
+import Ad from '@component/Ad'
 import Container from '@component/Container'
 
 export default function HeroBanner({ children, subtitle, title }) {
@@ -13,6 +14,8 @@ export default function HeroBanner({ children, subtitle, title }) {
         <p className="mx-auto mt-6 max-w-xl text-pretty text-base/relaxed text-gray-700">
           {children}
         </p>
+
+        <Ad adClass="bordered horizontal mt-4" adId="banner-component" />
       </Container>
     </section>
   )
