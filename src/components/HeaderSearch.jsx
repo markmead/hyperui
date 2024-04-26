@@ -60,7 +60,7 @@ export default function HeaderSearch() {
   useDebounce(() => setSearchQueryDebounced(searchQuery), 500, [searchQuery])
 
   async function fetchSearchResults() {
-    const searchResults = await fetch('/api/search')
+    const searchResults = await fetch('/api/search', { cache: 'no-store' })
     const searchJson = await searchResults.json()
 
     return searchJson

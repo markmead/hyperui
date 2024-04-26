@@ -108,7 +108,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
     const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}.html`
 
-    const fetchResponse = await fetch(componentUrl)
+    const fetchResponse = await fetch(componentUrl, { cache: 'no-store' })
     const textResponse = await fetchResponse.text()
     const transformedHtml = componentPreviewHtml(
       textResponse,
