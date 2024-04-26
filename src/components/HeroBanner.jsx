@@ -15,7 +15,7 @@ export default function HeroBanner({ children, subtitle, title }) {
           {children}
         </p>
 
-        <Ad adClass="bordered horizontal mt-4" adId="banner-component" />
+        <Ad isCenter adClass="bordered horizontal mt-4" adId="banner-component" />
       </Container>
     </section>
   )
