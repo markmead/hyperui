@@ -74,7 +74,7 @@ function CategoryAnnouncement() {
   return (
     <Link
       href="/blog/ecommerce-component-changes"
-      className="inline-flex items-center justify-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-200 hover:text-purple-800"
+      className="hidden md:inline-flex md:items-center md:justify-center md:gap-1 md:rounded-full md:bg-purple-100 md:px-2.5 md:py-0.5 md:text-xs md:font-medium md:text-purple-700 md:transition-colors md:hover:bg-purple-200 md:hover:text-purple-800"
     >
       <p className="whitespace-nowrap text-sm">eCommerce Changes</p>
 
