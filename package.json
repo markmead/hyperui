@@ -4,11 +4,11 @@
     "dev": "next dev --turbo",
     "start": "next start",
     "build": "next build",
-    "postbuild": "npm run css",
+    "postbuild": "yarn css",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write",
-    "css": "npm run css:components && npm run css:blogs",
+    "css": "yarn css:components && yarn css:blogs",
     "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
     "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m"
   },
