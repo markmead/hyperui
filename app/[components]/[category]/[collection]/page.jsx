@@ -99,7 +99,7 @@ export default async function Page({ params }) {
     <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
       <CollectionLinks activeCollection={params.collection} activeCategory={params.category} />
 
-      <Ad adClass="bordered horizontal" adId="collection-page" adStyle="stickybox" />
+      <Ad adStyle="stickybox" />
 
       <div className="prose max-w-none">
         <MdxRemoteRender

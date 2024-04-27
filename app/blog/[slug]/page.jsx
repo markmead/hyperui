@@ -95,7 +95,7 @@ export default async function Page({ params }) {
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
 
-          <Ad isCenter adClass="bordered horizontal" adId="blog-page" adStyle="stickybox" />
+          <Ad isCenter adStyle="stickybox" />
 
           <TableContent />
 
