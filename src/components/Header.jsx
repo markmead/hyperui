@@ -37,6 +37,11 @@ export default function Header() {
       external: false,
     },
     {
+      title: 'AI',
+      href: '/ai',
+      external: false,
+    },
+    {
       title: 'HyperJS',
       href: 'https://js.hyperui.dev',
       external: true,

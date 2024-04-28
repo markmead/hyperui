@@ -33,8 +33,6 @@ export default function Page() {
         .replace(/([^.])$/, '$1.')
         .trim()
 
-      console.log(formatPrompt)
-
       const aiResponse = await fetch('/api/ai', {
         method: 'POST',
         headers: {
@@ -71,8 +69,26 @@ export default function Page() {
       <HeroBanner noAd title="AI" subtitle="Tailwind CSS Component Creator Powered by AI" />
 
       <Container classNames={`pb-8 lg:pb-12 space-y-8 ${isLoading ? 'animate-pulse' : ''}`}>
-        <div className="mx-auto max-w-xl">
-          <form action="#" onSubmit={(e) => createRequest(e)}>
+        <div className="mx-auto max-w-xl space-y-4">
+          <div role="alert" class="rounded border-s-4 border-blue-500 bg-blue-50 p-4">
+            <strong class="block font-medium text-blue-800"> Heads up </strong>
+
+            <p class="mt-2 text-sm text-blue-700">
+              This feature is in beta. Please provide feedback on the{' '}
+              <a
+                href="https://github.com/markmead/hyperui/discussions/453"
+                class="underline"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block underline"
+              >
+                GitHub Discussion
+              </a>
+              .
+            </p>
+          </div>
+
+          <form action="#" onSubmit={(e) => createRequest(e)} className="space-y-4">
             <div>
               <label htmlFor="AiPrompt" className="sr-only">
                 Request a component
@@ -92,14 +108,12 @@ export default function Page() {
               </small>
             </div>
 
-            <div className="mt-4">
-              <button
-                disabled={requestPrompt.length < 25 || requestPrompt.length > 500}
-                className="disabled:opacity-50"
-              >
-                <ButtonStyle buttonEmoji="🤖" buttonText="Generate" />
-              </button>
-            </div>
+            <button
+              disabled={requestPrompt.length < 25 || requestPrompt.length > 500}
+              className="disabled:opacity-50"
+            >
+              <ButtonStyle buttonEmoji="🤖" buttonText="Generate" />
+            </button>
           </form>
         </div>
 
