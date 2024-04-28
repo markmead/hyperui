@@ -22,25 +22,34 @@ export async function POST(nextReq) {
         },
         {
           role: 'system',
-          content: 'If there is an image get it from Unsplash.',
+          content:
+            'You have been asked to create a component that needs to be responsive and accessible.',
         },
         {
           role: 'system',
-          content: 'Make sure to use Tailwind CSS classes.',
+          content: 'Make sure to use Tailwind CSS classes and write clean, semantic HTML.',
         },
         {
           role: 'system',
-          content: 'The component should be responsive.',
+          content: 'You can use modern CSS features found in the latest version of Tailwind CSS.',
         },
         {
           role: 'system',
-          content: 'The component should be accessible.',
+          content: 'Make sure the component has a background color.',
         },
         {
           role: 'system',
-          content: 'Make sure there is a background color.',
+          content: 'Remember, Tailwind CSS breakpoints are mobile first.',
         },
         ...reqMessages,
+        {
+          role: 'system',
+          content: 'If there is an image use https://source.unsplash.com/random.',
+        },
+        {
+          role: 'system',
+          content: 'Only return the HTML, no explanation text is needed.',
+        },
       ],
       model: 'codellama/CodeLlama-70b-Instruct-hf',
       max_tokens: 1024,

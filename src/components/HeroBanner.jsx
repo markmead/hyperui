@@ -1,7 +1,7 @@
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 
-export default function HeroBanner({ children, subtitle, title }) {
+export default function HeroBanner({ children, subtitle, title, noAd = false }) {
   return (
     <section className="bg-white text-center">
       <Container classNames="py-8 lg:py-12">
@@ -15,9 +15,11 @@ export default function HeroBanner({ children, subtitle, title }) {
           {children}
         </p>
 
-        <div className="mt-4">
-          <Ad isCenter />
-        </div>
+        {!noAd && (
+          <div className="mt-4">
+            <Ad isCenter />
+          </div>
+        )}
       </Container>
     </section>
   )

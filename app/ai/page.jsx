@@ -2,90 +2,131 @@
 
 import { useState } from 'react'
 
-import Script from 'next/script'
+import { aiPreviewHtml } from '@util/transformers'
 
-import Container from '@component/Container'
+import AiPreview from '@component/AiPreview'
 import ButtonStyle from '@component/ButtonStyle'
+import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
+import Loading from '@component/Loading'
+import Ad from '@component/Ad'
 
 export default function Page() {
+  const [requestPrompt, setRequestPrompt] = useState('')
+  const [previewCode, setPreviewCode] = useState('')
+  const [previewHtml, setPreviewHtml] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [aiRequest, setAiRequest] = useState('')
-  const [codeSnippet, setCodeSnippet] = useState('')
 
   async function createRequest(e) {
     e.preventDefault()
 
     setIsLoading(true)
+    setErrorMessage('')
+    setPreviewCode('')
+    setPreviewHtml('')
 
-    const aiResponse = await fetch('/api/ai', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ messages: [{ role: 'user', content: aiRequest }] }),
-    })
+    try {
+      const formatPrompt = requestPrompt
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/([^.])$/, '$1.')
+        .trim()
 
-    const aiResponseJson = await aiResponse.json()
+      console.log(formatPrompt)
 
-    const { choices: resultChoices } = aiResponseJson
+      const aiResponse = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [{ role: 'user', content: formatPrompt }],
+        }),
+      })
 
-    if (!resultChoices.length) {
-      return
+      const aiResponseJson = await aiResponse.json()
+
+      const { choices: resultChoices } = aiResponseJson
+
+      if (!resultChoices.length) {
+        throw new Error('Failed to generate AI response. Please try again.')
+      }
+
+      let aiOutput = resultChoices[0].message.content
+
+      aiOutput = aiOutput.trim()
+
+      setPreviewCode(aiOutput)
+      setPreviewHtml(aiPreviewHtml(aiOutput))
+    } catch (aiError) {
+      setErrorMessage(aiError.message)
     }
-
-    const aiOutput = resultChoices[0].message.content
-
-    const codeSnippet = aiOutput
-      .match(/```html([\s\S]*?)```/g)[0]
-      .replace('```html', '')
-      .replace('```', '')
-
-    setCodeSnippet(codeSnippet)
 
     setIsLoading(false)
   }
 
   return (
-    <div>
-      <Script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio" />
+    <div className={isLoading ? 'pointer-events-none' : ''}>
+      <HeroBanner noAd title="AI" subtitle="Tailwind CSS Component Creator Powered by AI" />
 
-      <HeroBanner title="AI Component Generator" subtitle="Generate HTML components using AI" />
-
-      <Container classNames="py-8 lg:py-12">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div>
-            <form action="#" onSubmit={(e) => createRequest(e)}>
-              <label htmlFor="AiRequest" className="sr-only">
+      <Container classNames={`pb-8 lg:pb-12 space-y-8 ${isLoading ? 'animate-pulse' : ''}`}>
+        <div className="mx-auto max-w-xl">
+          <form action="#" onSubmit={(e) => createRequest(e)}>
+            <div>
+              <label htmlFor="AiPrompt" className="sr-only">
                 Request a component
               </label>
 
               <textarea
-                className="h-64 w-full rounded-md border-gray-200 sm:text-sm"
-                placeholder="Describe your component..."
-                id="AiRequest"
-                onInput={(e) => setAiRequest(e.target.value)}
+                className="h-32 w-full rounded-md border-gray-200 sm:text-sm"
+                placeholder="Describe the component you want to generate. Be as detailed as possible."
+                id="AiPrompt"
+                minLength="25"
+                maxLength="500"
+                onInput={(e) => setRequestPrompt(e.target.value)}
               ></textarea>
 
-              <button>
+              <small className="mt-0.5 block text-right text-sm text-gray-500">
+                {requestPrompt.length} / 500 characters
+              </small>
+            </div>
+
+            <div className="mt-4">
+              <button
+                disabled={requestPrompt.length < 25 || requestPrompt.length > 500}
+                className="disabled:opacity-50"
+              >
                 <ButtonStyle buttonEmoji="🤖" buttonText="Generate" />
               </button>
-            </form>
-          </div>
-
-          <div>
-            <div className="prose max-w-none">
-              <pre className="h-64">{codeSnippet}</pre>
             </div>
-          </div>
+          </form>
         </div>
 
-        <div className="mx-auto mt-8 max-w-5xl lg:mt-12">
-          <div className="min-h-64 rounded-md bg-white bg-[linear-gradient(45deg,_rgb(249_250_251)_25%,_transparent_25%),_linear-gradient(-45deg,_rgb(249_250_251)_25%,_transparent_25%),_linear-gradient(45deg,_transparent_75%,_rgb(249_250_251)_75%),_linear-gradient(-45deg,_transparent_75%,_rgb(249_250_251)_75%)] bg-[length:_20px_20px] p-6 ring-2 ring-gray-900 [background-position:_0_0,_0_10px,_10px_-10px,_-10px_0px]">
-            <div dangerouslySetInnerHTML={{ __html: codeSnippet }}></div>
-          </div>
+        <Ad isCenter adStyle="stickybox" />
+
+        <div>
+          {!!errorMessage ? (
+            <div role="alert" class="rounded border-s-4 border-red-500 bg-red-50 p-4">
+              <strong class="block font-medium text-red-800"> Something went wrong </strong>
+
+              <p class="mt-2 text-sm text-red-700">{errorMessage}</p>
+            </div>
+          ) : (
+            <AiPreview
+              previewTitle="AI Response"
+              previewCode={previewCode}
+              previewHtml={previewHtml}
+            />
+          )}
         </div>
       </Container>
+
+      {isLoading && (
+        <div className="fixed inset-0 z-50 grid place-content-center bg-gray-900/50">
+          <Loading />
+        </div>
+      )}
     </div>
   )
 }

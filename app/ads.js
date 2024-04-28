@@ -7,6 +7,10 @@ export default function Ads() {
   const routerPathname = usePathname()
 
   useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      return
+    }
+
     const newScript = document.createElement('script')
 
     newScript.src = 'https://media.ethicalads.io/media/client/ethicalads.min.js'

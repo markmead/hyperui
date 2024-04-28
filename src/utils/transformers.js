@@ -101,3 +101,40 @@ export function blogPreviewHtml(
     </html>
   `
 }
+
+export function aiPreviewHtml(componentHtml, isDarkMode = false, isRtl = false) {
+  const htmlClass = isDarkMode ? 'dark' : 'relative'
+  const htmlDirection = isRtl ? 'rtl' : 'ltr'
+
+  return `
+    <html class="${htmlClass}" dir="${htmlDirection}">
+      <head>
+        <link rel="stylesheet" href="/components.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const iframeLinks = [...document.querySelectorAll('a')]
+            const iframeForms = [...document.querySelectorAll('form')]
+
+            iframeLinks.forEach(function (iframeLink) {
+              iframeLink.addEventListener('click', (e) => e.preventDefault())
+            })
+
+            iframeForms.forEach(function (iframeForm) {
+              iframeForm.addEventListener('submit', (e) => e.preventDefault())
+            })
+          })
+        </script>
+      </head>
+
+      <body class="p-6 font-sans antialiased">
+        ${componentHtml}
+      </body>
+    </html>
+  `
+}
