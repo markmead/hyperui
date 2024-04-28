@@ -102,12 +102,9 @@ export function blogPreviewHtml(
   `
 }
 
-export function aiPreviewHtml(componentHtml, isDarkMode = false, isRtl = false) {
-  const htmlClass = isDarkMode ? 'dark' : 'relative'
-  const htmlDirection = isRtl ? 'rtl' : 'ltr'
-
+export function aiPreviewHtml(componentHtml) {
   return `
-    <html class="${htmlClass}" dir="${htmlDirection}">
+    <html>
       <head>
         <link rel="stylesheet" href="/components.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">

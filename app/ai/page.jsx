@@ -8,7 +8,6 @@ import AiPreview from '@component/AiPreview'
 import ButtonStyle from '@component/ButtonStyle'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
-import Loading from '@component/Loading'
 import Ad from '@component/Ad'
 
 export default function Page() {
@@ -70,14 +69,14 @@ export default function Page() {
 
       <Container classNames={`pb-8 lg:pb-12 space-y-8 ${isLoading ? 'animate-pulse' : ''}`}>
         <div className="mx-auto max-w-xl space-y-4">
-          <div role="alert" class="rounded border-s-4 border-blue-500 bg-blue-50 p-4">
-            <strong class="block font-medium text-blue-800"> Heads up </strong>
+          <div role="alert" className="rounded border-s-4 border-blue-500 bg-blue-50 p-4">
+            <strong className="block font-medium text-blue-800"> Heads up </strong>
 
-            <p class="mt-2 text-sm text-blue-700">
+            <p className="mt-2 text-sm text-blue-700">
               This feature is in beta. Please provide feedback on the{' '}
               <a
                 href="https://github.com/markmead/hyperui/discussions/453"
-                class="underline"
+                className="underline"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block underline"
@@ -122,27 +121,49 @@ export default function Page() {
         <div>
           {errorMessage ? (
             <div className="mx-auto max-w-xl">
-              <div role="alert" class="rounded border-s-4 border-red-500 bg-red-50 p-4">
-                <strong class="block font-medium text-red-800"> Something went wrong </strong>
+              <div role="alert" className="rounded border-s-4 border-red-500 bg-red-50 p-4">
+                <strong className="block font-medium text-red-800"> Something went wrong </strong>
 
-                <p class="mt-2 text-sm text-red-700">{errorMessage}</p>
+                <p className="mt-2 text-sm text-red-700">{errorMessage}</p>
               </div>
             </div>
           ) : (
-            <AiPreview
-              previewTitle="AI Response"
-              previewCode={previewCode}
-              previewHtml={previewHtml}
-            />
+            <AiPreview previewCode={previewCode} previewHtml={previewHtml} />
           )}
         </div>
       </Container>
 
       {isLoading && (
-        <div className="fixed inset-0 z-50 grid place-content-center bg-gray-900/50">
+        <div className="fixed inset-0 z-[100] grid place-content-center bg-gray-900/50">
           <Loading />
         </div>
       )}
     </div>
+  )
+}
+
+function Loading() {
+  return (
+    <svg
+      className="h-12 w-12 animate-spin text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
   )
 }

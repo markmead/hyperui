@@ -10,7 +10,7 @@ import PreviewIframe from '@component/PreviewIframe'
 import PreviewView from '@component/PreviewView'
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 
-export default function AiPreview({ previewTitle, previewCode, previewHtml }) {
+export default function AiPreview({ previewCode, previewHtml }) {
   const [showPreview, setShowPreview] = useState(true)
   const [previewWidth, setPreviewWidth] = useState('100%')
 
@@ -47,7 +47,7 @@ export default function AiPreview({ previewTitle, previewCode, previewHtml }) {
             showPreview={showPreview}
             previewWidth={previewWidth}
             componentHtml={previewHtml}
-            componentTitle={previewTitle}
+            componentTitle="AI Component"
           />
 
           <PreviewCode showPreview={showPreview} componentCode={previewCode} />
