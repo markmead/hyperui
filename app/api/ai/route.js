@@ -51,7 +51,7 @@ export async function POST(nextReq) {
           content: 'Only return the HTML, no explanation text is needed.',
         },
       ],
-      model: 'codellama/CodeLlama-70b-Instruct-hf',
+      model: 'codellama/CodeLlama-70b-hf',
       max_tokens: 1024,
     })
 

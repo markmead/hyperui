@@ -50,7 +50,7 @@ export default function Page() {
       const { choices: resultChoices } = aiResponseJson
 
       if (!resultChoices.length) {
-        throw new Error('Failed to generate AI response. Please try again.')
+        throw new Error()
       }
 
       let aiOutput = resultChoices[0].message.content
@@ -59,8 +59,8 @@ export default function Page() {
 
       setPreviewCode(aiOutput)
       setPreviewHtml(aiPreviewHtml(aiOutput))
-    } catch (aiError) {
-      setErrorMessage(aiError.message)
+    } catch {
+      setErrorMessage('Failed to generate AI response. Please try again.')
     }
 
     setIsLoading(false)
@@ -106,11 +106,13 @@ export default function Page() {
         <Ad isCenter adStyle="stickybox" />
 
         <div>
-          {!!errorMessage ? (
-            <div role="alert" class="rounded border-s-4 border-red-500 bg-red-50 p-4">
-              <strong class="block font-medium text-red-800"> Something went wrong </strong>
+          {errorMessage ? (
+            <div className="mx-auto max-w-xl">
+              <div role="alert" class="rounded border-s-4 border-red-500 bg-red-50 p-4">
+                <strong class="block font-medium text-red-800"> Something went wrong </strong>
 
-              <p class="mt-2 text-sm text-red-700">{errorMessage}</p>
+                <p class="mt-2 text-sm text-red-700">{errorMessage}</p>
+              </div>
             </div>
           ) : (
             <AiPreview
