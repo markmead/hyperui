@@ -76,7 +76,6 @@ export default function Page() {
               This feature is in beta. Please provide feedback on the{' '}
               <a
                 href="https://github.com/markmead/hyperui/discussions/453"
-                className="underline"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block underline"
