@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
 export const runtime = 'edge'
+export const maxDuration = 60
 
 const aiClient = new OpenAI({
   apiKey: process.env.TOGETHER_API_KEY,
