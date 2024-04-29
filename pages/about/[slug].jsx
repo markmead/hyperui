@@ -40,7 +40,7 @@ export default function Page({ pageData, pageContent }) {
     <>
       <Head>
         <title>{pageData.title} | HyperUI</title>
-        <meta name="description" content={categoryDetail.description} key="description" />
+        <meta name="description" content={pageData.description} key="description" />
         <meta property="og:title" content={`${pageData.title} | HyperUI`} key="og:title" />
         <meta property="og:description" content={pageData.description} key="og:description" />
         <meta name="twitter:title" content={`${pageData.title} | HyperUI`} key="twitter:title" />
