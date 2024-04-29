@@ -5,7 +5,11 @@
     "start": "next start",
     "build": "next build",
     "lint": "next lint --fix",
-    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
+    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write",
+    "postbuild": "yarn css",
+    "css": "yarn css:components && yarn css:blogs",
+    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o out/_next/static/css/blogs.css -m",
+    "css:components": "npx tailwindcss -i src/styles/components.css -o out/_next/static/css/components.css -m"
   },
   "dependencies": {
     "next": "14.1.4",

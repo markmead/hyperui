@@ -28,3 +28,4 @@ yarn-error.log*
 # public
 public/sitemap.xml
 public/robots.txt
+public/css
