@@ -10,7 +10,7 @@ export function componentPreviewHtml(
   return `
     <html class="${htmlClass}" dir="${htmlDirection}">
       <head>
-        <link rel="stylesheet" href="/components.css">
+        <link rel="stylesheet" href="/css/components.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -87,7 +87,7 @@ export function blogPreviewHtml(
   return `
     <html class="${htmlClass}">
       <head>
-        <link rel="stylesheet" href="/blogs.css">
+        <link rel="stylesheet" href="/css/blogs.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
