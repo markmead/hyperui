@@ -106,7 +106,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
       .filter(Boolean)
       .join('-')
 
-    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}.html`
+    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
