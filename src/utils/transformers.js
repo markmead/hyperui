@@ -146,48 +146,6 @@ export function blogPreviewHtml(
                 lg: '0 8px 16px var(--tw-shadow-color)',
               },
             },
-            plugins: [
-              plugin(function ({ matchUtilities, theme }) {
-                matchUtilities(
-                  {
-                    'text-shadow': (value) => ({
-                      textShadow: value,
-                    }),
-                  },
-                  { values: theme('textShadow') }
-                )
-              }),
-              plugin(function ({ matchUtilities, theme }) {
-                matchUtilities(
-                  {
-                    'animate-duration': (value) => ({
-                      animationDuration: value,
-                    }),
-                  },
-                  { values: theme('transitionDuration') }
-                )
-              }),
-              plugin(function ({ matchUtilities, theme }) {
-                matchUtilities(
-                  {
-                    'animate-delay': (value) => ({
-                      animationDelay: value,
-                    }),
-                  },
-                  { values: theme('transitionDelay') }
-                )
-              }),
-              plugin(function ({ matchUtilities, theme }) {
-                matchUtilities(
-                  {
-                    'animate-ease': (value) => ({
-                      animationTimingFunction: value,
-                    }),
-                  },
-                  { values: theme('transitionTimingFunction') }
-                )
-              }),
-            ],
           }
         </script>
       </head>
