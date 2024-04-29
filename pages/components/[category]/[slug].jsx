@@ -3,9 +3,10 @@ import { notFound } from 'next/navigation'
 import { getComponent, getComponentPaths } from '@util/components'
 
 import Ad from '@component/Ad'
+import CollectionList from '@component/CollectionList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import CollectionList from '@component/CollectionList'
+import Meta from '@component/Meta'
 
 const mdxComponents = {
   CollectionList,
@@ -56,17 +57,26 @@ export default function Page({ componentData, componentContent }) {
     }),
   }
 
-  return (
-    <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
-      <Ad adStyle="stickybox" />
+  const metaContent = {
+    title: `${componentData.title} | HyperUI`,
+    description: componentData.description,
+  }
 
-      <div className="prose max-w-none">
-        <MdxRemoteRender
-          mdxSource={componentContent}
-          mdxComponents={mdxComponents}
-          mdxScope={componentsData}
-        />
-      </div>
-    </Container>
+  return (
+    <>
+      <Meta metaContent={metaContent} />
+
+      <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
+        <Ad adStyle="stickybox" />
+
+        <div className="prose max-w-none">
+          <MdxRemoteRender
+            mdxSource={componentContent}
+            mdxComponents={mdxComponents}
+            mdxScope={componentsData}
+          />
+        </div>
+      </Container>
+    </>
   )
 }

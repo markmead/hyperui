@@ -7,6 +7,7 @@ import BlogPreview from '@component/BlogPreview'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import TableContent from '@component/BlogTableContent'
+import Meta from '@component/Meta'
 
 const mdxComponents = {
   BlogPreview,
@@ -45,12 +46,19 @@ export default function Page({ postData, postContent }) {
     datePublished: `${postData.date}`,
   }
 
+  const metaContent = {
+    title: `${postData.title} | HyperUI`,
+    description: postData.description,
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
+
+      <Meta metaContent={metaContent} />
 
       <Container classNames="py-8 lg:py-12">
         <article className="prose mx-auto">

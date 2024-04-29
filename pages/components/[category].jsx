@@ -7,6 +7,7 @@ import { getCategory, getCategoryPaths } from '@util/components'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
+import Meta from '@component/Meta'
 
 export async function getStaticPaths() {
   const categoryPaths = await getCategoryPaths()
@@ -33,8 +34,15 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({ categoryData, componentItems }) {
+  const metaContent = {
+    title: `${categoryData.title} | HyperUI`,
+    description: categoryData.description,
+  }
+
   return (
     <>
+      <Meta metaContent={metaContent} />
+
       <HeroBanner title={categoryData.title} subtitle={categoryData.subtitle}>
         {categoryData.description}
       </HeroBanner>

@@ -3,6 +3,7 @@ import { getComponents } from '@util/components'
 import CollectionGrid from '@component/CollectionGrid'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
+import Meta from '@component/Meta'
 
 export async function getStaticProps() {
   const componentsByCategory = await getComponents()
@@ -15,8 +16,15 @@ export async function getStaticProps() {
 }
 
 export default function Page({ componentsByCategory }) {
+  const metaContent = {
+    title: 'Free Open Source Tailwind CSS Components | HyperUI',
+    description: 'Free Tailwind CSS components that can be used in your next project.',
+  }
+
   return (
     <>
+      <Meta metaContent={metaContent} />
+
       <HeroBanner title="HyperUI" subtitle="Free Open Source Tailwind CSS Components">
         HyperUI is a collection of free Tailwind CSS components that can be used in your next
         project. With a range of components, you can build your next marketing website, admin
