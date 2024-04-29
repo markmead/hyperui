@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { notFound } from 'next/navigation'
 
 import { getPage, getPagePaths } from '@util/pages'
@@ -37,6 +38,15 @@ export async function getStaticProps({ params }) {
 export default function Page({ pageData, pageContent }) {
   return (
     <>
+      <Head>
+        <title>{pageData.title} | HyperUI</title>
+        <meta name="description" content={categoryDetail.description} key="description" />
+        <meta property="og:title" content={`${pageData.title} | HyperUI`} key="og:title" />
+        <meta property="og:description" content={pageData.description} key="og:description" />
+        <meta name="twitter:title" content={`${pageData.title} | HyperUI`} key="twitter:title" />
+        <meta name="twitter:description" content={pageData.description} key="twitter:description" />
+      </Head>
+
       <Container classNames="py-8 lg:py-12">
         <article className="prose mx-auto">
           <h1>{pageData.title}</h1>
