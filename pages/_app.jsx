@@ -1,8 +1,5 @@
 import Head from 'next/head'
 
-import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
-
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
