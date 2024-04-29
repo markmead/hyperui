@@ -10,7 +10,6 @@ export function componentPreviewHtml(
   return `
     <html class="${htmlClass}" dir="${htmlDirection}">
       <head>
-        <link rel="stylesheet" href="_next/static/css/components.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -29,6 +28,31 @@ export function componentPreviewHtml(
             })
           })
         </script>
+
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+        <script>
+        tailwind.config = {
+          darkMode: 'class',
+          safelist: ['keen-slider', 'keen-slider__slide'],
+          theme: {
+            extend: {
+              fontFamily: {
+                sans: ['Inter'],
+              },
+              animation: {
+                background: 'background ease infinite',
+              },
+              keyframes: {
+                background: {
+                  '0%, 100%': { backgroundPosition: '0% 50%' },
+                  '50%': { backgroundPosition: '100% 50%' },
+                },
+              },
+            },
+          },
+        }
+      </script>
       </head>
       <body class="${componentContainer} font-sans antialiased">
         ${componentHtml}
@@ -86,7 +110,6 @@ export function blogPreviewHtml(
   return `
     <html class="${htmlClass}">
       <head>
-        <link rel="stylesheet" href="_next/static/css/blogs.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -104,6 +127,68 @@ export function blogPreviewHtml(
               iframeForm.addEventListener('submit', (e) => e.preventDefault())
             })
           })
+        </script>
+
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+        <script>
+          tailwind.config = {
+            darkMode: 'class',
+            theme: {
+              extend: {
+                fontFamily: {
+                  sans: ['Inter'],
+                },
+              },
+              textShadow: {
+                sm: '0 1px 2px var(--tw-shadow-color)',
+                DEFAULT: '0 2px 4px var(--tw-shadow-color)',
+                lg: '0 8px 16px var(--tw-shadow-color)',
+              },
+            },
+            plugins: [
+              plugin(function ({ matchUtilities, theme }) {
+                matchUtilities(
+                  {
+                    'text-shadow': (value) => ({
+                      textShadow: value,
+                    }),
+                  },
+                  { values: theme('textShadow') }
+                )
+              }),
+              plugin(function ({ matchUtilities, theme }) {
+                matchUtilities(
+                  {
+                    'animate-duration': (value) => ({
+                      animationDuration: value,
+                    }),
+                  },
+                  { values: theme('transitionDuration') }
+                )
+              }),
+              plugin(function ({ matchUtilities, theme }) {
+                matchUtilities(
+                  {
+                    'animate-delay': (value) => ({
+                      animationDelay: value,
+                    }),
+                  },
+                  { values: theme('transitionDelay') }
+                )
+              }),
+              plugin(function ({ matchUtilities, theme }) {
+                matchUtilities(
+                  {
+                    'animate-ease': (value) => ({
+                      animationTimingFunction: value,
+                    }),
+                  },
+                  { values: theme('transitionTimingFunction') }
+                )
+              }),
+            ],
+          }
         </script>
       </head>
       <body class="${componentContainer} font-sans antialiased">
