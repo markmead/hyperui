@@ -6,6 +6,7 @@ import Container from '@component/Container'
 import FaqList from '@component/FaqList'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import Meta from '@component/Meta'
+import Ad from '@component/Ad'
 
 const mdxComponents = {
   FaqList,
@@ -48,6 +49,8 @@ export default function Page({ pageData, pageContent }) {
       <Container classNames="py-8 lg:py-12">
         <article className="prose mx-auto">
           <h1>{pageData.title}</h1>
+
+          <Ad isCenter adStyle="stickybox" />
 
           <MdxRemoteRender mdxSource={pageContent} mdxComponents={mdxComponents} />
         </article>
