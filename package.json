@@ -4,13 +4,8 @@
     "dev": "next dev --turbo",
     "start": "next start",
     "build": "next build",
-    "postbuild": "yarn css",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write",
-    "css": "yarn css:components && yarn css:blogs",
-    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/css/blogs.css -m",
-    "css:components": "npx tailwindcss -i src/styles/components.css -o public/css/components.css -m"
+    "lint": "next lint --fix",
+    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
   },
   "dependencies": {
     "next": "14.1.4",

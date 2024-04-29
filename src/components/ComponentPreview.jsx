@@ -36,6 +36,8 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     triggerOnce: true,
   })
 
+  const isProduction = process.env.NODE_ENV === 'production'
+
   const {
     id: componentId,
     title: componentTitle,
@@ -106,7 +108,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
       .filter(Boolean)
       .join('-')
 
-    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}`
+    let componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}`
+
+    componentUrl = isProduction ? componentUrl : `${componentUrl}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()

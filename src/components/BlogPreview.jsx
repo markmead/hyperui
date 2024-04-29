@@ -24,6 +24,8 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
     triggerOnce: true,
   })
 
+  const isProduction = process.env.NODE_ENV === 'production'
+
   useEffect(() => {
     if (inView) {
       fetchHtml()
@@ -41,7 +43,9 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
   }, [isDarkMode])
 
   async function fetchHtml() {
-    const previewUrl = `/blogs/${previewId}.html`
+    let previewUrl = `/blogs/${previewId}`
+
+    previewUrl = isProduction ? previewUrl : `${previewUrl}.html`
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
