@@ -1,16 +1,13 @@
 import Head from 'next/head'
 
-import { Inter } from 'next/font/google'
-
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
-import Ads from '@/ads'
+import Ads from '_app/ads'
 
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
-// import Announcement from '@component/Announcement'
 
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
@@ -31,31 +28,24 @@ export const metadata = {
   },
 }
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
-export default function RootLayout({ children }) {
+export default function MyApp({ Component, pageProps }) {
   return (
-    <html className="h-full scroll-smooth" lang="en" dir="ltr">
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
 
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <Header />
-        <HeaderBanner />
+      <Header />
+      <HeaderBanner />
 
-        <main className="bg-white">{children}</main>
+      <main className="bg-white">
+        <Component {...pageProps} />
+      </main>
 
-        <Footer />
+      <Footer />
 
-        {/* <Announcement /> */}
-
-        <Ads />
-      </body>
-    </html>
+      <Ads />
+    </>
   )
 }
