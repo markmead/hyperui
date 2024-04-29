@@ -13,6 +13,8 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
           rel="stylesheet"
         />
+
+        <script src="https://media.ethicalads.io/media/client/ethicalads.min.js" async />
       </Head>
 
       <body className="font-sans antialiased">
