@@ -70,3 +70,17 @@ export async function getPost(params) {
     postContent: mdxSource,
   }
 }
+
+export async function getBlogsSitemap() {
+  const blogsPath = join(process.cwd(), '/src/data/posts')
+
+  const blogSlugs = await fs.readdir(blogsPath)
+
+  return await Promise.all(
+    blogSlugs.map(async (blogSlug) => {
+      const blogSlugFormatted = blogSlug.replace('.mdx', '')
+
+      return `blog/${blogSlugFormatted}`
+    })
+  )
+}

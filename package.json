@@ -3,7 +3,6 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "postbuild": "next-sitemap --config sitemap.config.js",
     "lint": "next lint --fix",
     "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
   },

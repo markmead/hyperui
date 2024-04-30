@@ -163,3 +163,35 @@ export async function getCategory(params) {
     componentItems,
   }
 }
+
+export async function getCategoriesSitemap() {
+  const categorySlugs = ['application-ui', 'marketing']
+
+  return await Promise.all(categorySlugs.map(async (categorySlug) => `components/${categorySlug}`))
+}
+
+export async function getComponentsSitemap() {
+  const componentsPath = join(process.cwd(), '/src/data/components')
+
+  const categorySlugs = ['application-ui', 'marketing']
+  const componentSlugs = await fs.readdir(componentsPath)
+
+  const componentsByCategory = await Promise.all(
+    categorySlugs.map(async (categorySlug) => {
+      const componentItems = await Promise.all(
+        componentSlugs
+          .filter((componentSlug) => componentSlug.includes(categorySlug))
+          .map(async (componentSlug) => {
+            const componentSlugFormatted = componentSlug.replace('.mdx', '')
+            const componentSlugTrue = componentSlugFormatted.replace(`${categorySlug}-`, '')
+
+            return `components/${categorySlug}/${componentSlugTrue}`
+          })
+      )
+
+      return componentItems
+    })
+  )
+
+  return componentsByCategory.flatMap((componentItem) => componentItem)
+}

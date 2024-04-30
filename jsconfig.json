@@ -3,7 +3,6 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["_app/*"],
       "@component/*": ["src/components/*"],
       "@data/*": ["src/data/*"],
       "@style/*": ["src/styles/*"],

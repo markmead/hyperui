@@ -1,13 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './app/**/*.jsx',
-    './pages/**/*.jsx',
-    './src/components/**/*.jsx',
-    './src/data/components/*.mdx',
-  ],
+const tailwindConfig = {
+  content: ['./pages/**/*.jsx', './src/components/**/*.jsx', './src/data/components/*.mdx'],
   theme: {
     extend: {
       fontFamily: {
@@ -15,6 +10,7 @@ module.exports = {
       },
     },
   },
-  presets: [require('./extend.preset.js')],
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
+
+module.exports = tailwindConfig
