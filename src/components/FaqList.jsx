@@ -1,5 +1,3 @@
-'use client'
-
 import { faqItems } from '@data/faqs'
 
 export default function FaqList() {

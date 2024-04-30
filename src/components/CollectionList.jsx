@@ -1,5 +1,3 @@
-'use client'
-
 import ComponentPreview from '@component/ComponentPreview'
 
 export default function CollectionList({ componentsData, componentContainer }) {
