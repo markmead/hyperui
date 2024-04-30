@@ -6,8 +6,6 @@
 # next.js
 /.next/
 /out/
-
-# production
 /build
 
 # misc
@@ -24,7 +22,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# public
-public/sitemap.xml
-public/robots.txt
