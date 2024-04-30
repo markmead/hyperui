@@ -1,4 +1,4 @@
-module.exports = {
+const formatConfig = {
   semi: false,
   tabWidth: 2,
   useTabs: false,
@@ -12,3 +12,5 @@ module.exports = {
   quoteProps: 'as-needed',
   plugins: ['prettier-plugin-tailwindcss'],
 }
+
+module.exports = formatConfig

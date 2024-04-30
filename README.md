@@ -92,7 +92,7 @@ HyperUI has a wide range of freely available components. These components includ
 
 ### eCommerce 🛍️
 
-These components were originally part of the eCommerce category but have since moved, [find out more](https://www.hyperui.dev/blog/ecommerce-component-changes) in this blog post.
+Components that were originally part of the eCommerce category have been moved into the Application UI and Marketing categories.
 
 ## Contributing
 
