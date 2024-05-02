@@ -10,9 +10,9 @@ export function componentPreviewHtml(
   return `
     <html class="${htmlClass}" dir="${htmlDirection}">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
 
         <script>
           document.addEventListener('DOMContentLoaded', function () {
@@ -32,28 +32,29 @@ export function componentPreviewHtml(
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 
         <script>
-        tailwind.config = {
-          darkMode: 'class',
-          safelist: ['keen-slider', 'keen-slider__slide'],
-          theme: {
-            extend: {
-              fontFamily: {
-                sans: ['Inter'],
-              },
-              animation: {
-                background: 'background ease infinite',
-              },
-              keyframes: {
-                background: {
-                  '0%, 100%': { backgroundPosition: '0% 50%' },
-                  '50%': { backgroundPosition: '100% 50%' },
+          tailwind.config = {
+            darkMode: 'class',
+            safelist: ['keen-slider', 'keen-slider__slide'],
+            theme: {
+              extend: {
+                fontFamily: {
+                  sans: ['Inter'],
+                },
+                animation: {
+                  background: 'background ease infinite',
+                },
+                keyframes: {
+                  background: {
+                    '0%, 100%': { backgroundPosition: '0% 50%' },
+                    '50%': { backgroundPosition: '100% 50%' },
+                  },
                 },
               },
             },
-          },
-        }
-      </script>
+          }
+        </script>
       </head>
+
       <body class="${componentContainer} font-sans antialiased">
         ${componentHtml}
       </body>
@@ -110,9 +111,9 @@ export function blogPreviewHtml(
   return `
     <html class="${htmlClass}">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
 
         <script>
           document.addEventListener('DOMContentLoaded', function () {
@@ -158,6 +159,7 @@ export function blogPreviewHtml(
           }
         </script>
       </head>
+
       <body class="${componentContainer} font-sans antialiased">
         ${componentHtml}
       </body>

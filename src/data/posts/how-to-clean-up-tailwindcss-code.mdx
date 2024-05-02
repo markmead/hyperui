@@ -11,7 +11,7 @@ Tailwind CSS can make your markup messy. However, we can prevent this by delegat
 
 Let's take the following example.
 
-```html
+```
 <ul>
   <li class="text-sm font-medium text-gray-900">...</li>
   <li class="text-sm font-medium text-gray-900">...</li>
@@ -27,7 +27,7 @@ We have three repeating classes on the `<li>` elements.
 
 We can clean this up by moving these classes to the parent `<ul>` element and letting the CSS cascade down.
 
-```html
+```
 <ul class="text-sm font-medium text-gray-900">
   <li>...</li>
   <li>...</li>
@@ -47,7 +47,7 @@ But here's a short description.
 
 Let's use this example.
 
-```html
+```
 <ul>
   <li class="whitespace-nowrap p-4 text-sm font-medium">...</li>
   <li class="whitespace-nowrap p-4 text-sm font-medium">...</li>
@@ -69,7 +69,7 @@ However, only two can be delegated to the parent.
 
 Here's how it would look without JIT.
 
-```html
+```
 <ul class="text-sm font-medium">
   <li class="whitespace-nowrap p-4">...</li>
   <li class="whitespace-nowrap p-4">...</li>
@@ -83,7 +83,7 @@ We still have `p-4` and `whitespace-nowrap` repeated on all the `<li>` elements.
 
 Here's how the example looks with JIT.
 
-```html
+```
 <ul class="text-sm font-medium [&>*]:whitespace-nowrap [&>*]:p-4">
   <li>...</li>
   <li>...</li>
@@ -95,7 +95,7 @@ This might look confusing, but it's simple as `[&>*]` is just CSS.
 
 It's the same as writing this.
 
-```css
+```
 & > * {
   //
 }
@@ -109,7 +109,7 @@ In our example, the `&` is the `<ul>` and the `*` is the `<li>` elements.
 
 Here's how it would look in CSS.
 
-```css
+```
 ul > li {
   //
 }
@@ -117,7 +117,7 @@ ul > li {
 
 And from that, all we're doing is applying CSS but with Tailwind CSS utilities.
 
-```css
+```
 ul {
   @apply text-sm font-medium;
 }

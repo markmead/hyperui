@@ -6,8 +6,8 @@ import Ad from '@component/Ad'
 import BlogPreview from '@component/BlogPreview'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import TableContent from '@component/BlogTableContent'
 import Meta from '@component/Meta'
+import TableContent from '@component/BlogTableContent'
 
 const mdxComponents = {
   BlogPreview,

@@ -4,7 +4,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "lint": "next lint --fix",
-    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
+    "format": "prettier '{src,pages,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
   },
   "dependencies": {
     "next": "14.1.4",

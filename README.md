@@ -1,6 +1,6 @@
 # 🚀 HyperUI
 
-HyperUI is a collection of free Tailwind CSS components that can be used in your next project. With a range of components, you can build your next marketing website, admin dashboard, eCommerce store and much more.
+HyperUI is a collection of free Tailwind CSS components for use in various projects. It includes components suitable for a marketing website, admin dashboard, eCommerce store, and more.
 
 ![](https://hyperui.dev/og.jpg)
 
@@ -17,25 +17,25 @@ HyperUI is a collection of free Tailwind CSS components that can be used in your
 
 ## Getting Started
 
-There is no HyperUI installation, if you have a Tailwind CSS project, you can copy the code and paste it into your project. Some components do use Alpine JS.
+HyperUI doesn't require any installation. If you have a Tailwind CSS project, you can simply copy the code and paste it into your project. Note that some components utilize Alpine JS.
 
 ## Usage
 
-Browse the website for the components you need, copy the code and paste it into your project. Some components will have support for dark mode and Alpine JS variants.
+Find the components you need on the website, copy the code, and paste it into your project. Some components support dark mode and have Alpine JS variants.
 
-1. Browse the website for a component you like.
+1. Browse the website to find a component you like.
 2. Preview the component at different breakpoints and check its compatibility with:
 
 - LTR
 - Dark mode
 - Interactivity with Alpine JS
 
-3. Click on the 'Copy' button to copy the source code.
+3. Click the 'Copy' button to copy the source code.
 4. Paste the copied code into your project.
 
 ## Components
 
-HyperUI has a wide range of freely available components. These components include:
+HyperUI offers a wide range of freely available components, including:
 
 ### Application UI 🤖
 
@@ -92,13 +92,13 @@ HyperUI has a wide range of freely available components. These components includ
 
 ### eCommerce 🛍️
 
-Components that were originally part of the eCommerce category have been moved into the Application UI and Marketing categories.
+Components that were part of the eCommerce category have been moved into the Application UI and Marketing categories.
 
 ## Contributing
 
-You can contribute by adding new components, fixing bugs or improving the documentation. Please create an issue before starting any work. Once you get approval on your issue, you can create a new branch and submit your changes in a PR. Please note that all PRs need to be reviewed.
+Contributions, including new components, bug fixes, or documentation improvements, are welcomed. Please create an issue before starting any work. After receiving approval on your issue, you can create a new branch and submit your changes in a PR. Note that all PRs require review.
 
-A [detailed contributing guide](https://www.hyperui.dev/blog/how-to-contribute) on how to contribute including examples of adding new components is available on the HyperUI [blog](https://www.hyperui.dev/blog).
+A [detailed contributing guide](https://www.hyperui.dev/blog/how-to-contribute), including examples of adding new components, is available on the HyperUI [blog](https://www.hyperui.dev/blog).
 
 ## License
 

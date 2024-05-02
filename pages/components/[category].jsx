@@ -1,12 +1,10 @@
 import { notFound } from 'next/navigation'
 
-// import { ogMeta, twitterMeta } from '@data/metadata'
-
 import { getCategory, getCategoryPaths } from '@util/components'
 
+import CollectionGrid from '@component/CollectionGrid'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
-import CollectionGrid from '@component/CollectionGrid'
 import Meta from '@component/Meta'
 
 export async function getStaticPaths() {

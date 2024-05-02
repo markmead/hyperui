@@ -7,13 +7,13 @@ emoji: 👤
 
 If you prefer not to update the Tailwind CSS config, you can use JIT to write the following.
 
-```html
+```
 <h1 class="[text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Hello</h1>
 ```
 
 Alternatively, to use classes like `shadow-red-500`, you can do this.
 
-```html
+```
 <h1 class="[text-shadow:_0_1px_0_var(--tw-shadow-color)]">Hello</h1>
 ```
 
@@ -35,7 +35,7 @@ But, while we wait, we can add this feature ourselves.
 
 Add the following to your `tailwind.config.js`:
 
-```js
+```
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {

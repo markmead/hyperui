@@ -13,7 +13,7 @@ Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyper
 
 ### Incorrect
 
-```html
+```
 <ul>
   <li class="whitespace-nowrap text-sm font-medium">First</li>
   <li class="whitespace-nowrap text-sm font-medium">Second</li>
@@ -23,7 +23,7 @@ Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyper
 
 ### Correct
 
-```html
+```
 <ul class="text-sm font-medium">
   <li class="whitespace-nowrap">First</li>
   <li class="whitespace-nowrap">Second</li>
@@ -37,7 +37,7 @@ Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyper
 
 ### Incorrect
 
-```html
+```
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
   <div>Hello</div>
   <div>World</div>
@@ -46,7 +46,7 @@ Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyper
 
 ### Correct
 
-```html
+```
 <div class="sm:flex sm:items-center sm:justify-between">
   <div>Hello</div>
   <div>World</div>
@@ -59,7 +59,7 @@ Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyper
 
 ### Incorrect
 
-```html
+```
 <ul class="space-y-8 divide-y">
   <li>First</li>
   <li class="pt-8">Second</li>
@@ -69,7 +69,7 @@ Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyper
 
 ### Correct
 
-```html
+```
 <div class="flow-root">
   <ul class="-my-8 divide-y">
     <li class="py-8">First</li>
@@ -92,7 +92,7 @@ True, however...
 
 ### Incorrect
 
-```html
+```
 <div>
   <div class="mb-4">Hello</div>
   <div>World</div>
@@ -101,7 +101,7 @@ True, however...
 
 ### Correct
 
-```html
+```
 <div>
   <div>Hello</div>
   <div class="mt-4">World</div>
@@ -118,7 +118,7 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 
 ### Incorrect
 
-```html
+```
 <ul>
   <li>First</li>
   <li class="mt-8">Second</li>
@@ -128,7 +128,7 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 
 ### Correct
 
-```html
+```
 <ul class="space-y-8">
   <li>First</li>
   <li>Second</li>
@@ -142,13 +142,13 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 
 ### Incorrect
 
-```html
+```
 <button class="bg-red-500 transition-all hover:bg-red-600">Click</button>
 ```
 
 ### Correct
 
-```html
+```
 <button class="bg-red-500 transition-colors hover:bg-red-600">Click</button>
 ```
 
@@ -165,7 +165,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Incorrect
 
-```html
+```
 <button class="relative">
   <span class="absolute inset-0 bg-red-500 opacity-50"></span>
   Click
@@ -174,7 +174,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Correct
 
-```html
+```
 <button class="bg-red-500 bg-opacity-50">Click</button>
 <!-- With JIT -->
 <button class="bg-red-500/50">Click</button>
@@ -186,7 +186,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Incorrect
 
-```css
+```
 .button {
   @apply inline-flex items-center rounded border px-5 py-3 text-sm transition hover:scale-105;
 }
@@ -194,7 +194,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Correct
 
-```css
+```
 .button {
   @apply inline-flex items-center; // Layout
   @apply px-5 py-3 text-sm; // Spacing/Sizing
@@ -218,7 +218,7 @@ components, such as Blade, React, Liquid OR Vue.**
 
 ### Incorrect
 
-```html
+```
 <div class="card">
   <div class="card-title">Title</div>
   <div class="card-body">Title</div>
@@ -235,7 +235,7 @@ components, such as Blade, React, Liquid OR Vue.**
 
 And for the CSS...
 
-```css
+```
 .card {
   @apply rounded p-4;
 }
@@ -263,7 +263,7 @@ And for the CSS...
 
 ### Correct
 
-```html
+```
 <div class="rounded p-4">
   <div class="text-lg">Title</div>
   <div class="mt-1">Title</div>
@@ -284,7 +284,7 @@ And for the CSS...
 
 ### Incorrect
 
-```html
+```
 <div class="w-auto sm:w-64">
   <div>Hello World</div>
 </div>
@@ -292,7 +292,7 @@ And for the CSS...
 
 ### Correct
 
-```html
+```
 <div class="max-w-sm">
   <div>Hello World</div>
 </div>
@@ -311,7 +311,7 @@ There are several:
 
 ### Incorrect
 
-```html
+```
 <div class="\\mt-4 lg:text-3xl\\ text-lg sm:mt-0 sm:text-xl">Hello World</div>
 ```
 
@@ -319,7 +319,7 @@ _Excuse the `\\...\\` it's to stop Prettier from formatting._
 
 ### Correct
 
-```html
+```
 <div class="mt-4 text-lg sm:mt-0 sm:text-xl lg:text-3xl">Hello World</div>
 ```
 
@@ -331,7 +331,7 @@ You can use something like [Tailwind CSS Prettier](https://github.com/tailwindla
 
 ### Incorrect
 
-```html
+```
 <div class="items-center justify-between sm:flex">
   <div>Hello</div>
   <div>World</div>
@@ -340,7 +340,7 @@ You can use something like [Tailwind CSS Prettier](https://github.com/tailwindla
 
 ### Correct
 
-```html
+```
 <div class="sm:flex sm:items-center sm:justify-between">
   <div>Hello</div>
   <div>World</div>

@@ -17,7 +17,7 @@ While they can be useful, they can also be problematic. So let's eliminate them.
 
 This solution works regardless of the CSS framework you use.
 
-```css
+```
 .no-spinner {
   -moz-appearance: textfield;
 }
@@ -33,7 +33,7 @@ You can now add the `no-spinner` class to your number inputs to remove the spinn
 
 ## Tailwind CSS Class (Level 2)
 
-```css
+```
 @layer components {
   .no-spinner {
     -moz-appearance: textfield;
@@ -55,7 +55,7 @@ Now, it will appear as a suggested class when using [Tailwind CSS Intellisense](
 
 Prepare yourself.
 
-```html
+```
 <input
   type="number"
   class="[-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import Container from '@component/Container'
 import BrandLogo from '@component/BrandLogo'
+import Container from '@component/Container'
 
 export default function Footer() {
   const menuLinks = [
