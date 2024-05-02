@@ -9,27 +9,23 @@ I've heard the line...
 
 > I'm moving to Tailwind CSS but it's been difficult as it breaks Bootstrap
 
-At least three times, which is not a lot, but when the solution is a single line of code, it feels like a lot.
+...at least three times. It's not a lot, but when the solution is a single line of code, it seems significant.
 
-But what is the mighty line? You ask.
+So, what's the magical line? You ask.
 
 ```js
 prefix: 'tw-'
 ```
 
-That's it.
+That's it. Now classes like `flex` will be `tw-flex`. If you don't like `tw-`, don't use it. You can set the prefix to anything you want, even `help-` 🤷‍♂️
 
-Now classes like `flex` will be `tw-flex` and if you don't like `tw-` then don't use it. You can set the prefix to anything you want, even `ow2-is-a-cash-grab-` 🤷‍♂️
+However, sometimes you might still encounter issues. This is likely due to conflicts between Tailwind CSS and Bootstrap normalize CSS. You can resolve this by disabling one.
 
----
-
-Sometimes you will still face issues, this is most likely due to the Tailwind CSS and Bootstrap normalize CSS conflicting. You can solve this by disabling one.
-
-I usually disable the Tailwind CSS normalize as I want to keep the styles as close to the Bootstrap implementation while moving over.
+I usually disable the Tailwind CSS normalize because I want to keep the styles close to the Bootstrap implementation while transitioning.
 
 _I know that's a little backwards, but you have to keep the clients happy!_
 
-It's as easy as a comment to disable the Tailwind CSS normalize.
+To disable the Tailwind CSS normalize, you can easily comment it out.
 
 ```css
 /* @tailwind base; */

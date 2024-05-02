@@ -1,15 +1,15 @@
 ---
 title: How to Create an Animated Border Gradient with Tailwind CSS
-description: How to create an animated border gradient with Tailwind CSS with no custom CSS.
+description: Learn to create an animated border gradient using Tailwind CSS without custom CSS.
 date: 09/30/2022
 emoji: 🪄
 ---
 
-Creating a nice animated border should be difficult and with Tailwind CSS... messy. However, here's the approach that I took which was easy and clean.
+Creating an elegant animated border shouldn't be difficult or messy with Tailwind CSS. Here's a straightforward and clean approach.
 
 ## Faking the Border
 
-First, we need our interactive element, for this example, I'll use an `<a>` to have a "border" which we are faking by using a background color and padding.
+First, we need our interactive element. For this example, I'll use an `<a>` tag. We create an illusion of a border by using a background color and padding.
 
 ```html
 <a href="#" class="inline-block bg-white p-0.5">
@@ -17,15 +17,15 @@ First, we need our interactive element, for this example, I'll use an `<a>` to h
 </a>
 ```
 
-Inside that, we add a `<span>` that will have the text content of the element, as well as apply the padding that we desire for our button/link.
+Inside this, we add a `<span>` element that contains the text content of the element, along with the desired padding for our button or link.
 
 ## Adding the Gradient
 
-Next, we need to add the gradient.
+Next, we add the gradient.
 
-I'm going to use a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/).
+I'll use a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/).
 
-We apply the gradient to the interactive element with the fake border.
+We apply the gradient to the interactive element with the faux border.
 
 ```html
 <a href="#" class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5">
@@ -33,11 +33,11 @@ We apply the gradient to the interactive element with the fake border.
 </a>
 ```
 
-You might be concerned that the gradient classes added will override the `bg-white` but it won't, for that to happen we need to add the gradient direction class which is done on hover.
+You might worry that the gradient classes added will overwrite the `bg-white`, but it won't. For that to happen, we need to add the gradient direction class, which is done on hover.
 
 ### Applying the Hover Effect
 
-We can take what we've done and add two more classes, one is a default Tailwind CSS class which is applied on hover, the other is always applied and needs some JIT magic.
+We can enhance what we've done by adding two more classes: one is a default Tailwind CSS class applied on hover, and the other is always applied, requiring some JIT (Just-In-Time) magic.
 
 ```html
 <a
@@ -52,15 +52,15 @@ Let's break these down.
 
 `hover:bg-gradient-to-r`
 
-This applies the gradient direction class only on hover which will make the gradient display instead of `bg-white`.
+This applies the gradient direction class only on hover, which will display the gradient instead of `bg-white`.
 
 `bg-[length:400%_400%]`
 
-This makes the gradient huge allowing us to apply an animation to it, without this class the gradient will appear as is and wont animate.
+This enlarges the gradient, enabling us to animate it. Without this class, the gradient will appear static and won't animate.
 
 ### Animating the Gradient
 
-Now it's time to animate.
+Now, let's animate.
 
 First, we need to make some additions to our Tailwind CSS config.
 
@@ -80,11 +80,11 @@ theme: {
 }
 ```
 
-Here we're creating an animation with the class `animate-background` which is using the `background` object in the `keyframes` object. In short, this moves the gradient.
+Here, we're creating an animation with the class `animate-background` using the `background` keyframes. This moves the gradient.
 
-Finally, we can add the `animate-background` class to the interactive element with the gradient classes.
+Finally, we add the `animate-background` class to the interactive element with the gradient classes.
 
-You can use `hover:animate-background` if preferred, but note that will reset the animation when you are no longer on hover, which can cause it to look a little jumpy.
+You can use `hover:animate-background` if preferred, but note that the animation will reset when you're no longer hovering, which can cause it to look a bit jumpy.
 
 The full example looks like this.
 
@@ -97,9 +97,9 @@ The full example looks like this.
 </a>
 ```
 
-We're making use of an arbitrary properties syntax to write `[animation-duration:_6s]` so we can change the `animation-duration` for each use of the effect.
+We're using the arbitrary properties syntax to write `[animation-duration:_6s]` so we can alter the `animation-duration` for each use of the effect.
 
-And here is how it looks. I've added some extra classes to make the `<a>` look nicer.
+Here's how it looks. I've added some extra classes to enhance the `<a>`.
 
 <BlogPreview
   previewId="animated-border"
