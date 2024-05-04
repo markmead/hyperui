@@ -1,7 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
-import { GoogleAnalytics } from '@next/third-parties/google'
-
 export default function Document() {
   return (
     <Html className="h-full scroll-smooth" lang="en" dir="ltr">
@@ -15,6 +13,18 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
           rel="stylesheet"
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JKSW02CFZF"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-JKSW02CFZF');
+            `,
+          }}
+        />
       </Head>
 
       <body className="font-sans antialiased">
@@ -22,8 +32,6 @@ export default function Document() {
 
         <NextScript />
       </body>
-
-      <GoogleAnalytics gaId="G-JKSW02CFZF" />
     </Html>
   )
 }
