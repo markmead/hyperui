@@ -3,7 +3,7 @@ export default function Announcement() {
     <div className="fixed bottom-4 z-50 p-4" role="alert">
       <div className="max-w-sm rounded-md border-2 border-gray-900 bg-white p-4 shadow-lg">
         <p className="text-lg font-medium text-gray-900">
-          I'm currently working on a new course! Subscribe on Gumroad to find out when it launches!
+          I am currently working on a new course! Subscribe on Gumroad to find out when it launches!
           <a
             href="https://markmdev.gumroad.com/subscribe"
             target="_blank"
