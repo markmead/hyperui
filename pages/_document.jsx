@@ -13,14 +13,20 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
           rel="stylesheet"
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JKSW02CFZF"></script>
-        <script
+
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-JKSW02CFZF"
+        />
+
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-
               gtag('config', 'G-JKSW02CFZF');
             `,
           }}
