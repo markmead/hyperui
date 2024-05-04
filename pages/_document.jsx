@@ -1,5 +1,7 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 export default function Document() {
   return (
     <Html className="h-full scroll-smooth" lang="en" dir="ltr">
@@ -20,6 +22,8 @@ export default function Document() {
 
         <NextScript />
       </body>
+
+      <GoogleAnalytics gaId="G-JKSW02CFZF" />
     </Html>
   )
 }
