@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import { Inter } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
@@ -55,6 +56,8 @@ export default function RootLayout({ children }) {
         <Announcement />
 
         <Ads />
+
+        <GoogleAnalytics gaId="G-JKSW02CFZF" />
       </body>
     </html>
   )
