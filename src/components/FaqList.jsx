@@ -29,7 +29,7 @@ export default function FaqList() {
 
       <ul className="list-none p-0">
         {faqItems.map((faqItem, faqIndex) => (
-          <li key={faqIndex}>
+          <li key={faqIndex} className="rounded-lg bg-gray-50 p-4">
             <details className="group" open={faqIndex === 0}>
               <summary className="flex cursor-pointer items-center justify-between text-gray-900">
                 <strong className="text-lg font-medium">{faqItem.question}</strong>

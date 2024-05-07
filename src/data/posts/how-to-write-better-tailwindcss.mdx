@@ -1,19 +1,19 @@
 ---
 title: Tips & Tricks for Writing Better Tailwind CSS
-description: I've been writing Tailwind CSS for since 2018 and have come across a few tips and tricks to make your code look and perform better.
+description: Since 2018, I've been writing Tailwind CSS and have gathered some tips and tricks to enhance the look and performance of your code.
 date: 04/15/2022
 emoji: 🧐
 ---
 
-Writing Tailwind CSS? Here are some tips and tricks that I apply when using Tailwind CSS to make my code look and perform better.
+Do you write in Tailwind CSS? Here are some tips and tricks I use to optimize my code's look and performance.
 
-Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead/hyperui).
+Want to add more tips? [Create a PR on GitHub](https://github.com/markmead/hyperui).
 
 ## Delegate Classes to Parent Element
 
 ### Incorrect
 
-```html
+```
 <ul>
   <li class="whitespace-nowrap text-sm font-medium">First</li>
   <li class="whitespace-nowrap text-sm font-medium">Second</li>
@@ -23,7 +23,7 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ### Correct
 
-```html
+```
 <ul class="text-sm font-medium">
   <li class="whitespace-nowrap">First</li>
   <li class="whitespace-nowrap">Second</li>
@@ -37,7 +37,7 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ### Incorrect
 
-```html
+```
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
   <div>Hello</div>
   <div>World</div>
@@ -46,7 +46,7 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ### Correct
 
-```html
+```
 <div class="sm:flex sm:items-center sm:justify-between">
   <div>Hello</div>
   <div>World</div>
@@ -59,7 +59,7 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ### Incorrect
 
-```html
+```
 <ul class="space-y-8 divide-y">
   <li>First</li>
   <li class="pt-8">Second</li>
@@ -69,7 +69,7 @@ Got some tips to add to add? [Create a PR on GitHub](https://github.com/markmead
 
 ### Correct
 
-```html
+```
 <div class="flow-root">
   <ul class="-my-8 divide-y">
     <li class="py-8">First</li>
@@ -92,7 +92,7 @@ True, however...
 
 ### Incorrect
 
-```html
+```
 <div>
   <div class="mb-4">Hello</div>
   <div>World</div>
@@ -101,7 +101,7 @@ True, however...
 
 ### Correct
 
-```html
+```
 <div>
   <div>Hello</div>
   <div class="mt-4">World</div>
@@ -118,7 +118,7 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 
 ### Incorrect
 
-```html
+```
 <ul>
   <li>First</li>
   <li class="mt-8">Second</li>
@@ -128,7 +128,7 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 
 ### Correct
 
-```html
+```
 <ul class="space-y-8">
   <li>First</li>
   <li>Second</li>
@@ -142,13 +142,13 @@ Sure, but what if the content is dynamic and there's no second element? You'll e
 
 ### Incorrect
 
-```html
+```
 <button class="bg-red-500 transition-all hover:bg-red-600">Click</button>
 ```
 
 ### Correct
 
-```html
+```
 <button class="bg-red-500 transition-colors hover:bg-red-600">Click</button>
 ```
 
@@ -165,7 +165,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Incorrect
 
-```html
+```
 <button class="relative">
   <span class="absolute inset-0 bg-red-500 opacity-50"></span>
   Click
@@ -174,7 +174,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Correct
 
-```html
+```
 <button class="bg-red-500 bg-opacity-50">Click</button>
 <!-- With JIT -->
 <button class="bg-red-500/50">Click</button>
@@ -186,7 +186,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Incorrect
 
-```css
+```
 .button {
   @apply inline-flex items-center rounded border px-5 py-3 text-sm transition hover:scale-105;
 }
@@ -194,7 +194,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ### Correct
 
-```css
+```
 .button {
   @apply inline-flex items-center; // Layout
   @apply px-5 py-3 text-sm; // Spacing/Sizing
@@ -202,6 +202,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
   @apply transition; // Transition
   @apply hover:scale-105; // Interaction
 }
+
 ```
 
 > How is this better? It's more code...
@@ -217,7 +218,7 @@ components, such as Blade, React, Liquid OR Vue.**
 
 ### Incorrect
 
-```html
+```
 <div class="card">
   <div class="card-title">Title</div>
   <div class="card-body">Title</div>
@@ -234,7 +235,7 @@ components, such as Blade, React, Liquid OR Vue.**
 
 And for the CSS...
 
-```css
+```
 .card {
   @apply rounded p-4;
 }
@@ -262,7 +263,7 @@ And for the CSS...
 
 ### Correct
 
-```html
+```
 <div class="rounded p-4">
   <div class="text-lg">Title</div>
   <div class="mt-1">Title</div>
@@ -283,7 +284,7 @@ And for the CSS...
 
 ### Incorrect
 
-```html
+```
 <div class="w-auto sm:w-64">
   <div>Hello World</div>
 </div>
@@ -291,7 +292,7 @@ And for the CSS...
 
 ### Correct
 
-```html
+```
 <div class="max-w-sm">
   <div>Hello World</div>
 </div>
@@ -299,7 +300,7 @@ And for the CSS...
 
 > What's the benefit?
 
-There's a few:
+There are several:
 
 - They are responsive by default
 - They better describe the layout
@@ -310,19 +311,19 @@ There's a few:
 
 ### Incorrect
 
-```html
-<div class="\mt-4 lg:text-3xl\ text-lg sm:mt-0 sm:text-xl">Hello World</div>
+```
+<div class="\\mt-4 lg:text-3xl\\ text-lg sm:mt-0 sm:text-xl">Hello World</div>
 ```
 
-_Excuse the `\...\` it's to stop Headwind from formatting._
+_Excuse the `\\...\\` it's to stop Prettier from formatting._
 
 ### Correct
 
-```html
+```
 <div class="mt-4 text-lg sm:mt-0 sm:text-xl lg:text-3xl">Hello World</div>
 ```
 
-You can use something like [Headwind](https://github.com/heybourn/headwind) to do this for you.
+You can use something like [Tailwind CSS Prettier](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) to do this for you.
 
 ---
 
@@ -330,7 +331,7 @@ You can use something like [Headwind](https://github.com/heybourn/headwind) to d
 
 ### Incorrect
 
-```html
+```
 <div class="items-center justify-between sm:flex">
   <div>Hello</div>
   <div>World</div>
@@ -339,7 +340,7 @@ You can use something like [Headwind](https://github.com/heybourn/headwind) to d
 
 ### Correct
 
-```html
+```
 <div class="sm:flex sm:items-center sm:justify-between">
   <div>Hello</div>
   <div>World</div>
@@ -348,15 +349,15 @@ You can use something like [Headwind](https://github.com/heybourn/headwind) to d
 
 > What's the issue here?
 
-You are loading extra CSS on mobile that isn't being used. This might not seem drastic in this example but imagine the whole frontend is written like the first example... That's a lot of extra CSS being loaded on mobile.
+You are loading extra CSS on mobile that isn't being used. While it may not seem drastic in this example, imagine if the entire frontend was written like the first example. That's a lot of extra CSS being loaded on mobile.
 
 ---
 
-## Use Headwind and Tailwind CSS Intellisense
+## Use Tailwind CSS Prettier and Tailwind CSS Intellisense
 
-### Headwind
+### Tailwind CSS Prettier
 
-[Headwind GitHub Repo](https://github.com/heybourn/headwind)
+[Tailwind CSS Prettier GitHub Repo](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 
 - Sort Tailwind CSS class names
 - Remove duplicate class names

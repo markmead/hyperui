@@ -1,95 +1,89 @@
 ---
 title: How to Contribute to HyperUI
-description: It can be daunting contributing to an open source project, find out how you can get involved with the development of HyperUI.
+description: Contributing to an open-source project can seem daunting. Learn how you can get involved with the development of HyperUI.
 date: 07/25/2022
 emoji: 🫵
 ---
 
-For some, the idea of contributing to an open source project can be very daunting but please don't let that put you off. Let's walk through how you can contribute to HyperUI and get some open source work on your CV/GitHub.
+The idea of contributing to an open-source project can be intimidating. Don't let that deter you. Let's explore how you can contribute to HyperUI and enhance your CV/GitHub with open-source work.
 
 ## Spotted a Bug?
 
-If you notice something that looks a little off:
+If you find something that seems amiss:
 
 - Spelling
 - Accessibility
 - SEO
 
-Plus plenty more, then please do [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
+or anything else, please [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
 
-Once an issue has been created I can start working on a fix. However, if you'd like to work on the fix then let me know.
+Once an issue is created, I can begin working on a solution. If you'd like to resolve the issue yourself, let me know.
 
 ## Want to Add Something?
 
-If you have something that you want to add to HyperUI then that's awesome, but before you dive too deep into the development, I'd recommend that you [create an issue](https://github.com/markmead/hyperui/issues/new/choose) to outline what it is that you are adding.
+If you have something to add to HyperUI, that's great! But before you dive deep into the development, I suggest you [create an issue](https://github.com/markmead/hyperui/issues/new/choose) to outline your addition.
 
-If you plan to add a new component then please include some examples of what the component will look like.
+If you're planning to add a new component, include some examples of how the component will appear.
 
 ### Pull Request Feedback
 
-Here's the scary part 👻
+Here's the intimidating part 👻
 
-All pull requests need to be reviewed before being merged into HyperUI, which does mean that on occasion there will be feedback. Please do not be disheartened by feedback, we're all developing each other's skill set and trying to make HyperUI (and other open source projects) better.
+All pull requests must be reviewed before being merged into HyperUI, which means there might be feedback at times. Don't be discouraged by feedback. We're all enhancing our skills and trying to improve HyperUI (and other open-source projects).
 
 ### Getting HyperUI Running Locally
 
-HyperUI is a Next JS + Typescript project and can be set up quickly with the following commands.
+HyperUI is a Next JS project and can be quickly set up with the following commands.
 
-```shell
+```
 git clone git@github.com:markmead/hyperui.git
 yarn install
 yarn dev
 ```
 
-If you are working on some changes that need to compile CSS, then you'll need to run the following.
-
-```shell
-yarn css
-```
-
 ### Creating a New Component
 
-For this example, we will be adding a new footer component in the marketing category.
+For this example, we will create a new footer component in the marketing category.
 
 1. Create a new file in `/public/components/marketing-footers`
 2. Add the new component to the components group in `/src/data/components/marketing-footers.mdx`
 
 It should look like this.
 
-```shell
+```
 components:
   21:
     title: An Amazing Footer
   22:
     title: My Awesome New Footer ✨
+
 ```
 
-As you will see, component files are named incrementally, please follow this method.
+As you will see, component files are named incrementally. Please follow this method.
 
-If needed you can use `container: ...` to position the component within the preview, but note, that any classes added here will be ignored when copying or viewing the components code.
+You can use `container: ...` to position the component within the preview. However, any classes added here will be ignored when copying or viewing the component's code.
 
-#### Notes on New Components
+### Notes on New Components
 
-1. Components need to be written with Tailwind CSS
-2. Don't make changes to the `/public/tailwind.css`
-3. Reference used Tailwind CSS plugins in the HTML
+1. Components must be written with Tailwind CSS
+2. Reference used Tailwind CSS plugins in the HTML
 
-You can see examples of point 3 in the HTML of this [input component](https://www.hyperui.dev/components/application-ui/pagination#component-3).
+You can see examples of point 3 in the HTML of this [input component](/components/application-ui/pagination#component-3).
 
 ### Creating a New Collection
 
-If you want to create a new collection then please [create an issue](https://github.com/markmead/hyperui/issues/new/choose) on GitHub, then we can discuss the new collection and get some ideas for what components can be added.
+To create a new collection, please [create an issue](https://github.com/markmead/hyperui/issues/new/choose) on GitHub. Then we can discuss the new collection and brainstorm components to add.
 
 ### New Component Feedback
 
-If you are looking to add a component to HyperUI then I will give feedback on both the design and development of the component.
+If you plan to add a component to HyperUI, I will provide feedback on both the design and development of the component.
 
-For new component pull requests, I will review the work three times. If on the third review there is feedback from the first review that is still not addressed, then I will close it and ask for it to be re-opened once feedback has been addressed.
+For new component pull requests, I will review the work three times. If feedback from the first review remains unaddressed by the third review, I will close it and ask for it to be re-opened once feedback has been addressed.
 
-If on the third review there is new feedback then that's not an issue, it's only if you have continued to ignore feedback from the first review.
+If there is new feedback on the third review, it's not an issue. The problem arises only if you continue to ignore feedback from the first review.
 
-I believe this to be fair.
+I believe this is fair.
 
 ## Final Notes
 
-Contributing to open source is one of the best feelings for a developer, but as mentioned, it can be very daunting. I really don't want anyone to feel that way with HyperUI, so please do get involved, and let's all push HyperUI to become a better project.
+Contributing to open-source is an enriching experience for a developer. As I mentioned, it can be quite daunting. I want everyone to feel comfortable contributing to HyperUI. So, please get involved and let's make HyperUI an even better project.
