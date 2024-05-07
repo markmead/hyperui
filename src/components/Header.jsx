@@ -1,7 +1,5 @@
 'use client'
 
-import Link from 'next/link'
-
 import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
@@ -11,7 +9,7 @@ import Container from '@component/Container'
 import GithubSocial from '@component/GithubSocial'
 import HeaderMenu from '@component/HeaderMenu'
 import HeaderMenuLinks from '@component/HeaderMenuLinks'
-// import HeaderSearch from '@component/HeaderSearch'
+import HeaderSearch from '@component/HeaderSearch'
 
 export default function Header() {
   const routerPathname = usePathname()
@@ -57,9 +55,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center justify-end gap-2 sm:gap-4">
-          <CategoryAnnouncement />
-
-          {/* <HeaderSearch /> */}
+          <HeaderSearch />
 
           <GithubSocial />
 
@@ -67,20 +63,5 @@ export default function Header() {
         </div>
       </Container>
     </header>
-  )
-}
-
-function CategoryAnnouncement() {
-  return (
-    <Link
-      href="/blog/ecommerce-component-changes"
-      className="hidden md:inline-flex md:items-center md:justify-center md:gap-1 md:rounded-full md:bg-purple-100 md:px-2.5 md:py-0.5 md:text-xs md:font-medium md:text-purple-700 md:transition-colors md:hover:bg-purple-200 md:hover:text-purple-800"
-    >
-      <p className="whitespace-nowrap text-sm">eCommerce Changes</p>
-
-      <span role="img" aria-hidden="true" className="hidden sm:block">
-        👉
-      </span>
-    </Link>
   )
 }
