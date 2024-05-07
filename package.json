@@ -1,16 +1,11 @@
 {
   "name": "hyperui",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "postbuild": "yarn css",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write",
-    "css": "yarn css:components && yarn css:blogs",
-    "css:blogs": "npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m",
-    "css:components": "npx tailwindcss -i src/styles/components.css -o public/components.css -m"
+    "lint": "next lint --fix",
+    "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
   },
   "dependencies": {
     "next": "14.1.4",
@@ -19,6 +14,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.4",
+    "@next/third-parties": "^14.2.3",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.4.19",

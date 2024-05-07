@@ -1,27 +1,27 @@
 ---
 title: Pixelated Image Lazy Loading with Tailwind CSS
-description: How to create a pixelated image lazy loading effect with Tailwind CSS with no custom CSS.
+description: Learn how to create a pixelated image lazy loading effect using Tailwind CSS without custom CSS.
 date: 02/10/2023
 emoji: 🌄
 ---
 
-A few years back I had to build a pixelated image lazy loader which I was certain would be the end of me. However, the solution was quite simple.
+A few years ago, I was tasked with building a pixelated image lazy loader, which I thought would be a significant challenge. However, the solution turned out to be relatively straightforward.
 
-1. Set the image `src` to a tiny version of the image
-2. Add the CSS `image-rendering: pixelated` to the image
-3. Add your logic for lazy loading
-4. When loaded, swap the image `src` and change the CSS to `image-rendering: auto`
+1. Set the image `src` to a tiny version of the image.
+2. Apply the CSS `image-rendering: pixelated` to the image.
+3. Implement your lazy loading logic.
+4. Once loaded, replace the image `src` and switch the CSS to `image-rendering: auto`.
 
-Here's a CodePen I made a few years back showing of this effect - [Pixelated Lazy Loading](https://codepen.io/markmead/pen/JjPmObK).
+To illustrate this effect, here's a CodePen I made a few years ago - [Pixelated Lazy Loading](https://codepen.io/markmead/pen/JjPmObK).
 
-However, that's CSS. How does it work in Tailwind CSS? It's exactly the same.
+But how does this translate to Tailwind CSS? The process is exactly the same.
 
 ---
 
-Here's a version using Tailwind CSS creating the same effect. I'm using Alpine JS here instead of JavaScript.
+Here's a version that uses Tailwind CSS to achieve the same effect, with Alpine JS substituted for JavaScript.
 
 <BlogPreview previewId="pixelated-lazy-load" previewTitle="Pixelated Lazy Loading Example" />
 
-If you ignore Alpine JS as that's only used for the lazy loading logic, the approach is identical. Currently, there is no support for `image-rendering` classes in Tailwind CSS so we use the arbitrary properties syntax to write the CSS we need.
+If you disregard Alpine JS—which is only used for the lazy loading logic—the approach remains the same. Currently, Tailwind CSS does not support `image-rendering` classes, so we use the arbitrary properties syntax to write the necessary CSS.
 
-And that's all... I'd recommend having a play with the size of the small image as it can drastically change the pixelated effect.
+That's it! I'd recommend experimenting with the size of the small image, as it can significantly alter the pixelated effect.

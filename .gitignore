@@ -24,8 +24,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# public
-public/sitemap.xml
-public/robots.txt
-public/*.css
