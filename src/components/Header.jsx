@@ -34,11 +34,6 @@ export default function Header() {
       href: '/blog',
       external: false,
     },
-    {
-      title: 'HyperJS',
-      href: 'https://js.hyperui.dev',
-      external: true,
-    },
   ]
 
   return (
