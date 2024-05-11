@@ -18,6 +18,10 @@ export default function HeaderSearch() {
   const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
+    if (!showDropdown || initialResults.length) {
+      return
+    }
+
     async function getSearchResults() {
       const searchResults = await fetchSearchResults()
       const sortedSearchResults = searchResults.sort((resultA, resultB) =>
@@ -31,7 +35,7 @@ export default function HeaderSearch() {
     getSearchResults()
 
     return () => {}
-  }, [])
+  }, [showDropdown])
 
   useEffect(() => {
     if (!searchQuery) {
