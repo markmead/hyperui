@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSessionStorage } from 'react-use'
 
 export default function Announcement() {
   const [showPopup, setShowPopup] = useSessionStorage('showPopup', true)
-  const [promotionProduct, setPromotionProduct] = useSessionStorage({})
+  const [promotionProduct, setPromotionProduct] = useState({})
 
   const hasPromotionProduct = Object.keys(promotionProduct).length
 
