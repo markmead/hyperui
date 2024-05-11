@@ -1,5 +1,3 @@
-import Head from 'next/head'
-
 import { Inter } from 'next/font/google'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -40,11 +38,6 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      </Head>
-
       <body className={`${inter.variable} font-sans antialiased`}>
         <Header />
         <HeaderBanner />
