@@ -113,9 +113,7 @@ export default function HeaderSearch() {
             </ul>
           ) : (
             <div className="p-4 text-center text-sm text-gray-700">
-              {searchQuery
-                ? 'Uh-no! There are no results 😢'
-                : 'Start typing to search for components'}
+              {searchQuery ? 'Uh-no! There are no results 😢' : 'Loading search results...'}
             </div>
           )}
         </div>
