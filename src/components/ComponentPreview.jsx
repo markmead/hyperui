@@ -136,7 +136,25 @@ export default function ComponentPreview({ componentData, componentContainer }) 
             <div className="flex flex-wrap items-end gap-4">
               <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
 
-              <PreviewCopy componentCode={previewCode} />
+              <div className="flex gap-2">
+                <div>
+                  <label htmlFor={`CodeType${componentId}`} className="sr-only">
+                    Code Type
+                  </label>
+
+                  <select
+                    id={`CodeType${componentId}`}
+                    onInput={(e) => setCodeType(e.target.value)}
+                    className="rounded-md border-2 border-gray-900 py-1.5 pl-3 text-sm font-medium"
+                  >
+                    <option value="html">HTML</option>
+                    <option value="jsx">JSX</option>
+                    <option value="vue">Vue</option>
+                  </select>
+                </div>
+
+                <PreviewCopy componentCode={previewCode} />
+              </div>
 
               {componentHasDark && (
                 <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
