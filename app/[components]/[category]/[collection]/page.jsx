@@ -10,7 +10,6 @@ import { ogMeta, twitterMeta } from '@data/metadata'
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-// import CollectionLinks from '@component/CollectionLinks'
 import CollectionList from '@component/CollectionList'
 
 const mdxComponents = {
@@ -97,8 +96,6 @@ export default async function Page({ params }) {
 
   return (
     <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
-      {/* <CollectionLinks activeCollection={params.collection} activeCategory={params.category} /> */}
-
       <Ad isCenter adStyle="stickybox" />
 
       <div className="prose max-w-none">

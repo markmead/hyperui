@@ -2,7 +2,6 @@
   "name": "hyperui",
   "scripts": {
     "dev": "next dev",
-    "start": "next start",
     "build": "next build",
     "lint": "next lint --fix",
     "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
