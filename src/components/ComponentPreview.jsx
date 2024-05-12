@@ -131,12 +131,27 @@ export default function ComponentPreview({ componentData, componentContainer }) 
       <div className="space-y-4">
         <PreviewTitle componentTitle={componentTitle} componentHash={componentHash} />
 
-        <div className="lg:flex lg:items-end">
+        <div className="lg:flex lg:items-center">
           {componentCode && (
-            <div className="flex flex-wrap items-end gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
 
-              <div className="flex gap-2">
+              {componentHasDark && (
+                <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
+              )}
+
+              {componentHasInteractive && (
+                <PreviewInteractive
+                  isInteractive={isInteractive}
+                  handleSetIsInteractive={setIsInteractive}
+                />
+              )}
+
+              <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
+
+              <span className="h-4 w-[2px] bg-gray-900"></span>
+
+              <div className="flex gap-4">
                 <div>
                   <label htmlFor={`CodeType${componentId}`} className="sr-only">
                     Code Type
@@ -153,21 +168,8 @@ export default function ComponentPreview({ componentData, componentContainer }) 
                   </select>
                 </div>
 
-                <PreviewCopy componentCode={previewCode} />
+                <PreviewCopy componentCode={previewCode} codeType={codeType} />
               </div>
-
-              {componentHasDark && (
-                <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
-              )}
-
-              {componentHasInteractive && (
-                <PreviewInteractive
-                  isInteractive={isInteractive}
-                  handleSetIsInteractive={setIsInteractive}
-                />
-              )}
-
-              <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
             </div>
           )}
 
