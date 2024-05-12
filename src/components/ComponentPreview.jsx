@@ -131,12 +131,10 @@ export default function ComponentPreview({ componentData, componentContainer }) 
       <div className="space-y-4">
         <PreviewTitle componentTitle={componentTitle} componentHash={componentHash} />
 
-        <div className="lg:flex lg:items-end">
+        <div className="lg:flex lg:items-center">
           {componentCode && (
-            <div className="flex flex-wrap items-end gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
-
-              <PreviewCopy componentCode={previewCode} />
 
               {componentHasDark && (
                 <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
@@ -150,6 +148,28 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               )}
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
+
+              <span className="h-4 w-[2px] bg-gray-900"></span>
+
+              <div className="flex gap-4">
+                <div>
+                  <label htmlFor={`CodeType${componentId}`} className="sr-only">
+                    Code Type
+                  </label>
+
+                  <select
+                    id={`CodeType${componentId}`}
+                    onInput={(e) => setCodeType(e.target.value)}
+                    className="rounded-md border-2 border-gray-900 py-1.5 pl-3 text-sm font-medium"
+                  >
+                    <option value="html">HTML</option>
+                    <option value="jsx">JSX</option>
+                    <option value="vue">Vue</option>
+                  </select>
+                </div>
+
+                <PreviewCopy componentCode={previewCode} codeType={codeType} />
+              </div>
             </div>
           )}
 

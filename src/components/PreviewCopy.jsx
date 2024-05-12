@@ -4,12 +4,20 @@ import { useCopyToClipboard } from 'react-use'
 
 import ButtonStyle from '@component/ButtonStyle'
 
-export default function PreviewCopy({ componentCode = '' }) {
+export default function PreviewCopy({ codeType, componentCode = '' }) {
   const [buttonText, setButtonText] = useState('Copy')
   const [buttonEmoji, setButtonEmoji] = useState('📋')
   const [copyStatus, copyToClipboard] = useCopyToClipboard()
 
   const buttonActive = buttonText === 'Copied'
+
+  const codeTypeMap = {
+    html: 'HTML',
+    jsx: 'JSX',
+    vue: 'Vue',
+  }
+
+  const codeTypeLabel = codeTypeMap[codeType]
 
   function handleCopyToClipboard() {
     copyToClipboard(componentCode)
@@ -32,7 +40,11 @@ export default function PreviewCopy({ componentCode = '' }) {
 
   return (
     <button className="hidden sm:block" onClick={handleCopyToClipboard}>
-      <ButtonStyle buttonEmoji={buttonEmoji} buttonText={buttonText} buttonActive={buttonActive} />
+      <ButtonStyle
+        buttonEmoji={buttonEmoji}
+        buttonText={`${buttonText} ${codeTypeLabel}`}
+        buttonActive={buttonActive}
+      />
     </button>
   )
 }

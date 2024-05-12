@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import { useSessionStorage } from 'react-use'
 
 export default function Announcement() {
@@ -46,7 +47,7 @@ export default function Announcement() {
 
   return (
     <div className="fixed bottom-4 z-50 p-4" role="alert">
-      <div className="relative max-w-xs rounded-md border-2 border-gray-900 bg-white p-4 shadow-lg">
+      <div className="relative max-w-sm rounded-md border-2 border-gray-900 bg-white p-4 shadow-lg">
         <button
           className="absolute -right-3 -top-3 size-8 rounded border-2 border-gray-900 bg-white text-xs hover:bg-gray-100"
           onClick={() => setShowPopup(!showPopup)}
@@ -54,10 +55,8 @@ export default function Announcement() {
           ❌
         </button>
 
-        <p className="text-pretty text-center font-medium text-gray-900">
-          New eBook has launched!
-          <br />
-          <span className="text-lg">{promotionProduct.description}</span>
+        <p className="text-pretty text-center text-lg font-medium text-gray-900">
+          {promotionProduct.description}
         </p>
 
         <a
