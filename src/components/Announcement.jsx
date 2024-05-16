@@ -23,11 +23,7 @@ export default function Announcement() {
     {
       description: 'Tips, Tricks and Experiments with Tailwind CSS',
       price: 1.99,
-      sale: {
-        price: 0.99,
-        condition: 'Sale price limited to the first 10 customers',
-      },
-      url: 'https://markmdev.gumroad.com/l/tailwindcss-tips-tricks-experiments/FIRST10',
+      url: 'https://markmdev.gumroad.com/l/tailwindcss-tips-tricks-experiments',
     },
   ]
 
