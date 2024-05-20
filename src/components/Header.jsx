@@ -31,6 +31,11 @@ export default function Header() {
       title: 'Blog',
       href: '/blog',
     },
+    {
+      title: 'Shop',
+      href: '/shop',
+      highlight: true,
+    },
   ]
 
   return (
@@ -64,7 +69,7 @@ function Announcement() {
       rel="noreferrer"
       className="hidden items-center justify-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-200 hover:text-purple-800 sm:inline-flex"
     >
-      <p className="whitespace-nowrap text-sm">Tailwind CSS Tips & Tricks</p>
+      <span className="whitespace-nowrap text-sm">Tailwind CSS Tips & Tricks</span>
 
       <span role="img" aria-hidden="true" className="hidden sm:block">
         👉

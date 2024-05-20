@@ -7,6 +7,9 @@
 /.next/
 /out/
 
+# vercel
+.vercel
+
 # production
 /build
 
@@ -21,6 +24,3 @@ yarn-error.log*
 
 # local env files
 .env*
-
-# vercel
-.vercel
