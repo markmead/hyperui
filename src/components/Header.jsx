@@ -34,6 +34,7 @@ export default function Header() {
     {
       title: 'Shop',
       href: '/shop',
+      highlight: true,
     },
   ]
 
