@@ -3,6 +3,21 @@ import { useState } from 'react'
 export default function ProductCard({ product }) {
   const [showFullDescription, setShowFullDescription] = useState(false)
 
+  const productDetails = [
+    {
+      title: 'File Size',
+      value: `${product.file_info['Size']} 🐳`,
+    },
+    {
+      title: 'Pages',
+      value: `${product.file_info['Length']} 📖`,
+    },
+    {
+      title: 'Future Updates',
+      value: 'Included ✅',
+    },
+  ]
+
   return (
     <li>
       <div className="flex h-full flex-col overflow-hidden rounded-md border-2 border-gray-900">
@@ -37,9 +52,9 @@ export default function ProductCard({ product }) {
             </div>
 
             <dl className="divide-y divide-gray-100 rounded-md border border-gray-100 bg-gray-50">
-              {Object.entries(product.file_info).map(([key, value]) => (
-                <div key={key} className="grid grid-cols-3 gap-4 px-4 py-2 text-sm">
-                  <dt className="font-medium text-gray-700">{key}</dt>
+              {productDetails.map(({ title, value }, detailIndex) => (
+                <div key={detailIndex} className="grid grid-cols-3 gap-4 px-4 py-2 text-sm">
+                  <dt className="font-medium text-gray-700">{title}</dt>
                   <dd className="col-span-2 font-medium text-gray-900">{value}</dd>
                 </div>
               ))}
