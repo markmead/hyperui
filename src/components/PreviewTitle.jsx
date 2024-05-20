@@ -6,7 +6,7 @@ export default function PreviewTitle({ componentTitle, componentHash }) {
       <a
         href={`#${componentHash}`}
         className="group relative inline-block"
-        onClick={() => sendGAEvent({ event: 'componentTitleClicked', value: componentTitle })}
+        onClick={() => sendGAEvent({ event: 'component_title_clicked', value: componentTitle })}
       >
         <span
           aria-hidden="true"
