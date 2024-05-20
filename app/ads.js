@@ -3,8 +3,11 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
+import { useHash } from 'react-use'
+
 export default function Ads() {
   const routerPathname = usePathname()
+  const [hash] = useHash()
 
   useEffect(() => {
     const newScript = document.createElement('script')
@@ -14,4 +17,12 @@ export default function Ads() {
 
     document.body.appendChild(newScript)
   }, [routerPathname])
+
+  useEffect(() => {
+    if (window && !window.ethicalads) {
+      return
+    }
+
+    window.ethicalads.reload()
+  }, [hash])
 }
