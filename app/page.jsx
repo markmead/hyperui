@@ -71,7 +71,7 @@ export default async function Page() {
         dashboard, eCommerce store and much more.
       </HeroBanner>
 
-      <Container classNames="pb-8 lg:pb-12">
+      <Container id="mainContent" classNames="pb-8 lg:pb-12">
         <ul className="space-y-8">
           {componentsByCategory.map(({ categoryTitle, componentItems }) => {
             return (

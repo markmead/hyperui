@@ -95,9 +95,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <Container classNames="py-8 lg:py-12 space-y-8 lg:space-y-12">
-      <Ad isCenter adStyle="stickybox" />
-
+    <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
       <div className="prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
@@ -105,6 +103,8 @@ export default async function Page({ params }) {
           mdxScope={componentsData}
         />
       </div>
+
+      <Ad isCenter adStyle="stickybox" />
     </Container>
   )
 }

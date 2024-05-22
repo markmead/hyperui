@@ -91,7 +91,7 @@ export default async function Page({ params }) {
         {categoryData.description}
       </HeroBanner>
 
-      <Container classNames="pb-8 lg:pb-12 space-y-8">
+      <Container id="mainContent" classNames="pb-8 lg:pb-12 space-y-8">
         <CollectionGrid componentItems={componentItems} />
       </Container>
     </>

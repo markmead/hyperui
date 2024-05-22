@@ -10,6 +10,7 @@ import remarkSlug from 'remark-slug'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
+import Ad from '@component/Ad'
 import FaqList from '@component/FaqList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -71,12 +72,14 @@ export default async function Page({ params }) {
   const { pageData, pageContent } = await getPage(params)
 
   return (
-    <Container classNames="py-8 lg:py-12">
+    <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
 
         <MdxRemoteRender mdxSource={pageContent} mdxComponents={mdxComponents} />
       </article>
+
+      <Ad isCenter adStyle="stickybox" />
     </Container>
   )
 }
