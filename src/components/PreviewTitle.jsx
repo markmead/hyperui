@@ -10,7 +10,7 @@ export default function PreviewTitle({ componentTitle, componentHash }) {
       >
         <span
           aria-hidden="true"
-          className="hidden group-hover:opacity-25 lg:absolute lg:inset-y-0 lg:-left-6 lg:block lg:opacity-0 lg:transition"
+          className="hidden group-hover:opacity-25 group-focus:opacity-25 lg:absolute lg:inset-y-0 lg:-left-6 lg:block lg:opacity-0 lg:transition"
         >
           #
         </span>

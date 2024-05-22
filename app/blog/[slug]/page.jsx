@@ -87,7 +87,7 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <Container classNames="py-8 lg:py-12">
+      <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
         <article className="prose mx-auto">
           <header>
             <time className="text-sm text-gray-700">{blogData.date}</time>
@@ -95,12 +95,12 @@ export default async function Page({ params }) {
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
 
-          <Ad isCenter adStyle="stickybox" />
-
           <TableContent />
 
           <MdxRemoteRender mdxSource={blogContent} mdxComponents={mdxComponents} />
         </article>
+
+        <Ad isCenter adStyle="stickybox" />
       </Container>
     </>
   )

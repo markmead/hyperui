@@ -39,6 +39,13 @@ export default function RootLayout({ children }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
       <body className={`${inter.variable} font-sans antialiased`}>
+        <a
+          href="#mainContent"
+          className="absolute left-1/2 z-[999] -translate-x-1/2 -translate-y-full bg-black px-6 py-3 text-white transition-transform focus:translate-y-0"
+        >
+          Skip to Main Content
+        </a>
+
         <Header />
         <HeaderBanner />
 

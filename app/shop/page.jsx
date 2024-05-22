@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <HeroBanner title="Shop" subtitle="Browse the Collection of Tailwind CSS Products" />
 
-      <Container classNames="py-8 lg:py-12">
+      <Container id="mainContent" classNames="py-8 lg:py-12">
         <ProductGrid />
       </Container>
     </>

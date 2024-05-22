@@ -62,7 +62,7 @@ export default async function Page() {
         maintainable code and help you be more productive.
       </HeroBanner>
 
-      <Container classNames="pb-8 lg:pb-12">
+      <Container id="mainContent" classNames="pb-8 lg:pb-12">
         <BlogGrid blogPosts={blogPosts} />
       </Container>
     </>
