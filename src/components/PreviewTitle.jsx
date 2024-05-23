@@ -1,12 +1,16 @@
-import { sendGAEvent } from '@next/third-parties/google'
-
 export default function PreviewTitle({ componentTitle, componentHash }) {
+  function handleClick() {
+    const clickEvent = new Event('preview:clicked')
+
+    document.dispatchEvent(clickEvent)
+  }
+
   return (
     <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
       <a
         href={`#${componentHash}`}
         className="group relative inline-block"
-        onClick={() => sendGAEvent({ event: 'component_title_clicked' })}
+        onClick={() => handleClick()}
       >
         <span
           aria-hidden="true"

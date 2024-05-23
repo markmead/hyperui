@@ -104,7 +104,7 @@ export default async function Page({ params }) {
         />
       </div>
 
-      <Ad isCenter adStyle="stickybox" />
+      <Ad isCenter />
     </Container>
   )
 }
