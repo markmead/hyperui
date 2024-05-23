@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-export default function HeaderMenuLinks({ menuLinks, navClass, ulClass }) {
+export default function HeaderMenuLinks({ menuLinks, navClass = '', ulClass = '' }) {
   return (
-    <nav aria-label="Global" className={navClass && navClass}>
-      <ul className={ulClass && ulClass}>
+    <nav className={navClass}>
+      <ul className={ulClass}>
         {menuLinks.map(({ href, title, highlight = false }) => {
           return (
             <li key={href}>
@@ -14,7 +14,7 @@ export default function HeaderMenuLinks({ menuLinks, navClass, ulClass }) {
                 {title}
 
                 {highlight && (
-                  <span className="rounded bg-yellow-300 px-1.5 py-1 text-xs/none font-bold text-gray-900">
+                  <span className="rounded bg-yellow-300 px-1.5 py-1 text-xs/none font-medium text-gray-900">
                     New
                   </span>
                 )}
