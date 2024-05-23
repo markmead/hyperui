@@ -100,7 +100,7 @@ export default async function Page({ params }) {
           <MdxRemoteRender mdxSource={blogContent} mdxComponents={mdxComponents} />
         </article>
 
-        <Ad isCenter adStyle="stickybox" />
+        <Ad isCenter />
       </Container>
     </>
   )
