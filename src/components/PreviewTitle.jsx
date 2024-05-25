@@ -1,17 +1,7 @@
 export default function PreviewTitle({ componentTitle, componentHash }) {
-  function handleClick() {
-    const clickEvent = new Event('preview:clicked')
-
-    document.dispatchEvent(clickEvent)
-  }
-
   return (
     <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
-      <a
-        href={`#${componentHash}`}
-        className="group relative inline-block"
-        onClick={() => handleClick()}
-      >
+      <a href={`#${componentHash}`} className="group relative inline-block">
         <span
           aria-hidden="true"
           className="hidden group-hover:opacity-25 group-focus:opacity-25 lg:absolute lg:inset-y-0 lg:-left-6 lg:block lg:opacity-0 lg:transition"
