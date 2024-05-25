@@ -34,7 +34,6 @@ export default function Header() {
     {
       title: 'Shop',
       href: '/shop',
-      highlight: true,
     },
   ]
 
@@ -48,8 +47,6 @@ export default function Header() {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
-          <Announcement />
-
           <HeaderSearch />
 
           <GithubSocial />
@@ -58,22 +55,5 @@ export default function Header() {
         </div>
       </Container>
     </header>
-  )
-}
-
-function Announcement() {
-  return (
-    <a
-      href="https://markmdev.gumroad.com/l/tailwindcss-tips-tricks-experiments"
-      target="_blank"
-      rel="noreferrer"
-      className="hidden items-center justify-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-200 hover:text-purple-800 sm:inline-flex"
-    >
-      <span className="whitespace-nowrap text-sm">Tailwind CSS Tips & Tricks</span>
-
-      <span role="img" aria-hidden="true" className="hidden sm:block">
-        👉
-      </span>
-    </a>
   )
 }

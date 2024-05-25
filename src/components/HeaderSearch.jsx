@@ -71,8 +71,8 @@ export default function HeaderSearch() {
   }
 
   return (
-    <div ref={refDropdown} className="relative flex h-16 items-center">
-      <form role="search">
+    <div ref={refDropdown} className="relative flex h-16 max-w-[300px] flex-1 items-center">
+      <form role="search" class="flex-1">
         <label htmlFor="SiteSearch" className="sr-only">
           Search
         </label>
@@ -84,7 +84,7 @@ export default function HeaderSearch() {
           value={searchQuery}
           placeholder="Search..."
           id="SiteSearch"
-          className="w-full max-w-[240px] rounded-md border-gray-200 sm:text-sm"
+          className="w-full rounded-md border-gray-200 sm:text-sm"
         />
 
         <button tabIndex={-1} className="sr-only">
@@ -93,7 +93,7 @@ export default function HeaderSearch() {
       </form>
 
       {showDropdown && (
-        <div className="absolute right-0 top-14 z-50 w-72 rounded-md border border-gray-100 bg-white shadow-lg">
+        <div className="absolute inset-x-0 top-14 z-50 rounded-md border border-gray-100 bg-white shadow-lg">
           {searchResults.length ? (
             <ul className="max-h-64 space-y-1 overflow-auto p-2">
               {searchResults.map((searchResult) => (
