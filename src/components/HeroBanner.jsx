@@ -16,7 +16,7 @@ export default function HeroBanner({ children, subtitle, title }) {
         </p>
 
         <div className="mt-4">
-          <Ad isCenter />
+          <Ad />
         </div>
       </Container>
     </section>

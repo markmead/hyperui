@@ -73,7 +73,7 @@ export default async function Page({ params }) {
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
-      <Ad isCenter />
+      <Ad />
 
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
