@@ -35,6 +35,7 @@ export default function HeaderSearch() {
     getSearchResults()
 
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showDropdown])
 
   useEffect(() => {
