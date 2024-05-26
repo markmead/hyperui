@@ -1,4 +1,4 @@
-export default function Ad({ isCenter = false }) {
+export default function Ad() {
   return (
     <div className="not-prose mx-auto max-w-lg text-center">
       <div

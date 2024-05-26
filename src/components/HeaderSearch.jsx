@@ -35,6 +35,7 @@ export default function HeaderSearch() {
     getSearchResults()
 
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showDropdown])
 
   useEffect(() => {
@@ -72,7 +73,7 @@ export default function HeaderSearch() {
 
   return (
     <div ref={refDropdown} className="relative flex h-16 max-w-[300px] flex-1 items-center">
-      <form role="search" class="flex-1">
+      <form role="search" className="flex-1">
         <label htmlFor="SiteSearch" className="sr-only">
           Search
         </label>

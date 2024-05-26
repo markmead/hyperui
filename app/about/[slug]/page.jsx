@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 
-import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -49,18 +48,16 @@ async function getPage(params) {
     const pagePath = join(pagesPath, `${params.slug}.mdx`)
     const pageItem = await fs.readFile(pagePath, 'utf-8')
 
-    const { content, data: frontmatter } = matter(pageItem)
-
-    const mdxSource = await serialize(content, {
+    const mdxSource = await serialize(pageItem, {
+      parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkSlug],
         rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
       },
-      scope: frontmatter,
     })
 
     return {
-      pageData: frontmatter,
+      pageData: mdxSource.frontmatter,
       pageContent: mdxSource,
     }
   } catch {

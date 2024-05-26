@@ -1,6 +1,6 @@
-import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
+import { serialize } from 'next-mdx-remote/serialize'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
@@ -33,7 +33,9 @@ async function getPosts() {
       const postPath = join(postsPath, blogSlug)
       const blogItem = await fs.readFile(postPath, 'utf-8')
 
-      const { data: blogData } = matter(blogItem)
+      const { frontmatter: blogData } = await serialize(blogItem, {
+        parseFrontmatter: true,
+      })
 
       return {
         title: blogData.title,

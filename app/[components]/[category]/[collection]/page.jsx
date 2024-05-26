@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 
-import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -44,22 +43,15 @@ export async function generateStaticParams() {
 async function getCollection(params) {
   try {
     const componentPath = join(componentsDirectory, `${params.category}-${params.collection}.mdx`)
+    const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-    const postItem = await fs.readFile(componentPath, 'utf-8')
-
-    const { content, data: frontmatter } = matter(postItem)
-
-    const mdxSource = await serialize(content, {
-      mdxOptions: {
-        remarkPlugins: [],
-        rehypePlugins: [],
-      },
-      scope: frontmatter,
+    const mdxSource = await serialize(componentItem, {
+      parseFrontmatter: true,
     })
 
     return {
       collectionData: {
-        ...frontmatter,
+        ...mdxSource.frontmatter,
         slug: params.collection,
       },
       collectionContent: mdxSource,

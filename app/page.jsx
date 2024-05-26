@@ -1,6 +1,6 @@
-import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
+import { serialize } from 'next-mdx-remote/serialize'
 
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
@@ -18,7 +18,9 @@ async function getComponents() {
       const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
       const categoryItem = await fs.readFile(categoryPath, 'utf-8')
 
-      const { data: categoryData } = matter(categoryItem)
+      const { frontmatter: categoryData } = await serialize(categoryItem, {
+        parseFrontmatter: true,
+      })
 
       const componentItems = await Promise.all(
         componentSlugs
@@ -27,7 +29,9 @@ async function getComponents() {
             const componentPath = join(componentsPath, componentSlug)
             const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-            const { data: componentData } = matter(componentItem)
+            const { frontmatter: componentData } = await serialize(componentItem, {
+              parseFrontmatter: true,
+            })
 
             const componentSlugFormatted = componentSlug.replace('.mdx', '')
             const componentSlugTrue = componentSlugFormatted.replace(
@@ -51,7 +55,7 @@ async function getComponents() {
       componentItems.sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
 
       return {
-        categoryTitle: categoryData.title,
+        categoryTitle: categoryData?.title,
         componentItems,
       }
     })
@@ -73,7 +77,7 @@ export default async function Page() {
 
       <Container id="mainContent" classNames="pb-8 lg:pb-12">
         <ul className="space-y-8">
-          {componentsByCategory.map(({ categoryTitle, componentItems }) => {
+          {componentsByCategory.map(({ categoryTitle, componentItems = [] }) => {
             return (
               <li className="space-y-4" key={categoryTitle}>
                 <h2 className="text-lg font-bold text-gray-900 sm:text-xl">{categoryTitle}</h2>
