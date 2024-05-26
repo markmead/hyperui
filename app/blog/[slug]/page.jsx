@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 
-import matter from 'gray-matter'
 import { promises as fs } from 'fs'
 import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -50,18 +49,16 @@ async function getPost(params) {
     const postPath = join(postsPath, `${params.slug}.mdx`)
     const postItem = await fs.readFile(postPath, 'utf-8')
 
-    const { content, data: frontmatter } = matter(postItem)
-
-    const mdxSource = await serialize(content, {
+    const mdxSource = await serialize(postItem, {
+      parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkSlug],
         rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
       },
-      scope: frontmatter,
     })
 
     return {
-      blogData: frontmatter,
+      blogData: mdxSource.frontmatter,
       blogContent: mdxSource,
     }
   } catch {

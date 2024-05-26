@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 
-import matter from 'gray-matter'
 import { join } from 'path'
 import { promises as fs } from 'fs'
+import { serialize } from 'next-mdx-remote/serialize'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
@@ -44,7 +44,9 @@ async function getCategory(params) {
     const componentSlugs = await fs.readdir(componentsPath)
     const categoryItem = await fs.readFile(categoryPath, 'utf-8')
 
-    const { data: categoryData } = matter(categoryItem)
+    const { frontmatter: categoryData } = await serialize(categoryItem, {
+      parseFrontmatter: true,
+    })
 
     const componentItems = await Promise.all(
       componentSlugs
@@ -53,7 +55,9 @@ async function getCategory(params) {
           const componentPath = join(componentsPath, componentSlug)
           const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-          const { data: componentData } = matter(componentItem)
+          const { frontmatter: componentData } = await serialize(componentItem, {
+            parseFrontmatter: true,
+          })
 
           const componentSlugFormatted = componentSlug.replace('.mdx', '')
           const componentSlugTrue = componentSlugFormatted.replace(`${categorySlug}-`, '')
