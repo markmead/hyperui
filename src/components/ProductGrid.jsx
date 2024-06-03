@@ -28,7 +28,7 @@ export default function ProductGrid() {
   return (
     <>
       {productList.length ? (
-        <ul className="grid auto-rows-fr gap-4 md:grid-cols-2">
+        <ul className="grid md:auto-rows-fr gap-4 md:grid-cols-2">
           {productList.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
