@@ -87,7 +87,7 @@ export default async function Page({ params }) {
       <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
         <Ad />
 
-        <article className="prose mx-auto">
+        <article data-article className="prose mx-auto">
           <header>
             <time className="text-sm text-gray-700">{blogData.date}</time>
 
