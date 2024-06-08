@@ -42,7 +42,7 @@ function HeadingsGroup({ headingGroup }) {
           <li key={headingId}>
             <a href={`#${headingId}`}>{textContent}</a>
 
-            {hasChildren && <HeadingsGroup groupItem={[...childItems]} />}
+            {hasChildren && <HeadingsGroup headingGroup={headingChildren} />}
           </li>
         )
       })}
