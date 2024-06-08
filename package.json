@@ -17,21 +17,21 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
     "autoprefixer": "^10.4.19",
-    "data-table-of-content": "^1.0.0",
+    "data-table-of-content": "^1.1.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.3",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier": "^3.3.1",
+    "prettier-plugin-tailwindcss": "^0.6.2",
     "prismjs": "^1.29.0",
-    "react-intersection-observer": "^9.10.2",
+    "react-intersection-observer": "^9.10.3",
     "react-use": "^17.5.0",
     "rehype-external-links": "^3.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-slug": "^7.0.1",
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.4"
   }
 }

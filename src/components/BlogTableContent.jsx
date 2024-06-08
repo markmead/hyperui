@@ -32,11 +32,9 @@ function HeadingsGroup({ headingGroup }) {
   return (
     <ul>
       {headingGroup.map((headingItem) => {
-        const [headingParent, headingChildren] = headingItem
+        const { headingId, headingChildren, textContent } = headingItem
 
-        const { headingId, textContent } = headingParent
-
-        const hasChildren = !!headingChildren.length
+        const hasChildren = !!headingChildren
 
         return (
           <li key={headingId}>
