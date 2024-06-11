@@ -896,10 +896,10 @@ damerau-levenshtein@^1.0.8:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
 
-data-table-of-content@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/data-table-of-content/-/data-table-of-content-1.1.0.tgz#03d44ba732e88d5f984a6ab479e053168368846c"
-  integrity sha512-w6vwzft2Cehp/ZFhS1oa/iDwDvHwGCjc8W76iU3VIi9/pyi84v6BPdWjLiVXyidapFY604aGUzWclMflfGHzFQ==
+data-table-of-content@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/data-table-of-content/-/data-table-of-content-1.1.1.tgz#c00a3398edc597523beb27b959d223f6d85a97c3"
+  integrity sha512-40AV9gfl+r0x0NZKRpNf2ZlWl7ym7piRT92VBy+kw5u5ZIYh8dV1n9utjD2mTZsawa8P6OEP8Jm5VjjPURYlXw==
 
 data-view-buffer@^1.0.1:
   version "1.0.1"
@@ -3199,15 +3199,15 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier-plugin-tailwindcss@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.6.2.tgz#1143ac515b97bc9c04ec2d19a1a1db42b36f198c"
-  integrity sha512-eFefm4cg+1c2B57+H274Qm//CTWBdtQN9ansl0YTP/8TC8x3bugCTQSS/e4FC5Ctl9djhTzsbcMrZ7x2/abIow==
+prettier-plugin-tailwindcss@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.6.3.tgz#3f44a6656133b1c96455e3d17dd0e45d6220f1be"
+  integrity sha512-GeJ9bqXN4APAP0V5T2a1J/o6a50MWevEUCPWxijpdXFDQkBCoAfz4pQfv+YMXSqZ5GXLMDYio0mUOfrYL7gf4w==
 
-prettier@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.1.tgz#e68935518dd90bb7ec4821ba970e68f8de16e1ac"
-  integrity sha512-7CAwy5dRsxs8PHXT3twixW9/OEll8MLE0VRPCJyl7CkS6VHGPSlsVaWTiASPTyGyYRyApxlaWTzwUxVNrhcwDg==
+prettier@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.2.tgz#03ff86dc7c835f2d2559ee76876a3914cec4a90a"
+  integrity sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==
 
 prismjs@^1.29.0:
   version "1.29.0"
