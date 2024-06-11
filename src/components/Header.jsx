@@ -31,10 +31,6 @@ export default function Header() {
       title: 'Blog',
       href: '/blog',
     },
-    {
-      title: 'Shop',
-      href: '/shop',
-    },
   ]
 
   return (
