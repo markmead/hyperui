@@ -11,6 +11,12 @@ export default function Ads() {
   }, [routerPathname])
 
   function loadAd() {
+    const isDevelopment = process.env.NODE_ENV === 'development'
+
+    if (isDevelopment) {
+      return
+    }
+
     if (document.getElementById('EthicalAds')) {
       window && window.ethicalads && window.ethicalads.reload()
 
