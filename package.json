@@ -7,24 +7,24 @@
     "format": "prettier '{src,app,public}/**/*.{css,js,jsx,mdx,html}' --write"
   },
   "dependencies": {
-    "next": "14.2.3",
+    "next": "14.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.2.3",
-    "@next/third-parties": "^14.2.3",
+    "@next/eslint-plugin-next": "^14.2.4",
+    "@next/third-parties": "^14.2.4",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
     "autoprefixer": "^10.4.19",
     "data-table-of-content": "^1.1.1",
-    "eslint": "^9.4.0",
-    "eslint-config-next": "^14.2.3",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.4",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.38",
     "prettier": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.6.3",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "prismjs": "^1.29.0",
     "react-intersection-observer": "^9.10.3",
     "react-use": "^17.5.0",
@@ -33,5 +33,6 @@
     "remark-html": "^16.0.1",
     "remark-slug": "^7.0.1",
     "tailwindcss": "^3.4.4"
-  }
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
