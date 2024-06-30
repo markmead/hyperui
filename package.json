@@ -22,7 +22,7 @@
     "eslint-config-next": "^14.2.4",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "prismjs": "^1.29.0",
