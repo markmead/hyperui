@@ -63,26 +63,23 @@ export function componentPreviewHtml(
 }
 
 export function componentPreviewJsx(componentHtml) {
-  let clonedHtml = componentHtml
-
-  clonedHtml = clonedHtml.replace(/class=/g, 'className=')
-  clonedHtml = clonedHtml.replace(/for=/g, 'htmlFor=')
-  clonedHtml = clonedHtml.replace(/viewBox=/g, 'viewBox=')
-  clonedHtml = clonedHtml.replace(/fill-rule=/g, 'fillRule=')
-  clonedHtml = clonedHtml.replace(/fill-opacity=/g, 'fillOpacity=')
-  clonedHtml = clonedHtml.replace(/clip-rule=/g, 'clipRule=')
-  clonedHtml = clonedHtml.replace(/stroke-linecap=/g, 'strokeLinecap=')
-  clonedHtml = clonedHtml.replace(/stroke-linejoin=/g, 'strokeLinejoin=')
-  clonedHtml = clonedHtml.replace(/stroke-width=/g, 'strokeWidth=')
-  clonedHtml = clonedHtml.replace(/stroke-dasharray=/g, 'strokeDasharray=')
-  clonedHtml = clonedHtml.replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
-  clonedHtml = clonedHtml.replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
-  clonedHtml = clonedHtml.replace(/stroke-opacity=/g, 'strokeOpacity=')
-  clonedHtml = clonedHtml.replace(/tabindex=/g, 'tabIndex=')
-  clonedHtml = clonedHtml.replace(/<!--/g, '{/*')
-  clonedHtml = clonedHtml.replace(/-->/g, '*/}')
-
-  return clonedHtml
+  return componentHtml
+    .replace(/class=/g, 'className=')
+    .replace(/for=/g, 'htmlFor=')
+    .replace(/viewBox=/g, 'viewBox=')
+    .replace(/fill-rule=/g, 'fillRule=')
+    .replace(/fill-opacity=/g, 'fillOpacity=')
+    .replace(/clip-rule=/g, 'clipRule=')
+    .replace(/stroke-linecap=/g, 'strokeLinecap=')
+    .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+    .replace(/stroke-width=/g, 'strokeWidth=')
+    .replace(/stroke-dasharray=/g, 'strokeDasharray=')
+    .replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
+    .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
+    .replace(/stroke-opacity=/g, 'strokeOpacity=')
+    .replace(/tabindex=/g, 'tabIndex=')
+    .replace(/<!--/g, '{/*')
+    .replace(/-->/g, '*/}')
 }
 
 export function componentPreviewVue(componentHtml) {
