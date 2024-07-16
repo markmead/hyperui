@@ -1,24 +1,20 @@
-<header class="p-12">
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-    <div class="mb-4 md:mb-0">
-      <h3 class="font-bold dark:text-white text-xl">Employee Profiles</h3>
-      <p class="text-gray-600 dark:text-gray-300">Manage your organization's employee profiles here.</p>
-    </div>
-    <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-      <div class="relative">
-        <input type="text" placeholder="Search Employees..." class="rounded-lg border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500">
-        <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 10.35A6.35 6.35 0 1110.35 4a6.35 6.35 0 016.3 6.35z"/>
-        </svg>
+<header>
+  <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <div class="text-center sm:text-left">
+        <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Employee Profiles</h1>
+        <p class="mt-1.5 text-sm text-gray-500">
+          Manage your organization's employee profiles here.
+        </p>
       </div>
-      <select class="rounded-lg border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500">
-        <option value="name">Sort by Name</option>
-        <option value="department">Sort by Department</option>
-        <option value="date">Sort by Date</option>
-      </select>
-      <button class="rounded-lg bg-blue-500 px-4 py-2 text-white dark:bg-blue-500 dark:text-white">
-        Add Employee
-      </button>
+      <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+        <button
+          class="block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
+          type="button"
+        >
+          Add Employee
+        </button>
+      </div>
     </div>
   </div>
 </header>
