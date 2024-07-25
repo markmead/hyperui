@@ -22,7 +22,7 @@
     "eslint-config-next": "^14.2.5",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.40",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "prismjs": "^1.29.0",
@@ -32,7 +32,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-slug": "^7.0.1",
-    "tailwindcss": "^3.4.6"
+    "tailwindcss": "^3.4.7"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
