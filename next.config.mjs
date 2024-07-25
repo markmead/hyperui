@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['next-mdx-remote'],
 }
+
+export default nextConfig
