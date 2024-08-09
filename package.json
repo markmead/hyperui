@@ -15,14 +15,14 @@
     "@next/eslint-plugin-next": "^14.2.5",
     "@next/third-parties": "^14.2.5",
     "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.13",
-    "autoprefixer": "^10.4.19",
+    "@tailwindcss/typography": "^0.5.14",
+    "autoprefixer": "^10.4.20",
     "data-table-of-content": "^1.1.1",
-    "eslint": "^8.57.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "^14.2.5",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
-    "postcss": "^8.4.40",
+    "postcss": "^8.4.41",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "prismjs": "^1.29.0",
@@ -32,7 +32,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-slug": "^7.0.1",
-    "tailwindcss": "^3.4.7"
+    "tailwindcss": "^3.4.9"
   },
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+  "packageManager": "yarn@1.22.22"
 }
