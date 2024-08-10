@@ -24,7 +24,7 @@
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "prismjs": "^1.29.0",
     "react-intersection-observer": "^9.13.0",
     "react-use": "^17.5.1",
