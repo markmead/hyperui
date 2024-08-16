@@ -32,7 +32,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-slug": "^7.0.1",
-    "tailwindcss": "^3.4.9"
+    "tailwindcss": "^3.4.10"
   },
   "packageManager": "yarn@1.22.22"
 }
