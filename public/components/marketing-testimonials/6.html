@@ -7,6 +7,9 @@
     '#keen-slider',
     {
       loop: true,
+
+      // Change rtl to true for reversing slides arrangement
+      rtl: false,
       slides: {
         origin: 'center',
         perView: 1,
@@ -78,15 +81,15 @@
   keenSliderNext.addEventListener('click', () => keenSlider.next());
 </script>
 
-<section class="bg-white select-none" dir="ltr">
+<section class="bg-white select-none">
   <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-    <div class="max-w-7xl items-end justify-center sm:flex sm:pe-6 lg:pe-8">
+    <div class="max-w-7xl items-end justify-center flex">
       <h2 class="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
         Read trusted reviews from our customers
       </h2>
     </div>
     <div class="-mx-6 mt-8 lg:col-span-2 lg:mx-0">
-      <div class="flex items-center gap-4 px-6 sm:px-4">
+      <div class="flex items-center gap-4 px-6 sm:px-4 lg:px-2 rtl:flex-row-reverse">
         <button
           aria-label="Previous slide"
           id="keen-slider-previous"
@@ -107,7 +110,7 @@
         <div id="keen-slider" class="keen-slider">
           <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
-              <div class="flex items-center gap-4 rtl:flex-row-reverse">
+              <div class="flex items-center gap-4">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
@@ -168,11 +171,11 @@
                     </svg>
                   </div>
       
-                  <p class="mt-0.5 text-lg rtl:text-end font-medium text-gray-900">Paul Starr 1</p>
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr 1</p>
                 </div>
               </div>
       
-              <p class="mt-4 text-gray-700 rtl:text-end">
+              <p class="mt-4 text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
                 consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
                 error officiis atque voluptates magnam!
@@ -182,7 +185,7 @@
 
           <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
-              <div class="flex items-center gap-4 rtl:flex-row-reverse">
+              <div class="flex items-center gap-4">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
@@ -243,11 +246,11 @@
                     </svg>
                   </div>
       
-                  <p class="mt-0.5 text-lg rtl:text-end font-medium text-gray-900">Paul Starr 2</p>
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr 2</p>
                 </div>
               </div>
       
-              <p class="mt-4 text-gray-700 rtl:text-end">
+              <p class="mt-4 text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
                 consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
                 error officiis atque voluptates magnam!
@@ -257,7 +260,7 @@
 
           <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
-              <div class="flex items-center gap-4 rtl:flex-row-reverse">
+              <div class="flex items-center gap-4">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
@@ -318,11 +321,11 @@
                     </svg>
                   </div>
       
-                  <p class="mt-0.5 text-lg rtl:text-end font-medium text-gray-900">Paul Starr 3</p>
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr 3</p>
                 </div>
               </div>
       
-              <p class="mt-4 text-gray-700 rtl:text-end">
+              <p class="mt-4 text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
                 consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
                 error officiis atque voluptates magnam!
@@ -332,7 +335,7 @@
 
           <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
-              <div class="flex items-center gap-4 rtl:flex-row-reverse">
+              <div class="flex items-center gap-4">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
@@ -393,11 +396,11 @@
                     </svg>
                   </div>
       
-                  <p class="mt-0.5 text-lg rtl:text-end font-medium text-gray-900">Paul Starr 4</p>
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr 4</p>
                 </div>
               </div>
       
-              <p class="mt-4 text-gray-700 rtl:text-end">
+              <p class="mt-4 text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
                 consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
                 error officiis atque voluptates magnam!
