@@ -9,6 +9,7 @@ import Ads from '@/ads'
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
+import MoveToTop from '@component/MoveToTop'
 
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
@@ -50,7 +51,7 @@ export default function RootLayout({ children }) {
         <HeaderBanner />
 
         <main className="bg-white">{children}</main>
-
+        <MoveToTop />
         <Footer />
 
         <Ads />
