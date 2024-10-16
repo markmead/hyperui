@@ -2,7 +2,7 @@
 
 <script type="module"> 
   import KeenSlider from 'https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/+esm';
-  
+
   const keenSlider = new KeenSlider(
     '#keen-slider',
     {
@@ -39,23 +39,18 @@
         },
       },
       created: (slider) => {
-        const activeSlide = slider.track.details.rel;
-        
-        slider.slides.forEach((element, idx) => {
-          element.style.opacity = 0.4;
-        });
-        slider.slides[activeSlide].style.opacity = 1;
-        
+        slider.activeSlide = slider.track.details.rel;
+        slider.previousSlide = null;
+
+        slider.slides[slider.activeSlide].classList.toggle('opacity-40');
       },
       slideChanged: (slider) => {
-        const activeSlide = slider.track.details.rel;
+        slider.previousSlide = slider.activeSlide;
+        slider.activeSlide = slider.track.details.rel;
         
-        slider.slides.forEach((element, idx) => {
-          element.style.opacity = 0.4;
-        });
-        slider.slides[activeSlide].style.opacity = 1;
+        slider.slides[slider.previousSlide].classList.toggle('opacity-40');
+        slider.slides[slider.activeSlide].classList.toggle('opacity-40');
       },
-      renderMode: 'performance',
     },
     []
   );
@@ -94,7 +89,7 @@
         </button>
 
         <div id="keen-slider" class="keen-slider">
-          <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
+          <div class="keen-slider__slide opacity-40 transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
               <div class="flex items-center gap-4">
                 <img
@@ -169,7 +164,7 @@
             </blockquote>
           </div>
 
-          <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
+          <div class="keen-slider__slide opacity-40 transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
               <div class="flex items-center gap-4">
                 <img
@@ -244,7 +239,7 @@
             </blockquote>
           </div>
 
-          <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
+          <div class="keen-slider__slide opacity-40 transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
               <div class="flex items-center gap-4">
                 <img
@@ -319,7 +314,7 @@
             </blockquote>
           </div>
 
-          <div class="keen-slider__slide transition-opacity duration-700 ease-in-out">
+          <div class="keen-slider__slide opacity-40 transition-opacity duration-700 ease-in-out">
             <blockquote class="rounded-lg bg-gray-100 p-6 shadow-sm sm:p-8">
               <div class="flex items-center gap-4">
                 <img
