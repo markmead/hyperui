@@ -12,7 +12,6 @@
         perView: 1,
         spacing: 16,
       },
-      // Slide Scroll Speed
       defaultAnimation: {
         duration: 1500,
       },
@@ -39,15 +38,6 @@
           },
         },
       },
-      // Backup (but expensive) approach
-      // detailsChanged: (slider) => {
-      //   slider.slides.forEach((element, idx) => {
-      //     element.style.opacity = slider.track.details.slides[idx].portion === 1 ? 1 : 0.4
-      //   });
-      // },
-
-      // Optimal Approach
-      // Set initial slide opacity to 1 on carousel init
       created: (slider) => {
         const activeSlide = slider.track.details.rel;
         
@@ -57,7 +47,6 @@
         slider.slides[activeSlide].style.opacity = 1;
         
       },
-      // Set new slide opacity to 1 on carousel slide change
       slideChanged: (slider) => {
         const activeSlide = slider.track.details.rel;
         
