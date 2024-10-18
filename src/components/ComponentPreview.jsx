@@ -153,14 +153,18 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               <div className="hidden items-center sm:flex sm:gap-4">
                 <span className="h-5 w-[2px] rounded-full bg-gray-900"></span>
 
-                <PreviewType componentId={componentId} handleSetCodeType={setCodeType} />
+                <div className="flex">
+                  <PreviewType componentId={componentId} handleSetCodeType={setCodeType} />
 
-                <PreviewCopy componentCode={previewCode} codeType={codeType} />
+                  <PreviewCopy componentCode={previewCode} />
+                </div>
               </div>
             </div>
           )}
 
-          <div className="hidden lg:flex lg:flex-1 lg:items-end lg:justify-end lg:gap-4">
+          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-4">
+            <p className="text-sm font-medium text-gray-700">{previewWidth}</p>
+
             {componentBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint

@@ -8,7 +8,7 @@ export default function PreviewType({ componentId, handleSetCodeType }) {
       <select
         id={`CodeType${componentId}`}
         onInput={(e) => handleSetCodeType(e.target.value)}
-        className="rounded-md border-2 border-gray-900 py-1.5 pl-3 text-sm font-medium"
+        className="rounded-l-md border-2 border-gray-900 py-1.5 pl-3 text-sm font-medium"
       >
         <option value="html">HTML</option>
         <option value="jsx">JSX</option>
