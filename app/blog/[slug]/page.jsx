@@ -5,7 +5,7 @@ import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import rehypeExternalLinks from 'rehype-external-links'
-import remarkSlug from 'remark-slug'
+import rehypeSlug from 'rehype-slug'
 
 import { ogMeta, twitterMeta } from '@data/metadata'
 
@@ -52,8 +52,8 @@ async function getPost(params) {
     const mdxSource = await serialize(postItem, {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkSlug],
-        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+        remarkPlugins: [],
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }], rehypeSlug],
       },
     })
 
