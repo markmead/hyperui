@@ -134,7 +134,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
         <div className="lg:flex lg:items-center">
           {componentCode && (
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+            <div className="flex flex-wrap items-center gap-2">
               <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
 
               {componentHasDark && (
@@ -150,21 +150,15 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
 
-              <div className="hidden items-center sm:flex sm:gap-4">
-                <span className="h-5 w-[2px] rounded-full bg-gray-900"></span>
+              <div className="hidden sm:flex">
+                <PreviewType componentId={componentId} handleSetCodeType={setCodeType} />
 
-                <div className="flex">
-                  <PreviewType componentId={componentId} handleSetCodeType={setCodeType} />
-
-                  <PreviewCopy componentCode={previewCode} />
-                </div>
+                <PreviewCopy componentCode={previewCode} />
               </div>
             </div>
           )}
 
-          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-4">
-            <p className="text-sm font-medium text-gray-700">{previewWidth}</p>
-
+          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
             {componentBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint
@@ -177,6 +171,8 @@ export default function ComponentPreview({ componentData, componentContainer }) 
                 />
               )
             )}
+
+            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
           </div>
         </div>
 
