@@ -53,6 +53,7 @@ HyperUI has a wide range of freely available components. These components includ
 - [Header](https://www.hyperui.dev/components/application-ui/headers)
 - [Inputs](https://www.hyperui.dev/components/application-ui/inputs)
 - [Media](https://www.hyperui.dev/components/application-ui/media)
+- [Modals](https://www.hyperui.dev/components/application-ui/modals)
 - [Pagination](https://www.hyperui.dev/components/application-ui/pagination)
 - [Progress](https://www.hyperui.dev/components/application-ui/progress)
 - [Quantity Inputs](https://www.hyperui.dev/components/application-ui/quantity-inputs)

@@ -16,6 +16,8 @@
     "@next/third-parties": "^14.2.6",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/mdast": "^4.0.4",
+    "@types/unist": "^3.0.3",
     "autoprefixer": "^10.4.20",
     "data-table-of-content": "^1.1.1",
     "eslint": "8.57.0",
