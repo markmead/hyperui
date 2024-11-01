@@ -7,7 +7,7 @@ export default function PreviewCreator({ creatorGithub }) {
           href={`https://github.com/${creatorGithub}`}
           target="_blank"
           rel="noreferrer"
-          className="inline-block font-medium no-underline transition hover:text-gray-900"
+          className="inline-block font-medium underline underline-offset-2 transition hover:text-gray-900 hover:no-underline"
         >
           {creatorGithub}
         </a>
