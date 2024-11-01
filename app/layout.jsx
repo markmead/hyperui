@@ -9,6 +9,7 @@ import Ads from '@/ads'
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
+import BackToTop from '@component/BackToTop'
 
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
@@ -54,6 +55,8 @@ export default function RootLayout({ children }) {
         <Footer />
 
         <Ads />
+
+        <BackToTop />
 
         <GoogleAnalytics gaId="G-JKSW02CFZF" />
       </body>
