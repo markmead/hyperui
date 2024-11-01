@@ -17,6 +17,7 @@
     "prefer-const": "warn",
     "prefer-promise-reject-errors": "off",
     "vue/multi-word-component-names": "off",
+    "quotes": ["warn", "single", { "allowTemplateLiterals": false, "avoidEscape": true }],
     "sort-imports": [
       "warn",
       {

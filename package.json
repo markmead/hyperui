@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.6",
-    "@next/third-parties": "^14.2.6",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
