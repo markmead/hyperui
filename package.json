@@ -9,7 +9,8 @@
   "dependencies": {
     "next": "14.2.10",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.6",
