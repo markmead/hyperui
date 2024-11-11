@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import { componentBreakpoints } from '@data/breakpoints'
 import usePreferencesStore from '@store/preferences.store'
+
+import { componentBreakpoints } from '@data/breakpoints'
 import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
 
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
@@ -29,9 +30,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     codeType,
     setCodeType,
     previewWidth,
-    setPreviewWidth
+    setPreviewWidth,
   } = usePreferencesStore()
-	
+
   const [componentCode, setComponentCode] = useState('')
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
@@ -159,7 +160,11 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
 
               <div className="hidden sm:flex">
-                <PreviewType componentId={componentId} codeType={codeType} handleSetCodeType={setCodeType} />
+                <PreviewType
+                  componentId={componentId}
+                  codeType={codeType}
+                  handleSetCodeType={setCodeType}
+                />
 
                 <PreviewCopy componentCode={previewCode} />
               </div>

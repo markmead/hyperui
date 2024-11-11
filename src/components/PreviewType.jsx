@@ -6,8 +6,8 @@ export default function PreviewType({ componentId, codeType, handleSetCodeType }
       </label>
 
       <select
-			  id={`CodeType${componentId}`}
-			  value={codeType}
+        id={`CodeType${componentId}`}
+        value={codeType}
         onInput={(e) => handleSetCodeType(e.target.value)}
         className="rounded-l-md border-2 border-gray-900 py-1.5 pl-3 text-sm font-medium"
       >
