@@ -21,7 +21,7 @@ export default function BackToTop() {
         href="#"
         className="fixed bottom-4 right-4 z-[999] grid size-12 place-content-center rounded-full bg-gray-900 shadow-lg"
       >
-        <span class="sr-only">Back to top</span>
+        <span className="sr-only">Back to top</span>
 
         <span role="img">👆</span>
       </a>

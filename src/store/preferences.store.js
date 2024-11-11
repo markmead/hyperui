@@ -3,17 +3,17 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 
 const usePreferencesStore = create(
   persist(
-    (set) => ({
+    (stateSet) => ({
       isRtl: false,
-      setIsRtl: (isRtl) => set({ isRtl }),
+      setIsRtl: (isRtl) => stateSet({ isRtl }),
       isDarkMode: false,
-      setIsDarkMode: (isDarkMode) => set({ isDarkMode }),
+      setIsDarkMode: (isDarkMode) => stateSet({ isDarkMode }),
       isInteractive: false,
-      setIsInteractive: (isInteractive) => set({ isInteractive }),
+      setIsInteractive: (isInteractive) => stateSet({ isInteractive }),
       codeType: 'html',
-      setCodeType: (codeType) => set({ codeType }),
+      setCodeType: (codeType) => stateSet({ codeType }),
       previewWidth: '100%',
-      setPreviewWidth: (previewWidth) => set({ previewWidth }),
+      setPreviewWidth: (previewWidth) => stateSet({ previewWidth }),
     }),
     {
       name: 'hyperui/preferences-store',
