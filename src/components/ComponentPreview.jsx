@@ -63,6 +63,10 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
   const componentHash = `component-${componentId}`
 
+  const isHtml = codeType === 'html'
+  const isJsx = codeType === 'jsx'
+  const isVue = codeType === 'vue'
+
   useEffect(() => {
     if (inView) {
       fetchHtml({
@@ -88,10 +92,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
   }, [isRtl])
 
   useEffect(() => {
-    codeType === 'html' && setPreviewCode(componentCode)
-    codeType === 'jsx' && setPreviewCode(componentJsx)
-    codeType === 'vue' && setPreviewCode(componentVue)
-
+    setPreviewCode(
+      isHtml ? componentCode : isJsx ? componentJsx : isVue ? componentVue : componentCode
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
 
@@ -118,7 +121,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
 
-    setPreviewCode(textResponse)
+    setPreviewCode(
+      isHtml ? textResponse : isJsx ? transformedJsx : isVue ? transformedVue : textResponse
+    )
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
