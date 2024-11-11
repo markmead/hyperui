@@ -8,6 +8,8 @@ const usePreferencesStore = create(
       setIsRtl: (isRtl) => set({ isRtl }),
       isDarkMode: false,
       setIsDarkMode: (isDarkMode) => set({ isDarkMode }),
+      isInteractive: false,
+      setIsInteractive: (isInteractive) => set({ isInteractive }),
       codeType: 'html',
       setCodeType: (codeType) => set({ codeType }),
       previewWidth: '100%',

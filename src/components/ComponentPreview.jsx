@@ -27,6 +27,8 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     setIsRtl,
     isDarkMode,
     setIsDarkMode,
+    isInteractive,
+    setIsInteractive,
     codeType,
     setCodeType,
     previewWidth,
@@ -37,7 +39,6 @@ export default function ComponentPreview({ componentData, componentContainer }) 
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
-  const [isInteractive, setIsInteractive] = useState(false)
   const [previewCode, setPreviewCode] = useState('')
   const [showPreview, setShowPreview] = useState(true)
 
@@ -66,22 +67,10 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     if (inView) {
       fetchHtml({
         useDark: isDarkMode,
-      })
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView])
-
-  useEffect(() => {
-    if (inView) {
-      fetchHtml({
-        useDark: isDarkMode,
         useInteractive: isInteractive,
       })
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive])
+  }, [inView, isDarkMode, isInteractive])
 
   useEffect(() => {
     if (inView) {
