@@ -2,34 +2,44 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
-import { componentBreakpoints } from '@data/breakpoints'
+import usePreferencesStore from '@store/preferences.store'
 
-import PreviewCreator from '@component/PreviewCreator'
+import { componentBreakpoints } from '@data/breakpoints'
+import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
+
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
+import PreviewCreator from '@component/PreviewCreator'
 import PreviewDark from '@component/PreviewDark'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewInteractive from '@component/PreviewInteractive'
 import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
-import PreviewView from '@component/PreviewView'
 import PreviewType from '@component/PreviewType'
+import PreviewView from '@component/PreviewView'
 
 export default function ComponentPreview({ componentData, componentContainer }) {
   const refIframe = useRef(null)
 
-  const [codeType, setCodeType] = useState('html')
+  const {
+    isRtl,
+    setIsRtl,
+    isDarkMode,
+    setIsDarkMode,
+    isInteractive,
+    setIsInteractive,
+    codeType,
+    setCodeType,
+    previewWidth,
+    setPreviewWidth,
+  } = usePreferencesStore()
+
   const [componentCode, setComponentCode] = useState('')
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [isInteractive, setIsInteractive] = useState(false)
-  const [isRtl, setIsRtl] = useState(false)
   const [previewCode, setPreviewCode] = useState('')
-  const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
 
   const { ref, inView } = useInView({
@@ -53,15 +63,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
   const componentHash = `component-${componentId}`
 
-  useEffect(() => {
-    if (inView) {
-      fetchHtml({
-        useDark: isDarkMode,
-      })
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView])
+  const isHtml = codeType === 'html'
+  const isJsx = codeType === 'jsx'
+  const isVue = codeType === 'vue'
 
   useEffect(() => {
     if (inView) {
@@ -70,9 +74,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
         useInteractive: isInteractive,
       })
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, isInteractive])
+  }, [inView, isDarkMode, isInteractive])
 
   useEffect(() => {
     if (inView) {
@@ -90,10 +92,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
   }, [isRtl])
 
   useEffect(() => {
-    codeType === 'html' && setPreviewCode(componentCode)
-    codeType === 'jsx' && setPreviewCode(componentJsx)
-    codeType === 'vue' && setPreviewCode(componentVue)
-
+    setPreviewCode(
+      isHtml ? componentCode : isJsx ? componentJsx : isVue ? componentVue : componentCode
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
 
@@ -120,7 +121,9 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
 
-    setPreviewCode(textResponse)
+    setPreviewCode(
+      isHtml ? textResponse : isJsx ? transformedJsx : isVue ? transformedVue : textResponse
+    )
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
@@ -151,7 +154,11 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
 
               <div className="hidden sm:flex">
-                <PreviewType componentId={componentId} handleSetCodeType={setCodeType} />
+                <PreviewType
+                  componentId={componentId}
+                  codeType={codeType}
+                  handleSetCodeType={setCodeType}
+                />
 
                 <PreviewCopy componentCode={previewCode} />
               </div>
