@@ -14,6 +14,9 @@ const usePreferencesStore = create(
       setCodeType: (codeType) => stateSet({ codeType }),
       previewWidth: '100%',
       setPreviewWidth: (previewWidth) => stateSet({ previewWidth }),
+
+      isSiteDarkMode: false,
+      setIsSiteDarkMode: (isSiteDarkMode) => stateSet({ isSiteDarkMode }),
     }),
     {
       name: 'hyperui/preferences-store',

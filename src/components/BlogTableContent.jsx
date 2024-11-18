@@ -17,11 +17,11 @@ export default function BlogTableContent() {
 
   return hasHeadings ? (
     <details className="mt-4">
-      <summary className="cursor-pointer text-sm font-medium text-gray-900">
+      <summary className="cursor-pointer text-sm font-medium text-gray-900 dark:text-white">
         Table of Contents
       </summary>
 
-      <div className="mt-1.5 rounded-md border border-gray-100 bg-gray-50 p-1.5">
+      <div className="mt-1.5 rounded-md border border-gray-100 bg-gray-50 p-1.5 dark:border-gray-800 dark:bg-gray-900">
         <HeadingsGroup headingGroup={contentHeadings} />
       </div>
     </details>
@@ -38,7 +38,9 @@ function HeadingsGroup({ headingGroup }) {
 
         return (
           <li key={headingId}>
-            <a href={`#${headingId}`}>{textContent}</a>
+            <a href={`#${headingId}`} class="text-gray-900 dark:text-white">
+              {textContent}
+            </a>
 
             {hasChildren && <HeadingsGroup headingGroup={headingChildren} />}
           </li>

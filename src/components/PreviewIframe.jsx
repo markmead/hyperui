@@ -14,10 +14,10 @@ export default function PreviewIframe({
       {...(!showPreview && {
         hidden: true,
       })}
-      className="rounded-md bg-white bg-[linear-gradient(45deg,_rgb(249_250_251)_25%,_transparent_25%),_linear-gradient(-45deg,_rgb(249_250_251)_25%,_transparent_25%),_linear-gradient(45deg,_transparent_75%,_rgb(249_250_251)_75%),_linear-gradient(-45deg,_transparent_75%,_rgb(249_250_251)_75%)] bg-[length:_20px_20px] [background-position:_0_0,_0_10px,_10px_-10px,_-10px_0px]"
+      className="rounded-md bg-white bg-[linear-gradient(45deg,_rgb(249_250_251)_25%,_transparent_25%),_linear-gradient(-45deg,_rgb(249_250_251)_25%,_transparent_25%),_linear-gradient(45deg,_transparent_75%,_rgb(249_250_251)_75%),_linear-gradient(-45deg,_transparent_75%,_rgb(249_250_251)_75%)] bg-[length:_20px_20px] [background-position:_0_0,_0_10px,_10px_-10px,_-10px_0px] dark:bg-gray-900 dark:bg-[linear-gradient(45deg,_rgb(55_65_81)_25%,_transparent_25%),_linear-gradient(-45deg,_rgb(55_65_81)_25%,_transparent_25%),_linear-gradient(45deg,_transparent_75%,_rgb(55_65_81)_75%),_linear-gradient(-45deg,_transparent_75%,_rgb(55_65_81)_75%)]"
     >
       <iframe
-        className={`w-full rounded-md ring-2 ring-gray-900 lg:transition-all ${iframeTheme} ${previewHeight}`}
+        className={`w-full rounded-md ring-2 ring-gray-900 lg:transition-all dark:ring-white ${iframeTheme} ${previewHeight}`}
         loading="lazy"
         srcDoc={componentHtml}
         style={{ maxWidth: previewWidth }}

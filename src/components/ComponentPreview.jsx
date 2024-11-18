@@ -74,6 +74,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
         useInteractive: isInteractive,
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, isDarkMode, isInteractive])
 
   useEffect(() => {
@@ -179,7 +180,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               )
             )}
 
-            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-200">@ {previewWidth}</p>
           </div>
         </div>
 

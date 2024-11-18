@@ -72,7 +72,7 @@ export default async function Page({ params }) {
     <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
       <Ad />
 
-      <article className="prose mx-auto">
+      <article className="prose mx-auto dark:prose-invert">
         <h1>{pageData.title}</h1>
 
         <MdxRemoteRender mdxSource={pageContent} mdxComponents={mdxComponents} />

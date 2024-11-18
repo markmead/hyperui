@@ -9,7 +9,7 @@ export default function HeaderMenuLinks({ menuLinks, navClass = '', ulClass = ''
             <li key={href}>
               <Link
                 href={href}
-                className="inline-flex items-center gap-1 text-sm font-medium text-gray-900 hover:opacity-75"
+                className="inline-flex items-center gap-1 text-sm font-medium text-gray-900 hover:opacity-75 dark:text-white"
               >
                 {title}
               </Link>

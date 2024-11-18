@@ -16,12 +16,12 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="border-t border-gray-200 bg-white">
+    <footer className="border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
       <Container classNames="py-8 lg:py-12">
         <BrandLogo fontSize="text-lg" />
 
         <div className="mt-6">
-          <p className="max-w-md text-pretty leading-relaxed text-gray-700">
+          <p className="max-w-md text-pretty leading-relaxed text-gray-700 dark:text-gray-200">
             Free open source Tailwind CSS components for marketing and eCommerce websites, as well
             as application UI.
           </p>
@@ -32,7 +32,7 @@ export default function Footer() {
                 <li key={menuLink.href}>
                   <Link
                     href={menuLink.href}
-                    className="block text-sm font-medium text-gray-900 hover:opacity-75"
+                    className="block text-sm font-medium text-gray-900 hover:opacity-75 dark:text-white"
                   >
                     {menuLink.title}
                   </Link>
@@ -40,13 +40,13 @@ export default function Footer() {
               ))}
             </ul>
 
-            <p className="mt-4 text-sm text-gray-700 lg:mt-0">
+            <p className="mt-4 text-sm text-gray-700 lg:mt-0 dark:text-gray-200">
               Created by{' '}
               <a
                 href="https://github.com/markmead"
                 rel="noreferrer"
                 target="_blank"
-                className="inline-block font-medium hover:text-gray-900"
+                className="inline-block font-medium hover:text-gray-900 dark:hover:text-white"
               >
                 Mark Mead
               </a>

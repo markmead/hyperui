@@ -4,13 +4,13 @@ export default function GithubSocial() {
       href="https://github.com/markmead/hyperui"
       rel="noreferrer"
       target="_blank"
-      className="inline-flex items-center gap-2 text-gray-900 hover:opacity-75"
+      className="inline-flex items-center gap-2 text-gray-900 hover:opacity-75 dark:text-white"
     >
       <span className="sr-only"> GitHub </span>
 
       <IconGithub />
 
-      <span className="text-sm font-medium text-gray-700">9.9k</span>
+      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">10k</span>
     </a>
   )
 }

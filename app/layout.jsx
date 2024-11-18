@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
         <Header />
         <HeaderBanner />
 
-        <main className="bg-white">{children}</main>
+        <main className="bg-white dark:bg-gray-900">{children}</main>
 
         <Footer />
 
