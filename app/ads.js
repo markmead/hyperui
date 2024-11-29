@@ -18,7 +18,18 @@ export default function Ads() {
     }
 
     if (document.getElementById('EthicalAds')) {
-      window && window.ethicalads && window.ethicalads.reload()
+      if (window?.ethicalads) {
+        window.ethicalads.wait.then((adPlacements) => {
+          // Do not reload if there are no ad placements
+          if (!adPlacements.length) {
+            return
+          }
+
+          window.ethicalads.reload()
+        })
+
+        return
+      }
 
       return
     }
