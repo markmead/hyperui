@@ -63,8 +63,7 @@ async function getPost(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
+export default async function Page({ params }) {
   const { blogData, blogContent } = await getPost(params)
 
   const schemaData = {

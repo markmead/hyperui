@@ -83,8 +83,7 @@ async function getCategory(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
+export default async function Page({ params }) {
   const { categoryData, componentItems } = await getCategory(params)
 
   return (

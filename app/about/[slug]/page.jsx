@@ -62,8 +62,7 @@ async function getPage(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
+export default async function Page({ params }) {
   const { pageData, pageContent } = await getPage(params)
 
   return (

@@ -58,8 +58,7 @@ async function getCollection(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
+export default async function Page({ params }) {
   const { collectionData, collectionContent } = await getCollection(params)
 
   const componentsData = {
