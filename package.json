@@ -21,9 +21,9 @@
     "eslint-config-next": "^14.2.6",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "prismjs": "^1.29.0",
     "react-intersection-observer": "^9.13.1",
     "react-use": "^17.5.1",
@@ -31,7 +31,7 @@
     "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwindcss": "^3.4.14",
+    "tailwindcss": "^3.4.15",
     "zustand": "^5.0.1"
   },
   "packageManager": "yarn@1.22.22"
