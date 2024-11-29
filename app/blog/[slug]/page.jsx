@@ -21,7 +21,8 @@ const mdxComponents = {
 
 const postsPath = join(process.cwd(), '/src/data/posts')
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
   const { blogData } = await getPost(params)
 
   return {
@@ -38,10 +39,6 @@ export async function generateMetadata({ params }) {
       ...twitterMeta,
     },
   }
-}
-
-export async function generateStaticParams() {
-  return await fs.readdir(postsPath)
 }
 
 async function getPost(params) {
@@ -66,7 +63,8 @@ async function getPost(params) {
   }
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params
   const { blogData, blogContent } = await getPost(params)
 
   const schemaData = {

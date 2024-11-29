@@ -1,24 +1,24 @@
 {
   "name": "hyperui",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "lint": "next lint --fix",
     "format": "prettier . --write"
   },
   "dependencies": {
-    "next": "14.2.10",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.2.6",
+    "@next/eslint-plugin-next": "15.0.3",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
     "data-table-of-content": "^1.1.1",
-    "eslint": "8.57.0",
-    "eslint-config-next": "^14.2.6",
+    "eslint": "9.15.0",
+    "eslint-config-next": "15.0.3",
     "fast-glob": "^3.3.2",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.49",

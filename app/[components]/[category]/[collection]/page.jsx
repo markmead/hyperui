@@ -17,7 +17,8 @@ const mdxComponents = {
 
 const componentsDirectory = join(process.cwd(), '/src/data/components')
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
   const { collectionData } = await getCollection(params)
 
   return {
@@ -34,10 +35,6 @@ export async function generateMetadata({ params }) {
       ...twitterMeta,
     },
   }
-}
-
-export async function generateStaticParams() {
-  return await fs.readdir(componentsDirectory)
 }
 
 async function getCollection(params) {
@@ -61,7 +58,8 @@ async function getCollection(params) {
   }
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params
   const { collectionData, collectionContent } = await getCollection(params)
 
   const componentsData = {
