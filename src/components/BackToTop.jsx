@@ -19,7 +19,7 @@ export default function BackToTop() {
     hasScrolled && (
       <a
         href="#"
-        className="fixed bottom-4 right-4 z-[999] grid size-12 place-content-center rounded-full bg-gray-900 shadow-lg"
+        className="fixed bottom-4 right-4 z-999 grid size-12 place-content-center rounded-full bg-gray-900 shadow-lg"
       >
         <span className="sr-only">Back to top</span>
 
