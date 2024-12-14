@@ -74,6 +74,8 @@ export default function ComponentPreview({ componentData, componentContainer }) 
         useInteractive: isInteractive,
       })
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, isDarkMode, isInteractive])
 
   useEffect(() => {

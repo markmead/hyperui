@@ -4,8 +4,8 @@ export default function UspList() {
   return (
     <div>
       <ul className="flex items-center justify-center gap-6">
-        {uspItems.map((uspItem) => (
-          <li className="inline-flex items-center gap-1">
+        {uspItems.map((uspItem, itemIndex) => (
+          <li className="inline-flex items-center gap-1" key={itemIndex}>
             <span role="img" aria-hidden="true">
               ✅
             </span>
