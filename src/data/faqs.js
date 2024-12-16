@@ -129,4 +129,9 @@ export const faqItems = [
     answer:
       'Yes, HyperUI is free to use in both personal and commercial projects. You do not need to give credit, although it is appreciated.',
   },
+  {
+    question: 'Do I need to keep components up to date with changes on HyperUI?',
+    answer:
+      "No, you don't need to keep your components up to date with HyperUI. If a component is working for you, then there is no need to update unless there is a bug or new feature you want.",
+  },
 ]
