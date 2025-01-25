@@ -29,7 +29,7 @@ export function componentPreviewHtml(
           })
         </script>
 
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <script src="https://unpkg.com/@tailwindcss/browser@4?plugins=forms,typography"></script>
 
         <script>
           tailwind.config = {
@@ -127,7 +127,7 @@ export function blogPreviewHtml(
           })
         </script>
 
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <script src="https://unpkg.com/@tailwindcss/browser@4?plugins=forms,typography"></script>
 
         <script>
           tailwind.config = {
