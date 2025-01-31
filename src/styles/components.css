@@ -1,0 +1,36 @@
+@import 'tailwindcss' source('../../public/components');
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --animate-background: backgroundMove ease infinite;
+
+  --text-shadow-xs: 0 1px 2px var(--tw-shadow-color);
+  --text-shadow-sm: 0 2px 4px var(--tw-shadow-color);
+  --text-shadow-lg: 0 8px 16px var(--tw-shadow-color);
+
+  @keyframes backgroundMove {
+    0%,
+    100% {
+      background-position: '0% 50%';
+    }
+    50% {
+      background-position: '100% 50%';
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}

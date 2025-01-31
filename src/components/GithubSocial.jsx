@@ -10,7 +10,7 @@ export default function GithubSocial() {
 
       <IconGithub />
 
-      <span className="text-sm font-medium text-gray-700">10.3k</span>
+      <span className="text-sm font-medium text-gray-700">10.7k</span>
     </a>
   )
 }
