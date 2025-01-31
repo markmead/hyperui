@@ -3,9 +3,10 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
+    "postbuild": "yarn css --minify",
     "lint": "next lint --fix",
     "format": "prettier . --write",
-    "css": "npx @tailwindcss/cli -i ./src/styles/components.css -o ./public/components.css --watch"
+    "css": "npx @tailwindcss/cli -i ./src/styles/components.css -o ./public/components.css"
   },
   "dependencies": {
     "next": "14.2.21",
