@@ -29,7 +29,7 @@ export function componentPreviewHtml(
           })
         </script>
 
-         <link href="./components.css" rel="stylesheet">
+        <link href="/components.css" rel="stylesheet">
       </head>
 
       <body class="${componentContainer} font-sans antialiased">
@@ -73,43 +73,4 @@ export function componentPreviewVue(componentHtml) {
     .join('\n')
 
   return formattedComponentHtml
-}
-
-export function blogPreviewHtml(
-  componentHtml,
-  componentContainer = 'relative',
-  isDarkMode = false
-) {
-  const htmlClass = isDarkMode ? 'dark' : 'relative'
-
-  return `
-    <html class="${htmlClass}">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
-
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            const iframeLinks = [...document.querySelectorAll('a')]
-            const iframeForms = [...document.querySelectorAll('form')]
-
-            iframeLinks.forEach(function (iframeLink) {
-              iframeLink.addEventListener('click', (e) => e.preventDefault())
-            })
-
-            iframeForms.forEach(function (iframeForm) {
-              iframeForm.addEventListener('submit', (e) => e.preventDefault())
-            })
-          })
-        </script>
-
-        <link href="./components.css" rel="stylesheet">
-      </head>
-
-      <body class="${componentContainer} font-sans antialiased">
-        ${componentHtml}
-      </body>
-    </html>
-  `
 }

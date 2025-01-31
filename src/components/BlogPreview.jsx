@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import { blogPreviewHtml } from '@util/transformers'
+import { componentPreviewHtml } from '@util/transformers'
 
 import PreviewCode from '@component/PreviewCode'
 import PreviewIframe from '@component/PreviewIframe'
@@ -37,7 +37,7 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = blogPreviewHtml(textResponse, previewContainer, isDarkMode)
+    const transformedHtml = componentPreviewHtml(textResponse, previewContainer, isDarkMode)
 
     setPreviewHtml(transformedHtml)
     setPreviewCode(textResponse)
