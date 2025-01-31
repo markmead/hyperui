@@ -1,35 +1,33 @@
 ---
 title: How to Contribute to HyperUI
 description: Contributing to an open-source project can seem daunting. Learn how you can get involved with the development of HyperUI.
-date: 07/25/2022
+date: 01/31/2025
 emoji: 🫵
 ---
 
-The idea of contributing to an open-source project can be intimidating. Don't let that deter you. Let's explore how you can contribute to HyperUI and enhance your CV/GitHub with open-source work.
+The idea of contributing to an open-source project can be intimidating. Let's explore how you can contribute to HyperUI.
 
 ## Spotted a Bug?
 
-If you find something that seems amiss:
+If you find something that doesn't seem right, such as:
 
 - Spelling
 - Accessibility
 - SEO
 
-or anything else, please [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
+Or anything else, please [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
 
-Once an issue is created, I can begin working on a solution. If you'd like to resolve the issue yourself, let me know.
+Once an issue is created, we can begin discussing a solution and approach to resolving the issue.
 
 ## Want to Add Something?
 
-If you have something to add to HyperUI, that's great! But before you dive deep into the development, I suggest you [create an issue](https://github.com/markmead/hyperui/issues/new/choose) to outline your addition.
+If you have something to add to HyperUI, that's great! But before you dive in, I suggest you [create an issue](https://github.com/markmead/hyperui/issues/new/choose) so we can discuss what you want to add.
 
-If you're planning to add a new component, include some examples of how the component will appear.
+If you're planning to add a new component, include some examples of how the component will look.
 
 ### Pull Request Feedback
 
-Here's the intimidating part 👻
-
-All pull requests must be reviewed before being merged into HyperUI, which means there might be feedback at times. Don't be discouraged by feedback. We're all enhancing our skills and trying to improve HyperUI (and other open-source projects).
+All pull requests must be reviewed before being merged into HyperUI, which means there might be feedback at times.
 
 ### Getting HyperUI Running Locally
 
@@ -39,6 +37,7 @@ HyperUI is a Next JS project and can be quickly set up with the following comman
 git clone git@github.com:markmead/hyperui.git
 yarn install
 yarn dev
+yarn css (watch for changes in `/components` and rebuild the CSS)
 ```
 
 ### Creating a New Component
@@ -55,13 +54,12 @@ components:
   21:
     title: An Amazing Footer
   22:
-    title: My Awesome New Footer ✨
-
+    title: My Awesome New Footer
 ```
 
-As you will see, component files are named incrementally. Please follow this method.
+As you can see, component files are named incrementally. Please follow this method.
 
-You can use `container: ...` to position the component within the preview. However, any classes added here will be ignored when copying or viewing the component's code.
+You can use `container:` to position the component within the preview. However, any classes added here will be ignored when copying or viewing the component's code.
 
 ### Notes on New Components
 
@@ -78,12 +76,4 @@ To create a new collection, please [create an issue](https://github.com/markmead
 
 If you plan to add a component to HyperUI, I will provide feedback on both the design and development of the component.
 
-For new component pull requests, I will review the work three times. If feedback from the first review remains unaddressed by the third review, I will close it and ask for it to be re-opened once feedback has been addressed.
-
-If there is new feedback on the third review, it's not an issue. The problem arises only if you continue to ignore feedback from the first review.
-
-I believe this is fair.
-
-## Final Notes
-
-Contributing to open-source is an enriching experience for a developer. As I mentioned, it can be quite daunting. I want everyone to feel comfortable contributing to HyperUI. So, please get involved and let's make HyperUI an even better project.
+For new component pull requests, I will review the work three times. If feedback from the first review remains unaddressed by the third review, I will close the PR. If there is new feedback on the third review, it's not an issue.
