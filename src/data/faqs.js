@@ -1,4 +1,4 @@
-const activeVersion = 'v3.4.15'
+const activeVersion = 'v4.0.1'
 
 export const faqItems = [
   {
