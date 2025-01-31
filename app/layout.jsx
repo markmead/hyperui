@@ -12,11 +12,11 @@ import BackToTop from '@component/BackToTop'
 
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
-  title: 'Free Open Source Tailwind CSS Components | HyperUI',
-  description: 'Free Tailwind CSS components that can be used in your next project.',
+  title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
+  description: 'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
   openGraph: {
-    title: 'Free Open Source Tailwind CSS Components | HyperUI',
-    description: 'Free Tailwind CSS components that can be used in your next project.',
+    title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
+    description: 'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
     url: 'https://www.hyperui.dev/',
     siteName: 'HyperUI',
     type: 'website',
@@ -24,8 +24,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Open Source Tailwind CSS Components | HyperUI',
-    description: 'Free Tailwind CSS components that can be used in your next project.',
+    title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
+    description: 'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
   },
 }
 
