@@ -105,7 +105,7 @@ export default function HeaderSearch() {
                   >
                     <span>{searchResult.title}</span>
 
-                    <span className="block rounded-sm bg-gray-900 px-1.5 py-0.5 text-xs text-white">
+                    <span className="block rounded-xs bg-gray-900 px-1.5 py-0.5 text-xs text-white">
                       {searchResult.category.title}
                     </span>
                   </Link>
