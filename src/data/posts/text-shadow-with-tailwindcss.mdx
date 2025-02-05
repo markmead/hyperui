@@ -21,9 +21,7 @@ Alternatively, to use classes like `shadow-red-500`, you can do this.
 
 Currently, Tailwind CSS does not officially support `text-shadow` classes. Adam Wathan, the creator of Tailwind CSS, recently tweeted:
 
-> What CSS feature that Tailwind doesn't have baked in do you find yourself getting the most irrationally angry about? Need ideas for v3.1
-
-> In before text-shadow-sm — harder than it sounds, one day, I'm sorry
+> What CSS feature that Tailwind doesn't have baked in do you find yourself getting the most irrationally angry about? Need ideas for v3.1. In before text-shadow harder than it sounds, one day, I'm sorry
 
 The issue isn't the implementation, but the execution. Deciding the default shadows to include has proven challenging.
 
@@ -31,7 +29,7 @@ The issue isn't the implementation, but the execution. Deciding the default shad
 
 But, while we wait, we can add this feature ourselves.
 
-## Adding Text shadow-sm Classes to Tailwind CSS
+## Adding Text Shadow Classes to Tailwind CSS
 
 Add the following to your `tailwind.config.js`:
 
@@ -65,7 +63,7 @@ module.exports = {
 
 That's it.
 
-Now, you can write `text-shadow-sm shadow-red-500` and a beautiful red text shadow-sm will appear, created with Tailwind CSS and no custom CSS.
+Now, you can write `text-shadow-sm shadow-red-500` and a beautiful red text shadow will appear, created with Tailwind CSS and no custom CSS.
 
 I followed the [adding plugins documentation](https://tailwindcss.com/docs/plugins#adding-utilities) to achieve this.
 
