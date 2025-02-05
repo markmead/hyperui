@@ -39,7 +39,7 @@
         x-on:keydown.escape.window="isOpen = false"
         class="absolute start-0 top-auto z-50 mt-2"
       >
-        <div class="w-96 rounded border border-gray-200 bg-white">
+        <div class="w-96 rounded-sm border border-gray-200 bg-white">
           <header class="flex items-center justify-between p-4">
             <span class="text-sm text-gray-700"> 0 Selected </span>
 
@@ -51,7 +51,11 @@
           <ul class="space-y-1 border-t border-gray-200 p-4">
             <li>
               <label for="FilterInStock" class="inline-flex items-center gap-2">
-                <input type="checkbox" id="FilterInStock" class="size-5 rounded border-gray-300" />
+                <input
+                  type="checkbox"
+                  id="FilterInStock"
+                  class="size-5 rounded-sm border-gray-300"
+                />
 
                 <span class="text-sm font-medium text-gray-700"> In Stock (5+) </span>
               </label>
@@ -59,7 +63,11 @@
 
             <li>
               <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                <input type="checkbox" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
+                <input
+                  type="checkbox"
+                  id="FilterPreOrder"
+                  class="size-5 rounded-sm border-gray-300"
+                />
 
                 <span class="text-sm font-medium text-gray-700"> Pre Order (3+) </span>
               </label>
@@ -70,7 +78,7 @@
                 <input
                   type="checkbox"
                   id="FilterOutOfStock"
-                  class="size-5 rounded border-gray-300"
+                  class="size-5 rounded-sm border-gray-300"
                 />
 
                 <span class="text-sm font-medium text-gray-700"> Out of Stock (10+) </span>
@@ -113,7 +121,7 @@
         x-on:keydown.escape.window="isOpen = false"
         class="absolute start-0 top-auto z-50 mt-2"
       >
-        <div class="w-96 rounded border border-gray-200 bg-white">
+        <div class="w-96 rounded-sm border border-gray-200 bg-white">
           <header class="flex items-center justify-between p-4">
             <span class="text-sm text-gray-700"> The highest price is $600 </span>
 
@@ -131,7 +139,7 @@
                   type="number"
                   id="FilterPriceFrom"
                   placeholder="From"
-                  class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                  class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm"
                 />
               </label>
 
@@ -142,7 +150,7 @@
                   type="number"
                   id="FilterPriceTo"
                   placeholder="To"
-                  class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                  class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm"
                 />
               </label>
             </div>

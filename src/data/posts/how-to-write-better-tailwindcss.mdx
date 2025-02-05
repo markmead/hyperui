@@ -1,5 +1,5 @@
 ---
-title: Tips & Tricks for Writing Better Tailwind CSS
+title: Tips & Tricks for Writing Better Tailwind CSS (v3)
 description: Since 2018, I've been writing Tailwind CSS and have gathered some tips and tricks to enhance the look and performance of your code.
 date: 04/15/2022
 emoji: 🧐
@@ -188,7 +188,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 
 ```
 .button {
-  @apply inline-flex items-center rounded border px-5 py-3 text-sm transition hover:scale-105;
+  @apply inline-flex items-center rounded-sm border px-5 py-3 text-sm transition hover:scale-105;
 }
 ```
 
@@ -198,7 +198,7 @@ Can't argue with that, but do you need `transition-all`? Probably not.
 .button {
   @apply inline-flex items-center; // Layout
   @apply px-5 py-3 text-sm; // Spacing/Sizing
-  @apply rounded border; // Style
+  @apply rounded-sm border; // Style
   @apply transition; // Transition
   @apply hover:scale-105; // Interaction
 }
@@ -237,7 +237,7 @@ And for the CSS...
 
 ```
 .card {
-  @apply rounded p-4;
+  @apply rounded-sm p-4;
 }
 
 .card-title {
@@ -264,7 +264,7 @@ And for the CSS...
 ### Correct
 
 ```
-<div class="rounded p-4">
+<div class="rounded-sm p-4">
   <div class="text-lg">Title</div>
   <div class="mt-1">Title</div>
   <div class="flex items-center justify-between">
