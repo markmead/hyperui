@@ -11,11 +11,11 @@ export default function BlogCard({ blogPost }) {
                 {blogPost.emoji}
               </span>
 
-              <h2 className="mt-4 text-pretty text-lg font-medium text-gray-900 sm:text-xl">
-                {blogPost.title}
-              </h2>
+              <time className="mt-4 block text-sm text-gray-700">{blogPost.date}</time>
 
-              <time className="mt-1 text-sm text-gray-700">{blogPost.date}</time>
+              <strong className="mt-1 block text-lg font-medium text-pretty text-gray-900 sm:text-xl">
+                {blogPost.title}
+              </strong>
             </div>
           </div>
         </div>

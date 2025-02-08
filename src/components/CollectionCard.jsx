@@ -19,7 +19,9 @@ export default function CollectionCard({ componentData }) {
               {hasTag && <CardTag tagType={componentData.tag} />}
             </div>
 
-            <h2 className="mt-4 font-medium text-gray-900 sm:text-lg">{componentData.title}</h2>
+            <strong className="mt-4 block font-medium text-gray-900 sm:text-lg">
+              {componentData.title}
+            </strong>
 
             <p className="mt-1 text-sm text-gray-700">{componentCount}</p>
           </div>
@@ -39,7 +41,7 @@ function CardTag({ tagType }) {
 
   return (
     <span
-      className={`-me-1.5 -mt-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium capitalize sm:-me-3 sm:-mt-3 ${
+      className={`-me-1.5 -mt-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium whitespace-nowrap capitalize sm:-me-3 sm:-mt-3 ${
         isNew && 'bg-green-100 text-green-700'
       } ${isUpdated && 'bg-blue-100 text-blue-700'}`}
     >
