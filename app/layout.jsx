@@ -10,25 +10,23 @@ import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
 import BackToTop from '@component/BackToTop'
 
+// prettier-ignore
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
   title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
-  description:
-    'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
+  description: 'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
   openGraph: {
-    title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
-    description:
-      'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
     url: 'https://www.hyperui.dev/',
     siteName: 'HyperUI',
     type: 'website',
-    images: ['https://www.hyperui.dev/og.jpg'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
-    description:
-      'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
+    images: [
+      {
+        url: 'https://www.hyperui.dev/og.jpg',
+        width: 2400,
+        height: 1260,
+        alt: 'HyperUI',
+      },
+    ],
   },
 }
 

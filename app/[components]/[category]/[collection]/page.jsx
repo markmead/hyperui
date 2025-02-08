@@ -4,8 +4,6 @@ import { join } from 'path'
 import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { ogMeta, twitterMeta } from '@data/metadata'
-
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -23,15 +21,8 @@ export async function generateMetadata({ params }) {
   return {
     title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
     description: collectionData.seo.description,
-    openGraph: {
-      title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
-      description: collectionData.seo.description,
-      ...ogMeta,
-    },
-    twitter: {
-      title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
-      description: collectionData.seo.description,
-      ...twitterMeta,
+    alternates: {
+      canonical: `/components/${params.category}/${params.collection}`,
     },
   }
 }

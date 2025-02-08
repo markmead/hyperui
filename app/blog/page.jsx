@@ -2,8 +2,6 @@ import { promises as fs } from 'fs'
 import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { ogMeta, twitterMeta } from '@data/metadata'
-
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import BlogGrid from '@component/BlogGrid'
@@ -11,15 +9,8 @@ import BlogGrid from '@component/BlogGrid'
 export const metadata = {
   title: 'Tailwind CSS Blog | HyperUI',
   description: 'Tips and tricks for using Tailwind CSS in your projects.',
-  openGraph: {
-    title: 'Tailwind CSS Blog | HyperUI',
-    description: 'Tips and tricks for using Tailwind CSS in your projects.',
-    ...ogMeta,
-  },
-  twitter: {
-    title: 'Tailwind CSS Blog | HyperUI',
-    description: 'Tips and tricks for using Tailwind CSS in your projects.',
-    ...twitterMeta,
+  alternates: {
+    canonical: '/blog',
   },
 }
 

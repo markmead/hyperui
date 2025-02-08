@@ -6,6 +6,12 @@ import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 
+export const metadata = {
+  alternates: {
+    canonical: '/',
+  },
+}
+
 async function getComponents() {
   const componentsPath = join(process.cwd(), '/src/data/components')
   const categoriesPath = join(process.cwd(), '/src/data/categories')

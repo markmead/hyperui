@@ -7,8 +7,6 @@ import { serialize } from 'next-mdx-remote/serialize'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
-import { ogMeta, twitterMeta } from '@data/metadata'
-
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
@@ -27,15 +25,8 @@ export async function generateMetadata({ params }) {
   return {
     title: `${blogData.title} | HyperUI`,
     description: blogData.description,
-    openGraph: {
-      title: `${blogData.title} | HyperUI`,
-      description: blogData.description,
-      ...ogMeta,
-    },
-    twitter: {
-      title: `${blogData.title} | HyperUI`,
-      description: blogData.description,
-      ...twitterMeta,
+    alternates: {
+      canonical: `/blog/${params.slug}`,
     },
   }
 }
