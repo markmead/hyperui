@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
-import { iPageLink } from '@type/site'
-
+import { PageLink } from '@type/site'
 import BrandLogo from '@component/BrandLogo'
 import Container from '@component/Container'
 import GithubSocial from '@component/GithubSocial'
@@ -15,11 +14,11 @@ import HeaderSearch from '@component/HeaderSearch'
 export default function Header() {
   const routerPathname: string = usePathname()
 
-  const [showMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState<boolean>(false)
 
   useEffect(() => setShowMenu(false), [routerPathname])
 
-  const menuLinks: iPageLink[] = [
+  const menuLinks: PageLink[] = [
     {
       title: 'Application UI',
       href: '/components/application-ui',

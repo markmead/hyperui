@@ -1,10 +1,14 @@
-import { iCategoryItem } from '@type/component'
+import { CategoryItem } from '@type/component'
 
-export interface iSearchItem {
+interface CategoryData extends Omit<CategoryItem, 'description' | 'subtitle'> {
+  slug: string
+}
+
+export interface SearchItem {
   id: string
   title: string
   slug: string
   emoji: string
   count: number
-  category: Omit<iCategoryItem, 'description' | 'subtitle'>
+  category: CategoryData
 }

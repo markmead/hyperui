@@ -1,29 +1,27 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-
 import { useInView } from 'react-intersection-observer'
 
 import { componentPreviewHtml } from '@util/transformers'
-
 import PreviewCode from '@component/PreviewCode'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewView from '@component/PreviewView'
 
-interface iProps {
+interface Props {
   previewId: string
   previewTitle: string
   previewContainer: string
 }
 
-export default function BlogPreview({ previewId, previewTitle, previewContainer }: iProps) {
-  const refIframe = useRef(null)
+export default function BlogPreview({ previewId, previewTitle, previewContainer }: Props) {
+  const refIframe = useRef<HTMLIFrameElement | null>(null)
 
-  const [previewCode, setPreviewCode] = useState('')
-  const [previewHtml, setPreviewHtml] = useState('')
-  const [showPreview, setShowPreview] = useState(true)
+  const [previewCode, setPreviewCode] = useState<string>('')
+  const [previewHtml, setPreviewHtml] = useState<string>('')
+  const [showPreview, setShowPreview] = useState<boolean>(true)
 
-  const isDarkMode: boolean = false
+  const isDarkMode = false
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -39,7 +37,7 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
   }, [inView])
 
   async function fetchHtml() {
-    const previewUrl: string = `/blogs/${previewId}.html`
+    const previewUrl = `/blogs/${previewId}.html`
 
     const fetchResponse: Awaited<Response> = await fetch(previewUrl)
     const textResponse: Awaited<string> = await fetchResponse.text()
@@ -56,7 +54,7 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
       )}
 
       <div className="relative">
-        <div>
+        <>
           <PreviewIframe
             showPreview={showPreview}
             componentHtml={previewHtml}
@@ -66,7 +64,7 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
           />
 
           <PreviewCode showPreview={showPreview} componentCode={previewCode} />
-        </div>
+        </>
       </div>
     </div>
   )

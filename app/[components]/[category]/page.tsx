@@ -1,36 +1,35 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
+
 import { serialize } from 'next-mdx-remote/serialize'
 import { notFound } from 'next/navigation'
 
 import CollectionGrid from '@component/CollectionGrid'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
+import { PageProps, PageCategory } from '@type/page'
+import { PageMeta } from '@type/site'
+import { CategoryItem, CollectionItem } from '@type/component'
 
-import { iPageProps, iCategoryPage } from '@type/page'
-import { iPageMeta } from '@type/site'
-import { iCategoryItem, iCollectionItem } from '@type/component'
-
-interface iCollectionData
-  extends Omit<iCollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
+interface CollectionData
+  extends Omit<CollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
   slug: string
   count: number
 }
 
-interface iPageParams {
+interface PageParams {
   category: string
 }
 
-interface iPageData {
-  categoryData: Partial<iCategoryItem>
-  componentItems: iCollectionData[]
+interface PageData {
+  categoryData: CategoryItem
+  componentItems: CollectionData[]
 }
 
-export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
-  const params: Awaited<iPageParams> = await props.params
+export async function generateMetadata(props: PageProps): Promise<PageMeta> {
+  const params: Awaited<PageParams> = await props.params
 
-  const { categoryData }: Awaited<{ categoryData: Partial<iCategoryPage> }> =
-    await getCategory(params)
+  const { categoryData }: Awaited<{ categoryData: PageCategory }> = await getCategory(params)
 
   return {
     title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
@@ -41,7 +40,7 @@ export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
   }
 }
 
-async function getCategory(params: iPageParams): Promise<iPageData> {
+async function getCategory(params: PageParams): Promise<PageData> {
   try {
     const componentsPath: string = join(process.cwd(), '/src/data/components')
     const categoriesPath: string = join(process.cwd(), '/src/data/categories')
@@ -52,19 +51,19 @@ async function getCategory(params: iPageParams): Promise<iPageData> {
     const componentSlugs: Awaited<string[]> = await fs.readdir(componentsPath)
     const categoryItem: Awaited<string> = await fs.readFile(categoryPath, 'utf-8')
 
-    const { frontmatter: categoryData }: Awaited<{ frontmatter: iCategoryItem }> = await serialize(
+    const { frontmatter: categoryData }: Awaited<{ frontmatter: CategoryItem }> = await serialize(
       categoryItem,
       { parseFrontmatter: true }
     )
 
-    const componentItems: Awaited<iCollectionData[]> = await Promise.all(
+    const componentItems: Awaited<CollectionData[]> = await Promise.all(
       componentSlugs
         .filter((componentSlug) => componentSlug.includes(categorySlug))
         .map(async (componentSlug) => {
           const componentPath: string = join(componentsPath, componentSlug)
           const componentItem: Awaited<string> = await fs.readFile(componentPath, 'utf-8')
 
-          const { frontmatter: componentData }: Awaited<{ frontmatter: iCollectionItem }> =
+          const { frontmatter: componentData }: Awaited<{ frontmatter: CollectionItem }> =
             await serialize(componentItem, { parseFrontmatter: true })
 
           const componentSlugFormatted: string = componentSlug.replace('.mdx', '')
@@ -94,10 +93,10 @@ async function getCategory(params: iPageParams): Promise<iPageData> {
   }
 }
 
-export default async function Page(props: iPageProps) {
-  const params: Awaited<iPageParams> = await props.params
+export default async function Page(props: PageProps) {
+  const params: Awaited<PageParams> = await props.params
 
-  const { categoryData, componentItems }: Awaited<iPageData> = await getCategory(params)
+  const { categoryData, componentItems }: Awaited<PageData> = await getCategory(params)
 
   return (
     <>

@@ -1,23 +1,22 @@
 import Link from 'next/link'
 
-import { iBlogItem } from '@type/blog'
-
+import { BlogItem } from '@type/blog'
 import CardTag from '@component/CardTag'
 
-interface iProps {
-  blogPost: iBlogItem
+interface Props {
+  blogPost: BlogItem
 }
 
-export default function BlogCard({ blogPost }: iProps) {
+export default function BlogCard({ blogPost }: Props) {
   const {
     title: postTitle,
     slug: postSlug,
     emoji: postEmoji,
     date: postDate,
     tag: postTag,
-  }: iBlogItem = blogPost
+  }: BlogItem = blogPost
 
-  const postHasTag: boolean = !!postTag
+  const postHasTag = Boolean(postTag)
 
   return (
     <Link href={`/blog/${postSlug}`}>

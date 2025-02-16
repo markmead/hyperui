@@ -1,17 +1,16 @@
 import MenuLinks from '@component/HeaderMenuLinks'
+import { PageLink } from '@type/site'
 
-import { iPageLink } from '@type/site'
-
-interface iProps {
+interface Props {
   showMenu: boolean
-  menuLinks: iPageLink[]
+  menuLinks: PageLink[]
   handleSetShowMenu: (showMenu: boolean) => void
 }
 
-export default function HeaderMenu({ showMenu, menuLinks, handleSetShowMenu }: iProps) {
+export default function HeaderMenu({ showMenu, menuLinks, handleSetShowMenu }: Props) {
   return (
     <div className="flex items-center md:hidden">
-      <button className="text-gray-900" onClick={() => handleSetShowMenu(!showMenu)}>
+      <button className="text-gray-900" type="button" onClick={() => handleSetShowMenu(!showMenu)}>
         <IconMenu />
 
         <span className="sr-only">Toggle menu</span>

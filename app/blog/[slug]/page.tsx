@@ -1,27 +1,26 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
+
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { notFound } from 'next/navigation'
-
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
-import { iBlogItem, iBlogSchema } from '@type/blog'
-import { iPageMeta } from '@type/site'
-import { iPageProps } from '@type/page'
-
+import { BlogItem, BlogSchema } from '@type/blog'
+import { PageMeta } from '@type/site'
+import { PageProps } from '@type/page'
 import Ad from '@component/Ad'
 import BlogPreview from '@component/BlogPreview'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-interface iPageParams {
+interface PageParams {
   slug: string
 }
 
-interface iPageData {
-  blogData: Partial<iBlogItem>
+interface PageData {
+  blogData: BlogItem
   blogContent: MDXRemoteSerializeResult
 }
 
@@ -31,10 +30,10 @@ const mdxComponents = {
 
 const postsPath: string = join(process.cwd(), '/src/data/posts')
 
-export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
-  const params: Awaited<iPageParams> = await props.params
+export async function generateMetadata(props: PageProps): Promise<PageMeta> {
+  const params: Awaited<PageParams> = await props.params
 
-  const { blogData }: Awaited<{ blogData: Partial<iBlogItem> }> = await getPost(params)
+  const { blogData }: Awaited<{ blogData: BlogItem }> = await getPost(params)
 
   return {
     title: `${blogData.title} | HyperUI`,
@@ -45,7 +44,7 @@ export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
   }
 }
 
-async function getPost(params: iPageParams): Promise<iPageData> {
+async function getPost(params: PageParams): Promise<PageData> {
   try {
     const postPath: string = join(postsPath, `${params.slug}.mdx`)
     const postItem: Awaited<string> = await fs.readFile(postPath, 'utf-8')
@@ -58,7 +57,8 @@ async function getPost(params: iPageParams): Promise<iPageData> {
       },
     })
 
-    const blogData: Partial<iBlogItem> = mdxSource.frontmatter
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const blogData = mdxSource.frontmatter as any as BlogItem
 
     return {
       blogData,
@@ -69,13 +69,15 @@ async function getPost(params: iPageParams): Promise<iPageData> {
   }
 }
 
-export default async function Page(props: iPageProps) {
-  const params: Awaited<iPageParams> = await props.params
+export default async function Page(props: PageProps) {
+  const params: Awaited<PageParams> = await props.params
 
-  const { blogData, blogContent }: Awaited<iPageData> = await getPost(params)
+  const { blogData, blogContent }: Awaited<PageData> = await getPost(params)
 
-  const schemaData: iBlogSchema = {
+  const schemaData: BlogSchema = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     '@context': 'http://schema.org',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     '@type': 'NewsArticle',
     headline: `${blogData.title}`,
     image: 'https://www.hyperui.dev/og.jpg',

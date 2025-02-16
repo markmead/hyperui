@@ -1,8 +1,8 @@
-import { iFaqItem } from '@type/faq'
+import { QuestionItem } from '@type/faq'
 
-const activeVersion: string = 'v4.0.4'
+const activeVersion = 'v4.0.4'
 
-export const faqItems: iFaqItem[] = [
+export const faqItems: QuestionItem[] = [
   {
     question: 'What is HyperUI?',
     answer:

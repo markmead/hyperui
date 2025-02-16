@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
-interface iProps {
+interface Props {
   fontSize?: string
 }
 
-export default function BrandLogo({ fontSize = 'text-sm' }: iProps) {
+export default function BrandLogo({ fontSize = 'text-sm' }: Props) {
   return (
     <Link href="/">
       <div className={`inline-flex gap-1.5 ${fontSize}`}>

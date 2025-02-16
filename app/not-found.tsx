@@ -1,6 +1,6 @@
-import { iPageMeta } from '@type/site'
+import { PageMeta } from '@type/site'
 
-export const metadata: Omit<iPageMeta, 'alternates'> = {
+export const metadata: Omit<PageMeta, 'alternates'> = {
   title: '404 | HyperUI',
   description: "Uh-oh! It appears this page doesn't exist.",
 }

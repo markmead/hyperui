@@ -1,16 +1,16 @@
-interface iTagClass {
+interface TagClass {
   new: string
   update: string
   DEFAULT: string
 }
 
-interface iProps {
+interface Props {
   tagType?: string
   tagText?: string
 }
 
-export default function CardTag({ tagType = 'DEFAULT', tagText }: iProps) {
-  const tagClasses: iTagClass = {
+export default function CardTag({ tagType = 'DEFAULT', tagText }: Props) {
+  const tagClasses: TagClass = {
     new: 'bg-green-100 text-green-700',
     update: 'bg-blue-100 text-blue-700',
     DEFAULT: 'bg-blue-100 text-blue-700',

@@ -1,21 +1,24 @@
 'use client'
 
 import { faqItems } from '@data/faqs'
-import { iFaqItem, iFaqSchema } from '@type/faq'
-
+import { QuestionItem, FaqSchema } from '@type/faq'
 import FaqItem from '@component/FaqItem'
 
 export default function FaqList() {
-  const faqList: iFaqItem[] = faqItems
+  const faqList: QuestionItem[] = faqItems
 
-  const schemaData: iFaqSchema = {
+  const schemaData: FaqSchema = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     '@context': 'http://schema.org',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     '@type': 'FAQPage',
     mainEntity: faqList.map(({ question, answer }) => {
       return {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@type': 'Question',
         name: question,
         acceptedAnswer: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           '@type': 'Answer',
           text: answer,
         },
@@ -32,7 +35,7 @@ export default function FaqList() {
 
       <ul className="list-none p-0">
         {faqList.map(({ question, answer }, faqIndex) => (
-          <FaqItem key={faqIndex} question={question} answer={answer} open={faqIndex === 0} />
+          <FaqItem key={question} question={question} answer={answer} open={faqIndex === 0} />
         ))}
       </ul>
     </>

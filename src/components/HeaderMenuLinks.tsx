@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
-import { iPageLink } from '@type/site'
+import { PageLink } from '@type/site'
 
-interface iProps {
-  menuLinks: iPageLink[]
+interface Props {
+  menuLinks: PageLink[]
   navClass?: string
   ulClass?: string
 }
 
-export default function HeaderMenuLinks({ menuLinks, navClass = '', ulClass = '' }: iProps) {
+export default function HeaderMenuLinks({ menuLinks, navClass = '', ulClass = '' }: Props) {
   return (
     <nav className={navClass}>
       <ul className={ulClass}>

@@ -1,6 +1,6 @@
 import ButtonStyle from '@component/ButtonStyle'
 
-interface iBreakpoint {
+interface Props {
   breakpointActive: boolean
   breakpointEmoji: string
   breakpointText: string
@@ -14,9 +14,9 @@ export default function PreviewBreakpoint({
   breakpointText,
   breakpointWidth,
   handleSetPreviewWidth,
-}: iBreakpoint) {
+}: Props) {
   return (
-    <button onClick={() => handleSetPreviewWidth(breakpointWidth)}>
+    <button type="button" onClick={() => handleSetPreviewWidth(breakpointWidth)}>
       <ButtonStyle
         buttonActive={breakpointActive}
         buttonEmoji={breakpointEmoji}

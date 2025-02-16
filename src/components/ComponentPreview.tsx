@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-
 import { useInView } from 'react-intersection-observer'
 
 import { componentBreakpoints } from '@data/breakpoints'
 import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
-import { iComponentItem } from '@type/component'
-
+import { ComponentItem } from '@type/component'
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
@@ -18,39 +16,39 @@ import PreviewTitle from '@component/PreviewTitle'
 import PreviewType from '@component/PreviewType'
 import PreviewView from '@component/PreviewView'
 
-interface iFetchOptions {
+interface FetchOptions {
   useDark: boolean
   useInteractive: boolean
 }
 
-interface iComponentData extends iComponentItem {
+interface ComponentData extends ComponentItem {
   id: string
   slug: string
   category: string
 }
 
-interface iProps {
-  componentData: iComponentData
+interface Props {
+  componentData: ComponentData
   componentContainer?: {
     previewInner: string
     previewHeight: string
   }
 }
 
-export default function ComponentPreview({ componentData, componentContainer }: iProps) {
-  const refIframe = useRef(null)
+export default function ComponentPreview({ componentData, componentContainer }: Props) {
+  const refIframe = useRef<HTMLIFrameElement | null>(null)
 
-  const [componentCode, setComponentCode] = useState('')
-  const [componentHtml, setComponentHtml] = useState('')
-  const [componentJsx, setComponentJsx] = useState('')
-  const [componentVue, setComponentVue] = useState('')
-  const [previewCode, setPreviewCode] = useState('')
-  const [showPreview, setShowPreview] = useState(true)
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [isInteractive, setIsInteractive] = useState(false)
-  const [isRtl, setIsRtl] = useState(false)
-  const [previewWidth, setPreviewWidth] = useState('100%')
-  const [codeType, setCodeType] = useState('html')
+  const [componentCode, setComponentCode] = useState<string>('')
+  const [componentHtml, setComponentHtml] = useState<string>('')
+  const [componentJsx, setComponentJsx] = useState<string>('')
+  const [componentVue, setComponentVue] = useState<string>('')
+  const [previewCode, setPreviewCode] = useState<string>('')
+  const [showPreview, setShowPreview] = useState<boolean>(true)
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+  const [isInteractive, setIsInteractive] = useState<boolean>(false)
+  const [isRtl, setIsRtl] = useState<boolean>(false)
+  const [previewWidth, setPreviewWidth] = useState<string>('100%')
+  const [codeType, setCodeType] = useState<string>('html')
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -66,12 +64,13 @@ export default function ComponentPreview({ componentData, componentContainer }: 
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
-  }: iComponentData = componentData
+  }: ComponentData = componentData
 
-  const trueComponentContainer: string = componentSpace || componentContainer?.previewInner
+  const trueComponentContainer: string =
+    componentSpace || componentContainer?.previewInner || 'relative'
   const componentWrapper: string = componentContainer?.previewHeight || 'h-[400px] lg:h-[600px]'
 
-  const componentHash: string = `component-${componentId}`
+  const componentHash = `component-${componentId}`
 
   const isHtml: boolean = codeType === 'html'
   const isJsx: boolean = codeType === 'jsx'
@@ -104,17 +103,24 @@ export default function ComponentPreview({ componentData, componentContainer }: 
   }, [isRtl])
 
   useEffect(() => {
-    setPreviewCode(
-      isHtml ? componentCode : isJsx ? componentJsx : isVue ? componentVue : componentCode
-    )
+    if (isHtml) {
+      setPreviewCode(componentCode)
+    }
+
+    if (isJsx) {
+      setPreviewCode(componentJsx)
+    }
+
+    if (isVue) {
+      setPreviewCode(componentVue)
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
 
-  async function fetchHtml(useOptions: iFetchOptions) {
-    const { useDark = false, useInteractive = false } = useOptions
-
-    const useDarkMode: boolean = componentHasDark && useDark
-    const useInteractiveMode: boolean = componentHasInteractive && useInteractive
+  async function fetchHtml({ useDark = false, useInteractive = false }: FetchOptions) {
+    const useDarkMode = Boolean(componentHasDark && useDark)
+    const useInteractiveMode = Boolean(componentHasInteractive && useInteractive)
 
     const componentPath: string = [
       componentId,
@@ -124,7 +130,7 @@ export default function ComponentPreview({ componentData, componentContainer }: 
       .filter(Boolean)
       .join('-')
 
-    const componentUrl: string = `/components/${componentCategory}-${componentSlug}/${componentPath}.html`
+    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}.html`
 
     const fetchResponse: Awaited<Response> = await fetch(componentUrl)
     const textResponse: Awaited<string> = await fetchResponse.text()
@@ -137,13 +143,22 @@ export default function ComponentPreview({ componentData, componentContainer }: 
     const transformedJsx: string = componentPreviewJsx(textResponse)
     const transformedVue: string = componentPreviewVue(textResponse)
 
-    setPreviewCode(
-      isHtml ? textResponse : isJsx ? transformedJsx : isVue ? transformedVue : textResponse
-    )
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
     setComponentVue(transformedVue)
+
+    if (isHtml) {
+      setPreviewCode(textResponse)
+    }
+
+    if (isJsx) {
+      setPreviewCode(transformedJsx)
+    }
+
+    if (isVue) {
+      setPreviewCode(transformedVue)
+    }
   }
 
   return (
@@ -200,7 +215,7 @@ export default function ComponentPreview({ componentData, componentContainer }: 
         </div>
 
         <div className="relative">
-          <div>
+          <>
             <PreviewIframe
               showPreview={showPreview}
               componentHtml={componentHtml}
@@ -216,7 +231,7 @@ export default function ComponentPreview({ componentData, componentContainer }: 
               codeType={codeType}
               componentCode={previewCode}
             />
-          </div>
+          </>
         </div>
 
         {componentCreator && <PreviewCreator creatorGithub={componentCreator} />}

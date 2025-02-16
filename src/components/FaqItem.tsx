@@ -1,10 +1,10 @@
-import { iFaqItem } from '@type/faq'
+import { QuestionItem } from '@type/faq'
 
-interface iProps extends iFaqItem {
+interface Props extends QuestionItem {
   open: boolean
 }
 
-export default function FaqItem({ question, answer, open }: iProps) {
+export default function FaqItem({ question, answer, open }: Props) {
   return (
     <li className="rounded-lg bg-gray-50 p-4">
       <details className="group" open={open}>

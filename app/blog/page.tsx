@@ -1,15 +1,15 @@
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
+
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { iBlogItem } from '@type/blog'
-import { iPageMeta } from '@type/site'
-
+import { BlogItem } from '@type/blog'
+import { PageMeta } from '@type/site'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import BlogGrid from '@component/BlogGrid'
 
-export const metadata: iPageMeta = {
+export const metadata: PageMeta = {
   title: 'Tailwind CSS Blog | HyperUI',
   description: 'Tips and tricks for using Tailwind CSS in your projects.',
   alternates: {
@@ -22,19 +22,19 @@ const postsPath: string = join(process.cwd(), '/src/data/posts')
 async function getPosts() {
   const blogSlugs: Awaited<string[]> = await fs.readdir(postsPath)
 
-  const blogPosts: Awaited<iBlogItem[]> = await Promise.all(
+  const blogPosts: Awaited<BlogItem[]> = await Promise.all(
     blogSlugs.map(async (blogSlug) => {
       const postPath: string = join(postsPath, blogSlug)
       const blogItem: Awaited<string> = await fs.readFile(postPath, 'utf-8')
 
-      const { frontmatter: blogData }: Awaited<{ frontmatter: iBlogItem }> = await serialize(
+      const { frontmatter: blogData }: Awaited<{ frontmatter: BlogItem }> = await serialize(
         blogItem,
         { parseFrontmatter: true }
       )
 
       return {
-        slug: blogSlug.replace('.mdx', ''),
         ...blogData,
+        slug: blogSlug.replace('.mdx', ''),
       }
     })
   )
@@ -48,7 +48,7 @@ async function getPosts() {
 }
 
 export default async function Page() {
-  const blogPosts: iBlogItem[] = await getPosts()
+  const blogPosts: BlogItem[] = await getPosts()
 
   return (
     <>

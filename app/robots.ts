@@ -1,6 +1,6 @@
-import { iPageRobots } from '@type/site'
+import { SiteRobots } from '@type/site'
 
-export default function robots(): iPageRobots {
+export default function robots(): SiteRobots {
   return {
     rules: {
       userAgent: '*',

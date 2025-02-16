@@ -1,16 +1,15 @@
 import BlogCard from '@component/BlogCard'
+import { BlogItem } from '@type/blog'
 
-import { iBlogItem } from '@type/blog'
-
-interface iProps {
-  blogPosts: iBlogItem[]
+interface Props {
+  blogPosts: BlogItem[]
 }
 
-export default function BlogGrid({ blogPosts }: iProps) {
+export default function BlogGrid({ blogPosts }: Props) {
   return (
     <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {blogPosts.map((blogPost, postIndex) => (
-        <li key={postIndex}>
+      {blogPosts.map((blogPost) => (
+        <li key={blogPost.slug}>
           <BlogCard blogPost={blogPost} />
         </li>
       ))}

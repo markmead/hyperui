@@ -1,42 +1,42 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
-import { serialize } from 'next-mdx-remote/serialize'
-import { notFound } from 'next/navigation'
+
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { notFound } from 'next/navigation'
+import { serialize } from 'next-mdx-remote/serialize'
 
-import { iCollectionItem, iComponentItem } from '@type/component'
-import { iPageProps } from '@type/page'
-import { iPageMeta } from '@type/site'
-
+import { CollectionItem, ComponentItem } from '@type/component'
+import { PageMeta } from '@type/site'
+import { PageProps } from '@type/page'
+import Ad from '@component/Ad'
+import CollectionList from '@component/CollectionList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import CollectionList from '@component/CollectionList'
-import Ad from '@component/Ad'
 
-interface iComponentItemExtended extends iComponentItem {
+interface ComponentItemExtended extends ComponentItem {
   wrapper: string
 }
 
-interface iCollectionData extends iCollectionItem {
+interface CollectionData extends CollectionItem {
   slug: string
-  components: iComponentItemExtended[]
+  components: ComponentItemExtended[]
 }
 
-interface iComponentData {
+interface ComponentData {
   componentContainer: {
     previewInner: string
     previewHeight: string
   }
-  componentsData: Omit<iCollectionItem, 'seo' | 'emoji' | 'tag' | 'components'>[]
+  componentsData: Omit<CollectionItem, 'seo' | 'emoji' | 'tag' | 'components'>[]
 }
 
-interface iPageParams {
+interface PageParams {
   category: string
   collection: string
 }
 
-interface iPageData {
-  collectionData: Partial<iCollectionData>
+interface PageData {
+  collectionData: CollectionData
   collectionContent: MDXRemoteSerializeResult
 }
 
@@ -46,10 +46,10 @@ const mdxComponents = {
 
 const componentsDirectory: string = join(process.cwd(), '/src/data/components')
 
-export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
-  const params: Awaited<iPageParams> = await props.params
+export async function generateMetadata(props: PageProps): Promise<PageMeta> {
+  const params: Awaited<PageParams> = await props.params
 
-  const { collectionData }: Awaited<{ collectionData: Partial<iCollectionData> }> =
+  const { collectionData }: Awaited<{ collectionData: CollectionData }> =
     await getCollection(params)
 
   return {
@@ -61,7 +61,7 @@ export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
   }
 }
 
-async function getCollection(params: iPageParams): Promise<iPageData> {
+async function getCollection(params: PageParams): Promise<PageData> {
   try {
     const componentPath: string = join(
       componentsDirectory,
@@ -75,7 +75,7 @@ async function getCollection(params: iPageParams): Promise<iPageData> {
 
     return {
       collectionData: {
-        ...mdxSource.frontmatter,
+        ...(mdxSource.frontmatter as Omit<CollectionData, 'slug'>),
         slug: params.collection,
       },
       collectionContent: mdxSource,
@@ -85,12 +85,12 @@ async function getCollection(params: iPageParams): Promise<iPageData> {
   }
 }
 
-export default async function Page(props: iPageProps) {
-  const params: Awaited<iPageParams> = await props.params
+export default async function Page(props: PageProps) {
+  const params: Awaited<PageParams> = await props.params
 
   const { collectionData, collectionContent } = await getCollection(params)
 
-  const componentsData: iComponentData = {
+  const componentsData: ComponentData = {
     componentContainer: {
       previewInner: collectionData.container || '',
       previewHeight: collectionData.wrapper || '',
@@ -105,8 +105,8 @@ export default async function Page(props: iPageProps) {
           container: componentItem.container || '',
           wrapper: componentItem.wrapper || '',
           creator: componentItem.creator || '',
-          dark: !!componentItem.dark,
-          interactive: !!componentItem.interactive,
+          dark: Boolean(componentItem.dark),
+          interactive: Boolean(componentItem.interactive),
         }
       }
     ),

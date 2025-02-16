@@ -1,8 +1,8 @@
 export function componentPreviewHtml(
   componentHtml: string,
-  componentContainer: string = 'relative',
-  isDarkMode: boolean = false,
-  isRtl: boolean = false
+  componentContainer: string,
+  isDarkMode = false,
+  isRtl = false
 ): string {
   const htmlClass: string = isDarkMode ? 'dark' : 'relative'
   const htmlDirection: string = isRtl ? 'rtl' : 'ltr'
@@ -60,7 +60,7 @@ export function componentPreviewJsx(componentHtml: string): string {
 }
 
 export function componentPreviewVue(componentHtml: string): string {
-  const newComponentHtml: string = `<template>\n${componentHtml}</template>`
+  const newComponentHtml = `<template>\n${componentHtml}</template>`
 
   const formattedComponentHtml: string = newComponentHtml
     .split('\n')

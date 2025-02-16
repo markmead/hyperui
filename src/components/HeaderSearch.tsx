@@ -1,21 +1,22 @@
-import { useEffect, useRef, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { RefObject, useEffect, useRef, useState } from 'react'
 import { useClickAway, useDebounce } from 'react-use'
-
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-import { iSearchItem } from '@type/search'
+import { SearchItem } from '@type/search'
 
 export default function HeaderSearch() {
-  const routerPathname = usePathname()
+  const routerPathname: string = usePathname()
 
-  const refDropdown = useRef(null)
+  const refDropdown: RefObject<HTMLDivElement | null> = useRef(null)
 
-  const [showDropdown, setShowDropdown] = useState(false)
-  const [initialResults, setInitialResults] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchQueryDebounced, setSearchQueryDebounced] = useState('')
-  const [searchResults, setSearchResults] = useState([])
+  const [showDropdown, setShowDropdown] = useState<boolean>(false)
+  const [initialResults, setInitialResults] = useState<SearchItem[]>([])
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [searchQueryDebounced, setSearchQueryDebounced] = useState<string>('')
+  const [searchResults, setSearchResults] = useState<SearchItem[]>([])
+
+  const showError: boolean = Boolean(searchQuery) && Boolean(!searchResults.length)
 
   useEffect(() => {
     if (!showDropdown || initialResults.length) {
@@ -23,7 +24,7 @@ export default function HeaderSearch() {
     }
 
     async function getSearchResults() {
-      const searchResults: iSearchItem[] = await fetchSearchResults()
+      const searchResults: SearchItem[] = await fetchSearchResults()
 
       const sortedSearchResults = searchResults.sort((resultA, resultB) =>
         resultA.title.localeCompare(resultB.title)
@@ -45,10 +46,10 @@ export default function HeaderSearch() {
       return
     }
 
-    const filteredResults = initialResults.filter(function (initialResult) {
-      const { title: initialTitle } = initialResult
+    const filteredResults: SearchItem[] = initialResults.filter((initialResult) => {
+      const resultTitle: string = initialResult.title
 
-      return initialTitle.toLowerCase().includes(searchQuery.toLowerCase().trim())
+      return resultTitle.toLowerCase().includes(searchQuery.toLowerCase().trim())
     })
 
     setSearchResults(filteredResults)
@@ -64,7 +65,7 @@ export default function HeaderSearch() {
 
   useDebounce(() => setSearchQueryDebounced(searchQuery), 500, [searchQuery])
 
-  async function fetchSearchResults() {
+  async function fetchSearchResults(): Promise<SearchItem[]> {
     const searchResults = await fetch('/api/search')
     const searchJson = await searchResults.json()
 
@@ -74,28 +75,30 @@ export default function HeaderSearch() {
   return (
     <div ref={refDropdown} className="relative flex h-16 max-w-[300px] flex-1 items-center">
       <form role="search" className="flex-1">
-        <label htmlFor="SiteSearch" className="sr-only">
-          Search
+        <label htmlFor="SiteSearch">
+          <span className="sr-only">Search</span>
+
+          <input
+            type="text"
+            value={searchQuery}
+            placeholder="Search..."
+            autoComplete="off"
+            id="SiteSearch"
+            className="w-full rounded-md border-gray-200 sm:text-sm"
+            aria-label="Search"
+            onInput={(inputEvent) => setSearchQuery(inputEvent.currentTarget.value)}
+            onFocus={() => setShowDropdown(true)}
+          />
         </label>
 
-        <input
-          type="text"
-          value={searchQuery}
-          placeholder="Search..."
-          id="SiteSearch"
-          className="w-full rounded-md border-gray-200 sm:text-sm"
-          onInput={(e) => setSearchQuery(e.currentTarget.value)}
-          onFocus={() => setShowDropdown(true)}
-        />
-
-        <button tabIndex={-1} className="sr-only">
+        <button tabIndex={-1} className="sr-only" type="submit">
           Submit
         </button>
       </form>
 
       {showDropdown && (
         <div className="fixed inset-x-0 top-14 z-50 rounded-md border border-gray-100 bg-white shadow-lg sm:absolute">
-          {searchResults.length ? (
+          {Boolean(searchResults.length) && (
             <ul className="max-h-64 space-y-1 overflow-auto p-2">
               {searchResults.map((searchResult) => (
                 <li key={searchResult.id}>
@@ -112,9 +115,14 @@ export default function HeaderSearch() {
                 </li>
               ))}
             </ul>
-          ) : (
+          )}
+
+          {showError && (
             <div className="p-4 text-center text-sm text-gray-700">
-              {searchQuery ? 'Uh-no! There are no results 😢' : 'Loading search results...'}
+              Uh-no! There are no results{' '}
+              <span role="img" aria-hidden="true">
+                😢
+              </span>
             </div>
           )}
         </div>

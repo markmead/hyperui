@@ -1,13 +1,13 @@
 import ButtonStyle from '@component/ButtonStyle'
 
-interface iProps {
+interface Props {
   showPreview: boolean
   handleSetShowPreview: (showPreview: boolean) => void
 }
 
-export default function PreviewView({ showPreview, handleSetShowPreview }: iProps) {
+export default function PreviewView({ showPreview, handleSetShowPreview }: Props) {
   return (
-    <button onClick={() => handleSetShowPreview(!showPreview)}>
+    <button type="button" onClick={() => handleSetShowPreview(!showPreview)}>
       <ButtonStyle buttonActive={!showPreview} buttonEmoji="👀" buttonText="View" />
     </button>
   )

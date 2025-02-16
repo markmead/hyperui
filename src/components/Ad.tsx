@@ -11,12 +11,6 @@ export default function Ad() {
   }, [routerPathname])
 
   function loadAd(): void {
-    const isDevelopment: boolean = process.env.NODE_ENV === 'development'
-
-    if (isDevelopment) {
-      return
-    }
-
     if (document.getElementById('EthicalAds')) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const appWindow = window as any
@@ -43,7 +37,7 @@ export default function Ad() {
         data-ea-type="image"
         data-ea-style="stickybox"
         className="bordered horizontal [&_.ea-callout]:mb-0! [&_.ea-content]:mx-0! [&_.ea-content]:mt-0! [&_.ea-stickybox-hide]:hidden"
-      ></div>
+      />
     </div>
   )
 }

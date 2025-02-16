@@ -1,24 +1,17 @@
-interface iButtonClasses {
+interface ButtonClass {
   DEFAULT: string
   darkButton: string
 }
 
-interface iProps {
+interface Props {
   buttonEmoji: string
   buttonText: string
   buttonActive: boolean
   isDark?: boolean
-  children?: React.ReactNode
 }
 
-export default function ButtonStyle({
-  buttonEmoji,
-  buttonText,
-  buttonActive,
-  isDark,
-  children,
-}: iProps) {
-  const buttonClasses: iButtonClasses = {
+export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive, isDark }: Props) {
+  const buttonClasses: ButtonClass = {
     DEFAULT: `border-gray-900 ${
       buttonActive
         ? 'text-white bg-gray-900'
@@ -35,17 +28,11 @@ export default function ButtonStyle({
     <span
       className={`inline-flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 ${buttonClass}`}
     >
-      {children ? (
-        children
-      ) : (
-        <>
-          <span aria-hidden="true" role="img" className="text-sm">
-            {buttonEmoji}
-          </span>
+      <span aria-hidden="true" role="img" className="text-sm">
+        {buttonEmoji}
+      </span>
 
-          <span className="text-sm font-medium">{buttonText}</span>
-        </>
-      )}
+      <span className="text-sm font-medium">{buttonText}</span>
     </span>
   )
 }

@@ -1,9 +1,9 @@
-interface iProps {
+interface Props {
   componentHash: string
   componentTitle: string
 }
 
-export default function PreviewTitle({ componentHash, componentTitle }: iProps) {
+export default function PreviewTitle({ componentHash, componentTitle }: Props) {
   return (
     <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
       <a href={`#${componentHash}`} className="group relative inline-block">

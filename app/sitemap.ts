@@ -1,6 +1,11 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
+interface Route {
+  url: string
+  lastModified: Date
+}
+
 export default async function sitemap(): Promise<Route[]> {
   async function getComponents(): Promise<string[]> {
     const componentsPath: string = join(process.cwd(), '/src/data/components')
@@ -33,7 +38,7 @@ export default async function sitemap(): Promise<Route[]> {
 
   async function getBlogs(): Promise<string[]> {
     const blogsPath: string = join(process.cwd(), '/src/data/posts')
-    const blogSlugs: string[] = await fs.readdir(blogsPath)
+    const blogSlugs: Awaited<string[]> = await fs.readdir(blogsPath)
 
     const formattedSlugs: string[] = blogSlugs.map((blogSlug) => {
       const blogSlugFormatted: string = blogSlug.replace('.mdx', '')
@@ -82,9 +87,4 @@ export default async function sitemap(): Promise<Route[]> {
     },
     ...transformedSlugs,
   ]
-}
-
-interface Route {
-  url: string
-  lastModified: Date
 }

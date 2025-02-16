@@ -1,26 +1,25 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
+
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { notFound } from 'next/navigation'
-
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
-import { iPageMeta } from '@type/site'
-import { iPageAbout, iPageProps } from '@type/page'
-
+import { PageMeta } from '@type/site'
+import { PageAbout, PageProps } from '@type/page'
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 import FaqList from '@component/FaqList'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-interface iPageParams {
+interface PageParams {
   slug: string
 }
 
-interface iPageData {
-  pageData: Partial<iPageAbout>
+interface PageData {
+  pageData: PageAbout
   pageContent: MDXRemoteSerializeResult
 }
 
@@ -30,10 +29,10 @@ const mdxComponents = {
 
 const pagesPath: string = join(process.cwd(), '/src/data/pages')
 
-export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
-  const params: Awaited<iPageParams> = await props.params
+export async function generateMetadata(props: PageProps): Promise<PageMeta> {
+  const params: Awaited<PageParams> = await props.params
 
-  const { pageData }: Awaited<{ pageData: Partial<iPageAbout> }> = await getPage(params)
+  const { pageData }: Awaited<{ pageData: PageAbout }> = await getPage(params)
 
   return {
     title: `${pageData.title} | HyperUI`,
@@ -44,7 +43,7 @@ export async function generateMetadata(props: iPageProps): Promise<iPageMeta> {
   }
 }
 
-async function getPage(params: iPageParams): Promise<iPageData> {
+async function getPage(params: PageParams): Promise<PageData> {
   try {
     const pagePath: string = join(pagesPath, `${params.slug}.mdx`)
     const pageItem: Awaited<string> = await fs.readFile(pagePath, 'utf-8')
@@ -57,7 +56,8 @@ async function getPage(params: iPageParams): Promise<iPageData> {
       },
     })
 
-    const pageData: Partial<iPageAbout> = mdxSource.frontmatter
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const pageData = mdxSource.frontmatter as any as PageAbout
 
     return {
       pageData,
@@ -68,10 +68,10 @@ async function getPage(params: iPageParams): Promise<iPageData> {
   }
 }
 
-export default async function Page(props: iPageProps) {
-  const params: Awaited<iPageParams> = await props.params
+export default async function Page(props: PageProps) {
+  const params: Awaited<PageParams> = await props.params
 
-  const { pageData, pageContent }: Awaited<iPageData> = await getPage(params)
+  const { pageData, pageContent }: Awaited<PageData> = await getPage(params)
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">

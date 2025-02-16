@@ -1,18 +1,16 @@
 import ButtonStyle from '@component/ButtonStyle'
 
-interface iProps {
+interface Props {
   isInteractive: boolean
   handleSetIsInteractive: (isInteractive: boolean) => void
 }
 
-export default function PreviewInteractive({ isInteractive, handleSetIsInteractive }: iProps) {
+export default function PreviewInteractive({ isInteractive, handleSetIsInteractive }: Props) {
+  const buttonEmoji = isInteractive ? '🙋‍♀️' : '🙅‍♀️'
+
   return (
-    <button onClick={() => handleSetIsInteractive(!isInteractive)}>
-      <ButtonStyle
-        buttonActive={isInteractive}
-        buttonEmoji={isInteractive ? '🙋‍♀️' : '🙅‍♀️'}
-        buttonText="Alpine JS"
-      />
+    <button type="button" onClick={() => handleSetIsInteractive(!isInteractive)}>
+      <ButtonStyle buttonActive={isInteractive} buttonEmoji={buttonEmoji} buttonText="Alpine JS" />
     </button>
   )
 }

@@ -3,6 +3,7 @@ import js from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
 import stylisticTs from '@stylistic/eslint-plugin-ts'
 import stylisticJsx from '@stylistic/eslint-plugin-jsx'
+import shopifyEslintPlugin from '@shopify/eslint-plugin'
 
 import { FlatCompat } from '@eslint/eslintrc'
 
@@ -29,6 +30,9 @@ const eslintConfig = [
         require: 'readonly',
         window: 'readonly',
       },
+      parserOptions: {
+        project: 'tsconfig.json',
+      },
     },
   },
 
@@ -38,6 +42,11 @@ const eslintConfig = [
       stylisticJsx,
     },
   },
+
+  ...shopifyEslintPlugin.configs.esnext,
+  ...shopifyEslintPlugin.configs.typescript,
+  ...shopifyEslintPlugin.configs.react,
+  ...shopifyEslintPlugin.configs['typescript-type-checking'],
 
   {
     rules: {
@@ -54,6 +63,9 @@ const eslintConfig = [
           shorthandFirst: true,
         },
       ],
+      '@shopify/binary-assignment-parens': 'off',
+      '@shopify/jsx-no-hardcoded-content': 'off',
+      '@shopify/strict-component-boundaries': 'off',
     },
   },
 

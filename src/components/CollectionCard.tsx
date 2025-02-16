@@ -1,25 +1,24 @@
 import Link from 'next/link'
 
-import { iCollectionItem } from '@type/component'
-
+import { CollectionItem } from '@type/component'
 import CardTag from '@component/CardTag'
 
-interface iCollectionData
-  extends Omit<iCollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
+interface CollectionData
+  extends Omit<CollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
   count: number
   slug: string
 }
 
-interface iProps {
-  componentData: iCollectionData
+interface Props {
+  componentData: CollectionData
 }
 
-export default function CollectionCard({ componentData }: iProps) {
+export default function CollectionCard({ componentData }: Props) {
   const componentCountPluralize: string = componentData.count > 1 ? 'Components' : 'Component'
-  const componentCount: string = `${componentData.count} ${componentCountPluralize}`
+  const componentCount = `${componentData.count} ${componentCountPluralize}`
 
-  const componentTag: string = componentData?.tag || ''
-  const componentHasTag: boolean = !!componentData.tag
+  const componentTag: string = componentData.tag || ''
+  const componentHasTag = Boolean(componentData.tag)
 
   return (
     <Link href={`/components/${componentData.category}/${componentData.slug}`}>

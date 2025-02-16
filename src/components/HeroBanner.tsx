@@ -2,13 +2,13 @@ import Ad from '@component/Ad'
 import Container from '@component/Container'
 import UspList from '@component/UspList'
 
-interface iProps {
+interface Props {
   children: React.ReactNode
   subtitle: string
   title: string
 }
 
-export default function HeroBanner({ children, subtitle, title }: iProps) {
+export default function HeroBanner({ children, subtitle, title }: Props) {
   return (
     <section className="bg-white text-center">
       <Container classNames="py-8 lg:py-12">

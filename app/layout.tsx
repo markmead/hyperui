@@ -3,13 +3,12 @@ import { Inter } from 'next/font/google'
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
-import { iPageMeta } from '@type/site'
-
+import { PageMeta } from '@type/site'
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
 
-interface GlobalMeta extends Omit<iPageMeta, 'alternates'> {
+interface GlobalMeta extends Omit<PageMeta, 'alternates'> {
   metadataBase: URL
   openGraph: {
     type: string
@@ -24,7 +23,7 @@ interface GlobalMeta extends Omit<iPageMeta, 'alternates'> {
   }
 }
 
-interface iProps {
+interface Props {
   children: React.ReactNode
 }
 
@@ -54,7 +53,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-export default function RootLayout({ children }: iProps) {
+export default function RootLayout({ children }: Props) {
   return (
     <html className="h-full scroll-pt-20 scroll-smooth" lang="en" dir="ltr">
       <body className={`${inter.variable} font-sans antialiased`}>

@@ -1,27 +1,27 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
+
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { iPageMeta } from '@type/site'
-import { iCategoryItem, iCollectionItem } from '@type/component'
-
+import { PageMeta } from '@type/site'
+import { CategoryItem, CollectionItem } from '@type/component'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 
-interface iCollectionData
-  extends Omit<iCollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
+interface CollectionData
+  extends Omit<CollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
   id: string
   slug: string
   count: number
 }
 
-interface iPageData {
+interface PageData {
   categoryTitle: string
-  componentItems: iCollectionData[]
+  componentItems: CollectionData[]
 }
 
-export const metadata: Omit<iPageMeta, 'title' | 'description'> = {
+export const metadata: Omit<PageMeta, 'title' | 'description'> = {
   alternates: {
     canonical: '/',
   },
@@ -34,22 +34,24 @@ async function getComponents() {
   const categorySlugs: string[] = ['application-ui', 'marketing']
   const componentSlugs: Awaited<string[]> = await fs.readdir(componentsPath)
 
-  const componentsByCategory: Awaited<iPageData[]> = await Promise.all(
+  const componentsByCategory: Awaited<PageData[]> = await Promise.all(
     categorySlugs.map(async (categorySlug) => {
       const categoryPath: string = join(categoriesPath, `${categorySlug}.mdx`)
       const categoryItem: Awaited<string> = await fs.readFile(categoryPath, 'utf-8')
 
-      const { frontmatter: categoryData }: Awaited<{ frontmatter: iCategoryItem }> =
-        await serialize(categoryItem, { parseFrontmatter: true })
+      const { frontmatter: categoryData }: Awaited<{ frontmatter: CategoryItem }> = await serialize(
+        categoryItem,
+        { parseFrontmatter: true }
+      )
 
-      const componentItems: Awaited<iCollectionData[]> = await Promise.all(
+      const componentItems: Awaited<CollectionData[]> = await Promise.all(
         componentSlugs
           .filter((componentSlug) => componentSlug.includes(categorySlug))
           .map(async (componentSlug) => {
             const componentPath: string = join(componentsPath, componentSlug)
             const componentItem: Awaited<string> = await fs.readFile(componentPath, 'utf-8')
 
-            const { frontmatter: componentData }: Awaited<{ frontmatter: iCollectionItem }> =
+            const { frontmatter: componentData }: Awaited<{ frontmatter: CollectionItem }> =
               await serialize(componentItem, { parseFrontmatter: true })
 
             const componentSlugFormatted: string = componentSlug.replace('.mdx', '')
@@ -74,7 +76,7 @@ async function getComponents() {
       componentItems.sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
 
       return {
-        categoryTitle: categoryData?.title,
+        categoryTitle: categoryData.title,
         componentItems,
       }
     })
@@ -84,7 +86,7 @@ async function getComponents() {
 }
 
 export default async function Page() {
-  const componentsByCategory: Awaited<iPageData[]> = await getComponents()
+  const componentsByCategory: Awaited<PageData[]> = await getComponents()
 
   return (
     <>

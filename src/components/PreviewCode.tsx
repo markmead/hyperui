@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react'
-
 import Prism from 'prismjs'
 
 import 'prismjs/components/prism-jsx.min'
 
-interface iProps {
+interface Props {
   codeType?: string
   componentCode: string
   showPreview: boolean
 }
 
-export default function PreviewCode({
-  codeType = 'html',
-  componentCode = '',
-  showPreview,
-}: iProps) {
-  const [prismClass, setPrismClass] = useState('language-html')
+export default function PreviewCode({ codeType = 'html', componentCode = '', showPreview }: Props) {
+  const [prismClass, setPrismClass] = useState<string>('language-html')
 
   useEffect(() => Prism.highlightAll(), [componentCode])
 

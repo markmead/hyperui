@@ -1,9 +1,9 @@
-export interface iPageLink {
+export interface PageLink {
   href: string
   title: string
 }
 
-export interface iPageMeta {
+export interface PageMeta {
   title: string
   description: string
   alternates: {
@@ -11,7 +11,7 @@ export interface iPageMeta {
   }
 }
 
-export interface iPageRobots {
+export interface SiteRobots {
   rules: {
     userAgent: string
     allow: string

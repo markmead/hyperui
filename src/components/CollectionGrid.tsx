@@ -1,22 +1,21 @@
+import { CollectionItem } from '@type/component'
 import CollectionCard from '@component/CollectionCard'
 
-import { iCollectionItem } from '@type/component'
-
-interface iCollectionData
-  extends Omit<iCollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
+interface CollectionData
+  extends Omit<CollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
   slug: string
   count: number
 }
 
-interface iProps {
-  componentItems: iCollectionData[]
+interface Props {
+  componentItems: CollectionData[]
 }
 
-export default function CollectionGrid({ componentItems }: iProps) {
+export default function CollectionGrid({ componentItems }: Props) {
   return (
     <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-      {componentItems.map((componentData, componentIndex) => (
-        <li key={componentIndex}>
+      {componentItems.map((componentData) => (
+        <li key={componentData.slug}>
           <CollectionCard componentData={componentData} />
         </li>
       ))}

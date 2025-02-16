@@ -1,4 +1,4 @@
-export interface iComponentItem {
+export interface ComponentItem {
   title: string
   container?: string
   creator?: string
@@ -6,14 +6,14 @@ export interface iComponentItem {
   interactive?: boolean
 }
 
-export interface iCategoryItem {
+export interface CategoryItem {
   title: string
   subtitle: string
   description: string
   emoji: string
 }
 
-export interface iCollectionItem {
+export interface CollectionItem {
   title: string
   emoji: string
   category: string
@@ -24,5 +24,5 @@ export interface iCollectionItem {
     title: string
     description: string
   }
-  components: iComponentItem[]
+  components: ComponentItem[]
 }

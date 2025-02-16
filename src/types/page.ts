@@ -1,15 +1,15 @@
-interface iPageDefault {
+interface PageDefault {
   title: string
   description: string
 }
 
-export type iCategoryPage = iPageDefault
+export type PageCategory = PageDefault
 
-export type iPageAbout = iPageDefault
+export type PageAbout = PageDefault
 
-export interface CollectionPage extends iPageDefault {
+export interface CollectionPage extends PageDefault {
   slug: string
-  seo: iPageDefault
+  seo: PageDefault
 }
 
 /*
@@ -23,7 +23,7 @@ type SegmentParams<T extends object = any> =
     ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
     : T
 
-export interface iPageProps {
+export interface PageProps {
   params?: Promise<SegmentParams>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchParams?: Promise<any>

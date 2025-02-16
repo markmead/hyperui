@@ -1,12 +1,11 @@
 import Link from 'next/link'
 
-import { iPageLink } from '@type/site'
-
+import { PageLink } from '@type/site'
 import Container from '@component/Container'
 import BrandLogo from '@component/BrandLogo'
 
 export default function Footer() {
-  const menuLinks: iPageLink[] = [
+  const menuLinks: PageLink[] = [
     {
       title: 'FAQs',
       href: '/about/faqs',

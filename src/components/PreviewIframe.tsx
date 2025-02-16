@@ -1,10 +1,10 @@
-interface iPreviewIframe {
+interface Props {
   componentHtml: string
   componentTitle: string
   previewDark?: boolean
   previewHeight?: string
   previewWidth?: string
-  refIframe: React.RefObject<HTMLIFrameElement>
+  refIframe: React.RefObject<HTMLIFrameElement | null>
   showPreview: boolean
 }
 
@@ -16,7 +16,7 @@ export default function PreviewIframe({
   previewWidth = '100%',
   refIframe,
   showPreview,
-}: iPreviewIframe) {
+}: Props) {
   const iframeTheme: string = previewDark ? 'bg-gray-950' : 'bg-white'
 
   return (
@@ -33,7 +33,7 @@ export default function PreviewIframe({
         srcDoc={componentHtml}
         style={{ maxWidth: previewWidth }}
         title={`${componentTitle} Component`}
-      ></iframe>
+      />
     </div>
   )
 }

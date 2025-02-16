@@ -1,18 +1,19 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
+
 import { NextResponse } from 'next/server'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { iCategoryItem, iComponentItem } from '@type/component'
-import { iSearchItem } from '@type/search'
+import { CategoryItem, ComponentItem } from '@type/component'
+import { SearchItem } from '@type/search'
 
-interface ComponentFrontmatter extends iComponentItem {
+interface ComponentFrontmatter extends ComponentItem {
   emoji: string
-  components: iComponentItem[]
+  components: ComponentItem[]
 }
 
-interface CategoryFrontmatter extends iCategoryItem {
-  components: iComponentItem[]
+interface CategoryFrontmatter extends CategoryItem {
+  components: ComponentItem[]
 }
 
 async function getComponents() {
@@ -30,7 +31,7 @@ async function getComponents() {
       const { frontmatter: categoryData }: Awaited<{ frontmatter: CategoryFrontmatter }> =
         await serialize(categoryItem, { parseFrontmatter: true })
 
-      const componentItems: Awaited<iSearchItem[]> = await Promise.all(
+      const componentItems: Awaited<SearchItem[]> = await Promise.all(
         componentSlugs
           .filter((componentSlug) => componentSlug.includes(categorySlug))
           .map(async (componentSlug) => {
@@ -69,7 +70,7 @@ async function getComponents() {
 }
 
 export async function GET() {
-  const componentsData: iSearchItem[] = await getComponents()
+  const componentsData: SearchItem[] = await getComponents()
 
   return NextResponse.json(componentsData)
 }

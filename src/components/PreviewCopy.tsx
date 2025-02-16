@@ -3,13 +3,13 @@ import { useCopyToClipboard } from 'react-use'
 
 import ButtonStyle from '@component/ButtonStyle'
 
-interface iProps {
+interface Props {
   componentCode: string
 }
 
-export default function PreviewCopy({ componentCode = '' }: iProps) {
-  const [buttonText, setButtonText] = useState('Copy')
-  const [buttonEmoji, setButtonEmoji] = useState('📋')
+export default function PreviewCopy({ componentCode = '' }: Props) {
+  const [buttonText, setButtonText] = useState<string>('Copy')
+  const [buttonEmoji, setButtonEmoji] = useState<string>('📋')
   const [copyStatus, copyToClipboard] = useCopyToClipboard()
 
   const buttonActive: boolean = buttonText === 'Copied'
@@ -36,6 +36,7 @@ export default function PreviewCopy({ componentCode = '' }: iProps) {
   return (
     <button
       className="hidden *:-ml-[2px] *:rounded-l-none sm:block"
+      type="button"
       onClick={handleCopyToClipboard}
     >
       <ButtonStyle buttonActive={buttonActive} buttonEmoji={buttonEmoji} buttonText={buttonText} />

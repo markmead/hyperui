@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "15.1.7",
+    "@shopify/eslint-plugin": "^47.0.1",
     "@stylistic/eslint-plugin": "^3.1.0",
     "@stylistic/eslint-plugin-jsx": "^3.1.0",
     "@stylistic/eslint-plugin-ts": "^3.1.0",
