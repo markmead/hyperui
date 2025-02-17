@@ -22,7 +22,7 @@ export default function CollectionCard({ componentData }: Props) {
 
   return (
     <Link href={`/components/${componentData.category}/${componentData.slug}`}>
-      <div className="p-4l flex h-full flex-col rounded-md border-2 border-gray-900 transition-transform hover:scale-105 sm:p-6">
+      <div className="flex h-full flex-col rounded-md border-2 border-gray-900 p-4 transition-transform hover:scale-105 sm:p-6">
         {componentHasTag && <CardTag tagType={componentTag} tagText={componentTag} />}
 
         <div className="mt-auto">
