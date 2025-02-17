@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function PreviewInteractive({ isInteractive, handleSetIsInteractive }: Props) {
-  const buttonEmoji = isInteractive ? '🙋‍♀️' : '🙅‍♀️'
+  const buttonEmoji: string = isInteractive ? '🙋‍♀️' : '🙅‍♀️'
 
   return (
     <button type="button" onClick={() => handleSetIsInteractive(!isInteractive)}>

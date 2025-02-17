@@ -4,7 +4,7 @@ export function componentPreviewHtml(
   isDarkMode = false,
   isRtl = false
 ): string {
-  const htmlClass: string = isDarkMode ? 'dark' : 'relative'
+  const htmlClass: string = isDarkMode ? 'dark' : ''
   const htmlDirection: string = isRtl ? 'rtl' : 'ltr'
 
   return `
@@ -62,7 +62,7 @@ export function componentPreviewJsx(componentHtml: string): string {
 export function componentPreviewVue(componentHtml: string): string {
   const newComponentHtml = `<template>\n${componentHtml}</template>`
 
-  const formattedComponentHtml: string = newComponentHtml
+  return newComponentHtml
     .split('\n')
     .map((codeLine) => {
       if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
@@ -72,6 +72,4 @@ export function componentPreviewVue(componentHtml: string): string {
       return `  ${codeLine}`
     })
     .join('\n')
-
-  return formattedComponentHtml
 }

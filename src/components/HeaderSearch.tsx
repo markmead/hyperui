@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useClickAway, useDebounce } from 'react-use'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -8,7 +8,7 @@ import { SearchItem } from '@type/search'
 export default function HeaderSearch() {
   const routerPathname: string = usePathname()
 
-  const refDropdown: RefObject<HTMLDivElement | null> = useRef(null)
+  const refDropdown = useRef<HTMLDivElement | null>(null)
 
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
   const [initialResults, setInitialResults] = useState<SearchItem[]>([])
