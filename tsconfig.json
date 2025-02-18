@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/*"],
+      "@component/*": ["src/components/*"],
+      "@data/*": ["src/data/*"],
+      "@store/*": ["src/store/*"],
+      "@style/*": ["src/styles/*"],
+      "@type/*": ["src/types/*"],
+      "@util/*": ["src/utils/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "eslint.configjs",
+    "src/components/BlogGrid.sx"
+  ],
+  "exclude": ["node_modules"]
+}
