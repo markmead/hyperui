@@ -4,6 +4,7 @@ import stylistic from '@stylistic/eslint-plugin'
 import stylisticTs from '@stylistic/eslint-plugin-ts'
 import stylisticJsx from '@stylistic/eslint-plugin-jsx'
 import shopifyEslintPlugin from '@shopify/eslint-plugin'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
 
 import { FlatCompat } from '@eslint/eslintrc'
 
@@ -13,6 +14,7 @@ const flatCompat = new FlatCompat({
   styleConfig: stylistic.configs.recommended,
   styleConfigTypescript: stylisticTs.configs['all-flat'],
   styleConfigJsx: stylisticJsx.configs['all-flat'],
+  jsxA11y: jsxA11y.flatConfigs.strict,
 })
 
 const eslintConfig = [
