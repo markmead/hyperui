@@ -8,7 +8,6 @@ import Ads from '@/ads'
 import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
-import BackToTop from '@component/BackToTop'
 
 // prettier-ignore
 export const metadata = {
@@ -55,8 +54,6 @@ export default function RootLayout({ children }) {
         <Footer />
 
         <Ads />
-
-        <BackToTop />
       </body>
     </html>
   )
