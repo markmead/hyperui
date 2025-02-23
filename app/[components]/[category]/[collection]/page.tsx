@@ -1,17 +1,22 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
+import { use } from 'react'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { notFound } from 'next/navigation'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import { CollectionItem, ComponentItem } from '@type/component'
 import { PageMeta } from '@type/site'
-import { PageProps } from '@type/page'
 import Ad from '@component/Ad'
 import CollectionList from '@component/CollectionList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
+
+type Params = Promise<{
+  category: string
+  collection: string
+}>
 
 interface ComponentItemExtended extends ComponentItem {
   wrapper: string
@@ -30,11 +35,6 @@ interface ComponentData {
   componentsData: Omit<CollectionItem, 'seo' | 'emoji' | 'tag' | 'components'>[]
 }
 
-interface PageParams {
-  category: string
-  collection: string
-}
-
 interface PageData {
   collectionData: CollectionData
   collectionContent: MDXRemoteSerializeResult
@@ -46,8 +46,9 @@ const mdxComponents = {
 
 const componentsDirectory: string = join(process.cwd(), '/src/data/components')
 
-export async function generateMetadata(props: PageProps): Promise<PageMeta> {
-  const params: Awaited<PageParams> = await props.params
+export async function generateMetadata(props: { params: Params }): Promise<PageMeta> {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { collectionData }: Awaited<{ collectionData: CollectionData }> =
     await getCollection(params)
@@ -61,7 +62,7 @@ export async function generateMetadata(props: PageProps): Promise<PageMeta> {
   }
 }
 
-async function getCollection(params: PageParams): Promise<PageData> {
+async function getCollection(params: { category: string; collection: string }): Promise<PageData> {
   try {
     const componentPath: string = join(
       componentsDirectory,
@@ -85,8 +86,9 @@ async function getCollection(params: PageParams): Promise<PageData> {
   }
 }
 
-export default async function Page(props: PageProps) {
-  const params: Awaited<PageParams> = await props.params
+export default async function Page(props: { params: Params }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { collectionData, collectionContent } = await getCollection(params)
 

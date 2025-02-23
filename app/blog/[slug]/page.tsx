@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
+import { use } from 'react'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { notFound } from 'next/navigation'
@@ -9,15 +10,12 @@ import rehypeSlug from 'rehype-slug'
 
 import { BlogItem, BlogSchema } from '@type/blog'
 import { PageMeta } from '@type/site'
-import { PageProps } from '@type/page'
 import Ad from '@component/Ad'
 import BlogPreview from '@component/BlogPreview'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-interface PageParams {
-  slug: string
-}
+type Params = Promise<{ slug: string }>
 
 interface PageData {
   blogData: BlogItem
@@ -30,8 +28,9 @@ const mdxComponents = {
 
 const postsPath: string = join(process.cwd(), '/src/data/posts')
 
-export async function generateMetadata(props: PageProps): Promise<PageMeta> {
-  const params: Awaited<PageParams> = await props.params
+export async function generateMetadata(props: { params: Params }): Promise<PageMeta> {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { blogData }: Awaited<{ blogData: BlogItem }> = await getPost(params)
 
@@ -44,7 +43,7 @@ export async function generateMetadata(props: PageProps): Promise<PageMeta> {
   }
 }
 
-async function getPost(params: PageParams): Promise<PageData> {
+async function getPost(params: { slug: string }): Promise<PageData> {
   try {
     const postPath: string = join(postsPath, `${params.slug}.mdx`)
     const postItem: Awaited<string> = await fs.readFile(postPath, 'utf-8')
@@ -69,8 +68,9 @@ async function getPost(params: PageParams): Promise<PageData> {
   }
 }
 
-export default async function Page(props: PageProps) {
-  const params: Awaited<PageParams> = await props.params
+export default async function Page(props: { params: Params }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { blogData, blogContent }: Awaited<PageData> = await getPost(params)
 

@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
+import { use } from 'react'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { notFound } from 'next/navigation'
@@ -8,15 +9,13 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
 import { PageMeta } from '@type/site'
-import { PageAbout, PageProps } from '@type/page'
+import { PageAbout } from '@type/page'
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 import FaqList from '@component/FaqList'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-interface PageParams {
-  slug: string
-}
+type Params = Promise<{ slug: string }>
 
 interface PageData {
   pageData: PageAbout
@@ -29,8 +28,9 @@ const mdxComponents = {
 
 const pagesPath: string = join(process.cwd(), '/src/data/pages')
 
-export async function generateMetadata(props: PageProps): Promise<PageMeta> {
-  const params: Awaited<PageParams> = await props.params
+export async function generateMetadata(props: { params: Params }): Promise<PageMeta> {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { pageData }: Awaited<{ pageData: PageAbout }> = await getPage(params)
 
@@ -43,7 +43,7 @@ export async function generateMetadata(props: PageProps): Promise<PageMeta> {
   }
 }
 
-async function getPage(params: PageParams): Promise<PageData> {
+async function getPage(params: { slug: string }): Promise<PageData> {
   try {
     const pagePath: string = join(pagesPath, `${params.slug}.mdx`)
     const pageItem: Awaited<string> = await fs.readFile(pagePath, 'utf-8')
@@ -68,8 +68,9 @@ async function getPage(params: PageParams): Promise<PageData> {
   }
 }
 
-export default async function Page(props: PageProps) {
-  const params: Awaited<PageParams> = await props.params
+export default async function Page(props: { params: Params }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { pageData, pageContent }: Awaited<PageData> = await getPage(params)
 

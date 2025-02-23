@@ -1,15 +1,18 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
+import { use } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { notFound } from 'next/navigation'
 
 import CollectionGrid from '@component/CollectionGrid'
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
-import { PageProps, PageCategory } from '@type/page'
+import { PageCategory } from '@type/page'
 import { PageMeta } from '@type/site'
 import { CategoryItem, CollectionItem } from '@type/component'
+
+type Params = Promise<{ category: string }>
 
 interface CollectionData
   extends Omit<CollectionItem, 'container' | 'wrapper' | 'seo' | 'components'> {
@@ -17,17 +20,14 @@ interface CollectionData
   count: number
 }
 
-interface PageParams {
-  category: string
-}
-
 interface PageData {
   categoryData: CategoryItem
   componentItems: CollectionData[]
 }
 
-export async function generateMetadata(props: PageProps): Promise<PageMeta> {
-  const params: Awaited<PageParams> = await props.params
+export async function generateMetadata(props: { params: Params }): Promise<PageMeta> {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { categoryData }: Awaited<{ categoryData: PageCategory }> = await getCategory(params)
 
@@ -40,7 +40,7 @@ export async function generateMetadata(props: PageProps): Promise<PageMeta> {
   }
 }
 
-async function getCategory(params: PageParams): Promise<PageData> {
+async function getCategory(params: { category: string }): Promise<PageData> {
   try {
     const componentsPath: string = join(process.cwd(), '/src/data/components')
     const categoriesPath: string = join(process.cwd(), '/src/data/categories')
@@ -93,8 +93,9 @@ async function getCategory(params: PageParams): Promise<PageData> {
   }
 }
 
-export default async function Page(props: PageProps) {
-  const params: Awaited<PageParams> = await props.params
+export default async function Page(props: { params: Params }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const params = use(props.params)
 
   const { categoryData, componentItems }: Awaited<PageData> = await getCategory(params)
 
