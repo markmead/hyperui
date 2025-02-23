@@ -39,9 +39,7 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
   async function fetchHtml() {
     const previewUrl = `/blogs/${previewId}.html`
 
-    const fetchResponse: Awaited<Response> = await fetch(previewUrl, {
-      cache: 'force-cache',
-    })
+    const fetchResponse: Awaited<Response> = await fetch(previewUrl)
     const textResponse: Awaited<string> = await fetchResponse.text()
     const transformedHtml: string = componentPreviewHtml(textResponse, previewContainer, isDarkMode)
 
