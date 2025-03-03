@@ -1,0 +1,97 @@
+---
+title: What is JIT in Tailwind CSS?
+description:
+  Tailwind CSS v3 made JIT the standard. Learn what it is for and how to use JIT
+  to write custom CSS outside of the scope of Tailwind CSS.
+date: 02/05/2022
+emoji: ⏰
+tag: v3
+---
+
+# {{ title }}
+
+Updated: {{ date }}
+
+Since v3, JIT has been the default in Tailwind CSS, bringing significant power
+to the framework. One of the best additions are
+[arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values),
+which let you replace custom CSS with Tailwind CSS-like classes.
+
+_Note: Any use of an `_` in the class name adds a space, as you can't use spaces
+within JIT classes.\_
+
+### Arbitrary Values without JIT
+
+```html
+<div class="floating-alert absolute p-4">Hello World! 👋</div>
+```
+
+And for the CSS...
+
+```css
+.floating-alert {
+  bottom: 5px;
+  right: 5px;
+}
+```
+
+### Arbitrary Values with JIT
+
+```html
+<div class="absolute bottom-[5px] right-[5px] p-4">Hello World! 👋</div>
+```
+
+The benefit here is keeping everything within the HTML, which means:
+
+- Less switching between files
+- No need to update Tailwind CSS config
+- Easy use of Tailwind CSS breakpoints `top-[2px] sm:top-[3px] lg:top-[5px]`
+
+## Outside CSS Properties
+
+Although Tailwind CSS covers many CSS properties, there may be times when it
+doesn't cover everything you need. With some JIT usage, you can write that CSS
+without leaving your HTML file, keeping it in the Tailwind CSS style.
+
+```css
+[column-fill:_balance]
+[image-rendering:_pixelated]
+[image-rendering:_auto]
+[&_summary::-webkit-details-marker]:hidden
+```
+
+## Targeting Elements
+
+You can use a JIT class to target specific child elements, saving you from
+copying and pasting the same classes multiple times.
+
+```css
+[&_input]:rounded-md
+[&:hover>li]:opacity-50
+```
+
+## Custom Background Images
+
+Instead of adding background images in a `style` attribute on the HTML element,
+you can do it through Tailwind CSS.
+
+```css
+bg-[url(https://source.unsplash.com/random)]
+```
+
+This also works for gradients.
+
+```css
+bg-[linear-gradient(180deg,_#eab308_49.9%,_#a855f7_50%)]
+```
+
+## With Variables
+
+You can use JIT with CSS variables applied to the element. This can be useful
+when setting up dynamic grids or progress bars. For example:
+
+<!-- <BlogPreview
+  previewId="progress-bar"
+  previewTitle="Progress Bar Example"
+  previewContainer="min-h-screen grid place-content-center p-8"
+/> -->

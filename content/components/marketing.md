@@ -1,0 +1,9 @@
+---
+title: Marketing
+subtitle: Free Tailwind CSS Marketing Components
+description:
+  Build your next marketing website with ease through the use of Tailwind CSS
+  and HyperUI components. These components are not exclusive to marketing
+  websites, but they will help you rapidly build your next marketing website.
+emoji: 📣
+---

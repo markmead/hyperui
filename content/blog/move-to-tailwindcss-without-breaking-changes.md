@@ -1,0 +1,50 @@
+---
+title: Moving to Tailwind CSS from Bootstrap? Use a Prefix
+description:
+  Having issues when moving your existing Bootstrap project to Tailwind CSS?
+  There might be an easy solution for that.
+date: 10/25/2022
+emoji: 😅
+tag: v3
+---
+
+# {{ title }}
+
+Updated: {{ date }}
+
+I've heard the line...
+
+> I'm moving to Tailwind CSS but it's been difficult as it breaks Bootstrap
+
+...at least three times. It's not a lot, but when the solution is a single line
+of code, it seems significant.
+
+So, what's the magical line? You ask.
+
+```js
+prefix: 'tw-'
+```
+
+That's it. Now classes like `flex` will be `tw-flex`. If you don't like `tw-`,
+don't use it. You can set the prefix to anything you want, even `help-` 🤷‍♂️
+
+However, sometimes you might still encounter issues. This is likely due to
+conflicts between Tailwind CSS and Bootstrap normalize CSS. You can resolve this
+by disabling one.
+
+I usually disable the Tailwind CSS normalize because I want to keep the styles
+close to the Bootstrap implementation while transitioning.
+
+_I know that's a little backwards, but you have to keep the clients happy!_
+
+To disable the Tailwind CSS normalize, you can easily comment it out.
+
+```css
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+```
+
+You can
+[read more about prefix](https://tailwindcss.com/docs/configuration#prefix) on
+the Tailwind CSS website.

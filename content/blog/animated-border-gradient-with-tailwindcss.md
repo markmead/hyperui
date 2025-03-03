@@ -1,0 +1,141 @@
+---
+title: How to Create an Animated Border Gradient with Tailwind CSS
+description:
+  Learn to create an animated border gradient using Tailwind CSS without custom
+  CSS.
+date: 09/30/2022
+emoji: 🪄
+tag: v3
+---
+
+# {{ title }}
+
+Updated: {{ date }}
+
+Creating an elegant animated border shouldn't be difficult or messy with
+Tailwind CSS. Here's a straightforward and clean approach.
+
+## Faking the Border
+
+First, we need our interactive element. For this example, I'll use an `<a>` tag.
+We create an illusion of a border by using a background color and padding.
+
+```html
+<a href="#" class="inline-block bg-white p-0.5">
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
+</a>
+```
+
+Inside this, we add a `<span>` element that contains the text content of the
+element, along with the desired padding for our button or link.
+
+## Adding the Gradient
+
+Next, we add the gradient.
+
+I'll use a pre-made Tailwind CSS gradient from
+[Hypercolor](https://hypercolor.dev/).
+
+We apply the gradient to the interactive element with the faux border.
+
+```html
+<a
+  href="#"
+  class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5"
+>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
+</a>
+```
+
+You might worry that the gradient classes added will overwrite the `bg-white`,
+but it won't. For that to happen, we need to add the gradient direction class,
+which is done on hover.
+
+### Applying the Hover Effect
+
+We can enhance what we've done by adding two more classes: one is a default
+Tailwind CSS class applied on hover, and the other is always applied, requiring
+some JIT (Just-In-Time) magic.
+
+```html
+<a
+  href="#"
+  class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:_400%_400%] p-0.5 hover:bg-gradient-to-r"
+>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
+</a>
+```
+
+Let's break these down.
+
+`hover:bg-gradient-to-r`
+
+This applies the gradient direction class only on hover, which will display the
+gradient instead of `bg-white`.
+
+`bg-[length:400%_400%]`
+
+This enlarges the gradient, enabling us to animate it. Without this class, the
+gradient will appear static and won't animate.
+
+### Animating the Gradient
+
+Now, let's animate.
+
+First, we need to make some additions to our Tailwind CSS config.
+
+```js
+theme: {
+  extend: {
+    animation: {
+      border: 'background ease infinite',
+    },
+    keyframes: {
+      background: {
+        '0%, 100%': { backgroundPosition: '0% 50%' },
+        '50%': { backgroundPosition: '100% 50%' },
+      },
+    },
+  },
+}
+```
+
+Here, we're creating an animation with the class `animate-background` using the
+`background` keyframes. This moves the gradient.
+
+Finally, we add the `animate-background` class to the interactive element with
+the gradient classes.
+
+You can use `hover:animate-background` if preferred, but note that the animation
+will reset when you're no longer hovering, which can cause it to look a bit
+jumpy.
+
+The full example looks like this.
+
+```html
+<a
+  href="#"
+  class="animate-background inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:_400%_400%] p-0.5 [animation-duration:_6s] hover:bg-gradient-to-r"
+>
+  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
+</a>
+```
+
+We're using the arbitrary properties syntax to write `[animation-duration:_6s]`
+so we can alter the `animation-duration` for each use of the effect.
+
+Here's how it looks. I've added some extra classes to enhance the `<a>`.
+
+<!-- <BlogPreview
+  previewId="animated-border"
+  previewTitle="Animated Border Example"
+  previewContainer="grid min-h-screen place-content-center p-8"
+/> -->
+
+---
+
+You can see these effects in action on the following blog card components:
+
+- [Gradient Border](/components/marketing/blog-cards#component-4)
+- [Gradient Border Animated](/components/marketing/blog-cards#component-5)
+- [Gradient Border Animated on Hover](/components/marketing/blog-cards#component-6)

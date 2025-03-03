@@ -1,0 +1,26 @@
+---
+title: Inputs
+description:
+  Form input components crafted with Tailwind CSS v4. Responsive text fields,
+  search boxes, and form controls optimized for web applications. Customizable
+  input elements with various styles including icons and floating labels for
+  modern UI design.
+emoji: 🔌
+tag: updated
+wrapper: h-[200px]
+terms:
+  - form
+components:
+  - { title: 'Base', dark: true }
+  - { title: 'Base with icon', dark: true }
+  - { title: 'Base with button', dark: true }
+  - { title: 'Floating label', dark: true }
+---
+
+# Input Components
+
+{{ description }}
+
+<!-- prettier-ignore -->
+::component-list{:components=components :wrapper=wrapper}
+::
