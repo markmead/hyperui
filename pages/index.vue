@@ -40,7 +40,9 @@ const { data: marketing } = await useAsyncData('/marketing', () => {
       </div>
 
       <div>
-        <h2 class="text-xl sm:text-2xl font-bold text-gray-900"> Marketing </h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">
+          Marketing
+        </h2>
 
         <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 mt-4">
           <ComponentCard

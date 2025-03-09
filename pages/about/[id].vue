@@ -13,12 +13,12 @@ const schema = computed(() => {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: page.value?.faqs.map((faq) => ({
+    'mainEntity': page.value?.faqs.map(faq => ({
       '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
+      'name': faq.question,
+      'acceptedAnswer': {
         '@type': 'Answer',
-        text: faq.answer,
+        'text': faq.answer,
       },
     })),
   }

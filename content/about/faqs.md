@@ -79,15 +79,15 @@ faqs:
   - {
       question: 'Which version of Tailwind CSS does HyperUI use?',
       answer:
-        "HyperUI uses Tailwind CSS 4.04. If you're using a different version,
+        "HyperUI uses Tailwind CSS 4.0.12. If you're using a different version,
         you may need to make some changes, but they should be minimal.",
     }
   - {
       question: "I've copied the code, but it doesn't work?",
       answer:
         "Ensure you have the correct Tailwind CSS version installed, as HyperUI
-        uses Tailwind CSS 4.04. If you're still having issues, please create an
-        issue on GitHub.",
+        uses Tailwind CSS 4.0.12. If you're still having issues, please create
+        an issue on GitHub.",
     }
   - {
       question: 'Does HyperUI have dark mode?',

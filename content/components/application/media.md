@@ -5,6 +5,7 @@ description:
   built with Tailwind CSS v4. Perfect for displaying user profiles, image
   galleries, and content cards with flexible alignment options.
 emoji: 🌆
+tag: updated
 wrapper: h-[400px]
 terms:
   - avatar

@@ -3,7 +3,7 @@ title: How to Contribute to HyperUI
 description:
   Contributing to an open-source project can seem daunting. Learn how you can
   get involved with the development of HyperUI.
-date: 01/31/2025
+date: 03/10/2025
 emoji: 🫵
 ---
 

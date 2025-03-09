@@ -5,7 +5,7 @@ description:
   this eBook, I aim to simplify the learning process by sharing useful tips and
   tricks that I've utilized since I started using Tailwind CSS over five years
   ago.
-date: 03/07/2025
+date: 03/10/2025
 emoji: 📚
 ---
 

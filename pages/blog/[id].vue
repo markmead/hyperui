@@ -13,17 +13,17 @@ const schema = computed(() => {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    mainEntityOfPage: {
+    'mainEntityOfPage': {
       '@type': 'WebPage',
       '@id': `https://www.hyperui.dev${page.value.path}`,
     },
-    headline: page.value.title,
-    author: {
+    'headline': page.value.title,
+    'author': {
       '@type': 'Organization',
-      name: 'HyperUI',
+      'name': 'HyperUI',
     },
-    datePublished: page.value.date,
-    dateModified: page.value.date,
+    'datePublished': page.value.date,
+    'dateModified': page.value.date,
   }
 })
 

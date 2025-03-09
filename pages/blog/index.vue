@@ -4,8 +4,13 @@ const route = useRoute()
 const { data: posts } = await useAsyncData(route.path, () => {
   return queryCollection('blog')
     .select('path', 'title', 'emoji', 'date', 'tag')
-    .order('date', 'ASC')
     .all()
+})
+
+const items = computed(() => {
+  return posts.value.sort(
+    (postA, postB) => new Date(postB.date) - new Date(postA.date)
+  )
 })
 
 // prettier-ignore
@@ -28,7 +33,7 @@ useSeoMeta({
 
     <PageContainer class="py-8 lg:py-12">
       <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <PostCard v-for="post in posts" :key="post.path" :post="post" />
+        <PostCard v-for="post in items" :key="post.path" :post="post" />
       </ul>
     </PageContainer>
   </div>
