@@ -18,10 +18,10 @@ const { data: marketing } = await useAsyncData('/marketing', () => {
       title="HyperUI"
       subtitle="Free Open Source Tailwind CSS v4 Components"
     >
-      Discover {{ count }}+ free Tailwind CSS v4 components for building
-      responsive marketing websites, admin dashboards, and eCommerce stores.
-      HyperUI provides ready-to-use UI elements optimized for modern web
-      development with zero dependencies.
+      Discover 350+ free Tailwind CSS v4 components for building responsive
+      marketing websites, admin dashboards, and eCommerce stores. HyperUI
+      provides ready-to-use UI elements optimized for modern web development
+      with zero dependencies.
     </PageBanner>
 
     <PageContainer class="py-8 lg:py-12 space-y-8">
@@ -40,9 +40,7 @@ const { data: marketing } = await useAsyncData('/marketing', () => {
       </div>
 
       <div>
-        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">
-          Marketing
-        </h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900"> Marketing </h2>
 
         <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 mt-4">
           <ComponentCard
