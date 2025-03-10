@@ -28,8 +28,55 @@ const iframeVisible = useElementVisibility(iframeEl, {
 const isLoaded = ref<boolean>(false)
 
 const ltr = ref<boolean>(true)
+const preview = ref<boolean>(true)
 const width = ref<string>('100%')
 const code = ref<string>('')
+const type = ref<string>('html')
+
+const formatted = computed(() => code.value.trim().replace(/^ {4}/gm, ''))
+
+const template = computed(() => {
+  if (type.value === 'jsx') {
+    return formatted.value
+      .replace(/class=/g, 'className=')
+      .replace(/for=/g, 'htmlFor=')
+      .replace(/viewBox=/g, 'viewBox=')
+      .replace(/fill-rule=/g, 'fillRule=')
+      .replace(/fill-opacity=/g, 'fillOpacity=')
+      .replace(/clip-rule=/g, 'clipRule=')
+      .replace(/stroke-linecap=/g, 'strokeLinecap=')
+      .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+      .replace(/stroke-width=/g, 'strokeWidth=')
+      .replace(/stroke-dasharray=/g, 'strokeDasharray=')
+      .replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
+      .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
+      .replace(/stroke-opacity=/g, 'strokeOpacity=')
+      .replace(/tabindex=/g, 'tabIndex=')
+      .replace(/<!--/g, '{/*')
+      .replace(/-->/g, '*/}')
+  }
+
+  if (type.value === 'vue') {
+    const newComponentHtml = `<template>\n${formatted.value}</template>`
+    const formattedComponentHtml = newComponentHtml
+      .split('\n')
+      .map((codeLine) => {
+        if (
+          codeLine.includes('<template>') ||
+          codeLine.includes('</template>')
+        ) {
+          return codeLine.trim()
+        }
+
+        return `  ${codeLine}`
+      })
+      .join('\n')
+
+    return formattedComponentHtml
+  }
+
+  return formatted.value
+})
 
 const src = computed(() => {
   const path = `${route.path}/${props.component.index}.html`
@@ -86,8 +133,8 @@ watchOnce(
   () => isLoaded.value,
   () => {
     setTimeout(() => {
-      code.value
-        = iframeEl.value?.contentWindow?.document?.body?.innerHTML || ''
+      code.value =
+        iframeEl.value?.contentWindow?.document?.body?.innerHTML || ''
     }, 50)
   }
 )
@@ -102,7 +149,11 @@ provide('isLoaded', isLoaded)
     <div class="flex items-center gap-2">
       <ComponentPreviewDir v-model="ltr" :index="component.index" />
 
-      <ComponentPreviewCopy :code="code" />
+      <ComponentPreviewView v-model="preview" :index="component.index" />
+
+      <ComponentPreviewCopy :code="template" :key="type" />
+
+      <ComponentPreviewType v-model="type" :index="component.index" />
     </div>
 
     <div class="hidden lg:flex lg:items-center lg:gap-2">
@@ -122,6 +173,7 @@ provide('isLoaded', isLoaded)
 
   <div v-auto-animate="{ duration: 300 }">
     <ComponentPreviewDisplay
+      v-if="preview"
       :class="[
         isLoaded ? 'opacity-100 blur-none' : 'opacity-0 blur-sm',
         'transition-[filter,_opacity] duration-300',
@@ -139,6 +191,8 @@ provide('isLoaded', isLoaded)
         :title="component.title"
       />
     </ComponentPreviewDisplay>
+
+    <ComponentPreviewCode v-else :code="template" :type="type" :key="type" />
   </div>
 
   <div class="flex gap-2 items-center">
