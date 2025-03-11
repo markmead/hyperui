@@ -13,17 +13,17 @@ const schema = computed(() => {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    'mainEntityOfPage': {
+    mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://www.hyperui.dev${page.value.path}`,
     },
-    'headline': page.value.title,
-    'author': {
+    headline: page.value.title,
+    author: {
       '@type': 'Organization',
-      'name': 'HyperUI',
+      name: 'HyperUI',
     },
-    'datePublished': page.value.date,
-    'dateModified': page.value.date,
+    datePublished: page.value.date,
+    dateModified: page.value.date,
   }
 })
 
@@ -51,7 +51,7 @@ useSeoMeta({
     <ContentRenderer
       v-if="page"
       :value="page"
-      class="mx-auto prose prose-a:in-[h2]:font-bold prose-a:in-[h2]:no-underline"
+      class="mx-auto prose prose-a:in-[h2,h3]:font-bold prose-a:in-[h2,h3]:no-underline"
     />
 
     <div v-else class="prose">

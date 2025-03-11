@@ -135,7 +135,7 @@ watchOnce(
     setTimeout(() => {
       code.value =
         iframeEl.value?.contentWindow?.document?.body?.innerHTML || ''
-    }, 50)
+    }, 250)
   }
 )
 
@@ -151,9 +151,11 @@ provide('isLoaded', isLoaded)
 
       <ComponentPreviewView v-model="preview" :index="component.index" />
 
-      <ComponentPreviewCopy :code="template" :key="type" />
+      <div class="hidden sm:flex sm:items-center sm:gap-2">
+        <ComponentPreviewCopy :code="template" :key="type" />
 
-      <ComponentPreviewType v-model="type" :index="component.index" />
+        <ComponentPreviewType v-model="type" :index="component.index" />
+      </div>
     </div>
 
     <div class="hidden lg:flex lg:items-center lg:gap-2">

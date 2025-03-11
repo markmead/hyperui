@@ -25,12 +25,12 @@ useSeoMeta({
 </script>
 
 <template>
-  <PageContainer class="py-8 lg:py-12">
-    <template v-if="page">
-      <PageBanner :title="page.title" :subtitle="page.subtitle">
-        {{ page.description }}
-      </PageBanner>
+  <div v-if="page">
+    <PageBanner :title="page.title" :subtitle="page.subtitle">
+      {{ page.description }}
+    </PageBanner>
 
+    <PageContainer class="pb-8 lg:pb-12">
       <ContentRenderer :value="page" class="mx-auto prose" />
 
       <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -40,9 +40,11 @@ useSeoMeta({
           :component="component"
         />
       </ul>
-    </template>
+    </PageContainer>
+  </div>
 
-    <div v-else class="prose">
+  <PageContainer v-else class="py-8 lg:py-12">
+    <div class="prose">
       <h1>Page Not Found</h1>
 
       <p>Oops! The content you're looking for doesn't exist.</p>

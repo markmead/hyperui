@@ -7,7 +7,5 @@
     <slot />
 
     <AppFooter />
-
-    <AppAnnouncement />
   </div>
 </template>

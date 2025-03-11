@@ -25,6 +25,6 @@ onMounted(async () => {
 <template>
   <div
     v-html="html"
-    class="h-[400px] rounded shadow-sm ring ring-gray-300 bg-gray-100 overflow-hidden prose-pre:m-0 prose-pre:rounded-none"
+    class="rounded shadow-sm h-[400px] ring ring-gray-300 bg-gray-100 prose-pre:m-0 prose-pre:rounded-none overflow-auto prose-pre:h-full"
   ></div>
 </template>

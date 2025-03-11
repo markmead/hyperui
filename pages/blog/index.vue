@@ -31,7 +31,7 @@ useSeoMeta({
       write cleaner, more maintainable code and help you be more productive.
     </PageBanner>
 
-    <PageContainer class="py-8 lg:py-12">
+    <PageContainer class="pb-8 lg:pb-12">
       <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <PostCard v-for="post in items" :key="post.path" :post="post" />
       </ul>
