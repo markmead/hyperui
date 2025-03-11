@@ -23,12 +23,13 @@ watch(
 )
 
 const isLoaded = inject('isLoaded')
+const codeLoaded = inject('codeLoaded')
 </script>
 
 <template>
   <button
     class="rounded shadow-sm border border-gray-300 h-10 px-3 inline-flex items-center gap-1.5 font-medium disabled:opacity-50"
-    :disabled="!isLoaded"
+    :disabled="!isLoaded || !codeLoaded"
     type="button"
     @click="copy(source)"
   >

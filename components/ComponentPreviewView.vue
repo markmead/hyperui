@@ -14,6 +14,7 @@ const modelValue = defineModel({
 })
 
 const isLoaded = inject('isLoaded')
+const codeLoaded = inject('codeLoaded')
 </script>
 
 <template>
@@ -32,7 +33,7 @@ const isLoaded = inject('isLoaded')
     <input
       :id="htmlFor"
       v-model="modelValue"
-      :disabled="!isLoaded"
+      :disabled="!isLoaded || !codeLoaded"
       type="checkbox"
       class="sr-only"
     />

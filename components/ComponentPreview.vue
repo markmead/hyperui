@@ -26,6 +26,7 @@ const iframeVisible = useElementVisibility(iframeEl, {
 })
 
 const isLoaded = ref<boolean>(false)
+const codeLoaded = ref<boolean>(false)
 
 const ltr = ref<boolean>(true)
 const preview = ref<boolean>(true)
@@ -135,11 +136,14 @@ watchOnce(
     setTimeout(() => {
       code.value =
         iframeEl.value?.contentWindow?.document?.body?.innerHTML || ''
+
+      codeLoaded.value = true
     }, 250)
   }
 )
 
 provide('isLoaded', isLoaded)
+provide('codeLoaded', codeLoaded)
 </script>
 
 <template>
