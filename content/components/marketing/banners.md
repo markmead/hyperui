@@ -1,26 +1,24 @@
 ---
 title: Banners
-description: Banner components created with Tailwind CSS
+description:
+  Responsive, customizable banner and hero section components for marketing
+  websites. Built with Tailwind CSS, these banner designs feature clean layouts,
+  flexible content areas, and mobile-friendly interfaces. Perfect for landing
+  pages, promotional announcements, and website headers that drive user
+  engagement and conversion.
 emoji: 🏴‍☠️
+tag: updated
+terms:
+  - hero
 components:
-  - { title: 'Base with center aligned title, text and call to actions' }
-  - {
-      title:
-        'Base with center aligned title, text and call to actions, dark
-        background and gradient title',
-    }
-  - {
-      title:
-        'Overlay with left aligned title, text and call to actions, light
-        overlay',
-    }
-  - {
-      title:
-        'Overlay with left aligned title, text and call to actions, dark overlay',
-    }
+  - { title: 'Center', dark: true }
+  - { title: 'Left', dark: true }
+  - { title: 'Left with image', dark: true }
 ---
 
 # Banner Components
+
+{{ description }}
 
 <!-- prettier-ignore -->
 ::component-list{:components=components :wrapper=wrapper}
