@@ -56,12 +56,12 @@ const results = computed(() => {
 
   return grouped.value
     .map((group) => {
-      const filteredItems
-        = group.items?.value?.filter((item) => {
+      const filteredItems =
+        group.items?.value?.filter((item) => {
           return (
-            item.title.toLowerCase().includes(query)
-            || group.title.toLowerCase().includes(query)
-            || item.terms?.some(term => term.toLowerCase().includes(query))
+            item.title.toLowerCase().includes(query) ||
+            group.title.toLowerCase().includes(query) ||
+            item.terms?.some((term) => term.toLowerCase().includes(query))
           )
         }) || []
 
@@ -117,7 +117,7 @@ watch(
       <div class="flex flex-1 items-center justify-end gap-2 sm:gap-4">
         <button
           type="button"
-          class="rounded shadow-sm border border-gray-300 h-10 px-3 inline-flex items-center gap-1.5 font-medium"
+          class="rounded shadow-sm border border-gray-300 h-10 px-3 inline-flex items-center gap-1.5 font-medium text-gray-900"
           @click="showSearch = true"
         >
           <span role="img" aria-hidden="true"> 🔍 </span>
@@ -150,7 +150,7 @@ watch(
           type="text"
           class="w-full rounded shadow-sm font-medium border-gray-300"
           placeholder="Search..."
-        >
+        />
       </label>
     </AppSearch>
   </header>

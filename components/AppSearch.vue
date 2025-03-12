@@ -48,7 +48,7 @@ onClickOutside(searchEl, () => {
 
         <button
           type="button"
-          class="rounded shadow-sm border border-gray-300 h-10 px-3 inline-flex items-center gap-1.5 font-medium"
+          class="rounded shadow-sm border border-gray-300 h-10 px-3 inline-flex items-center gap-1.5 font-medium text-gray-900"
           @click="emit('search:close')"
         >
           <span role="img" aria-hidden="true"> ❌ </span>
