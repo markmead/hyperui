@@ -75,6 +75,7 @@ export default async function Page({ params }) {
           return newComponent
         }
 
+        // We create an array of two components, one light and one dark
         return [
           newComponent,
           {

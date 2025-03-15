@@ -23,10 +23,11 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
   })
 
   useEffect(() => {
-    if (inView) {
-      fetchHtml()
+    if (!inView) {
+      return
     }
 
+    fetchHtml()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 

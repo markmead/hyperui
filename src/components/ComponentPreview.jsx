@@ -51,19 +51,22 @@ export default function ComponentPreview({ componentData }) {
   const isVue = codeType === 'vue'
 
   useEffect(() => {
-    if (inView) {
-      fetchHtml()
+    if (!inView) {
+      return
     }
 
+    fetchHtml()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   useEffect(() => {
-    if (inView) {
-      const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isRtl)
-
-      setComponentHtml(transformedHtml)
+    if (!inView) {
+      return
     }
+
+    const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isRtl)
+
+    setComponentHtml(transformedHtml)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRtl])
