@@ -8,13 +8,8 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
 import Ad from '@component/Ad'
-import FaqList from '@component/FaqList'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
-
-const mdxComponents = {
-  FaqList,
-}
 
 const pagesPath = join(process.cwd(), '/src/data/pages')
 
@@ -66,7 +61,7 @@ export default async function Page({ params }) {
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
 
-        <MdxRemoteRender mdxSource={pageContent} mdxComponents={mdxComponents} />
+        <MdxRemoteRender mdxSource={pageContent} />
       </article>
     </Container>
   )
