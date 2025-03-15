@@ -20,7 +20,6 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.0.14",
     "@tailwindcss/typography": "^0.5.16",
-    "data-table-of-content": "^1.1.1",
     "eslint": "8.57.0",
     "eslint-config-next": "^14.2.6",
     "fast-glob": "^3.3.3",

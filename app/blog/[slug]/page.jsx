@@ -10,7 +10,6 @@ import rehypeSlug from 'rehype-slug'
 import Ad from '@component/Ad'
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
-import TableContent from '@component/BlogTableContent'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const mdxComponents = {
@@ -84,8 +83,6 @@ export default async function Page({ params }) {
 
             <h1 className="mt-1">{blogData.title}</h1>
           </header>
-
-          <TableContent />
 
           <MdxRemoteRender mdxSource={blogContent} mdxComponents={mdxComponents} />
         </article>

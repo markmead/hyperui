@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
         </a>
 
         <Header />
+
         <HeaderBanner />
 
         <main className="bg-white">{children}</main>

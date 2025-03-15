@@ -979,11 +979,6 @@ damerau-levenshtein@^1.0.8:
   resolved "https://registry.npmjs.org/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
 
-data-table-of-content@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/data-table-of-content/-/data-table-of-content-1.1.1.tgz"
-  integrity sha512-40AV9gfl+r0x0NZKRpNf2ZlWl7ym7piRT92VBy+kw5u5ZIYh8dV1n9utjD2mTZsawa8P6OEP8Jm5VjjPURYlXw==
-
 data-view-buffer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/data-view-buffer/-/data-view-buffer-1.0.1.tgz"
