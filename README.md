@@ -20,14 +20,13 @@ There is no HyperUI installation, if you have a Tailwind CSS project, you can co
 
 ## Usage
 
-Browse the website for the components you need, copy the code and paste it into your project. Some components will have support for dark mode and Alpine JS variants.
+Browse the website for the components you need, copy the code and paste it into your project. Some components will have support for dark mode.
 
 1. Browse the website for a component you like.
 2. Preview the component at different breakpoints and check its compatibility with:
 
 - LTR
 - Dark mode
-- Interactivity with Alpine JS
 
 3. Click on the 'Copy' button to copy the source code.
 4. Paste the copied code into your project.

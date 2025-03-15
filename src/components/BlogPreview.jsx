@@ -17,8 +17,6 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
   const [previewHtml, setPreviewHtml] = useState('')
   const [showPreview, setShowPreview] = useState(true)
 
-  const isDarkMode = false
-
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -37,7 +35,7 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
 
     const fetchResponse = await fetch(previewUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = componentPreviewHtml(textResponse, previewContainer, isDarkMode)
+    const transformedHtml = componentPreviewHtml(textResponse, previewContainer)
 
     setPreviewHtml(transformedHtml)
     setPreviewCode(textResponse)
@@ -56,7 +54,6 @@ export default function BlogPreview({ previewId, previewTitle, previewContainer 
             componentHtml={previewHtml}
             componentTitle={previewTitle}
             refIframe={refIframe}
-            previewDark={isDarkMode}
           />
 
           <PreviewCode showPreview={showPreview} componentCode={previewCode} />

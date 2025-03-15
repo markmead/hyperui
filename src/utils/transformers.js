@@ -1,14 +1,12 @@
 export function componentPreviewHtml(
   componentHtml,
   componentContainer = 'relative',
-  isDarkMode = false,
   isRtl = false
 ) {
-  const htmlClass = isDarkMode ? 'dark' : 'relative'
   const htmlDirection = isRtl ? 'rtl' : 'ltr'
 
   return `
-    <html class="${htmlClass}" dir="${htmlDirection}">
+    <html class="dark" dir="${htmlDirection}">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

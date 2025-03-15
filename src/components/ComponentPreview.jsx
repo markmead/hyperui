@@ -9,7 +9,6 @@ import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
 import PreviewCreator from '@component/PreviewCreator'
-import PreviewDark from '@component/PreviewDark'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
@@ -24,7 +23,6 @@ export default function ComponentPreview({ componentData }) {
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
-  const [isDarkMode, setIsDarkMode] = useState(false)
   const [isRtl, setIsRtl] = useState(false)
   const [previewCode, setPreviewCode] = useState('')
   const [previewWidth, setPreviewWidth] = useState('100%')
@@ -43,7 +41,7 @@ export default function ComponentPreview({ componentData }) {
     container: componentSpace,
     wrapper: componentHeight,
     creator: componentCreator,
-    dark: componentHasDark,
+    dark: componentDark,
   } = componentData
 
   const componentHash = `component-${componentId}`
@@ -54,17 +52,15 @@ export default function ComponentPreview({ componentData }) {
 
   useEffect(() => {
     if (inView) {
-      fetchHtml({
-        useDark: isDarkMode,
-      })
+      fetchHtml()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, isDarkMode])
+  }, [inView])
 
   useEffect(() => {
     if (inView) {
-      const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isDarkMode, isRtl)
+      const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isRtl)
 
       setComponentHtml(transformedHtml)
     }
@@ -79,18 +75,12 @@ export default function ComponentPreview({ componentData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
 
-  async function fetchHtml(useOptions = {}) {
-    const { useDark } = useOptions
-
-    const useDarkMode = componentHasDark && useDark
-
-    const componentPath = [componentId, useDarkMode && 'dark'].filter(Boolean).join('-')
-
-    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}.html`
+  async function fetchHtml() {
+    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentId}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = componentPreviewHtml(textResponse, componentSpace, useDark, isRtl)
+    const transformedHtml = componentPreviewHtml(textResponse, componentSpace, isRtl)
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
 
@@ -112,10 +102,6 @@ export default function ComponentPreview({ componentData }) {
           {componentCode && (
             <div className="flex flex-wrap items-center gap-2">
               <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
-
-              {componentHasDark && (
-                <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
-              )}
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
 
@@ -157,8 +143,8 @@ export default function ComponentPreview({ componentData }) {
               componentTitle={componentTitle}
               previewWidth={previewWidth}
               previewHeight={componentHeight}
+              previewDark={componentDark}
               refIframe={refIframe}
-              previewDark={componentHasDark && isDarkMode}
             />
 
             <PreviewCode

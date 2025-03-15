@@ -56,18 +56,34 @@ export default async function Page({ params }) {
   const { collectionData, collectionContent } = await getCollection(params)
 
   const componentsData = {
-    componentsData: Object.entries(collectionData.components).map(
+    componentsData: Object.entries(collectionData.components).flatMap(
       ([componentId, componentItem]) => {
-        return {
+        const { dark: isDark } = componentItem
+
+        const newComponent = {
           id: componentId,
           title: componentItem.title,
           slug: collectionData.slug,
           category: collectionData.category,
-          container: componentItem?.container || collectionData?.container || '',
-          wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
-          creator: componentItem?.creator || '',
-          dark: !!componentItem.dark,
+          container: componentItem.container || collectionData.container || '',
+          wrapper: componentItem.wrapper || collectionData.wrapper || 'h-[400px] lg:h-[600px]',
+          creator: componentItem.creator || '',
+          dark: false,
         }
+
+        if (!isDark) {
+          return newComponent
+        }
+
+        return [
+          newComponent,
+          {
+            ...newComponent,
+            id: `${componentId}-dark`,
+            title: `${newComponent.title} (Dark)`,
+            dark: true,
+          },
+        ]
       }
     ),
   }
