@@ -67,7 +67,6 @@ export default async function Page({ params }) {
           wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
           creator: componentItem?.creator || '',
           dark: !!componentItem.dark,
-          interactive: !!componentItem.interactive,
         }
       }
     ),

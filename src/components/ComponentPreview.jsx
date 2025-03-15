@@ -11,7 +11,6 @@ import PreviewCopy from '@component/PreviewCopy'
 import PreviewCreator from '@component/PreviewCreator'
 import PreviewDark from '@component/PreviewDark'
 import PreviewIframe from '@component/PreviewIframe'
-import PreviewInteractive from '@component/PreviewInteractive'
 import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
 import PreviewType from '@component/PreviewType'
@@ -26,7 +25,6 @@ export default function ComponentPreview({ componentData }) {
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
   const [isDarkMode, setIsDarkMode] = useState(false)
-  const [isInteractive, setIsInteractive] = useState(false)
   const [isRtl, setIsRtl] = useState(false)
   const [previewCode, setPreviewCode] = useState('')
   const [previewWidth, setPreviewWidth] = useState('100%')
@@ -46,7 +44,6 @@ export default function ComponentPreview({ componentData }) {
     wrapper: componentHeight,
     creator: componentCreator,
     dark: componentHasDark,
-    interactive: componentHasInteractive,
   } = componentData
 
   const componentHash = `component-${componentId}`
@@ -59,12 +56,11 @@ export default function ComponentPreview({ componentData }) {
     if (inView) {
       fetchHtml({
         useDark: isDarkMode,
-        useInteractive: isInteractive,
       })
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, isDarkMode, isInteractive])
+  }, [inView, isDarkMode])
 
   useEffect(() => {
     if (inView) {
@@ -84,14 +80,11 @@ export default function ComponentPreview({ componentData }) {
   }, [codeType])
 
   async function fetchHtml(useOptions = {}) {
-    const { useDark, useInteractive } = useOptions
+    const { useDark } = useOptions
 
     const useDarkMode = componentHasDark && useDark
-    const useInteractiveMode = componentHasInteractive && useInteractive
 
-    const componentPath = [componentId, useDarkMode && 'dark', useInteractiveMode && 'interactive']
-      .filter(Boolean)
-      .join('-')
+    const componentPath = [componentId, useDarkMode && 'dark'].filter(Boolean).join('-')
 
     const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentPath}.html`
 
@@ -122,13 +115,6 @@ export default function ComponentPreview({ componentData }) {
 
               {componentHasDark && (
                 <PreviewDark isDarkMode={isDarkMode} handleSetIsDarkMode={setIsDarkMode} />
-              )}
-
-              {componentHasInteractive && (
-                <PreviewInteractive
-                  isInteractive={isInteractive}
-                  handleSetIsInteractive={setIsInteractive}
-                />
               )}
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
@@ -179,7 +165,6 @@ export default function ComponentPreview({ componentData }) {
               componentId={componentId}
               showPreview={showPreview}
               codeType={codeType}
-              showToggle={!isInteractive}
               componentCode={previewCode}
             />
           </div>
