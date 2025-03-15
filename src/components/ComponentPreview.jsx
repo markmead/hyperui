@@ -17,7 +17,7 @@ import PreviewTitle from '@component/PreviewTitle'
 import PreviewType from '@component/PreviewType'
 import PreviewView from '@component/PreviewView'
 
-export default function ComponentPreview({ componentData, componentContainer }) {
+export default function ComponentPreview({ componentData }) {
   const refIframe = useRef(null)
 
   const [codeType, setCodeType] = useState('html')
@@ -43,13 +43,11 @@ export default function ComponentPreview({ componentData, componentContainer }) 
     slug: componentSlug,
     category: componentCategory,
     container: componentSpace,
+    wrapper: componentHeight,
     creator: componentCreator,
     dark: componentHasDark,
     interactive: componentHasInteractive,
   } = componentData
-
-  const trueComponentContainer = componentSpace || componentContainer?.previewInner
-  const componentWrapper = componentContainer?.previewHeight || 'h-[400px] lg:h-[600px]'
 
   const componentHash = `component-${componentId}`
 
@@ -70,12 +68,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
   useEffect(() => {
     if (inView) {
-      const transformedHtml = componentPreviewHtml(
-        componentCode,
-        trueComponentContainer,
-        isDarkMode,
-        isRtl
-      )
+      const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isDarkMode, isRtl)
 
       setComponentHtml(transformedHtml)
     }
@@ -104,12 +97,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
-    const transformedHtml = componentPreviewHtml(
-      textResponse,
-      trueComponentContainer,
-      useDark,
-      isRtl
-    )
+    const transformedHtml = componentPreviewHtml(textResponse, componentSpace, useDark, isRtl)
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
 
@@ -182,7 +170,7 @@ export default function ComponentPreview({ componentData, componentContainer }) 
               componentHtml={componentHtml}
               componentTitle={componentTitle}
               previewWidth={previewWidth}
-              previewHeight={componentWrapper}
+              previewHeight={componentHeight}
               refIframe={refIframe}
               previewDark={componentHasDark && isDarkMode}
             />
