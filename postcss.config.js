@@ -1,7 +1,5 @@
-const postConfig = {
+export default {
   plugins: {
     '@tailwindcss/postcss': {},
   },
 }
-
-export default postConfig

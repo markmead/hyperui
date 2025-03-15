@@ -1,4 +1,4 @@
-const prettierConfig = {
+export default {
   semi: false,
   tabWidth: 2,
   useTabs: false,
@@ -12,5 +12,3 @@ const prettierConfig = {
   quoteProps: 'as-needed',
   plugins: ['prettier-plugin-tailwindcss'],
 }
-
-export default prettierConfig

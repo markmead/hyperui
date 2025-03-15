@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
-import usePreferencesStore from '@store/preferences.store'
-
 import { componentBreakpoints } from '@data/breakpoints'
 import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
 
@@ -22,24 +20,16 @@ import PreviewView from '@component/PreviewView'
 export default function ComponentPreview({ componentData, componentContainer }) {
   const refIframe = useRef(null)
 
-  const {
-    isRtl,
-    setIsRtl,
-    isDarkMode,
-    setIsDarkMode,
-    isInteractive,
-    setIsInteractive,
-    codeType,
-    setCodeType,
-    previewWidth,
-    setPreviewWidth,
-  } = usePreferencesStore()
-
+  const [codeType, setCodeType] = useState('html')
   const [componentCode, setComponentCode] = useState('')
   const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isInteractive, setIsInteractive] = useState(false)
+  const [isRtl, setIsRtl] = useState(false)
   const [previewCode, setPreviewCode] = useState('')
+  const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
 
   const { ref, inView } = useInView({

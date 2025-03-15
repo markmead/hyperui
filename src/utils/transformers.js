@@ -61,7 +61,8 @@ export function componentPreviewJsx(componentHtml) {
 
 export function componentPreviewVue(componentHtml) {
   const newComponentHtml = `<template>\n${componentHtml}</template>`
-  const formattedComponentHtml = newComponentHtml
+
+  return newComponentHtml
     .split('\n')
     .map((codeLine) => {
       if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
@@ -71,6 +72,4 @@ export function componentPreviewVue(componentHtml) {
       return `  ${codeLine}`
     })
     .join('\n')
-
-  return formattedComponentHtml
 }
