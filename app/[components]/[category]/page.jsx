@@ -21,7 +21,7 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
-  return ['application-ui', 'marketing']
+  return ['application', 'marketing']
 }
 
 async function getCategory(params) {

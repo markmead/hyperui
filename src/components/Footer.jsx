@@ -21,9 +21,9 @@ export default function Footer() {
         <BrandLogo fontSize="text-lg" />
 
         <div className="mt-6">
-          <p className="max-w-md text-pretty leading-relaxed text-gray-700">
+          <p className="max-w-md leading-relaxed text-pretty text-gray-700">
             Free open source Tailwind CSS components for marketing and eCommerce websites, as well
-            as application UI.
+            as application interfaces.
           </p>
 
           <div className="mt-4 lg:flex lg:items-end lg:justify-between">

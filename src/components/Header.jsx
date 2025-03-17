@@ -20,8 +20,8 @@ export default function Header() {
 
   const menuLinks = [
     {
-      title: 'Application UI',
-      href: '/components/application-ui',
+      title: 'Application',
+      href: '/components/application',
     },
     {
       title: 'Marketing',
