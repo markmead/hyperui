@@ -40,8 +40,16 @@ async function getComponents() {
               parseFrontmatter: true,
             })
 
+            const componentCount = componentData.components.reduce(
+              (currentCount, componentItem) => {
+                const isDark = !!componentItem.dark
+
+                return currentCount + (isDark ? 2 : 1)
+              },
+              0
+            )
+
             const componentSlugFormatted = componentSlug.replace('.mdx', '')
-            const componentCount = componentData.components.length
 
             return {
               title: componentData.title,

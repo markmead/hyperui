@@ -44,7 +44,12 @@ async function getCategory(params) {
             parseFrontmatter: true,
           })
 
-          const componentCount = componentData.components.length
+          const componentCount = componentData.components.reduce((currentCount, componentItem) => {
+            const isDark = !!componentItem.dark
+
+            return currentCount + (isDark ? 2 : 1)
+          }, 0)
+
           const componentSlugFormatted = componentSlug.replace('.mdx', '')
 
           return {
