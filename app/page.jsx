@@ -17,7 +17,6 @@ async function getComponents() {
   const categoriesPath = join(process.cwd(), '/src/data/categories')
 
   const categorySlugs = ['application', 'marketing']
-  const componentSlugs = await fs.readdir(componentsPath)
 
   const componentsByCategory = await Promise.all(
     categorySlugs.map(async (categorySlug) => {
@@ -28,11 +27,13 @@ async function getComponents() {
         parseFrontmatter: true,
       })
 
+      const componentSlugs = await fs.readdir(join(componentsPath, categorySlug))
+
       const componentItems = await Promise.all(
         componentSlugs
-          .filter((componentSlug) => componentSlug.includes(categorySlug))
+          .filter((componentSlug) => componentSlug.includes('.mdx'))
           .map(async (componentSlug) => {
-            const componentPath = join(componentsPath, componentSlug)
+            const componentPath = join(componentsPath, categorySlug, componentSlug)
             const componentItem = await fs.readFile(componentPath, 'utf-8')
 
             const { frontmatter: componentData } = await serialize(componentItem, {
@@ -40,16 +41,12 @@ async function getComponents() {
             })
 
             const componentSlugFormatted = componentSlug.replace('.mdx', '')
-            const componentSlugTrue = componentSlugFormatted.replace(
-              `${componentData.category}-`,
-              ''
-            )
-            const componentCount = Object.values(componentData.components).length
+            const componentCount = componentData.components.length
 
             return {
               title: componentData.title,
-              slug: componentSlugTrue,
-              category: componentData.category,
+              slug: componentSlugFormatted,
+              category: categorySlug,
               emoji: componentData.emoji,
               count: componentCount,
               tag: componentData.tag,
