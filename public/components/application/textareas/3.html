@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <link rel="stylesheet" href="/component.css" />
+<div>
+  <label for="Notes">
+    <span class="text-sm font-medium text-gray-700"> Notes </span>
 
-    <script src="/component.js"></script>
-  </head>
-  <body class="p-6 max-w-md mx-auto">
-    <div>
-      <label for="Notes">
-        <span class="text-sm font-medium text-gray-700"> Notes </span>
+    <textarea
+      id="Notes"
+      class="mt-0.5 w-full resize-none rounded border-gray-300 shadow-sm sm:text-sm"
+      rows="4"
+    ></textarea>
+  </label>
 
-        <textarea
-          id="Notes"
-          class="w-full rounded border-gray-300 shadow-sm sm:text-sm mt-0.5 resize-none"
-          rows="4"
-        ></textarea>
-      </label>
+  <div class="mt-1.5 flex items-center justify-end gap-2">
+    <button
+      type="button"
+      class="rounded border border-transparent px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900"
+    >
+      Clear
+    </button>
 
-      <div class="flex gap-2 mt-1.5 justify-end items-center">
-        <button
-          type="button"
-          class="rounded px-3 py-1.5 text-sm font-medium text-gray-700 border border-transparent hover:text-gray-900 transition-colors"
-        >
-          Clear
-        </button>
-
-        <button
-          type="button"
-          class="rounded px-3 py-1.5 text-sm font-medium text-gray-900 border border-gray-300 hover:bg-gray-100 shadow-sm transition-colors"
-        >
-          Save
-        </button>
-      </div>
-    </div>
-  </body>
-</html>
+    <button
+      type="button"
+      class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
+    >
+      Save
+    </button>
+  </div>
+</div>

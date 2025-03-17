@@ -1,43 +1,31 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <link rel="stylesheet" href="/component.css" />
+<div>
+  <label for="Notes">
+    <span class="text-sm font-medium text-gray-700 dark:text-gray-200"> Notes </span>
 
-    <script src="/component.js"></script>
-  </head>
-  <body class="p-6 max-w-md mx-auto">
-    <div>
-      <label for="Notes">
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
-          Notes
-        </span>
+    <div
+      class="relative mt-0.5 overflow-hidden rounded border border-gray-300 shadow-sm focus-within:ring focus-within:ring-blue-600 dark:border-gray-600"
+    >
+      <textarea
+        id="Notes"
+        class="w-full resize-none border-none focus:ring-0 sm:text-sm dark:bg-gray-900 dark:text-white"
+        rows="4"
+      ></textarea>
 
-        <div
-          class="relative border-gray-300 dark:border-gray-600 border rounded shadow-sm overflow-hidden mt-0.5 focus-within:ring focus-within:ring-blue-600"
+      <div class="flex items-center justify-end gap-2 p-1.5">
+        <button
+          type="button"
+          class="rounded border border-transparent px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
         >
-          <textarea
-            id="Notes"
-            class="w-full sm:text-sm border-none focus:ring-0 resize-none dark:bg-gray-900 dark:text-white"
-            rows="4"
-          ></textarea>
+          Clear
+        </button>
 
-          <div class="flex gap-2 p-1.5 justify-end items-center">
-            <button
-              type="button"
-              class="rounded px-3 py-1.5 text-sm font-medium text-gray-700 border border-transparent hover:text-gray-900 transition-colors dark:text-gray-200 dark:hover:text-white"
-            >
-              Clear
-            </button>
-
-            <button
-              type="button"
-              class="rounded px-3 py-1.5 text-sm font-medium text-gray-900 border dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 border-gray-300 hover:bg-gray-100 shadow-sm transition-colors"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-      </label>
+        <button
+          type="button"
+          class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
+        >
+          Save
+        </button>
+      </div>
     </div>
-  </body>
-</html>
+  </label>
+</div>

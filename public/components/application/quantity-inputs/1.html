@@ -1,36 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <link rel="stylesheet" href="/component.css" />
+<div>
+  <label for="Quantity" class="sr-only"> Quantity </label>
 
-    <script src="/component.js"></script>
-  </head>
-  <body class="p-6 flex justify-center">
-    <div>
-      <label for="Quantity" class="sr-only"> Quantity </label>
+  <div class="flex items-center gap-1">
+    <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+      &minus;
+    </button>
 
-      <div class="flex items-center gap-1">
-        <button
-          type="button"
-          class="size-10 leading-10 text-gray-600 transition hover:opacity-75"
-        >
-          &minus;
-        </button>
+    <input
+      type="number"
+      id="Quantity"
+      value="1"
+      class="h-10 w-24 rounded-sm border-gray-200 sm:text-sm"
+    />
 
-        <input
-          type="number"
-          id="Quantity"
-          value="1"
-          class="h-10 w-24 rounded-sm border-gray-200 sm:text-sm"
-        />
-
-        <button
-          type="button"
-          class="size-10 leading-10 text-gray-600 transition hover:opacity-75"
-        >
-          &plus;
-        </button>
-      </div>
-    </div>
-  </body>
-</html>
+    <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+      &plus;
+    </button>
+  </div>
+</div>
