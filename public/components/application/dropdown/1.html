@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <link rel="stylesheet" href="/component.css" />
+
+    <script src="/component.js"></script>
+  </head>
+  <body class="p-6 max-w-sm mx-auto">
+    <div class="relative inline-flex">
+      <span
+        class="inline-flex divide-x divide-gray-300 overflow-hidden rounded border border-gray-300 bg-white shadow-sm"
+      >
+        <button
+          type="button"
+          class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-50 focus:relative"
+        >
+          Product
+        </button>
+
+        <button
+          type="button"
+          class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-50 focus:relative"
+          aria-label="Menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m19.5 8.25-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </button>
+      </span>
+
+      <div
+        role="menu"
+        class="absolute end-0 overflow-hidden z-auto top-12 w-56 rounded border border-gray-300 bg-white shadow-sm"
+      >
+        <a
+          href="#"
+          class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-50 block"
+          role="menuitem"
+        >
+          Storefront
+        </a>
+
+        <a
+          href="#"
+          class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-50 block"
+          role="menuitem"
+        >
+          Warehouse
+        </a>
+
+        <a
+          href="#"
+          class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-50 block"
+          role="menuitem"
+        >
+          Stock
+        </a>
+
+        <button
+          type="button"
+          class="w-full text-left px-3 py-2 text-sm font-medium text-red-700 transition-colors hover:bg-red-50 block"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

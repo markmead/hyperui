@@ -1,0 +1,27 @@
+---
+title: Tables
+description:
+  Comprehensive collection of responsive table components built with Tailwind
+  CSS v4. Includes base tables, bordered tables, striped tables, and tables with
+  sticky headers and columns for modern web applications. Perfect for displaying
+  data in a clean, organized format across all device sizes.
+emoji: 🍽
+tag: updated
+wrapper: h-[400px]
+terms:
+  - data
+components:
+  - { title: 'Base', dark: true }
+  - { title: 'Bordered', dark: true }
+  - { title: 'Striped', dark: true }
+  - { title: 'Sticky headings', dark: true }
+  - { title: 'Sticky first column', dark: true }
+---
+
+# Table Components
+
+{{ description }}
+
+<!-- prettier-ignore -->
+::component-list{:components=components :wrapper=wrapper}
+::

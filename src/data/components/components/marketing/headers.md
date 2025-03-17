@@ -1,0 +1,30 @@
+---
+title: Header
+description: Header components created with Tailwind CSS
+emoji: 🗺
+wrapper: h-[400px]
+components:
+  - {
+      title: 'Icon and links on the left, call to actions on the right',
+      dark: true,
+    }
+  - {
+      title:
+        'Icon on the left, links in the middle and call to actions on the right',
+      dark: true,
+    }
+  - {
+      title: 'Icon on the left, links and call to actions on the right',
+      dark: true,
+    }
+  - {
+      title: 'Icon on the left, links and user dropdown on the right',
+      dark: true,
+    }
+---
+
+# Header Components
+
+<!-- prettier-ignore -->
+::component-list{:components=components :wrapper=wrapper}
+::

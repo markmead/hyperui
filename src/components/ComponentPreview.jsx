@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-
+import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
 
 import { componentBreakpoints } from '@data/breakpoints'
@@ -28,6 +28,8 @@ export default function ComponentPreview({ componentData }) {
   const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
 
+  const { category: categorySlug } = useParams()
+
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -37,7 +39,6 @@ export default function ComponentPreview({ componentData }) {
     id: componentId,
     title: componentTitle,
     slug: componentSlug,
-    category: componentCategory,
     container: componentSpace,
     wrapper: componentHeight,
     creator: componentCreator,
@@ -79,7 +80,7 @@ export default function ComponentPreview({ componentData }) {
   }, [codeType])
 
   async function fetchHtml() {
-    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentId}.html`
+    const componentUrl = `/components/${categorySlug}/${componentSlug}/${componentId}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()

@@ -1,7 +1,6 @@
+import { join } from 'node:path'
+import { promises as fs } from 'node:fs'
 import { notFound } from 'next/navigation'
-
-import { join } from 'path'
-import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import Container from '@component/Container'
@@ -20,17 +19,12 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export async function generateStaticParams() {
-  return ['application', 'marketing']
-}
-
 async function getCategory(params) {
   try {
-    const componentsPath = join(process.cwd(), '/src/data/components')
-    const categoriesPath = join(process.cwd(), '/src/data/categories')
-
     const categorySlug = params.category
-    const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
+
+    const categoryPath = join(process.cwd(), '/src/data/categories', `${categorySlug}.mdx`)
+    const componentsPath = join(process.cwd(), '/src/data/components', categorySlug)
 
     const componentSlugs = await fs.readdir(componentsPath)
     const categoryItem = await fs.readFile(categoryPath, 'utf-8')
@@ -41,7 +35,7 @@ async function getCategory(params) {
 
     const componentItems = await Promise.all(
       componentSlugs
-        .filter((componentSlug) => componentSlug.includes(categorySlug))
+        .filter((componentSlug) => componentSlug.includes('.mdx'))
         .map(async (componentSlug) => {
           const componentPath = join(componentsPath, componentSlug)
           const componentItem = await fs.readFile(componentPath, 'utf-8')
@@ -50,14 +44,13 @@ async function getCategory(params) {
             parseFrontmatter: true,
           })
 
+          const componentCount = componentData.components.length
           const componentSlugFormatted = componentSlug.replace('.mdx', '')
-          const componentSlugTrue = componentSlugFormatted.replace(`${categorySlug}-`, '')
-          const componentCount = Object.values(componentData.components).length
 
           return {
             title: componentData.title,
-            slug: componentSlugTrue,
-            category: componentData.category,
+            slug: componentSlugFormatted,
+            category: categorySlug,
             emoji: componentData.emoji,
             count: componentCount,
             tag: componentData.tag,
