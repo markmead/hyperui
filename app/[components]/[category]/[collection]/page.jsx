@@ -4,7 +4,6 @@ import { join } from 'path'
 import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionList from '@component/CollectionList'
@@ -94,9 +93,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
-      <Ad />
-
+    <Container id="mainContent" classNames="py-8 lg:py-12 ">
       <div className="prose prose-p:max-w-prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}

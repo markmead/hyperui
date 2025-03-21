@@ -6,7 +6,6 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import rehypeExternalLinks from 'rehype-external-links'
 
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
@@ -53,9 +52,7 @@ export default async function Page({ params }) {
   const { pageData, pageContent } = await getPage(params)
 
   return (
-    <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
-      <Ad />
-
+    <Container id="mainContent" classNames="py-8 lg:py-12">
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
 

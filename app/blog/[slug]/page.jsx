@@ -6,7 +6,6 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 import rehypeExternalLinks from 'rehype-external-links'
 
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import BlogPreview from '@component/BlogPreview'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -72,7 +71,7 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
+      <Container id="mainContent" classNames="py-8 lg:py-12">
         <article className="prose mx-auto">
           <h1>{blogData.title}</h1>
 
@@ -80,8 +79,6 @@ export default async function Page({ params }) {
 
           <MdxRemoteRender mdxSource={blogContent} mdxComponents={mdxComponents} />
         </article>
-
-        <Ad />
       </Container>
     </>
   )
