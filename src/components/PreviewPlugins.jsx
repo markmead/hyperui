@@ -4,7 +4,7 @@ export default function PreviewPlugins({ componentPlugins }) {
       <p className="text-sm text-gray-700">
         Plugins:{' '}
         {componentPlugins.map((componentPlugin, pluginIndex) => (
-          <span>
+          <span key={pluginIndex}>
             <a
               href={`https://npmjs.com/${componentPlugin}`}
               target="_blank"
