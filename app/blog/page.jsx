@@ -24,14 +24,15 @@ async function getPosts() {
       const postPath = join(postsPath, blogSlug)
       const blogItem = await fs.readFile(postPath, 'utf-8')
 
-      const { frontmatter: blogData } = await serialize(blogItem, {
+      const { frontmatter } = await serialize(blogItem, {
         parseFrontmatter: true,
       })
+      const { title, date, emoji } = frontmatter
 
       return {
-        title: blogData.title,
-        date: blogData.date,
-        emoji: blogData.emoji,
+        title,
+        date,
+        emoji,
         slug: blogSlug.replace('.mdx', ''),
       }
     })

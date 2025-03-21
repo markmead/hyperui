@@ -5,7 +5,6 @@ import { join } from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import rehypeExternalLinks from 'rehype-external-links'
-import rehypeSlug from 'rehype-slug'
 
 import Ad from '@component/Ad'
 import Container from '@component/Container'
@@ -37,8 +36,7 @@ async function getPage(params) {
     const mdxSource = await serialize(pageItem, {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [],
-        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }], rehypeSlug],
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
       },
     })
 

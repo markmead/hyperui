@@ -164,7 +164,7 @@ export default function ComponentPreview({ componentData }) {
 
         {componentCreator && <PreviewCreator creatorGithub={componentCreator} />}
 
-        {componentPlugins && <PreviewPlugins componentPlugins={componentPlugins} />}
+        {componentPlugins.length ? <PreviewPlugins componentPlugins={componentPlugins} /> : <></>}
       </div>
     </div>
   )
