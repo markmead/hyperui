@@ -71,7 +71,8 @@ export default async function Page({ params }) {
         category: collectionData.category,
         container: componentItem.container || collectionData.container || '',
         wrapper: componentItem.wrapper || collectionData.wrapper || 'h-[400px] lg:h-[600px]',
-        creator: componentItem.creator || '',
+        creator: componentItem.creator || 'markmead',
+        plugins: componentItem.plugins || [],
         dark: false,
       }
 

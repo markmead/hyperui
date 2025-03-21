@@ -9,6 +9,7 @@ import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
 import PreviewCreator from '@component/PreviewCreator'
+import PreviewPlugins from '@component/PreviewPlugins'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
@@ -43,6 +44,7 @@ export default function ComponentPreview({ componentData }) {
     wrapper: componentHeight,
     creator: componentCreator,
     dark: componentDark,
+    plugins: componentPlugins,
   } = componentData
 
   const componentHash = `component-${componentId}`
@@ -161,6 +163,8 @@ export default function ComponentPreview({ componentData }) {
         </div>
 
         {componentCreator && <PreviewCreator creatorGithub={componentCreator} />}
+
+        {componentPlugins && <PreviewPlugins componentPlugins={componentPlugins} />}
       </div>
     </div>
   )
