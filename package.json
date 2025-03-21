@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.6",
-    "@tailwindcss/cli": "^4.0.14",
+    "@tailwindcss/cli": "^4.0.15",
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.0.14",
+    "@tailwindcss/postcss": "^4.0.15",
     "@tailwindcss/typography": "^0.5.16",
     "eslint": "8.57.0",
     "eslint-config-next": "^14.2.6",
@@ -31,10 +31,9 @@
     "react-intersection-observer": "^9.16.0",
     "react-use": "^17.6.0",
     "rehype-external-links": "^3.0.0",
-    "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwindcss": "^4.0.14"
+    "tailwindcss": "^4.0.15"
   },
   "packageManager": "yarn@1.22.22"
 }

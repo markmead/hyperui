@@ -4,7 +4,7 @@ export default function PreviewTitle({ componentTitle, componentHash }) {
       <a href={`#${componentHash}`} className="group relative inline-block">
         <span
           aria-hidden="true"
-          className="hidden text-xl group-hover:opacity-40 group-focus:opacity-40 lg:absolute lg:-left-4 lg:top-1/2 lg:block lg:-translate-y-1/2 lg:opacity-0 lg:transition"
+          className="hidden text-xl group-hover:opacity-40 group-focus:opacity-40 lg:absolute lg:top-1/2 lg:-left-4 lg:block lg:-translate-y-1/2 lg:opacity-0 lg:transition"
         >
           #
         </span>
