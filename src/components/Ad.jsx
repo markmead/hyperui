@@ -31,7 +31,7 @@ export default function Ads() {
       data-ea-publisher="hyperuidev"
       data-ea-type="text"
       data-ea-style="fixedfooter"
-      className="[&_.ea-callout]:mb-0! [&_.ea-content]:mx-0! [&_.ea-content]:mt-0! [&_.ea-fixedfooter-hide]:hidden [&_.ea-stickybox-hide]:hidden"
+      className="[&_.ea-body]:text-gray-900! [&_.ea-fixedfooter-hide]:hidden! [&_.ea-placement]:bg-gray-200! [&_strong]:text-sky-600!"
     ></div>
   )
 }
