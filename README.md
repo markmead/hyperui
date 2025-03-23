@@ -38,7 +38,6 @@ HyperUI has a wide range of freely available components. These components includ
 ### Application
 
 - [Alerts](https://www.hyperui.dev/components/application/alerts)
-- [Auth Forms](https://www.hyperui.dev/components/application/login-forms)
 - [Badges](https://www.hyperui.dev/components/application/badges)
 - [Breadcrumbs](https://www.hyperui.dev/components/application/breadcrumbs)
 - [Button Groups](https://www.hyperui.dev/components/application/button-groups)
@@ -46,14 +45,11 @@ HyperUI has a wide range of freely available components. These components includ
 - [Details Lists](https://www.hyperui.dev/components/application/details-list)
 - [Dividers](https://www.hyperui.dev/components/application/dividers)
 - [Dropdowns](https://www.hyperui.dev/components/application/dropdown)
-- [Error Pages](https://www.hyperui.dev/components/application/error-pages)
 - [Filters](https://www.hyperui.dev/components/application/filters)
 - [Grids](https://www.hyperui.dev/components/application/grids)
-- [Header](https://www.hyperui.dev/components/application/headers)
 - [Inputs](https://www.hyperui.dev/components/application/inputs)
 - [Media](https://www.hyperui.dev/components/application/media)
 - [Pagination](https://www.hyperui.dev/components/application/pagination)
-- [Progress](https://www.hyperui.dev/components/application/progress)
 - [Quantity Inputs](https://www.hyperui.dev/components/application/quantity-inputs)
 - [Radio Groups](https://www.hyperui.dev/components/application/radio-groups)
 - [Selects](https://www.hyperui.dev/components/application/selects)
@@ -61,7 +57,6 @@ HyperUI has a wide range of freely available components. These components includ
 - [Stats](https://www.hyperui.dev/components/application/stats)
 - [Steps](https://www.hyperui.dev/components/application/steps)
 - [Tables](https://www.hyperui.dev/components/application/tables)
-- [Tabs](https://www.hyperui.dev/components/application/tabs)
 - [Textareas](https://www.hyperui.dev/components/application/textareas)
 - [Toggles](https://www.hyperui.dev/components/application/toggles)
 - [Vertical Menu](https://www.hyperui.dev/components/application/vertical-menu)
@@ -77,15 +72,11 @@ HyperUI has a wide range of freely available components. These components includ
 - [CTAs](https://www.hyperui.dev/components/marketing/ctas)
 - [FAQs](https://www.hyperui.dev/components/marketing/faqs)
 - [Footers](https://www.hyperui.dev/components/marketing/footers)
-- [Forms](https://www.hyperui.dev/components/marketing/forms)
 - [Header](https://www.hyperui.dev/components/marketing/headers)
-- [Popups](https://www.hyperui.dev/components/marketing/popups)
-- [Pricing](https://www.hyperui.dev/components/marketing/pricings)
+- [Pricing](https://www.hyperui.dev/components/marketing/pricing)
 - [Product Cards](https://www.hyperui.dev/components/marketing/product-cards)
 - [Product Collections](https://www.hyperui.dev/components/marketing/product-collections)
 - [Sections](https://www.hyperui.dev/components/marketing/sections)
-- [Stats](https://www.hyperui.dev/components/marketing/stats)
-- [Testimonials](https://www.hyperui.dev/components/marketing/testimonials)
 
 ## Contributing
 
