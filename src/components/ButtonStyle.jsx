@@ -1,32 +1,13 @@
-export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive, isDark, children }) {
-  const buttonClasses = {
-    DEFAULT: `border-gray-900 ${
-      buttonActive
-        ? 'text-white bg-gray-900'
-        : 'bg-white text-gray-900 hover:bg-gray-900 hover:text-white'
-    }`,
-    darkButton: `border-gray-800 text-white ${
-      buttonActive ? 'bg-gray-800' : 'bg-gray-900 hover:bg-gray-800'
-    }`,
-  }
-
-  const buttonClass = isDark ? buttonClasses.darkButton : buttonClasses.DEFAULT
-
+export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive = false }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 ${buttonClass}`}
+      className={`inline-flex h-10 items-center gap-2 rounded px-3 shadow-xs transition-colors ${buttonActive ? 'bg-gray-50 text-gray-900 ring-2 ring-pink-400' : 'text-gray-700 ring ring-gray-300 hover:bg-gray-50 hover:text-gray-900'}`}
     >
-      {children ? (
-        children
-      ) : (
-        <>
-          <span aria-hidden="true" role="img" className="text-sm">
-            {buttonEmoji}
-          </span>
+      <span aria-hidden="true" role="img">
+        {buttonEmoji}
+      </span>
 
-          <span className="text-sm font-medium">{buttonText}</span>
-        </>
-      )}
+      <span className="font-medium">{buttonText}</span>
     </span>
   )
 }

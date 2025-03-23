@@ -8,24 +8,20 @@ export default function CollectionCard({ componentData }) {
 
   return (
     <Link href={`/components/${componentData.category}/${componentData.slug}`}>
-      <div className="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-md before:border-2 before:border-dashed before:border-gray-900">
-        <div className="h-full rounded-md border-2 border-gray-900 bg-white transition group-hover:-translate-y-2 group-hover:ltr:-translate-x-2 group-hover:rtl:translate-x-2">
-          <div className="p-4 sm:p-6">
-            <div className="flex items-start justify-between">
-              <span aria-hidden="true" role="img" className="text-lg sm:text-xl">
-                {componentData.emoji}
-              </span>
+      <div className="h-full rounded bg-white p-4 shadow-xs ring ring-gray-300 transition-[box-shadow] hover:ring-2 hover:ring-pink-400 sm:p-6">
+        <div className="flex items-center justify-between">
+          <span aria-hidden="true" role="img" className="text-lg sm:text-xl">
+            {componentData.emoji}
+          </span>
 
-              {hasTag && <CardTag tagType={componentData.tag} />}
-            </div>
-
-            <strong className="mt-4 block font-medium text-gray-900 sm:text-lg">
-              {componentData.title}
-            </strong>
-
-            <p className="mt-1 text-sm text-gray-700">{componentCount}</p>
-          </div>
+          {hasTag && <CardTag tagType={componentData.tag} />}
         </div>
+
+        <p className="mt-4 block text-sm text-gray-700">{componentCount}</p>
+
+        <strong className="mt-1 block font-medium text-pretty text-gray-900 sm:text-lg">
+          {componentData.title}
+        </strong>
       </div>
     </Link>
   )

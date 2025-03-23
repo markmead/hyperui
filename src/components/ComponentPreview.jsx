@@ -111,19 +111,19 @@ export default function ComponentPreview({ componentData }) {
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
 
-              <div className="hidden sm:flex">
-                <PreviewType
-                  componentId={componentId}
-                  codeType={codeType}
-                  handleSetCodeType={setCodeType}
-                />
+              <PreviewCopy componentCode={previewCode} />
 
-                <PreviewCopy componentCode={previewCode} />
-              </div>
+              <PreviewType
+                componentId={componentId}
+                codeType={codeType}
+                handleSetCodeType={setCodeType}
+              />
             </div>
           )}
 
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
+            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
+
             {componentBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint
@@ -136,35 +136,25 @@ export default function ComponentPreview({ componentData }) {
                 />
               )
             )}
-
-            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
           </div>
         </div>
 
-        <div className="relative">
-          <div>
-            <PreviewIframe
-              showPreview={showPreview}
-              componentHtml={componentHtml}
-              componentTitle={componentTitle}
-              previewWidth={previewWidth}
-              previewHeight={componentHeight}
-              previewDark={componentDark}
-              refIframe={refIframe}
-            />
+        {showPreview ? (
+          <PreviewIframe
+            componentHtml={componentHtml}
+            componentTitle={componentTitle}
+            previewWidth={previewWidth}
+            previewHeight={componentHeight}
+            previewDark={componentDark}
+            refIframe={refIframe}
+          />
+        ) : (
+          <PreviewCode componentId={componentId} codeType={codeType} componentCode={previewCode} />
+        )}
 
-            <PreviewCode
-              componentId={componentId}
-              showPreview={showPreview}
-              codeType={codeType}
-              componentCode={previewCode}
-            />
-          </div>
-        </div>
+        <PreviewCreator creatorGithub={componentCreator} />
 
-        {componentCreator && <PreviewCreator creatorGithub={componentCreator} />}
-
-        {componentPlugins.length ? <PreviewPlugins componentPlugins={componentPlugins} /> : <></>}
+        {!!componentPlugins.length && <PreviewPlugins componentPlugins={componentPlugins} />}
       </div>
     </div>
   )

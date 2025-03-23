@@ -68,10 +68,10 @@ export default async function Page({ params }) {
         title: componentItem.title,
         slug: collectionData.slug,
         category: collectionData.category,
-        container: componentItem.container || collectionData.container || '',
-        wrapper: componentItem.wrapper || collectionData.wrapper || 'h-[400px] lg:h-[600px]',
-        creator: componentItem.creator || 'markmead',
-        plugins: componentItem.plugins || [],
+        container: componentItem?.container || collectionData?.container || '',
+        wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
+        creator: componentItem?.creator || 'markmead',
+        plugins: componentItem?.plugins || [],
         dark: false,
       }
 
@@ -94,7 +94,7 @@ export default async function Page({ params }) {
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12 ">
-      <div className="prose prose-p:max-w-prose max-w-none">
+      <div className="prose prose-p:max-w-prose prose-pre:rounded-3xl! max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}
