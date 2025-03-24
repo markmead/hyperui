@@ -91,7 +91,9 @@ export default async function Page() {
           {componentsByCategory.map(({ categoryTitle, componentItems = [] }) => {
             return (
               <li className="space-y-4" key={categoryTitle}>
-                <h2 className="text-lg font-bold text-gray-900 sm:text-xl">{categoryTitle}</h2>
+                <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
+                  {categoryTitle} Components
+                </h2>
 
                 <CollectionGrid componentItems={componentItems} />
               </li>
