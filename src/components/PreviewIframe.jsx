@@ -10,7 +10,7 @@ export default function PreviewIframe({
 
   return (
     <iframe
-      className={`w-full rounded ring ring-gray-300 duration-500 lg:transition-[max-width] ${iframeTheme} ${previewHeight}`}
+      className={`w-full rounded-md ring ring-gray-300 duration-500 lg:transition-[max-width] ${iframeTheme} ${previewHeight}`}
       loading="lazy"
       srcDoc={componentHtml}
       style={{ maxWidth: previewWidth }}

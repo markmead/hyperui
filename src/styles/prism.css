@@ -1,5 +1,5 @@
 pre[class*='language-'] {
-  @apply m-0! rounded! bg-gray-900! p-4!;
+  @apply m-0! rounded-md! bg-gray-900! p-4!;
 }
 
 .token:is(.property, .tag, .constant, .symbol, .deleted) {

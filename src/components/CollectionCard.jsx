@@ -8,7 +8,7 @@ export default function CollectionCard({ componentData }) {
 
   return (
     <Link href={`/components/${componentData.category}/${componentData.slug}`}>
-      <div className="h-full rounded bg-white p-4 shadow-xs ring ring-gray-300 transition-[box-shadow] hover:ring-2 hover:ring-pink-400 sm:p-6">
+      <div className="h-full rounded-md bg-white p-4 shadow-sm ring ring-gray-300 transition-shadow hover:ring-2 hover:ring-pink-400 sm:p-6">
         <div className="flex items-center justify-between">
           <span aria-hidden="true" role="img" className="text-lg sm:text-xl">
             {componentData.emoji}
@@ -19,7 +19,7 @@ export default function CollectionCard({ componentData }) {
 
         <p className="mt-4 block text-sm text-gray-700">{componentCount}</p>
 
-        <strong className="mt-1 block font-medium text-pretty text-gray-900 sm:text-lg">
+        <strong className="mt-1 block font-medium text-gray-900 sm:text-lg">
           {componentData.title}
         </strong>
       </div>
