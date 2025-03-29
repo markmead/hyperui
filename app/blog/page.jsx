@@ -29,7 +29,7 @@ async function getPosts() {
       })
 
       return {
-        ...mdxSoruce.frontmatter,
+        ...mdxSource.frontmatter,
         slug: blogSlug.replace('.mdx', ''),
       }
     })
