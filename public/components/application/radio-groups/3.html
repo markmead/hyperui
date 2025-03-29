@@ -1,46 +1,46 @@
-<fieldset class="grid grid-cols-2 gap-4">
-  <legend class="sr-only">Delivery</legend>
+<fieldset class="flex flex-wrap gap-3">
+  <legend class="sr-only">Color</legend>
 
-  <div>
-    <label
-      for="DeliveryStandard"
-      class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-xs hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
-    >
-      <div>
-        <p class="text-gray-700">Standard</p>
+  <label
+    for="ColorBlack"
+    class="block size-8 rounded-full bg-black shadow-sm has-checked:ring-2 has-checked:ring-black has-checked:ring-offset-2"
+  >
+    <input
+      type="radio"
+      name="ColorOption"
+      value="ColorBlack"
+      id="ColorBlack"
+      class="sr-only"
+      checked
+    />
 
-        <p class="mt-1 text-gray-900">Free</p>
-      </div>
+    <span class="sr-only">Black</span>
+  </label>
 
-      <input
-        type="radio"
-        name="DeliveryOption"
-        value="DeliveryStandard"
-        id="DeliveryStandard"
-        class="sr-only"
-        checked
-      />
-    </label>
-  </div>
+  <label
+    for="ColorRed"
+    class="block size-8 rounded-full bg-red-500 shadow-sm has-checked:ring-2 has-checked:ring-red-500 has-checked:ring-offset-2"
+  >
+    <input type="radio" name="ColorOption" value="ColorRed" id="ColorRed" class="sr-only" />
 
-  <div>
-    <label
-      for="DeliveryPriority"
-      class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-xs hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
-    >
-      <div>
-        <p class="text-gray-700">Next Day</p>
+    <span class="sr-only">Red</span>
+  </label>
 
-        <p class="mt-1 text-gray-900">£9.99</p>
-      </div>
+  <label
+    for="ColorBlue"
+    class="block size-8 rounded-full bg-blue-500 shadow-sm has-checked:ring-2 has-checked:ring-blue-500 has-checked:ring-offset-2"
+  >
+    <input type="radio" name="ColorOption" value="ColorBlue" id="ColorBlue" class="sr-only" />
 
-      <input
-        type="radio"
-        name="DeliveryOption"
-        value="DeliveryPriority"
-        id="DeliveryPriority"
-        class="sr-only"
-      />
-    </label>
-  </div>
+    <span class="sr-only">Blue</span>
+  </label>
+
+  <label
+    for="ColorGold"
+    class="block size-8 rounded-full bg-amber-500 shadow-sm has-checked:ring-2 has-checked:ring-amber-500 has-checked:ring-offset-2"
+  >
+    <input type="radio" name="ColorOption" value="ColorGold" id="ColorGold" class="sr-only" />
+
+    <span class="sr-only">Gold</span>
+  </label>
 </fieldset>
