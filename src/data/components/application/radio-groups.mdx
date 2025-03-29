@@ -5,12 +5,27 @@ emoji: 📻
 wrapper: h-[400px]
 container: p-6 max-w-lg mx-auto
 components:
-  - { title: 'Stacked with border highlight when checked', dark: true }
-  - { title: 'Stacked with icon when checked', dark: true }
-  - { title: 'Grid with border highlight when checked', dark: true }
-  - { title: 'Grid with border highlight when checked, shows radio input', dark: true }
-  - { title: 'Tab style variants with highlight when checked' }
-  - { title: 'Color circle variants with outer ring highlight when checked' }
+  - {
+      title: 'Stacked with border highlight when checked',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - { title: 'Stacked with icon when checked', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Grid with border highlight when checked',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Grid with border highlight when checked, shows radio input',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - { title: 'Tab style variants with highlight when checked', plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Color circle variants with outer ring highlight when checked',
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 # Radio Group Components
