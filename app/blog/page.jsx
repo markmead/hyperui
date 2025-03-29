@@ -24,7 +24,7 @@ async function getPosts() {
       const postPath = join(postsPath, blogSlug)
       const blogItem = await fs.readFile(postPath, 'utf-8')
 
-      const mdxSoruce = await serialize(blogItem, {
+      const mdxSource = await serialize(blogItem, {
         parseFrontmatter: true,
       })
 
