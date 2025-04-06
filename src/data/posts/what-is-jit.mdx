@@ -1,83 +1,148 @@
 ---
-title: What is JIT in Tailwind CSS? (v3)
-description: Tailwind CSS v3 made JIT the standard. Learn what it is for and how to use JIT to write custom CSS outside of the scope of Tailwind CSS.
-date: 02/05/2022
+title: What is JIT in Tailwind CSS? Complete Guide to Just-In-Time Mode
+description: Learn how Tailwind CSS JIT (Just-In-Time) compiler works in v3, how it improves performance, and advanced techniques for using arbitrary values, custom properties, and dynamic styling.
+date: 04/05/2025
 emoji: ⏰
 ---
 
-## What is JIT?
+## What is JIT in Tailwind CSS?
 
-Since v3, JIT has been the default in Tailwind CSS, bringing significant power to the framework. One of the best additions are [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values), which let you replace custom CSS with Tailwind CSS-like classes.
+JIT, or Just-In-Time mode, has been the default compiler in Tailwind CSS since version 3.0. It fundamentally changes how Tailwind generates CSS by only creating the styles you actually use in your project, rather than generating everything and then purging unused styles later.
 
-_Note: Any use of an `_` in the class name adds a space, as you can't use spaces within JIT classes.\_
+This approach brings significant advantages:
 
-### Arbitrary Values without JIT
+- **Dramatically smaller CSS files** during development and production
+- **Lightning-fast build times** with on-demand style generation
+- **Complete freedom from Tailwind's constraints** with arbitrary value support
+- **No need for PurgeCSS** configuration as styles are generated on-demand
 
+One of the most powerful features JIT introduces is [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values), which allow you to break free from Tailwind's predefined design system while maintaining its utility-first methodology.
+
+Note: When using arbitrary values, use an underscore (`_`) to represent spaces, as spaces can't be used directly within JIT class names.
+
+### The Evolution of JIT in Tailwind
+
+Before Tailwind CSS v3, developers faced a common challenge: the framework generated enormous CSS files during development (often 10MB+), which then needed to be purged for production. JIT was first introduced as an experimental feature in v2.1 to address this issue, and its success led to it becoming the default in v3.
+
+## Arbitrary Values: Before and After JIT
+
+### Without JIT (Old Approach)
+
+Previously, to position an element in a specific location, you'd need to create custom CSS:
+
+```html
+<div class="alert absolute p-4">Hello World! 👋</div>
 ```
-<div class="floating-alert absolute p-4">Hello World! 👋</div>
-```
 
-And for the CSS...
+With corresponding CSS:
 
-```
-.floating-alert {
+```css
+.alert {
   bottom: 5px;
   right: 5px;
 }
 ```
 
-### Arbitrary Values with JIT
+This approach required switching between files and maintaining separate CSS.
 
-```
-<div class="absolute bottom-[5px] right-[5px] p-4">Hello World! 👋</div>
-```
+### With JIT (Modern Approach)
 
-The benefit here is keeping everything within the HTML, which means:
+Now you can achieve the same result directly in your HTML:
 
-- Less switching between files
-- No need to update Tailwind CSS config
-- Easy use of Tailwind CSS breakpoints `top-[2px] sm:top-[3px] lg:top-[5px]`
-
-## Outside CSS Properties
-
-Although Tailwind CSS covers many CSS properties, there may be times when it doesn't cover everything you need. With some JIT usage, you can write that CSS without leaving your HTML file, keeping it in the Tailwind CSS style.
-
-```
-[column-fill:_balance]
-[image-rendering:_pixelated]
-[image-rendering:_auto]
-[&_summary::-webkit-details-marker]:hidden
+```html
+<div class="absolute right-[5px] bottom-[5px] p-4">Hello World! 👋</div>
 ```
 
-## Targeting Elements
+The benefits are substantial:
 
-You can use a JIT class to target specific child elements, saving you from copying and pasting the same classes multiple times.
+- **Development efficiency**: No need to switch between HTML and CSS files
+- **Maintainability**: Styles stay with their elements
+- **Flexibility**: No config updates needed for one-off values
+- **Responsive design**: Easy application of Tailwind breakpoints like `sm:bottom-[10px]`
 
+## Expanding Beyond Tailwind's Built-in Utilities
+
+While Tailwind covers most common CSS properties, you'll occasionally need something beyond its scope. JIT's arbitrary properties let you write any CSS without leaving your HTML:
+
+```html
+<!-- CSS Properties not included in Tailwind -->
+<div class="[column-fill:_balance]">Multi-column content</div>
+<img class="[image-rendering:_pixelated]" src="pixel-art.png" alt="Pixel art" />
+
+<!-- Advanced selectors -->
+<details class="[&_summary::-webkit-details-marker]:hidden">
+  <summary>Toggle details without marker</summary>
+  <p>Hidden content</p>
+</details>
 ```
-[&_input]:rounded-md
-[&:hover>li]:opacity-50
+
+## Targeting Child Elements with JIT
+
+JIT enables powerful child-targeting capabilities, reducing repetitive class application:
+
+```html
+<!-- All inputs within this form get rounded corners -->
+<form class="[&_input]:rounded-md [&_input]:border [&_input]:p-2">
+  <input type="text" placeholder="Name" />
+  <input type="email" placeholder="Email" />
+</form>
+
+<!-- List items show full opacity on hover -->
+<ul class="[&:hover>li]:opacity-50 [&>li]:opacity-70 [&>li:hover]:opacity-100">
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ul>
 ```
 
-## Custom Background Images
+## Dynamic Styling with JIT
 
-Instead of adding background images in a `style` attribute on the HTML element, you can do it through Tailwind CSS.
+### Custom Background Images and Gradients
 
+Rather than using inline styles, maintain the utility-first approach:
+
+```html
+<!-- Background images -->
+<div class="bg-[url('/images/hero.jpg')]">Hero section</div>
+
+<!-- Complex gradients -->
+<div class="bg-[linear-gradient(180deg,_#eab308_49.9%,_#a855f7_50%)]">Gradient background</div>
 ```
-bg-[url(https://source.unsplash.com/random)]
+
+### Working with CSS Variables
+
+JIT works seamlessly with CSS variables for dynamic styling:
+
+```html
+<!-- Dynamic width based on a CSS variable -->
+<div style="--progress: 65%;" class="h-2 w-[var(--progress)] bg-blue-500">Progress bar</div>
+
+<!-- Dynamic grid using CSS variables -->
+<div style="--columns: 3;" class="grid grid-cols-[repeat(var(--columns),_1fr)]">Grid content</div>
 ```
 
-This also works for gradients.
+## Performance Benefits of JIT
 
-```
-bg-[linear-gradient(180deg,_#eab308_49.9%,_#a855f7_50%)]
-```
+JIT significantly improves build performance:
 
-## With Variables
+- **Development**: CSS file size reduced by ~95% during development
+- **Build time**: Changes compile in milliseconds rather than seconds
+- **Production**: No separate purge step needed, streamlining deployment
 
-You can use JIT with CSS variables applied to the element. This can be useful when setting up dynamic grids or progress bars. For example:
+## Best Practices for Using JIT
 
-<BlogPreview
-  previewId="progress-bar"
-  previewTitle="Progress Bar Example"
-  previewContainer="min-h-screen grid place-content-center p-8"
-/>
+1. **Use the design system when possible**: Only reach for arbitrary values when necessary
+2. **Consider abstracting repeated arbitrary values**: If you use the same arbitrary value multiple times, consider adding it to your Tailwind config
+3. **Be cautious with specificity**: Complex selectors can cause specificity issues
+4. **Document unusual patterns**: When using complex arbitrary values, add comments for team clarity
+
+## Conclusion
+
+Tailwind CSS's Just-In-Time compiler has revolutionized the developer experience by offering unlimited flexibility while maintaining the utility-first approach that makes Tailwind so productive. By understanding arbitrary values and JIT's capabilities, you can write more efficient code, reduce context-switching, and eliminate the need for most custom CSS.
+
+Next time you find yourself reaching for a custom CSS file, consider if JIT can solve your problem directly in your HTML instead.
+
+## Further Resources
+
+- [Official Tailwind JIT Documentation](https://tailwindcss.com/docs/just-in-time-mode)
+- [Using Arbitrary Values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)
+- [Tailwind CSS v3.0 Release Notes](https://tailwindcss.com/blog/tailwindcss-v3)

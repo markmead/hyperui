@@ -16,35 +16,34 @@ export const metadata = {
 
 const postsPath = join(process.cwd(), '/src/data/posts')
 
-async function getPosts() {
+async function getBlogs() {
   const blogSlugs = await fs.readdir(postsPath)
 
   const blogPosts = await Promise.all(
     blogSlugs.map(async (blogSlug) => {
-      const postPath = join(postsPath, blogSlug)
-      const blogItem = await fs.readFile(postPath, 'utf-8')
+      const blogPath = join(postsPath, blogSlug)
+      const blogData = await fs.readFile(blogPath, 'utf-8')
 
-      const mdxSource = await serialize(blogItem, {
+      const { frontmatter } = await serialize(blogData, {
         parseFrontmatter: true,
       })
 
       return {
-        ...mdxSource.frontmatter,
+        ...frontmatter,
         slug: blogSlug.replace('.mdx', ''),
       }
     })
   )
 
   return blogPosts.sort((blogA, blogB) => {
-    const dateA = new Date(blogA.date)
-    const dateB = new Date(blogB.date)
-
-    return dateB - dateA
+    return new Date(blogB.date) - new Date(blogA.date)
   })
 }
 
 export default async function Page() {
-  const blogPosts = await getPosts()
+  const blogPosts = await getBlogs()
+
+  console.log(blogPosts)
 
   return (
     <>

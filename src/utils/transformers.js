@@ -3,10 +3,8 @@ export function componentPreviewHtml(
   componentContainer = 'relative',
   isRtl = false
 ) {
-  const htmlDirection = isRtl ? 'rtl' : 'ltr'
-
   return `
-    <html class="dark" dir="${htmlDirection}">
+    <html class="dark" dir="${isRtl ? 'rtl' : 'ltr'}">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
