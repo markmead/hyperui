@@ -1,0 +1,46 @@
+<fieldset class="space-y-3">
+  <legend class="sr-only">Delivery</legend>
+
+  <div>
+    <label
+      for="DeliveryStandard"
+      class="flex items-center justify-between gap-4 rounded border border-gray-300 bg-white p-3 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 has-checked:border-blue-600 has-checked:ring-1 has-checked:ring-blue-600"
+    >
+      <div>
+        <p class="text-gray-700">Standard</p>
+
+        <p class="text-gray-900">Free</p>
+      </div>
+
+      <input
+        type="radio"
+        name="DeliveryOption"
+        value="DeliveryStandard"
+        id="DeliveryStandard"
+        class="size-5 border-gray-300"
+        checked
+      />
+    </label>
+  </div>
+
+  <div>
+    <label
+      for="DeliveryPriority"
+      class="flex items-center justify-between gap-4 rounded border border-gray-300 bg-white p-3 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 has-checked:border-blue-600 has-checked:ring-1 has-checked:ring-blue-600"
+    >
+      <div>
+        <p class="text-gray-700">Next Day</p>
+
+        <p class="text-gray-900">£9.99</p>
+      </div>
+
+      <input
+        type="radio"
+        name="DeliveryOption"
+        value="DeliveryPriority"
+        id="DeliveryPriority"
+        class="size-5 border-gray-300"
+      />
+    </label>
+  </div>
+</fieldset>

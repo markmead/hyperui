@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-
+import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
 
 import { componentBreakpoints } from '@data/breakpoints'
@@ -9,6 +9,7 @@ import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
 import PreviewCreator from '@component/PreviewCreator'
+import PreviewPlugins from '@component/PreviewPlugins'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
@@ -28,6 +29,8 @@ export default function ComponentPreview({ componentData }) {
   const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
 
+  const { category: categorySlug } = useParams()
+
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -37,11 +40,11 @@ export default function ComponentPreview({ componentData }) {
     id: componentId,
     title: componentTitle,
     slug: componentSlug,
-    category: componentCategory,
     container: componentSpace,
     wrapper: componentHeight,
     creator: componentCreator,
     dark: componentDark,
+    plugins: componentPlugins,
   } = componentData
 
   const componentHash = `component-${componentId}`
@@ -79,7 +82,7 @@ export default function ComponentPreview({ componentData }) {
   }, [codeType])
 
   async function fetchHtml() {
-    const componentUrl = `/components/${componentCategory}-${componentSlug}/${componentId}.html`
+    const componentUrl = `/components/${categorySlug}/${componentSlug}/${componentId}.html`
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
@@ -108,19 +111,19 @@ export default function ComponentPreview({ componentData }) {
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
 
-              <div className="hidden sm:flex">
-                <PreviewType
-                  componentId={componentId}
-                  codeType={codeType}
-                  handleSetCodeType={setCodeType}
-                />
+              <PreviewCopy componentCode={previewCode} />
 
-                <PreviewCopy componentCode={previewCode} />
-              </div>
+              <PreviewType
+                componentId={componentId}
+                codeType={codeType}
+                handleSetCodeType={setCodeType}
+              />
             </div>
           )}
 
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
+            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
+
             {componentBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint
@@ -133,33 +136,25 @@ export default function ComponentPreview({ componentData }) {
                 />
               )
             )}
-
-            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
           </div>
         </div>
 
-        <div className="relative">
-          <div>
-            <PreviewIframe
-              showPreview={showPreview}
-              componentHtml={componentHtml}
-              componentTitle={componentTitle}
-              previewWidth={previewWidth}
-              previewHeight={componentHeight}
-              previewDark={componentDark}
-              refIframe={refIframe}
-            />
+        {showPreview ? (
+          <PreviewIframe
+            componentHtml={componentHtml}
+            componentTitle={componentTitle}
+            previewWidth={previewWidth}
+            previewHeight={componentHeight}
+            previewDark={componentDark}
+            refIframe={refIframe}
+          />
+        ) : (
+          <PreviewCode componentId={componentId} codeType={codeType} componentCode={previewCode} />
+        )}
 
-            <PreviewCode
-              componentId={componentId}
-              showPreview={showPreview}
-              codeType={codeType}
-              componentCode={previewCode}
-            />
-          </div>
-        </div>
+        <PreviewCreator creatorGithub={componentCreator} />
 
-        {componentCreator && <PreviewCreator creatorGithub={componentCreator} />}
+        {!!componentPlugins.length && <PreviewPlugins componentPlugins={componentPlugins} />}
       </div>
     </div>
   )

@@ -4,7 +4,6 @@ import { join } from 'path'
 import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionList from '@component/CollectionList'
@@ -19,8 +18,8 @@ export async function generateMetadata({ params }) {
   const { collectionData } = await getCollection(params)
 
   return {
-    title: `Tailwind CSS ${collectionData.seo.title} | HyperUI`,
-    description: collectionData.seo.description,
+    title: `Tailwind CSS ${collectionData.title} | HyperUI`,
+    description: collectionData.description,
     alternates: {
       canonical: `/components/${params.category}/${params.collection}`,
     },
@@ -33,7 +32,10 @@ export async function generateStaticParams() {
 
 async function getCollection(params) {
   try {
-    const componentPath = join(componentsDirectory, `${params.category}-${params.collection}.mdx`)
+    const categorySlug = params.category
+    const componentSlug = params.collection
+
+    const componentPath = join(componentsDirectory, categorySlug, `${componentSlug}.mdx`)
     const componentItem = await fs.readFile(componentPath, 'utf-8')
 
     const mdxSource = await serialize(componentItem, {
@@ -56,44 +58,43 @@ export default async function Page({ params }) {
   const { collectionData, collectionContent } = await getCollection(params)
 
   const componentsData = {
-    componentsData: Object.entries(collectionData.components).flatMap(
-      ([componentId, componentItem]) => {
-        const { dark: isDark } = componentItem
+    componentsData: collectionData.components.flatMap((componentItem, componentIndex) => {
+      const { dark: isDark } = componentItem
 
-        const newComponent = {
-          id: componentId,
-          title: componentItem.title,
-          slug: collectionData.slug,
-          category: collectionData.category,
-          container: componentItem.container || collectionData.container || '',
-          wrapper: componentItem.wrapper || collectionData.wrapper || 'h-[400px] lg:h-[600px]',
-          creator: componentItem.creator || '',
-          dark: false,
-        }
+      const componentId = componentIndex + 1
 
-        if (!isDark) {
-          return newComponent
-        }
-
-        // We create an array of two components, one light and one dark
-        return [
-          newComponent,
-          {
-            ...newComponent,
-            id: `${componentId}-dark`,
-            title: `${newComponent.title} (Dark)`,
-            dark: true,
-          },
-        ]
+      const newComponent = {
+        id: componentId,
+        title: componentItem.title,
+        slug: collectionData.slug,
+        category: collectionData.category,
+        container: componentItem?.container || collectionData?.container || '',
+        wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
+        creator: componentItem?.creator || 'markmead',
+        plugins: componentItem?.plugins || [],
+        dark: false,
       }
-    ),
+
+      if (!isDark) {
+        return newComponent
+      }
+
+      // We create an array of two components, one light and one dark
+      return [
+        newComponent,
+        {
+          ...newComponent,
+          id: `${componentId}-dark`,
+          title: `${newComponent.title} (Dark)`,
+          dark: true,
+        },
+      ]
+    }),
   }
 
   return (
-    <Container id="mainContent" classNames="py-8 lg:py-12 space-y-8">
-      <Ad />
-
-      <div className="prose max-w-none">
+    <Container id="mainContent" classNames="py-8 lg:py-12 ">
+      <div className="prose prose-p:max-w-prose prose-pre:rounded-3xl! max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}

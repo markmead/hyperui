@@ -1,0 +1,23 @@
+---
+title: Carts
+description: Carts components created with Tailwind CSS
+emoji: 🛒
+components:
+  - { title: 'Popup', container: 'p-6 flex justify-end' }
+  - {
+      title: 'Popup with actions',
+      container: 'p-6 flex justify-end',
+      plugins: ['@tailwindcss/forms'],
+    }
+  - { title: 'Page', plugins: ['@tailwindcss/forms'] }
+---
+
+# Cart Components
+
+<div class="max-w-prose text-pretty">
+  These components were originally part of the eCommerce category but have since moved.
+</div>
+
+<p>{frontmatter.description}</p>
+
+<CollectionList componentsData={componentsData} />

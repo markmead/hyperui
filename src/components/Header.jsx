@@ -9,7 +9,6 @@ import Container from '@component/Container'
 import GithubSocial from '@component/GithubSocial'
 import HeaderMenu from '@component/HeaderMenu'
 import HeaderMenuLinks from '@component/HeaderMenuLinks'
-import HeaderSearch from '@component/HeaderSearch'
 
 export default function Header() {
   const routerPathname = usePathname()
@@ -43,8 +42,6 @@ export default function Header() {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
-          <HeaderSearch />
-
           <GithubSocial />
 
           <HeaderMenu showMenu={showMenu} handleSetShowMenu={setShowMenu} menuLinks={menuLinks} />

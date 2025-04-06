@@ -1,4 +1,3 @@
-import Ad from '@component/Ad'
 import Container from '@component/Container'
 import UspList from '@component/UspList'
 
@@ -16,10 +15,6 @@ export default function HeroBanner({ children, subtitle, title }) {
           <p className="text-base/relaxed text-pretty text-gray-700">{children}</p>
 
           <UspList />
-        </div>
-
-        <div className="mt-4">
-          <Ad />
         </div>
       </Container>
     </section>

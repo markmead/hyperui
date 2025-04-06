@@ -17,7 +17,6 @@ async function getComponents() {
   const categoriesPath = join(process.cwd(), '/src/data/categories')
 
   const categorySlugs = ['application', 'marketing']
-  const componentSlugs = await fs.readdir(componentsPath)
 
   const componentsByCategory = await Promise.all(
     categorySlugs.map(async (categorySlug) => {
@@ -28,28 +27,34 @@ async function getComponents() {
         parseFrontmatter: true,
       })
 
+      const componentSlugs = await fs.readdir(join(componentsPath, categorySlug))
+
       const componentItems = await Promise.all(
         componentSlugs
-          .filter((componentSlug) => componentSlug.includes(categorySlug))
+          .filter((componentSlug) => componentSlug.includes('.mdx'))
           .map(async (componentSlug) => {
-            const componentPath = join(componentsPath, componentSlug)
+            const componentPath = join(componentsPath, categorySlug, componentSlug)
             const componentItem = await fs.readFile(componentPath, 'utf-8')
 
             const { frontmatter: componentData } = await serialize(componentItem, {
               parseFrontmatter: true,
             })
 
-            const componentSlugFormatted = componentSlug.replace('.mdx', '')
-            const componentSlugTrue = componentSlugFormatted.replace(
-              `${componentData.category}-`,
-              ''
+            const componentCount = componentData.components.reduce(
+              (currentCount, componentItem) => {
+                const isDark = !!componentItem.dark
+
+                return currentCount + (isDark ? 2 : 1)
+              },
+              0
             )
-            const componentCount = Object.values(componentData.components).length
+
+            const componentSlugFormatted = componentSlug.replace('.mdx', '')
 
             return {
               title: componentData.title,
-              slug: componentSlugTrue,
-              category: componentData.category,
+              slug: componentSlugFormatted,
+              category: categorySlug,
               emoji: componentData.emoji,
               count: componentCount,
               tag: componentData.tag,
@@ -86,7 +91,9 @@ export default async function Page() {
           {componentsByCategory.map(({ categoryTitle, componentItems = [] }) => {
             return (
               <li className="space-y-4" key={categoryTitle}>
-                <h2 className="text-lg font-bold text-gray-900 sm:text-xl">{categoryTitle}</h2>
+                <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
+                  {categoryTitle} Components
+                </h2>
 
                 <CollectionGrid componentItems={componentItems} />
               </li>
