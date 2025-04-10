@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-
 import { join } from 'path'
 import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'

@@ -7,11 +7,11 @@ import Footer from '@component/Footer'
 import Header from '@component/Header'
 import HeaderBanner from '@component/HeaderBanner'
 
-// prettier-ignore
 export const metadata = {
   metadataBase: new URL('https://hyperui.dev'),
   title: 'Free Open Source Tailwind CSS v4 Components | HyperUI',
-  description: 'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
+  description:
+    'Discover free Tailwind CSS v4 components for your next project, designed to enhance your web development with the latest features and styles.',
   openGraph: {
     url: 'https://www.hyperui.dev/',
     siteName: 'HyperUI',
