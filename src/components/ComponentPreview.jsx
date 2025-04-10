@@ -2,10 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
 
-import { componentBreakpoints } from '@data/breakpoints'
 import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
 
-import PreviewBreakpoint from '@component/PreviewBreakpoint'
+import PreviewBreakpoints from '@component/PreviewBreakpoints'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
 import PreviewCreator from '@component/PreviewCreator'
@@ -121,22 +120,7 @@ export default function ComponentPreview({ componentData }) {
             </div>
           )}
 
-          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
-            <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
-
-            {componentBreakpoints.map(
-              ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
-                <PreviewBreakpoint
-                  key={breakpointName}
-                  breakpointText={breakpointName}
-                  breakpointEmoji={breakpointEmoji}
-                  breakpointWidth={breakpointWidth}
-                  handleSetPreviewWidth={setPreviewWidth}
-                  breakpointActive={previewWidth === breakpointWidth}
-                />
-              )
-            )}
-          </div>
+          <PreviewBreakpoints previewWidth={previewWidth} setPreviewWidth={setPreviewWidth} />
         </div>
 
         {showPreview ? (
