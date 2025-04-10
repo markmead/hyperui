@@ -8,7 +8,7 @@ export default function PreviewBreakpoint({
   breakpointText,
 }) {
   return (
-    <button onClick={() => handleSetPreviewWidth(breakpointWidth)}>
+    <button type="button" onClick={() => handleSetPreviewWidth(breakpointWidth)}>
       <ButtonStyle
         buttonEmoji={breakpointEmoji}
         buttonText={breakpointText}

@@ -29,7 +29,7 @@ export default function PreviewCopy({ componentCode = '' }) {
   }
 
   return (
-    <button onClick={handleCopyToClipboard} className="hidden sm:block">
+    <button type="button" onClick={handleCopyToClipboard} className="hidden sm:block">
       <ButtonStyle buttonEmoji={buttonEmoji} buttonText={buttonText} />
     </button>
   )
