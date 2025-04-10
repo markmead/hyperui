@@ -43,8 +43,6 @@ async function getBlogs() {
 export default async function Page() {
   const blogPosts = await getBlogs()
 
-  console.log(blogPosts)
-
   return (
     <>
       <HeroBanner title="Blog" subtitle="Tailwind CSS Blog with Tips and Tricks">
