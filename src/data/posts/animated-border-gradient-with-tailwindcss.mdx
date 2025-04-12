@@ -1,116 +1,79 @@
 ---
-title: How to Create an Animated Border Gradient with Tailwind CSS (v3)
+title: How to Create an Animated Border Gradient with Tailwind CSS v4
 description: Learn to create an animated border gradient using Tailwind CSS without custom CSS.
-date: 09/30/2022
+date: 04/12/2025
 emoji: 🪄
 ---
 
-Creating an elegant animated border shouldn't be difficult or messy with Tailwind CSS. Here's a straightforward and clean approach.
+While gradient borders aren't heavily featured in the HyperUI components, they add a beautiful touch to interactive elements - especially when animated. In this tutorial, I'll show you how to create a gradient border with Tailwind CSS and then bring it to life with animation.
 
-## Faking the Border
+## Step 1: Creating the Gradient Border
 
-First, we need our interactive element. For this example, I'll use an `<a>` tag. We create an illusion of a border by using a background color and padding.
+First, let's create our interactive element. For this example, I'll use an `<a>` tag. The border effect comes from applying padding (`p-1`) which creates a 4px space between the outer gradient background and an inner element with a solid background color.
 
-```
-<a href="#" class="inline-block bg-white p-0.5">
-  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
+_Note: 4px is quite a large border and is only used for demonstration purposes. For more subtle effects, consider using `p-px` or `p-0.5` instead._
+
+```html
+<a href="#" class="block rounded-full bg-gradient-to-r from-green-300 via-blue-600 to-red-300 p-1">
+  <span class="block rounded-full bg-white px-10 py-4 text-lg font-medium"> Hello there 👋 </span>
 </a>
 ```
 
-Inside this, we add a `<span>` element that contains the text content of the element, along with the desired padding for our button or link.
+This code gives you a static gradient border. If that's all you need, you're all set! But if you want to add animation, continue reading.
 
-## Adding the Gradient
+## Step 2: Animating the Border
 
-Next, we add the gradient.
+To create the animation effect, we need to make the gradient move around the element. Here's the complete animated example:
 
-I'll use a pre-made Tailwind CSS gradient from [Hypercolor](https://hypercolor.dev/).
-
-We apply the gradient to the interactive element with the faux border.
-
-```
-<a href="#" class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 p-0.5">
-  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
-</a>
-```
-
-You might worry that the gradient classes added will overwrite the `bg-white`, but it won't. For that to happen, we need to add the gradient direction class, which is done on hover.
-
-### Applying the Hover Effect
-
-We can enhance what we've done by adding two more classes: one is a default Tailwind CSS class applied on hover, and the other is always applied, requiring some JIT (Just-In-Time) magic.
-
-```
+```html
 <a
   href="#"
-  class="inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:_400%_400%] p-0.5 hover:bg-gradient-to-r"
+  class="animate-background block rounded-full bg-gradient-to-r from-green-300 via-blue-600 to-red-300 bg-[length:_400%_400%] p-1 [animation-duration:_6s]"
 >
-  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
+  <span class="block rounded-full bg-white px-10 py-4 text-lg font-medium"> Hello there 👋 </span>
 </a>
 ```
 
-Let's break these down.
+Let's break down the new classes that enable the animation:
 
-`hover:bg-gradient-to-r`
+`animate-background`
 
-This applies the gradient direction class only on hover, which will display the gradient instead of `bg-white`.
+This extends Tailwind's animation utilities with a custom animation for moving background gradients:
 
-`bg-[length:400%_400%]`
+```css
+@theme {
+  --animate-background: background-move ease infinite;
 
-This enlarges the gradient, enabling us to animate it. Without this class, the gradient will appear static and won't animate.
+  @keyframes background-move {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
 
-### Animating the Gradient
-
-Now, let's animate.
-
-First, we need to make some additions to our Tailwind CSS config.
-
-```
-theme: {
-  extend: {
-    animation: {
-      border: 'background ease infinite',
-    },
-    keyframes: {
-      background: {
-        '0%, 100%': { backgroundPosition: '0% 50%' },
-        '50%': { backgroundPosition: '100% 50%' },
-      },
-    },
-  },
+    50% {
+      background-position: 100% 50%;
+    }
+  }
 }
 ```
 
-Here, we're creating an animation with the class `animate-background` using the `background` keyframes. This moves the gradient.
+This animation shifts the background position back and forth, creating the flowing gradient effect.
 
-Finally, we add the `animate-background` class to the interactive element with the gradient classes.
+`bg-[length:_400%_400%]`
 
-You can use `hover:animate-background` if preferred, but note that the animation will reset when you're no longer hovering, which can cause it to look a bit jumpy.
+This enlarges the gradient to 400% of the element's size in both directions. The larger background size is essential for the animation - it gives the gradient room to move without showing empty space during animation.
 
-The full example looks like this.
+`[animation-duration:_6s]`
 
-```
-<a
-  href="#"
-  class="animate-background inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:_400%_400%] p-0.5 [animation-duration:_6s] hover:bg-gradient-to-r"
->
-  <span class="block bg-gray-900 px-5 py-3 text-white"> Get Started </span>
-</a>
-```
+This controls how quickly the animation completes one cycle. You can adjust this value to speed up or slow down the effect.
 
-We're using the arbitrary properties syntax to write `[animation-duration:_6s]` so we can alter the `animation-duration` for each use of the effect.
+## Step 3: Experiment with Variations
 
-Here's how it looks. I've added some extra classes to enhance the `<a>`.
+Now that you have the basic animated gradient border working, try these variations:
 
-<BlogPreview
-  previewId="animated-border"
-  previewTitle="Animated Border Example"
-  previewContainer="grid min-h-screen place-content-center p-8"
-/>
+- **Change the gradient colors**: Try `from-purple-500 via-pink-500 to-red-500` for a warmer palette
+- **Adjust animation speed**: `[animation-duration:_3s]` for faster movement or [animation-duration:_10s] for a more subtle effect
+- **Play with background size**: A smaller value like `bg-[length:_200%_200%]` creates a shorter animation path
+- **Try different easing functions**: Use `ease-in-out` for smoother transitions
 
----
-
-You can see these effects in action on the following blog card components:
-
-- [Gradient Border](/components/marketing/blog-cards#component-4)
-- [Gradient Border Animated](/components/marketing/blog-cards#component-5)
-- [Gradient Border Animated on Hover](/components/marketing/blog-cards#component-6)
+Here is the full working example on Tailwind Play - [https://play.tailwindcss.com/R1JVmaA97v](https://play.tailwindcss.com/R1JVmaA97v)
