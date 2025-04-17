@@ -49,6 +49,7 @@ HyperUI has a wide range of freely available components. These components includ
 - [Grids](https://www.hyperui.dev/components/application/grids)
 - [Inputs](https://www.hyperui.dev/components/application/inputs)
 - [Media](https://www.hyperui.dev/components/application/media)
+- [Modals](https://www.hyperui.dev/components/application/modals)
 - [Pagination](https://www.hyperui.dev/components/application/pagination)
 - [Quantity Inputs](https://www.hyperui.dev/components/application/quantity-inputs)
 - [Radio Groups](https://www.hyperui.dev/components/application/radio-groups)
