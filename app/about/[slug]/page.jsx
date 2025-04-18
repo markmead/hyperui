@@ -11,7 +11,9 @@ import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const pagesPath = join(process.cwd(), '/src/data/pages')
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
+
   const { pageData } = await getPage(params)
 
   return {
@@ -48,7 +50,9 @@ async function getPage(params) {
   }
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params
+
   const { pageData, pageContent } = await getPage(params)
 
   return (

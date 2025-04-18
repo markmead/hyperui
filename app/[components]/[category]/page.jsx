@@ -7,7 +7,9 @@ import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
+
   const { categoryData } = await getCategory(params)
 
   return {
@@ -75,7 +77,9 @@ async function getCategory(params) {
   }
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params
+
   const { categoryData, componentItems } = await getCategory(params)
 
   return (

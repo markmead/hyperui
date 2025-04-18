@@ -3,7 +3,9 @@ import { getPost } from '@util/db'
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
+
   const { frontmatter } = await getPost(params)
 
   return {
@@ -15,7 +17,9 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params
+
   const { frontmatter, ...content } = await getPost(params)
 
   const schemaData = {
