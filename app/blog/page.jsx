@@ -12,6 +12,8 @@ export const metadata = {
   },
 }
 
+export const dynamic = 'force-static'
+
 export default async function Page() {
   const blogPosts = await getPosts()
 
