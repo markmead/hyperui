@@ -77,3 +77,7 @@ To create a new collection, please [create an issue](https://github.com/markmead
 If you plan to add a component to HyperUI, I will provide feedback on both the design and development of the component.
 
 For new component pull requests, I will review the work three times. If feedback from the first review remains unaddressed by the third review, I will close the PR. If there is new feedback on the third review, it's not an issue.
+
+### Next Console Warnings
+
+When developing locally, you will likely see the console warning `params should be awaited before using its properties`. Please ignore this. We do use `await` but it's for the `getX` functions that take in the `params` and returns resolved data. It does not return an unresolved `Promise`.
