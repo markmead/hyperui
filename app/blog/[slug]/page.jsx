@@ -1,7 +1,29 @@
+import { promises as fs } from 'node:fs'
+import { join } from 'node:path'
+
 import { getPost } from '@util/db'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
+
+export const dynamic = 'force-static'
+
+export async function generateStaticParams() {
+  const postsDir = join(process.cwd(), '/src/data/posts')
+  const postFiles = await fs.readdir(postsDir)
+
+  const staticParams = []
+
+  for (const postFile of postFiles) {
+    if (!postFile.endsWith('.mdx')) {
+      continue
+    }
+
+    staticParams.push({ slug: postFile.replace('.mdx', '') })
+  }
+
+  return staticParams
+}
 
 export async function generateMetadata({ params }) {
   const { frontmatter } = await getPost(params)

@@ -1,8 +1,7 @@
-import { notFound } from 'next/navigation'
+import { join } from 'node:path'
+import { promises as fs } from 'node:fs'
 
-import { join } from 'path'
-import { promises as fs } from 'fs'
-import { serialize } from 'next-mdx-remote/serialize'
+import { getCollection } from '@util/db'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -13,6 +12,37 @@ const mdxComponents = {
 }
 
 const componentsDirectory = join(process.cwd(), '/src/data/components')
+
+export const dynamic = 'force-static'
+
+export async function generateStaticParams() {
+  const categoryFolders = await fs.readdir(componentsDirectory)
+  const staticParams = []
+
+  for (const categoryFolder of categoryFolders) {
+    const categoryPath = join(componentsDirectory, categoryFolder)
+    const categoryStat = await fs.stat(categoryPath)
+
+    if (!categoryStat.isDirectory()) {
+      continue
+    }
+
+    const collectionFiles = await fs.readdir(categoryPath)
+
+    for (const collectionFile of collectionFiles) {
+      if (!collectionFile.endsWith('.mdx')) {
+        continue
+      }
+
+      staticParams.push({
+        category: categoryFolder,
+        collection: collectionFile.replace('.mdx', ''),
+      })
+    }
+  }
+
+  return staticParams
+}
 
 export async function generateMetadata({ params }) {
   const { collectionData } = await getCollection(params)
@@ -26,71 +56,40 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export async function generateStaticParams() {
-  return await fs.readdir(componentsDirectory)
-}
-
-async function getCollection(params) {
-  try {
-    const categorySlug = params.category
-    const componentSlug = params.collection
-
-    const componentPath = join(componentsDirectory, categorySlug, `${componentSlug}.mdx`)
-    const componentItem = await fs.readFile(componentPath, 'utf-8')
-
-    const mdxSource = await serialize(componentItem, {
-      parseFrontmatter: true,
-    })
-
-    return {
-      collectionData: {
-        ...mdxSource.frontmatter,
-        slug: params.collection,
-      },
-      collectionContent: mdxSource,
-    }
-  } catch {
-    notFound()
-  }
-}
-
 export default async function Page({ params }) {
   const { collectionData, collectionContent } = await getCollection(params)
 
-  const componentsData = {
-    componentsData: collectionData.components.flatMap((componentItem, componentIndex) => {
-      const { dark: isDark } = componentItem
+  const flatComponents = collectionData.components.flatMap((componentItem, componentIndex) => {
+    const { dark: isDark } = componentItem
 
-      const componentId = componentIndex + 1
+    const componentId = componentIndex + 1
 
-      const newComponent = {
-        id: componentId,
-        title: componentItem.title,
-        slug: collectionData.slug,
-        category: collectionData.category,
-        container: componentItem?.container || collectionData?.container || '',
-        wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
-        creator: componentItem?.creator || 'markmead',
-        plugins: componentItem?.plugins || [],
-        dark: false,
-      }
+    const newComponent = {
+      id: componentId,
+      title: componentItem.title,
+      slug: collectionData.slug,
+      category: collectionData.category,
+      container: componentItem?.container || collectionData?.container || '',
+      wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
+      creator: componentItem?.creator || 'markmead',
+      plugins: componentItem?.plugins || [],
+      dark: false,
+    }
 
-      if (!isDark) {
-        return newComponent
-      }
+    if (!isDark) {
+      return newComponent
+    }
 
-      // We create an array of two components, one light and one dark
-      return [
-        newComponent,
-        {
-          ...newComponent,
-          id: `${componentId}-dark`,
-          title: `${newComponent.title} (Dark)`,
-          dark: true,
-        },
-      ]
-    }),
-  }
+    return [
+      newComponent,
+      {
+        ...newComponent,
+        id: `${componentId}-dark`,
+        title: `${newComponent.title} (Dark)`,
+        dark: true,
+      },
+    ]
+  })
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12 ">
@@ -98,7 +97,7 @@ export default async function Page({ params }) {
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}
-          mdxScope={componentsData}
+          mdxScope={{ componentsData: flatComponents }}
         />
       </div>
     </Container>

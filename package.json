@@ -2,7 +2,7 @@
   "name": "hyperui",
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "postbuild": "yarn css --minify",
     "lint": "next lint --fix",
@@ -10,18 +10,20 @@
     "css": "npx @tailwindcss/cli -i ./src/styles/components.css -o ./public/components.css"
   },
   "dependencies": {
-    "next": "14.2.26",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "next": "15.3.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.2.26",
+    "@next/eslint-plugin-next": "15.3.1",
     "@tailwindcss/cli": "^4.1.4",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.4",
     "@tailwindcss/typography": "^0.5.16",
-    "eslint": "8.57.1",
-    "eslint-config-next": "^14.2.26",
+    "@typescript-eslint/parser": "^8.30.1",
+    "eslint": "9.24.0",
+    "eslint-config-next": "15.3.1",
+    "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.5.3",
@@ -33,7 +35,8 @@
     "rehype-external-links": "^3.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwindcss": "^4.1.4"
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3"
   },
   "packageManager": "yarn@1.22.22"
 }

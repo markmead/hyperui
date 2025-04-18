@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import rehypeExternalLinks from 'rehype-external-links'
 
 const postsDir = join(process.cwd(), '/src/data/posts')
+const pagesDir = join(process.cwd(), '/src/data/pages')
 
 export async function getPosts() {
   try {
@@ -48,6 +49,104 @@ export async function getPost(pageParams) {
     })
 
     return mdxSource
+  } catch {
+    notFound()
+  }
+}
+
+export async function getAboutPage(pageParams) {
+  try {
+    const pagePath = join(pagesDir, `${pageParams.slug}.mdx`)
+    const pageItem = await fs.readFile(pagePath, 'utf-8')
+
+    const mdxSource = await serialize(pageItem, {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+      },
+    })
+
+    return {
+      pageData: mdxSource.frontmatter,
+      pageContent: mdxSource,
+    }
+  } catch {
+    notFound()
+  }
+}
+
+export async function getCategory(pageParams) {
+  try {
+    const categorySlug = pageParams.category
+
+    const categoryPath = join(process.cwd(), '/src/data/categories', `${categorySlug}.mdx`)
+    const componentsPath = join(process.cwd(), '/src/data/components', categorySlug)
+
+    const componentSlugs = await fs.readdir(componentsPath)
+    const categoryItem = await fs.readFile(categoryPath, 'utf-8')
+
+    const { frontmatter: categoryData } = await serialize(categoryItem, {
+      parseFrontmatter: true,
+    })
+
+    const componentItems = await Promise.all(
+      componentSlugs
+        .filter((componentSlug) => componentSlug.includes('.mdx'))
+        .map(async (componentSlug) => {
+          const componentPath = join(componentsPath, componentSlug)
+          const componentItem = await fs.readFile(componentPath, 'utf-8')
+
+          const { frontmatter: componentData } = await serialize(componentItem, {
+            parseFrontmatter: true,
+          })
+
+          const componentCount = formatCount(componentData.components)
+
+          const componentSlugFormatted = componentSlug.replace('.mdx', '')
+
+          return {
+            title: componentData.title,
+            slug: componentSlugFormatted,
+            category: categorySlug,
+            emoji: componentData.emoji,
+            count: componentCount,
+            tag: componentData.tag,
+            id: componentSlugFormatted,
+          }
+        })
+    )
+
+    componentItems.sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
+
+    return {
+      categoryData,
+      componentItems,
+    }
+  } catch {
+    notFound()
+  }
+}
+
+export async function getCollection(pageParams) {
+  try {
+    const categorySlug = pageParams.category
+    const componentSlug = pageParams.collection
+
+    const componentsDirectory = join(process.cwd(), '/src/data/components')
+    const componentPath = join(componentsDirectory, categorySlug, `${componentSlug}.mdx`)
+    const componentItem = await fs.readFile(componentPath, 'utf-8')
+
+    const mdxSource = await serialize(componentItem, {
+      parseFrontmatter: true,
+    })
+
+    return {
+      collectionData: {
+        ...mdxSource.frontmatter,
+        slug: pageParams.collection,
+      },
+      collectionContent: mdxSource,
+    }
   } catch {
     notFound()
   }

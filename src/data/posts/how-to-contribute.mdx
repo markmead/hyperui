@@ -1,37 +1,27 @@
 ---
-title: How to Contribute to HyperUI
-description: Contributing to an open-source project can seem daunting. Learn how you can get involved with the development of HyperUI.
-date: 01/31/2025
+title: Contributing to HyperUI
+summary: Learn how to get involved with HyperUI development, report issues, and add new components or collections.
+date: 04/18/2025
 emoji: 🫵
 ---
 
-The idea of contributing to an open-source project can be intimidating. Let's explore how you can contribute to HyperUI.
+Contributing to open source can feel overwhelming, but getting involved with HyperUI is straightforward and rewarding. Here’s how you can help make HyperUI even better.
 
-## Spotted a Bug?
+## Found a Bug or Have an Idea?
 
-If you find something that doesn't seem right, such as:
+If you notice something off—like a typo, accessibility issue, or SEO concern—or if you have an idea for an improvement, please [open an issue](https://github.com/markmead/hyperui/issues/new/choose). This helps us discuss and plan the best way forward together.
 
-- Spelling
-- Accessibility
-- SEO
+## Want to Add or Improve Something?
 
-Or anything else, please [create an issue](https://github.com/markmead/hyperui/issues/new/choose).
+Thinking of adding a new component or feature? Before you start, [create an issue](https://github.com/markmead/hyperui/issues/new/choose) so we can chat about your idea. For new components, sharing example designs is helpful.
 
-Once an issue is created, we can begin discussing a solution and approach to resolving the issue.
+### Pull Request Process
 
-## Want to Add Something?
+All pull requests are reviewed before merging. You may receive feedback—this is part of making HyperUI great! If feedback from the first review isn’t addressed by the third review, the PR will be closed. If new feedback comes up in the third review, that’s fine—just address it as usual.
 
-If you have something to add to HyperUI, that's great! But before you dive in, I suggest you [create an issue](https://github.com/markmead/hyperui/issues/new/choose) so we can discuss what you want to add.
+### Setting Up HyperUI Locally
 
-If you're planning to add a new component, include some examples of how the component will look.
-
-### Pull Request Feedback
-
-All pull requests must be reviewed before being merged into HyperUI, which means there might be feedback at times.
-
-### Getting HyperUI Running Locally
-
-HyperUI is a Next JS project and can be quickly set up with the following commands.
+HyperUI runs on Next.js. To get started:
 
 ```
 git clone git@github.com:markmead/hyperui.git
@@ -40,40 +30,26 @@ yarn dev
 yarn css --watch
 ```
 
-### Creating a New Component
+### Adding a New Component
 
-For this example, we will create a new footer component in the marketing category.
+For example, to add a new footer component in the marketing category:
 
-1. Create a new file in `/public/components/marketing-footers`
-2. Add the new component to the components group in `/src/data/components/marketing-footers.mdx`
+1. Create a new file in `/public/components/marketing/footers`.
+2. Add the component to the group in `/src/data/components/marketing/footers.mdx`.
 
-It should look like this.
+Component files are named incrementally (e.g., 21, 22, etc.). Please follow this pattern. You can use `container:` to adjust the preview position—these classes won’t affect the copied code.
 
-```
-components:
-  21:
-    title: An Amazing Footer
-  22:
-    title: My Awesome New Footer
-```
+#### Component Guidelines
 
-As you can see, component files are named incrementally. Please follow this method.
+1. Use Tailwind CSS for all components.
+2. Only use official Tailwind CSS plugins. Declare any plugins used in the component object in the MDX file, for example: `plugins: ['@tailwindcss/forms']`.
 
-You can use `container:` to position the component within the preview. However, any classes added here will be ignored when copying or viewing the component's code.
-
-### Notes on New Components
-
-1. Components must be written with Tailwind CSS
-2. Reference used Tailwind CSS plugins in the HTML
-
-You can see examples of point 3 in the HTML of this [input component](/components/application/pagination#component-3).
+See examples in the [input component](/components/application/pagination#component-3).
 
 ### Creating a New Collection
 
-To create a new collection, please [create an issue](https://github.com/markmead/hyperui/issues/new/choose) on GitHub. Then we can discuss the new collection and brainstorm components to add.
+To propose a new collection, [open an issue](https://github.com/markmead/hyperui/issues/new/choose) so we can discuss and brainstorm ideas together.
 
-### New Component Feedback
+### Console Warnings
 
-If you plan to add a component to HyperUI, I will provide feedback on both the design and development of the component.
-
-For new component pull requests, I will review the work three times. If feedback from the first review remains unaddressed by the third review, I will close the PR. If there is new feedback on the third review, it's not an issue.
+When developing locally, you might see the warning: `params should be awaited before using its properties`. This can be ignored—`await` is used for `getX` functions that resolve data from `params`.
