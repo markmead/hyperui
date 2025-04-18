@@ -11,9 +11,24 @@ import MdxRemoteRender from '@component/MdxRemoteRender'
 
 const pagesPath = join(process.cwd(), '/src/data/pages')
 
-export async function generateMetadata(props) {
-  const params = await props.params
+export const dynamic = 'force-static'
 
+export async function generateStaticParams() {
+  const pageFiles = await fs.readdir(pagesPath)
+  const staticParams = []
+
+  for (const pageFile of pageFiles) {
+    if (!pageFile.endsWith('.mdx')) {
+      continue
+    }
+
+    staticParams.push({ slug: pageFile.replace('.mdx', '') })
+  }
+
+  return staticParams
+}
+
+export async function generateMetadata({ params }) {
   const { pageData } = await getPage(params)
 
   return {
@@ -23,10 +38,6 @@ export async function generateMetadata(props) {
       canonical: `/about/${params.slug}`,
     },
   }
-}
-
-export async function generateStaticParams() {
-  return await fs.readdir(pagesPath)
 }
 
 async function getPage(params) {
@@ -50,9 +61,7 @@ async function getPage(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
-
+export default async function Page({ params }) {
   const { pageData, pageContent } = await getPage(params)
 
   return (
