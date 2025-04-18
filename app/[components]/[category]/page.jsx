@@ -7,9 +7,27 @@ import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 
-export async function generateMetadata(props) {
-  const params = await props.params
+export const dynamic = 'force-static'
 
+export async function generateStaticParams() {
+  const categoryFolders = await fs.readdir(join(process.cwd(), '/src/data/components'))
+  const staticParams = []
+
+  for (const categoryFolder of categoryFolders) {
+    const categoryPath = join(process.cwd(), '/src/data/components', categoryFolder)
+    const categoryStat = await fs.stat(categoryPath)
+
+    if (!categoryStat.isDirectory()) {
+      continue
+    }
+
+    staticParams.push({ category: categoryFolder })
+  }
+
+  return staticParams
+}
+
+export async function generateMetadata({ params }) {
   const { categoryData } = await getCategory(params)
 
   return {
@@ -77,9 +95,7 @@ async function getCategory(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
-
+export default async function Page({ params }) {
   const { categoryData, componentItems } = await getCategory(params)
 
   return (
