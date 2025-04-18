@@ -14,9 +14,38 @@ const mdxComponents = {
 
 const componentsDirectory = join(process.cwd(), '/src/data/components')
 
-export async function generateMetadata(props) {
-  const params = await props.params
+export const dynamic = 'force-static'
 
+export async function generateStaticParams() {
+  const categoryFolders = await fs.readdir(componentsDirectory)
+  const staticParams = []
+
+  for (const categoryFolder of categoryFolders) {
+    const categoryPath = join(componentsDirectory, categoryFolder)
+    const categoryStat = await fs.stat(categoryPath)
+
+    if (!categoryStat.isDirectory()) {
+      continue
+    }
+
+    const collectionFiles = await fs.readdir(categoryPath)
+
+    for (const collectionFile of collectionFiles) {
+      if (!collectionFile.endsWith('.mdx')) {
+        continue
+      }
+
+      staticParams.push({
+        category: categoryFolder,
+        collection: collectionFile.replace('.mdx', ''),
+      })
+    }
+  }
+
+  return staticParams
+}
+
+export async function generateMetadata({ params }) {
   const { collectionData } = await getCollection(params)
 
   return {
@@ -52,9 +81,7 @@ async function getCollection(params) {
   }
 }
 
-export default async function Page(props) {
-  const params = await props.params
-
+export default async function Page({ params }) {
   const { collectionData, collectionContent } = await getCollection(params)
 
   const componentsData = {
