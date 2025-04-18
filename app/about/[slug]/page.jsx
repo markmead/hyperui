@@ -1,10 +1,7 @@
-import { notFound } from 'next/navigation'
+import { promises as fs } from 'node:fs'
+import { join } from 'node:path'
 
-import { promises as fs } from 'fs'
-import { join } from 'path'
-import { serialize } from 'next-mdx-remote/serialize'
-
-import rehypeExternalLinks from 'rehype-external-links'
+import { getAboutPage } from '@util/db'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -29,7 +26,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { pageData } = await getPage(params)
+  const { pageData } = await getAboutPage(params)
 
   return {
     title: `${pageData.title} | HyperUI`,
@@ -40,29 +37,8 @@ export async function generateMetadata({ params }) {
   }
 }
 
-async function getPage(params) {
-  try {
-    const pagePath = join(pagesPath, `${params.slug}.mdx`)
-    const pageItem = await fs.readFile(pagePath, 'utf-8')
-
-    const mdxSource = await serialize(pageItem, {
-      parseFrontmatter: true,
-      mdxOptions: {
-        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
-      },
-    })
-
-    return {
-      pageData: mdxSource.frontmatter,
-      pageContent: mdxSource,
-    }
-  } catch {
-    notFound()
-  }
-}
-
 export default async function Page({ params }) {
-  const { pageData, pageContent } = await getPage(params)
+  const { pageData, pageContent } = await getAboutPage(params)
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12">

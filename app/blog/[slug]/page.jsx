@@ -1,6 +1,7 @@
+import { promises as fs } from 'node:fs'
+import { join } from 'node:path'
+
 import { getPost } from '@util/db'
-import { join } from 'path'
-import fs from 'fs/promises'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -25,7 +26,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPost(params)
+  const post = await getPost(params)
+  const frontmatter = post?.frontmatter || {}
 
   return {
     title: `${frontmatter.title} | HyperUI`,
