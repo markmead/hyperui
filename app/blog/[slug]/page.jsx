@@ -26,8 +26,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getPost(params)
-  const frontmatter = post?.frontmatter || {}
+  const { frontmatter } = await getPost(params)
 
   return {
     title: `${frontmatter.title} | HyperUI`,
