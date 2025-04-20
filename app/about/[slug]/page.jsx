@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 
-import { getAboutPage } from '@util/db'
+import { getPage } from '@util/db'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -26,11 +26,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { pageData } = await getAboutPage(params)
+  const mdxSource = await getPage(params)
 
   return {
-    title: `${pageData.title} | HyperUI`,
-    description: pageData.description,
+    title: `${mdxSource.frontmatter.title} | HyperUI`,
+    description: mdxSource.frontmatter.description,
     alternates: {
       canonical: `/about/${params.slug}`,
     },
@@ -38,14 +38,14 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { pageData, pageContent } = await getAboutPage(params)
+  const mdxSource = await getPage(params)
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12">
       <article className="prose mx-auto">
-        <h1>{pageData.title}</h1>
+        <h1>{mdxSource.frontmatter.title}</h1>
 
-        <MdxRemoteRender mdxSource={pageContent} />
+        <MdxRemoteRender mdxSource={mdxSource} />
       </article>
     </Container>
   )

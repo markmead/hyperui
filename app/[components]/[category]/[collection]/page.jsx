@@ -45,11 +45,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { collectionData } = await getCollection(params)
+  const mdxSource = await getCollection(params)
 
   return {
-    title: `Tailwind CSS ${collectionData.title} | HyperUI`,
-    description: collectionData.description,
+    title: `Tailwind CSS ${mdxSource.frontmatter.title} | HyperUI`,
+    description: mdxSource.frontmatter.description,
     alternates: {
       canonical: `/components/${params.category}/${params.collection}`,
     },
@@ -57,45 +57,60 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { collectionData, collectionContent } = await getCollection(params)
+  const mdxSource = await getCollection(params)
 
-  const flatComponents = collectionData.components.flatMap((componentItem, componentIndex) => {
-    const { dark: isDark } = componentItem
+  const flatComponents = mdxSource.frontmatter.components.flatMap(
+    (componentItem, componentIndex) => {
+      const {
+        title,
+        container: componentContainer,
+        wrapper: componentWrapper,
+        creator: componentCreator,
+        plugins: componentPlugins,
+        dark: isDark,
+      } = componentItem
 
-    const componentId = componentIndex + 1
+      const {
+        category,
+        container: collectionContainer,
+        wrapper: collectionWrapper,
+      } = mdxSource.frontmatter
 
-    const newComponent = {
-      id: componentId,
-      title: componentItem.title,
-      slug: collectionData.slug,
-      category: collectionData.category,
-      container: componentItem?.container || collectionData?.container || '',
-      wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
-      creator: componentItem?.creator || 'markmead',
-      plugins: componentItem?.plugins || [],
-      dark: false,
+      const componentId = componentIndex + 1
+
+      const newComponent = {
+        id: componentId,
+        title,
+        slug: mdxSource.slug,
+        category,
+        container: componentContainer ?? collectionContainer ?? '',
+        wrapper: componentWrapper ?? collectionWrapper ?? 'h-[400px] lg:h-[600px]',
+        creator: componentCreator ?? 'markmead',
+        plugins: componentPlugins ?? [],
+        dark: false,
+      }
+
+      if (!isDark) {
+        return newComponent
+      }
+
+      return [
+        newComponent,
+        {
+          ...newComponent,
+          id: `${componentId}-dark`,
+          title: `${newComponent.title} (Dark)`,
+          dark: true,
+        },
+      ]
     }
-
-    if (!isDark) {
-      return newComponent
-    }
-
-    return [
-      newComponent,
-      {
-        ...newComponent,
-        id: `${componentId}-dark`,
-        title: `${newComponent.title} (Dark)`,
-        dark: true,
-      },
-    ]
-  })
+  )
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12 ">
       <div className="prose prose-p:max-w-prose prose-pre:rounded-3xl! max-w-none">
         <MdxRemoteRender
-          mdxSource={collectionContent}
+          mdxSource={mdxSource}
           mdxComponents={mdxComponents}
           mdxScope={{ componentsData: flatComponents }}
         />

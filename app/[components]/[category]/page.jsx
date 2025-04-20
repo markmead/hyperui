@@ -28,11 +28,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { categoryData } = await getCategory(params)
+  const mdxSource = await getCategory(params)
 
   return {
-    title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
-    description: categoryData.description,
+    title: `Tailwind CSS ${mdxSource.frontmatter.title} Components | HyperUI`,
+    description: mdxSource.frontmatter.description,
     alternates: {
       canonical: `/components/${params.category}`,
     },
@@ -40,16 +40,16 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { categoryData, componentItems } = await getCategory(params)
+  const mdxSource = await getCategory(params)
 
   return (
     <>
-      <HeroBanner title={categoryData.title} subtitle={categoryData.subtitle}>
-        {categoryData.description}
+      <HeroBanner title={mdxSource.frontmatter.title} subtitle={mdxSource.frontmatter.subtitle}>
+        {mdxSource.frontmatter.description}
       </HeroBanner>
 
       <Container id="mainContent" classNames="pb-8 lg:pb-12 space-y-8">
-        <CollectionGrid componentItems={componentItems} />
+        <CollectionGrid componentItems={mdxSource.components} />
       </Container>
     </>
   )

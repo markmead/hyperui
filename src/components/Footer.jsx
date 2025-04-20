@@ -22,8 +22,8 @@ export default function Footer() {
 
         <div className="mt-6">
           <p className="max-w-md leading-relaxed text-pretty text-gray-700">
-            Free open source Tailwind CSS components for marketing and eCommerce websites, as well
-            as application interfaces.
+            Discover free Tailwind CSS v4 components for your next project, designed to enhance your
+            web development with the latest features and styles.
           </p>
 
           <div className="mt-4 lg:flex lg:items-end lg:justify-between">

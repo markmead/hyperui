@@ -7,6 +7,8 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 const postsDir = join(process.cwd(), '/src/data/posts')
 const pagesDir = join(process.cwd(), '/src/data/pages')
+const categoriesDir = join(process.cwd(), '/src/data/categories')
+const componentsDir = join(process.cwd(), '/src/data/components')
 
 export async function getPosts() {
   try {
@@ -30,7 +32,7 @@ export async function getPosts() {
 
     return sortByDate(blogPosts)
   } catch {
-    // We do nothing
+    return []
   }
 }
 
@@ -54,9 +56,11 @@ export async function getPost(pageParams) {
   }
 }
 
-export async function getAboutPage(pageParams) {
+export async function getPage(pageParams) {
   try {
-    const pagePath = join(pagesDir, `${pageParams.slug}.mdx`)
+    const { slug } = pageParams
+
+    const pagePath = join(pagesDir, `${slug}.mdx`)
     const pageItem = await fs.readFile(pagePath, 'utf-8')
 
     const mdxSource = await serialize(pageItem, {
@@ -66,10 +70,7 @@ export async function getAboutPage(pageParams) {
       },
     })
 
-    return {
-      pageData: mdxSource.frontmatter,
-      pageContent: mdxSource,
-    }
+    return mdxSource
   } catch {
     notFound()
   }
@@ -77,15 +78,15 @@ export async function getAboutPage(pageParams) {
 
 export async function getCategory(pageParams) {
   try {
-    const categorySlug = pageParams.category
+    const { category } = pageParams
 
-    const categoryPath = join(process.cwd(), '/src/data/categories', `${categorySlug}.mdx`)
-    const componentsPath = join(process.cwd(), '/src/data/components', categorySlug)
+    const categoryPath = join(categoriesDir, `${category}.mdx`)
+    const categoryComponentsPath = join(componentsDir, category)
 
-    const componentSlugs = await fs.readdir(componentsPath)
+    const componentSlugs = await fs.readdir(categoryComponentsPath)
     const categoryItem = await fs.readFile(categoryPath, 'utf-8')
 
-    const { frontmatter: categoryData } = await serialize(categoryItem, {
+    const categoryMdxSource = await serialize(categoryItem, {
       parseFrontmatter: true,
     })
 
@@ -93,25 +94,25 @@ export async function getCategory(pageParams) {
       componentSlugs
         .filter((componentSlug) => componentSlug.includes('.mdx'))
         .map(async (componentSlug) => {
-          const componentPath = join(componentsPath, componentSlug)
+          const componentPath = join(categoryComponentsPath, componentSlug)
           const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-          const { frontmatter: componentData } = await serialize(componentItem, {
+          const componentMdxSource = await serialize(componentItem, {
             parseFrontmatter: true,
           })
 
-          const componentCount = formatCount(componentData.components)
+          const componentCount = formatCount(componentMdxSource.frontmatter.components)
 
-          const componentSlugFormatted = componentSlug.replace('.mdx', '')
+          const slug = formatSlug(componentSlug)
 
           return {
-            title: componentData.title,
-            slug: componentSlugFormatted,
-            category: categorySlug,
-            emoji: componentData.emoji,
+            title: componentMdxSource.frontmatter.title,
+            slug,
+            category,
+            emoji: componentMdxSource.frontmatter.emoji,
             count: componentCount,
-            tag: componentData.tag,
-            id: componentSlugFormatted,
+            tag: componentMdxSource.frontmatter.tag,
+            id: slug,
           }
         })
     )
@@ -119,8 +120,8 @@ export async function getCategory(pageParams) {
     componentItems.sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
 
     return {
-      categoryData,
-      componentItems,
+      ...categoryMdxSource,
+      components: componentItems,
     }
   } catch {
     notFound()
@@ -129,23 +130,21 @@ export async function getCategory(pageParams) {
 
 export async function getCollection(pageParams) {
   try {
-    const categorySlug = pageParams.category
-    const componentSlug = pageParams.collection
+    const { category, collection } = pageParams
 
-    const componentsDirectory = join(process.cwd(), '/src/data/components')
-    const componentPath = join(componentsDirectory, categorySlug, `${componentSlug}.mdx`)
+    const componentPath = join(componentsDir, category, `${collection}.mdx`)
     const componentItem = await fs.readFile(componentPath, 'utf-8')
 
     const mdxSource = await serialize(componentItem, {
       parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+      },
     })
 
     return {
-      collectionData: {
-        ...mdxSource.frontmatter,
-        slug: pageParams.collection,
-      },
-      collectionContent: mdxSource,
+      ...mdxSource,
+      slug: formatSlug(collection),
     }
   } catch {
     notFound()

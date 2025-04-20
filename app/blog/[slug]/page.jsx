@@ -26,11 +26,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPost(params)
+  const mdxSource = await getPost(params)
 
   return {
-    title: `${frontmatter.title} | HyperUI`,
-    description: frontmatter.description,
+    title: `${mdxSource.frontmatter.title} | HyperUI`,
+    description: mdxSource.frontmatter.description,
     alternates: {
       canonical: `/blog/${params.slug}`,
     },
@@ -38,15 +38,15 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, ...content } = await getPost(params)
+  const mdxSource = await getPost(params)
 
   const schemaData = {
     '@context': 'http://schema.org',
     '@type': 'BlogPosting',
-    headline: `${frontmatter.title}`,
+    headline: `${mdxSource.frontmatter.title}`,
     image: 'https://www.hyperui.dev/og.jpg',
-    datePublished: frontmatter.date,
-    dateModified: frontmatter.date,
+    datePublished: mdxSource.frontmatter.date,
+    dateModified: mdxSource.frontmatter.date,
     author: {
       '@type': 'Person',
       name: 'HyperUI',
@@ -66,13 +66,13 @@ export default async function Page({ params }) {
 
       <Container id="mainContent" classNames="py-8 lg:py-12">
         <article className="prose mx-auto">
-          <h1>{frontmatter.title}</h1>
+          <h1>{mdxSource.frontmatter.title}</h1>
 
           <p>
-            Updated: <time>{frontmatter.date}</time>
+            Updated: <time>{mdxSource.frontmatter.date}</time>
           </p>
 
-          <MdxRemoteRender mdxSource={content} />
+          <MdxRemoteRender mdxSource={mdxSource} />
         </article>
       </Container>
     </>
