@@ -27,11 +27,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const mdxSource = await getPage(params)
+  const { frontmatter } = await getPage(params)
 
   return {
-    title: `${mdxSource.frontmatter.title} | HyperUI`,
-    description: mdxSource.frontmatter.description,
+    title: `${frontmatter.title} | HyperUI`,
+    description: frontmatter.description,
     alternates: {
       canonical: `/about/${params.slug}`,
     },
@@ -39,14 +39,14 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const mdxSource = await getPage(params)
+  const { frontmatter, ...content } = await getPage(params)
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12">
       <article className="prose mx-auto">
-        <h1>{mdxSource.frontmatter.title}</h1>
+        <h1>{frontmatter.title}</h1>
 
-        <MdxRemoteRender mdxSource={mdxSource} />
+        <MdxRemoteRender mdxSource={content} />
       </article>
     </Container>
   )

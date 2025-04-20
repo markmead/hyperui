@@ -49,11 +49,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const mdxSource = await getCollection(params)
+  const { frontmatter } = await getCollection(params)
 
   return {
-    title: `Tailwind CSS ${mdxSource.frontmatter.title} | HyperUI`,
-    description: mdxSource.frontmatter.description,
+    title: `Tailwind CSS ${frontmatter.title} | HyperUI`,
+    description: frontmatter.description,
     alternates: {
       canonical: `/components/${params.category}/${params.collection}`,
     },
@@ -61,54 +61,48 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const mdxSource = await getCollection(params)
+  const { frontmatter, slug } = await getCollection(params)
 
-  const flatComponents = mdxSource.frontmatter.components.flatMap(
-    (componentItem, componentIndex) => {
-      const {
-        title,
-        container: componentContainer,
-        wrapper: componentWrapper,
-        creator: componentCreator,
-        plugins: componentPlugins,
-        dark: isDark,
-      } = componentItem
+  const flatComponents = frontmatter.components.flatMap((componentItem, componentIndex) => {
+    const {
+      title,
+      container: componentContainer,
+      wrapper: componentWrapper,
+      creator: componentCreator,
+      plugins: componentPlugins,
+      dark: isDark,
+    } = componentItem
 
-      const {
-        category,
-        container: collectionContainer,
-        wrapper: collectionWrapper,
-      } = mdxSource.frontmatter
+    const { category, container: collectionContainer, wrapper: collectionWrapper } = frontmatter
 
-      const componentId = componentIndex + 1
+    const componentId = componentIndex + 1
 
-      const newComponent = {
-        id: componentId,
-        title,
-        slug: mdxSource.slug,
-        category,
-        container: componentContainer ?? collectionContainer ?? '',
-        wrapper: componentWrapper ?? collectionWrapper ?? 'h-[400px] lg:h-[600px]',
-        creator: componentCreator ?? 'markmead',
-        plugins: componentPlugins ?? [],
-        dark: false,
-      }
-
-      if (!isDark) {
-        return newComponent
-      }
-
-      return [
-        newComponent,
-        {
-          ...newComponent,
-          id: `${componentId}-dark`,
-          title: `${newComponent.title} (Dark)`,
-          dark: true,
-        },
-      ]
+    const newComponent = {
+      id: componentId,
+      title,
+      slug,
+      category,
+      container: componentContainer ?? collectionContainer ?? '',
+      wrapper: componentWrapper ?? collectionWrapper ?? 'h-[400px] lg:h-[600px]',
+      creator: componentCreator ?? 'markmead',
+      plugins: componentPlugins ?? [],
+      dark: false,
     }
-  )
+
+    if (!isDark) {
+      return newComponent
+    }
+
+    return [
+      newComponent,
+      {
+        ...newComponent,
+        id: `${componentId}-dark`,
+        title: `${newComponent.title} (Dark)`,
+        dark: true,
+      },
+    ]
+  })
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12 ">
