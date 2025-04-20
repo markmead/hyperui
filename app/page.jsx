@@ -1,6 +1,4 @@
-import { join } from 'path'
-import { promises as fs } from 'fs'
-import { serialize } from 'next-mdx-remote/serialize'
+import { getCategory } from '@util/db'
 
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
@@ -13,61 +11,14 @@ export const metadata = {
 }
 
 async function getComponents() {
-  const componentsPath = join(process.cwd(), '/src/data/components')
-  const categoriesPath = join(process.cwd(), '/src/data/categories')
-
   const categorySlugs = ['application', 'marketing']
 
   const componentsByCategory = await Promise.all(
     categorySlugs.map(async (categorySlug) => {
-      const categoryPath = join(categoriesPath, `${categorySlug}.mdx`)
-      const categoryItem = await fs.readFile(categoryPath, 'utf-8')
-
-      const { frontmatter: categoryData } = await serialize(categoryItem, {
-        parseFrontmatter: true,
-      })
-
-      const componentSlugs = await fs.readdir(join(componentsPath, categorySlug))
-
-      const componentItems = await Promise.all(
-        componentSlugs
-          .filter((componentSlug) => componentSlug.includes('.mdx'))
-          .map(async (componentSlug) => {
-            const componentPath = join(componentsPath, categorySlug, componentSlug)
-            const componentItem = await fs.readFile(componentPath, 'utf-8')
-
-            const { frontmatter: componentData } = await serialize(componentItem, {
-              parseFrontmatter: true,
-            })
-
-            const componentCount = componentData.components.reduce(
-              (currentCount, componentItem) => {
-                const isDark = !!componentItem.dark
-
-                return currentCount + (isDark ? 2 : 1)
-              },
-              0
-            )
-
-            const componentSlugFormatted = componentSlug.replace('.mdx', '')
-
-            return {
-              title: componentData.title,
-              slug: componentSlugFormatted,
-              category: categorySlug,
-              emoji: componentData.emoji,
-              count: componentCount,
-              tag: componentData.tag,
-              id: componentSlugFormatted,
-            }
-          })
-      )
-
-      componentItems.sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
-
+      const { frontmatter, components } = await getCategory({ category: categorySlug })
       return {
-        categoryTitle: categoryData?.title,
-        componentItems,
+        categoryTitle: frontmatter?.title,
+        componentItems: components,
       }
     })
   )
