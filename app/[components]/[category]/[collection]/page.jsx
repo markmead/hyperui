@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getCollection } from '@util/db'
+import { getCollection, formatSlug } from '@util/db'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -16,8 +16,9 @@ const componentsDirectory = join(process.cwd(), '/src/data/components')
 export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
+  let staticParams = []
+
   const categoryFolders = await fs.readdir(componentsDirectory)
-  const staticParams = []
 
   for (const categoryFolder of categoryFolders) {
     const categoryPath = join(componentsDirectory, categoryFolder)
@@ -34,10 +35,13 @@ export async function generateStaticParams() {
         continue
       }
 
-      staticParams.push({
-        category: categoryFolder,
-        collection: collectionFile.replace('.mdx', ''),
-      })
+      staticParams = [
+        ...staticParams,
+        {
+          category: categoryFolder,
+          collection: formatSlug(collectionFile),
+        },
+      ]
     }
   }
 

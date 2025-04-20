@@ -10,8 +10,9 @@ import CollectionGrid from '@component/CollectionGrid'
 export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
+  let staticParams = []
+
   const categoryFolders = await fs.readdir(join(process.cwd(), '/src/data/components'))
-  const staticParams = []
 
   for (const categoryFolder of categoryFolders) {
     const categoryPath = join(process.cwd(), '/src/data/components', categoryFolder)
@@ -21,7 +22,7 @@ export async function generateStaticParams() {
       continue
     }
 
-    staticParams.push({ category: categoryFolder })
+    staticParams = [...staticParams, { category: categoryFolder }]
   }
 
   return staticParams

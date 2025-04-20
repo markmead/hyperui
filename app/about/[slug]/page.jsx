@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 
-import { getPage } from '@util/db'
+import { getPage, formatSlug } from '@util/db'
 
 import Container from '@component/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -11,15 +11,16 @@ const pagesPath = join(process.cwd(), '/src/data/pages')
 export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
+  let staticParams = []
+
   const pageFiles = await fs.readdir(pagesPath)
-  const staticParams = []
 
   for (const pageFile of pageFiles) {
     if (!pageFile.endsWith('.mdx')) {
       continue
     }
 
-    staticParams.push({ slug: pageFile.replace('.mdx', '') })
+    staticParams = [...staticParams, { slug: formatSlug(pageFile) }]
   }
 
   return staticParams
