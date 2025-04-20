@@ -1,65 +1,36 @@
-import { join } from 'path'
-import { promises as fs } from 'fs'
+import { join } from 'node:path'
+import { promises as fs } from 'node:fs'
+
+import { getPosts, formatSlug } from '@util/db'
 
 export default async function sitemap() {
-  async function getCategories() {
-    const categorySlugs = ['application', 'marketing']
+  const categorySlugs = ['application', 'marketing']
+  const categoryPaths = categorySlugs.map((categorySlug) => `components/${categorySlug}`)
 
-    return await Promise.all(
-      categorySlugs.map(async (categorySlug) => `components/${categorySlug}`)
+  const componentsDirectoryPath = join(process.cwd(), '/src/data/components')
+
+  let componentCollectionPaths = []
+
+  for (const categorySlug of categorySlugs) {
+    const categoryDirectoryPath = join(componentsDirectoryPath, categorySlug)
+    const collectionFileNames = await fs.readdir(categoryDirectoryPath)
+
+    componentCollectionPaths.push(
+      ...collectionFileNames
+        .filter((fileName) => fileName.endsWith('.mdx'))
+        .map((fileName) => `components/${categorySlug}/${formatSlug(fileName)}`)
     )
   }
 
-  async function getComponents() {
-    const componentsPath = join(process.cwd(), '/src/data/components')
+  const postItems = await getPosts()
+  const postPaths = postItems.map((blogPost) => `blog/${blogPost.slug}`)
 
-    const categorySlugs = ['application', 'marketing']
-    const componentSlugs = await fs.readdir(componentsPath)
+  const allPagePaths = [...categoryPaths, ...componentCollectionPaths, ...postPaths]
 
-    const componentsByCategory = await Promise.all(
-      categorySlugs.map(async (categorySlug) => {
-        const componentItems = await Promise.all(
-          componentSlugs
-            .filter((componentSlug) => componentSlug.includes(categorySlug))
-            .map(async (componentSlug) => {
-              const componentSlugFormatted = componentSlug.replace('.mdx', '')
-              const componentSlugTrue = componentSlugFormatted.replace(`${categorySlug}-`, '')
-
-              return `components/${categorySlug}/${componentSlugTrue}`
-            })
-        )
-
-        return componentItems
-      })
-    )
-
-    return componentsByCategory.flatMap((componentItem) => componentItem)
-  }
-
-  async function getBlogs() {
-    const blogsPath = join(process.cwd(), '/src/data/posts')
-
-    const blogSlugs = await fs.readdir(blogsPath)
-
-    return await Promise.all(
-      blogSlugs.map(async (blogSlug) => {
-        const blogSlugFormatted = blogSlug.replace('.mdx', '')
-
-        return `blog/${blogSlugFormatted}`
-      })
-    )
-  }
-
-  const siteSlugs = await Promise.all([getCategories(), getComponents(), getBlogs()])
-
-  const transformedSlugs = siteSlugs.flatMap((siteSlug) => {
-    return siteSlug.flatMap((pageSlug) => {
-      return {
-        url: `https://www.hyperui.dev/${pageSlug}`,
-        lastModified: new Date(),
-      }
-    })
-  })
+  const sitemapEntries = allPagePaths.map((pagePath) => ({
+    url: `https://www.hyperui.dev/${pagePath}`,
+    lastModified: new Date(),
+  }))
 
   return [
     {
@@ -78,6 +49,6 @@ export default async function sitemap() {
       url: 'https://www.hyperui.dev/blog',
       lastModified: new Date(),
     },
-    ...transformedSlugs,
+    ...sitemapEntries,
   ]
 }
