@@ -86,6 +86,7 @@ export default function ComponentPreview({ componentData }) {
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
+
     const transformedHtml = componentPreviewHtml(textResponse, componentSpace, isRtl)
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
