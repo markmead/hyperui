@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getCategory } from '@util/db'
+import { getCategory, componentsDir } from '@util/db'
 
 import Container from '@component/Container'
 import HeroBanner from '@component/HeroBanner'
@@ -10,11 +10,11 @@ import CollectionGrid from '@component/CollectionGrid'
 export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
-  const categoryFolders = await fs.readdir(join(process.cwd(), '/src/data/components'))
+  const categoryFolders = await fs.readdir(componentsDir)
   const staticParams = []
 
   for (const categoryFolder of categoryFolders) {
-    const categoryPath = join(process.cwd(), '/src/data/components', categoryFolder)
+    const categoryPath = join(componentsDir, categoryFolder)
     const categoryStat = await fs.stat(categoryPath)
 
     if (!categoryStat.isDirectory()) {
