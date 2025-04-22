@@ -181,6 +181,7 @@ export async function getComponents() {
                 count: componentCount,
                 tag: componentData.tag,
                 id: componentSlugFormatted,
+                terms: componentData.terms || [],
               }
             })
         )
