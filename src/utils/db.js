@@ -132,6 +132,9 @@ export async function getCollection({ category, collection }) {
 
     const mdxSource = await serialize(componentItem, {
       parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+      },
     })
 
     return {
