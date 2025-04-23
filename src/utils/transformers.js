@@ -16,13 +16,20 @@ export function componentPreviewHtml(
           document.addEventListener('DOMContentLoaded', function () {
             const iframeLinks = [...document.querySelectorAll('a')]
             const iframeForms = [...document.querySelectorAll('form')]
+            const fileInputs = [...document.querySelectorAll('input[type="file"]')]
 
             iframeLinks.forEach(function (iframeLink) {
               iframeLink.addEventListener('click', (e) => e.preventDefault())
+              iframeLink.addEventListener('keydown', (e) => e.preventDefault())
             })
 
             iframeForms.forEach(function (iframeForm) {
               iframeForm.addEventListener('submit', (e) => e.preventDefault())
+            })
+
+            fileInputs.forEach(function (fileInput) {
+              fileInput.addEventListener('click', (e) => e.preventDefault())
+              fileInput.addEventListener('keydown', (e) => e.preventDefault())
             })
           })
         </script>
