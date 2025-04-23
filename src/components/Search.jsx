@@ -17,9 +17,9 @@ export default function Search() {
 
   useEffect(() => {
     async function fetchCollections() {
-      const searchResults = await fetch('/api/search')
+      const searchResponse = await fetch('/api/search')
 
-      const { collections } = await searchResults.json()
+      const { collections } = await searchResponse.json()
 
       setAllCollections(collections || [])
     }
