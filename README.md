@@ -61,6 +61,7 @@ HyperUI has a wide range of freely available components. These components includ
 - [Tables](https://www.hyperui.dev/components/application/tables)
 - [Textareas](https://www.hyperui.dev/components/application/textareas)
 - [Toggles](https://www.hyperui.dev/components/application/toggles)
+- [Timelines](https://www.hyperui.dev/components/application/timelines)
 - [Vertical Menu](https://www.hyperui.dev/components/application/vertical-menu)
 
 ### Marketing
