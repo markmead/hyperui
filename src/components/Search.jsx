@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, useRef } from 'react'
-import { useClickAway } from 'react-use'
+import { useClickAway, useDebounce } from 'react-use'
 
 export default function Search() {
   const routerPathname = usePathname()
@@ -12,8 +12,11 @@ export default function Search() {
 
   const [allCollections, setAllCollections] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
+
+  useDebounce(() => setDebouncedSearchQuery(searchQuery), 500, [searchQuery])
 
   useEffect(() => {
     async function fetchCollections() {
@@ -28,14 +31,14 @@ export default function Search() {
   }, [])
 
   useEffect(() => {
-    if (!searchQuery) {
+    if (!debouncedSearchQuery) {
       setSearchResults([])
       setShowDropdown(false)
 
       return
     }
 
-    const queryLower = searchQuery.toLowerCase()
+    const queryLower = debouncedSearchQuery.toLowerCase()
 
     const filteredCollections = allCollections.filter(({ title, terms }) => {
       const titleMatch = title.toLowerCase().includes(queryLower)
@@ -46,7 +49,7 @@ export default function Search() {
 
     setSearchResults(filteredCollections)
     setShowDropdown(!!filteredCollections.length)
-  }, [searchQuery, allCollections])
+  }, [debouncedSearchQuery, allCollections])
 
   useEffect(() => {
     setSearchQuery('')
@@ -88,15 +91,19 @@ function SearchResult({ collectionItem }) {
   return (
     <Link
       href={`/components/${collectionItem.category}/${collectionItem.slug}`}
-      className="flex items-center gap-2 px-4 py-2 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-pink-400 focus:outline-none focus:ring-inset"
+      className="block px-4 py-2 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-pink-400 focus:outline-none focus:ring-inset md:flex md:items-center md:justify-between"
     >
-      <span aria-hidden="true" role="img">
-        {collectionItem.emoji}
+      <div className="flex items-center gap-2">
+        <span aria-hidden="true" role="img">
+          {collectionItem.emoji}
+        </span>
+
+        <span className="font-medium text-gray-900">{collectionItem.title}</span>
+      </div>
+
+      <span className="mt-0.5 block text-sm text-gray-700 md:mt-0">
+        {collectionItem.categoryTitle}
       </span>
-
-      <span className="text-sm font-medium text-gray-900">{collectionItem.title}</span>
-
-      <span className="ml-auto text-sm text-gray-700">{collectionItem.categoryTitle}</span>
     </Link>
   )
 }
