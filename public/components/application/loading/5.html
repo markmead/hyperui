@@ -1,0 +1,15 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+  <div class="relative flex items-center justify-center w-32 h-32">
+    <!-- Outer ripple -->
+    <div class="absolute h-24 w-24 rounded-full border-4 border-blue-400 opacity-75 animate-[ping_2s_linear_infinite]"></div>
+    
+    <!-- Middle ripple -->
+    <div class="absolute h-16 w-16 rounded-full border-4 border-blue-500 opacity-75 animate-[ping_1.5s_linear_infinite] [animation-delay:500ms]"></div>
+
+    <!-- Inner ripple -->
+    <div class="absolute h-8 w-8 rounded-full border-4 border-blue-600 opacity-75 animate-[ping_1s_linear_infinite] [animation-delay:1s]"></div>
+
+    <!-- Center dot -->
+    <div class="h-4 w-4 bg-blue-500 rounded-full shadow-md"></div>
+  </div>
+</div>
