@@ -4,8 +4,8 @@ export default function PreviewView({ showPreview, handleSetShowPreview }) {
   return (
     <button onClick={() => handleSetShowPreview(!showPreview)}>
       <ButtonStyle
-        buttonEmoji={showPreview ? '👀' : '👾'}
-        buttonText={showPreview ? 'View' : 'Code'}
+        buttonEmoji={showPreview ? '👾' : '👀'}
+        buttonText={showPreview ? 'Code' : 'View'}
       />
     </button>
   )
