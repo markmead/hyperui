@@ -5,23 +5,25 @@
   aria-labelledby="modalTitle"
 >
   <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-
     <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl">Modal Title</h2>
-    
+
     <div class="mt-4">
       <p class="text-pretty text-gray-700">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-        consectetur.
+        consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
-    </div>
-    
-    <div class="mt-4">
-        <label for="Confirm" class="text-sm font-medium text-gray-700">Type 'Sure' to confirm your action.</label>
+
+      <label for="Confirm" class="mt-4 block">
+        <span class="text-sm font-medium text-gray-700">
+          Please type "Confirm" to complete action
+        </span>
+
         <input
-            type="text"
-            id="Confirm"
-            class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm"
+          type="text"
+          id="Confirm"
+          class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm"
         />
+      </label>
     </div>
 
     <footer class="mt-6 flex justify-end gap-2">
@@ -36,7 +38,7 @@
         type="button"
         class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
       >
-        Confirm
+        Done
       </button>
     </footer>
   </div>
