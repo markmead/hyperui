@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "baseUrl": ".",
     "paths": {
       "@/*": ["app/*"],
@@ -15,6 +15,6 @@
       }
     ]
   },
-  "include": ["next-env.d.js", "**/*.js", "**/*.jsx"],
+  "include": ["**/*.js", "**/*.jsx"],
   "exclude": ["node_modules"]
 }
