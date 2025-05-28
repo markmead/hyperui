@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
 
-import { componentBreakpoints } from '@data/breakpoints'
 import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
 
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
@@ -46,6 +45,34 @@ export default function ComponentPreview({ componentData }) {
     dark: componentDark,
     plugins: componentPlugins,
   } = componentData
+
+  const previewBreakpoints = [
+    {
+      name: 'Mobile',
+      emoji: '📱',
+      width: '340px',
+    },
+    {
+      name: 'Small',
+      emoji: '🐛',
+      width: '640px',
+    },
+    {
+      name: 'Medium',
+      emoji: '🦭',
+      width: '768px',
+    },
+    {
+      name: 'Large',
+      emoji: '🐴',
+      width: '1024px',
+    },
+    {
+      name: 'Full',
+      emoji: '🌕',
+      width: '100%',
+    },
+  ]
 
   const componentHash = `component-${componentId}`
 
@@ -124,7 +151,7 @@ export default function ComponentPreview({ componentData }) {
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
             <p className="text-sm font-medium text-gray-700">@ {previewWidth}</p>
 
-            {componentBreakpoints.map(
+            {previewBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint
                   key={breakpointName}
