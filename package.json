@@ -10,33 +10,33 @@
     "css": "npx @tailwindcss/cli -i ./src/styles/components.css -o ./public/components.css"
   },
   "dependencies": {
-    "next": "15.3.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "15.4.5",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "15.3.4",
-    "@tailwindcss/cli": "^4.1.10",
+    "@next/eslint-plugin-next": "15.4.5",
+    "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "@typescript-eslint/parser": "^8.35.0",
-    "eslint": "9.29.0",
-    "eslint-config-next": "15.3.4",
+    "@typescript-eslint/parser": "^8.39.0",
+    "eslint": "9.32.0",
+    "eslint-config-next": "15.4.5",
     "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.5.6",
-    "prettier": "^3.6.0",
-    "prettier-plugin-tailwindcss": "^0.6.13",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "prismjs": "^1.30.0",
     "react-intersection-observer": "^9.16.0",
     "react-use": "^17.6.0",
     "rehype-external-links": "^3.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.8.3"
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.9.2"
   },
   "packageManager": "yarn@1.22.22"
 }

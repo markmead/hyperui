@@ -9,7 +9,7 @@ export default function PreviewType({ componentId, codeType, handleSetCodeType }
         id={`CodeType${componentId}`}
         value={codeType}
         onInput={(e) => handleSetCodeType(e.target.value)}
-        className="h-10 rounded-md border-none pl-3 font-medium shadow-sm ring ring-gray-300"
+        className="h-10 rounded-md border-none pl-3 font-medium shadow-sm ring ring-gray-300 sm:text-sm"
       >
         <option value="html">HTML</option>
         <option value="jsx">JSX</option>

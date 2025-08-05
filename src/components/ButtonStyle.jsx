@@ -7,7 +7,7 @@ export default function ButtonStyle({ buttonEmoji, buttonText, buttonActive = fa
         {buttonEmoji}
       </span>
 
-      <span className="font-medium">{buttonText}</span>
+      <span className="text-sm font-medium">{buttonText}</span>
     </span>
   )
 }
