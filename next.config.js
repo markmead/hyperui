@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-export default {
+const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['next-mdx-remote'],
   redirects: async () => {
@@ -17,3 +17,5 @@ export default {
     ]
   },
 }
+
+export default nextConfig
