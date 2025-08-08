@@ -2,6 +2,7 @@ import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
+import matter from 'gray-matter'
 import rehypeExternalLinks from 'rehype-external-links'
 
 export const categorySlugs = ['application', 'marketing']
@@ -20,9 +21,7 @@ export async function getPosts() {
         const postPath = join(postsDir, postSlug)
         const postItem = await fs.readFile(postPath, 'utf-8')
 
-        const { frontmatter } = await serialize(postItem, {
-          parseFrontmatter: true,
-        })
+        const { data: frontmatter } = matter(postItem)
 
         return {
           ...frontmatter,
@@ -84,9 +83,7 @@ export async function getCategory({ category }) {
     const componentsPath = join(componentsDir, category)
     const componentSlugs = await fs.readdir(componentsPath)
 
-    const { frontmatter: categoryData } = await serialize(categoryItem, {
-      parseFrontmatter: true,
-    })
+    const { data: categoryData } = matter(categoryItem)
 
     const componentItems = await Promise.all(
       componentSlugs
@@ -95,9 +92,7 @@ export async function getCategory({ category }) {
           const componentPath = join(componentsPath, componentSlug)
           const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-          const { frontmatter: componentData } = await serialize(componentItem, {
-            parseFrontmatter: true,
-          })
+          const { data: componentData } = matter(componentItem)
 
           const componentCount = formatCount(componentData.components)
           const componentSlugFormatted = formatSlug(componentSlug)
@@ -153,9 +148,7 @@ export async function getComponents() {
         const categoryPath = join(categoriesDir, `${categorySlug}.mdx`)
         const categoryItem = await fs.readFile(categoryPath, 'utf-8')
 
-        const { frontmatter: categoryData } = await serialize(categoryItem, {
-          parseFrontmatter: true,
-        })
+        const { data: categoryData } = matter(categoryItem)
 
         const componentSlugs = await fs.readdir(join(componentsDir, categorySlug))
 
@@ -166,9 +159,7 @@ export async function getComponents() {
               const componentPath = join(componentsDir, categorySlug, componentSlug)
               const componentItem = await fs.readFile(componentPath, 'utf-8')
 
-              const { frontmatter: componentData } = await serialize(componentItem, {
-                parseFrontmatter: true,
-              })
+              const { data: componentData } = matter(componentItem)
 
               const componentCount = formatCount(componentData.components)
               const componentSlugFormatted = formatSlug(componentSlug)
