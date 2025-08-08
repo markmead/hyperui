@@ -16,7 +16,7 @@ export default function Search() {
   const [searchResults, setSearchResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
 
-  useDebounce(() => setDebouncedSearchQuery(searchQuery), 500, [searchQuery])
+  useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
 
   useEffect(() => {
     async function fetchCollections() {
@@ -94,9 +94,7 @@ function SearchResult({ collectionItem }) {
       className="block px-4 py-2 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-pink-400 focus:outline-none focus:ring-inset md:flex md:items-center md:justify-between"
     >
       <div className="flex items-center gap-2">
-        <span aria-hidden="true" role="img">
-          {collectionItem.emoji}
-        </span>
+        <span aria-hidden="true">{collectionItem.emoji}</span>
 
         <span className="font-medium text-gray-900">{collectionItem.title}</span>
       </div>
