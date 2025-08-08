@@ -45,7 +45,7 @@ export async function getPost({ slug }) {
     const mdxSource = await serialize(postItem, {
       parseFrontmatter: true,
       mdxOptions: {
-        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
       },
     })
 
@@ -63,7 +63,7 @@ export async function getAboutPage({ slug }) {
     const mdxSource = await serialize(pageItem, {
       parseFrontmatter: true,
       mdxOptions: {
-        rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+        rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
       },
     })
 
