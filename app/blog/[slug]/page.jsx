@@ -43,8 +43,8 @@ export default async function Page({ params }) {
     '@type': 'BlogPosting',
     headline: `${frontmatter.title}`,
     image: 'https://www.hyperui.dev/og.jpg',
-    datePublished: frontmatter.date,
-    dateModified: frontmatter.date,
+    datePublished: frontmatter.published,
+    dateModified: frontmatter.updated,
     author: {
       '@type': 'Person',
       name: 'HyperUI',
@@ -67,7 +67,9 @@ export default async function Page({ params }) {
           <h1>{frontmatter.title}</h1>
 
           <p>
-            Updated: <time>{frontmatter.date}</time>
+            Updated: <time>{frontmatter.updated}</time>
+            <br />
+            Published: <time>{frontmatter.published}</time>
           </p>
 
           <MdxRemoteRender mdxSource={content} />

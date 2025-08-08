@@ -14,7 +14,7 @@ export default function BlogCard({ blogPost }) {
           </strong>
         </div>
 
-        <time className="mt-1 block text-sm text-gray-700">{blogPost.date}</time>
+        <time className="mt-1 block text-sm text-gray-700">{blogPost.updated}</time>
       </div>
     </Link>
   )

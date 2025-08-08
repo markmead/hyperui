@@ -203,8 +203,8 @@ export async function getComponents() {
 
 export function sortByDate(dbItems) {
   return dbItems.sort((itemA, itemB) => {
-    const dateA = new Date(itemA.date)
-    const dateB = new Date(itemB.date)
+    const dateA = new Date(itemA.updated)
+    const dateB = new Date(itemB.updated)
 
     return dateB - dateA
   })
