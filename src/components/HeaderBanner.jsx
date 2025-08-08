@@ -12,9 +12,7 @@ export default function HeaderBanner() {
         >
           <span className="text-sm/none font-medium">Enjoy HyperUI? Give it a star on GitHub</span>
 
-          <span aria-hidden="true" role="img">
-            🎉
-          </span>
+          <span aria-hidden="true">🎉</span>
         </a>
       </Container>
     </section>

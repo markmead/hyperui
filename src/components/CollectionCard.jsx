@@ -10,7 +10,7 @@ export default function CollectionCard({ componentData }) {
     <Link href={`/components/${componentData.category}/${componentData.slug}`}>
       <div className="h-full rounded-md bg-white p-4 shadow-sm ring ring-gray-300 transition-shadow hover:ring-2 hover:ring-pink-400 sm:p-6">
         <div className="flex items-center justify-between">
-          <span aria-hidden="true" role="img" className="text-lg sm:text-xl">
+          <span aria-hidden="true" className="text-lg sm:text-xl">
             {componentData.emoji}
           </span>
 

@@ -4,7 +4,7 @@ export default function BlogCard({ blogPost }) {
   return (
     <Link href={`/blog/${blogPost.slug}`}>
       <div className="h-full rounded-md bg-white p-4 shadow-sm ring ring-gray-300 transition-shadow hover:ring-2 hover:ring-pink-400 sm:p-6">
-        <span aria-hidden="true" role="img" className="text-xl sm:text-2xl">
+        <span aria-hidden="true" className="text-xl sm:text-2xl">
           {blogPost.emoji}
         </span>
 
