@@ -48,7 +48,6 @@ export function componentPreviewJsx(componentHtml) {
   return componentHtml
     .replace(/class=/g, 'className=')
     .replace(/for=/g, 'htmlFor=')
-    .replace(/viewBox=/g, 'viewBox=')
     .replace(/fill-rule=/g, 'fillRule=')
     .replace(/fill-opacity=/g, 'fillOpacity=')
     .replace(/clip-rule=/g, 'clipRule=')
@@ -60,6 +59,10 @@ export function componentPreviewJsx(componentHtml) {
     .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
     .replace(/stroke-opacity=/g, 'strokeOpacity=')
     .replace(/tabindex=/g, 'tabIndex=')
+    .replace(/readonly=/g, 'readOnly=')
+    .replace(/maxlength=/g, 'maxLength=')
+    .replace(/minlength=/g, 'minLength=')
+    .replace(/autocomplete=/g, 'autoComplete=')
     .replace(/<!--/g, '{/*')
     .replace(/-->/g, '*/}')
 }
