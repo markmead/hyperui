@@ -4,8 +4,8 @@ import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
 import Ads from '@component/Ads'
-import Footer from '@component/Footer'
-import Header from '@component/Header'
+import Footer from '@component/global/Footer'
+import Header from '@component/global/Header'
 import HeaderBanner from '@component/HeaderBanner'
 
 // prettier-ignore
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
 
         <Header />
 
-        <HeaderBanner />
+        {/* <HeaderBanner /> */}
 
         <main className="bg-white">{children}</main>
 

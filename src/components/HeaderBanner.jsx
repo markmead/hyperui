@@ -1,4 +1,4 @@
-import Container from '@component/Container'
+import Container from '@component/global/Container'
 
 export default function HeaderBanner() {
   return (

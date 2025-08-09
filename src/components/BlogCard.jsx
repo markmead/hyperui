@@ -2,20 +2,17 @@ import Link from 'next/link'
 
 export default function BlogCard({ blogPost }) {
   return (
-    <Link href={`/blog/${blogPost.slug}`}>
-      <div className="h-full rounded-md bg-white p-4 shadow-sm ring ring-gray-300 transition-shadow hover:ring-2 hover:ring-pink-400 sm:p-6">
-        <span aria-hidden="true" className="text-xl sm:text-2xl">
-          {blogPost.emoji}
-        </span>
+    <Link
+      href={`/blog/${blogPost.slug}`}
+      className="block h-full rounded-md border border-gray-300 bg-white p-4 transition-colors hover:border-pink-500 hover:ring hover:ring-pink-500 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
+    >
+      <span aria-hidden="true" className="text-xl sm:text-2xl">
+        {blogPost.emoji}
+      </span>
 
-        <div className="mt-4 line-clamp-2">
-          <strong className="font-medium text-pretty text-gray-900 sm:text-lg">
-            {blogPost.title}
-          </strong>
-        </div>
+      <time className="mt-4 block text-sm text-gray-700">{blogPost.updated}</time>
 
-        <time className="mt-1 block text-sm text-gray-700">{blogPost.updated}</time>
-      </div>
+      <h2 className="mt-1 font-medium text-pretty text-gray-900 sm:text-lg">{blogPost.title}</h2>
     </Link>
   )
 }

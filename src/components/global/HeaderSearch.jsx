@@ -58,13 +58,13 @@ export default function Search() {
   useClickAway(wrapperRef, () => setShowDropdown(false))
 
   return (
-    <div className="relative w-full max-w-72" ref={wrapperRef}>
+    <div className="relative w-full max-w-64" ref={wrapperRef}>
       <label htmlFor="SearchQuery">
         <span className="sr-only">Search</span>
 
         <input
           type="text"
-          className="w-full rounded border-gray-300 shadow-sm focus:border-pink-400 focus:ring-pink-400"
+          className="w-full rounded border-gray-300 focus:border-pink-400 focus:ring-pink-400"
           placeholder="Search components..."
           value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}

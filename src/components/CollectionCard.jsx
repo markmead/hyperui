@@ -7,22 +7,23 @@ export default function CollectionCard({ componentData }) {
   const hasTag = !!componentData.tag
 
   return (
-    <Link href={`/components/${componentData.category}/${componentData.slug}`}>
-      <div className="h-full rounded-md bg-white p-4 shadow-sm ring ring-gray-300 transition-shadow hover:ring-2 hover:ring-pink-400 sm:p-6">
-        <div className="flex items-center justify-between">
-          <span aria-hidden="true" className="text-lg sm:text-xl">
-            {componentData.emoji}
-          </span>
+    <Link
+      href={`/components/${componentData.category}/${componentData.slug}`}
+      className="block h-full rounded-md border border-gray-300 bg-white p-4 transition-colors hover:border-pink-500 hover:ring hover:ring-pink-500 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
+    >
+      <div className="flex items-center justify-between">
+        <span aria-hidden="true" className="text-lg sm:text-xl">
+          {componentData.emoji}
+        </span>
 
-          {hasTag && <CardTag tagType={componentData.tag} />}
-        </div>
-
-        <p className="mt-4 block text-sm text-gray-700">{componentCount}</p>
-
-        <strong className="mt-1 block font-medium text-gray-900 sm:text-lg">
-          {componentData.title}
-        </strong>
+        {hasTag && <CardTag tagType={componentData.tag} />}
       </div>
+
+      <p className="mt-4 block text-sm text-gray-700">{componentCount}</p>
+
+      <h2 className="mt-1 font-medium text-pretty text-gray-900 sm:text-lg">
+        {componentData.title}
+      </h2>
     </Link>
   )
 }

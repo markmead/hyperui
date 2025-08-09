@@ -3,7 +3,7 @@ import { promises as fs } from 'node:fs'
 
 import { getCategory, componentsDir } from '@util/db'
 
-import Container from '@component/Container'
+import Container from '@component/global/Container'
 import HeroBanner from '@component/HeroBanner'
 import CollectionGrid from '@component/CollectionGrid'
 

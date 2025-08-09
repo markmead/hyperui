@@ -1,7 +1,7 @@
 import { getPosts } from '@util/db'
 
 import BlogGrid from '@component/BlogGrid'
-import Container from '@component/Container'
+import Container from '@component/global/Container'
 import HeroBanner from '@component/HeroBanner'
 
 export const metadata = {

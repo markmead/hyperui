@@ -2,7 +2,7 @@ import { promises as fs } from 'node:fs'
 
 import { getAboutPage, formatSlug, pagesDir } from '@util/db'
 
-import Container from '@component/Container'
+import Container from '@component/global/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 export const dynamic = 'force-static'

@@ -1,21 +1,21 @@
-export default function GithubSocial() {
+export default function Github() {
   return (
     <a
       href="https://github.com/markmead/hyperui"
       rel="noreferrer"
       target="_blank"
-      className="inline-flex items-center gap-2 text-gray-900 hover:opacity-75"
+      className="text-gray-700 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:inline-flex sm:items-center sm:gap-2"
     >
       <span className="sr-only"> GitHub </span>
 
-      <IconGithub />
+      <Icon />
 
-      <span className="text-sm font-medium text-gray-700">11k</span>
+      <span className="hidden sm:block sm:text-sm sm:font-medium sm:text-gray-700">11k</span>
     </a>
   )
 }
 
-function IconGithub() {
+function Icon() {
   return (
     <svg aria-hidden="true" className="size-5" fill="currentColor" viewBox="0 0 24 24">
       <path
