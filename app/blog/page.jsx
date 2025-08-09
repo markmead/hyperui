@@ -2,7 +2,7 @@ import { getPosts } from '@util/db'
 
 import BlogGrid from '@component/BlogGrid'
 import Container from '@component/global/Container'
-import HeroBanner from '@component/HeroBanner'
+import Hero from '@component/global/Hero'
 
 export const metadata = {
   title: 'Tailwind CSS Blog | HyperUI',
@@ -19,11 +19,11 @@ export default async function Page() {
 
   return (
     <>
-      <HeroBanner title="Tailwind CSS Blog" subtitle="Tips, Tricks & Real-World Solutions">
+      <Hero title="Tailwind CSS Blog" subtitle="Tips, Tricks & Real-World Solutions">
         Dive into this collection of Tailwind CSS insights that make development less painful and
         more fun. Whether you&#39;re just starting out or have battle scars from countless projects,
         there&#39;s something here to make your CSS life easier.
-      </HeroBanner>
+      </Hero>
 
       <Container id="mainContent" classNames="pb-8 lg:pb-12">
         <BlogGrid blogPosts={blogPosts} />

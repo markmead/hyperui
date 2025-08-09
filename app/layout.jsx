@@ -3,10 +3,10 @@ import { Inter } from 'next/font/google'
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
-import Ads from '@component/Ads'
+import Ads from '@component/global/Ad'
 import Footer from '@component/global/Footer'
 import Header from '@component/global/Header'
-import HeaderBanner from '@component/HeaderBanner'
+import HeaderBanner from '@component/global/HeaderBanner'
 
 // prettier-ignore
 export const metadata = {

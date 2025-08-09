@@ -1,7 +1,7 @@
 import Container from '@component/global/Container'
-import UspList from '@component/UspList'
+import HeroUsps from '@component/global/HeroUsps'
 
-export default function HeroBanner({ children, subtitle, title }) {
+export default function Hero({ children, subtitle, title }) {
   return (
     <section className="bg-white">
       <Container classNames="py-8 lg:py-12">
@@ -12,7 +12,7 @@ export default function HeroBanner({ children, subtitle, title }) {
         <div className="mt-6 max-w-xl space-y-6">
           <p className="leading-relaxed text-pretty text-gray-700">{children}</p>
 
-          <UspList />
+          <HeroUsps />
         </div>
       </Container>
     </section>

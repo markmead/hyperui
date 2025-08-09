@@ -4,7 +4,7 @@ import { promises as fs } from 'node:fs'
 import { getCategory, componentsDir } from '@util/db'
 
 import Container from '@component/global/Container'
-import HeroBanner from '@component/HeroBanner'
+import Hero from '@component/global/Hero'
 import CollectionGrid from '@component/CollectionGrid'
 
 export const dynamic = 'force-static'
@@ -44,9 +44,9 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <HeroBanner title={categoryData.title} subtitle={categoryData.subtitle}>
+      <Hero title={categoryData.title} subtitle={categoryData.subtitle}>
         {categoryData.description}
-      </HeroBanner>
+      </Hero>
 
       <Container id="mainContent" classNames="pb-8 lg:pb-12 space-y-8">
         <CollectionGrid componentItems={componentItems} />

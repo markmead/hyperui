@@ -1,6 +1,4 @@
-export default function UspList() {
-  const uspItems = ['No install', 'No config', 'No setup']
-
+export default function HeroUsps({ uspItems = ['No install', 'No config', 'No setup'] }) {
   return (
     <ul className="flex gap-3">
       {uspItems.map((uspItem, itemIndex) => (
