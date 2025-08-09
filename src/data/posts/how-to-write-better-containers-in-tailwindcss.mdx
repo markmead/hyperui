@@ -1,56 +1,30 @@
 ---
-title: How to Write Better Containers in Tailwind CSS (v3)
-description: Find out how to write better Tailwind CSS containers and make your website feel more fluid as you change breakpoints.
+title: Better Containers in Tailwind CSS
+description: The best way to set up containers in Tailwind CSS v4 for fluid layouts.
 published: 09/20/2022
-updated: 09/20/2022
+updated: 08/09/2025
 emoji: 🫙
 ---
 
-Throughout HyperUI, you will see the classes `max-w-screen-xl mx-auto px-4` used to contain content. This can be observed on the website and within the components.
+## Fluid Containers in Tailwind v4
 
-You might be wondering...
+Want a container that feels modern and fluid? Use:
 
-> Why not use the `.container` class?
-
-Great question.
-
-Let's examine the `.container` class [documentation](https://tailwindcss.com/docs/container) on the Tailwind CSS website.
-
-It provides `max-width` sizes at different breakpoints, which results in the content within the container adjusting to that size as the breakpoint is reached.
-
-[Container Example](https://play.tailwindcss.com/b5FKBhVHw7?layout=preview&size=1866x900)
-
-If you shrink or expand the preview, you will see the content within the container snapping.
-
-## A More Fluid Container
-
-Here's the same preview, but using the classes I mentioned at the start of this blog post.
-
-[Fluid Example](https://play.tailwindcss.com/vwHBxhrJMC?layout=preview&size=1866x900)
-
-As you can see, it's more fluid. You reach the breakpoint where `max-w-screen-xl` is no longer applied, and then the padding is used to contain the content. To create a fully fluid container, you can remove the `max-w-screen-xl` class.
-
-Let's compare the two.
-
-[Container vs Fluid Example](https://play.tailwindcss.com/A7HdMDPg0O?layout=preview&size=1866x900)
-
-One argument for the `.container` approach is that the content is wider on larger screens. However, to address this, you can use `max-w-screen-2xl` instead of `max-w-screen-xl`.
-
-## Edit the Config and Write Less Code
-
-One final note: if you are using the `.container` approach and find yourself writing `container mx-auto` often, you can do the following.
-
+```html
+<div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+  <!-- Content -->
+</div>
 ```
-theme: {
-  container: {
-    center: true,
 
-    // Optional
-    padding: {
-      DEFAULT: '1rem',
-      sm: '1.5rem',
-      lg: '2rem'
-    }
-  },
+Or set up a custom utility:
+
+```css
+@utility container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
 }
 ```
+
+Why use this approach? The default `.container` class in Tailwind sets fixed widths at breakpoints, which can make layouts feel rigid and less natural. By using `max-w-screen-xl` and padding, your content adapts smoothly to any screen size and always stays visually balanced.
+
+For a direct comparison, check out this example:
+[Fluid Container Example](https://play.tailwindcss.com/ITkFLQN9to?layout=preview&size=1920x720)
