@@ -1,4 +1,4 @@
-import ButtonStyle from '@component/ButtonStyle'
+import Button from '@component/Button'
 
 export default function PreviewBreakpoint({
   breakpointActive,
@@ -8,12 +8,9 @@ export default function PreviewBreakpoint({
   breakpointText,
 }) {
   return (
-    <button onClick={() => handleSetPreviewWidth(breakpointWidth)}>
-      <ButtonStyle
-        buttonEmoji={breakpointEmoji}
-        buttonText={breakpointText}
-        buttonActive={breakpointActive}
-      />
-    </button>
+    <Button onClick={() => handleSetPreviewWidth(breakpointWidth)} isActive={breakpointActive}>
+      <span aria-hidden="true">{breakpointEmoji}</span>
+      <span>{breakpointText}</span>
+    </Button>
   )
 }

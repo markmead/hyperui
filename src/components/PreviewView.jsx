@@ -1,12 +1,10 @@
-import ButtonStyle from '@component/ButtonStyle'
+import Button from '@component/Button'
 
 export default function PreviewView({ showPreview, handleSetShowPreview }) {
   return (
-    <button onClick={() => handleSetShowPreview(!showPreview)}>
-      <ButtonStyle
-        buttonEmoji={showPreview ? '👀' : '👾'}
-        buttonText={showPreview ? 'View' : 'Code'}
-      />
-    </button>
+    <Button onClick={() => handleSetShowPreview(!showPreview)}>
+      <span aria-hidden="true">{showPreview ? '👀' : '👾'}</span>
+      <span>{showPreview ? 'View' : 'Code'}</span>
+    </Button>
   )
 }

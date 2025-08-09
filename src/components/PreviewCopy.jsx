@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { useCopyToClipboard } from 'react-use'
 
-import ButtonStyle from '@component/ButtonStyle'
+import Button from '@component/Button'
 
 export default function PreviewCopy({ componentCode = '' }) {
   const [buttonText, setButtonText] = useState('Copy')
@@ -29,8 +29,11 @@ export default function PreviewCopy({ componentCode = '' }) {
   }
 
   return (
-    <button onClick={handleCopyToClipboard} className="hidden sm:block">
-      <ButtonStyle buttonEmoji={buttonEmoji} buttonText={buttonText} />
-    </button>
+    <span className="hidden sm:block">
+      <Button onClick={handleCopyToClipboard}>
+        <span aria-hidden="true">{buttonEmoji}</span>
+        <span>{buttonText}</span>
+      </Button>
+    </span>
   )
 }
