@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
 
-import Ads from '@component/global/Ad'
+import Ad from '@component/global/Ad'
 import Footer from '@component/global/Footer'
 import Header from '@component/global/Header'
 import HeaderBanner from '@component/global/HeaderBanner'
@@ -47,13 +47,13 @@ export default function RootLayout({ children }) {
 
         <Header />
 
-        {/* <HeaderBanner /> */}
+        <HeaderBanner />
 
         <main className="bg-white">{children}</main>
 
         <Footer />
 
-        <Ads />
+        <Ad />
       </body>
     </html>
   )
