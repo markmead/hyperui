@@ -1,37 +1,41 @@
 ---
-title: Moving to Tailwind CSS from Bootstrap? Use a Prefix (v3)
-description: Having issues when moving your existing Bootstrap project to Tailwind CSS? There might be an easy solution for that.
+title: Moving to Tailwind CSS v4 from another framework? Use a Prefix!
+description: Migrating to Tailwind CSS v4 from another CSS framework? Here’s a simple solution to avoid class conflicts.
 published: 10/25/2022
-updated: 10/25/2022
+updated: 08/09/2025
 emoji: 😅
 ---
 
-I've heard the line...
+I've heard this a few times:
 
-> I'm moving to Tailwind CSS but it's been difficult as it breaks Bootstrap
+> I'm switching to Tailwind CSS, but my old framework keeps breaking things!
 
-...at least three times. It's not a lot, but when the solution is a single line of code, it seems significant.
+Whether you're moving from Bootstrap, Bulma, or any other CSS framework, Tailwind CSS v4 makes it easy to avoid class name conflicts.
 
-So, what's the magical line? You ask.
+**The magic line?**
 
-```
-prefix: 'tw-'
-```
-
-That's it. Now classes like `flex` will be `tw-flex`. If you don't like `tw-`, don't use it. You can set the prefix to anything you want, even `help-` 🤷‍♂️
-
-However, sometimes you might still encounter issues. This is likely due to conflicts between Tailwind CSS and Bootstrap normalize CSS. You can resolve this by disabling one.
-
-I usually disable the Tailwind CSS normalize because I want to keep the styles close to the Bootstrap implementation while transitioning.
-
-_I know that's a little backwards, but you have to keep the clients happy!_
-
-To disable the Tailwind CSS normalize, you can easily comment it out.
-
-```
-/* @tailwind base; */
-@tailwind components;
-@tailwind utilities;
+```css
+@import 'tailwindcss' prefix(tw);
 ```
 
-You can [read more about prefix](https://tailwindcss.com/docs/configuration#prefix) on the Tailwind CSS website.
+Add this to your CSS entry file and Tailwind will generate classes like `tw-flex` instead of `flex`. You can use any prefix you like, such as `app` or `custom`:
+
+```css
+@import 'tailwindcss' prefix(app);
+```
+
+This prevents conflicts with utility classes from other frameworks, making your migration much smoother.
+
+**What about CSS resets?**
+
+Most CSS frameworks include their own CSS resets (normalize/base styles). If you notice style conflicts, you can disable Tailwind’s base styles by omitting the base import:
+
+```css
+/* @import "tailwindcss/base"; */
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+```
+
+This keeps your previous framework’s styles intact while you transition.
+
+For more details, check out the [Tailwind CSS docs on prefix](https://tailwindcss.com/docs/configuration#prefix).
