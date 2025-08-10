@@ -36,7 +36,7 @@ Browse the website for the components you need, copy the code and paste it into 
 4. Paste the copied code into your project.
 
 > [!NOTE]
-> Some components may not fully support dark mode yet. Improvements are ongoing.
+> Not all components support dark mode but this is being worked on.
 
 ## Components
 
