@@ -4,7 +4,7 @@ export default function Github() {
       href="https://github.com/markmead/hyperui"
       rel="noreferrer"
       target="_blank"
-      className="inline-flex h-10 w-10 items-center justify-center gap-2 rounded-full border border-gray-300 bg-gray-50 text-gray-700 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:w-auto sm:px-4"
+      className="inline-flex items-center gap-2 text-gray-700 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
     >
       <span className="sr-only"> GitHub </span>
 
