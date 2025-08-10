@@ -181,6 +181,7 @@ export async function getComponents() {
 
         return {
           categoryTitle: categoryData?.title,
+          categorySlug,
           componentItems,
         }
       })

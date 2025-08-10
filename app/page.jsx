@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { getComponents } from '@util/db'
 
 import Container from '@component/global/Container'
@@ -23,11 +25,16 @@ export default async function Page() {
 
       <Container id="mainContent" classNames="pb-8 lg:pb-12">
         <ul className="space-y-8">
-          {componentsByCategory.map(({ categoryTitle, componentItems = [] }) => {
+          {componentsByCategory.map(({ categoryTitle, categorySlug, componentItems = [] }) => {
             return (
               <li className="space-y-4" key={categoryTitle}>
                 <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
-                  {categoryTitle} Components
+                  <Link
+                    href={`/components/${categorySlug}`}
+                    className="underline-offset-2 hover:underline focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
+                  >
+                    {categoryTitle} Components
+                  </Link>
                 </h2>
 
                 <CollectionGrid componentItems={componentItems} />
