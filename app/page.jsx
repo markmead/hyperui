@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { getComponents } from '@util/db'
+import { getComponents } from '@service/db'
 
 import Container from '@component/global/Container'
 import Hero from '@component/global/Hero'

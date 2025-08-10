@@ -5,13 +5,9 @@
     "paths": {
       "@component/*": ["src/components/*"],
       "@style/*": ["src/styles/*"],
-      "@util/*": ["src/utils/*"]
+      "@service/*": ["src/service/*"]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": [{ "name": "next" }]
   },
   "include": ["**/*.js", "**/*.jsx"],
   "exclude": ["node_modules"]

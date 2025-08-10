@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getPost, formatSlug, postsDir } from '@util/db'
+import { getPost, formatSlug, postsDir } from '@service/db'
 
 import Container from '@component/global/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'

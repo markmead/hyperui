@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs'
 
-import { getAboutPage, formatSlug, pagesDir } from '@util/db'
+import { getAboutPage, formatSlug, pagesDir } from '@service/db'
 
 import Container from '@component/global/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'

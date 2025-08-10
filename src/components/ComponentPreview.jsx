@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
 
-import { componentPreviewHtml, componentPreviewJsx, componentPreviewVue } from '@util/transformers'
+import {
+  componentPreviewHtml,
+  componentPreviewJsx,
+  componentPreviewVue,
+} from '@service/transformers'
 
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'

@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getCategory, componentsDir } from '@util/db'
+import { getCategory, componentsDir } from '@service/db'
 
 import Container from '@component/global/Container'
 import Hero from '@component/global/Hero'
