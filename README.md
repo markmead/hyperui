@@ -35,8 +35,8 @@ Browse the website for the components you need, copy the code and paste it into 
 3. Click on the 'Copy' button to copy the source code.
 4. Paste the copied code into your project.
 
-> [!IMPORTANT]
-> Please note: Not all components support dark mode. This is being worked on.
+> [!NOTE]
+> Some components may not fully support dark mode yet. Improvements are ongoing.
 
 ## Components
 
