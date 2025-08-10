@@ -1,29 +1,28 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# Dependencies
+node_modules/
 
-# next.js
-/.next/
-/out/
+# Next.js
+.next/
+out/
 
-# vercel
-.vercel
+# Vercel
+.vercel/
 
-# production
-/build
-
-# misc
+# macOS
 .DS_Store
-*.pem
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
+# ENVs
 .env*
 
-# css
-/public/*.css
+# CSS
+public/*.css
+
+# VS Code
+.vscode/
+.history/
+
+# Miscellaneous
+*.log
+*.tmp
