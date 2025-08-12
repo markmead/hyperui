@@ -1,6 +1,6 @@
 import Container from '@component/global/Container'
 
-export default function HeaderBanner() {
+export default function HeaderCta() {
   return (
     <section className="-mt-px border-y border-gray-300 bg-gray-50">
       <Container classNames="py-2 flex justify-center">

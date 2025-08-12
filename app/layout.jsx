@@ -6,7 +6,7 @@ import '@style/site.css'
 import Ad from '@component/global/Ad'
 import Footer from '@component/global/Footer'
 import Header from '@component/global/Header'
-import HeaderBanner from '@component/global/HeaderBanner'
+import HeaderCta from '@component/global/HeaderCta'
 
 // prettier-ignore
 export const metadata = {
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
 
         <Header />
 
-        <HeaderBanner />
+        <HeaderCta />
 
         <main className="bg-white">{children}</main>
 

@@ -1,7 +1,7 @@
 export default function PreviewCreator({ creatorGithub }) {
   return (
     <p className="text-gray-700">
-      Created by{' '}
+      Creator:{' '}
       <a
         href={`https://github.com/${creatorGithub}`}
         rel="noreferrer"

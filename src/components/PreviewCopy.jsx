@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { useCopyToClipboard } from 'react-use'
 
-import Button from '@component/Button'
+import Button from '@component/global/Button'
 
 export default function PreviewCopy({ componentCode = '' }) {
   const [buttonText, setButtonText] = useState('Copy')

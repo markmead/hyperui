@@ -1,4 +1,4 @@
-import Button from '@component/Button'
+import Button from '@component/global/Button'
 
 export default function PreviewView({ showPreview, handleSetShowPreview }) {
   return (
