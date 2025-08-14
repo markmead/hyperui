@@ -43,19 +43,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { collectionData } = await getCollection(params)
+  const { category, collection } = await params
+  const { collectionData } = await getCollection({ category, collection })
 
   return {
     title: `Tailwind CSS ${collectionData.title} | HyperUI`,
     description: collectionData.description,
     alternates: {
-      canonical: `/components/${params.category}/${params.collection}`,
+      canonical: `/components/${category}/${collection}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const { collectionData, collectionContent } = await getCollection(params)
+  const { category, collection } = await params
+  const { collectionData, collectionContent } = await getCollection({ category, collection })
 
   const flatComponents = flattenComponents(collectionData)
 

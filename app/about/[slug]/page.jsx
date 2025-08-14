@@ -23,19 +23,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { pageData } = await getAboutPage(params)
+  const { slug } = await params
+  const { pageData } = await getAboutPage({ slug })
 
   return {
     title: `${pageData.title} | HyperUI`,
     description: pageData.description,
     alternates: {
-      canonical: `/about/${params.slug}`,
+      canonical: `/about/${slug}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const { pageData, pageContent } = await getAboutPage(params)
+  const { slug } = await params
+  const { pageData, pageContent } = await getAboutPage({ slug })
 
   return (
     <Container id="mainContent" classNames="py-8 lg:py-12">

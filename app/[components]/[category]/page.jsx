@@ -28,19 +28,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { categoryData } = await getCategory(params)
+  const { category } = await params
+  const { categoryData } = await getCategory({ category })
 
   return {
     title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
     description: categoryData.description,
     alternates: {
-      canonical: `/components/${params.category}`,
+      canonical: `/components/${category}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const { categoryData, componentItems } = await getCategory(params)
+  const { category } = await params
+  const { categoryData, componentItems } = await getCategory({ category })
 
   return (
     <>

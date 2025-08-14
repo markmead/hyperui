@@ -24,19 +24,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPost(params)
+  const { slug } = await params
+  const { frontmatter } = await getPost({ slug })
 
   return {
     title: `${frontmatter.title} | HyperUI`,
     description: frontmatter.description,
     alternates: {
-      canonical: `/blog/${params.slug}`,
+      canonical: `/blog/${slug}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, ...content } = await getPost(params)
+  const { slug } = await params
+  const { frontmatter, ...content } = await getPost({ slug })
 
   const schemaData = {
     '@context': 'http://schema.org',
