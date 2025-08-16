@@ -2,18 +2,38 @@ import { FlatCompat } from '@eslint/eslintrc'
 
 import js from '@eslint/js'
 import react from 'eslint-plugin-react'
+import unicorn from 'eslint-plugin-unicorn'
 
-const compat = new FlatCompat({
+const flatCompat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 })
 
-export default [
-  { ignores: ['.next', 'node_modules', 'out'] },
-
+const eslintConfig = [
   js.configs.recommended,
   react.configs.flat.recommended,
+  unicorn.configs.recommended,
 
-  ...compat.config({
+  {
+    files: ['**/*.{js,jsx}'],
+    ignores: ['.next', 'node_modules', 'out'],
+    rules: {
+      // Error
+      'unicorn/better-regex': 'error',
+      'unicorn/no-keyword-prefix': 'error',
+      'unicorn/no-unused-properties': 'error',
+
+      // Off
+      'unicorn/import-style': 'off',
+      'unicorn/filename-case': 'off',
+      'unicorn/prevent-abbreviations': 'off',
+      'unicorn/consistent-function-scoping': 'off',
+      'unicorn/no-array-reduce': 'off',
+    },
+  },
+
+  ...flatCompat.config({
     extends: ['next'],
   }),
 ]
+
+export default eslintConfig

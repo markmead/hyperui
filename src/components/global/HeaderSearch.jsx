@@ -48,7 +48,7 @@ export default function Search() {
     })
 
     setSearchResults(filteredCollections)
-    setShowDropdown(!!filteredCollections.length)
+    setShowDropdown(filteredCollections.length > 0)
   }, [debouncedSearchQuery, allCollections])
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function Search() {
           placeholder="Search components..."
           value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}
-          onFocus={() => !!searchResults.length && setShowDropdown(true)}
+          onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
           id="SearchQuery"
           ref={inputRef}
         />

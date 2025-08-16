@@ -1,9 +1,7 @@
-import Container from '@component/global/Container'
-
 export default function HeaderCta() {
   return (
     <section className="-mt-px border-y border-gray-300 bg-gray-50">
-      <Container classNames="py-2 flex justify-center">
+      <div className="mx-auto flex max-w-screen-xl justify-center px-4 py-2">
         <a
           href="https://github.com/markmead/hyperui"
           rel="noreferrer"
@@ -14,7 +12,7 @@ export default function HeaderCta() {
 
           <span aria-hidden="true">🎉</span>
         </a>
-      </Container>
+      </div>
     </section>
   )
 }

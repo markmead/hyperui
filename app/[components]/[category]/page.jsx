@@ -1,9 +1,8 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getCategory, componentsDir } from '@service/db'
+import { getCategory, componentsDir } from '@service/database'
 
-import Container from '@component/global/Container'
 import Hero from '@component/global/Hero'
 import CollectionGrid from '@component/CollectionGrid'
 
@@ -48,9 +47,9 @@ export default async function Page({ params }) {
         {categoryData.description}
       </Hero>
 
-      <Container id="mainContent" classNames="pb-8 lg:pb-12 space-y-8">
+      <div id="mainContent" className="mx-auto max-w-screen-xl space-y-8 px-4 pb-8 lg:pb-12">
         <CollectionGrid componentItems={componentItems} />
-      </Container>
+      </div>
     </>
   )
 }

@@ -1,7 +1,7 @@
-import { getPosts } from '@service/db'
+import { getPosts } from '@service/database'
 
 import BlogGrid from '@component/BlogGrid'
-import Container from '@component/global/Container'
+
 import Hero from '@component/global/Hero'
 
 export const metadata = {
@@ -25,9 +25,9 @@ export default async function Page() {
         there&#39;s something here to make your CSS life easier.
       </Hero>
 
-      <Container id="mainContent" classNames="pb-8 lg:pb-12">
+      <div id="mainContent" classNames="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
         <BlogGrid blogPosts={blogPosts} />
-      </Container>
+      </div>
     </>
   )
 }

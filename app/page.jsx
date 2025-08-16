@@ -1,8 +1,7 @@
 import Link from 'next/link'
 
-import { getComponents } from '@service/db'
+import { getComponents } from '@service/database'
 
-import Container from '@component/global/Container'
 import Hero from '@component/global/Hero'
 import CollectionGrid from '@component/CollectionGrid'
 
@@ -23,7 +22,7 @@ export default async function Page() {
         dashboard, eCommerce store and much more.
       </Hero>
 
-      <Container id="mainContent" classNames="pb-8 lg:pb-12">
+      <div id="mainContent" className="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
         <ul className="space-y-8">
           {componentsByCategory.map(({ categoryTitle, categorySlug, componentItems = [] }) => {
             return (
@@ -42,7 +41,7 @@ export default async function Page() {
             )
           })}
         </ul>
-      </Container>
+      </div>
     </>
   )
 }

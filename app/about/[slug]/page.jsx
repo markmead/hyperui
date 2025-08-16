@@ -1,8 +1,7 @@
 import { promises as fs } from 'node:fs'
 
-import { getAboutPage, formatSlug, pagesDir } from '@service/db'
+import { getAboutPage, formatSlug, pagesDir } from '@service/database'
 
-import Container from '@component/global/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 export const dynamic = 'force-static'
@@ -38,12 +37,12 @@ export default async function Page({ params }) {
   const { pageData, pageContent } = await getAboutPage(params)
 
   return (
-    <Container id="mainContent" classNames="py-8 lg:py-12">
+    <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
 
         <MdxRemoteRender mdxSource={pageContent} />
       </article>
-    </Container>
+    </div>
   )
 }

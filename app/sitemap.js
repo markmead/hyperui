@@ -1,4 +1,4 @@
-import { getComponents, getPosts, categorySlugs } from '@service/db'
+import { getComponents, getPosts, categorySlugs } from '@service/database'
 
 export default async function sitemap() {
   async function getCategorySlugs() {
