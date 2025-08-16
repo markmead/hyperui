@@ -25,7 +25,7 @@ export default async function Page() {
         there&#39;s something here to make your CSS life easier.
       </Hero>
 
-      <div id="mainContent" classNames="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
+      <div id="mainContent" className="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
         <BlogGrid blogPosts={blogPosts} />
       </div>
     </>
