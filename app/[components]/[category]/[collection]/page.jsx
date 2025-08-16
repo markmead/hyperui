@@ -1,9 +1,8 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getCollection, formatSlug, flattenComponents, componentsDir } from '@service/db'
+import { getCollection, formatSlug, flattenComponents, componentsDir } from '@service/database'
 
-import Container from '@component/global/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionList from '@component/CollectionList'
 
@@ -60,7 +59,7 @@ export default async function Page({ params }) {
   const flatComponents = flattenComponents(collectionData)
 
   return (
-    <Container id="mainContent" classNames="py-8 lg:py-12">
+    <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
       <div className="prose prose-p:max-w-prose prose-pre:rounded-3xl! max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
@@ -68,6 +67,6 @@ export default async function Page({ params }) {
           mdxScope={{ componentsData: flatComponents }}
         />
       </div>
-    </Container>
+    </div>
   )
 }

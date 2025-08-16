@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import Brand from '@component/global/Brand'
-import Container from '@component/global/Container'
+
 import Github from '@component/global/Github'
 import HeaderMenu from '@component/global/HeaderMenu'
 import HeaderLinks from '@component/global/HeaderLinks'
@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 border-b border-gray-300 bg-white">
-      <Container classNames="relative flex h-16 items-center justify-between gap-4">
+      <div className="relative mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-4 px-4">
         <div className="md:flex md:gap-8">
           <Brand />
 
@@ -55,7 +55,7 @@ export default function Header() {
 
           <Github />
         </div>
-      </Container>
+      </div>
     </header>
   )
 }

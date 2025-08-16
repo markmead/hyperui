@@ -46,31 +46,31 @@ export function componentPreviewHtml(
 
 export function componentPreviewJsx(componentHtml) {
   return componentHtml
-    .replace(/class=/g, 'className=')
-    .replace(/for=/g, 'htmlFor=')
-    .replace(/fill-rule=/g, 'fillRule=')
-    .replace(/fill-opacity=/g, 'fillOpacity=')
-    .replace(/clip-rule=/g, 'clipRule=')
-    .replace(/stroke-linecap=/g, 'strokeLinecap=')
-    .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
-    .replace(/stroke-width=/g, 'strokeWidth=')
-    .replace(/stroke-dasharray=/g, 'strokeDasharray=')
-    .replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
-    .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
-    .replace(/stroke-opacity=/g, 'strokeOpacity=')
-    .replace(/tabindex=/g, 'tabIndex=')
-    .replace(/readonly=/g, 'readOnly=')
-    .replace(/maxlength=/g, 'maxLength=')
-    .replace(/minlength=/g, 'minLength=')
-    .replace(/autocomplete=/g, 'autoComplete=')
-    .replace(/<!--/g, '{/*')
-    .replace(/-->/g, '*/}')
+    .replaceAll('class=', 'className=')
+    .replaceAll('for=', 'htmlFor=')
+    .replaceAll('fill-rule=', 'fillRule=')
+    .replaceAll('fill-opacity=', 'fillOpacity=')
+    .replaceAll('clip-rule=', 'clipRule=')
+    .replaceAll('stroke-linecap=', 'strokeLinecap=')
+    .replaceAll('stroke-linejoin=', 'strokeLinejoin=')
+    .replaceAll('stroke-width=', 'strokeWidth=')
+    .replaceAll('stroke-dasharray=', 'strokeDasharray=')
+    .replaceAll('stroke-dashoffset=', 'strokeDashoffset=')
+    .replaceAll('stroke-miterlimit=', 'strokeMiterlimit=')
+    .replaceAll('stroke-opacity=', 'strokeOpacity=')
+    .replaceAll('tabindex=', 'tabIndex=')
+    .replaceAll('readonly=', 'readOnly=')
+    .replaceAll('maxlength=', 'maxLength=')
+    .replaceAll('minlength=', 'minLength=')
+    .replaceAll('autocomplete=', 'autoComplete=')
+    .replaceAll('<!--', '{/*')
+    .replaceAll('-->', '*/}')
 }
 
 export function componentPreviewVue(componentHtml) {
-  const newComponentHtml = `<template>\n${componentHtml}</template>`
+  const templateWrappedHtml = `<template>\n${componentHtml}</template>`
 
-  return newComponentHtml
+  return templateWrappedHtml
     .split('\n')
     .map((codeLine) => {
       if (codeLine.includes('<template>') || codeLine.includes('</template>')) {

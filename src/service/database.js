@@ -19,7 +19,7 @@ export async function getPosts() {
     const blogPosts = await Promise.all(
       postSlugs.map(async (postSlug) => {
         const postPath = join(postsDir, postSlug)
-        const postItem = await fs.readFile(postPath, 'utf-8')
+        const postItem = await fs.readFile(postPath, 'utf8')
 
         const { data: frontmatter } = matter(postItem)
 
@@ -39,7 +39,7 @@ export async function getPosts() {
 export async function getPost({ slug }) {
   try {
     const postPath = join(postsDir, `${slug}.mdx`)
-    const postItem = await fs.readFile(postPath, 'utf-8')
+    const postItem = await fs.readFile(postPath, 'utf8')
 
     const mdxSource = await serialize(postItem, {
       parseFrontmatter: true,
@@ -57,7 +57,7 @@ export async function getPost({ slug }) {
 export async function getAboutPage({ slug }) {
   try {
     const pagePath = join(pagesDir, `${slug}.mdx`)
-    const pageItem = await fs.readFile(pagePath, 'utf-8')
+    const pageItem = await fs.readFile(pagePath, 'utf8')
 
     const mdxSource = await serialize(pageItem, {
       parseFrontmatter: true,
@@ -78,7 +78,7 @@ export async function getAboutPage({ slug }) {
 export async function getCategory({ category }) {
   try {
     const categoryPath = join(categoriesDir, `${category}.mdx`)
-    const categoryItem = await fs.readFile(categoryPath, 'utf-8')
+    const categoryItem = await fs.readFile(categoryPath, 'utf8')
 
     const componentsPath = join(componentsDir, category)
     const componentSlugs = await fs.readdir(componentsPath)
@@ -90,7 +90,7 @@ export async function getCategory({ category }) {
         .filter((componentSlug) => componentSlug.includes('.mdx'))
         .map(async (componentSlug) => {
           const componentPath = join(componentsPath, componentSlug)
-          const componentItem = await fs.readFile(componentPath, 'utf-8')
+          const componentItem = await fs.readFile(componentPath, 'utf8')
 
           const { data: componentData } = matter(componentItem)
 
@@ -123,7 +123,7 @@ export async function getCategory({ category }) {
 export async function getCollection({ category, collection }) {
   try {
     const componentPath = join(componentsDir, category, `${collection}.mdx`)
-    const componentItem = await fs.readFile(componentPath, 'utf-8')
+    const componentItem = await fs.readFile(componentPath, 'utf8')
 
     const mdxSource = await serialize(componentItem, {
       parseFrontmatter: true,
@@ -146,7 +146,7 @@ export async function getComponents() {
     const componentsByCategory = await Promise.all(
       categorySlugs.map(async (categorySlug) => {
         const categoryPath = join(categoriesDir, `${categorySlug}.mdx`)
-        const categoryItem = await fs.readFile(categoryPath, 'utf-8')
+        const categoryItem = await fs.readFile(categoryPath, 'utf8')
 
         const { data: categoryData } = matter(categoryItem)
 
@@ -157,7 +157,7 @@ export async function getComponents() {
             .filter((componentSlug) => componentSlug.includes('.mdx'))
             .map(async (componentSlug) => {
               const componentPath = join(componentsDir, categorySlug, componentSlug)
-              const componentItem = await fs.readFile(componentPath, 'utf-8')
+              const componentItem = await fs.readFile(componentPath, 'utf8')
 
               const { data: componentData } = matter(componentItem)
 
@@ -233,7 +233,7 @@ export function flattenComponents(collectionData) {
 
     const componentId = componentIndex + 1
 
-    const newComponent = {
+    const componentData = {
       id: componentId,
       title: componentItem.title,
       slug: collectionData.slug,
@@ -246,15 +246,15 @@ export function flattenComponents(collectionData) {
     }
 
     if (!isDark) {
-      return newComponent
+      return componentData
     }
 
     return [
-      newComponent,
+      componentData,
       {
-        ...newComponent,
+        ...componentData,
         id: `${componentId}-dark`,
-        title: `${newComponent.title} (Dark)`,
+        title: `${componentData.title} (Dark)`,
         dark: true,
       },
     ]

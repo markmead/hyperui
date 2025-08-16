@@ -1,9 +1,7 @@
-import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getPost, formatSlug, postsDir } from '@service/db'
+import { getPost, formatSlug, postsDir } from '@service/database'
 
-import Container from '@component/global/Container'
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
 export const dynamic = 'force-static'
@@ -62,7 +60,7 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <Container id="mainContent" classNames="py-8 lg:py-12">
+      <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
         <article className="prose mx-auto">
           <h1>{frontmatter.title}</h1>
 
@@ -74,7 +72,7 @@ export default async function Page({ params }) {
 
           <MdxRemoteRender mdxSource={content} />
         </article>
-      </Container>
+      </div>
     </>
   )
 }

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import Brand from '@component/global/Brand'
-import Container from '@component/global/Container'
 
 export default function Footer() {
   const footerLinks = [
@@ -17,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gray-300 bg-gray-50">
-      <Container classNames="py-8 lg:py-12 space-y-4">
+      <div className="mx-auto max-w-screen-xl space-y-4 px-4 py-8 lg:py-12">
         <Brand isLarge={true} />
 
         <p className="max-w-lg text-pretty text-gray-700">
@@ -51,7 +50,7 @@ export default function Footer() {
             </a>
           </p>
         </div>
-      </Container>
+      </div>
     </footer>
   )
 }

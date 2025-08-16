@@ -20,7 +20,7 @@ import PreviewType from '@component/PreviewType'
 import PreviewView from '@component/PreviewView'
 
 export default function ComponentPreview({ componentData }) {
-  const refIframe = useRef(null)
+  const iframeRef = useRef(null)
 
   const [codeType, setCodeType] = useState('html')
   const [componentCode, setComponentCode] = useState('')
@@ -80,10 +80,6 @@ export default function ComponentPreview({ componentData }) {
 
   const componentHash = `component-${componentId}`
 
-  const isHtml = codeType === 'html'
-  const isJsx = codeType === 'jsx'
-  const isVue = codeType === 'vue'
-
   useEffect(() => {
     if (!inView) {
       return
@@ -106,9 +102,13 @@ export default function ComponentPreview({ componentData }) {
   }, [isRtl])
 
   useEffect(() => {
-    setPreviewCode(
-      isHtml ? componentCode : isJsx ? componentJsx : isVue ? componentVue : componentCode
-    )
+    const codeMap = {
+      html: componentCode,
+      jsx: componentJsx,
+      vue: componentVue,
+    }
+
+    setPreviewCode(codeMap[codeType])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
 
@@ -117,13 +117,18 @@ export default function ComponentPreview({ componentData }) {
 
     const fetchResponse = await fetch(componentUrl)
     const textResponse = await fetchResponse.text()
+
     const transformedHtml = componentPreviewHtml(textResponse, componentSpace, isRtl)
     const transformedJsx = componentPreviewJsx(textResponse)
     const transformedVue = componentPreviewVue(textResponse)
 
-    setPreviewCode(
-      isHtml ? textResponse : isJsx ? transformedJsx : isVue ? transformedVue : textResponse
-    )
+    const codeMap = {
+      html: textResponse,
+      jsx: transformedJsx,
+      vue: transformedVue,
+    }
+
+    setPreviewCode(codeMap[codeType])
     setComponentCode(textResponse)
     setComponentHtml(transformedHtml)
     setComponentJsx(transformedJsx)
@@ -177,7 +182,7 @@ export default function ComponentPreview({ componentData }) {
             previewWidth={previewWidth}
             previewHeight={componentHeight}
             previewDark={componentDark}
-            refIframe={refIframe}
+            iframeRef={iframeRef}
           />
         ) : (
           <PreviewCode componentId={componentId} codeType={codeType} componentCode={previewCode} />
@@ -186,7 +191,7 @@ export default function ComponentPreview({ componentData }) {
         <div>
           <PreviewCreator creatorGithub={componentCreator} />
 
-          {!!componentPlugins.length && <PreviewPlugins componentPlugins={componentPlugins} />}
+          {componentPlugins.length > 0 && <PreviewPlugins componentPlugins={componentPlugins} />}
         </div>
       </div>
     </div>

@@ -11,19 +11,19 @@ export default function Ads() {
   }, [routerPathname])
 
   function loadAd() {
-    if (document.getElementById('EthicalAds')) {
-      window && window.ethicalads && window.ethicalads.reload()
+    if (document.querySelector('#EthicalAds')) {
+      globalThis && globalThis.ethicalads && globalThis.ethicalads.reload()
 
       return
     }
 
-    const newScript = document.createElement('script')
+    const adScript = document.createElement('script')
 
-    newScript.src = 'https://media.ethicalads.io/media/client/ethicalads.min.js'
-    newScript.async = true
-    newScript.id = 'EthicalAds'
+    adScript.src = 'https://media.ethicalads.io/media/client/ethicalads.min.js'
+    adScript.async = true
+    adScript.id = 'EthicalAds'
 
-    document.body.appendChild(newScript)
+    document.body.append(adScript)
   }
 
   return (

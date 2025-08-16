@@ -1,10 +1,9 @@
-import Container from '@component/global/Container'
 import HeroUsps from '@component/global/HeroUsps'
 
 export default function Hero({ children, subtitle, title }) {
   return (
     <section className="bg-white text-center">
-      <Container classNames="py-8 lg:py-12">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
         <div className="flex flex-col gap-4">
           <h1 className="text-lg text-gray-700">{subtitle}</h1>
 
@@ -16,7 +15,7 @@ export default function Hero({ children, subtitle, title }) {
 
           <HeroUsps />
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

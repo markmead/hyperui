@@ -25,6 +25,7 @@
     "eslint": "9.33.0",
     "eslint-config-next": "15.4.6",
     "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-unicorn": "^60.0.0",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^5.0.0",
