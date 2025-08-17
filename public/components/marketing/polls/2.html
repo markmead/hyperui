@@ -1,66 +1,72 @@
-<div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-  <form action="">
-    <fieldset>
-      <legend class="text-lg font-medium text-gray-900">Which tools do you use?</legend>
+<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+  <div class="max-w-prose">
+    <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">Where should we go for lunch?</h2>
 
-      <div class="mt-4 space-y-2">
-        <div>
-          <label
-            for="ToolA"
-            class="flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 has-[:checked]:bg-blue-50"
-          >
-            <div class="flex items-center">
-              &#8203;
-              <input type="checkbox" class="size-4 rounded border-gray-300" id="ToolA" />
-            </div>
+    <p class="mt-4 text-gray-700">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores exercitationem id
+      soluta eaque harum eligendi distinctio sapiente esse ad! Sit expedita eos quam numquam ea,
+      assumenda officiis minus ut!
+    </p>
+  </div>
 
-            <div>
-              <strong class="font-medium text-gray-900"> Tool A </strong>
-            </div>
-          </label>
-        </div>
+  <form action="#" class="mt-6 space-y-4">
+    <fieldset class="space-y-4">
+      <legend class="sr-only">Selection an option</legend>
 
-        <div>
-          <label
-            for="ToolB"
-            class="flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 has-[:checked]:bg-blue-50"
-          >
-            <div class="flex items-center">
-              &#8203;
-              <input type="checkbox" class="size-4 rounded border-gray-300" id="ToolB" />
-            </div>
+      <div class="flex items-center gap-4">
+        <label
+          for="Option1"
+          class="relative block flex-1 overflow-hidden rounded border border-gray-300 px-4 py-2 shadow-sm"
+        >
+          <div class="absolute inset-y-0 left-0 rounded bg-gray-100" style="width: 45%"></div>
 
-            <div>
-              <strong class="font-medium text-gray-900"> Tool B </strong>
-            </div>
-          </label>
-        </div>
+          <div class="relative flex items-center gap-4">
+            <input type="checkbox" id="Option1" class="size-5 rounded border-gray-300 shadow-sm" />
 
-        <div>
-          <label
-            for="ToolC"
-            class="flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 has-[:checked]:bg-blue-50"
-          >
-            <div class="flex items-center">
-              &#8203;
-              <input type="checkbox" class="size-4 rounded border-gray-300" id="ToolC" />
-            </div>
+            <span class="font-medium text-gray-900"> Option 1 </span>
+          </div>
+        </label>
 
-            <div>
-              <strong class="font-medium text-gray-900"> Tool C </strong>
-            </div>
-          </label>
-        </div>
+        <span class="text-gray-700">45%</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <label
+          for="Option2"
+          class="relative block flex-1 overflow-hidden rounded border border-gray-300 px-4 py-2 shadow-sm"
+        >
+          <div class="absolute inset-y-0 left-0 rounded bg-gray-100" style="width: 25%"></div>
+
+          <div class="relative flex items-center gap-4">
+            <input type="checkbox" id="Option2" class="size-5 rounded border-gray-300 shadow-sm" />
+
+            <span class="font-medium text-gray-900"> Option 2 </span>
+          </div>
+        </label>
+
+        <span class="text-gray-700">25%</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <label
+          for="Option3"
+          class="relative block flex-1 overflow-hidden rounded border border-gray-300 px-4 py-2 shadow-sm"
+        >
+          <div class="absolute inset-y-0 left-0 rounded bg-gray-100" style="width: 30%"></div>
+
+          <div class="relative flex items-center gap-4">
+            <input type="checkbox" id="Option3" class="size-5 rounded border-gray-300 shadow-sm" />
+
+            <span class="font-medium text-gray-900"> Option 3 </span>
+          </div>
+        </label>
+
+        <span class="text-gray-700">30%</span>
       </div>
     </fieldset>
-
-    <div class="mt-4">
-      <button
-        type="submit"
-        class="w-full rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-indigo-700"
-      >
-        Submit
-      </button>
-    </div>
   </form>
+
+  <p class="mt-4 text-sm text-gray-700">
+    Ends on <time datetime="2025-10-31">October 31, 2025</time>
+  </p>
 </div>
