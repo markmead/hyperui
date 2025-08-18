@@ -23,11 +23,11 @@ const eslintConfig = [
       'unicorn/no-unused-properties': 'error',
 
       // Off
-      'unicorn/import-style': 'off',
-      'unicorn/filename-case': 'off',
-      'unicorn/prevent-abbreviations': 'off',
       'unicorn/consistent-function-scoping': 'off',
+      'unicorn/filename-case': 'off',
+      'unicorn/import-style': 'off',
       'unicorn/no-array-reduce': 'off',
+      'unicorn/prevent-abbreviations': 'off',
     },
   },
 
