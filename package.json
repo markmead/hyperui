@@ -15,6 +15,7 @@
     "react-dom": "19.1.1"
   },
   "devDependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@headlessui/react": "^2.2.7",
     "@next/eslint-plugin-next": "15.5.0",
     "@tailwindcss/cli": "^4.1.12",

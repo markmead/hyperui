@@ -64,11 +64,19 @@ export default async function Page({ params }) {
         <article className="prose mx-auto">
           <h1>{frontmatter.title}</h1>
 
-          <p>
-            Updated: <time>{frontmatter.updated}</time>
-            <br />
-            Published: <time>{frontmatter.published}</time>
-          </p>
+          <dl className="grid grid-cols-[80px_1fr] *:m-0">
+            <dt>Published:</dt>
+
+            <dd>
+              <time>{frontmatter.published}</time>
+            </dd>
+
+            <dt>Updated:</dt>
+
+            <dd>
+              <time>{frontmatter.updated}</time>
+            </dd>
+          </dl>
 
           <MdxRemoteRender mdxSource={content} />
         </article>

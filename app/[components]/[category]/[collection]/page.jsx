@@ -60,7 +60,7 @@ export default async function Page({ params }) {
 
   return (
     <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
-      <div className="prose prose-p:max-w-prose prose-pre:rounded-3xl! max-w-none">
+      <div className="prose prose-p:max-w-prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}

@@ -1,5 +1,5 @@
 pre[class*='language-'] {
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
   background-color: var(--color-gray-900) !important;
   padding: --spacing(4) !important;
   margin: 0 !important;

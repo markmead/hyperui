@@ -3,18 +3,22 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, useRef } from 'react'
 import { useClickAway, useDebounce } from 'react-use'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Search() {
   const routerPathname = usePathname()
 
   const inputRef = useRef(null)
-  const wrapperRef = useRef(null)
+  const dropdownRef = useRef(null)
 
   const [allCollections, setAllCollections] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
+
+  const [wrapperRef] = useAutoAnimate()
+  const [listRef] = useAutoAnimate()
 
   useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
 
@@ -55,16 +59,16 @@ export default function Search() {
     setSearchQuery('')
   }, [routerPathname])
 
-  useClickAway(wrapperRef, () => setShowDropdown(false))
+  useClickAway(dropdownRef, () => setShowDropdown(false))
 
   return (
-    <div className="relative w-full max-w-64" ref={wrapperRef}>
+    <div className="relative w-full max-w-64" ref={dropdownRef}>
       <label htmlFor="SearchQuery">
         <span className="sr-only">Search</span>
 
         <input
           type="text"
-          className="w-full rounded border-stone-300 focus:border-indigo-400 focus:ring-indigo-400"
+          className="w-full rounded-lg border-stone-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
           placeholder="Search components..."
           value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}
@@ -74,15 +78,20 @@ export default function Search() {
         />
       </label>
 
-      {showDropdown && (
-        <ul className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded border border-stone-300 bg-white shadow-lg">
-          {searchResults.map((collectionItem, itemIndex) => (
-            <li key={itemIndex}>
-              <SearchResult collectionItem={collectionItem} />
-            </li>
-          ))}
-        </ul>
-      )}
+      <div ref={wrapperRef}>
+        {showDropdown && (
+          <ul
+            ref={listRef}
+            className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
+          >
+            {searchResults.map((collectionItem, itemIndex) => (
+              <li key={itemIndex}>
+                <SearchResult collectionItem={collectionItem} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   )
 }

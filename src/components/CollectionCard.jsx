@@ -9,7 +9,7 @@ export default function CollectionCard({ componentData }) {
   return (
     <Link
       href={`/components/${componentData.category}/${componentData.slug}`}
-      className="block h-full rounded-md border border-stone-300 bg-white p-4 transition-colors hover:border-indigo-500 hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
+      className="block h-full rounded-lg border border-stone-300 bg-white p-4 shadow-sm transition-colors hover:border-indigo-500 hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
     >
       <div className="flex items-center justify-between">
         <span aria-hidden="true" className="text-lg sm:text-xl">

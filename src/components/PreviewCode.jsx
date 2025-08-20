@@ -16,7 +16,7 @@ export default function PreviewCode({ componentCode = '', codeType = 'html' }) {
   }, [codeType])
 
   return (
-    <pre className="h-[400px] overflow-auto lg:h-[600px]">
+    <pre className="h-[400px] overflow-auto shadow-lg ring-1 ring-stone-300 lg:h-[600px]">
       <code className={prismClass}>{componentCode}</code>
     </pre>
   )

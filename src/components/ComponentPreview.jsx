@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import {
   componentPreviewHtml,
@@ -31,6 +32,8 @@ export default function ComponentPreview({ componentData }) {
   const [previewCode, setPreviewCode] = useState('')
   const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
+
+  const [previewRef] = useAutoAnimate()
 
   const { category: categorySlug } = useParams()
 
@@ -137,7 +140,7 @@ export default function ComponentPreview({ componentData }) {
 
   return (
     <div ref={ref} id={componentHash}>
-      <div className="space-y-4">
+      <div ref={previewRef} className="space-y-4">
         <PreviewTitle componentTitle={componentTitle} componentHash={componentHash} />
 
         <div className="lg:flex lg:items-center">

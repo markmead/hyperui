@@ -6,11 +6,11 @@ export default function PreviewIframe({
   previewDark = false,
   iframeRef,
 }) {
-  const iframeTheme = previewDark ? 'bg-stone-900' : 'bg-white'
+  const iframeTheme = previewDark ? 'bg-gray-900' : 'bg-white'
 
   return (
     <iframe
-      className={`w-full rounded-lg ring ring-stone-300 duration-300 lg:transition-[max-width] ${iframeTheme} ${previewHeight}`}
+      className={`w-full rounded-lg shadow-md ring ring-stone-300 duration-300 lg:transition-[max-width] ${iframeTheme} ${previewHeight}`}
       loading="lazy"
       srcDoc={componentHtml}
       style={{ maxWidth: previewWidth }}

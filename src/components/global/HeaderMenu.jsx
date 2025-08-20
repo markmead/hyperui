@@ -14,7 +14,7 @@ export default function HeaderMenu({ showMenu, headerLinks, handleSetShowMenu })
 
       {showMenu && (
         <div className="absolute inset-x-0 top-14 px-2">
-          <nav className="rounded-md border border-stone-300 bg-white p-4 shadow-lg">
+          <nav className="rounded-lg border border-stone-300 bg-white p-4 shadow-lg">
             <HeaderLinks headerLinks={headerLinks} />
           </nav>
         </div>
