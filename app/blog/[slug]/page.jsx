@@ -61,7 +61,7 @@ export default async function Page({ params }) {
       />
 
       <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
-        <article className="prose mx-auto">
+        <article className="prose prose-pre:rounded-lg mx-auto">
           <h1>{frontmatter.title}</h1>
 
           <dl className="grid grid-cols-[80px_1fr] *:m-0">
