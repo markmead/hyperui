@@ -12,9 +12,11 @@ export default function Search() {
   const dropdownRef = useRef(null)
 
   const [allCollections, setAllCollections] = useState([])
+  const [allBlogs, setAllBlogs] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState([])
+  const [collectionResults, setCollectionResults] = useState([])
+  const [blogResults, setBlogResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
 
   const [wrapperRef] = useAutoAnimate()
@@ -23,20 +25,22 @@ export default function Search() {
   useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
 
   useEffect(() => {
-    async function fetchCollections() {
+    async function fetchSearch() {
       const searchResponse = await fetch('/api/search')
 
-      const { collections } = await searchResponse.json()
+      const { collections, blogs } = await searchResponse.json()
 
       setAllCollections(collections || [])
+      setAllBlogs(blogs || [])
     }
 
-    fetchCollections()
+    fetchSearch()
   }, [])
 
   useEffect(() => {
     if (!debouncedSearchQuery) {
-      setSearchResults([])
+      setCollectionResults([])
+      setBlogResults([])
       setShowDropdown(false)
 
       return
@@ -51,9 +55,14 @@ export default function Search() {
       return titleMatch || termsMatch
     })
 
-    setSearchResults(filteredCollections)
-    setShowDropdown(filteredCollections.length > 0)
-  }, [debouncedSearchQuery, allCollections])
+    const filteredBlogs = allBlogs.filter(({ title }) => {
+      return title.toLowerCase().includes(queryLower)
+    })
+
+    setCollectionResults(filteredCollections)
+    setBlogResults(filteredBlogs)
+    setShowDropdown(!!filteredCollections.length || !!filteredBlogs.length)
+  }, [debouncedSearchQuery, allCollections, allBlogs])
 
   useEffect(() => {
     setSearchQuery('')
@@ -72,7 +81,7 @@ export default function Search() {
           placeholder="Search components..."
           value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}
-          onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
+          onFocus={() => !!collectionResults.length && setShowDropdown(true)}
           id="SearchQuery"
           ref={inputRef}
         />
@@ -80,23 +89,53 @@ export default function Search() {
 
       <div ref={wrapperRef}>
         {showDropdown && (
-          <ul
+          <div
             ref={listRef}
-            className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
+            className="absolute right-0 z-50 mt-1 max-h-64 w-screen max-w-sm divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
           >
-            {searchResults.map((collectionItem, itemIndex) => (
-              <li key={itemIndex}>
-                <SearchResult collectionItem={collectionItem} />
-              </li>
-            ))}
-          </ul>
+            {collectionResults.length ? (
+              <div>
+                <div className="px-4 py-2">
+                  <p className="font-medium text-stone-900">Components</p>
+                </div>
+
+                <ul className="divide-y divide-stone-200 border-t border-stone-200">
+                  {collectionResults.map((collectionItem, itemIndex) => (
+                    <li key={itemIndex}>
+                      <ComponentResult collectionItem={collectionItem} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <></>
+            )}
+
+            {blogResults.length ? (
+              <div>
+                <div className="px-4 py-2">
+                  <p className="font-medium text-stone-900">Blogs</p>
+                </div>
+
+                <ul className="divide-y divide-stone-200 border-t border-stone-200">
+                  {blogResults.map((blogItem, itemIndex) => (
+                    <li key={itemIndex}>
+                      <BlogResult blogItem={blogItem} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         )}
       </div>
     </div>
   )
 }
 
-function SearchResult({ collectionItem }) {
+function ComponentResult({ collectionItem }) {
   return (
     <Link
       href={`/components/${collectionItem.category}/${collectionItem.slug}`}
@@ -111,6 +150,23 @@ function SearchResult({ collectionItem }) {
       <span className="mt-0.5 block text-sm text-stone-700 md:mt-0">
         {collectionItem.categoryTitle}
       </span>
+    </Link>
+  )
+}
+
+function BlogResult({ blogItem }) {
+  return (
+    <Link
+      href={`/blog/${blogItem.slug}`}
+      className="block px-4 py-2 transition-colors hover:bg-stone-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none focus:ring-inset"
+    >
+      <div className="flex items-center gap-2">
+        <span aria-hidden="true">{blogItem.emoji}</span>
+
+        <span className="line-clamp-1 font-medium text-pretty text-stone-900">
+          {blogItem.title}
+        </span>
+      </div>
     </Link>
   )
 }
