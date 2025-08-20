@@ -1,6 +1,6 @@
 export default function PreviewPlugins({ componentPlugins }) {
   return (
-    <p className="text-gray-700">
+    <p className="text-stone-700">
       Plugins:{' '}
       {componentPlugins.map((componentPlugin, pluginIndex) => (
         <span key={pluginIndex}>
@@ -8,7 +8,7 @@ export default function PreviewPlugins({ componentPlugins }) {
             href={`https://npmjs.com/${componentPlugin}`}
             target="_blank"
             rel="noreferrer"
-            className="font-medium underline transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
+            className="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
           >
             {componentPlugin}
           </a>

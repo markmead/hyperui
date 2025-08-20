@@ -10,20 +10,20 @@
     "css": "npx @tailwindcss/cli -i ./src/styles/components.css -o ./public/components.css"
   },
   "dependencies": {
-    "next": "15.4.6",
+    "next": "15.5.0",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
   "devDependencies": {
     "@headlessui/react": "^2.2.7",
-    "@next/eslint-plugin-next": "15.4.6",
+    "@next/eslint-plugin-next": "15.5.0",
     "@tailwindcss/cli": "^4.1.12",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
-    "@typescript-eslint/parser": "^8.39.1",
+    "@typescript-eslint/parser": "^8.40.0",
     "eslint": "9.33.0",
-    "eslint-config-next": "15.4.6",
+    "eslint-config-next": "15.5.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-unicorn": "^60.0.0",
     "fast-glob": "^3.3.3",

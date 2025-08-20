@@ -64,7 +64,7 @@ export default function Search() {
 
         <input
           type="text"
-          className="w-full rounded border-gray-300 focus:border-pink-400 focus:ring-pink-400"
+          className="w-full rounded border-stone-300 focus:border-indigo-400 focus:ring-indigo-400"
           placeholder="Search components..."
           value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}
@@ -75,7 +75,7 @@ export default function Search() {
       </label>
 
       {showDropdown && (
-        <ul className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-gray-200 overflow-auto rounded border border-gray-300 bg-white shadow-lg">
+        <ul className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded border border-stone-300 bg-white shadow-lg">
           {searchResults.map((collectionItem, itemIndex) => (
             <li key={itemIndex}>
               <SearchResult collectionItem={collectionItem} />
@@ -91,15 +91,15 @@ function SearchResult({ collectionItem }) {
   return (
     <Link
       href={`/components/${collectionItem.category}/${collectionItem.slug}`}
-      className="block px-4 py-2 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-pink-400 focus:outline-none focus:ring-inset md:flex md:items-center md:justify-between"
+      className="block px-4 py-2 transition-colors hover:bg-stone-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none focus:ring-inset md:flex md:items-center md:justify-between"
     >
       <div className="flex items-center gap-2">
         <span aria-hidden="true">{collectionItem.emoji}</span>
 
-        <span className="font-medium text-gray-900">{collectionItem.title}</span>
+        <span className="font-medium text-stone-900">{collectionItem.title}</span>
       </div>
 
-      <span className="mt-0.5 block text-sm text-gray-700 md:mt-0">
+      <span className="mt-0.5 block text-sm text-stone-700 md:mt-0">
         {collectionItem.categoryTitle}
       </span>
     </Link>

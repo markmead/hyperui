@@ -15,11 +15,11 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="border-t border-gray-300 bg-gray-50">
+    <footer className="border-t border-stone-300 bg-stone-50">
       <div className="mx-auto max-w-screen-xl space-y-4 px-4 py-8 lg:py-12">
         <Brand isLarge={true} />
 
-        <p className="max-w-lg text-pretty text-gray-700">
+        <p className="max-w-lg text-pretty text-stone-700">
           Free open source Tailwind CSS components for marketing and eCommerce websites, as well as
           application interfaces.
         </p>
@@ -30,7 +30,7 @@ export default function Footer() {
               <li key={footerLink.href}>
                 <Link
                   href={footerLink.href}
-                  className="font-medium text-gray-700 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
+                  className="font-medium text-stone-700 transition-colors hover:text-stone-900 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
                 >
                   {footerLink.title}
                 </Link>
@@ -38,13 +38,13 @@ export default function Footer() {
             ))}
           </ul>
 
-          <p className="text-gray-700">
+          <p className="text-stone-700">
             Created by{' '}
             <a
               href="https://github.com/markmead"
               rel="noreferrer"
               target="_blank"
-              className="font-medium underline transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
+              className="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
             >
               Mark Mead
             </a>

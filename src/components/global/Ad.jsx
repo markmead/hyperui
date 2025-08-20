@@ -32,7 +32,7 @@ export default function Ads() {
       data-ea-publisher="hyperuidev"
       data-ea-type="text"
       data-ea-style="fixedfooter"
-      className="sticky! [&_.ea-body]:text-gray-900! [&_.ea-fixedfooter-hide]:hidden! [&_.ea-placement]:bg-gray-200! [&_strong]:text-sky-600!"
+      className="sticky! [&_.ea-body]:text-stone-900! [&_.ea-fixedfooter-hide]:hidden! [&_.ea-placement]:bg-stone-200! [&_strong]:text-sky-600!"
     ></div>
   )
 }

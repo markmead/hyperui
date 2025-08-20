@@ -34,7 +34,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 border-b border-gray-300 bg-white">
+    <header className="sticky inset-x-0 top-0 z-50 border-b border-stone-300 bg-white">
       <div className="relative mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-4 px-4">
         <div className="md:flex md:gap-8">
           <Brand />

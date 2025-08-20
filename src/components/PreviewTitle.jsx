@@ -1,9 +1,9 @@
 export default function PreviewTitle({ componentTitle, componentHash }) {
   return (
-    <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
+    <h2 className="text-xl font-bold text-stone-900 sm:text-2xl">
       <a
         href={`#${componentHash}`}
-        className="group relative inline-block focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
+        className="group relative inline-block focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
       >
         <span
           aria-hidden="true"

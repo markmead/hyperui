@@ -158,7 +158,7 @@ export default function ComponentPreview({ componentData }) {
           )}
 
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
-            <p className="font-medium text-gray-700">@ {previewWidth}</p>
+            <p className="font-medium text-stone-700">@ {previewWidth}</p>
 
             {previewBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (

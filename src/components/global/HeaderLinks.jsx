@@ -8,7 +8,7 @@ export default function HeaderLinks({ headerLinks }) {
           <li key={headerLink.href}>
             <Link
               href={headerLink.href}
-              className="font-medium text-gray-700 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
+              className="font-medium text-stone-700 transition-colors hover:text-stone-900 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
             >
               {headerLink.title}
             </Link>

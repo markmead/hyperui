@@ -9,7 +9,7 @@ export default function CollectionCard({ componentData }) {
   return (
     <Link
       href={`/components/${componentData.category}/${componentData.slug}`}
-      className="block h-full rounded-md border border-gray-300 bg-white p-4 transition-colors hover:border-pink-500 hover:ring hover:ring-pink-500 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
+      className="block h-full rounded-md border border-stone-300 bg-white p-4 transition-colors hover:border-indigo-500 hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
     >
       <div className="flex items-center justify-between">
         <span aria-hidden="true" className="text-lg sm:text-xl">
@@ -19,9 +19,9 @@ export default function CollectionCard({ componentData }) {
         {hasTag && <CardTag tagType={componentData.tag} />}
       </div>
 
-      <p className="mt-4 block text-sm text-gray-700">{componentCount}</p>
+      <p className="mt-4 block text-sm text-stone-700">{componentCount}</p>
 
-      <h2 className="mt-1 font-medium text-pretty text-gray-900 sm:text-lg">
+      <h2 className="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
         {componentData.title}
       </h2>
     </Link>

@@ -6,7 +6,7 @@ export const metadata = {
 export default function Custom404() {
   return (
     <div className="grid h-[600px] place-content-center bg-white px-4">
-      <h1 className="tracking-widest text-gray-700 uppercase">404 | Not Found</h1>
+      <h1 className="tracking-widest text-stone-700 uppercase">404 | Not Found</h1>
     </div>
   )
 }
