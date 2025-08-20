@@ -61,7 +61,7 @@ export default function Search() {
 
     setCollectionResults(filteredCollections)
     setBlogResults(filteredBlogs)
-    setShowDropdown(!!filteredCollections.length || !!filteredBlogs.length)
+    setShowDropdown(filteredCollections.length > 0 || filteredBlogs.length > 0)
   }, [debouncedSearchQuery, allCollections, allBlogs])
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function Search() {
           placeholder="Search components..."
           value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}
-          onFocus={() => !!collectionResults.length && setShowDropdown(true)}
+          onFocus={() => collectionResults.length > 0 && setShowDropdown(true)}
           id="SearchQuery"
           ref={inputRef}
         />
@@ -93,7 +93,7 @@ export default function Search() {
             ref={listRef}
             className="absolute right-0 z-50 mt-1 max-h-64 w-screen max-w-sm divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
           >
-            {collectionResults.length ? (
+            {collectionResults.length > 0 ? (
               <div>
                 <div className="px-4 py-2">
                   <p className="font-medium text-stone-900">Components</p>
@@ -111,7 +111,7 @@ export default function Search() {
               <></>
             )}
 
-            {blogResults.length ? (
+            {blogResults.length > 0 ? (
               <div>
                 <div className="px-4 py-2">
                   <p className="font-medium text-stone-900">Blogs</p>
