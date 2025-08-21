@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google'
+import { headers } from 'next/headers'
 
 import 'prismjs/themes/prism-okaidia.css'
 import '@style/site.css'
@@ -35,8 +36,20 @@ const inter = Inter({
 })
 
 export default function RootLayout({ children }) {
+  const userAgent = headers().get('user-agent') || ''
+
+  let osName = ''
+
+  if (/mac/i.test(userAgent)) {
+    osName = 'macos'
+  } else if (/win/i.test(userAgent)) {
+    osName = 'windows'
+  } else if (/linux/i.test(userAgent)) {
+    osName = 'linux'
+  }
+
   return (
-    <html className="h-full scroll-pt-20 scroll-smooth" lang="en" dir="ltr">
+    <html className="h-full scroll-pt-20 scroll-smooth" lang="en" dir="ltr" data-os={osName}>
       <body className={`${inter.variable} font-sans antialiased`}>
         <a
           href="#mainContent"

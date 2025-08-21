@@ -4,21 +4,65 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 ---
 
+## Summary Table
+
+(Condensed for quick scan)
+
+| ID  | Feature                      | Status      |
+| --- | ---------------------------- | ----------- |
+| 1.1 | Command Palette              | In progress |
+| 1.2 | Site Dark Mode Toggle        | Not started |
+| 1.3 | Related Components           | Not started |
+| 2.1 | Pre-built Search Index       | Not started |
+| 2.2 | Fuzzy Weighted Ranking       | Enhancement |
+| 2.3 | Highlight Matches            | Not started |
+| 2.4 | Keyboard Navigation (Search) | Not started |
+| 2.5 | Group Counts & View All      | Not started |
+| 3.1 | Split View                   | Not started |
+| 3.2 | Permalinks                   | Not started |
+| 3.3 | Embed Generator              | Not started |
+| 3.4 | A11y Audit Script            | Not started |
+| 4.1 | Favorites                    | Not started |
+| 4.2 | Recently Viewed              | Not started |
+| 4.3 | Custom Collections           | Not started |
+| 4.4 | Settings Panel               | Not started |
+| 5.1 | Blog TOC                     | Not started |
+| 5.2 | Reading Time                 | Not started |
+| 6.1 | Batch Download               | Not started |
+| 6.2 | CLI / Starter                | Not started |
+| 7.1 | Keyboard Preview Controls    | Not started |
+| 7.2 | Jump Links                   | Not started |
+| 7.3 | Copy Announce                | Not started |
+| 8.1 | Structured Data              | Not started |
+| 8.2 | Dynamic OG                   | Not started |
+
+---
+
+## Proposed Implementation Phases
+
+1. Core Search & Navigation: 2.1–2.5, 1.1
+2. Preview Enhancements: 3.1, 3.2, 7.1, 7.3, 3.4
+3. Personalization: 4.1–4.4, 1.3
+4. Content & SEO: 5.1, 5.2, 8.1, 8.2
+5. Export & Integration: 6.1, 6.2
+6. Theming: 1.2
+7. Optional / Nice-to-Have: 3.3
+
+---
+
 ## 1. Discovery & Navigation
 
 ### 1.1 Command Palette (⌘K)
 
 Goal: Instant fuzzy jump to components, collections, blog posts.
-Scope: Modal overlay with keyboard activation (⌘K / Ctrl+K), arrow navigation, Enter to visit.
+Scope: Use the existing header search input, focus it with keyboard activation (⌘K / Ctrl+K), arrow navigation, Enter to visit.
 Key Tasks:
 
 - Build search index (reuse 2.x index) loaded once.
-- Component `CommandPalette.jsx` mounted in `layout.jsx`.
-- Global key listener & focus trap.
-- Result ranking (reuse 2.2 scoring).
-  Touchpoints: `app/layout.jsx`, new `src/components/global/CommandPalette.jsx`, search index JSON.
+- Add global key listener in `layout.jsx` to focus the header search input on ⌘K / Ctrl+K.
+- Ensure keyboard navigation and result ranking (reuse 2.2 scoring) work as expected in the search dropdown.
+  Touchpoints: `app/layout.jsx`, `src/components/global/HeaderSearch.jsx`, search index JSON.
   Complexity: Medium.
-  Status: New.
 
 ### 1.2 Site Dark Mode Toggle
 
@@ -30,15 +74,8 @@ Key Tasks:
 - Tailwind config already v4 (supports dark class). Ensure styles rely on `dark:` utilities (minimal pass may be required later).
   Touchpoints: `app/layout.jsx`, global header (add toggle control), site stylesheet for any base tokens.
   Complexity: Medium (styling audit risk). Start with structural toggle first.
-  Status: New.
 
-### 1.3 “New / Updated” Badges & Sort
-
-Goal: Surface component freshness.
-Scope: Already present (your note). Keep as-is; ensure consistent badge styling.
-Status: Existing.
-
-### 1.5 Related Components Panel
+### 1.3 Related Components Panel
 
 Goal: Suggest exploration from a collection / component page.
 Scope: Show 3–6 related items by shared `tag` > overlapping `terms` > same category fallback.
@@ -48,7 +85,6 @@ Key Tasks:
 - Client-side module fed by fetched component list.
   Touchpoints: Collection detail page component.
   Complexity: Low.
-  Status: New.
 
 ---
 
@@ -64,9 +100,8 @@ Key Tasks:
 - Emit `/public/search-index.json` before build (script run in `postbuild` chain or separate `prepare`).
   Touchpoints: New script `scripts/generate-search-index.mjs`, `package.json` scripts, `HeaderSearch.jsx`.
   Complexity: Low.
-  Status: New.
 
-### 2.2 Fuzzy Matching & Weighted Ranking ("kinda have")
+### 2.2 Fuzzy Matching & Weighted Ranking
 
 Goal: Improve relevance beyond substring.
 Scope: Lightweight custom scorer (no dependency) -> Score breakdown: title (5), tag (3), terms (2), category (1), prefix bonus (+2), exact match (+4).
@@ -75,7 +110,6 @@ Key Tasks:
 - Implement scoring util consumed by 2.1 & 1.1.
   Touchpoints: `src/service/search/scorer.js` (new), integrate in `HeaderSearch.jsx` & Command Palette.
   Complexity: Low.
-  Status: Enhancement of existing.
 
 ### 2.3 Highlight Matches in Results (Clarification)
 
@@ -87,7 +121,6 @@ Implementation Detail:
 - Avoid dangerouslySetInnerHTML by splitting text nodes.
   Edge Cases: Overlapping ranges (merge first), long titles (truncate after highlight).
   Complexity: Low.
-  Status: Clarify -> Include.
 
 ### 2.4 Keyboard Navigation in Dropdown
 
@@ -99,7 +132,6 @@ Key Tasks:
 - Scroll item into view on change.
 - `aria-activedescendant` + listbox roles (optional but recommended).
   Complexity: Low.
-  Status: New.
 
 ### 2.5 Inline Result Group Counts & “View All” (Clarification)
 
@@ -110,7 +142,6 @@ Implementation:
 - Add configurable truncate limit (e.g., 8 each) & conditional tail link.
 - Optional `?q=` page to render full list reusing index (no new API call).
   Complexity: Low.
-  Status: Clarify -> Include.
 
 ---
 
@@ -125,7 +156,6 @@ Key Tasks:
 - Wrap existing conditional in layout wrapper that renders both when `showSplit`.
 - Sync code type buttons and copy actions.
   Complexity: Low.
-  Status: New.
 
 ### 3.2 Shareable Permalinks
 
@@ -137,7 +167,6 @@ Key Tasks:
 - Parse on mount & apply (validate components exist before scroll).
 - Update `history.replaceState` instead of push to avoid back button noise.
   Complexity: Medium.
-  Status: New.
 
 ### 3.3 Embed Snippet Generator (Responsiveness Concern)
 
@@ -149,13 +178,8 @@ Feasibility: Responsive can be preserved. Strategy:
 - Dark variant remains controlled inside (not coupled to site theme toggle unless query param `?theme=dark`).
   Conclusion: Responsive embed is achievable without sacrificing fluid behavior; you can optionally ship a tiny snippet that auto-resizes height.
   Complexity: Medium.
-  Status: New (Optional if later deprioritized).
 
-### 3.5 Copy Language (Already Present)
-
-Status: Existing; no action.
-
-### 3.6 Project-Level A11y Audit (Clarification)
+### 3.4 Project-Level A11y Audit (Clarification)
 
 Goal: Automated accessibility checks across all component HTML variants.
 Approach:
@@ -169,11 +193,6 @@ Approach:
 - Use `axe-core` npm package with `jsdom` for speed; if needing layout-dependent checks (color contrast already works), consider Playwright.
 - Output: `reports/a11y/<timestamp>.json` + `reports/a11y/summary.md`.
   Complexity: Medium.
-  Status: New.
-
-### 3.7 Dark/Light Sync
-
-Status: Declined / Not Included.
 
 ---
 
@@ -183,25 +202,21 @@ Status: Declined / Not Included.
 
 Goal: Quick reference and collection page of starred components.
 Implementation: LocalStorage set of `{category, slug, id}`; star button in `ComponentPreview` & listing page `/favorites`.
-Status: New.
 
 ### 4.2 Recently Viewed
 
 Goal: Navigation memory; show last N (e.g., 8) items in header dropdown.
 Implementation: Queue in LocalStorage; update on component view intersection.
-Status: New.
 
 ### 4.3 Custom Collections
 
 Goal: User-defined named bundles (e.g., "Dashboard").
 Implementation: LocalStorage object mapping collectionName -> array of component keys. Simple manage dialog.
-Status: New.
 
 ### 4.4 Settings Panel
 
 Goal: Persist user defaults (code language, preview width, RTL, theme, split view).
 Implementation: Context + LocalStorage; small modal accessible from header.
-Status: New.
 
 ---
 
@@ -209,172 +224,45 @@ Status: New.
 
 ### 5.1 Blog TOC & Scroll Spy
 
-Status: New.
-
 ### 5.2 Estimated Reading Time
-
-Status: New.
-
-### 5.3 Series / Related Posts (Low Frequency Blogging OK)
-
-Status: New (Lightweight: group by `series` frontmatter).
 
 ---
 
-## 7. Export & Integration
+## 6. Export & Integration
 
-### 7.1 Batch Download Selected Components
+### 6.1 Batch Download Selected Components
 
 Goal: Productivity: quickly pull a curated set into a project.
 Implementation: Client collects selection -> POST to route building ZIP (use `archiver` or `jszip`); includes HTML + minimal README + optional aggregated plugin list.
 Status: New.
 
-### 7.2 NPM Starter Package / CLI (Internal Value)
+### 6.2 NPM Starter Package / CLI (Internal Value)
 
 Goal: Personal tooling (quick scaffold) even if low external usage.
 Implementation: Separate package repo later; placeholder script enumerating selected components copying into user path.
-Status: New (defer infrastructure).
-
-### 7.4 JSON API for Components (Clarification)
-
-Meaning: Public (or local) endpoint `/api/components` returning metadata (NOT full HTML code) enabling:
-
-- External tooling (e.g., your future CLI can fetch index).
-- IDE integrations / search offline caching.
-- Third-party site referencing component catalog programmatically.
-  Security: Metadata only; code retrieval still via existing static HTML paths.
-  Caching: Statically generated or at least `Cache-Control: s-maxage=...`.
-  Status: New.
 
 ---
 
-## 8. Theming & Customization
+## 7. Accessibility & Keyboard Power
 
-### 8.1 Live Color Palette Swapper
+### 7.1 Full Keyboard Support for Preview Controls
 
-Goal: Allow users to experiment with Tailwind CSS variable-driven palettes against components.
-Implementation: Panel exposes semantic tokens (primary, secondary, accent). Inject `<style>` into preview iframe root overriding CSS vars or generate dynamic Tailwind layer if using CSS vars naming pattern.
-Status: New.
+### 7.2 Jump Links (In-Page Nav for Components)
 
----
-
-## 9. Performance & Resilience (Only Clarification Requested)
-
-### 9.1 Idle-Time Prefetch vs IntersectionObserver (Clarification)
-
-Why Consider: IntersectionObserver fetches only when in view (good for bandwidth) but preview code transforms cause a visible delay on first toggle. Idle prefetch during CPU/network idle warms cache & transformation so code view toggles are instant.
-Trade-Off: Slight extra network early; mitigated by limiting to _next N_ components and aborting if user navigates away. Optional enhancement—can skip initially.
-Decision: Keep optional; not in committed scope unless later re-evaluated.
-Status: Optional (Not Included Now).
+### 7.3 Announce Copy Action
 
 ---
 
-## 10. Accessibility & Keyboard Power
+## 8. SEO & Meta
 
-### 10.1 Full Keyboard Support for Preview Controls
-
-Status: New.
-
-### 10.2 Jump Links (In-Page Nav for Components)
-
-Status: New.
-
-### 10.4 Announce Copy Action
-
-Status: New.
-
----
-
-## 13. SEO & Meta
-
-### 13.1 Structured Data (JSON-LD)
+### 8.1 Structured Data (JSON-LD)
 
 Goal: Rich results for blog & component catalog.
 Implementation: Inject `<script type="application/ld+json">` per page; Component collection pages as `ItemList`, blog posts as `Article`.
-Status: New.
 
-### 13.2 Sitemap Component Detail URLs (Clarification)
-
-Meaning: Today sitemap likely lists pages (categories, collections, blog posts). If you want individual component anchor states indexed, anchors (`#component-3`) are not parsed by crawlers. Two approaches:
-
-- (A) Skip (simple).
-- (B) Generate lightweight virtual pages (e.g., `/components/application/buttons/component-3`) that render the same collection page but scroll server-side (could increase crawl surface). Mainly useful if you want long-tail search for specific component names.
-  Recommendation: Probably **not** needed now; keep to collection-level. Marking as Clarified but _Not Included_ unless you later decide to generate dedicated per-component routes.
-  Status: Clarified (Not Included Now).
-
-### 13.3 Open Graph per Collection & Blog with Dynamic Counts
+### 8.2 Open Graph per Collection & Blog with Dynamic Counts
 
 Goal: Sharable cards reflecting number of components or last updated date.
 Implementation: Edge OG image generation route (`/api/og`) or static pre-render using Satori / @vercel/og. Include counts from index.
-Status: New.
 
 ---
-
-## Summary Table
-
-(Condensed for quick scan)
-
-| ID   | Feature                      | Status                   |
-| ---- | ---------------------------- | ------------------------ |
-| 1.1  | Command Palette              | New                      |
-| 1.2  | Site Dark Mode Toggle        | New                      |
-| 1.3  | New/Updated Badges           | Existing                 |
-| 1.5  | Related Components           | New                      |
-| 2.1  | Pre-built Search Index       | New                      |
-| 2.2  | Fuzzy Weighted Ranking       | Enhancement              |
-| 2.3  | Highlight Matches            | New                      |
-| 2.4  | Keyboard Navigation (Search) | New                      |
-| 2.5  | Group Counts & View All      | New                      |
-| 3.1  | Split View                   | New                      |
-| 3.2  | Permalinks                   | New                      |
-| 3.3  | Embed Generator              | New (Optional)           |
-| 3.5  | Copy Language                | Existing                 |
-| 3.6  | A11y Audit Script            | New                      |
-| 4.1  | Favorites                    | New                      |
-| 4.2  | Recently Viewed              | New                      |
-| 4.3  | Custom Collections           | New                      |
-| 4.4  | Settings Panel               | New                      |
-| 5.1  | Blog TOC                     | New                      |
-| 5.2  | Reading Time                 | New                      |
-| 5.3  | Series / Related Posts       | New                      |
-| 7.1  | Batch Download               | New                      |
-| 7.2  | CLI / Starter                | New                      |
-| 7.4  | JSON API                     | New                      |
-| 8.1  | Palette Swapper              | New                      |
-| 9.1  | Idle Prefetch                | Optional (Not Included)  |
-| 10.1 | Keyboard Preview Controls    | New                      |
-| 10.2 | Jump Links                   | New                      |
-| 10.4 | Copy Announce                | New                      |
-| 13.1 | Structured Data              | New                      |
-| 13.2 | Sitemap Component URLs       | Clarified (Not Included) |
-| 13.3 | Dynamic OG                   | New                      |
-
----
-
-## Proposed Implementation Phases
-
-1. Core Search & Navigation: 2.1, 2.2, 2.3, 2.4, 2.5, 1.1
-2. Preview Enhancements: 3.1, 3.2, 10.1, 10.4, 3.6
-3. Personalization: 4.1–4.4, 1.5
-4. Content & SEO: 5.1–5.3, 13.1, 13.3
-5. Export & Integration: 7.1, 7.4, (7.2 scaffold after JSON API)
-6. Theming: 1.2, 8.1
-7. Optional / Nice-to-Have: 3.3, 9.1 (if performance justified)
-
----
-
-## Immediate Low-Risk Starters (Good First PRs)
-
-- Implement search index build script (2.1) + integrate fuzzy scoring (2.2).
-- Add highlight & keyboard nav in existing `HeaderSearch.jsx` (2.3, 2.4) using new index.
-- Add aria-live copy announce & toolbar roles to preview controls (10.1, 10.4).
-
----
-
-## Notes
-
-- No unrequested features added.
-- Clarifications provided only where you asked.
-- Optional items explicitly marked so they can be deferred without blocking others.
-
-End of plan.

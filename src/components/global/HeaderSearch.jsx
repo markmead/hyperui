@@ -68,6 +68,26 @@ export default function Search() {
     setSearchQuery('')
   }, [routerPathname])
 
+  useEffect(() => {
+    function handleKeyDown(keydownEvent) {
+      if ((keydownEvent.metaKey || keydownEvent.ctrlKey) && keydownEvent.code === 'KeyK') {
+        keydownEvent.preventDefault()
+
+        const inputElement = document.getElementById('SearchQuery')
+
+        if (!inputElement) {
+          return
+        }
+
+        inputElement.focus()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   useClickAway(dropdownRef, () => setShowDropdown(false))
 
   return (
@@ -75,16 +95,24 @@ export default function Search() {
       <label htmlFor="SearchQuery">
         <span className="sr-only">Search</span>
 
-        <input
-          type="text"
-          className="w-full rounded-lg border-stone-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
-          placeholder="Search components..."
-          value={searchQuery}
-          onChange={({ target }) => setSearchQuery(target.value)}
-          onFocus={() => collectionResults.length > 0 && setShowDropdown(true)}
-          id="SearchQuery"
-          ref={inputRef}
-        />
+        <div className="relative">
+          <input
+            type="text"
+            className="w-full rounded-lg border-stone-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
+            placeholder="Search components..."
+            value={searchQuery}
+            onChange={({ target }) => setSearchQuery(target.value)}
+            onFocus={() => collectionResults.length > 0 && setShowDropdown(true)}
+            id="SearchQuery"
+            ref={inputRef}
+          />
+
+          <span className="pointer-events-none absolute inset-y-0 right-0 grid size-[42px] place-content-center">
+            <kbd className="macos:block hidden font-sans text-xs text-stone-700">⌘K</kbd>
+
+            <kbd className="not-macos:block hidden font-sans text-xs text-stone-700">CtrlK</kbd>
+          </span>
+        </div>
       </label>
 
       <div ref={wrapperRef}>
