@@ -143,7 +143,9 @@ export default function Search() {
             {collectionResults.length > 0 ? (
               <div>
                 <div className="px-4 py-2">
-                  <p className="font-medium text-stone-900">Components</p>
+                  <p className="font-medium text-stone-900">
+                    Components ({collectionResults.length})
+                  </p>
                 </div>
 
                 <ul className="divide-y divide-stone-200 border-t border-stone-200">
@@ -161,7 +163,7 @@ export default function Search() {
             {blogResults.length > 0 ? (
               <div>
                 <div className="px-4 py-2">
-                  <p className="font-medium text-stone-900">Blogs</p>
+                  <p className="font-medium text-stone-900">Blogs ({blogResults.length})</p>
                 </div>
 
                 <ul className="divide-y divide-stone-200 border-t border-stone-200">

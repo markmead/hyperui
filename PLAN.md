@@ -8,36 +8,35 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 (Condensed for quick scan)
 
-| ID  | Feature                      | Status      |
-| --- | ---------------------------- | ----------- |
-| 1.1 | Command Palette              | Completed   |
-| 1.2 | Site Dark Mode Toggle        | Not started |
-| 1.3 | Related Components           | Not started |
-| 2.1 | Keyboard Navigation (Search) | Not started |
-| 2.2 | Group Counts & View All      | Not started |
-| 3.1 | Split View                   | Not started |
-| 3.2 | Permalinks                   | Not started |
-| 3.3 | Embed Generator              | Not started |
-| 3.4 | A11y Audit Script            | Not started |
-| 4.1 | Favorites                    | Not started |
-| 4.2 | Recently Viewed              | Not started |
-| 4.3 | Custom Collections           | Not started |
-| 4.4 | Settings Panel               | Not started |
-| 5.1 | Blog TOC                     | Not started |
-| 5.2 | Reading Time                 | Not started |
-| 6.1 | Batch Download               | Not started |
-| 6.2 | CLI / Starter                | Not started |
-| 7.1 | Keyboard Preview Controls    | Not started |
-| 7.2 | Jump Links                   | Not started |
-| 7.3 | Copy Announce                | Not started |
-| 8.1 | Structured Data              | Not started |
-| 8.2 | Dynamic OG                   | Not started |
+| ID  | Feature                   | Status      |
+| --- | ------------------------- | ----------- |
+| 1.1 | Command Palette           | Completed   |
+| 1.2 | Site Dark Mode Toggle     | Not started |
+| 1.3 | Related Components        | Not started |
+| 2.1 | Group Counts              | Completed   |
+| 3.1 | Split View                | Not started |
+| 3.2 | Permalinks                | Not started |
+| 3.3 | Embed Generator           | Not started |
+| 3.4 | A11y Audit Script         | Not started |
+| 4.1 | Favorites                 | Not started |
+| 4.2 | Recently Viewed           | Not started |
+| 4.3 | Custom Collections        | Not started |
+| 4.4 | Settings Panel            | Not started |
+| 5.1 | Blog TOC                  | Not started |
+| 5.2 | Reading Time              | Not started |
+| 6.1 | Batch Download            | Not started |
+| 6.2 | CLI / Starter             | Not started |
+| 7.1 | Keyboard Preview Controls | Not started |
+| 7.2 | Jump Links                | Not started |
+| 7.3 | Copy Announce             | Not started |
+| 8.1 | Structured Data           | Not started |
+| 8.2 | Dynamic OG                | Not started |
 
 ---
 
 ## Proposed Implementation Phases
 
-1. Core Search & Navigation: 2.1–2.4, 1.1
+1. Core Search & Navigation: 1.1, 2.1
 2. Preview Enhancements: 3.1, 3.2, 7.1, 7.3, 3.4
 3. Personalization: 4.1–4.4, 1.3
 4. Content & SEO: 5.1, 5.2, 8.1, 8.2
@@ -87,26 +86,7 @@ Key Tasks:
 
 ## 2. Search Improvements
 
-### 2.1 Keyboard Navigation in Dropdown
-
-Goal: Full keyboard accessibility.
-Scope: Up/Down cycles through visible combined list (components then blogs), Enter selects, Esc closes, Tab maintains focus order.
-Key Tasks:
-
-- Manage `activeIndex` in state.
-- Scroll item into view on change.
-- `aria-activedescendant` + listbox roles (optional but recommended).
-  Complexity: Low.
-
-### 2.2 Inline Result Group Counts & “View All” (Clarification)
-
-Meaning: Show group headers with counts: "Components (12)" / "Blogs (3)" + a trailing row linking to a dedicated search results page (or filtered category) that shows full paginated set if truncated (e.g., show top 8 inline, link to "View all components for ‘badge’").
-Value: Communicates depth of results and offers extended exploration beyond dropdown limit.
-Implementation:
-
-- Add configurable truncate limit (e.g., 8 each) & conditional tail link.
-- Optional `?q=` page to render full list reusing index (no new API call).
-  Complexity: Low.
+### 2.1 Inline Result Group Counts
 
 ---
 
