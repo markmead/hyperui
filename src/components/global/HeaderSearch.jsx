@@ -18,6 +18,7 @@ export default function Search() {
   const [collectionResults, setCollectionResults] = useState([])
   const [blogResults, setBlogResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
+  const [isMacOs, setIsMacOs] = useState(true)
 
   const [wrapperRef] = useAutoAnimate()
   const [listRef] = useAutoAnimate()
@@ -88,6 +89,26 @@ export default function Search() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  useEffect(() => {
+    try {
+      const userAgent = navigator.userAgent || ''
+
+      if (/mac/i.test(userAgent)) {
+        setIsMacOs(true)
+      }
+
+      if (/win/i.test(userAgent)) {
+        setIsMacOs(false)
+      }
+
+      if (/linux/i.test(userAgent)) {
+        setIsMacOs(false)
+      }
+    } catch {
+      // We do nothing
+    }
+  }, [])
+
   useClickAway(dropdownRef, () => setShowDropdown(false))
 
   return (
@@ -108,9 +129,7 @@ export default function Search() {
           />
 
           <span className="pointer-events-none absolute inset-y-0 right-0 grid size-[42px] place-content-center">
-            <kbd className="macos:block hidden font-sans text-xs text-stone-700">⌘K</kbd>
-
-            <kbd className="not-macos:block hidden font-sans text-xs text-stone-700">CtrlK</kbd>
+            <kbd className="font-sans text-xs text-stone-700">{isMacOs ? '⌘K' : 'CtrlK'}</kbd>
           </span>
         </div>
       </label>

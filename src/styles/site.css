@@ -19,5 +19,3 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
-
-@custom-variant macos (&:where([data-os="macos"] *));

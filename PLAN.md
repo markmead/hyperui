@@ -10,14 +10,11 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 | ID  | Feature                      | Status      |
 | --- | ---------------------------- | ----------- |
-| 1.1 | Command Palette              | In progress |
+| 1.1 | Command Palette              | Completed   |
 | 1.2 | Site Dark Mode Toggle        | Not started |
 | 1.3 | Related Components           | Not started |
-| 2.1 | Pre-built Search Index       | Not started |
-| 2.2 | Fuzzy Weighted Ranking       | Enhancement |
-| 2.3 | Highlight Matches            | Not started |
-| 2.4 | Keyboard Navigation (Search) | Not started |
-| 2.5 | Group Counts & View All      | Not started |
+| 2.1 | Keyboard Navigation (Search) | Not started |
+| 2.2 | Group Counts & View All      | Not started |
 | 3.1 | Split View                   | Not started |
 | 3.2 | Permalinks                   | Not started |
 | 3.3 | Embed Generator              | Not started |
@@ -40,7 +37,7 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 ## Proposed Implementation Phases
 
-1. Core Search & Navigation: 2.1–2.5, 1.1
+1. Core Search & Navigation: 2.1–2.4, 1.1
 2. Preview Enhancements: 3.1, 3.2, 7.1, 7.3, 3.4
 3. Personalization: 4.1–4.4, 1.3
 4. Content & SEO: 5.1, 5.2, 8.1, 8.2
@@ -90,39 +87,7 @@ Key Tasks:
 
 ## 2. Search Improvements
 
-### 2.1 Pre-built Search Index
-
-Goal: Faster search, single network fetch.
-Scope: Static JSON: `{ id, type, title, slug, category, tag, terms, updated }`.
-Key Tasks:
-
-- Build script reads MDX frontmatter via existing `database.js` helpers.
-- Emit `/public/search-index.json` before build (script run in `postbuild` chain or separate `prepare`).
-  Touchpoints: New script `scripts/generate-search-index.mjs`, `package.json` scripts, `HeaderSearch.jsx`.
-  Complexity: Low.
-
-### 2.2 Fuzzy Matching & Weighted Ranking
-
-Goal: Improve relevance beyond substring.
-Scope: Lightweight custom scorer (no dependency) -> Score breakdown: title (5), tag (3), terms (2), category (1), prefix bonus (+2), exact match (+4).
-Key Tasks:
-
-- Implement scoring util consumed by 2.1 & 1.1.
-  Touchpoints: `src/service/search/scorer.js` (new), integrate in `HeaderSearch.jsx` & Command Palette.
-  Complexity: Low.
-
-### 2.3 Highlight Matches in Results (Clarification)
-
-Purpose: Visual feedback; faster scanning.
-Implementation Detail:
-
-- During scoring, store matched ranges per field.
-- Simple function wraps matched substrings in `<mark>` with accessible styling.
-- Avoid dangerouslySetInnerHTML by splitting text nodes.
-  Edge Cases: Overlapping ranges (merge first), long titles (truncate after highlight).
-  Complexity: Low.
-
-### 2.4 Keyboard Navigation in Dropdown
+### 2.1 Keyboard Navigation in Dropdown
 
 Goal: Full keyboard accessibility.
 Scope: Up/Down cycles through visible combined list (components then blogs), Enter selects, Esc closes, Tab maintains focus order.
@@ -133,7 +98,7 @@ Key Tasks:
 - `aria-activedescendant` + listbox roles (optional but recommended).
   Complexity: Low.
 
-### 2.5 Inline Result Group Counts & “View All” (Clarification)
+### 2.2 Inline Result Group Counts & “View All” (Clarification)
 
 Meaning: Show group headers with counts: "Components (12)" / "Blogs (3)" + a trailing row linking to a dedicated search results page (or filtered category) that shows full paginated set if truncated (e.g., show top 8 inline, link to "View all components for ‘badge’").
 Value: Communicates depth of results and offers extended exploration beyond dropdown limit.
