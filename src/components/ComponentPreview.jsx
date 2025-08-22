@@ -70,7 +70,6 @@ export default function ComponentPreview({ componentData }) {
     const searchHash = globalThis.location.hash
     const componentHashFromSearch = searchHash.split('#').at(-1)
 
-    console.log(componentHash, componentHashFromSearch)
 
     if (componentHash !== componentHashFromSearch) {
       return
