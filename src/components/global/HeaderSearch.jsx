@@ -91,7 +91,7 @@ export default function Search() {
 
   useEffect(() => {
     try {
-      const userAgent = globalThis.navigator.userAgent || ''
+      const userAgent = navigator.userAgent || ''
 
       if (/mac/i.test(userAgent)) {
         setIsMacOs(true)
