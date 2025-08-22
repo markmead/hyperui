@@ -30,7 +30,7 @@ export default function PreviewCopy({ componentCode = '' }) {
 
   return (
     <span className="hidden sm:block">
-      <Button onClick={handleCopyToClipboard}>
+      <Button onClick={handleCopyToClipboard} aria-label="Copy code">
         <span aria-hidden="true">{buttonEmoji}</span>
         <span>{buttonText}</span>
       </Button>

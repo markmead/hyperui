@@ -8,7 +8,11 @@ export default function PreviewBreakpoint({
   breakpointText,
 }) {
   return (
-    <Button onClick={() => handleSetPreviewWidth(breakpointWidth)} isActive={breakpointActive}>
+    <Button
+      onClick={() => handleSetPreviewWidth(breakpointWidth)}
+      isActive={breakpointActive}
+      aria-label={`${breakpointText} breakpoint`}
+    >
       <span aria-hidden="true">{breakpointEmoji}</span>
       <span>{breakpointText}</span>
     </Button>

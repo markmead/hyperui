@@ -245,16 +245,19 @@ export function flattenComponents(collectionData) {
     const { dark: isDark } = componentItem
 
     const componentId = componentIndex + 1
+    const collectionCategory = collectionData.id.split('-').at(0)
+    const componentKey = [collectionCategory, collectionData.slug, componentId].join('-')
 
     const componentData = {
       id: componentId,
       title: componentItem.title,
       slug: collectionData.slug,
-      category: collectionData.category,
+      category: collectionCategory,
       container: componentItem?.container || collectionData?.container || '',
       wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
       creator: componentItem?.creator || 'markmead',
       plugins: componentItem?.plugins || [],
+      key: componentKey,
       dark: false,
     }
 
@@ -268,6 +271,7 @@ export function flattenComponents(collectionData) {
         ...componentData,
         id: `${componentId}-dark`,
         title: `${componentData.title} (Dark)`,
+        key: `${componentKey}-dark`,
         dark: true,
       },
     ]
