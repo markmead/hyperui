@@ -36,7 +36,12 @@ const inter = Inter({
 
 export default function RootLayout({ children }) {
   return (
-    <html className="h-full scroll-pt-20 scroll-smooth" lang="en" dir="ltr">
+    <html
+      lang="en"
+      dir="ltr"
+      className="h-full scroll-pt-20 scroll-smooth"
+      data-scroll-behavior="smooth"
+    >
       <body className={`${inter.variable} font-sans antialiased`}>
         <a
           href="#mainContent"
