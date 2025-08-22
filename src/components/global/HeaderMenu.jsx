@@ -1,6 +1,8 @@
 import HeaderLinks from '@component/global/HeaderLinks'
 
 export default function HeaderMenu({ showMenu, headerLinks, handleSetShowMenu }) {
+  const filteredHeaderLinks = headerLinks.filter(({ mobile }) => mobile)
+
   return (
     <div className="flex items-center md:hidden">
       <button
@@ -13,9 +15,9 @@ export default function HeaderMenu({ showMenu, headerLinks, handleSetShowMenu })
       </button>
 
       {showMenu && (
-        <div className="absolute inset-x-0 top-14 px-2">
+        <div className="absolute inset-x-0 top-full mt-2 px-2">
           <nav className="rounded-lg border border-stone-300 bg-white p-4 shadow-lg">
-            <HeaderLinks headerLinks={headerLinks} />
+            <HeaderLinks headerLinks={filteredHeaderLinks} />
           </nav>
         </div>
       )}

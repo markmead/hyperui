@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react'
 
-const STORAGE_KEY = 'favorite:components'
+const STORAGE_KEY = 'favourite:components'
 
 export default function FavoriteButton({ componentData }) {
-  const [favoriteComponents, setFavoriteComponents] = useState([])
+  const [favouriteComponents, setFavoriteComponents] = useState([])
   const [isFavorited, setIsFavorited] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -13,13 +13,13 @@ export default function FavoriteButton({ componentData }) {
 
   useEffect(() => {
     try {
-      const localFavorites = globalThis.localStorage.getItem(STORAGE_KEY)
-      const formattedFavorites = localFavorites ? JSON.parse(localFavorites) : []
+      const localFavourites = globalThis.localStorage.getItem(STORAGE_KEY)
+      const formattedFavourites = localFavourites ? JSON.parse(localFavourites) : []
 
-      const favoriteKeys = formattedFavorites.map(({ key }) => key)
+      const favouriteKeys = formattedFavourites.map(({ key }) => key)
 
-      setIsFavorited(favoriteKeys.includes(componentKey))
-      setFavoriteComponents(formattedFavorites)
+      setIsFavorited(favouriteKeys.includes(componentKey))
+      setFavoriteComponents(formattedFavourites)
     } catch {
       // We do nothing
     } finally {
@@ -28,30 +28,30 @@ export default function FavoriteButton({ componentData }) {
   }, [])
 
   function toggleFavorite() {
-    const localFavorites = globalThis.localStorage.getItem(STORAGE_KEY)
-    const formattedFavorites = localFavorites ? JSON.parse(localFavorites) : []
+    const localFavourites = globalThis.localStorage.getItem(STORAGE_KEY)
+    const formattedFavourites = localFavourites ? JSON.parse(localFavourites) : []
 
     if (isFavorited) {
-      const filteredFavorites = formattedFavorites.filter(({ key }) => key !== componentKey)
+      const filteredFavourites = formattedFavourites.filter(({ key }) => key !== componentKey)
 
-      globalThis.localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredFavorites))
+      globalThis.localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredFavourites))
 
       setIsFavorited(false)
-      setFavoriteComponents(filteredFavorites)
+      setFavoriteComponents(filteredFavourites)
 
-      const favoriteEvent = new CustomEvent('favorite:removed')
+      const favouriteEvent = new CustomEvent('favourite:removed')
 
-      globalThis.dispatchEvent(favoriteEvent)
+      globalThis.dispatchEvent(favouriteEvent)
 
       return
     }
 
-    const updatedFavorites = [componentData, ...formattedFavorites]
+    const updatedFavourites = [componentData, ...formattedFavourites]
 
-    globalThis.localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFavorites))
+    globalThis.localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFavourites))
 
     setIsFavorited(true)
-    setFavoriteComponents(updatedFavorites)
+    setFavoriteComponents(updatedFavourites)
   }
 
   return (
@@ -59,8 +59,8 @@ export default function FavoriteButton({ componentData }) {
       type="button"
       onClick={toggleFavorite}
       aria-pressed={isFavorited}
-      aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
-      className={`grid size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors ${
+      aria-label={isFavorited ? 'Remove from favourites' : 'Add to favourites'}
+      className={`hidden size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors md:grid ${
         isLoaded && isFavorited
           ? 'border-yellow-300 bg-yellow-100'
           : 'border-stone-300 hover:bg-stone-100'

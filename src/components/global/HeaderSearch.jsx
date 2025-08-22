@@ -112,7 +112,7 @@ export default function Search() {
   useClickAway(dropdownRef, () => setShowDropdown(false))
 
   return (
-    <div className="relative w-full max-w-64" ref={dropdownRef}>
+    <div className="relative w-screen max-w-xs" ref={dropdownRef}>
       <label htmlFor="SearchQuery">
         <span className="sr-only">Search</span>
 
@@ -138,7 +138,7 @@ export default function Search() {
         {showDropdown && (
           <div
             ref={listRef}
-            className="absolute right-0 z-50 mt-1 max-h-64 w-screen max-w-sm divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
+            className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
           >
             {collectionResults.length > 0 ? (
               <div>

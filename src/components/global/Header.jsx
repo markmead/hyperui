@@ -19,10 +19,10 @@ export default function Header() {
   useEffect(() => setShowMenu(false), [routerPathname])
 
   const headerLinks = [
-    { title: 'Application', href: '/components/application' },
-    { title: 'Marketing', href: '/components/marketing' },
-    { title: 'Blog', href: '/blog' },
-    { title: 'Favorites', href: '/favorites' },
+    { title: 'Application', href: '/components/application', mobile: true },
+    { title: 'Marketing', href: '/components/marketing', mobile: true },
+    { title: 'Blog', href: '/blog', mobile: true },
+    { title: 'Favourites', href: '/favourites', mobile: false },
   ]
 
   return (
@@ -37,7 +37,9 @@ export default function Header() {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-4">
-          <HeaderSearch />
+          <div className="hidden sm:block">
+            <HeaderSearch />
+          </div>
 
           <HeaderMenu
             showMenu={showMenu}
