@@ -36,7 +36,7 @@ export default function RelatedComponents({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
-  if (collectionTerms.length === 0) {
+  if (collectionTerms.length === 0 || relatedCollections.length === 0) {
     return <></>
   }
 
