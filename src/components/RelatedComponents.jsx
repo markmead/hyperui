@@ -36,15 +36,17 @@ export default function RelatedComponents({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
-  if (collectionTerms.length === 0 || relatedCollections.length === 0) {
-    return <></>
-  }
-
   return (
-    <div ref={ref} className="mt-8 space-y-4 border-t border-stone-300 pt-8 lg:mt-12 lg:pt-12">
-      <h2 className="text-xl font-bold text-stone-900">Related Components</h2>
+    <div ref={ref}>
+      {relatedCollections.length > 0 ? (
+        <div className="mt-8 space-y-4 border-t border-stone-300 pt-8 lg:mt-12 lg:pt-12">
+          <h2 className="text-xl font-bold text-stone-900">Related Components</h2>
 
-      <CollectionGrid componentItems={relatedCollections} />
+          <CollectionGrid componentItems={relatedCollections} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
