@@ -23,7 +23,6 @@ export default function RelatedComponents({
     }
 
     const flatComponents = componentItems.flatMap(({ componentItems }) => componentItems)
-    console.log(flatComponents)
 
     const filteredComponents = flatComponents
       .filter((componentItem) => componentItem.id !== collectionId)
