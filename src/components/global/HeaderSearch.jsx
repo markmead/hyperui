@@ -74,7 +74,7 @@ export default function Search() {
       if ((keydownEvent.metaKey || keydownEvent.ctrlKey) && keydownEvent.code === 'KeyK') {
         keydownEvent.preventDefault()
 
-        const inputElement = document.getElementById('SearchQuery')
+        const inputElement = document.querySelector('#SearchQuery')
 
         if (!inputElement) {
           return
@@ -84,14 +84,14 @@ export default function Search() {
       }
     }
 
-    window.addEventListener('keydown', handleKeyDown)
+    globalThis.addEventListener('keydown', handleKeyDown)
 
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => globalThis.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   useEffect(() => {
     try {
-      const userAgent = navigator.userAgent || ''
+      const userAgent = globalThis.navigator.userAgent || ''
 
       if (/mac/i.test(userAgent)) {
         setIsMacOs(true)
@@ -128,7 +128,7 @@ export default function Search() {
             ref={inputRef}
           />
 
-          <span className="pointer-events-none absolute inset-y-0 right-0 grid size-[42px] place-content-center">
+          <span className="pointer-events-none absolute inset-y-0 right-0 hidden size-[42px] place-content-center lg:grid">
             <kbd className="font-sans text-xs text-stone-700">{isMacOs ? '⌘K' : 'CtrlK'}</kbd>
           </span>
         </div>
