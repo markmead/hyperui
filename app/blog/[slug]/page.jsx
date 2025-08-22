@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, ...content } = await getPost(params)
+  const { frontmatter, readingTime, ...content } = await getPost(params)
 
   const schemaData = {
     '@context': 'http://schema.org',
@@ -65,6 +65,12 @@ export default async function Page({ params }) {
           <h1>{frontmatter.title}</h1>
 
           <dl className="grid grid-cols-[80px_1fr] *:m-0">
+            <dt>Reading:</dt>
+
+            <dd>
+              <time>{readingTime} min</time>
+            </dd>
+
             <dt>Published:</dt>
 
             <dd>

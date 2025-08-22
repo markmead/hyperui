@@ -6,24 +6,19 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 ## Summary Table
 
-(Condensed for quick scan)
-
 | ID  | Feature                   | Status      |
 | --- | ------------------------- | ----------- |
 | 1.1 | Command Palette           | Completed   |
-| 1.2 | Site Dark Mode Toggle     | Not started |
-| 1.3 | Related Components        | Not started |
+| 1.2 | Related Components        | Not started |
 | 2.1 | Group Counts              | Completed   |
 | 3.1 | Split View                | Not started |
 | 3.2 | Permalinks                | Not started |
-| 3.3 | Embed Generator           | Not started |
-| 3.4 | A11y Audit Script         | Not started |
+| 3.3 | A11y Audit Script         | Not started |
 | 4.1 | Favorites                 | Not started |
 | 4.2 | Recently Viewed           | Not started |
 | 4.3 | Custom Collections        | Not started |
 | 4.4 | Settings Panel            | Not started |
-| 5.1 | Blog TOC                  | Not started |
-| 5.2 | Reading Time              | Not started |
+| 5.1 | Reading Time              | Completed   |
 | 6.1 | Batch Download            | Not started |
 | 6.2 | CLI / Starter             | Not started |
 | 7.1 | Keyboard Preview Controls | Not started |
@@ -34,53 +29,16 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 ---
 
-## Proposed Implementation Phases
-
-1. Core Search & Navigation: 1.1, 2.1
-2. Preview Enhancements: 3.1, 3.2, 7.1, 7.3, 3.4
-3. Personalization: 4.1–4.4, 1.3
-4. Content & SEO: 5.1, 5.2, 8.1, 8.2
-5. Export & Integration: 6.1, 6.2
-6. Theming: 1.2
-7. Optional / Nice-to-Have: 3.3
-
----
-
 ## 1. Discovery & Navigation
 
 ### 1.1 Command Palette (⌘K)
 
-Goal: Instant fuzzy jump to components, collections, blog posts.
-Scope: Use the existing header search input, focus it with keyboard activation (⌘K / Ctrl+K), arrow navigation, Enter to visit.
-Key Tasks:
+Completed.
 
-- Build search index (reuse 2.x index) loaded once.
-- Add global key listener in `layout.jsx` to focus the header search input on ⌘K / Ctrl+K.
-- Ensure keyboard navigation and result ranking (reuse 2.2 scoring) work as expected in the search dropdown.
-  Touchpoints: `app/layout.jsx`, `src/components/global/HeaderSearch.jsx`, search index JSON.
-  Complexity: Medium.
+### 1.2 Related Components Panel
 
-### 1.2 Site Dark Mode Toggle
-
-Goal: Allow users to view entire site (docs + previews) in dark UI shell (separate from component dark variants you declined later).
-Scope: Global theme toggle (light/dark) persisted in `localStorage` & `prefers-color-scheme` fallback; inject `class="dark"` on `<html>`.
-Key Tasks:
-
-- Add a small `useTheme` hook.
-- Tailwind config already v4 (supports dark class). Ensure styles rely on `dark:` utilities (minimal pass may be required later).
-  Touchpoints: `app/layout.jsx`, global header (add toggle control), site stylesheet for any base tokens.
-  Complexity: Medium (styling audit risk). Start with structural toggle first.
-
-### 1.3 Related Components Panel
-
-Goal: Suggest exploration from a collection / component page.
-Scope: Show 3–6 related items by shared `tag` > overlapping `terms` > same category fallback.
-Key Tasks:
-
-- Similarity scoring function.
-- Client-side module fed by fetched component list.
-  Touchpoints: Collection detail page component.
-  Complexity: Low.
+Goal: Suggest exploration from a collection / component page
+Scope: Show 3–6 related items by overlapping `terms`
 
 ---
 
@@ -88,56 +46,43 @@ Key Tasks:
 
 ### 2.1 Inline Result Group Counts
 
+Completed.
+
 ---
 
 ## 3. Component Preview UX
 
 ### 3.1 Split View Toggle
 
-Goal: View preview + code simultaneously.
-Scope: Add `showSplit` state; responsive: stack on small screens (vertical), two-column on `lg:`.
-Key Tasks:
+Goal: View preview + code simultaneously
+Scope: Add `showSplit` state; responsive: stack on small screens (vertical), two-column on `lg:`
 
-- Wrap existing conditional in layout wrapper that renders both when `showSplit`.
-- Sync code type buttons and copy actions.
-  Complexity: Low.
+- Wrap existing conditional in layout wrapper that renders both when `showSplit`
+- Sync code type buttons and copy actions
 
 ### 3.2 Shareable Permalinks
 
-Goal: Deep link to a specific component preview state.
-Scope: Encode state in URL hash: `#component-3?view=split&type=jsx&rtl=1&w=640`.
-Key Tasks:
+Goal: Deep link to a specific component preview state
+Scope: Encode state in URL hash: `#component-3?view=split&type=jsx&rtl=1&w=640`
 
-- Serialize state on change (debounce to avoid flicker).
-- Parse on mount & apply (validate components exist before scroll).
-- Update `history.replaceState` instead of push to avoid back button noise.
-  Complexity: Medium.
+- Serialize state on change (debounce to avoid flicker)
+- Parse on mount & apply (validate components exist before scroll)
+- Update `history.replaceState` instead of push to avoid back button noise
 
-### 3.3 Embed Snippet Generator (Responsiveness Concern)
+### 3.3 Project-Level A11y Audit
 
-Feasibility: Responsive can be preserved. Strategy:
+Goal: Automated accessibility checks across all component HTML variants
 
-- Dedicated `/embed/[category]/[slug]/[id]` minimal route (no header/footer) sets `<meta name="viewport">` and allows fluid width.
-- Outer consumer includes `<iframe style="width:100%;border:0;" allowtransparency="true">` so iframe width tracks container. Inside, component uses regular Tailwind responsive classes — they work because iframe has correct width.
-- Height Auto-Resize: PostMessage from iframe measuring `document.body.scrollHeight` (ResizeObserver). Parent script adjusts iframe height inline.
-- Dark variant remains controlled inside (not coupled to site theme toggle unless query param `?theme=dark`).
-  Conclusion: Responsive embed is achievable without sacrificing fluid behavior; you can optionally ship a tiny snippet that auto-resizes height.
-  Complexity: Medium.
+- Node script enumerates component HTML files (`public/components/**/**/[id].html`)
+- Loads each into headless browser (Playwright or Puppeteer) OR JSDOM + axe-core
+- Runs axe-core rules; outputs JSON + summary markdown (violations grouped by rule)
+- Fails CI if severity threshold exceeded (configurable allowlist for known false positives)
 
-### 3.4 Project-Level A11y Audit (Clarification)
+Implementation:
 
-Goal: Automated accessibility checks across all component HTML variants.
-Approach:
-
-- Node script enumerates component HTML files (`public/components/**/**/[id].html`).
-- Loads each into headless browser (Playwright or Puppeteer) OR JSDOM + axe-core.
-- Runs axe-core rules; outputs JSON + summary markdown (violations grouped by rule).
-- Fails CI if severity threshold exceeded (configurable allowlist for known false positives).
-  Implementation Outline:
-- Script: `scripts/a11y-audit.mjs`.
-- Use `axe-core` npm package with `jsdom` for speed; if needing layout-dependent checks (color contrast already works), consider Playwright.
-- Output: `reports/a11y/<timestamp>.json` + `reports/a11y/summary.md`.
-  Complexity: Medium.
+- Script: `scripts/a11y-audit.mjs`
+- Use `axe-core` npm package with `jsdom` for speed; if needing layout-dependent checks (color contrast already works), consider Playwright
+- Output: `reports/a11y/<timestamp>.json` + `reports/a11y/summary.md`
 
 ---
 
@@ -167,9 +112,9 @@ Implementation: Context + LocalStorage; small modal accessible from header.
 
 ## 5. Documentation & Learning
 
-### 5.1 Blog TOC & Scroll Spy
+### 5.1 Estimated Reading Time
 
-### 5.2 Estimated Reading Time
+Completed.
 
 ---
 
@@ -177,14 +122,13 @@ Implementation: Context + LocalStorage; small modal accessible from header.
 
 ### 6.1 Batch Download Selected Components
 
-Goal: Productivity: quickly pull a curated set into a project.
-Implementation: Client collects selection -> POST to route building ZIP (use `archiver` or `jszip`); includes HTML + minimal README + optional aggregated plugin list.
-Status: New.
+Goal: Productivity: quickly pull a curated set into a project
+Implementation: Client collects selection -> POST to route building ZIP (use `archiver` or `jszip`); includes HTML + minimal README + optional aggregated plugin list
 
 ### 6.2 NPM Starter Package / CLI (Internal Value)
 
-Goal: Personal tooling (quick scaffold) even if low external usage.
-Implementation: Separate package repo later; placeholder script enumerating selected components copying into user path.
+Goal: Personal tooling (quick scaffold) even if low external usage
+Implementation: Separate package repo later; placeholder script enumerating selected components copying into user path
 
 ---
 
@@ -202,12 +146,10 @@ Implementation: Separate package repo later; placeholder script enumerating sele
 
 ### 8.1 Structured Data (JSON-LD)
 
-Goal: Rich results for blog & component catalog.
-Implementation: Inject `<script type="application/ld+json">` per page; Component collection pages as `ItemList`, blog posts as `Article`.
+Goal: Rich results for blog & component catalog
+Implementation: Inject `<script type="application/ld+json">` per page; Component collection pages as `ItemList`, blog posts as `Article`
 
 ### 8.2 Open Graph per Collection & Blog with Dynamic Counts
 
-Goal: Sharable cards reflecting number of components or last updated date.
-Implementation: Edge OG image generation route (`/api/og`) or static pre-render using Satori / @vercel/og. Include counts from index.
-
----
+Goal: Sharable cards reflecting number of components or last updated date
+Implementation: Edge OG image generation route (`/api/og`) or static pre-render using Satori / @vercel/og. Include counts from index

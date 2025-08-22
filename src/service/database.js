@@ -41,6 +41,18 @@ export async function getPost({ slug }) {
     const postPath = join(postsDir, `${slug}.mdx`)
     const postItem = await fs.readFile(postPath, 'utf8')
 
+    let readingTime = 1
+
+    try {
+      const { content: rawContent } = matter(postItem)
+
+      const wordCount = rawContent.split(/\s+/).filter(Boolean).length
+
+      readingTime = Math.max(1, Math.ceil(wordCount / 200))
+    } catch {
+      // We do nothing
+    }
+
     const mdxSource = await serialize(postItem, {
       parseFrontmatter: true,
       mdxOptions: {
@@ -48,7 +60,7 @@ export async function getPost({ slug }) {
       },
     })
 
-    return mdxSource
+    return { ...mdxSource, readingTime }
   } catch {
     return {}
   }
