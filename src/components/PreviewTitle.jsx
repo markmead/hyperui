@@ -26,7 +26,7 @@ export default function PreviewTitle({ componentTitle, shareUrl }) {
     <div className="flex items-center gap-2">
       <button
         type="button"
-        className="grid size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100"
+        className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 sm:grid"
         aria-label="Copy URL to clipboard"
         onClick={handleCopyToClipboard}
       >

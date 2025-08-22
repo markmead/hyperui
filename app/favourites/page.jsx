@@ -33,16 +33,16 @@ export default function Page() {
 
   return (
     <>
-      <Hero title="Your Favourites" subtitle="View your saved Tailwind CSS components">
-        This page displays all the components you have favourited. Easily revisit and manage your
-        favourite Tailwind CSS v4 components for quick access in your projects.
+      <Hero title="Your Favourites" subtitle="Tailwind CSS components">
+        Here you can view and manage all of your favourited components. Giving you quick access to
+        the ones you love most.
       </Hero>
 
       <div id="mainContent" className="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
-        {!isLoaded && <p className="text-stone-700">Loading…</p>}
-
         {isLoaded && favouriteItems.length === 0 && (
-          <p className="text-stone-700">No favourites yet.</p>
+          <p className="text-center text-stone-700">
+            You have no favourites yet. Start adding some!
+          </p>
         )}
 
         <CollectionList componentsData={favouriteItems} />
