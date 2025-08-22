@@ -257,14 +257,12 @@ export function flattenComponents(collectionData) {
       wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
       creator: componentItem?.creator || 'markmead',
       plugins: componentItem?.plugins || [],
+      key: componentKey,
       dark: false,
     }
 
     if (!isDark) {
-      return {
-        ...componentData,
-        key: componentKey,
-      }
+      return componentData
     }
 
     return [
@@ -272,8 +270,8 @@ export function flattenComponents(collectionData) {
       {
         ...componentData,
         id: `${componentId}-dark`,
-        key: `${componentKey}-dark`,
         title: `${componentData.title} (Dark)`,
+        key: `${componentKey}-dark`,
         dark: true,
       },
     ]
