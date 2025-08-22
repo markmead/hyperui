@@ -11,8 +11,7 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 | 1.1 | Command Palette           | Completed   |
 | 1.2 | Related Components        | Completed   |
 | 2.1 | Group Counts              | Completed   |
-| 3.1 | Split View                | Not started |
-| 3.2 | Permalinks                | Not started |
+| 3.1 | Permalinks                | Completed   |
 | 3.3 | A11y Audit Script         | Not started |
 | 4.1 | Favorites                 | Not started |
 | 4.2 | Recently Viewed           | Not started |
@@ -51,22 +50,9 @@ Completed.
 
 ## 3. Component Preview UX
 
-### 3.1 Split View Toggle
+### 3.1 Shareable Permalinks
 
-Goal: View preview + code simultaneously
-Scope: Add `showSplit` state; responsive: stack on small screens (vertical), two-column on `lg:`
-
-- Wrap existing conditional in layout wrapper that renders both when `showSplit`
-- Sync code type buttons and copy actions
-
-### 3.2 Shareable Permalinks
-
-Goal: Deep link to a specific component preview state
-Scope: Encode state in URL hash: `#component-3?view=split&type=jsx&rtl=1&w=640`
-
-- Serialize state on change (debounce to avoid flicker)
-- Parse on mount & apply (validate components exist before scroll)
-- Update `history.replaceState` instead of push to avoid back button noise
+Completed
 
 ### 3.3 Project-Level A11y Audit
 

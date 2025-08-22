@@ -23,6 +23,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
+    "@typescript-eslint/parser": "^8.40.0",
     "eslint": "9.33.0",
     "eslint-config-next": "15.5.0",
     "eslint-plugin-react": "^7.37.5",
@@ -39,7 +40,8 @@
     "rehype-external-links": "^3.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.9.2"
   },
   "packageManager": "yarn@1.22.22"
 }
