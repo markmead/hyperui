@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import CollectionCard from '@component/CollectionCard'
 import CollectionGrid from './CollectionGrid'
 
 export default function RelatedComponents({
@@ -11,7 +10,6 @@ export default function RelatedComponents({
   collectionTerms = [],
   componentItems = [],
 }) {
-  const [isLoaded, setIsLoaded] = useState(false)
   const [relatedCollections, setRelatedCollections] = useState([])
 
   const { ref, inView } = useInView({
@@ -36,9 +34,10 @@ export default function RelatedComponents({
       })
 
     setRelatedCollections(filteredComponents)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
-  if (!collectionTerms.length) {
+  if (collectionTerms.length === 0) {
     return <></>
   }
 
