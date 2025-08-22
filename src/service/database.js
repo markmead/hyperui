@@ -145,6 +145,7 @@ export async function getCollection({ category, collection }) {
       collectionData: {
         ...mdxSource.frontmatter,
         slug: collection,
+        id: `${category}-${collection}`,
       },
       collectionContent: mdxSource,
     }
@@ -183,7 +184,7 @@ export async function getComponents() {
                 emoji: componentData.emoji,
                 count: componentCount,
                 tag: componentData.tag,
-                id: componentSlugFormatted,
+                id: `${categorySlug}-${componentSlugFormatted}`,
                 terms: componentData.terms || [],
               }
             })

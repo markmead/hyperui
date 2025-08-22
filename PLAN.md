@@ -9,7 +9,7 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 | ID  | Feature                   | Status      |
 | --- | ------------------------- | ----------- |
 | 1.1 | Command Palette           | Completed   |
-| 1.2 | Related Components        | Not started |
+| 1.2 | Related Components        | Completed   |
 | 2.1 | Group Counts              | Completed   |
 | 3.1 | Split View                | Not started |
 | 3.2 | Permalinks                | Not started |
@@ -37,8 +37,7 @@ Completed.
 
 ### 1.2 Related Components Panel
 
-Goal: Suggest exploration from a collection / component page
-Scope: Show 3–6 related items by overlapping `terms`
+Completed.
 
 ---
 
