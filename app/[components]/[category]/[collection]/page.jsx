@@ -1,10 +1,17 @@
 import { join } from 'node:path'
 import { promises as fs } from 'node:fs'
 
-import { getCollection, formatSlug, flattenComponents, componentsDir } from '@service/database'
+import {
+  getCollection,
+  getComponents,
+  formatSlug,
+  flattenComponents,
+  componentsDir,
+} from '@service/database'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import CollectionList from '@component/CollectionList'
+import RelatedComponents from '@component/RelatedComponents'
 
 const mdxComponents = {
   CollectionList,
@@ -58,6 +65,8 @@ export default async function Page({ params }) {
 
   const flatComponents = flattenComponents(collectionData)
 
+  const allComponents = await getComponents()
+
   return (
     <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
       <div className="prose prose-p:max-w-prose max-w-none">
@@ -67,6 +76,12 @@ export default async function Page({ params }) {
           mdxScope={{ componentsData: flatComponents }}
         />
       </div>
+
+      <RelatedComponents
+        collectionId={collectionData.id}
+        collectionTerms={collectionData.terms}
+        componentItems={allComponents}
+      />
     </div>
   )
 }
