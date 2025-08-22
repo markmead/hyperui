@@ -246,6 +246,7 @@ export function flattenComponents(collectionData) {
 
     const componentId = componentIndex + 1
     const collectionCategory = collectionData.id.split('-').at(0)
+    const componentKey = [collectionCategory, collectionData.slug, componentId].join('-')
 
     const componentData = {
       id: componentId,
@@ -262,7 +263,7 @@ export function flattenComponents(collectionData) {
     if (!isDark) {
       return {
         ...componentData,
-        key: `${collectionCategory}-${componentId}`,
+        key: componentKey,
       }
     }
 
@@ -271,7 +272,7 @@ export function flattenComponents(collectionData) {
       {
         ...componentData,
         id: `${componentId}-dark`,
-        key: `${collectionCategory}-${componentId}-dark`,
+        key: `${componentKey}-dark`,
         title: `${componentData.title} (Dark)`,
         dark: true,
       },
