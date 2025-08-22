@@ -32,6 +32,7 @@ export default function ComponentPreview({ componentData }) {
   const [previewCode, setPreviewCode] = useState('')
   const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
+  const [shareUrl, setShareUrl] = useState('')
 
   const [previewRef] = useAutoAnimate()
 
@@ -54,34 +55,33 @@ export default function ComponentPreview({ componentData }) {
   } = componentData
 
   const previewBreakpoints = [
-    {
-      name: 'Mobile',
-      emoji: '📱',
-      width: '340px',
-    },
-    {
-      name: 'Small',
-      emoji: '🐛',
-      width: '640px',
-    },
-    {
-      name: 'Medium',
-      emoji: '🦭',
-      width: '768px',
-    },
-    {
-      name: 'Large',
-      emoji: '🐴',
-      width: '1024px',
-    },
-    {
-      name: 'Full',
-      emoji: '🌕',
-      width: '100%',
-    },
+    { name: 'Mobile', emoji: '📱', width: '340px' },
+    { name: 'Small', emoji: '🐛', width: '640px' },
+    { name: 'Medium', emoji: '🦭', width: '768px' },
+    { name: 'Large', emoji: '🐴', width: '1024px' },
+    { name: 'Full', emoji: '🌕', width: '100%' },
   ]
 
   const componentHash = `component-${componentId}`
+
+  useEffect(() => {
+    const searchQuery = new URLSearchParams(globalThis.location.search)
+
+    const searchHash = globalThis.location.hash
+    const componentHashFromSearch = searchHash.split('#').at(-1)
+
+    if (componentHash !== componentHashFromSearch) {
+      return
+    }
+
+    const codeTypeParam = searchQuery.get('codeType')
+    const isRtlParam = searchQuery.get('isRtl') === 'true'
+    const previewWidthParam = searchQuery.get('previewWidth')
+
+    codeTypeParam && setCodeType(codeTypeParam)
+    isRtlParam && setIsRtl(isRtlParam)
+    previewWidthParam && setPreviewWidth(previewWidthParam)
+  }, [])
 
   useEffect(() => {
     if (!inView) {
@@ -100,7 +100,6 @@ export default function ComponentPreview({ componentData }) {
     const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isRtl)
 
     setComponentHtml(transformedHtml)
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRtl])
 
@@ -114,6 +113,19 @@ export default function ComponentPreview({ componentData }) {
     setPreviewCode(codeMap[codeType])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType])
+
+  useEffect(() => {
+    const pageUrl = new URL(globalThis.location.href)
+
+    pageUrl.hash = componentHash
+
+    pageUrl.searchParams.set('codeType', codeType)
+    pageUrl.searchParams.set('isRtl', isRtl)
+    pageUrl.searchParams.set('previewWidth', previewWidth)
+
+    setShareUrl(pageUrl.toString())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [codeType, isRtl, previewWidth])
 
   async function fetchHtml() {
     const componentUrl = `/components/${categorySlug}/${componentSlug}/${componentId}.html`
@@ -141,7 +153,7 @@ export default function ComponentPreview({ componentData }) {
   return (
     <div ref={ref} id={componentHash}>
       <div ref={previewRef} className="space-y-4">
-        <PreviewTitle componentTitle={componentTitle} componentHash={componentHash} />
+        <PreviewTitle componentTitle={componentTitle} shareUrl={shareUrl} />
 
         <div className="lg:flex lg:items-center">
           {componentCode && (
