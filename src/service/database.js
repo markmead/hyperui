@@ -245,12 +245,13 @@ export function flattenComponents(collectionData) {
     const { dark: isDark } = componentItem
 
     const componentId = componentIndex + 1
+    const collectionCategory = collectionData.id.split('-').at(0)
 
     const componentData = {
       id: componentId,
       title: componentItem.title,
       slug: collectionData.slug,
-      category: collectionData.category,
+      category: collectionCategory,
       container: componentItem?.container || collectionData?.container || '',
       wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
       creator: componentItem?.creator || 'markmead',
@@ -259,7 +260,10 @@ export function flattenComponents(collectionData) {
     }
 
     if (!isDark) {
-      return componentData
+      return {
+        ...componentData,
+        key: `${collectionCategory}-${componentId}`,
+      }
     }
 
     return [
@@ -267,6 +271,7 @@ export function flattenComponents(collectionData) {
       {
         ...componentData,
         id: `${componentId}-dark`,
+        key: `${collectionCategory}-${componentId}-dark`,
         title: `${componentData.title} (Dark)`,
         dark: true,
       },

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -17,6 +16,7 @@ import PreviewPlugins from '@component/PreviewPlugins'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewRtl from '@component/PreviewRtl'
 import PreviewTitle from '@component/PreviewTitle'
+import FavoriteButton from '@component/FavoriteButton'
 import PreviewType from '@component/PreviewType'
 import PreviewView from '@component/PreviewView'
 
@@ -36,8 +36,6 @@ export default function ComponentPreview({ componentData }) {
 
   const [previewRef] = useAutoAnimate()
 
-  const { category: categorySlug } = useParams()
-
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -47,6 +45,7 @@ export default function ComponentPreview({ componentData }) {
     id: componentId,
     title: componentTitle,
     slug: componentSlug,
+    category: categorySlug,
     container: componentSpace,
     wrapper: componentHeight,
     creator: componentCreator,
@@ -153,7 +152,11 @@ export default function ComponentPreview({ componentData }) {
   return (
     <div ref={ref} id={componentHash}>
       <div ref={previewRef} className="space-y-4">
-        <PreviewTitle componentTitle={componentTitle} shareUrl={shareUrl} />
+        <div className="flex items-center justify-between gap-4">
+          <PreviewTitle componentTitle={componentTitle} shareUrl={shareUrl} />
+
+          <FavoriteButton componentData={componentData} />
+        </div>
 
         <div className="lg:flex lg:items-center">
           {componentCode && (

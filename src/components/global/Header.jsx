@@ -19,18 +19,10 @@ export default function Header() {
   useEffect(() => setShowMenu(false), [routerPathname])
 
   const headerLinks = [
-    {
-      title: 'Application',
-      href: '/components/application',
-    },
-    {
-      title: 'Marketing',
-      href: '/components/marketing',
-    },
-    {
-      title: 'Blog',
-      href: '/blog',
-    },
+    { title: 'Application', href: '/components/application' },
+    { title: 'Marketing', href: '/components/marketing' },
+    { title: 'Blog', href: '/blog' },
+    { title: 'Favorites', href: '/favorites' },
   ]
 
   return (
