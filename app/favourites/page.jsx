@@ -16,6 +16,10 @@ export default function Page() {
     fetchFavourites()
 
     globalThis.addEventListener('favourite:removed', fetchFavourites)
+
+    return () => {
+      globalThis.removeEventListener('favourite:removed', fetchFavourites)
+    }
   }, [])
 
   function fetchFavourites() {

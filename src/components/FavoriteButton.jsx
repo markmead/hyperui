@@ -25,6 +25,7 @@ export default function FavoriteButton({ componentData }) {
     } finally {
       setIsLoaded(true)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function toggleFavorite() {
