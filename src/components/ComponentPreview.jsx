@@ -175,9 +175,11 @@ export default function ComponentPreview({ componentData }) {
             </div>
           )}
 
-          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
-            <p className="font-medium text-stone-700">@ {previewWidth}</p>
-
+          <div
+            className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2"
+            role="radiogroup"
+            aria-label="Preview breakpoint"
+          >
             {previewBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint

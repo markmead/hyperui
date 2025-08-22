@@ -27,7 +27,7 @@ export default function PreviewTitle({ componentTitle, shareUrl }) {
       <button
         type="button"
         className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 sm:grid"
-        aria-label="Copy URL to clipboard"
+        aria-label="Copy URL"
         onClick={handleCopyToClipboard}
       >
         <span aria-hidden="true">{buttonEmoji}</span>
