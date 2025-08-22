@@ -12,11 +12,8 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 | 1.2 | Related Components        | Completed   |
 | 2.1 | Group Counts              | Completed   |
 | 3.1 | Permalinks                | Completed   |
-| 3.3 | A11y Audit Script         | Not started |
-| 4.1 | Favorites                 | Not started |
+| 4.1 | Favorites                 | Completed   |
 | 4.2 | Recently Viewed           | Not started |
-| 4.3 | Custom Collections        | Not started |
-| 4.4 | Settings Panel            | Not started |
 | 5.1 | Reading Time              | Completed   |
 | 6.1 | Batch Download            | Not started |
 | 6.2 | CLI / Starter             | Not started |
@@ -28,78 +25,12 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 ---
 
-## 1. Discovery & Navigation
-
-### 1.1 Command Palette (⌘K)
-
-Completed.
-
-### 1.2 Related Components Panel
-
-Completed.
-
----
-
-## 2. Search Improvements
-
-### 2.1 Inline Result Group Counts
-
-Completed.
-
----
-
-## 3. Component Preview UX
-
-### 3.1 Shareable Permalinks
-
-Completed
-
-### 3.3 Project-Level A11y Audit
-
-Goal: Automated accessibility checks across all component HTML variants
-
-- Node script enumerates component HTML files (`public/components/**/**/[id].html`)
-- Loads each into headless browser (Playwright or Puppeteer) OR JSDOM + axe-core
-- Runs axe-core rules; outputs JSON + summary markdown (violations grouped by rule)
-- Fails CI if severity threshold exceeded (configurable allowlist for known false positives)
-
-Implementation:
-
-- Script: `scripts/a11y-audit.mjs`
-- Use `axe-core` npm package with `jsdom` for speed; if needing layout-dependent checks (color contrast already works), consider Playwright
-- Output: `reports/a11y/<timestamp>.json` + `reports/a11y/summary.md`
-
----
-
-## 4. Personalization (Local-First)
-
-### 4.1 Favorites
-
-Goal: Quick reference and collection page of starred components.
-Implementation: LocalStorage set of `{category, slug, id}`; star button in `ComponentPreview` & listing page `/favorites`.
+## 4. Personalization
 
 ### 4.2 Recently Viewed
 
 Goal: Navigation memory; show last N (e.g., 8) items in header dropdown.
 Implementation: Queue in LocalStorage; update on component view intersection.
-
-### 4.3 Custom Collections
-
-Goal: User-defined named bundles (e.g., "Dashboard").
-Implementation: LocalStorage object mapping collectionName -> array of component keys. Simple manage dialog.
-
-### 4.4 Settings Panel
-
-Goal: Persist user defaults (code language, preview width, RTL, theme, split view).
-Implementation: Context + LocalStorage; small modal accessible from header.
-
----
-
-## 5. Documentation & Learning
-
-### 5.1 Estimated Reading Time
-
-Completed.
 
 ---
 
