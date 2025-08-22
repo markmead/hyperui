@@ -70,13 +70,12 @@ export default function ComponentPreview({ componentData }) {
     const searchHash = globalThis.location.hash
     const componentHashFromSearch = searchHash.split('#').at(-1)
 
-
     if (componentHash !== componentHashFromSearch) {
       return
     }
 
     const codeTypeParam = searchQuery.get('codeType')
-    const isRtlParam = JSON.parse(searchQuery.get('isRtl'))
+    const isRtlParam = searchQuery.get('isRtl') === 'true'
     const previewWidthParam = searchQuery.get('previewWidth')
 
     codeTypeParam && setCodeType(codeTypeParam)
@@ -101,7 +100,6 @@ export default function ComponentPreview({ componentData }) {
     const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isRtl)
 
     setComponentHtml(transformedHtml)
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRtl])
 
@@ -126,6 +124,7 @@ export default function ComponentPreview({ componentData }) {
     pageUrl.searchParams.set('previewWidth', previewWidth)
 
     setShareUrl(pageUrl.toString())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeType, isRtl, previewWidth])
 
   async function fetchHtml() {
