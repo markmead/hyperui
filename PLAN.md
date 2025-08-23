@@ -17,8 +17,7 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 | 6.1 | CLI / Starter             | Not started |
 | 7.1 | Keyboard Preview Controls | Completed   |
 | 7.2 | Copy Announce             | Completed   |
-| 8.1 | Structured Data           | Not started |
-| 8.2 | Dynamic OG                | Not started |
+| 8.1 | Structured Data           | Completed   |
 
 ---
 
@@ -28,17 +27,3 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 Goal: Personal tooling (quick scaffold) even if low external usage
 Implementation: Separate package repo later; placeholder script enumerating selected components copying into user path
-
----
-
-## 8. SEO & Meta
-
-### 8.1 Structured Data (JSON-LD)
-
-Goal: Rich results for blog & component catalog
-Implementation: Inject `<script type="application/ld+json">` per page; Component collection pages as `ItemList`, blog posts as `Article`
-
-### 8.2 Open Graph per Collection & Blog with Dynamic Counts
-
-Goal: Sharable cards reflecting number of components or last updated date
-Implementation: Edge OG image generation route (`/api/og`) or static pre-render using Satori / @vercel/og. Include counts from index

@@ -6,8 +6,6 @@ import { getCategory, componentsDir } from '@service/database'
 import Hero from '@component/global/Hero'
 import CollectionGrid from '@component/CollectionGrid'
 
-export const dynamic = 'force-static'
-
 export async function generateStaticParams() {
   const categoryFolders = await fs.readdir(componentsDir)
   const staticParams = []
@@ -41,8 +39,28 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const { categoryData, componentItems } = await getCategory(params)
 
+  const categoryItemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Tailwind CSS ${categoryData.title} Component Collections`,
+    description: categoryData.description,
+    url: `https://www.hyperui.dev/components/${params.category}`,
+    numberOfItems: componentItems.length,
+    itemListElement: componentItems.map((componentItem, componentIndex) => ({
+      '@type': 'ListItem',
+      position: componentIndex + 1,
+      name: componentItem.title,
+      url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}`,
+    })),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryItemListSchema) }}
+      />
+
       <Hero title={categoryData.title} subtitle={categoryData.subtitle}>
         {categoryData.description}
       </Hero>

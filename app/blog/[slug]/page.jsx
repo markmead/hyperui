@@ -4,8 +4,6 @@ import { getPost, formatSlug, postsDir } from '@service/database'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-export const dynamic = 'force-static'
-
 export async function generateStaticParams() {
   const postFiles = await fs.readdir(postsDir)
   const staticParams = []
@@ -37,10 +35,16 @@ export default async function Page({ params }) {
   const { frontmatter, readingTime, ...content } = await getPost(params)
 
   const schemaData = {
-    '@context': 'http://schema.org',
+    '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: `${frontmatter.title}`,
-    image: 'https://www.hyperui.dev/og.jpg',
+    headline: frontmatter.title,
+    description: frontmatter.description,
+    image: ['https://www.hyperui.dev/og.jpg'],
+    url: `https://www.hyperui.dev/blog/${params.slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.hyperui.dev/blog/${params.slug}`,
+    },
     datePublished: frontmatter.published,
     dateModified: frontmatter.updated,
     author: {
@@ -50,6 +54,10 @@ export default async function Page({ params }) {
     publisher: {
       '@type': 'Organization',
       name: 'HyperUI',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.hyperui.dev/og.jpg',
+      },
     },
   }
 

@@ -4,8 +4,6 @@ import { getAboutPage, formatSlug, pagesDir } from '@service/database'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
 
-export const dynamic = 'force-static'
-
 export async function generateStaticParams() {
   const pageFiles = await fs.readdir(pagesDir)
   const staticParams = []
@@ -36,8 +34,21 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const { pageData, pageContent } = await getAboutPage(params)
 
+  const aboutPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: pageData.title,
+    description: pageData.description,
+    url: `https://www.hyperui.dev/about/${params.slug}`,
+  }
+
   return (
     <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
+
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
 

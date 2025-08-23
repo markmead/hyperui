@@ -17,8 +17,6 @@ const mdxComponents = {
   CollectionList,
 }
 
-export const dynamic = 'force-static'
-
 export async function generateStaticParams() {
   const categoryFolders = await fs.readdir(componentsDir)
   const staticParams = []
@@ -67,8 +65,28 @@ export default async function Page({ params }) {
 
   const allComponents = await getComponents()
 
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Tailwind CSS ${collectionData.title} Components`,
+    description: collectionData.description,
+    url: `https://www.hyperui.dev/components/${params.category}/${params.collection}`,
+    numberOfItems: flatComponents.length,
+    itemListElement: flatComponents.map((componentItem, componentIndex) => ({
+      '@type': 'ListItem',
+      position: componentIndex + 1,
+      name: componentItem.title,
+      url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}#component-${componentItem.id}`,
+    })),
+  }
+
   return (
     <div id="mainContent" className="mx-auto max-w-screen-xl px-4 py-8 lg:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+
       <div className="prose prose-p:max-w-prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}

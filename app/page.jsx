@@ -14,8 +14,28 @@ export const metadata = {
 export default async function Page() {
   const componentsByCategory = await getComponents()
 
+  const homeItemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Tailwind CSS Component Categories',
+    description: 'Browse Tailwind CSS component categories on HyperUI.',
+    url: 'https://www.hyperui.dev/',
+    numberOfItems: componentsByCategory.length,
+    itemListElement: componentsByCategory.map(({ categoryTitle, categorySlug }, categoryIndex) => ({
+      '@type': 'ListItem',
+      position: categoryIndex + 1,
+      name: `${categoryTitle} Components`,
+      url: `https://www.hyperui.dev/components/${categorySlug}`,
+    })),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeItemListSchema) }}
+      />
+
       <Hero title="HyperUI" subtitle="Free Open Source Tailwind CSS v4 Components">
         HyperUI is a collection of free Tailwind CSS components that can be used in your next
         project. With a range of components, you can build your next marketing website, admin

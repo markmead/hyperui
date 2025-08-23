@@ -43,6 +43,31 @@ export default function RootLayout({ children }) {
       data-scroll-behavior="smooth"
     >
       <body className={`${inter.variable} font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'HyperUI',
+              url: 'https://www.hyperui.dev/',
+            }),
+          }}
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'HyperUI',
+              url: 'https://www.hyperui.dev/',
+              logo: 'https://www.hyperui.dev/og.jpg',
+            }),
+          }}
+        />
+
         <a
           href="#mainContent"
           className="absolute left-1/2 z-999 -translate-x-1/2 -translate-y-full bg-stone-900 px-6 py-3 text-white transition-transform focus:translate-y-4 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
