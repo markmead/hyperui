@@ -24,7 +24,7 @@
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.40.0",
-    "eslint": "9.33.0",
+    "eslint": "9.34.0",
     "eslint-config-next": "15.5.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-unicorn": "^60.0.0",

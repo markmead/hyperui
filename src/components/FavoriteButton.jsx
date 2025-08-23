@@ -61,7 +61,7 @@ export default function FavoriteButton({ componentData }) {
       onClick={toggleFavorite}
       aria-pressed={isFavorited}
       aria-label={isFavorited ? 'Remove from favourites' : 'Add to favourites'}
-      className={`hidden size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors md:grid ${
+      className={`hidden size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid ${
         isLoaded && isFavorited
           ? 'border-yellow-300 bg-yellow-100'
           : 'border-stone-300 hover:bg-stone-100'

@@ -1,17 +1,18 @@
 import { useState, useId, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 import { useCopyToClipboard } from 'react-use'
 
-import Button from '@component/global/Button'
-
-export default function PreviewCopy({ componentCode = '' }) {
+export default function PreviewCopyUrl({ shareUrl }) {
+  const pagePathname = usePathname()
   const liveRegionId = useId()
   const resetTimerRef = useRef(null)
 
-  const [buttonText, setButtonText] = useState('Copy')
-  const [buttonEmoji, setButtonEmoji] = useState('📋')
+  const [buttonEmoji, setButtonEmoji] = useState('🔗')
   const [copyStatus, copyToClipboard] = useCopyToClipboard()
   const [announceText, setAnnounceText] = useState('')
+
+  const showShare = pagePathname !== '/favourites'
 
   useEffect(() => {
     if (!copyStatus?.value) {
@@ -25,19 +26,16 @@ export default function PreviewCopy({ componentCode = '' }) {
 
     if (copyStatus.error) {
       setButtonEmoji('🚨')
-      setButtonText('Error')
-      setAnnounceText('Failed to copy code')
+      setAnnounceText('Failed to copy URL')
     }
 
     if (copyStatus.value) {
       setButtonEmoji('🎉')
-      setButtonText('Copied')
-      setAnnounceText('Copied code to clipboard')
+      setAnnounceText('Copied URL to clipboard')
     }
 
     resetTimerRef.current = setTimeout(() => {
-      setButtonEmoji('📋')
-      setButtonText('Copy')
+      setButtonEmoji('🔗')
     }, 1500)
 
     return () => {
@@ -49,19 +47,24 @@ export default function PreviewCopy({ componentCode = '' }) {
 
   function handleCopyToClipboard() {
     setAnnounceText('')
-    copyToClipboard(componentCode)
+    copyToClipboard(shareUrl)
+  }
+
+  if (!showShare) {
+    return <></>
   }
 
   return (
-    <span className="hidden sm:block">
-      <Button
-        aria-label="Copy code"
+    <span>
+      <button
+        type="button"
+        className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid"
+        aria-label="Copy URL"
         aria-describedby={liveRegionId}
         onClick={handleCopyToClipboard}
       >
         <span aria-hidden="true">{buttonEmoji}</span>
-        <span>{buttonText}</span>
-      </Button>
+      </button>
 
       <span
         id={liveRegionId}
