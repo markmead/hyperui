@@ -38,7 +38,7 @@ export default function PreviewCopy({ componentCode = '' }) {
     resetTimerRef.current = setTimeout(() => {
       setButtonEmoji('📋')
       setButtonText('Copy')
-    }, 3000)
+    }, 1500)
 
     return () => {
       if (resetTimerRef.current) {

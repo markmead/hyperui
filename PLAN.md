@@ -16,7 +16,7 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 | 5.1 | Reading Time              | Completed   |
 | 6.1 | CLI / Starter             | Not started |
 | 7.1 | Keyboard Preview Controls | Not started |
-| 7.2 | Copy Announce             | In progress |
+| 7.2 | Copy Announce             | Completed   |
 | 8.1 | Structured Data           | Not started |
 | 8.2 | Dynamic OG                | Not started |
 

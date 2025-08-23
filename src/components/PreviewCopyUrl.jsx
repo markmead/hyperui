@@ -36,7 +36,7 @@ export default function PreviewCopyUrl({ shareUrl }) {
 
     resetTimerRef.current = setTimeout(() => {
       setButtonEmoji('📋')
-    }, 3000)
+    }, 1500)
 
     return () => {
       if (resetTimerRef.current) {
