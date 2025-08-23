@@ -5,7 +5,7 @@ export default function PreviewView({ showPreview, handleSetShowPreview }) {
     <Button
       onClick={() => handleSetShowPreview(!showPreview)}
       aria-pressed={showPreview}
-      aria-label="Toggle preview mode"
+      aria-label={showPreview ? 'Show code view' : 'Show component preview'}
     >
       <span aria-hidden="true">{showPreview ? '👀' : '👾'}</span>
       <span>{showPreview ? 'View' : 'Code'}</span>

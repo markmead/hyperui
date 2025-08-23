@@ -16,7 +16,12 @@ export default function PreviewCode({ componentCode = '', codeType = 'html' }) {
   }, [codeType])
 
   return (
-    <pre className="h-[400px] overflow-auto shadow-lg ring-1 ring-stone-300 lg:h-[600px]">
+    <pre
+      className="h-[400px] overflow-auto shadow-lg ring-1 ring-stone-300 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none lg:h-[600px]"
+      tabIndex={0}
+      aria-label={`${codeType.toUpperCase()} code`}
+      role="region"
+    >
       <code className={prismClass}>{componentCode}</code>
     </pre>
   )

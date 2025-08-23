@@ -160,7 +160,11 @@ export default function ComponentPreview({ componentData }) {
 
         <div className="lg:flex lg:items-center">
           {componentCode && (
-            <div className="flex flex-wrap items-center gap-2">
+            <div
+              className="flex flex-wrap items-center gap-2"
+              role="toolbar"
+              aria-label="Component preview controls"
+            >
               <PreviewView handleSetShowPreview={setShowPreview} showPreview={showPreview} />
 
               <PreviewRtl isRtl={isRtl} handleSetIsRtl={setIsRtl} />
@@ -175,7 +179,11 @@ export default function ComponentPreview({ componentData }) {
             </div>
           )}
 
-          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2">
+          <div
+            className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-2"
+            role="group"
+            aria-label="Preview width"
+          >
             {previewBreakpoints.map(
               ({ name: breakpointName, emoji: breakpointEmoji, width: breakpointWidth }) => (
                 <PreviewBreakpoint

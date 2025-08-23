@@ -8,7 +8,7 @@ export default function PreviewType({ componentId, codeType, handleSetCodeType }
       <select
         id={`CodeType${componentId}`}
         value={codeType}
-        onInput={(e) => handleSetCodeType(e.target.value)}
+        onChange={(e) => handleSetCodeType(e.target.value)}
         className="h-10 rounded-lg border-stone-300 pl-3 font-medium shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
       >
         <option value="html">HTML</option>

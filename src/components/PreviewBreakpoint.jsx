@@ -12,6 +12,7 @@ export default function PreviewBreakpoint({
       onClick={() => handleSetPreviewWidth(breakpointWidth)}
       isActive={breakpointActive}
       aria-label={`${breakpointText} breakpoint`}
+      aria-pressed={breakpointActive}
     >
       <span aria-hidden="true">{breakpointEmoji}</span>
       <span>{breakpointText}</span>
