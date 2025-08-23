@@ -1,39 +1,77 @@
-import { useState } from 'react'
+import { useState, useId, useEffect, useRef } from 'react'
 
 import { useCopyToClipboard } from 'react-use'
 
 import Button from '@component/global/Button'
 
 export default function PreviewCopy({ componentCode = '' }) {
+  const liveRegionId = useId()
+  const resetTimerRef = useRef(null)
+
   const [buttonText, setButtonText] = useState('Copy')
   const [buttonEmoji, setButtonEmoji] = useState('📋')
   const [copyStatus, copyToClipboard] = useCopyToClipboard()
+  const [announceText, setAnnounceText] = useState('')
 
-  function handleCopyToClipboard() {
-    copyToClipboard(componentCode)
-
-    if (copyStatus.error) {
-      setButtonText('Error')
-      setButtonEmoji('🚨')
-
+  useEffect(() => {
+    if (!copyStatus) {
       return
     }
 
-    setButtonText('Copied')
-    setButtonEmoji('🎉')
+    if (resetTimerRef.current) {
+      clearTimeout(resetTimerRef.current)
+      resetTimerRef.current = null
+    }
 
-    setTimeout(() => {
-      setButtonText('Copy')
+    if (copyStatus.error) {
+      setButtonEmoji('🚨')
+      setButtonText('Error')
+      setAnnounceText('Failed to copy code')
+    }
+
+    if (copyStatus.value) {
+      setButtonEmoji('🎉')
+      setButtonText('Copied')
+      setAnnounceText('Copied code to clipboard')
+    }
+
+    resetTimerRef.current = setTimeout(() => {
       setButtonEmoji('📋')
+      setButtonText('Copy')
     }, 3000)
+
+    return () => {
+      if (resetTimerRef.current) {
+        clearTimeout(resetTimerRef.current)
+      }
+    }
+  }, [copyStatus])
+
+  function handleCopyToClipboard() {
+    setAnnounceText('')
+    copyToClipboard(componentCode)
   }
 
   return (
     <span className="hidden sm:block">
-      <Button onClick={handleCopyToClipboard} aria-label="Copy code">
+      <Button
+        aria-label="Copy code"
+        aria-describedby={liveRegionId}
+        onClick={handleCopyToClipboard}
+      >
         <span aria-hidden="true">{buttonEmoji}</span>
         <span>{buttonText}</span>
       </Button>
+
+      <span
+        id={liveRegionId}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {announceText}
+      </span>
     </span>
   )
 }
