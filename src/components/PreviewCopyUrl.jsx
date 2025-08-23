@@ -50,31 +50,31 @@ export default function PreviewCopyUrl({ shareUrl }) {
     copyToClipboard(shareUrl)
   }
 
-  return (
-    <>
-      {showShare && (
-        <>
-          <button
-            type="button"
-            className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 md:grid"
-            aria-label="Copy URL"
-            aria-describedby={liveRegionId}
-            onClick={handleCopyToClipboard}
-          >
-            <span aria-hidden="true">{buttonEmoji}</span>
-          </button>
+  if (!showShare) {
+    return <></>
+  }
 
-          <span
-            id={liveRegionId}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-            className="sr-only"
-          >
-            {announceText}
-          </span>
-        </>
-      )}
-    </>
+  return (
+    <span>
+      <button
+        type="button"
+        className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 md:grid"
+        aria-label="Copy URL"
+        aria-describedby={liveRegionId}
+        onClick={handleCopyToClipboard}
+      >
+        <span aria-hidden="true">{buttonEmoji}</span>
+      </button>
+
+      <span
+        id={liveRegionId}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {announceText}
+      </span>
+    </span>
   )
 }
