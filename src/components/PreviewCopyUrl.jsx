@@ -15,7 +15,7 @@ export default function PreviewCopyUrl({ shareUrl }) {
   const showShare = pagePathname !== '/favourites'
 
   useEffect(() => {
-    if (!copyStatus) {
+    if (!copyStatus?.value) {
       return
     }
 

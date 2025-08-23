@@ -14,7 +14,7 @@ export default function PreviewCopy({ componentCode = '' }) {
   const [announceText, setAnnounceText] = useState('')
 
   useEffect(() => {
-    if (!copyStatus) {
+    if (!copyStatus?.value) {
       return
     }
 
