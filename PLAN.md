@@ -15,7 +15,7 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 | 4.1 | Favorites                 | Completed   |
 | 5.1 | Reading Time              | Completed   |
 | 6.1 | CLI / Starter             | Not started |
-| 7.1 | Keyboard Preview Controls | Not started |
+| 7.1 | Keyboard Preview Controls | Completed   |
 | 7.2 | Copy Announce             | Completed   |
 | 8.1 | Structured Data           | Not started |
 | 8.2 | Dynamic OG                | Not started |
@@ -28,14 +28,6 @@ This plan captures only the features you explicitly bookmarked plus the clarific
 
 Goal: Personal tooling (quick scaffold) even if low external usage
 Implementation: Separate package repo later; placeholder script enumerating selected components copying into user path
-
----
-
-## 7. Accessibility & Keyboard Power
-
-### 7.1 Full Keyboard Support for Preview Controls
-
-### 7.2 Announce Copy Action
 
 ---
 
