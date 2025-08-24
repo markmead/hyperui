@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
+import Tooltip from '@component/global/Tooltip'
+
 const STORAGE_KEY = 'favourite:components'
 
 export default function FavoriteButton({ componentData }) {
@@ -56,18 +58,20 @@ export default function FavoriteButton({ componentData }) {
   }
 
   return (
-    <button
-      type="button"
-      onClick={toggleFavorite}
-      aria-pressed={isFavorited}
-      aria-label={isFavorited ? 'Remove from favourites' : 'Add to favourites'}
-      className={`hidden size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid ${
-        isLoaded && isFavorited
-          ? 'border-yellow-300 bg-yellow-100'
-          : 'border-stone-300 hover:bg-stone-100'
-      }`}
-    >
-      <span aria-hidden="true">⭐️</span>
-    </button>
+    <Tooltip tooltipContent={isFavorited ? 'Remove from favourites' : 'Add to favourites'}>
+      <button
+        type="button"
+        onClick={toggleFavorite}
+        aria-pressed={isFavorited}
+        aria-label={isFavorited ? 'Remove from favourites' : 'Add to favourites'}
+        className={`hidden size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid ${
+          isLoaded && isFavorited
+            ? 'border-yellow-300 bg-yellow-100'
+            : 'border-stone-300 hover:bg-stone-100'
+        }`}
+      >
+        <span aria-hidden="true">⭐️</span>
+      </button>
+    </Tooltip>
   )
 }

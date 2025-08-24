@@ -3,6 +3,7 @@ import { useState, useId, useEffect, useRef } from 'react'
 import { useCopyToClipboard } from 'react-use'
 
 import Button from '@component/global/Button'
+import Tooltip from '@component/global/Tooltip'
 
 export default function PreviewCopy({ componentCode = '' }) {
   const liveRegionId = useId()
@@ -54,14 +55,16 @@ export default function PreviewCopy({ componentCode = '' }) {
 
   return (
     <span className="hidden sm:block">
-      <Button
-        aria-label="Copy code"
-        aria-describedby={liveRegionId}
-        onClick={handleCopyToClipboard}
-      >
-        <span aria-hidden="true">{buttonEmoji}</span>
-        <span>{buttonText}</span>
-      </Button>
+      <Tooltip tooltipContent="Copy code">
+        <Button
+          aria-label="Copy code"
+          aria-describedby={liveRegionId}
+          onClick={handleCopyToClipboard}
+        >
+          <span aria-hidden="true">{buttonEmoji}</span>
+          <span>{buttonText}</span>
+        </Button>
+      </Tooltip>
 
       <span
         id={liveRegionId}
