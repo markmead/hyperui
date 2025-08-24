@@ -171,11 +171,7 @@ export default function ComponentPreview({ componentData }) {
 
               <PreviewCopy componentCode={previewCode} />
 
-              <PreviewType
-                componentId={componentId}
-                codeType={codeType}
-                handleSetCodeType={setCodeType}
-              />
+              <PreviewType codeType={codeType} handleSetCodeType={setCodeType} />
             </div>
           )}
 
