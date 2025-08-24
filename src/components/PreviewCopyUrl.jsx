@@ -3,6 +3,8 @@ import { usePathname } from 'next/navigation'
 
 import { useCopyToClipboard } from 'react-use'
 
+import Tooltip from '@component/global/Tooltip'
+
 export default function PreviewCopyUrl({ shareUrl }) {
   const pagePathname = usePathname()
   const liveRegionId = useId()
@@ -56,15 +58,17 @@ export default function PreviewCopyUrl({ shareUrl }) {
 
   return (
     <span>
-      <button
-        type="button"
-        className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid"
-        aria-label="Copy URL"
-        aria-describedby={liveRegionId}
-        onClick={handleCopyToClipboard}
-      >
-        <span aria-hidden="true">{buttonEmoji}</span>
-      </button>
+      <Tooltip tooltipContent="Copy URL">
+        <button
+          type="button"
+          className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid"
+          aria-label="Copy URL"
+          aria-describedby={liveRegionId}
+          onClick={handleCopyToClipboard}
+        >
+          <span aria-hidden="true">{buttonEmoji}</span>
+        </button>
+      </Tooltip>
 
       <span
         id={liveRegionId}
