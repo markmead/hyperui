@@ -8,12 +8,14 @@ export default function PreviewBreakpoint({
   breakpointWidth,
   breakpointText,
 }) {
+  const descriptiveContent = `${breakpointText} breakpoint (${breakpointWidth})`
+
   return (
-    <Tooltip tooltipContent={`Set preview width to ${breakpointWidth}`}>
+    <Tooltip tooltipContent={descriptiveContent}>
       <Button
         onClick={() => handleSetPreviewWidth(breakpointWidth)}
         isActive={breakpointActive}
-        aria-label={`${breakpointText} breakpoint`}
+        aria-label={descriptiveContent}
         aria-pressed={breakpointActive}
       >
         <span aria-hidden="true">{breakpointEmoji}</span>

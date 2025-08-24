@@ -13,6 +13,8 @@ export default function FavoriteButton({ componentData }) {
 
   const componentKey = componentData?.key
 
+  const descriptiveContent = isFavorited ? 'Remove from favourites' : 'Add to favourites'
+
   useEffect(() => {
     try {
       const localFavourites = globalThis.localStorage.getItem(STORAGE_KEY)
@@ -58,12 +60,12 @@ export default function FavoriteButton({ componentData }) {
   }
 
   return (
-    <Tooltip tooltipContent={isFavorited ? 'Remove from favourites' : 'Add to favourites'}>
+    <Tooltip tooltipContent={descriptiveContent}>
       <button
         type="button"
         onClick={toggleFavorite}
         aria-pressed={isFavorited}
-        aria-label={isFavorited ? 'Remove from favourites' : 'Add to favourites'}
+        aria-label={descriptiveContent}
         className={`hidden size-8 place-content-center rounded-lg border text-sm shadow-sm transition-colors focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid ${
           isLoaded && isFavorited
             ? 'border-yellow-300 bg-yellow-100'
