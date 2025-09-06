@@ -21,7 +21,9 @@ export default function Search() {
   const [isMacOs, setIsMacOs] = useState(true)
 
   const [wrapperRef] = useAutoAnimate()
-  const [listRef] = useAutoAnimate()
+  const [groupRef] = useAutoAnimate()
+  const [collectionRef] = useAutoAnimate()
+  const [blogRef] = useAutoAnimate()
 
   useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
 
@@ -137,7 +139,7 @@ export default function Search() {
       <div ref={wrapperRef}>
         {showDropdown && (
           <div
-            ref={listRef}
+            ref={groupRef}
             className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
           >
             {collectionResults.length > 0 ? (
@@ -148,7 +150,10 @@ export default function Search() {
                   </p>
                 </div>
 
-                <ul className="divide-y divide-stone-200 border-t border-stone-200">
+                <ul
+                  ref={collectionRef}
+                  className="divide-y divide-stone-200 border-t border-stone-200"
+                >
                   {collectionResults.map((collectionItem, itemIndex) => (
                     <li key={itemIndex}>
                       <ComponentResult collectionItem={collectionItem} />
@@ -166,7 +171,7 @@ export default function Search() {
                   <p className="font-medium text-stone-900">Blogs ({blogResults.length})</p>
                 </div>
 
-                <ul className="divide-y divide-stone-200 border-t border-stone-200">
+                <ul ref={blogRef} className="divide-y divide-stone-200 border-t border-stone-200">
                   {blogResults.map((blogItem, itemIndex) => (
                     <li key={itemIndex}>
                       <BlogResult blogItem={blogItem} />
