@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
-import { usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useEffect, useState, useRef } from 'react'
 import { useClickAway, useDebounce } from 'react-use'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Search() {
-  const routerPathname = usePathname()
+  const routeParams = useParams()
 
   const inputRef = useRef(null)
   const dropdownRef = useRef(null)
@@ -43,9 +43,11 @@ export default function Search() {
   }, [debouncedSearchQuery])
 
   useEffect(() => {
-    setSearchQuery('')
+    const routeCollection = routeParams?.collection || ''
+
+    setSearchQuery(routeCollection)
     setShowDropdown(false)
-  }, [routerPathname])
+  }, [routeParams])
 
   useEffect(() => {
     function handleKeyDown(keydownEvent) {
@@ -101,18 +103,20 @@ export default function Search() {
     if (!searchQuery) {
       setCollectionResults(allCollections)
       setBlogResults(allBlogs)
-      setShowDropdown(allCollections.length > 0 || allBlogs.length > 0)
+
+      handleShowDropdown()
 
       return
     }
 
     const queryLower = searchQuery.toLowerCase()
 
-    const filteredCollections = allCollections.filter(({ title, terms }) => {
+    const filteredCollections = allCollections.filter(({ slug, title, terms }) => {
+      const slugMatch = slug.toLowerCase().includes(queryLower)
       const titleMatch = title.toLowerCase().includes(queryLower)
       const termsMatch = terms.some((termItem) => termItem.includes(queryLower))
 
-      return titleMatch || termsMatch
+      return slugMatch || titleMatch || termsMatch
     })
 
     const filteredBlogs = allBlogs.filter(({ title }) => {
@@ -121,7 +125,18 @@ export default function Search() {
 
     setCollectionResults(filteredCollections)
     setBlogResults(filteredBlogs)
-    setShowDropdown(filteredCollections.length > 0 || filteredBlogs.length > 0)
+
+    handleShowDropdown()
+  }
+
+  function handleShowDropdown() {
+    if (document.activeElement !== inputRef.current) {
+      setShowDropdown(false)
+
+      return
+    }
+
+    setShowDropdown(collectionResults.length > 0 || blogResults.length > 0)
   }
 
   return (
@@ -140,6 +155,7 @@ export default function Search() {
             onBlur={() => setShowDropdown(false)}
             id="SearchQuery"
             ref={inputRef}
+            autoComplete="off"
           />
 
           <span className="pointer-events-none absolute inset-y-0 right-0 hidden size-[42px] place-content-center lg:grid">
