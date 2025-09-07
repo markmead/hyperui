@@ -14,18 +14,16 @@ export default function Search() {
   const [allCollections, setAllCollections] = useState([])
   const [allBlogs, setAllBlogs] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [collectionResults, setCollectionResults] = useState([])
   const [blogResults, setBlogResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [isMacOs, setIsMacOs] = useState(true)
 
   const [wrapperRef] = useAutoAnimate()
   const [groupRef] = useAutoAnimate()
   const [collectionRef] = useAutoAnimate()
   const [blogRef] = useAutoAnimate()
-
-  useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
 
   useEffect(() => {
     async function fetchSearch() {
@@ -41,34 +39,12 @@ export default function Search() {
   }, [])
 
   useEffect(() => {
-    if (!debouncedSearchQuery) {
-      setCollectionResults([])
-      setBlogResults([])
-      setShowDropdown(false)
-
-      return
-    }
-
-    const queryLower = debouncedSearchQuery.toLowerCase()
-
-    const filteredCollections = allCollections.filter(({ title, terms }) => {
-      const titleMatch = title.toLowerCase().includes(queryLower)
-      const termsMatch = terms.some((termItem) => termItem.includes(queryLower))
-
-      return titleMatch || termsMatch
-    })
-
-    const filteredBlogs = allBlogs.filter(({ title }) => {
-      return title.toLowerCase().includes(queryLower)
-    })
-
-    setCollectionResults(filteredCollections)
-    setBlogResults(filteredBlogs)
-    setShowDropdown(filteredCollections.length > 0 || filteredBlogs.length > 0)
-  }, [debouncedSearchQuery, allCollections, allBlogs])
+    handleSearch(debouncedSearchQuery)
+  }, [debouncedSearchQuery])
 
   useEffect(() => {
     setSearchQuery('')
+    setShowDropdown(false)
   }, [routerPathname])
 
   useEffect(() => {
@@ -84,6 +60,16 @@ export default function Search() {
 
         inputElement.focus()
       }
+
+      if (keydownEvent.code === 'Escape') {
+        const inputElement = document.querySelector('#SearchQuery')
+
+        if (document.activeElement === inputElement) {
+          setShowDropdown(false)
+
+          inputElement.blur()
+        }
+      }
     }
 
     globalThis.addEventListener('keydown', handleKeyDown)
@@ -94,10 +80,6 @@ export default function Search() {
   useEffect(() => {
     try {
       const userAgent = navigator.userAgent || ''
-
-      if (/mac/i.test(userAgent)) {
-        setIsMacOs(true)
-      }
 
       if (/win/i.test(userAgent)) {
         setIsMacOs(false)
@@ -113,6 +95,35 @@ export default function Search() {
 
   useClickAway(dropdownRef, () => setShowDropdown(false))
 
+  useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
+
+  function handleSearch(searchQuery) {
+    if (!searchQuery) {
+      setCollectionResults(allCollections)
+      setBlogResults(allBlogs)
+      setShowDropdown(allCollections.length > 0 || allBlogs.length > 0)
+
+      return
+    }
+
+    const queryLower = searchQuery.toLowerCase()
+
+    const filteredCollections = allCollections.filter(({ title, terms }) => {
+      const titleMatch = title.toLowerCase().includes(queryLower)
+      const termsMatch = terms.some((termItem) => termItem.includes(queryLower))
+
+      return titleMatch || termsMatch
+    })
+
+    const filteredBlogs = allBlogs.filter(({ title }) => {
+      return title.toLowerCase().includes(queryLower)
+    })
+
+    setCollectionResults(filteredCollections)
+    setBlogResults(filteredBlogs)
+    setShowDropdown(filteredCollections.length > 0 || filteredBlogs.length > 0)
+  }
+
   return (
     <div className="relative w-screen max-w-xs" ref={dropdownRef}>
       <label htmlFor="SearchQuery">
@@ -125,7 +136,8 @@ export default function Search() {
             placeholder="Search components..."
             value={searchQuery}
             onChange={({ target }) => setSearchQuery(target.value)}
-            onFocus={() => collectionResults.length > 0 && setShowDropdown(true)}
+            onFocus={() => handleSearch(searchQuery)}
+            onBlur={() => setShowDropdown(false)}
             id="SearchQuery"
             ref={inputRef}
           />
@@ -140,7 +152,7 @@ export default function Search() {
         {showDropdown && (
           <div
             ref={groupRef}
-            className="absolute inset-x-0 z-50 mt-1 max-h-64 divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
+            className="absolute inset-x-0 z-50 mt-1 max-h-96 divide-y divide-stone-200 overflow-auto rounded-lg border border-stone-300 bg-white shadow-lg"
           >
             {collectionResults.length > 0 ? (
               <div>
