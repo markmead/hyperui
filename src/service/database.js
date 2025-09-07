@@ -207,9 +207,7 @@ export async function getComponents() {
 }
 
 export function sortByDate(dbItems) {
-  const clonedDbItems = [...dbItems]
-
-  return clonedDbItems.sort((itemA, itemB) => {
+  return dbItems.toSorted((itemA, itemB) => {
     const dateA = new Date(itemA.updated)
     const dateB = new Date(itemB.updated)
 
@@ -218,9 +216,7 @@ export function sortByDate(dbItems) {
 }
 
 export function sortByTitle(dbItems) {
-  const clonedDbItems = [...dbItems]
-
-  return clonedDbItems.sort((itemA, itemB) => {
+  return dbItems.toSorted((itemA, itemB) => {
     const titleA = itemA.title
     const titleB = itemB.title
 
