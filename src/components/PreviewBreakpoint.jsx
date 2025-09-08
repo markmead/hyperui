@@ -18,7 +18,10 @@ export default function PreviewBreakpoint({
         aria-label={descriptiveContent}
         aria-pressed={breakpointActive}
       >
-        <span aria-hidden="true">{breakpointEmoji}</span>
+        <span aria-hidden="true" className="stripped:hidden">
+          {breakpointEmoji}
+        </span>
+
         <span>{breakpointText}</span>
       </Button>
     </Tooltip>

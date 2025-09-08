@@ -87,7 +87,7 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
-      <div className="prose prose-p:max-w-prose max-w-none">
+      <div className="prose prose-p:max-w-prose prose-p:stripped:hidden max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
           mdxComponents={mdxComponents}

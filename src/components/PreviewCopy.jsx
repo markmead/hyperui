@@ -61,7 +61,10 @@ export default function PreviewCopy({ componentCode = '' }) {
           aria-describedby={liveRegionId}
           onClick={handleCopyToClipboard}
         >
-          <span aria-hidden="true">{buttonEmoji}</span>
+          <span aria-hidden="true" className="stripped:hidden">
+            {buttonEmoji}
+          </span>
+
           <span>{buttonText}</span>
         </Button>
       </Tooltip>

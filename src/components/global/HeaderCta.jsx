@@ -1,6 +1,6 @@
 export default function HeaderCta() {
   return (
-    <section className="-mt-px border-y border-stone-300 bg-stone-50">
+    <section className="stripped:hidden -mt-px border-y border-stone-300 bg-stone-50">
       <div className="mx-auto flex max-w-screen-xl justify-center px-4 py-2">
         <a
           href="https://github.com/markmead/hyperui"

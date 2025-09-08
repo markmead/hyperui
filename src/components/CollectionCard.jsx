@@ -13,11 +13,11 @@ export default function CollectionCard({ componentData }) {
     >
       {hasTag && <CardTag tagType={componentData.tag} />}
 
-      <span aria-hidden="true" className="text-lg sm:text-xl">
+      <span aria-hidden="true" className="stripped:hidden text-lg sm:text-xl">
         {componentData.emoji}
       </span>
 
-      <p className="mt-4 block text-sm text-stone-700">{componentCount}</p>
+      <p className="stripped:mt-0 mt-4 block text-sm text-stone-700">{componentCount}</p>
 
       <h2 className="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
         {componentData.title}

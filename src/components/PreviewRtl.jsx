@@ -11,7 +11,10 @@ export default function PreviewRtl({ isRtl, handleSetIsRtl }) {
         aria-pressed={isRtl}
         aria-label={descriptiveContent}
       >
-        <span aria-hidden="true">{isRtl ? '👈' : '👉'}</span>
+        <span aria-hidden="true" className="stripped:hidden">
+          {isRtl ? '👈' : '👉'}
+        </span>
+
         <span>{isRtl ? 'RTL' : 'LTR'}</span>
       </Button>
     </Tooltip>

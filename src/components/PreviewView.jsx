@@ -11,7 +11,10 @@ export default function PreviewView({ showPreview, handleSetShowPreview }) {
         aria-pressed={showPreview}
         aria-label={descriptiveContent}
       >
-        <span aria-hidden="true">{showPreview ? '👾' : '👀'}</span>
+        <span aria-hidden="true" className="stripped:hidden">
+          {showPreview ? '👾' : '👀'}
+        </span>
+
         <span>{showPreview ? 'Code' : 'View'}</span>
       </Button>
     </Tooltip>

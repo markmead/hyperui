@@ -196,7 +196,9 @@ function ComponentResult({ collectionItem }) {
       className="block px-4 py-2 transition-colors hover:bg-stone-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none focus:ring-inset md:flex md:items-center md:justify-between"
     >
       <div className="flex items-center gap-2">
-        <span aria-hidden="true">{collectionItem.emoji}</span>
+        <span aria-hidden="true" className="stripped:hidden">
+          {collectionItem.emoji}
+        </span>
 
         <span className="font-medium text-stone-900">{collectionItem.title}</span>
       </div>
@@ -215,7 +217,9 @@ function BlogResult({ blogItem }) {
       className="block px-4 py-2 transition-colors hover:bg-stone-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none focus:ring-inset"
     >
       <div className="flex items-center gap-2">
-        <span aria-hidden="true">{blogItem.emoji}</span>
+        <span aria-hidden="true" className="stripped:hidden">
+          {blogItem.emoji}
+        </span>
 
         <span className="line-clamp-1 font-medium text-pretty text-stone-900">
           {blogItem.title}

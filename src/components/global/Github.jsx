@@ -10,7 +10,7 @@ export default function Github() {
 
       <Icon />
 
-      <span className="hidden sm:block sm:font-medium">11k</span>
+      <span className="stripped:hidden hidden sm:block sm:font-medium">11k</span>
     </a>
   )
 }
