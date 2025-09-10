@@ -5,7 +5,8 @@
     "paths": {
       "@component/*": ["src/components/*"],
       "@style/*": ["src/styles/*"],
-      "@service/*": ["src/service/*"]
+      "@service/*": ["src/service/*"],
+      "@hook/*": ["src/hooks/*"]
     },
     "plugins": [{ "name": "next" }]
   },
