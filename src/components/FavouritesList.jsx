@@ -41,22 +41,21 @@ export default function FavouritesList() {
     }
   }
 
-  const itemListSchema = isLoaded &&
-    favouriteItems.length > 0 && {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      name: 'Your Favourite Tailwind CSS Components',
-      description:
-        'List of Tailwind CSS components you marked as favourite on HyperUI (stored locally in your browser).',
-      url: 'https://www.hyperui.dev/favourites',
-      numberOfItems: favouriteItems.length,
-      itemListElement: favouriteItems.map((componentItem, componentIndex) => ({
-        '@type': 'ListItem',
-        position: componentIndex + 1,
-        name: componentItem.title,
-        url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}#component-${componentItem.id}`,
-      })),
-    }
+  const itemListSchema = isLoaded && {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Your Favourite Tailwind CSS Components',
+    description:
+      'List of Tailwind CSS components you marked as favourite on HyperUI (stored locally in your browser).',
+    url: 'https://www.hyperui.dev/favourites',
+    numberOfItems: favouriteItems.length,
+    itemListElement: favouriteItems.map((componentItem, componentIndex) => ({
+      '@type': 'ListItem',
+      position: componentIndex + 1,
+      name: componentItem.title,
+      url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}#component-${componentItem.id}`,
+    })),
+  }
 
   return (
     <>

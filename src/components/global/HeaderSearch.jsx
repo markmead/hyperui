@@ -2,8 +2,10 @@ import Link from 'next/link'
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, useRef } from 'react'
-import { useClickAway, useDebounce } from 'react-use'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+
+import useDebounce from '@hook/useDebounce'
+import useClickOutside from '@hook/useClickOutside'
 
 export default function Search() {
   const routerPathname = usePathname()
@@ -14,7 +16,6 @@ export default function Search() {
   const [allCollections, setAllCollections] = useState([])
   const [allBlogs, setAllBlogs] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [collectionResults, setCollectionResults] = useState([])
   const [blogResults, setBlogResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
@@ -25,7 +26,7 @@ export default function Search() {
   const [collectionRef] = useAutoAnimate()
   const [blogRef] = useAutoAnimate()
 
-  useDebounce(() => setDebouncedSearchQuery(searchQuery), 300, [searchQuery])
+  const debouncedSearchQuery = useDebounce(searchQuery, 300)
 
   useEffect(() => {
     async function fetchSearch() {
@@ -111,7 +112,7 @@ export default function Search() {
     }
   }, [])
 
-  useClickAway(dropdownRef, () => setShowDropdown(false))
+  useClickOutside(dropdownRef, () => setShowDropdown(false))
 
   return (
     <div className="relative w-screen max-w-xs" ref={dropdownRef}>

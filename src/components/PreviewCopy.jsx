@@ -1,57 +1,14 @@
-import { useState, useId, useEffect, useRef } from 'react'
+import { useId } from 'react'
 
-import { useCopyToClipboard } from 'react-use'
+import useCopyToClipboard from '@hook/useCopyToClipboard'
 
 import Button from '@component/global/Button'
 import Tooltip from '@component/global/Tooltip'
 
 export default function PreviewCopy({ componentCode = '' }) {
   const liveRegionId = useId()
-  const resetTimerRef = useRef(null)
 
-  const [buttonText, setButtonText] = useState('Copy')
-  const [buttonEmoji, setButtonEmoji] = useState('📋')
-  const [copyStatus, copyToClipboard] = useCopyToClipboard()
-  const [announceText, setAnnounceText] = useState('')
-
-  useEffect(() => {
-    if (!copyStatus?.value) {
-      return
-    }
-
-    if (resetTimerRef.current) {
-      clearTimeout(resetTimerRef.current)
-      resetTimerRef.current = null
-    }
-
-    if (copyStatus.error) {
-      setButtonEmoji('🚨')
-      setButtonText('Error')
-      setAnnounceText('Failed to copy code')
-    }
-
-    if (copyStatus.value) {
-      setButtonEmoji('🎉')
-      setButtonText('Copied')
-      setAnnounceText('Copied code to clipboard')
-    }
-
-    resetTimerRef.current = setTimeout(() => {
-      setButtonEmoji('📋')
-      setButtonText('Copy')
-    }, 1500)
-
-    return () => {
-      if (resetTimerRef.current) {
-        clearTimeout(resetTimerRef.current)
-      }
-    }
-  }, [copyStatus])
-
-  function handleCopyToClipboard() {
-    setAnnounceText('')
-    copyToClipboard(componentCode)
-  }
+  const { copyToClipboard, buttonEmoji, buttonText, announceText } = useCopyToClipboard()
 
   return (
     <span className="hidden sm:block">
@@ -59,7 +16,7 @@ export default function PreviewCopy({ componentCode = '' }) {
         <Button
           aria-label="Copy code"
           aria-describedby={liveRegionId}
-          onClick={handleCopyToClipboard}
+          onClick={() => copyToClipboard(componentCode)}
         >
           <span aria-hidden="true">{buttonEmoji}</span>
           <span>{buttonText}</span>
