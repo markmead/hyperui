@@ -52,7 +52,7 @@ export default function FavouritesList() {
     itemListElement: favouriteItems.map((componentItem, componentIndex) => ({
       '@type': 'ListItem',
       position: componentIndex + 1,
-      name: componentItem.title,
+      name: componentItem.title.name,
       url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}#component-${componentItem.id}`,
     })),
   }

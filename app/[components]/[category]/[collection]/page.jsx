@@ -50,7 +50,7 @@ export async function generateMetadata({ params }) {
   const { collectionData } = await getCollection(params)
 
   return {
-    title: `Tailwind CSS ${collectionData.title} | HyperUI`,
+    title: `Tailwind CSS ${collectionData.title.page} | HyperUI`,
     description: collectionData.description,
     alternates: {
       canonical: `/components/${params.category}/${params.collection}`,
@@ -68,7 +68,7 @@ export default async function Page({ params }) {
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Tailwind CSS ${collectionData.title} Components`,
+    name: `Tailwind CSS ${collectionData.title.page} Components`,
     description: collectionData.description,
     url: `https://www.hyperui.dev/components/${params.category}/${params.collection}`,
     numberOfItems: flatComponents.length,

@@ -121,8 +121,6 @@ export async function getCategory({ category }) {
         })
     )
 
-    sortByTitle(componentItems)
-
     return {
       categoryData,
       componentItems,
@@ -190,8 +188,6 @@ export async function getComponents() {
             })
         )
 
-        sortByTitle(componentItems)
-
         return {
           categoryTitle: categoryData?.title,
           categorySlug,
@@ -212,15 +208,6 @@ export function sortByDate(dbItems) {
     const dateB = new Date(itemB.updated)
 
     return dateB - dateA
-  })
-}
-
-export function sortByTitle(dbItems) {
-  return dbItems.toSorted((itemA, itemB) => {
-    const titleA = itemA.title
-    const titleB = itemB.title
-
-    return titleA.localeCompare(titleB)
   })
 }
 

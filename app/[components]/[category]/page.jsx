@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
   const { categoryData } = await getCategory(params)
 
   return {
-    title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
+    title: `Tailwind CSS ${categoryData.title.page} Components | HyperUI`,
     description: categoryData.description,
     alternates: {
       canonical: `/components/${params.category}`,
@@ -49,7 +49,7 @@ export default async function Page({ params }) {
     itemListElement: componentItems.map((componentItem, componentIndex) => ({
       '@type': 'ListItem',
       position: componentIndex + 1,
-      name: componentItem.title,
+      name: componentItem.title.name,
       url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}`,
     })),
   }

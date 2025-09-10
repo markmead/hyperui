@@ -20,7 +20,7 @@ export default function CollectionCard({ componentData }) {
       <p className="mt-4 block text-sm text-stone-700">{componentCount}</p>
 
       <h2 className="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
-        {componentData.title}
+        {componentData.title.name}
       </h2>
     </Link>
   )

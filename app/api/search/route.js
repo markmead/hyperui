@@ -9,6 +9,7 @@ export async function GET() {
     const flatCollections = componentsByCategory.flatMap(({ componentItems, categoryTitle }) =>
       componentItems.map((componentItem) => ({
         ...componentItem,
+        title: componentItem.title.name,
         categoryTitle,
       }))
     )
