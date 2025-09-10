@@ -10,20 +10,13 @@ export default function PreviewCopy({ componentCode = '' }) {
 
   const { copyToClipboard, buttonEmoji, buttonText, announceText } = useCopyToClipboard()
 
-  function handleCopyToClipboard() {
-    copyToClipboard(componentCode, {
-      successMessage: 'Copied code to clipboard',
-      errorMessage: 'Failed to copy code',
-    })
-  }
-
   return (
     <span className="hidden sm:block">
       <Tooltip tooltipContent="Copy code">
         <Button
           aria-label="Copy code"
           aria-describedby={liveRegionId}
-          onClick={handleCopyToClipboard}
+          onClick={() => copyToClipboard(componentCode)}
         >
           <span aria-hidden="true">{buttonEmoji}</span>
           <span>{buttonText}</span>

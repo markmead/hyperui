@@ -13,13 +13,6 @@ export default function PreviewCopyUrl({ shareUrl }) {
 
   const showShare = pagePathname !== '/favourites'
 
-  function handleCopyToClipboard() {
-    copyToClipboard(shareUrl, {
-      successMessage: 'Copied URL to clipboard',
-      errorMessage: 'Failed to copy URL',
-    })
-  }
-
   if (!showShare) {
     return <></>
   }
@@ -32,7 +25,7 @@ export default function PreviewCopyUrl({ shareUrl }) {
           className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid"
           aria-label="Copy URL"
           aria-describedby={liveRegionId}
-          onClick={handleCopyToClipboard}
+          onClick={() => copyToClipboard(shareUrl)}
         >
           <span aria-hidden="true">{buttonEmoji}</span>
         </button>

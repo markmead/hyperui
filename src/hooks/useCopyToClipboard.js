@@ -51,26 +51,24 @@ export default function useCopyToClipboard(resetTime = 1500, initialEmoji = 'ðŸ“
     }, resetTime)
   }, [copyStatus, resetTime, initialEmoji])
 
-  async function copyToClipboard(copyText, copyOptions = {}) {
+  async function copyToClipboard(copyText) {
     setAnnounceText('')
-
-    const { successMessage, errorMessage } = copyOptions
 
     try {
       await navigator.clipboard.writeText(copyText)
 
       setCopyStatus({
+        ...copyStatus,
         copyValue: copyText,
         hasCopied: true,
         hasError: false,
-        successMessage,
       })
     } catch {
       setCopyStatus({
+        ...copyStatus,
         copyValue: copyText,
         hasCopied: false,
         hasError: true,
-        errorMessage,
       })
     }
   }
@@ -80,6 +78,5 @@ export default function useCopyToClipboard(resetTime = 1500, initialEmoji = 'ðŸ“
     buttonEmoji,
     buttonText,
     announceText,
-    ...copyStatus,
   }
 }
