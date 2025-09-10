@@ -30,7 +30,7 @@ export default function useCopyToClipboard(resetTime = 1500, initialEmoji = 'ðŸ“
 
     if (resetTimerRef.current) {
       clearTimeout(resetTimerRef.current)
-      resetTimerRef.current = null
+      resetTimerRef.current = undefined
     }
 
     if (copyStatus.hasError) {
