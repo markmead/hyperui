@@ -56,18 +56,30 @@ export default function useCopyToClipboard(resetTime = 1500, initialEmoji = 'ðŸ“
     try {
       await navigator.clipboard.writeText(copyText)
 
-      setCopyStatus({
-        ...copyStatus,
-        copyValue: copyText,
-        hasCopied: true,
-        hasError: false,
+      setCopyStatus((previousState) => {
+        if (previousState.copyValue === copyText && previousState.hasCopied) {
+          return previousState
+        }
+
+        return {
+          ...previousState,
+          copyValue: copyText,
+          hasCopied: true,
+          hasError: false,
+        }
       })
     } catch {
-      setCopyStatus({
-        ...copyStatus,
-        copyValue: copyText,
-        hasCopied: false,
-        hasError: true,
+      setCopyStatus((previousState) => {
+        if (previousState.copyValue === copyText && previousState.hasError) {
+          return previousState
+        }
+
+        return {
+          ...previousState,
+          copyValue: copyText,
+          hasCopied: false,
+          hasError: true,
+        }
       })
     }
   }

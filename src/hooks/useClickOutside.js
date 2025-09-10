@@ -1,13 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function useClickOutside(targetRef, clickHandler) {
+  const handlerRef = useRef(clickHandler)
+
+  useEffect(() => {
+    handlerRef.current = clickHandler
+  }, [clickHandler])
+
   useEffect(() => {
     function clickListener(clickEvent) {
       if (!targetRef.current || targetRef.current.contains(clickEvent.target)) {
         return
       }
 
-      clickHandler(clickEvent)
+      handlerRef.current(clickEvent)
     }
 
     document.addEventListener('mousedown', clickListener)
@@ -17,5 +23,5 @@ export default function useClickOutside(targetRef, clickHandler) {
       document.removeEventListener('mousedown', clickListener)
       document.removeEventListener('touchstart', clickListener)
     }
-  }, [targetRef, clickHandler])
+  }, [targetRef])
 }
