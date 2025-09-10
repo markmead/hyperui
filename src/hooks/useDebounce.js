@@ -7,6 +7,7 @@ export default function useDebounce(inputValue, delayInMilliseconds) {
   useEffect(() => {
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current)
+
       debounceTimerRef.current = undefined
     }
 
