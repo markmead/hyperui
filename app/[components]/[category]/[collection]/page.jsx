@@ -68,15 +68,15 @@ export default async function Page({ params }) {
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Tailwind CSS ${collectionData.title.page} Components`,
+    name: `Tailwind CSS ${collectionData.title.page}`,
     description: collectionData.description,
     url: `https://www.hyperui.dev/components/${params.category}/${params.collection}`,
     numberOfItems: flatComponents.length,
-    itemListElement: flatComponents.map((componentItem, componentIndex) => ({
+    itemListElement: flatComponents.map(({ title, category, slug, id }, componentIndex) => ({
       '@type': 'ListItem',
       position: componentIndex + 1,
-      name: componentItem.title,
-      url: `https://www.hyperui.dev/components/${componentItem.category}/${componentItem.slug}#component-${componentItem.id}`,
+      name: title,
+      url: `https://www.hyperui.dev/components/${category}/${slug}#component-${id}`,
     })),
   }
 
