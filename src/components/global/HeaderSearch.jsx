@@ -132,7 +132,7 @@ export default function Search() {
           />
 
           <span className="pointer-events-none absolute inset-y-0 right-0 hidden size-[42px] place-content-center lg:grid">
-            <kbd className="font-sans text-xs text-stone-700">{isMacOs ? '⌘K' : 'CtrlK'}</kbd>
+            <kbd className="font-sans text-xs text-stone-700">{isMacOs ? '⌘K' : 'Ctrl K'}</kbd>
           </span>
         </div>
       </label>
