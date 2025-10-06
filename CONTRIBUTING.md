@@ -36,7 +36,7 @@ Guidelines:
 ## Pull request process
 - Open a small, focused PR and link the related issue.
 - PRs are reviewed before merging. Respond to feedback promptly.
-- If feedback from the first review isn’t addressed by the third review the PR may be closed; new review cycles are allowed if changes are made.
+- If feedback from the first review isn't addressed by the third review, the PR may be closed. New review cycles are allowed if changes are made.
 
 ## Checklist before submitting a PR
 - [ ] Run the site locally and verify the component preview and the copied code output.
