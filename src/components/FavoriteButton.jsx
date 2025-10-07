@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import Tooltip from '@component/global/Tooltip'
 
-const STORAGE_KEY = 'favourite:components'
+const STORAGE_KEY = 'favouriteComponents'
 
 export default function FavoriteButton({ componentData }) {
   const [favouriteComponents, setFavoriteComponents] = useState([])
