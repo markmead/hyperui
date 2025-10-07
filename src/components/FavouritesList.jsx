@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import CollectionList from '@component/CollectionList'
 
-const STORAGE_KEY = 'favourite:components'
+const STORAGE_KEY = 'favouriteComponents'
 
 export const metadata = {
   title: 'Tailwind CSS Favourites | HyperUI',
