@@ -10,8 +10,7 @@ yarn dev
 yarn css --watch
 ```
 > [!NOTE]
-
-> Please ignore the console warning ```params should be awaited before using its properties``` as this is `not` relevant.
+> Please ignore the console warning `params should be awaited before using its properties` as this is not relevant.
 
 ## Bug? Idea?
 Regardless of what it is, please make an issue. Making a PR without an issue could lead to disappointment. as the work you've done might not be needed/wanted.
