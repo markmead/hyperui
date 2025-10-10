@@ -1,22 +1,44 @@
 # 🚀 HyperUI
 
+<!-- Typing animation for README: HyperUI message -->
+<picture>
+  <!-- Dark mode -->
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=9AE6B4&center=true&vCenter=true&width=800&lines=%E2%9C%A8+Build+beautiful%2C+responsive+interfaces+faster+with+HyperUI.">
+  <!-- Light mode -->
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=0EA5E9&center=true&vCenter=true&width=800&lines=%E2%9C%A8+Build+beautiful%2C+responsive+interfaces+faster+with+HyperUI.">
+  <!-- Fallback image -->
+  <img
+    src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=0EA5E9&center=true&vCenter=true&width=800&lines=%E2%9C%A8+Build+beautiful%2C+responsive+interfaces+faster+with+HyperUI."
+    alt="✨ Build beautiful, responsive interfaces faster with HyperUI."
+  />
+</picture>
+
 ![](https://img.shields.io/github/stars/markmead/hyperui?style=social)
 ![](https://img.shields.io/github/issues/markmead/hyperui)
 ![](https://img.shields.io/github/license/markmead/hyperui)
 
-HyperUI is a collection of free Tailwind CSS components that can be used in your next project. With a range of components, you can build your next marketing website, admin dashboard, eCommerce store and much more.
+HyperUI is a free, open-source collection of Tailwind CSS components designed to help developers build stunning, responsive interfaces quickly. It offers a wide range of ready-to-use UI elements for marketing websites, admin dashboards, and eCommerce stores. Each component is fully customizable, lightweight, and built with clean Tailwind CSS utilities — empowering you to prototype and launch projects faster while maintaining design consistency and flexibility.
 
 ![](https://hyperui.dev/og.jpg)
 
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+- [Demo Video](#Demo-Video)
 - [Usage](#usage)
 - [Components](#components)
   - [🤖 Application](#application)
   - [📣 Marketing](#marketing)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Demo Video
+
+[![Watch the demo](https://github.com/yourusername/Ansita20/assets/12345678/demo.gif)](https://www.youtube.com/watch?v=vh-G_gtVooc)
 
 ## Getting Started
 
