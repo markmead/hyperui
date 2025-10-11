@@ -9,7 +9,7 @@ export default function CollectionCard({ componentData }) {
   return (
     <Link
       href={`/components/${componentData.category}/${componentData.slug}`}
-      className="relative block h-full rounded-lg border border-stone-300 bg-white p-4 shadow-sm transition-colors hover:border-indigo-500 hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
+      className="relative block h-full rounded-lg border border-stone-300 bg-white p-4 shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-md hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
     >
       {hasTag && <CardTag tagType={componentData.tag} />}
 

@@ -19,3 +19,21 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
