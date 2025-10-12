@@ -10,12 +10,7 @@ import {
 } from '@service/database'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import CollectionList from '@component/CollectionList'
 import RelatedComponents from '@component/RelatedComponents'
-
-const mdxComponents = {
-  CollectionList,
-}
 
 export async function generateStaticParams() {
   const categoryFolders = await fs.readdir(componentsDir)
@@ -90,7 +85,6 @@ export default async function Page({ params }) {
       <div className="prose prose-p:max-w-prose max-w-none">
         <MdxRemoteRender
           mdxSource={collectionContent}
-          mdxComponents={mdxComponents}
           mdxScope={{ componentsData: flatComponents }}
         />
       </div>
