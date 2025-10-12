@@ -44,15 +44,9 @@ export default async function Page() {
 
       <div id="mainContent" className="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
         <ul className="space-y-8">
-          {componentsByCategory.map(({ categoryTitle, categorySlug, componentItems = [] }, index) => {
+          {componentsByCategory.map(({ categoryTitle, categorySlug, componentItems = [] }) => {
             return (
-              <li 
-                key={categoryTitle}
-                className="space-y-4 animate-fadeIn"
-                style={{
-                  animationDelay: `${index * 100}ms`
-                }}
-              >
+              <li className="space-y-4" key={categoryTitle}>
                 <h2 className="text-xl font-bold text-stone-900 sm:text-2xl">
                   <Link
                     href={`/components/${categorySlug}`}

@@ -9,7 +9,7 @@ export default function CollectionCard({ componentData }) {
   return (
     <Link
       href={`/components/${componentData.category}/${componentData.slug}`}
-      className="relative block h-full rounded-lg border border-stone-300 bg-white p-4 shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-md hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6"
+      className="relative block h-full rounded-lg border border-stone-300 bg-white p-4 shadow-sm transition-colors hover:border-indigo-500 hover:ring hover:ring-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none sm:p-6 will-change-transform"
     >
       {hasTag && <CardTag tagType={componentData.tag} />}
 
@@ -17,9 +17,11 @@ export default function CollectionCard({ componentData }) {
         {componentData.emoji}
       </span>
 
-      <p className="mt-4 block text-sm text-stone-700">{componentCount}</p>
+      <p className="mt-4 block text-sm text-stone-700 transition-all duration-300 delay-100">
+        {componentCount}
+      </p>
 
-      <h2 className="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
+      <h2 className="mt-1 font-medium text-pretty text-stone-900 sm:text-lg transition-all duration-300 delay-150">
         {componentData.title}
       </h2>
     </Link>
@@ -36,7 +38,7 @@ function CardTag({ tagType }) {
 
   return (
     <span
-      className={`absolute top-2.5 right-2.5 rounded-full border border-current px-2.5 py-0.5 text-xs font-medium whitespace-nowrap capitalize ${
+      className={`absolute top-2.5 right-2.5 rounded-full border border-current px-2.5 py-0.5 text-xs font-medium whitespace-nowrap capitalize transition-all duration-300 delay-75 ${
         isNew && 'bg-green-100 text-green-700'
       } ${isUpdated && 'bg-blue-100 text-blue-700'}`}
     >
