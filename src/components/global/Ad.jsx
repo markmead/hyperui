@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-export default function Ads() {
+export default function Ads({ adType = 'image' }) {
   const routerPathname = usePathname()
 
   useEffect(() => {
@@ -27,12 +27,13 @@ export default function Ads() {
   }
 
   return (
-    <div
-      id={routerPathname}
-      data-ea-publisher="hyperuidev"
-      data-ea-type="text"
-      data-ea-style="fixedfooter"
-      className="sticky! [&_.ea-body]:text-stone-900! [&_.ea-fixedfooter-hide]:hidden! [&_.ea-placement]:bg-stone-200! [&_strong]:text-sky-600!"
-    ></div>
+    <div className="max-w-3xl">
+      <div
+        id={routerPathname}
+        data-ea-publisher="hyperuidev"
+        data-ea-type={adType}
+        className="horizontal [&_.ea-callout]:mx-0! [&_.ea-callout]:mt-2! [&_.ea-callout]:mb-0! [&_.ea-callout]:px-2! [&_.ea-content]:m-0! [&_.ea-content]:border! [&_.ea-content]:border-stone-300! [&_.ea-content]:bg-stone-50! [&_.ea-content]:shadow-sm!"
+      ></div>
+    </div>
   )
 }
