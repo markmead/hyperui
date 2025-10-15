@@ -1,3 +1,4 @@
+import Ad from '@component/global/Ad'
 import HeroUsps from '@component/global/HeroUsps'
 
 export default function Hero({ children, subtitle, title }) {
@@ -14,6 +15,8 @@ export default function Hero({ children, subtitle, title }) {
           <p className="leading-relaxed text-pretty text-stone-700">{children}</p>
 
           <HeroUsps />
+
+          <Ad />
         </div>
       </div>
     </section>
