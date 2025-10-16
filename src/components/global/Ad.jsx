@@ -32,7 +32,7 @@ export default function Ads({ adType = 'image' }) {
         id={routerPathname}
         data-ea-publisher="hyperuidev"
         data-ea-type={adType}
-        className="horizontal [&_.ea-callout]:mx-0! [&_.ea-callout]:mt-2! [&_.ea-callout]:mb-0! [&_.ea-callout]:px-2! [&_.ea-content]:m-0! [&_.ea-content]:border! [&_.ea-content]:border-stone-300! [&_.ea-content]:bg-stone-50! [&_.ea-content]:shadow-sm!"
+        className="horizontal [&_.ea-callout]:mx-0! [&_.ea-callout]:mt-1! [&_.ea-callout]:mb-0! [&_.ea-callout]:px-2! [&_.ea-content]:m-0! [&_.ea-content]:rounded-lg! [&_.ea-content]:border! [&_.ea-content]:border-stone-300! [&_.ea-content]:bg-stone-50! [&_.ea-content]:shadow-none!"
       ></div>
     </div>
   )
