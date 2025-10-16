@@ -1,18 +1,14 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 
 export default function Ads() {
   const routerPathname = usePathname()
 
-  useEffect(() => {
-    loadAd()
-  }, [routerPathname])
-
-  function loadAd() {
+  const loadAd = useCallback(() => {
     if (document.querySelector('#EthicalAds')) {
-      globalThis && globalThis.ethicalads && globalThis.ethicalads.reload()
+      globalThis?.ethicalads?.reload()
 
       return
     }
@@ -24,7 +20,11 @@ export default function Ads() {
     adScript.id = 'EthicalAds'
 
     document.body.append(adScript)
-  }
+  }, [])
+
+  useEffect(() => {
+    loadAd()
+  }, [routerPathname, loadAd])
 
   return (
     <div className="not-prose mx-auto max-w-sm">

@@ -1,29 +1,33 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
+import { useEffect, useState, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 
 import Brand from '@component/global/Brand'
-
 import Github from '@component/global/Github'
 import HeaderMenu from '@component/global/HeaderMenu'
 import HeaderLinks from '@component/global/HeaderLinks'
 import HeaderSearch from '@component/global/HeaderSearch'
+
+const HEADER_LINKS = [
+  { title: 'Application', href: '/components/application', mobile: true },
+  { title: 'Marketing', href: '/components/marketing', mobile: true },
+  { title: 'Blog', href: '/blog', mobile: true },
+  { title: 'Favourites', href: '/favourites', mobile: false },
+]
 
 export default function Header() {
   const routerPathname = usePathname()
 
   const [showMenu, setShowMenu] = useState(false)
 
-  useEffect(() => setShowMenu(false), [routerPathname])
+  useEffect(() => {
+    setShowMenu(false)
+  }, [routerPathname])
 
-  const headerLinks = [
-    { title: 'Application', href: '/components/application', mobile: true },
-    { title: 'Marketing', href: '/components/marketing', mobile: true },
-    { title: 'Blog', href: '/blog', mobile: true },
-    { title: 'Favourites', href: '/favourites', mobile: false },
-  ]
+  const handleSetShowMenu = useCallback((newValue) => {
+    setShowMenu(newValue)
+  }, [])
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 border-b border-stone-300 bg-white">
@@ -32,7 +36,7 @@ export default function Header() {
           <Brand />
 
           <nav className="hidden md:block">
-            <HeaderLinks headerLinks={headerLinks} />
+            <HeaderLinks headerLinks={HEADER_LINKS} />
           </nav>
         </div>
 
@@ -43,8 +47,8 @@ export default function Header() {
 
           <HeaderMenu
             showMenu={showMenu}
-            headerLinks={headerLinks}
-            handleSetShowMenu={setShowMenu}
+            headerLinks={HEADER_LINKS}
+            handleSetShowMenu={handleSetShowMenu}
           />
 
           <Github />

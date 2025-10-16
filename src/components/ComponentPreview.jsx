@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -21,15 +21,11 @@ import PreviewType from '@component/PreviewType'
 import PreviewView from '@component/PreviewView'
 
 export default function ComponentPreview({ componentData }) {
-  const iframeRef = useRef(null)
-
   const [codeType, setCodeType] = useState('html')
   const [componentCode, setComponentCode] = useState('')
-  const [componentHtml, setComponentHtml] = useState('')
   const [componentJsx, setComponentJsx] = useState('')
   const [componentVue, setComponentVue] = useState('')
   const [isRtl, setIsRtl] = useState(false)
-  const [previewCode, setPreviewCode] = useState('')
   const [previewWidth, setPreviewWidth] = useState('100%')
   const [showPreview, setShowPreview] = useState(true)
   const [shareUrl, setShareUrl] = useState('')
@@ -53,15 +49,36 @@ export default function ComponentPreview({ componentData }) {
     plugins: componentPlugins,
   } = componentData
 
-  const previewBreakpoints = [
-    { name: 'Mobile', emoji: '📱', width: '340px' },
-    { name: 'Small', emoji: '🐛', width: '640px' },
-    { name: 'Medium', emoji: '🦭', width: '768px' },
-    { name: 'Large', emoji: '🐴', width: '1024px' },
-    { name: 'Full', emoji: '🌕', width: '100%' },
-  ]
-
   const componentHash = `component-${componentId}`
+
+  const previewBreakpoints = useMemo(
+    () => [
+      { name: 'Mobile', emoji: '📱', width: '340px' },
+      { name: 'Small', emoji: '🐛', width: '640px' },
+      { name: 'Medium', emoji: '🦭', width: '768px' },
+      { name: 'Large', emoji: '🐴', width: '1024px' },
+      { name: 'Full', emoji: '🌕', width: '100%' },
+    ],
+    []
+  )
+
+  const componentHtml = useMemo(() => {
+    if (!componentCode) return ''
+
+    return componentPreviewHtml(componentCode, componentSpace, isRtl)
+  }, [componentCode, componentSpace, isRtl])
+
+  const previewCode = useMemo(() => {
+    if (!componentCode) return ''
+
+    if (codeType === 'html') return componentCode
+
+    if (codeType === 'jsx') return componentJsx || componentPreviewJsx(componentCode)
+
+    if (codeType === 'vue') return componentVue || componentPreviewVue(componentCode)
+
+    return componentCode
+  }, [codeType, componentCode, componentJsx, componentVue])
 
   useEffect(() => {
     const searchQuery = new URLSearchParams(globalThis.location.search)
@@ -80,7 +97,21 @@ export default function ComponentPreview({ componentData }) {
     codeTypeParam && setCodeType(codeTypeParam)
     isRtlParam && setIsRtl(isRtlParam)
     previewWidthParam && setPreviewWidth(previewWidthParam)
-  }, [])
+  }, [componentHash])
+
+  const fetchHtml = useCallback(async () => {
+    const componentUrl = `/components/${categorySlug}/${componentSlug}/${componentId}.html`
+
+    const fetchResponse = await fetch(componentUrl)
+    const textResponse = await fetchResponse.text()
+
+    const transformedJsx = codeType === 'jsx' ? componentPreviewJsx(textResponse) : ''
+    const transformedVue = codeType === 'vue' ? componentPreviewVue(textResponse) : ''
+
+    setComponentCode(textResponse)
+    setComponentJsx(transformedJsx)
+    setComponentVue(transformedVue)
+  }, [categorySlug, componentSlug, componentId, codeType])
 
   useEffect(() => {
     if (!inView) {
@@ -88,32 +119,13 @@ export default function ComponentPreview({ componentData }) {
     }
 
     fetchHtml()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView])
+  }, [inView, fetchHtml])
 
   useEffect(() => {
-    if (!inView) {
+    if (!componentCode) {
       return
     }
 
-    const transformedHtml = componentPreviewHtml(componentCode, componentSpace, isRtl)
-
-    setComponentHtml(transformedHtml)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRtl])
-
-  useEffect(() => {
-    const codeMap = {
-      html: componentCode,
-      jsx: componentJsx,
-      vue: componentVue,
-    }
-
-    setPreviewCode(codeMap[codeType])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [codeType])
-
-  useEffect(() => {
     const pageUrl = new URL(globalThis.location.href)
 
     pageUrl.hash = componentHash
@@ -123,31 +135,7 @@ export default function ComponentPreview({ componentData }) {
     pageUrl.searchParams.set('previewWidth', previewWidth)
 
     setShareUrl(pageUrl.toString())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [codeType, isRtl, previewWidth])
-
-  async function fetchHtml() {
-    const componentUrl = `/components/${categorySlug}/${componentSlug}/${componentId}.html`
-
-    const fetchResponse = await fetch(componentUrl)
-    const textResponse = await fetchResponse.text()
-
-    const transformedHtml = componentPreviewHtml(textResponse, componentSpace, isRtl)
-    const transformedJsx = componentPreviewJsx(textResponse)
-    const transformedVue = componentPreviewVue(textResponse)
-
-    const codeMap = {
-      html: textResponse,
-      jsx: transformedJsx,
-      vue: transformedVue,
-    }
-
-    setPreviewCode(codeMap[codeType])
-    setComponentCode(textResponse)
-    setComponentHtml(transformedHtml)
-    setComponentJsx(transformedJsx)
-    setComponentVue(transformedVue)
-  }
+  }, [codeType, isRtl, previewWidth, componentHash, componentCode])
 
   return (
     <div ref={ref} id={componentHash}>
@@ -202,7 +190,6 @@ export default function ComponentPreview({ componentData }) {
             previewWidth={previewWidth}
             previewHeight={componentHeight}
             previewDark={componentDark}
-            iframeRef={iframeRef}
           />
         ) : (
           <PreviewCode componentId={componentId} codeType={codeType} componentCode={previewCode} />

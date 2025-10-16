@@ -1,7 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import useDebounce from '@hook/useDebounce'
@@ -30,12 +32,16 @@ export default function Search() {
 
   useEffect(() => {
     async function fetchSearch() {
-      const searchResponse = await fetch('/api/search')
+      try {
+        const searchResponse = await fetch('/api/search')
 
-      const { collections, blogs } = await searchResponse.json()
+        const { collections, blogs } = await searchResponse.json()
 
-      setAllCollections(collections || [])
-      setAllBlogs(blogs || [])
+        setAllCollections(collections || [])
+        setAllBlogs(blogs || [])
+      } catch {
+        // We do nothing
+      }
     }
 
     fetchSearch()
@@ -59,9 +65,7 @@ export default function Search() {
       return titleMatch || termsMatch
     })
 
-    const filteredBlogs = allBlogs.filter(({ title }) => {
-      return title.toLowerCase().includes(queryLower)
-    })
+    const filteredBlogs = allBlogs.filter(({ title }) => title.toLowerCase().includes(queryLower))
 
     setCollectionResults(filteredCollections)
     setBlogResults(filteredBlogs)
@@ -72,47 +76,45 @@ export default function Search() {
     setSearchQuery('')
   }, [routerPathname])
 
-  useEffect(() => {
-    function handleKeyDown(keydownEvent) {
-      if ((keydownEvent.metaKey || keydownEvent.ctrlKey) && keydownEvent.code === 'KeyK') {
-        keydownEvent.preventDefault()
+  const handleKeyDown = useCallback((keydownEvent) => {
+    if ((keydownEvent.metaKey || keydownEvent.ctrlKey) && keydownEvent.code === 'KeyK') {
+      keydownEvent.preventDefault()
 
-        const inputElement = document.querySelector('#SearchQuery')
-
-        if (!inputElement) {
-          return
-        }
-
-        inputElement.focus()
-      }
+      inputRef.current?.focus()
     }
+  }, [])
 
+  useEffect(() => {
     globalThis.addEventListener('keydown', handleKeyDown)
 
     return () => globalThis.removeEventListener('keydown', handleKeyDown)
-  }, [])
+  }, [handleKeyDown])
 
   useEffect(() => {
     try {
       const userAgent = navigator.userAgent || ''
 
-      if (/mac/i.test(userAgent)) {
-        setIsMacOs(true)
-      }
-
-      if (/win/i.test(userAgent)) {
-        setIsMacOs(false)
-      }
-
-      if (/linux/i.test(userAgent)) {
-        setIsMacOs(false)
-      }
+      setIsMacOs(/mac/i.test(userAgent))
     } catch {
-      // We do nothing
+      setIsMacOs(true)
     }
   }, [])
 
-  useClickOutside(dropdownRef, () => setShowDropdown(false))
+  const handleInputChange = useCallback(() => {
+    setSearchQuery(inputRef.current.value)
+  }, [])
+
+  const handleInputFocus = useCallback(() => {
+    if (collectionResults.length > 0 || blogResults.length > 0) {
+      setShowDropdown(true)
+    }
+  }, [collectionResults.length, blogResults.length])
+
+  const handleCloseDropdown = useCallback(() => {
+    setShowDropdown(false)
+  }, [])
+
+  useClickOutside(dropdownRef, handleCloseDropdown)
 
   return (
     <div className="relative w-screen max-w-xs" ref={dropdownRef}>
@@ -125,8 +127,8 @@ export default function Search() {
             className="w-full rounded-lg border-stone-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
             placeholder="Search components..."
             value={searchQuery}
-            onChange={({ target }) => setSearchQuery(target.value)}
-            onFocus={() => collectionResults.length > 0 && setShowDropdown(true)}
+            onChange={handleInputChange}
+            onFocus={handleInputFocus}
             id="SearchQuery"
             ref={inputRef}
           />
@@ -162,9 +164,7 @@ export default function Search() {
                   ))}
                 </ul>
               </div>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             {blogResults.length > 0 ? (
               <div>
@@ -180,9 +180,7 @@ export default function Search() {
                   ))}
                 </ul>
               </div>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </div>
         )}
       </div>

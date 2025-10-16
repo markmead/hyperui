@@ -1,7 +1,9 @@
-export default function HeroUsps({ uspItems = ['No install', 'No config', 'No setup'] }) {
+const USP_LIST = ['No install', 'No config', 'No setup']
+
+export default function HeroUsps() {
   return (
     <ul className="flex justify-center gap-4">
-      {uspItems.map((uspItem, itemIndex) => (
+      {USP_LIST.map((uspItem, itemIndex) => (
         <li className="inline-flex items-center gap-2" key={itemIndex}>
           <span aria-hidden="true">✅</span>
 
