@@ -13,9 +13,7 @@ export default function PreviewCopyUrl({ shareUrl }) {
 
   const showShare = pagePathname !== '/favourites'
 
-  if (!showShare) {
-    return <></>
-  }
+  if (!showShare) return null
 
   return (
     <span>

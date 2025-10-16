@@ -2,22 +2,22 @@ import Link from 'next/link'
 
 import Brand from '@component/global/Brand'
 
-export default function Footer() {
-  const footerLinks = [
-    {
-      title: 'FAQs',
-      href: '/about/faqs',
-    },
-    {
-      title: 'Acknowledgements',
-      href: '/about/acknowledgements',
-    },
-  ]
+const FOOTER_LINKS = [
+  {
+    title: 'FAQs',
+    href: '/about/faqs',
+  },
+  {
+    title: 'Acknowledgements',
+    href: '/about/acknowledgements',
+  },
+]
 
+export default function Footer() {
   return (
     <footer className="border-t border-stone-300 bg-stone-50">
       <div className="mx-auto max-w-screen-xl space-y-4 px-4 py-8 lg:py-12">
-        <Brand isLarge={true} />
+        <Brand isLarge />
 
         <p className="max-w-lg text-pretty text-stone-700">
           Free open source Tailwind CSS components for marketing and eCommerce websites, as well as
@@ -26,7 +26,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <ul className="flex gap-4">
-            {footerLinks.map((footerLink) => (
+            {FOOTER_LINKS.map((footerLink) => (
               <li key={footerLink.href}>
                 <Link
                   href={footerLink.href}

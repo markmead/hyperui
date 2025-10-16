@@ -4,7 +4,6 @@ export default function PreviewIframe({
   previewWidth = '100%',
   previewHeight = 'h-[400px] lg:h-[600px]',
   previewDark = false,
-  iframeRef,
 }) {
   const iframeTheme = previewDark ? 'bg-gray-900' : 'bg-white'
 
@@ -15,7 +14,6 @@ export default function PreviewIframe({
       srcDoc={componentHtml}
       style={{ maxWidth: previewWidth }}
       title={componentTitle}
-      ref={iframeRef}
     ></iframe>
   )
 }

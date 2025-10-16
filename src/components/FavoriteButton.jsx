@@ -1,38 +1,42 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import Tooltip from '@component/global/Tooltip'
 
 const STORAGE_KEY = 'favouriteComponents'
 
 export default function FavoriteButton({ componentData }) {
-  const [favouriteComponents, setFavoriteComponents] = useState([])
   const [isFavorited, setIsFavorited] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
   const componentKey = componentData?.key
 
-  const descriptiveContent = isFavorited ? 'Remove from favourites' : 'Add to favourites'
+  const descriptiveContent = useMemo(
+    () => (isFavorited ? 'Remove from favourites' : 'Add to favourites'),
+    [isFavorited]
+  )
 
   useEffect(() => {
+    if (!componentKey) return
+
     try {
       const localFavourites = globalThis.localStorage.getItem(STORAGE_KEY)
       const formattedFavourites = localFavourites ? JSON.parse(localFavourites) : []
 
-      const favouriteKeys = formattedFavourites.map(({ key }) => key)
+      const isFavourited = formattedFavourites.some(({ key }) => key === componentKey)
 
-      setIsFavorited(favouriteKeys.includes(componentKey))
-      setFavoriteComponents(formattedFavourites)
+      setIsFavorited(isFavourited)
     } catch {
       // We do nothing
     } finally {
       setIsLoaded(true)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [componentKey])
 
-  function toggleFavorite() {
+  const toggleFavorite = useCallback(() => {
+    if (!componentKey) return
+
     const localFavourites = globalThis.localStorage.getItem(STORAGE_KEY)
     const formattedFavourites = localFavourites ? JSON.parse(localFavourites) : []
 
@@ -42,7 +46,6 @@ export default function FavoriteButton({ componentData }) {
       globalThis.localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredFavourites))
 
       setIsFavorited(false)
-      setFavoriteComponents(filteredFavourites)
 
       const favouriteEvent = new CustomEvent('favourite:removed')
 
@@ -56,8 +59,7 @@ export default function FavoriteButton({ componentData }) {
     globalThis.localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFavourites))
 
     setIsFavorited(true)
-    setFavoriteComponents(updatedFavourites)
-  }
+  }, [componentKey, componentData, isFavorited])
 
   return (
     <Tooltip tooltipContent={descriptiveContent}>
