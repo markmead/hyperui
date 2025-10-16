@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2022",
     "baseUrl": ".",
     "paths": {
       "@component/*": ["src/components/*"],
@@ -11,5 +11,5 @@
     "plugins": [{ "name": "next" }]
   },
   "include": ["**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next", "out", ".vercel"]
 }
