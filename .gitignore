@@ -20,7 +20,10 @@ out/
 public/*.css
 
 # VS Code
-.vscode/
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .history/
 
 # Miscellaneous

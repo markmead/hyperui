@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-export default function Ads({ adType = 'image' }) {
+export default function Ads() {
   const routerPathname = usePathname()
 
   useEffect(() => {
@@ -27,12 +27,12 @@ export default function Ads({ adType = 'image' }) {
   }
 
   return (
-    <div className="max-w-3xl">
+    <div className="not-prose mx-auto max-w-sm">
       <div
         id={routerPathname}
         data-ea-publisher="hyperuidev"
-        data-ea-type={adType}
-        className="horizontal [&_.ea-callout]:mx-0! [&_.ea-callout]:mt-2! [&_.ea-callout]:mb-0! [&_.ea-callout]:px-2! [&_.ea-content]:m-0! [&_.ea-content]:border! [&_.ea-content]:border-stone-300! [&_.ea-content]:bg-stone-50! [&_.ea-content]:shadow-sm!"
+        data-ea-type="image"
+        className="horizontal [&_.ea-callout]:mx-0! [&_.ea-callout]:mt-1! [&_.ea-callout]:mb-0! [&_.ea-callout]:max-w-none! [&_.ea-callout]:px-2! [&_.ea-content]:m-0! [&_.ea-content]:max-w-none! [&_.ea-content]:rounded-lg! [&_.ea-content]:border! [&_.ea-content]:border-stone-300! [&_.ea-content]:bg-stone-50! [&_.ea-content]:shadow-sm! [&_.ea-content>a>img]:rounded-md!"
       ></div>
     </div>
   )

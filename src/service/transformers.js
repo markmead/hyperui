@@ -14,20 +14,16 @@ export function componentPreviewHtml(
 
         <script>
           document.addEventListener('DOMContentLoaded', function () {
-            const iframeLinks = [...document.querySelectorAll('a')]
-            const iframeForms = [...document.querySelectorAll('form')]
-            const fileInputs = [...document.querySelectorAll('input[type="file"]')]
-
-            iframeLinks.forEach(function (iframeLink) {
+            document.querySelectorAll('a').forEach(function (iframeLink) {
               iframeLink.addEventListener('click', (e) => e.preventDefault())
               iframeLink.addEventListener('keydown', (e) => e.preventDefault())
             })
 
-            iframeForms.forEach(function (iframeForm) {
+            document.querySelectorAll('form').forEach(function (iframeForm) {
               iframeForm.addEventListener('submit', (e) => e.preventDefault())
             })
 
-            fileInputs.forEach(function (fileInput) {
+            document.querySelectorAll('input[type="file"]').forEach(function (fileInput) {
               fileInput.addEventListener('click', (e) => e.preventDefault())
               fileInput.addEventListener('keydown', (e) => e.preventDefault())
             })
@@ -45,26 +41,35 @@ export function componentPreviewHtml(
 }
 
 export function componentPreviewJsx(componentHtml) {
-  return componentHtml
-    .replaceAll('class=', 'className=')
-    .replaceAll('for=', 'htmlFor=')
-    .replaceAll('fill-rule=', 'fillRule=')
-    .replaceAll('fill-opacity=', 'fillOpacity=')
-    .replaceAll('clip-rule=', 'clipRule=')
-    .replaceAll('stroke-linecap=', 'strokeLinecap=')
-    .replaceAll('stroke-linejoin=', 'strokeLinejoin=')
-    .replaceAll('stroke-width=', 'strokeWidth=')
-    .replaceAll('stroke-dasharray=', 'strokeDasharray=')
-    .replaceAll('stroke-dashoffset=', 'strokeDashoffset=')
-    .replaceAll('stroke-miterlimit=', 'strokeMiterlimit=')
-    .replaceAll('stroke-opacity=', 'strokeOpacity=')
-    .replaceAll('tabindex=', 'tabIndex=')
-    .replaceAll('readonly=', 'readOnly=')
-    .replaceAll('maxlength=', 'maxLength=')
-    .replaceAll('minlength=', 'minLength=')
-    .replaceAll('autocomplete=', 'autoComplete=')
-    .replaceAll('<!--', '{/*')
-    .replaceAll('-->', '*/}')
+  const attributeMap = {
+    'class=': 'className=',
+    'for=': 'htmlFor=',
+    'fill-rule=': 'fillRule=',
+    'fill-opacity=': 'fillOpacity=',
+    'clip-rule=': 'clipRule=',
+    'stroke-linecap=': 'strokeLinecap=',
+    'stroke-linejoin=': 'strokeLinejoin=',
+    'stroke-width=': 'strokeWidth=',
+    'stroke-dasharray=': 'strokeDasharray=',
+    'stroke-dashoffset=': 'strokeDashoffset=',
+    'stroke-miterlimit=': 'strokeMiterlimit=',
+    'stroke-opacity=': 'strokeOpacity=',
+    'tabindex=': 'tabIndex=',
+    'readonly=': 'readOnly=',
+    'maxlength=': 'maxLength=',
+    'minlength=': 'minLength=',
+    'autocomplete=': 'autoComplete=',
+    '<!--': '{/*',
+    '-->': '*/}',
+  }
+
+  const attributePattern =
+    /class=|for=|fill-rule=|fill-opacity=|clip-rule=|stroke-linecap=|stroke-linejoin=|stroke-width=|stroke-dasharray=|stroke-dashoffset=|stroke-miterlimit=|stroke-opacity=|tabindex=|readonly=|maxlength=|minlength=|autocomplete=|<!--|-->/g
+
+  return componentHtml.replaceAll(
+    attributePattern,
+    (attributeMatch) => attributeMap[attributeMatch]
+  )
 }
 
 export function componentPreviewVue(componentHtml) {
@@ -73,11 +78,9 @@ export function componentPreviewVue(componentHtml) {
   return templateWrappedHtml
     .split('\n')
     .map((codeLine) => {
-      if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
-        return codeLine.trim()
-      }
+      const isTemplateTag = codeLine.includes('<template>') || codeLine.includes('</template>')
 
-      return `  ${codeLine}`
+      return isTemplateTag ? codeLine.trim() : `  ${codeLine}`
     })
     .join('\n')
 }

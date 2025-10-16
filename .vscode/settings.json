@@ -1,0 +1,10 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "yarn.lock",
+    "next.config.js": "jsconfig.json",
+    "eslint.config.js": "prettier.config.js, postcss.config.js",
+    "README.md": "CONTRIBUTING.md, PLAN.md, LICENSE"
+  }
+}

@@ -1,17 +1,10 @@
-import { dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { FlatCompat } from '@eslint/eslintrc'
 
 import js from '@eslint/js'
 import react from 'eslint-plugin-react'
 import unicorn from 'eslint-plugin-unicorn'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const flatCompat = new FlatCompat({
-  baseDirectory: __dirname,
-})
+const flatCompat = new FlatCompat()
 
 const eslintConfig = [
   {
