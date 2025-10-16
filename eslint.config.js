@@ -1,10 +1,8 @@
-import { FlatCompat } from '@eslint/eslintrc'
-
 import js from '@eslint/js'
+import globals from 'globals'
+import nextPlugin from '@next/eslint-plugin-next'
 import react from 'eslint-plugin-react'
 import unicorn from 'eslint-plugin-unicorn'
-
-const flatCompat = new FlatCompat()
 
 const eslintConfig = [
   {
@@ -16,7 +14,23 @@ const eslintConfig = [
   unicorn.configs.recommended,
 
   {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+    plugins: {
+      '@next/next': nextPlugin,
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
       'unicorn/better-regex': 'error',
       'unicorn/no-keyword-prefix': 'error',
       'unicorn/no-unused-properties': 'error',
@@ -27,10 +41,6 @@ const eslintConfig = [
       'unicorn/prevent-abbreviations': 'off',
     },
   },
-
-  ...flatCompat.config({
-    extends: ['next/core-web-vitals'],
-  }),
 ]
 
 export default eslintConfig
