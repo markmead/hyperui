@@ -208,27 +208,19 @@ export async function getComponents() {
 
 export function sortByDate(dbItems) {
   return dbItems.toSorted((itemA, itemB) => {
-    const dateA = new Date(itemA.updated)
-    const dateB = new Date(itemB.updated)
-
-    return dateB - dateA
+    return new Date(itemB.updated) - new Date(itemA.updated)
   })
 }
 
 export function sortByTitle(dbItems) {
   return dbItems.toSorted((itemA, itemB) => {
-    const titleA = itemA.title
-    const titleB = itemB.title
-
-    return titleA.localeCompare(titleB)
+    return itemA.title.localeCompare(itemB.title)
   })
 }
 
 export function formatCount(componentItems) {
   return componentItems.reduce((componentCount, componentItem) => {
-    const isDark = !!componentItem.dark
-
-    return componentCount + (isDark ? 2 : 1)
+    return componentCount + (componentItem.dark ? 2 : 1)
   }, 0)
 }
 
@@ -237,12 +229,11 @@ export function formatSlug(fileName) {
 }
 
 export function flattenComponents(collectionData) {
-  return collectionData.components.flatMap((componentItem, componentIndex) => {
-    const { dark: isDark } = componentItem
+  const collectionCategory = collectionData.id.split('-').at(0)
 
+  return collectionData.components.flatMap((componentItem, componentIndex) => {
     const componentId = componentIndex + 1
-    const collectionCategory = collectionData.id.split('-').at(0)
-    const componentKey = [collectionCategory, collectionData.slug, componentId].join('-')
+    const componentKey = `${collectionCategory}-${collectionData.slug}-${componentId}`
 
     const componentData = {
       id: componentId,
@@ -257,7 +248,7 @@ export function flattenComponents(collectionData) {
       dark: false,
     }
 
-    if (!isDark) {
+    if (!componentItem.dark) {
       return componentData
     }
 
