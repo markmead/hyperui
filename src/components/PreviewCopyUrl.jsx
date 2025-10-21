@@ -14,15 +14,15 @@ export default function PreviewCopyUrl({ shareUrl }) {
   const showShare = pagePathname !== '/favourites'
 
   if (!showShare) {
-    return <></>
+    return null
   }
 
   return (
-    <span>
+    <span className="hidden md:block">
       <Tooltip tooltipContent="Copy URL">
         <button
           type="button"
-          className="hidden size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none md:grid"
+          className="grid size-8 place-content-center rounded-lg border border-stone-300 text-sm shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
           aria-label="Copy URL"
           aria-describedby={liveRegionId}
           onClick={() => copyToClipboard(shareUrl)}
