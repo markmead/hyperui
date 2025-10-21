@@ -6,7 +6,6 @@ import '@style/site.css'
 import Footer from '@component/global/Footer'
 import Header from '@component/global/Header'
 import HeaderCta from '@component/global/HeaderCta'
-import HacktoberfestAnnouncement from '@component/global/HacktoberfestAnnouncement'
 
 // prettier-ignore
 export const metadata = {
@@ -78,8 +77,6 @@ export default function RootLayout({ children }) {
         <Header />
 
         <HeaderCta />
-
-        <HacktoberfestAnnouncement />
 
         <main className="bg-white">{children}</main>
 
