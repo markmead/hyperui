@@ -5,7 +5,7 @@ export default function PreviewTitle({ componentTitle, shareUrl }) {
     <div className="flex items-center gap-2">
       <PreviewCopyUrl shareUrl={shareUrl} />
 
-      <h2 className="text-xl font-bold text-stone-900 sm:text-2xl">{componentTitle}</h2>
+      <h2 className="text-2xl font-bold text-stone-900">{componentTitle}</h2>
     </div>
   )
 }

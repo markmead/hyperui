@@ -11,7 +11,7 @@ import {
 import PreviewBreakpoint from '@component/PreviewBreakpoint'
 import PreviewCode from '@component/PreviewCode'
 import PreviewCopy from '@component/PreviewCopy'
-import PreviewCreator from '@component/PreviewCreator'
+import PreviewContributors from '@component/PreviewContributors'
 import PreviewPlugins from '@component/PreviewPlugins'
 import PreviewIframe from '@component/PreviewIframe'
 import PreviewRtl from '@component/PreviewRtl'
@@ -48,7 +48,7 @@ export default function ComponentPreview({ componentData }) {
     category: categorySlug,
     container: componentSpace,
     wrapper: componentHeight,
-    creator: componentCreator,
+    contributors: componentContributors,
     dark: componentDark,
     plugins: componentPlugins,
   } = componentData
@@ -209,7 +209,7 @@ export default function ComponentPreview({ componentData }) {
         )}
 
         <div>
-          <PreviewCreator creatorGithub={componentCreator} />
+          <PreviewContributors componentContributors={componentContributors} />
 
           {componentPlugins.length > 0 && <PreviewPlugins componentPlugins={componentPlugins} />}
         </div>

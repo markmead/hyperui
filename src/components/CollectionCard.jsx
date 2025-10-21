@@ -31,7 +31,7 @@ function CardTag({ tagType }) {
   const isUpdated = tagType === 'updated'
 
   if (!isNew && !isUpdated) {
-    return <></>
+    return null
   }
 
   return (
