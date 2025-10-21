@@ -242,7 +242,7 @@ export function flattenComponents(collectionData) {
       category: collectionCategory,
       container: componentItem?.container || collectionData?.container || '',
       wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
-      creator: componentItem?.creator || 'markmead',
+      contributors: componentItem?.contributors || ['markmead'],
       plugins: componentItem?.plugins || [],
       key: componentKey,
       dark: false,
@@ -252,14 +252,21 @@ export function flattenComponents(collectionData) {
       return componentData
     }
 
+    const darkData = Object.keys(componentItem.dark).length
+      ? {
+          dark: true,
+          contributors: ['markmead', ...componentItem.dark.contributors],
+        }
+      : { dark: true }
+
     return [
       componentData,
       {
         ...componentData,
+        ...darkData,
         id: `${componentId}-dark`,
         title: `${componentData.title} (Dark)`,
         key: `${componentKey}-dark`,
-        dark: true,
       },
     ]
   })
