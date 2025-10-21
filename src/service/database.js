@@ -256,7 +256,7 @@ export function flattenComponents(collectionData) {
       Object.keys(componentItem.dark).length > 0
         ? {
             dark: true,
-            contributors: ['markmead', ...componentItem.dark.contributors],
+            contributors: ['markmead', ...(componentItem.dark.contributors || [])],
           }
         : { dark: true }
 
