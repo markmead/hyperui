@@ -1,4 +1,4 @@
-export default function PreviewCreator({ componentContributors }) {
+export default function PreviewContributors({ componentContributors }) {
   return (
     <p className="text-stone-700">
       Contributors:{' '}
