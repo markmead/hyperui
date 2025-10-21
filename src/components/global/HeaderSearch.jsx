@@ -19,7 +19,6 @@ export default function Search() {
   const [collectionResults, setCollectionResults] = useState([])
   const [blogResults, setBlogResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
-  const [isMacOs, setIsMacOs] = useState(true)
 
   const [wrapperRef] = useAutoAnimate()
   const [groupRef] = useAutoAnimate()
@@ -74,7 +73,7 @@ export default function Search() {
 
   useEffect(() => {
     function handleKeyDown(keydownEvent) {
-      if ((keydownEvent.metaKey || keydownEvent.ctrlKey) && keydownEvent.code === 'KeyK') {
+      if (keydownEvent.code === 'Slash') {
         keydownEvent.preventDefault()
 
         const inputElement = document.querySelector('#SearchQuery')
@@ -92,26 +91,6 @@ export default function Search() {
     return () => globalThis.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  useEffect(() => {
-    try {
-      const userAgent = navigator.userAgent || ''
-
-      if (/mac/i.test(userAgent)) {
-        setIsMacOs(true)
-      }
-
-      if (/win/i.test(userAgent)) {
-        setIsMacOs(false)
-      }
-
-      if (/linux/i.test(userAgent)) {
-        setIsMacOs(false)
-      }
-    } catch {
-      // We do nothing
-    }
-  }, [])
-
   useClickOutside(dropdownRef, () => setShowDropdown(false))
 
   return (
@@ -122,7 +101,7 @@ export default function Search() {
         <div className="relative">
           <input
             type="text"
-            className="w-full rounded-lg border-stone-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
+            className="w-full rounded-lg border-stone-300 pr-[42px] shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
             placeholder="Search components..."
             value={searchQuery}
             onChange={({ target }) => setSearchQuery(target.value)}
@@ -132,7 +111,9 @@ export default function Search() {
           />
 
           <span className="pointer-events-none absolute inset-y-0 right-0 hidden size-[42px] place-content-center lg:grid">
-            <kbd className="font-sans text-xs text-stone-700">{isMacOs ? '⌘K' : 'CtrlK'}</kbd>
+            <kbd className="grid size-6 place-content-center rounded-sm border border-stone-300 bg-stone-100 text-center text-xs/6 text-stone-700">
+              /
+            </kbd>
           </span>
         </div>
       </label>
