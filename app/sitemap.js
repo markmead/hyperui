@@ -16,7 +16,6 @@ async function getComponentEntries() {
   return componentsByCategory.flatMap(({ componentItems }) =>
     componentItems.map(({ category, slug }) => ({
       pageUrl: `components/${category}/${slug}`,
-      updatedAt: undefined,
     }))
   )
 }
