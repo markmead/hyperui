@@ -1,50 +1,59 @@
 import { getComponents, getPosts, categorySlugs } from '@service/database'
 
+const SITE_URL = 'https://www.hyperui.dev'
+const SITE_STATIC_URLS = ['', 'about/faqs', 'about/acknowledgements', 'blog']
+
 export default async function sitemap() {
-  async function getCategorySlugs() {
-    return categorySlugs.map((categorySlug) => `components/${categorySlug}`)
+  const siteUrls = new Map()
+
+  function addSiteUrl(pageUrl, lastModified) {
+    if (siteUrls.has(pageUrl)) {
+      return
+    }
+
+    const urlEntry = lastModified ? { url: pageUrl, lastModified } : { url: pageUrl }
+
+    siteUrls.set(pageUrl, urlEntry)
   }
 
-  async function getComponentSlugs() {
-    const componentsByCategory = await getComponents()
+  const categorySlugsList = categorySlugs.map((categorySlug) => `components/${categorySlug}`)
 
-    return componentsByCategory.flatMap(({ componentItems }) =>
-      componentItems.map(({ category, slug }) => `components/${category}/${slug}`)
-    )
+  let componentsByCategory = []
+  let postItems = []
+
+  try {
+    componentsByCategory = (await getComponents()) || []
+  } catch {
+    // We do nothing
   }
 
-  async function getBlogSlugs() {
-    const postItems = await getPosts()
-
-    return postItems.map(({ slug }) => `blog/${slug}`)
+  try {
+    postItems = (await getPosts()) || []
+  } catch {
+    // We do nothing
   }
 
-  const pageSlugs = await Promise.all([getCategorySlugs(), getComponentSlugs(), getBlogSlugs()])
-
-  const sitemapEntries = pageSlugs.flatMap((slugList) =>
-    slugList.map((pageSlug) => ({
-      url: `https://www.hyperui.dev/${pageSlug}`,
-      lastModified: new Date(),
-    }))
+  const componentSlugs = componentsByCategory.flatMap(({ componentItems = [] }) =>
+    componentItems.map(({ category, slug }) => `components/${category}/${slug}`)
   )
 
-  return [
-    {
-      url: 'https://www.hyperui.dev',
-      lastModified: new Date(),
-    },
-    {
-      url: 'https://www.hyperui.dev/about/faqs',
-      lastModified: new Date(),
-    },
-    {
-      url: 'https://www.hyperui.dev/about/acknowledgements',
-      lastModified: new Date(),
-    },
-    {
-      url: 'https://www.hyperui.dev/blog',
-      lastModified: new Date(),
-    },
-    ...sitemapEntries,
+  const blogSlugs = postItems.map(({ slug, updated }) => ({
+    pageSlug: `blog/${slug}`,
+    lastModified: updated,
+  }))
+
+  const allSlugs = [
+    ...SITE_STATIC_URLS.map((pageSlug) => ({ pageSlug, lastModified: undefined })),
+    ...categorySlugsList.map((pageSlug) => ({ pageSlug, lastModified: undefined })),
+    ...componentSlugs.map((pageSlug) => ({ pageSlug, lastModified: undefined })),
+    ...blogSlugs,
   ]
+
+  for (const { pageSlug, lastModified } of allSlugs) {
+    const pageUrl = pageSlug === '' ? SITE_URL : `${SITE_URL}/${pageSlug}`
+
+    addSiteUrl(pageUrl, lastModified)
+  }
+
+  return [...siteUrls.values()]
 }
