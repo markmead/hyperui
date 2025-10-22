@@ -41,12 +41,12 @@ export default async function sitemap() {
   })
 
   return [
-    { url: 'https://www.hyperui.dev' },
-    { url: 'https://www.hyperui.dev/about/acknowledgements' },
-    { url: 'https://www.hyperui.dev/about/faqs' },
-    { url: 'https://www.hyperui.dev/blog' },
-    { url: 'https://www.hyperui.dev/components/application' },
-    { url: 'https://www.hyperui.dev/components/marketing' },
+    { url: buildUrl('') },
+    { url: buildUrl('about/acknowledgements') },
+    { url: buildUrl('about/faqs') },
+    { url: buildUrl('blog') },
+    { url: buildUrl('components/application') },
+    { url: buildUrl('components/marketing') },
     ...dynamicEntries,
   ]
 }
