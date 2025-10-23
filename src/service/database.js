@@ -66,6 +66,30 @@ export async function getPost({ slug }) {
   }
 }
 
+export async function getAboutPages() {
+  try {
+    const pageSlugs = await fs.readdir(pagesDir)
+
+    const aboutPages = await Promise.all(
+      pageSlugs.map(async (pageSlug) => {
+        const pagePath = join(pagesDir, pageSlug)
+        const pageItem = await fs.readFile(pagePath, 'utf8')
+
+        const { data: frontmatter } = matter(pageItem)
+
+        return {
+          ...frontmatter,
+          slug: formatSlug(pageSlug),
+        }
+      })
+    )
+
+    return aboutPages
+  } catch {
+    return []
+  }
+}
+
 export async function getAboutPage({ slug }) {
   try {
     const pagePath = join(pagesDir, `${slug}.mdx`)
