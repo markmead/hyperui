@@ -3,6 +3,7 @@ import { promises as fs } from 'node:fs'
 import { getAboutPage, formatSlug, pagesDir } from '@service/database'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
+import DescriptionList from '@component/DescriptionList'
 
 export async function generateStaticParams() {
   const pageFiles = await fs.readdir(pagesDir)
@@ -40,6 +41,8 @@ export default async function Page({ params }) {
     name: pageData.title,
     description: pageData.description,
     url: `https://www.hyperui.dev/about/${params.slug}`,
+    datePublished: pageData.published,
+    dateModified: pageData.updated,
   }
 
   return (
@@ -51,6 +54,13 @@ export default async function Page({ params }) {
 
       <article className="prose mx-auto">
         <h1>{pageData.title}</h1>
+
+        <DescriptionList
+          listItems={[
+            { label: 'Published:', value: <time>{pageData.published}</time> },
+            { label: 'Updated:', value: <time>{pageData.updated}</time> },
+          ]}
+        />
 
         <MdxRemoteRender mdxSource={pageContent} />
       </article>
