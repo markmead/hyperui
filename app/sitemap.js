@@ -1,4 +1,4 @@
-import { getComponents, getPosts, getAboutPages } from '@service/database'
+import { getComponents, getPosts, getPages } from '@service/database'
 
 function buildUrl(pagePath) {
   return `https://www.hyperui.dev/${pagePath}`
@@ -30,7 +30,7 @@ async function getBlogEntries() {
 }
 
 async function getAboutEntries() {
-  const aboutPages = await getAboutPages()
+  const aboutPages = await getPages()
 
   return aboutPages.map(({ slug, updated }) => ({
     pageUrl: `about/${slug}`,

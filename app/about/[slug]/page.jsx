@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs'
 
-import { getAboutPage, formatSlug, pagesDir } from '@service/database'
+import { getPage, pagesDir } from '@service/database'
+import { formatSlug } from '@service/database/helpers'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import DescriptionList from '@component/DescriptionList'
@@ -21,11 +22,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { pageData } = await getAboutPage(params)
+  const { frontmatter } = await getPage(params.slug)
 
   return {
-    title: `${pageData.title} | HyperUI`,
-    description: pageData.description,
+    title: `${frontmatter.title} | HyperUI`,
+    description: frontmatter.description,
     alternates: {
       canonical: `/about/${params.slug}`,
     },
@@ -33,16 +34,16 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { pageData, pageContent } = await getAboutPage(params)
+  const { frontmatter, readingTime, ...content } = await getPage(params.slug)
 
   const aboutPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: pageData.title,
-    description: pageData.description,
+    name: frontmatter.title,
+    description: frontmatter.description,
     url: `https://www.hyperui.dev/about/${params.slug}`,
-    datePublished: pageData.published,
-    dateModified: pageData.updated,
+    datePublished: frontmatter.published,
+    dateModified: frontmatter.updated,
   }
 
   return (
@@ -53,16 +54,17 @@ export default async function Page({ params }) {
       />
 
       <article className="prose mx-auto">
-        <h1>{pageData.title}</h1>
+        <h1>{frontmatter.title}</h1>
 
         <DescriptionList
           listItems={[
-            { label: 'Published:', value: <time>{pageData.published}</time> },
-            { label: 'Updated:', value: <time>{pageData.updated}</time> },
+            { label: 'Reading:', value: <time>{readingTime} min</time> },
+            { label: 'Published:', value: <time>{frontmatter.published}</time> },
+            { label: 'Updated:', value: <time>{frontmatter.updated}</time> },
           ]}
         />
 
-        <MdxRemoteRender mdxSource={pageContent} />
+        <MdxRemoteRender mdxSource={content} />
       </article>
     </div>
   )

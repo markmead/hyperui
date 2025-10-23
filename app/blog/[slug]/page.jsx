@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs'
 
-import { getPost, formatSlug, postsDir } from '@service/database'
+import { getPost, postsDir } from '@service/database'
+import { formatSlug } from '@service/database/helpers'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
 import DescriptionList from '@component/DescriptionList'
@@ -21,7 +22,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPost(params)
+  const { frontmatter } = await getPost(params.slug)
 
   return {
     title: `${frontmatter.title} | HyperUI`,
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, readingTime, ...content } = await getPost(params)
+  const { frontmatter, readingTime, ...content } = await getPost(params.slug)
 
   const schemaData = {
     '@context': 'https://schema.org',
