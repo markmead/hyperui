@@ -15,8 +15,8 @@ function buildSitemapEntry(pageUrl, pageUpdatedAt) {
 async function getComponentEntries() {
   const componentsByCategory = await getComponents()
 
-  return componentsByCategory.flatMap(({ componentItems }) =>
-    componentItems.map(({ category, slug }) => ({
+  return componentsByCategory.flatMap(({ components }) =>
+    components.map(({ category, slug }) => ({
       pageUrl: `components/${category}/${slug}`,
     }))
   )
