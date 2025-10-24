@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
 import rehypeExternalLinks from 'rehype-external-links'
 
-import { sortByTitle, formatSlug } from '@service/database/helpers'
+import { formatSlug } from '@service/database/helpers'
 
 const categorySlugs = ['application', 'marketing']
 const categoriesDir = join(process.cwd(), '/src/data/categories')
@@ -95,8 +95,6 @@ export async function getComponents() {
             }
           })
         )
-
-        sortByTitle(componentItems)
 
         return {
           category: {
