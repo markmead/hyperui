@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
 import rehypeExternalLinks from 'rehype-external-links'
 
-import { formatSlug } from '@service/database/helpers'
+import { getComponentItems } from '@service/database/helpers'
 
 const categorySlugs = ['application', 'marketing']
 const categoriesDir = join(process.cwd(), '/src/data/categories')
@@ -17,31 +17,16 @@ export async function getCategory(categorySlug) {
     const categoryPath = join(categoriesDir, `${categorySlug}.mdx`)
     const categoryItem = await fs.readFile(categoryPath, 'utf8')
 
-    const componentsPath = join(componentsDir, categorySlug)
-    const componentSlugs = await fs.readdir(componentsPath)
-
     const { data: categoryFrontmatter } = matter(categoryItem)
 
-    const componentItems = await Promise.all(
-      componentSlugs.map(async (componentSlug) => {
-        const componentPath = join(componentsPath, componentSlug)
-        const componentItem = await fs.readFile(componentPath, 'utf8')
-
-        const { data: componentFrontmatter } = matter(componentItem)
-
-        return {
-          ...componentFrontmatter,
-          id: formatSlug(componentSlug),
-        }
-      })
-    )
+    const componentItems = await getComponentItems(componentsDir, categorySlug)
 
     return {
       category: categoryFrontmatter,
       components: componentItems,
     }
   } catch {
-    return {}
+    return { category: {}, components: [] }
   }
 }
 
@@ -76,25 +61,7 @@ export async function getComponents() {
 
         const { data: categoryFrontmatter } = matter(categoryItem)
 
-        const componentSlugs = await fs.readdir(join(componentsDir, categorySlug))
-
-        const componentItems = await Promise.all(
-          componentSlugs.map(async (componentSlug) => {
-            const componentPath = join(componentsDir, categorySlug, componentSlug)
-            const componentItem = await fs.readFile(componentPath, 'utf8')
-
-            const { data: componentFrontmatter } = matter(componentItem)
-
-            const componentSlugFormatted = formatSlug(componentSlug)
-
-            return {
-              ...componentFrontmatter,
-              category: categorySlug,
-              id: `${categorySlug}-${componentSlugFormatted}`,
-              slug: componentSlugFormatted,
-            }
-          })
-        )
+        const componentItems = await getComponentItems(componentsDir, categorySlug)
 
         return {
           category: {

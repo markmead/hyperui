@@ -78,6 +78,41 @@ export async function getListing(listingDir, listingSlug) {
   }
 }
 
+export async function getComponentItems(componentsDir, categorySlug) {
+  const componentsPath = join(componentsDir, categorySlug)
+
+  let componentSlugs = []
+
+  try {
+    componentSlugs = await fs.readdir(componentsPath)
+  } catch {
+    return []
+  }
+
+  return Promise.all(
+    componentSlugs.map(async (componentSlug) => {
+      const componentPath = join(componentsPath, componentSlug)
+
+      let componentItem = ''
+
+      try {
+        componentItem = await fs.readFile(componentPath, 'utf8')
+      } catch {
+        return {}
+      }
+
+      const { data: componentFrontmatter } = matter(componentItem)
+
+      return {
+        ...componentFrontmatter,
+        category: categorySlug,
+        id: `${categorySlug}-${formatSlug(componentSlug)}`,
+        slug: formatSlug(componentSlug),
+      }
+    })
+  )
+}
+
 export function sortByDate(dbItems) {
   return dbItems.toSorted((itemA, itemB) => {
     return new Date(itemB.updated) - new Date(itemA.updated)
