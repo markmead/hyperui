@@ -1,8 +1,10 @@
 import { promises as fs } from 'node:fs'
 
-import { getPost, formatSlug, postsDir } from '@service/database'
+import { getPost, postsDir } from '@service/database'
+import { formatSlug } from '@service/database/helpers'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
+import DescriptionList from '@component/DescriptionList'
 
 export async function generateStaticParams() {
   const postFiles = await fs.readdir(postsDir)
@@ -20,7 +22,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPost(params)
+  const { frontmatter } = await getPost(params.slug)
 
   return {
     title: `${frontmatter.title} | HyperUI`,
@@ -32,7 +34,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, readingTime, ...content } = await getPost(params)
+  const { frontmatter, readingTime, ...content } = await getPost(params.slug)
 
   const schemaData = {
     '@context': 'https://schema.org',
@@ -72,25 +74,13 @@ export default async function Page({ params }) {
         <article className="prose prose-pre:rounded-lg mx-auto">
           <h1>{frontmatter.title}</h1>
 
-          <dl className="grid grid-cols-[80px_1fr] *:m-0">
-            <dt>Reading:</dt>
-
-            <dd>
-              <time>{readingTime} min</time>
-            </dd>
-
-            <dt>Published:</dt>
-
-            <dd>
-              <time>{frontmatter.published}</time>
-            </dd>
-
-            <dt>Updated:</dt>
-
-            <dd>
-              <time>{frontmatter.updated}</time>
-            </dd>
-          </dl>
+          <DescriptionList
+            listItems={[
+              { label: 'Reading:', value: <time>{readingTime} min</time> },
+              { label: 'Published:', value: <time>{frontmatter.published}</time> },
+              { label: 'Updated:', value: <time>{frontmatter.updated}</time> },
+            ]}
+          />
 
           <MdxRemoteRender mdxSource={content} />
         </article>
