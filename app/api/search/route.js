@@ -6,12 +6,12 @@ export async function GET() {
   try {
     const [componentsByCategory, blogPosts] = await Promise.all([getComponents(), getPosts()])
 
-    const flatCollections = componentsByCategory.flatMap(({ componentItems, categoryTitle }) =>
-      componentItems.map((componentItem) => ({
+    const flatCollections = componentsByCategory.flatMap(({ category, components }) => {
+      return components.map((componentItem) => ({
         ...componentItem,
-        categoryTitle,
+        category: category.slug,
       }))
-    )
+    })
 
     return NextResponse.json({ collections: flatCollections, blogs: blogPosts })
   } catch {

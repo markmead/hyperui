@@ -56,9 +56,9 @@ export async function getListing(listingDir, listingSlug) {
     let readingTime = 1
 
     try {
-      const { content: rawContent } = matter(listingItem)
+      const { content } = matter(listingItem)
 
-      const wordCount = rawContent.split(/\s+/).filter(Boolean).length
+      const wordCount = content.split(/\s+/).filter(Boolean).length
 
       readingTime = Math.max(1, Math.ceil(wordCount / 200))
     } catch {
@@ -90,26 +90,20 @@ export function sortByTitle(dbItems) {
   })
 }
 
-export function formatCount(componentItems) {
-  return componentItems.reduce((componentCount, componentItem) => {
-    return componentCount + (componentItem.dark ? 2 : 1)
-  }, 0)
-}
+export function flattenComponents(id, slug, frontmatter) {
+  const collectionCategory = id.split('-').at(0)
 
-export function flattenComponents(collectionData) {
-  const collectionCategory = collectionData.id.split('-').at(0)
-
-  return collectionData.components.flatMap((componentItem, componentIndex) => {
+  return frontmatter.components.flatMap((componentItem, componentIndex) => {
     const componentId = componentIndex + 1
-    const componentKey = `${collectionCategory}-${collectionData.slug}-${componentId}`
+    const componentKey = `${collectionCategory}-${slug}-${componentId}`
 
     const componentData = {
       id: componentId,
       title: componentItem.title,
-      slug: collectionData.slug,
+      slug: slug,
       category: collectionCategory,
-      container: componentItem?.container || collectionData?.container || '',
-      wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
+      container: componentItem?.container || frontmatter?.container || '',
+      wrapper: componentItem?.wrapper || frontmatter?.wrapper || 'h-[400px] lg:h-[600px]',
       contributors: componentItem?.contributors || ['markmead'],
       plugins: componentItem?.plugins || [],
       key: componentKey,

@@ -25,11 +25,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { categoryData } = await getCategory(params)
+  const { category } = await getCategory(params.category)
 
   return {
-    title: `Tailwind CSS ${categoryData.title} Components | HyperUI`,
-    description: categoryData.description,
+    title: `Tailwind CSS ${category.title} Components | HyperUI`,
+    description: category.description,
     alternates: {
       canonical: `/components/${params.category}`,
     },
@@ -37,16 +37,16 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { categoryData, componentItems } = await getCategory(params)
+  const { category, components } = await getCategory(params.category)
 
   const categoryItemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Tailwind CSS ${categoryData.title} Component Collections`,
-    description: categoryData.description,
+    name: `Tailwind CSS ${category.title} Component Collections`,
+    description: category.description,
     url: `https://www.hyperui.dev/components/${params.category}`,
-    numberOfItems: componentItems.length,
-    itemListElement: componentItems.map((componentItem, componentIndex) => ({
+    numberOfItems: components.length,
+    itemListElement: components.map((componentItem, componentIndex) => ({
       '@type': 'ListItem',
       position: componentIndex + 1,
       name: componentItem.title,
@@ -61,12 +61,12 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryItemListSchema) }}
       />
 
-      <Hero title={categoryData.title} subtitle={categoryData.subtitle}>
-        {categoryData.description}
+      <Hero title={category.title} subtitle={category.subtitle}>
+        {category.description}
       </Hero>
 
       <div id="mainContent" className="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
-        <CollectionGrid componentItems={componentItems} />
+        <CollectionGrid componentItems={components} />
       </div>
     </>
   )

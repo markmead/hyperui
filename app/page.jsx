@@ -21,11 +21,11 @@ export default async function Page() {
     description: 'Browse Tailwind CSS component categories on HyperUI.',
     url: 'https://www.hyperui.dev/',
     numberOfItems: componentsByCategory.length,
-    itemListElement: componentsByCategory.map(({ categoryTitle, categorySlug }, categoryIndex) => ({
+    itemListElement: componentsByCategory.map(({ category }, categoryIndex) => ({
       '@type': 'ListItem',
       position: categoryIndex + 1,
-      name: `${categoryTitle} Components`,
-      url: `https://www.hyperui.dev/components/${categorySlug}`,
+      name: `${category.title} Components`,
+      url: `https://www.hyperui.dev/components/${category.slug}`,
     })),
   }
 
@@ -44,19 +44,19 @@ export default async function Page() {
 
       <div id="mainContent" className="mx-auto max-w-screen-xl px-4 pb-8 lg:pb-12">
         <ul className="space-y-8">
-          {componentsByCategory.map(({ categoryTitle, categorySlug, componentItems = [] }) => {
+          {componentsByCategory.map(({ category, components }) => {
             return (
-              <li className="space-y-4" key={categoryTitle}>
+              <li className="space-y-4" key={category.slug}>
                 <h2 className="text-xl font-bold text-stone-900 sm:text-2xl">
                   <Link
-                    href={`/components/${categorySlug}`}
+                    href={`/components/${category.slug}`}
                     className="underline-offset-2 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none"
                   >
-                    {categoryTitle} Components
+                    {category.title} Components
                   </Link>
                 </h2>
 
-                <CollectionGrid componentItems={componentItems} />
+                <CollectionGrid componentItems={components} />
               </li>
             )
           })}
