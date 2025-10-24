@@ -36,8 +36,6 @@
     "prismjs": "^1.30.0",
     "react-intersection-observer": "^9.16.0",
     "rehype-external-links": "^3.0.0",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2"
   },

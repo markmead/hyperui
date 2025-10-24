@@ -4,8 +4,6 @@ export default function CollectionCard({ componentData }) {
   const componentCountPluralize = componentData.components.length > 1 ? 'Components' : 'Component'
   const componentCount = `${componentData.components.length} ${componentCountPluralize}`
 
-  console.log('componentData', componentData)
-
   const hasTag = !!componentData.tag
 
   return (
