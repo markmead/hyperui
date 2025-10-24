@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  reactCompiler: true,
   transpilePackages: ['next-mdx-remote'],
   redirects: async () => [
     {

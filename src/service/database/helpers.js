@@ -6,7 +6,6 @@ import matter from 'gray-matter'
 import rehypeExternalLinks from 'rehype-external-links'
 
 const SORT_BY_DATE = 'SORT_BY_DATE'
-const SORT_BY_TITLE = 'SORT_BY_TITLE'
 
 export async function getPages(pagesDir = '', sortBy = '') {
   if (!pagesDir) {
@@ -32,10 +31,6 @@ export async function getPages(pagesDir = '', sortBy = '') {
 
     if (sortBy === SORT_BY_DATE) {
       return sortByDate(pageItems)
-    }
-
-    if (sortBy === SORT_BY_TITLE) {
-      return sortByTitle(pageItems)
     }
 
     return pageItems
@@ -116,12 +111,6 @@ export async function getComponentItems(componentsDir, categorySlug) {
 export function sortByDate(dbItems) {
   return dbItems.toSorted((itemA, itemB) => {
     return new Date(itemB.updated) - new Date(itemA.updated)
-  })
-}
-
-export function sortByTitle(dbItems) {
-  return dbItems.toSorted((itemA, itemB) => {
-    return itemA.title.localeCompare(itemB.title)
   })
 }
 

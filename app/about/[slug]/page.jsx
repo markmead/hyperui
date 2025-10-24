@@ -22,26 +22,28 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getAboutPage(params.slug)
+  const { slug } = await params
+  const { frontmatter } = await getAboutPage(slug)
 
   return {
     title: `${frontmatter.title} | HyperUI`,
     description: frontmatter.description,
     alternates: {
-      canonical: `/about/${params.slug}`,
+      canonical: `/about/${slug}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, readingTime, ...content } = await getAboutPage(params.slug)
+  const { slug } = await params
+  const { frontmatter, readingTime, ...content } = await getAboutPage(slug)
 
   const aboutPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: frontmatter.title,
     description: frontmatter.description,
-    url: `https://www.hyperui.dev/about/${params.slug}`,
+    url: `https://www.hyperui.dev/about/${slug}`,
     datePublished: frontmatter.published,
     dateModified: frontmatter.updated,
   }

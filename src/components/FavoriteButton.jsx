@@ -7,7 +7,7 @@ import Tooltip from '@component/global/Tooltip'
 const STORAGE_KEY = 'favouriteComponents'
 
 export default function FavoriteButton({ componentData }) {
-  const [favouriteComponents, setFavoriteComponents] = useState([])
+  const [, setFavoriteComponents] = useState([])
   const [isFavorited, setIsFavorited] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 

@@ -6,10 +6,6 @@ import { usePathname } from 'next/navigation'
 export default function Ads() {
   const routerPathname = usePathname()
 
-  useEffect(() => {
-    loadAd()
-  }, [routerPathname])
-
   function loadAd() {
     if (document.querySelector('#EthicalAds')) {
       globalThis && globalThis.ethicalads && globalThis.ethicalads.reload()
@@ -25,6 +21,10 @@ export default function Ads() {
 
     document.body.append(adScript)
   }
+
+  useEffect(() => {
+    loadAd()
+  }, [routerPathname])
 
   return (
     <div className="not-prose mx-auto max-w-sm">

@@ -22,19 +22,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPost(params.slug)
+  const { slug } = await params
+  const { frontmatter } = await getPost(slug)
 
   return {
     title: `${frontmatter.title} | HyperUI`,
     description: frontmatter.description,
     alternates: {
-      canonical: `/blog/${params.slug}`,
+      canonical: `/blog/${slug}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, readingTime, ...content } = await getPost(params.slug)
+  const { slug } = await params
+  const { frontmatter, readingTime, ...content } = await getPost(slug)
 
   const schemaData = {
     '@context': 'https://schema.org',
@@ -42,10 +44,10 @@ export default async function Page({ params }) {
     headline: frontmatter.title,
     description: frontmatter.description,
     image: ['https://www.hyperui.dev/og.jpg'],
-    url: `https://www.hyperui.dev/blog/${params.slug}`,
+    url: `https://www.hyperui.dev/blog/${slug}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.hyperui.dev/blog/${params.slug}`,
+      '@id': `https://www.hyperui.dev/blog/${slug}`,
     },
     datePublished: frontmatter.published,
     dateModified: frontmatter.updated,

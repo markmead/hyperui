@@ -37,19 +37,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getCollection(params.category, params.collection)
+  const { category, collection } = await params
+  const { frontmatter } = await getCollection(category, collection)
 
   return {
     title: `Tailwind CSS ${frontmatter.title} | HyperUI`,
     description: frontmatter.description,
     alternates: {
-      canonical: `/components/${params.category}/${params.collection}`,
+      canonical: `/components/${category}/${collection}`,
     },
   }
 }
 
 export default async function Page({ params }) {
-  const collectionData = await getCollection(params.category, params.collection)
+  const { category, collection } = await params
+  const collectionData = await getCollection(category, collection)
 
   const { id, slug, frontmatter } = collectionData
 
@@ -62,7 +64,7 @@ export default async function Page({ params }) {
     '@type': 'ItemList',
     name: `Tailwind CSS ${frontmatter.title} Components`,
     description: frontmatter.description,
-    url: `https://www.hyperui.dev/components/${params.category}/${params.collection}`,
+    url: `https://www.hyperui.dev/components/${category}/${collection}`,
     numberOfItems: flatComponents.length,
     itemListElement: flatComponents.map((componentItem, componentIndex) => ({
       '@type': 'ListItem',
