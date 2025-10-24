@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 export default function CollectionCard({ componentData }) {
-  const componentCountPluralize = componentData.count > 1 ? 'Components' : 'Component'
-  const componentCount = `${componentData.count} ${componentCountPluralize}`
+  const componentCountPluralize = componentData.components.length > 1 ? 'Components' : 'Component'
+  const componentCount = `${componentData.components.length} ${componentCountPluralize}`
 
   const hasTag = !!componentData.tag
 
