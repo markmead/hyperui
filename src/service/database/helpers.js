@@ -8,55 +8,55 @@ import rehypeExternalLinks from 'rehype-external-links'
 const SORT_BY_DATE = 'SORT_BY_DATE'
 const SORT_BY_TITLE = 'SORT_BY_TITLE'
 
-export async function getListings(listingDir = '', sortBy = '') {
-  if (!listingDir) {
+export async function getPages(pagesDir = '', sortBy = '') {
+  if (!pagesDir) {
     return []
   }
 
   try {
-    const listingSlugs = await fs.readdir(listingDir)
+    const pageSlugs = await fs.readdir(pagesDir)
 
-    const listingItems = await Promise.all(
-      listingSlugs.map(async (listingSlug) => {
-        const listingPath = join(listingDir, listingSlug)
-        const listingItem = await fs.readFile(listingPath, 'utf8')
+    const pageItems = await Promise.all(
+      pageSlugs.map(async (pageSlug) => {
+        const pagePath = join(pagesDir, pageSlug)
+        const pageItem = await fs.readFile(pagePath, 'utf8')
 
-        const { data: frontmatter } = matter(listingItem)
+        const { data: frontmatter } = matter(pageItem)
 
         return {
           ...frontmatter,
-          slug: formatSlug(listingSlug),
+          slug: formatSlug(pageSlug),
         }
       })
     )
 
     if (sortBy === SORT_BY_DATE) {
-      return sortByDate(listingItems)
+      return sortByDate(pageItems)
     }
 
     if (sortBy === SORT_BY_TITLE) {
-      return sortByTitle(listingItems)
+      return sortByTitle(pageItems)
     }
 
-    return listingItems
+    return pageItems
   } catch {
     return []
   }
 }
 
-export async function getListing(listingDir, listingSlug) {
-  if (!listingDir || !listingSlug) {
+export async function getPage(pagesDir, pageSlug) {
+  if (!pagesDir || !pageSlug) {
     return {}
   }
 
   try {
-    const listingPath = join(listingDir, `${listingSlug}.mdx`)
-    const listingItem = await fs.readFile(listingPath, 'utf8')
+    const pagePath = join(pagesDir, `${pageSlug}.mdx`)
+    const pageItem = await fs.readFile(pagePath, 'utf8')
 
     let readingTime = 1
 
     try {
-      const { content } = matter(listingItem)
+      const { content } = matter(pageItem)
 
       const wordCount = content.split(/\s+/).filter(Boolean).length
 
@@ -65,7 +65,7 @@ export async function getListing(listingDir, listingSlug) {
       // We do nothing
     }
 
-    const mdxSource = await serialize(listingItem, {
+    const mdxSource = await serialize(pageItem, {
       parseFrontmatter: true,
       mdxOptions: {
         rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],

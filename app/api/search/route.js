@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
-import { getComponents, getPosts } from '@service/database'
+import { getComponents } from '@service/database'
+import { getPosts } from '@service/database/posts'
 
 export async function GET() {
   try {

@@ -78,6 +78,3 @@ export async function getComponents() {
     return []
   }
 }
-
-export { getPosts, getPost } from '@service/database/posts'
-export { getPages, getPage } from '@service/database/pages'
