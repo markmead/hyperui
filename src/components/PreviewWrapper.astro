@@ -12,17 +12,7 @@ interface Props {
   dark: boolean
 }
 
-const {
-  //,
-  title,
-  category,
-  slug,
-  wrapper,
-  index,
-  dark,
-  contributors,
-  plugins,
-} = Astro.props
+const { title, category, slug, wrapper, index, dark, contributors, plugins } = Astro.props
 
 const src = dark
   ? `/components/${category}/${slug}/${index}-dark.html`
