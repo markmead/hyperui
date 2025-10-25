@@ -48,14 +48,24 @@ const { collections, posts } = Astro.props as Props
 `}
   class="relative"
 >
-  <input
-    type="text"
-    x-model="q"
-    placeholder="Search..."
-    class="w-screen max-w-xs rounded-lg border border-stone-300 bg-white text-stone-900 placeholder-stone-500 shadow-sm"
-    autocomplete="off"
-    @keydown.prevent.window.slash="$el.focus()"
-  />
+  <div class="relative">
+    <input
+      type="text"
+      x-model="q"
+      placeholder="Search..."
+      class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm"
+      autocomplete="off"
+      @keydown.prevent.window.slash="$el.focus()"
+    />
+
+    <span class="absolute inset-y-0 right-0 grid size-10 place-content-center">
+      <kbd
+        class="grid size-6 place-content-center rounded border border-stone-200 bg-stone-50 text-center text-xs text-stone-700 shadow-xs"
+      >
+        /
+      </kbd>
+    </span>
+  </div>
 
   <div
     x-cloak
