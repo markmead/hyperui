@@ -1,0 +1,15 @@
+---
+const usps = ['No install', 'No config', 'No setup']
+---
+
+<ul class="flex justify-center gap-4">
+  {
+    usps.map((usp) => (
+      <li class="inline-flex items-center gap-2">
+        <span aria-hidden="true">✅</span>
+
+        <span class="font-medium text-stone-900">{usp}</span>
+      </li>
+    ))
+  }
+</ul>

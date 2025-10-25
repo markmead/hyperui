@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content'
+
+interface Props {
+  category: string
+  slug: string
+  terms: string[]
+}
+
+const { category, slug, terms } = Astro.props
+
+const components = (await getCollection('collection'))
+  .filter((component) => component.data.category === category)
+  .filter((component) => component.data.terms.some((term) => terms.includes(term)))
+  .filter((component) => component.data.slug !== slug)
+---
+
+{
+  components.length > 0 && (
+    <div class="border-t border-stone-100 pt-8">
+      <strong class="block text-xl font-bold">Related Components</strong>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        {components.map((component) => (
+          <a
+            href={`/components/${component.data.category}/${component.data.slug}`}
+            class="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2 shadow-sm transition-colors hover:bg-stone-100"
+          >
+            <span aria-hidden="true">{component.data.emoji}</span>
+
+            <h3 class="font-medium text-stone-900">{component.data.title}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}

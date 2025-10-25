@@ -1,13 +1,36 @@
-<a href="#" class="block">
-  <img
-    alt=""
-    src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-    class="h-64 w-full object-cover sm:h-80 lg:h-96"
-  />
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-md p-6">
+    <a href="#" class="group relative block bg-black">
+      <img
+        alt=""
+        src="https://images.unsplash.com/photo-1603871165848-0aa92c869fa1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80"
+        class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+      />
 
-  <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">Lorem, ipsum dolor.</h3>
+      <div class="relative p-4 sm:p-6 lg:p-8">
+        <p class="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
 
-  <p class="mt-2 max-w-sm text-gray-700">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni reiciendis sequi ipsam incidunt.
-  </p>
-</a>
+        <p class="text-xl font-bold text-white sm:text-2xl">Tony Wayne</p>
+
+        <div class="mt-32 sm:mt-48 lg:mt-64">
+          <div
+            class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100"
+          >
+            <p class="text-sm text-white">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis perferendis hic
+              asperiores quibusdam quidem voluptates doloremque reiciendis nostrum harum.
+              Repudiandae?
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+  </body>
+</html>

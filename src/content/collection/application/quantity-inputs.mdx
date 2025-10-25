@@ -1,0 +1,32 @@
+---
+title: Quantity Inputs
+description: Quantity input components built with Tailwind CSS v4. These responsive,
+  customizable number inputs are ideal for ecommerce, order forms, and shopping
+  carts. Optimized for accessibility, SEO, and mobile usability.
+emoji: ➕
+category: application
+slug: quantity-inputs
+wrapper: h-[200px]
+terms:
+  - input
+  - quantity
+  - ecommerce
+components:
+  - { title: 'Base with plus and minus buttons', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Base with plus and minus buttons, no spinners in the input',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - { title: 'Base with plus and minus buttons, no spinners in the input and text
+        centered', dark: true, plugins: ['@tailwindcss/forms'] }
+  - { title: 'Bordered with plus and minus buttons', dark: true, plugins: ['@tailwindcss/forms'] }
+---
+
+import CollectionHeader from '../../../components/CollectionHeader.astro'
+
+<CollectionHeader>
+  # Quantity Input Components
+
+  <p>{frontmatter.description}</p>
+</CollectionHeader>

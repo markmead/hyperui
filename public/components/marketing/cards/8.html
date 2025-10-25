@@ -1,15 +1,75 @@
-<a href="#" class="block">
-  <img
-    alt=""
-    src="https://images.unsplash.com/photo-1588515724527-074a7a56616c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
-    class="h-56 w-full rounded-tr-3xl rounded-bl-3xl object-cover sm:h-64 lg:h-72"
-  />
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-3xl p-6">
+    <article class="rounded-xl bg-white p-4 ring-3 ring-indigo-50 sm:p-6 lg:p-8">
+      <div class="flex items-start sm:gap-8">
+        <div
+          class="hidden sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+          aria-hidden="true"
+        >
+          <div class="flex items-center gap-1">
+            <span class="h-8 w-0.5 rounded-full bg-indigo-500"></span>
+            <span class="h-6 w-0.5 rounded-full bg-indigo-500"></span>
+            <span class="h-4 w-0.5 rounded-full bg-indigo-500"></span>
+            <span class="h-6 w-0.5 rounded-full bg-indigo-500"></span>
+            <span class="h-8 w-0.5 rounded-full bg-indigo-500"></span>
+          </div>
+        </div>
 
-  <div class="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
-    <strong class="font-medium">Company Name</strong>
+        <div>
+          <strong
+            class="rounded-sm border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white"
+          >
+            Episode #101
+          </strong>
 
-    <span class="hidden sm:block sm:h-px sm:w-8 sm:bg-yellow-500"></span>
+          <h3 class="mt-4 text-lg font-medium sm:text-xl">
+            <a href="#" class="hover:underline"> Some Interesting Podcast Title </a>
+          </h3>
 
-    <p class="mt-0.5 opacity-50 sm:mt-0">Branding / Signage</p>
-  </div>
-</a>
+          <p class="mt-1 text-sm text-gray-700">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam nulla amet voluptatum
+            sit rerum, atque, quo culpa ut necessitatibus eius suscipit eum accusamus, aperiam
+            voluptas exercitationem facere aliquid fuga. Sint.
+          </p>
+
+          <div class="mt-4 sm:flex sm:items-center sm:gap-2">
+            <div class="flex items-center gap-1 text-gray-500">
+              <svg
+                class="size-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+
+              <p class="text-xs font-medium">48:32 minutes</p>
+            </div>
+
+            <span class="hidden sm:block" aria-hidden="true">&middot;</span>
+
+            <p class="mt-2 text-xs font-medium text-gray-500 sm:mt-0">
+              Featuring-3
+              <a href="#" class="underline hover:text-gray-700">Barry</a>,
+              <a href="#" class="underline hover:text-gray-700">Sandra</a> and
+              <a href="#" class="underline hover:text-gray-700">August</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </body>
+</html>

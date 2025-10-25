@@ -1,0 +1,33 @@
+---
+import BaseAd from './BaseAd.astro'
+import HeroUsps from './HeroUsps.astro'
+
+interface Props {
+  title: string
+  subtitle: string
+}
+
+const { title, subtitle } = Astro.props
+---
+
+<section class="bg-white text-center">
+  <div class="mx-auto max-w-7xl px-4 py-8 lg:py-12">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-lg text-stone-700">{subtitle}</h1>
+
+      <h2 class="order-first text-5xl font-bold text-stone-900 sm:text-6xl">
+        {title}
+      </h2>
+    </div>
+
+    <div class="mx-auto mt-6 max-w-prose space-y-6">
+      <p class="leading-relaxed text-pretty text-stone-700">
+        <slot />
+      </p>
+
+      <HeroUsps />
+
+      <BaseAd />
+    </div>
+  </div>
+</section>

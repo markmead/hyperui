@@ -1,0 +1,32 @@
+---
+import PreviewManager from './PreviewManager.astro'
+
+interface Props {
+  title: string
+  category: string
+  slug: string
+  wrapper: string
+  index: number
+  contributors: string[]
+  plugins?: string[]
+  dark: boolean
+}
+
+const { title, category, slug, wrapper, index, dark, contributors, plugins } = Astro.props
+
+const src = dark
+  ? `/components/${category}/${slug}/${index}-dark.html`
+  : `/components/${category}/${slug}/${index}.html`
+---
+
+<div>
+  <PreviewManager
+    src={src}
+    index={index}
+    title={title}
+    wrapper={wrapper}
+    dark={dark}
+    contributors={contributors}
+    plugins={plugins}
+  />
+</div>
