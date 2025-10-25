@@ -27,7 +27,7 @@ const formattedComponents = components
 
     const contributors =
       Object.prototype.toString.call(dark) === '[object Object]'
-        ? // @ts-ignore
+        ? // @ts-expect-error We know dark is an object at this point.
           dark.contributors
         : component.contributors
 
