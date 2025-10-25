@@ -1,6 +1,7 @@
 ---
 interface Props {
   src: string
+  index: number
   title: string
   wrapper: string
   dark: boolean
@@ -8,7 +9,7 @@ interface Props {
   plugins?: string[]
 }
 
-const { src, title, wrapper, dark, contributors, plugins } = Astro.props
+const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
 ---
 
 <div x-data="previewManager" class="space-y-4">
@@ -67,6 +68,7 @@ const { src, title, wrapper, dark, contributors, plugins } = Astro.props
         wrapper,
         dark ? 'bg-gray-900' : 'bg-white',
       ]}
+      loading={index === 1 && !dark ? 'eager' : 'lazy'}
       x-ref="iframe"
       :style="{ maxWidth }"></iframe>
   </div>
