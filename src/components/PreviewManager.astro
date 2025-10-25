@@ -1,0 +1,246 @@
+---
+interface Props {
+  src: string
+  title: string
+  wrapper: string
+  dark: boolean
+  contributors: string[]
+  plugins?: string[]
+}
+
+const { src, title, wrapper, dark, contributors, plugins } = Astro.props
+---
+
+<div x-data="previewManager" class="space-y-4">
+  <div class="flex items-center gap-4">
+    <button
+      type="button"
+      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
+      :class="{'bg-stone-100': isPreview }"
+      @click="togglePreview"
+    >
+      <span aria-hidden="true" x-text="isPreview ? '👀' : '👾'"></span>
+      <span x-text="isPreview ? 'Preview' : 'HTML'"></span>
+    </button>
+
+    <button
+      type="button"
+      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
+      :class="{'bg-stone-100': isRtl }"
+      @click="toggleDirection"
+    >
+      <span aria-hidden="true" x-text="isRtl ? '👈' : '👉'"> </span>
+      <span x-text="isRtl ? 'RTL' : 'LTR'"></span>
+    </button>
+
+    <button
+      type="button"
+      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
+      :class="{ 'bg-stone-100': isCopied }"
+      @click="copyHtml"
+    >
+      <span aria-hidden="true">📋</span>
+      <span x-text="isCopied ? 'Copied' : 'Copy'"></span>
+    </button>
+
+    <div class="flex flex-1 justify-end gap-2">
+      <template x-for="breakpoint in breakpoints">
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
+          :class="{ 'bg-stone-100': maxWidth === breakpoint.width }"
+          @click="setWidth(breakpoint.width)"
+        >
+          <span aria-hidden="true" x-text="breakpoint.emoji"></span>
+          <span x-text="breakpoint.name"></span>
+        </button>
+      </template>
+    </div>
+  </div>
+
+  <div x-cloak x-show="isPreview">
+    <iframe
+      src={src}
+      title={title}
+      class:list={[
+        'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300',
+        wrapper,
+        dark ? 'bg-gray-900' : 'bg-white',
+      ]}
+      x-ref="iframe"
+      :style="{ maxWidth }"></iframe>
+  </div>
+
+  <div
+    x-cloak
+    x-show="!isPreview && htmlHighlighted"
+    class:list={['prose prose-pre:m-0 prose-pre:rounded-xl prose-pre:hadow-sm max-w-none']}
+  >
+    <div x-html="htmlHighlighted"></div>
+  </div>
+
+  <p class="text-stone-700">
+    Contributors:
+    {
+      contributors
+        .map((contributor) => (
+          <a
+            href={`https://github.com/${contributor}`}
+            target="_blank"
+            rel="noreferrer"
+            class="font-medium underline transition-colors hover:text-stone-900"
+          >
+            {contributor}
+          </a>
+        ))
+        .reduce((prevContributor, currentContributor) => [
+          prevContributor,
+          ', ',
+          currentContributor,
+        ])
+    }
+  </p>
+
+  <p class="text-stone-700">
+    {
+      plugins && (
+        <>
+          Plugins:
+          {plugins
+            .map((plugin) => (
+              <a
+                href={`https://www.npmjs.com/package/${plugin}`}
+                target="_blank"
+                rel="noreferrer"
+                class="font-medium underline transition-colors hover:text-stone-900"
+              >
+                {plugin}
+              </a>
+            ))
+            .reduce((prevPlugin, currentPlugin) => [prevPlugin, ', ', currentPlugin])}
+        </>
+      )
+    }
+  </p>
+</div>
+
+<script>
+  import Alpine from 'alpinejs'
+
+  import { codeToHtml } from 'shiki'
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('previewManager', () => ({
+      isRtl: false,
+      isPreview: true,
+      isCopied: false,
+      maxWidth: '100%',
+      htmlContent: '',
+      htmlHighlighted: '',
+
+      breakpoints: [
+        { name: 'Mobile', emoji: '📱', width: '340px' },
+        { name: 'Small', emoji: '🐛', width: '640px' },
+        { name: 'Medium', emoji: '🦭', width: '768px' },
+        { name: 'Large', emoji: '🐴', width: '1024px' },
+        { name: 'Full', emoji: '🌕', width: '100%' },
+      ],
+
+      init() {
+        this.$watch('htmlContent', async () => {
+          if (!this.htmlContent || this.htmlHighlighted) {
+            return
+          }
+
+          const html = await codeToHtml(this.htmlContent, {
+            lang: 'html',
+            theme: 'github-dark',
+          })
+
+          this.htmlHighlighted = html
+        })
+      },
+
+      setWidth(maxWidth: string) {
+        this.maxWidth = maxWidth
+      },
+
+      togglePreview() {
+        this.isPreview = !this.isPreview
+
+        if (this.isPreview) {
+          return
+        }
+
+        const iframeElement = this.$refs.iframe as HTMLIFrameElement
+
+        if (iframeElement) {
+          const contentDocument =
+            iframeElement.contentDocument || iframeElement.contentWindow?.document
+
+          if (contentDocument || !this.htmlContent) {
+            this.htmlContent = this.transformHtml(contentDocument?.body?.innerHTML || '')
+          }
+        }
+      },
+
+      toggleDirection() {
+        this.isRtl = !this.isRtl
+
+        const iframeElement = this.$refs.iframe as HTMLIFrameElement
+
+        if (iframeElement) {
+          const contentDocument =
+            iframeElement.contentDocument || iframeElement.contentWindow?.document
+
+          if (contentDocument) {
+            const newDir = this.isRtl ? 'rtl' : 'ltr'
+
+            contentDocument.documentElement.setAttribute('dir', newDir)
+          }
+        }
+      },
+
+      copyHtml() {
+        if (this.htmlContent) {
+          navigator.clipboard.writeText(this.htmlContent)
+
+          this.isCopied = true
+
+          setTimeout(() => {
+            this.isCopied = false
+          }, 1500)
+
+          return
+        }
+
+        const iframeElement = this.$refs.iframe as HTMLIFrameElement
+
+        if (iframeElement) {
+          const contentDocument =
+            iframeElement.contentDocument || iframeElement.contentWindow?.document
+
+          if (contentDocument || !this.htmlContent) {
+            this.htmlContent = this.transformHtml(contentDocument?.body?.innerHTML || '')
+          }
+        }
+
+        navigator.clipboard.writeText(this.htmlContent)
+
+        this.isCopied = true
+
+        setTimeout(() => {
+          this.isCopied = false
+        }, 1500)
+      },
+
+      transformHtml(documentHtml: string) {
+        return documentHtml
+          .split('\n')
+          .map((line) => line.slice(4))
+          .join('\n')
+          .trim()
+      },
+    }))
+  })
+</script>

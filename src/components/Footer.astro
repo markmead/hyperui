@@ -1,0 +1,40 @@
+---
+import { SITE_TITLE } from '../consts'
+
+import HeaderLink from './HeaderLink.astro'
+---
+
+<footer class="border-t border-stone-300 bg-stone-50">
+  <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 lg:py-12">
+    <h2 class="text-lg font-medium">
+      <a href="/">
+        {SITE_TITLE}
+        <span aria-hidden="true"> 🚀 </span>
+      </a>
+    </h2>
+
+    <p class="max-w-lg text-pretty text-stone-700">
+      Free open source Tailwind CSS components for marketing and eCommerce websites, as well as
+      application interfaces.
+    </p>
+
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div class="flex gap-4">
+        <HeaderLink href="/about/faqs">FAQs</HeaderLink>
+        <HeaderLink href="/about/acknowledgements">Acknowledgements</HeaderLink>
+      </div>
+
+      <p class="text-stone-700">
+        Created by
+        <a
+          href="https://github.com/markmead"
+          rel="noreferrer"
+          target="_blank"
+          class="font-medium underline transition-colors hover:text-stone-900"
+        >
+          Mark Mead
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

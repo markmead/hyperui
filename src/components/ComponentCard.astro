@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import FormattedCount from './FormattedCount.astro'
+
+interface Props {
+  component: CollectionEntry<'component'>['data']
+}
+
+const { component } = Astro.props as Props
+---
+
+<li>
+  <a
+    href={`/components/${component.category}/${component.slug}`}
+    class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 sm:p-6"
+  >
+    <span aria-hidden="true" class="text-xl">
+      {component.emoji}
+    </span>
+
+    <p class="mt-4 text-sm text-stone-700">
+      <FormattedCount components={component.components} />
+    </p>
+
+    <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
+      {component.title}
+    </h2>
+  </a>
+</li>

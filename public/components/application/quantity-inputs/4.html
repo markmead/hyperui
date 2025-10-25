@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+  </head>
+  <body class="flex justify-center p-6">
+    <div>
+      <label for="Quantity" class="sr-only"> Quantity </label>
+
+      <div class="flex items-center rounded-sm border border-gray-200">
+        <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+          &minus;
+        </button>
+
+        <input
+          type="number"
+          id="Quantity"
+          value="1"
+          class="h-10 w-16 border-transparent text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+
+        <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+          &plus;
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

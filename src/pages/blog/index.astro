@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content'
+
+import { SEO_TITLE_BLOG, SEO_DESCRIPTION_BLOG } from '../../consts'
+
+import BaseHead from '../../components/BaseHead.astro'
+import Footer from '../../components/Footer.astro'
+import FormattedDate from '../../components/FormattedDate.astro'
+import Header from '../../components/Header.astro'
+import Hero from '../../components/Hero.astro'
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
+)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SEO_TITLE_BLOG} description={SEO_DESCRIPTION_BLOG} />
+  </head>
+
+  <body class="font-sans antialiased">
+    <Header />
+
+    <main>
+      <Hero title="Tailwind CSS Blog" subtitle="Tips, Tricks & Real-World Solutions">
+        Learn practical Tailwind CSS techniques through tutorials and guides built from real-world
+        experience. Discover best practices, performance tips, and clever solutions to common
+        styling challenges.
+      </Hero>
+
+      <section class="mx-auto max-w-7xl px-4 pb-8">
+        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {
+            posts.map((post) => (
+              <li>
+                <a
+                  href={`/blog/${post.data.slug}`}
+                  class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 sm:p-6"
+                >
+                  <span aria-hidden="true" class="text-xl sm:text-2xl">
+                    {post.data.emoji}
+                  </span>
+
+                  <FormattedDate date={post.data.updatedDate} class="mt-4 text-sm text-stone-700" />
+
+                  <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
+                    {post.data.title}
+                  </h2>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

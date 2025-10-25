@@ -1,0 +1,29 @@
+---
+title: Product Collections
+description: Product collection components built with Tailwind CSS v4. These responsive,
+  customizable layouts are ideal for displaying product groups, categories, and
+  featured items in eCommerce and marketing websites. Optimized for SEO and user
+  experience.
+emoji: 🛍
+category: marketing
+slug: product-collections
+terms:
+  - product
+  - collection
+  - ecommerce
+components:
+  - { title: 'Simple' }
+  - { title: 'Simple with Centered Title' }
+  - { title: 'Sort & Layout' }
+  - { title: 'Pagination' }
+  - { title: 'Filtering (Dropdown)' }
+  - { title: 'Filtering (Side)' }
+---
+
+import CollectionHeader from '../../../components/CollectionHeader.astro'
+
+<CollectionHeader>
+  # Product Collection Components
+
+  <p>{frontmatter.description}</p>
+</CollectionHeader>

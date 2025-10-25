@@ -1,0 +1,105 @@
+---
+title: How to Create an Animated Border Gradient with Tailwind CSS v4
+description: Learn to create an animated border gradient using Tailwind CSS without custom
+  CSS.
+slug: animated-border-gradient-with-tailwindcss
+emoji: 🪄
+pubDate: 04/12/2025
+updatedDate: 04/12/2025
+---
+
+import BaseAd from '../../components/BaseAd.astro'
+
+<BaseAd />
+
+While gradient borders aren't heavily featured in the HyperUI components, they
+add a beautiful touch to interactive elements - especially when animated. In
+this tutorial, I'll show you how to create a gradient border with Tailwind CSS
+and then bring it to life with animation.
+
+## Step 1: Creating the Gradient Border
+
+First, let's create our interactive element. For this example, I'll use an `<a>`
+tag. The border effect comes from applying padding (`p-1`) which creates a 4px
+space between the outer gradient background and an inner element with a solid
+background color.
+
+_Note: 4px is quite a large border and is only used for demonstration purposes.
+For more subtle effects, consider using `p-px` or `p-0.5` instead._
+
+```html
+<a href="#" class="block rounded-full bg-linear-to-r from-green-300 via-blue-600 to-red-300 p-1">
+  <span class="block rounded-full bg-white px-10 py-4 text-lg font-medium"> Hello there 👋 </span>
+</a>
+```
+
+This code gives you a static gradient border. If that's all you need, you're all
+set! But if you want to add animation, continue reading.
+
+## Step 2: Animating the Border
+
+To create the animation effect, we need to make the gradient move around the
+element. Here's the complete animated example:
+
+```html
+<a
+  href="#"
+  class="animate-background block rounded-full bg-linear-to-r from-green-300 via-blue-600 to-red-300 bg-size-[400%_400%] p-1 [animation-duration:6s]"
+>
+  <span class="block rounded-full bg-white px-10 py-4 text-lg font-medium"> Hello there 👋 </span>
+</a>
+```
+
+Let's break down the new classes that enable the animation:
+
+`animate-background`
+
+This extends Tailwind's animation utilities with a custom animation for moving
+background gradients:
+
+```css
+@theme {
+  --animate-background: background-move ease infinite;
+
+  @keyframes background-move {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+```
+
+This animation shifts the background position back and forth, creating the
+flowing gradient effect.
+
+`bg-[length:_400%_400%]`
+
+This enlarges the gradient to 400% of the element's size in both directions. The
+larger background size is essential for the animation - it gives the gradient
+room to move without showing empty space during animation.
+
+`[animation-duration:_6s]`
+
+This controls how quickly the animation completes one cycle. You can adjust this
+value to speed up or slow down the effect.
+
+## Step 3: Experiment with Variations
+
+Now that you have the basic animated gradient border working, try these
+variations:
+
+- **Change the gradient colors**: Try `from-purple-500 via-pink-500 to-red-500`
+  for a warmer palette
+- **Adjust animation speed**: `[animation-duration:_3s]` for faster movement or
+  [animation-duration:_10s] for a more subtle effect
+- **Play with background size**: A smaller value like `bg-[length:_200%_200%]`
+  creates a shorter animation path
+- **Try different easing functions**: Use `ease-in-out` for smoother transitions
+
+Here is the full working example on Tailwind Play -
+[https://play.tailwindcss.com/R1JVmaA97v](https://play.tailwindcss.com/R1JVmaA97v)

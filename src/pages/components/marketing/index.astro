@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content'
+
+import {
+  SEO_TITLE_MARKETING_COMPONENTS,
+  SEO_DESCRIPTION_MARKETING_COMPONENTS,
+} from '../../../consts'
+
+import BaseHead from '../../../components/BaseHead.astro'
+import Footer from '../../../components/Footer.astro'
+import Header from '../../../components/Header.astro'
+import Hero from '../../../components/Hero.astro'
+import ComponentCard from '../../../components/ComponentCard.astro'
+
+const components = (await getCollection('collection'))
+  .filter((component) => component.data.category === 'marketing')
+  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={SEO_TITLE_MARKETING_COMPONENTS}
+      description={SEO_DESCRIPTION_MARKETING_COMPONENTS}
+    />
+  </head>
+
+  <body class="font-sans antialiased">
+    <Header />
+
+    <main>
+      <Hero title="Marketing" subtitle="Free Tailwind CSS Marketing Components">
+        Create stunning landing pages and marketing websites with conversion-focused UI components.
+        From hero sections and pricing tables to testimonials and CTAs, everything is crafted to
+        engage visitors and drive results.
+      </Hero>
+
+      <section class="mx-auto max-w-7xl px-4 pb-8">
+        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {components.map((component) => <ComponentCard component={component.data} />)}
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

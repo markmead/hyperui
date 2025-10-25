@@ -1,0 +1,35 @@
+---
+title: Steps
+description: Step components built with Tailwind CSS v4. These responsive, customizable
+  step indicators are perfect for onboarding, progress tracking, and multi-step
+  forms in web applications. Optimized for accessibility, SEO, and mobile
+  usability.
+emoji: 🪜
+category: application
+slug: steps
+wrapper: h-[200px]
+terms:
+  - step
+  - progress
+  - indicator
+components:
+  - { title: 'Title, icon and progress bar', dark: { contributors: ['WinnyChang'] } }
+  - { title: 'Title, step/total and progress bar', dark: { contributors: ['WinnyChang'] } }
+  - { title: 'Title, check icon and progress bar', dark: { contributors: ['WinnyChang'] } }
+  - {
+      title: 'Grouped with title and description, with highlighted current step',
+      dark: { contributors: ['WinnyChang'] },
+    }
+  - {
+      title: 'Timeline with title, with highlighted current step',
+      dark: { contributors: ['WinnyChang'] },
+    }
+---
+
+import CollectionHeader from '../../../components/CollectionHeader.astro'
+
+<CollectionHeader>
+  # Step Components
+
+  <p>{frontmatter.description}</p>
+</CollectionHeader>
