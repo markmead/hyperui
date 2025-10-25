@@ -21,4 +21,4 @@ pnpm-debug.log*
 .DS_Store
 
 # public
-/public/component.css
+public/*.css
