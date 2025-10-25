@@ -174,13 +174,11 @@ const { src, title, wrapper, dark, contributors, plugins } = Astro.props
 
         const iframeElement = this.$refs.iframe as HTMLIFrameElement
 
-        if (iframeElement) {
-          const contentDocument =
-            iframeElement.contentDocument || iframeElement.contentWindow?.document
+        const contentDocument =
+          iframeElement.contentDocument || iframeElement.contentWindow?.document
 
-          if (contentDocument || !this.htmlContent) {
-            this.htmlContent = this.transformHtml(contentDocument?.body?.innerHTML || '')
-          }
+        if (contentDocument || !this.htmlContent) {
+          this.htmlContent = this.transformHtml(contentDocument?.body?.innerHTML || '')
         }
       },
 
@@ -189,15 +187,13 @@ const { src, title, wrapper, dark, contributors, plugins } = Astro.props
 
         const iframeElement = this.$refs.iframe as HTMLIFrameElement
 
-        if (iframeElement) {
-          const contentDocument =
-            iframeElement.contentDocument || iframeElement.contentWindow?.document
+        const contentDocument =
+          iframeElement.contentDocument || iframeElement.contentWindow?.document
 
-          if (contentDocument) {
-            const newDir = this.isRtl ? 'rtl' : 'ltr'
+        if (contentDocument) {
+          const newDir = this.isRtl ? 'rtl' : 'ltr'
 
-            contentDocument.documentElement.setAttribute('dir', newDir)
-          }
+          contentDocument.documentElement.setAttribute('dir', newDir)
         }
       },
 
