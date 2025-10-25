@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "yarn css",
     "lint": "eslint .",
     "format": "prettier --write .",
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
