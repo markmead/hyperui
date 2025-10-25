@@ -1,51 +1,50 @@
-import { getComponents, getPosts } from '@service/database'
-
-function buildUrl(pagePath) {
-  return `https://www.hyperui.dev/${pagePath}`
-}
-
-function buildSitemapEntry(pageUrl, pageUpdatedAt) {
-  return pageUpdatedAt
-    ? { url: buildUrl(pageUrl), lastModified: pageUpdatedAt }
-    : { url: buildUrl(pageUrl) }
-}
-
-async function getComponentEntries() {
-  const componentsByCategory = await getComponents()
-
-  return componentsByCategory.flatMap(({ componentItems }) =>
-    componentItems.map(({ category, slug }) => ({
-      pageUrl: `components/${category}/${slug}`,
-    }))
-  )
-}
-
-async function getBlogEntries() {
-  const postItems = await getPosts()
-
-  return postItems.map(({ slug, updated }) => ({
-    pageUrl: `blog/${slug}`,
-    updatedAt: updated,
-  }))
-}
+import { getComponents, getPosts, categorySlugs } from '@service/database'
 
 export default async function sitemap() {
-  const [componentEntries, blogEntries] = await Promise.all([
-    getComponentEntries(),
-    getBlogEntries(),
-  ])
+  async function getCategorySlugs() {
+    return categorySlugs.map((categorySlug) => `components/${categorySlug}`)
+  }
 
-  const dynamicEntries = [...componentEntries, ...blogEntries].map(({ pageUrl, updatedAt }) => {
-    return buildSitemapEntry(pageUrl, updatedAt)
-  })
+  async function getComponentSlugs() {
+    const componentsByCategory = await getComponents()
+
+    return componentsByCategory.flatMap(({ componentItems }) =>
+      componentItems.map(({ category, slug }) => `components/${category}/${slug}`)
+    )
+  }
+
+  async function getBlogSlugs() {
+    const postItems = await getPosts()
+
+    return postItems.map(({ slug }) => `blog/${slug}`)
+  }
+
+  const pageSlugs = await Promise.all([getCategorySlugs(), getComponentSlugs(), getBlogSlugs()])
+
+  const sitemapEntries = pageSlugs.flatMap((slugList) =>
+    slugList.map((pageSlug) => ({
+      url: `https://www.hyperui.dev/${pageSlug}`,
+      lastModified: new Date(),
+    }))
+  )
 
   return [
-    { url: buildUrl('') },
-    { url: buildUrl('about/acknowledgements') },
-    { url: buildUrl('about/faqs') },
-    { url: buildUrl('blog') },
-    { url: buildUrl('components/application') },
-    { url: buildUrl('components/marketing') },
-    ...dynamicEntries,
+    {
+      url: 'https://www.hyperui.dev',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.hyperui.dev/about/faqs',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.hyperui.dev/about/acknowledgements',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.hyperui.dev/blog',
+      lastModified: new Date(),
+    },
+    ...sitemapEntries,
   ]
 }
