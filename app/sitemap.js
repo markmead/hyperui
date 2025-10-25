@@ -1,4 +1,4 @@
-import { getComponents, getPosts, getPages } from '@service/database'
+import { getComponents, getPosts } from '@service/database'
 
 function buildUrl(pagePath) {
   return `https://www.hyperui.dev/${pagePath}`
@@ -29,30 +29,20 @@ async function getBlogEntries() {
   }))
 }
 
-async function getAboutEntries() {
-  const aboutPages = await getPages()
-
-  return aboutPages.map(({ slug, updated }) => ({
-    pageUrl: `about/${slug}`,
-    updatedAt: updated,
-  }))
-}
-
 export default async function sitemap() {
-  const [componentEntries, blogEntries, aboutEntries] = await Promise.all([
+  const [componentEntries, blogEntries] = await Promise.all([
     getComponentEntries(),
     getBlogEntries(),
-    getAboutEntries(),
   ])
 
-  const dynamicEntries = [...componentEntries, ...blogEntries, ...aboutEntries].map(
-    ({ pageUrl, updatedAt }) => {
-      return buildSitemapEntry(pageUrl, updatedAt)
-    }
-  )
+  const dynamicEntries = [...componentEntries, ...blogEntries].map(({ pageUrl, updatedAt }) => {
+    return buildSitemapEntry(pageUrl, updatedAt)
+  })
 
   return [
     { url: buildUrl('') },
+    { url: buildUrl('about/acknowledgements') },
+    { url: buildUrl('about/faqs') },
     { url: buildUrl('blog') },
     { url: buildUrl('components/application') },
     { url: buildUrl('components/marketing') },

@@ -1,10 +1,8 @@
 import { promises as fs } from 'node:fs'
 
-import { getPage, pagesDir } from '@service/database'
-import { formatSlug } from '@service/database/helpers'
+import { getAboutPage, formatSlug, pagesDir } from '@service/database'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
-import DescriptionList from '@component/DescriptionList'
 
 export async function generateStaticParams() {
   const pageFiles = await fs.readdir(pagesDir)
@@ -22,11 +20,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getPage(params.slug)
+  const { pageData } = await getAboutPage(params)
 
   return {
-    title: `${frontmatter.title} | HyperUI`,
-    description: frontmatter.description,
+    title: `${pageData.title} | HyperUI`,
+    description: pageData.description,
     alternates: {
       canonical: `/about/${params.slug}`,
     },
@@ -34,16 +32,14 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, readingTime, ...content } = await getPage(params.slug)
+  const { pageData, pageContent } = await getAboutPage(params)
 
   const aboutPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: frontmatter.title,
-    description: frontmatter.description,
+    name: pageData.title,
+    description: pageData.description,
     url: `https://www.hyperui.dev/about/${params.slug}`,
-    datePublished: frontmatter.published,
-    dateModified: frontmatter.updated,
   }
 
   return (
@@ -54,17 +50,9 @@ export default async function Page({ params }) {
       />
 
       <article className="prose mx-auto">
-        <h1>{frontmatter.title}</h1>
+        <h1>{pageData.title}</h1>
 
-        <DescriptionList
-          listItems={[
-            { label: 'Reading:', value: <time>{readingTime} min</time> },
-            { label: 'Published:', value: <time>{frontmatter.published}</time> },
-            { label: 'Updated:', value: <time>{frontmatter.updated}</time> },
-          ]}
-        />
-
-        <MdxRemoteRender mdxSource={content} />
+        <MdxRemoteRender mdxSource={pageContent} />
       </article>
     </div>
   )

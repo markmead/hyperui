@@ -111,7 +111,7 @@ export default function Search() {
           />
 
           <span className="pointer-events-none absolute inset-y-0 right-0 hidden size-[42px] place-content-center lg:grid">
-            <kbd className="grid size-6 place-content-center rounded-sm border border-stone-300 bg-stone-100 text-center text-xs/6 text-stone-700 shadow-sm">
+            <kbd className="grid size-6 place-content-center rounded-sm border border-stone-300 bg-stone-100 text-center text-xs/6 text-stone-700">
               /
             </kbd>
           </span>
