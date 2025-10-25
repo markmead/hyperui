@@ -8,64 +8,64 @@ import rehypeExternalLinks from 'rehype-external-links'
 const SORT_BY_DATE = 'SORT_BY_DATE'
 const SORT_BY_TITLE = 'SORT_BY_TITLE'
 
-export async function getPages(pagesDir = '', sortBy = '') {
-  if (!pagesDir) {
+export async function getListings(listingDir = '', sortBy = '') {
+  if (!listingDir) {
     return []
   }
 
   try {
-    const pageSlugs = await fs.readdir(pagesDir)
+    const listingSlugs = await fs.readdir(listingDir)
 
-    const pageItems = await Promise.all(
-      pageSlugs.map(async (pageSlug) => {
-        const pagePath = join(pagesDir, pageSlug)
-        const pageItem = await fs.readFile(pagePath, 'utf8')
+    const listingItems = await Promise.all(
+      listingSlugs.map(async (listingSlug) => {
+        const listingPath = join(listingDir, listingSlug)
+        const listingItem = await fs.readFile(listingPath, 'utf8')
 
-        const { data: frontmatter } = matter(pageItem)
+        const { data: frontmatter } = matter(listingItem)
 
         return {
           ...frontmatter,
-          slug: formatSlug(pageSlug),
+          slug: formatSlug(listingSlug),
         }
       })
     )
 
     if (sortBy === SORT_BY_DATE) {
-      return sortByDate(pageItems)
+      return sortByDate(listingItems)
     }
 
     if (sortBy === SORT_BY_TITLE) {
-      return sortByTitle(pageItems)
+      return sortByTitle(listingItems)
     }
 
-    return pageItems
+    return listingItems
   } catch {
     return []
   }
 }
 
-export async function getPage(pagesDir, pageSlug) {
-  if (!pagesDir || !pageSlug) {
+export async function getListing(listingDir, listingSlug) {
+  if (!listingDir || !listingSlug) {
     return {}
   }
 
   try {
-    const pagePath = join(pagesDir, `${pageSlug}.mdx`)
-    const pageItem = await fs.readFile(pagePath, 'utf8')
+    const listingPath = join(listingDir, `${listingSlug}.mdx`)
+    const listingItem = await fs.readFile(listingPath, 'utf8')
 
     let readingTime = 1
 
     try {
-      const { content } = matter(pageItem)
+      const { content: rawContent } = matter(listingItem)
 
-      const wordCount = content.split(/\s+/).filter(Boolean).length
+      const wordCount = rawContent.split(/\s+/).filter(Boolean).length
 
       readingTime = Math.max(1, Math.ceil(wordCount / 200))
     } catch {
       // We do nothing
     }
 
-    const mdxSource = await serialize(pageItem, {
+    const mdxSource = await serialize(listingItem, {
       parseFrontmatter: true,
       mdxOptions: {
         rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
@@ -76,41 +76,6 @@ export async function getPage(pagesDir, pageSlug) {
   } catch {
     return {}
   }
-}
-
-export async function getComponentItems(componentsDir, categorySlug) {
-  const componentsPath = join(componentsDir, categorySlug)
-
-  let componentSlugs = []
-
-  try {
-    componentSlugs = await fs.readdir(componentsPath)
-  } catch {
-    return []
-  }
-
-  return Promise.all(
-    componentSlugs.map(async (componentSlug) => {
-      const componentPath = join(componentsPath, componentSlug)
-
-      let componentItem = ''
-
-      try {
-        componentItem = await fs.readFile(componentPath, 'utf8')
-      } catch {
-        return {}
-      }
-
-      const { data: componentFrontmatter } = matter(componentItem)
-
-      return {
-        ...componentFrontmatter,
-        category: categorySlug,
-        id: `${categorySlug}-${formatSlug(componentSlug)}`,
-        slug: formatSlug(componentSlug),
-      }
-    })
-  )
 }
 
 export function sortByDate(dbItems) {
@@ -125,20 +90,26 @@ export function sortByTitle(dbItems) {
   })
 }
 
-export function flattenComponents(id, slug, frontmatter) {
-  const collectionCategory = id.split('-').at(0)
+export function formatCount(componentItems) {
+  return componentItems.reduce((componentCount, componentItem) => {
+    return componentCount + (componentItem.dark ? 2 : 1)
+  }, 0)
+}
 
-  return frontmatter.components.flatMap((componentItem, componentIndex) => {
+export function flattenComponents(collectionData) {
+  const collectionCategory = collectionData.id.split('-').at(0)
+
+  return collectionData.components.flatMap((componentItem, componentIndex) => {
     const componentId = componentIndex + 1
-    const componentKey = `${collectionCategory}-${slug}-${componentId}`
+    const componentKey = `${collectionCategory}-${collectionData.slug}-${componentId}`
 
     const componentData = {
       id: componentId,
       title: componentItem.title,
-      slug: slug,
+      slug: collectionData.slug,
       category: collectionCategory,
-      container: componentItem?.container || frontmatter?.container || '',
-      wrapper: componentItem?.wrapper || frontmatter?.wrapper || 'h-[400px] lg:h-[600px]',
+      container: componentItem?.container || collectionData?.container || '',
+      wrapper: componentItem?.wrapper || collectionData?.wrapper || 'h-[400px] lg:h-[600px]',
       contributors: componentItem?.contributors || ['markmead'],
       plugins: componentItem?.plugins || [],
       key: componentKey,

@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs'
 
-import { getPost, postsDir } from '@service/database/posts'
+import { getPost, postsDir } from '@service/database'
 import { formatSlug } from '@service/database/helpers'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'

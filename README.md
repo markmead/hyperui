@@ -67,8 +67,8 @@ HyperUI has a wide range of freely available components. These components includ
 - [Steps](https://www.hyperui.dev/components/application/steps)
 - [Tables](https://www.hyperui.dev/components/application/tables)
 - [Textareas](https://www.hyperui.dev/components/application/textareas)
-- [Timelines](https://www.hyperui.dev/components/application/timelines)
 - [Toggles](https://www.hyperui.dev/components/application/toggles)
+- [Timelines](https://www.hyperui.dev/components/application/timelines)
 - [Vertical Menu](https://www.hyperui.dev/components/application/vertical-menu)
 
 ### Marketing
@@ -82,9 +82,7 @@ HyperUI has a wide range of freely available components. These components includ
 - [CTAs](https://www.hyperui.dev/components/marketing/ctas)
 - [FAQs](https://www.hyperui.dev/components/marketing/faqs)
 - [Footers](https://www.hyperui.dev/components/marketing/footers)
-- [Headers](https://www.hyperui.dev/components/marketing/headers)
-- [Newsletter Signup](https://www.hyperui.dev/components/marketing/newsletter-signup)
-- [Polls](https://www.hyperui.dev/components/marketing/polls)
+- [Header](https://www.hyperui.dev/components/marketing/headers)
 - [Pricing](https://www.hyperui.dev/components/marketing/pricing)
 - [Product Cards](https://www.hyperui.dev/components/marketing/product-cards)
 - [Product Collections](https://www.hyperui.dev/components/marketing/product-collections)

@@ -1,18 +1,17 @@
 import { NextResponse } from 'next/server'
 
-import { getComponents } from '@service/database'
-import { getPosts } from '@service/database/posts'
+import { getComponents, getPosts } from '@service/database'
 
 export async function GET() {
   try {
     const [componentsByCategory, blogPosts] = await Promise.all([getComponents(), getPosts()])
 
-    const flatCollections = componentsByCategory.flatMap(({ category, components }) => {
-      return components.map((componentItem) => ({
+    const flatCollections = componentsByCategory.flatMap(({ componentItems, categoryTitle }) =>
+      componentItems.map((componentItem) => ({
         ...componentItem,
-        category: category.slug,
+        categoryTitle,
       }))
-    })
+    )
 
     return NextResponse.json({ collections: flatCollections, blogs: blogPosts })
   } catch {

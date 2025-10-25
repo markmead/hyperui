@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs'
 
-import { getAboutPage, pagesDir } from '@service/database/pages'
+import { getPage, pagesDir } from '@service/database'
 import { formatSlug } from '@service/database/helpers'
 
 import MdxRemoteRender from '@component/MdxRemoteRender'
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getAboutPage(params.slug)
+  const { frontmatter } = await getPage(params.slug)
 
   return {
     title: `${frontmatter.title} | HyperUI`,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { frontmatter, readingTime, ...content } = await getAboutPage(params.slug)
+  const { frontmatter, readingTime, ...content } = await getPage(params.slug)
 
   const aboutPageSchema = {
     '@context': 'https://schema.org',

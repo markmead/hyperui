@@ -1,6 +1,4 @@
-import { getAboutPages } from '@service/database/pages'
-import { getComponents } from '@service/database'
-import { getPosts } from '@service/database/posts'
+import { getComponents, getPosts, getPages } from '@service/database'
 
 function buildUrl(pagePath) {
   return `https://www.hyperui.dev/${pagePath}`
@@ -15,8 +13,8 @@ function buildSitemapEntry(pageUrl, pageUpdatedAt) {
 async function getComponentEntries() {
   const componentsByCategory = await getComponents()
 
-  return componentsByCategory.flatMap(({ components }) =>
-    components.map(({ category, slug }) => ({
+  return componentsByCategory.flatMap(({ componentItems }) =>
+    componentItems.map(({ category, slug }) => ({
       pageUrl: `components/${category}/${slug}`,
     }))
   )
@@ -32,7 +30,7 @@ async function getBlogEntries() {
 }
 
 async function getAboutEntries() {
-  const aboutPages = await getAboutPages()
+  const aboutPages = await getPages()
 
   return aboutPages.map(({ slug, updated }) => ({
     pageUrl: `about/${slug}`,

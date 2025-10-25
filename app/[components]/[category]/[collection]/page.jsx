@@ -37,11 +37,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { frontmatter } = await getCollection(params.category, params.collection)
+  const { collectionData } = await getCollection(params)
 
   return {
-    title: `Tailwind CSS ${frontmatter.title} | HyperUI`,
-    description: frontmatter.description,
+    title: `Tailwind CSS ${collectionData.title} | HyperUI`,
+    description: collectionData.description,
     alternates: {
       canonical: `/components/${params.category}/${params.collection}`,
     },
@@ -49,19 +49,17 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const collectionData = await getCollection(params.category, params.collection)
+  const { collectionData, collectionContent } = await getCollection(params)
 
-  const { id, slug, frontmatter } = collectionData
-
-  const flatComponents = flattenComponents(id, slug, frontmatter)
+  const flatComponents = flattenComponents(collectionData)
 
   const allComponents = await getComponents()
 
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Tailwind CSS ${frontmatter.title} Components`,
-    description: frontmatter.description,
+    name: `Tailwind CSS ${collectionData.title} Components`,
+    description: collectionData.description,
     url: `https://www.hyperui.dev/components/${params.category}/${params.collection}`,
     numberOfItems: flatComponents.length,
     itemListElement: flatComponents.map((componentItem, componentIndex) => ({
@@ -80,12 +78,15 @@ export default async function Page({ params }) {
       />
 
       <div className="prose prose-p:max-w-prose max-w-none">
-        <MdxRemoteRender mdxSource={collectionData} mdxScope={{ componentsData: flatComponents }} />
+        <MdxRemoteRender
+          mdxSource={collectionContent}
+          mdxScope={{ componentsData: flatComponents }}
+        />
       </div>
 
       <RelatedComponents
-        collectionId={id}
-        collectionTerms={frontmatter.terms}
+        collectionId={collectionData.id}
+        collectionTerms={collectionData.terms}
         componentItems={allComponents}
       />
     </div>

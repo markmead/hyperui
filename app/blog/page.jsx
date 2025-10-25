@@ -1,4 +1,4 @@
-import { getPosts } from '@service/database/posts'
+import { getPosts } from '@service/database'
 
 import BlogGrid from '@component/BlogGrid'
 

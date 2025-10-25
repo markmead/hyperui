@@ -3,49 +3,77 @@ import { promises as fs } from 'node:fs'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import matter from 'gray-matter'
-import rehypeExternalLinks from 'rehype-external-links'
 
-import { getComponentItems } from '@service/database/helpers'
+import { sortByTitle, formatSlug, formatCount } from '@service/database/helpers'
 
-const categorySlugs = ['application', 'marketing']
-const categoriesDir = join(process.cwd(), '/src/data/categories')
+export const categorySlugs = ['application', 'marketing']
 
+export const postsDir = join(process.cwd(), '/src/data/posts')
+export const pagesDir = join(process.cwd(), '/src/data/pages')
+export const categoriesDir = join(process.cwd(), '/src/data/categories')
 export const componentsDir = join(process.cwd(), '/src/data/components')
 
-export async function getCategory(categorySlug) {
+export async function getCategory({ category }) {
   try {
-    const categoryPath = join(categoriesDir, `${categorySlug}.mdx`)
+    const categoryPath = join(categoriesDir, `${category}.mdx`)
     const categoryItem = await fs.readFile(categoryPath, 'utf8')
 
-    const { data: categoryFrontmatter } = matter(categoryItem)
+    const componentsPath = join(componentsDir, category)
+    const componentSlugs = await fs.readdir(componentsPath)
 
-    const componentItems = await getComponentItems(componentsDir, categorySlug)
+    const { data: categoryData } = matter(categoryItem)
+
+    const componentItems = await Promise.all(
+      componentSlugs
+        .filter((componentSlug) => componentSlug.includes('.mdx'))
+        .map(async (componentSlug) => {
+          const componentPath = join(componentsPath, componentSlug)
+          const componentItem = await fs.readFile(componentPath, 'utf8')
+
+          const { data: componentData } = matter(componentItem)
+
+          const componentCount = formatCount(componentData.components)
+          const componentSlugFormatted = formatSlug(componentSlug)
+
+          return {
+            title: componentData.title,
+            slug: componentSlugFormatted,
+            category,
+            emoji: componentData.emoji,
+            count: componentCount,
+            tag: componentData.tag,
+            id: componentSlugFormatted,
+          }
+        })
+    )
+
+    sortByTitle(componentItems)
 
     return {
-      category: categoryFrontmatter,
-      components: componentItems,
+      categoryData,
+      componentItems,
     }
   } catch {
-    return { category: {}, components: [] }
+    return {}
   }
 }
 
-export async function getCollection(categorySlug, collectionSlug) {
+export async function getCollection({ category, collection }) {
   try {
-    const componentPath = join(componentsDir, categorySlug, `${collectionSlug}.mdx`)
+    const componentPath = join(componentsDir, category, `${collection}.mdx`)
     const componentItem = await fs.readFile(componentPath, 'utf8')
 
     const mdxSource = await serialize(componentItem, {
       parseFrontmatter: true,
-      mdxOptions: {
-        rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
-      },
     })
 
     return {
-      ...mdxSource,
-      id: `${categorySlug}-${collectionSlug}`,
-      slug: collectionSlug,
+      collectionData: {
+        ...mdxSource.frontmatter,
+        slug: collection,
+        id: `${category}-${collection}`,
+      },
+      collectionContent: mdxSource,
     }
   } catch {
     return {}
@@ -59,16 +87,41 @@ export async function getComponents() {
         const categoryPath = join(categoriesDir, `${categorySlug}.mdx`)
         const categoryItem = await fs.readFile(categoryPath, 'utf8')
 
-        const { data: categoryFrontmatter } = matter(categoryItem)
+        const { data: categoryData } = matter(categoryItem)
 
-        const componentItems = await getComponentItems(componentsDir, categorySlug)
+        const componentSlugs = await fs.readdir(join(componentsDir, categorySlug))
+
+        const componentItems = await Promise.all(
+          componentSlugs
+            .filter((componentSlug) => componentSlug.includes('.mdx'))
+            .map(async (componentSlug) => {
+              const componentPath = join(componentsDir, categorySlug, componentSlug)
+              const componentItem = await fs.readFile(componentPath, 'utf8')
+
+              const { data: componentData } = matter(componentItem)
+
+              const componentCount = formatCount(componentData.components)
+              const componentSlugFormatted = formatSlug(componentSlug)
+
+              return {
+                title: componentData.title,
+                slug: componentSlugFormatted,
+                category: categorySlug,
+                emoji: componentData.emoji,
+                count: componentCount,
+                tag: componentData.tag,
+                id: `${categorySlug}-${componentSlugFormatted}`,
+                terms: componentData.terms || [],
+              }
+            })
+        )
+
+        sortByTitle(componentItems)
 
         return {
-          category: {
-            ...categoryFrontmatter,
-            slug: categorySlug,
-          },
-          components: componentItems,
+          categoryTitle: categoryData?.title,
+          categorySlug,
+          componentItems,
         }
       })
     )
@@ -78,3 +131,6 @@ export async function getComponents() {
     return []
   }
 }
+
+export { getPosts, getPost } from '@service/database/posts'
+export { getPages, getPage } from '@service/database/pages'
