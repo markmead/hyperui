@@ -23,12 +23,12 @@ const { title, description, pubDate, updatedDate } = Astro.props
       <article class="prose mx-auto">
         <h1>{title}</h1>
 
-        <p class="flex items-center gap-2">
+        <p class="flex flex-col gap-2 sm:flex-row sm:items-center">
           <span>
             Published: <FormattedDate date={pubDate} />
           </span>
 
-          <span>/</span>
+          <span class="hidden sm:block">/</span>
 
           {
             updatedDate && (
