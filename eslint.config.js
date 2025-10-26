@@ -8,7 +8,7 @@ import tsEslint from 'typescript-eslint'
 
 export default defineConfig([
   {
-    ignores: ['**/dist', '**/node_modules', '**/.astro', '**/.github', '**/.changeset'],
+    ignores: ['**/dist', '**/node_modules', '**/.astro'],
   },
 
   baseEslint.configs.recommended,
