@@ -5,7 +5,7 @@ import ComponentPost from '../../../layouts/ComponentPost.astro'
 
 export async function getStaticPaths() {
   const collections = (await getCollection('collection')).filter(
-    (component) => component.data.category === 'marketing'
+    ({ data }) => data.category === 'marketing'
   )
 
   return collections.map((component) => ({

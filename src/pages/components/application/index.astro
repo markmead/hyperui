@@ -13,8 +13,9 @@ import Hero from '../../../components/Hero.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
 
 const components = (await getCollection('collection'))
-  .filter((component) => component.data.category === 'application')
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+  .filter(({ data }) => data.category === 'application')
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
 ---
 
 <!doctype html>
@@ -37,8 +38,11 @@ const components = (await getCollection('collection'))
       </Hero>
 
       <section class="mx-auto max-w-7xl px-4 pb-8">
-        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {components.map((component) => <ComponentCard component={component.data} />)}
+        <ul
+          aria-label="Application Components"
+          class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+        >
+          {components.map((component) => <ComponentCard component={component} />)}
         </ul>
       </section>
     </main>

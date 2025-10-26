@@ -13,7 +13,7 @@ interface Props {
   }[]
 }
 
-const { collections, posts } = Astro.props as Props
+const { collections, posts } = Astro.props
 ---
 
 <div
@@ -23,6 +23,7 @@ const { collections, posts } = Astro.props as Props
         results: [],
         collections: ${JSON.stringify(collections)},
         posts: ${JSON.stringify(posts)},
+
         init() {
           this.$watch('q', (value) => {
             if (value.length === 0) {
@@ -49,14 +50,19 @@ const { collections, posts } = Astro.props as Props
   class="relative"
 >
   <div class="relative">
-    <input
-      type="text"
-      x-model="q"
-      placeholder="Search..."
-      class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
-      autocomplete="off"
-      @keydown.prevent.window.slash="$el.focus()"
-    />
+    <label for="search">
+      <input
+        id="search"
+        type="text"
+        x-model="q"
+        placeholder="Search..."
+        class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+        autocomplete="off"
+        @keydown.prevent.window.slash="$el.focus()"
+      />
+
+      <span class="sr-only"> Search </span>
+    </label>
 
     <span class="absolute inset-y-0 right-0 grid size-10 place-content-center">
       <kbd
@@ -68,18 +74,25 @@ const { collections, posts } = Astro.props as Props
   </div>
 
   <div
+    aria-live="polite"
+    class="sr-only"
+    x-text="q.length > 0 ? (results.length === 0 ? 'No results found.' : `${results.length} results found.`) : ''"
+  >
+  </div>
+
+  <div
     x-cloak
     x-show="q.length > 0"
     x-transition
-    class="absolute top-full mt-2 max-h-72 w-full overflow-y-auto rounded-lg border border-stone-300 bg-white shadow-lg"
+    class="absolute top-full mt-2 w-full rounded-lg border border-stone-300 bg-white py-1 shadow-lg"
   >
     <template x-if="results.length === 0">
       <p class="p-4 text-stone-700">No results found.</p>
     </template>
 
-    <ul>
+    <ul role="listbox" class="max-h-72 divide-y divide-stone-200 overflow-y-auto">
       <template x-for="result in results" :key="result.slug">
-        <li>
+        <li role="option">
           <a
             :href="result.slug"
             class="block px-4 py-2 font-medium text-pretty text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0 focus:ring-inset"

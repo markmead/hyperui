@@ -12,12 +12,14 @@ import ComponentCard from '../components/ComponentCard.astro'
 const collections = await getCollection('collection')
 
 const application = collections
-  .filter((component) => component.data.category === 'application')
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+  .filter(({ data }) => data.category === 'application')
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
 
 const marketing = collections
-  .filter((component) => component.data.category === 'marketing')
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+  .filter(({ data }) => data.category === 'marketing')
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
 ---
 
 <html lang="en">
@@ -41,8 +43,11 @@ const marketing = collections
             <h2 class="text-xl font-bold sm:text-2xl">Application Components</h2>
           </a>
 
-          <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {application.map((component) => <ComponentCard component={component.data} />)}
+          <ul
+            aria-label="Application Components"
+            class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+          >
+            {application.map((component) => <ComponentCard component={component} />)}
           </ul>
         </section>
 
@@ -51,8 +56,11 @@ const marketing = collections
             <h2 class="text-xl font-bold sm:text-2xl">Marketing Components</h2>
           </a>
 
-          <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {marketing.map((component) => <ComponentCard component={component.data} />)}
+          <ul
+            aria-label="Marketing Components"
+            class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+          >
+            {marketing.map((component) => <ComponentCard component={component} />)}
           </ul>
         </section>
       </div>

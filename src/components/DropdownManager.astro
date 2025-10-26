@@ -5,8 +5,12 @@ import HeaderLink from './HeaderLink.astro'
 <div x-data="{ open: false }" class="relative block sm:hidden">
   <button
     type="button"
-    @click="open = !open"
+    aria-haspopup="true"
+    :aria-expanded="open"
+    aria-controls="dropdown-menu"
+    aria-label="Open site navigation"
     class="rounded border border-stone-200 bg-stone-50 p-2 text-stone-700 shadow-xs focus:ring-2 focus:ring-pink-500 focus:outline-0"
+    @click="open = !open"
   >
     <svg
       x-cloak
@@ -42,7 +46,9 @@ import HeaderLink from './HeaderLink.astro'
     x-cloak
     x-show="open"
     x-transition
-    class="absolute top-full right-0 mt-2 w-64 rounded-lg border border-stone-300 bg-white shadow-lg *:block *:px-4 *:py-2"
+    id="dropdown-menu"
+    role="menu"
+    class="absolute top-full right-0 mt-2 w-64 divide-y divide-stone-200 overflow-hidden rounded-lg border border-stone-300 bg-white shadow-lg *:block *:px-4 *:py-2"
   >
     <HeaderLink href="/components/application">Application</HeaderLink>
     <HeaderLink href="/components/marketing">Marketing</HeaderLink>

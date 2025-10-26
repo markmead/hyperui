@@ -16,9 +16,11 @@ export default defineConfig([
   ...astroEslint.configs.recommended,
 
   {
-    files: ['scripts/**'],
+    files: ['src/**', 'public/**'],
     languageOptions: {
-      globals: globals.node,
+      globals: {
+        ...globals.browser,
+      },
     },
   },
 ])

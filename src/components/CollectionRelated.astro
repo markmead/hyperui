@@ -12,19 +12,20 @@ interface Props {
 const { category, slug, terms } = Astro.props
 
 const components = (await getCollection('collection'))
-  .filter((component) => component.data.category === category)
-  .filter((component) => component.data.terms.some((term) => terms.includes(term)))
-  .filter((component) => component.data.slug !== slug)
+  .filter(({ data }) => data.category === category)
+  .filter(({ data }) => data.terms.some((term) => terms.includes(term)))
+  .filter(({ data }) => data.slug !== slug)
+  .map(({ data }) => data)
 ---
 
 {
   components.length > 0 && (
     <div class="border-t border-stone-100 pt-8">
-      <strong class="block text-xl font-bold">Related Components</strong>
+      <h2 class="text-xl font-bold">Related Components</h2>
 
       <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {components.map((component) => (
-          <ComponentCard component={component.data} />
+          <ComponentCard component={component} />
         ))}
       </ul>
     </div>

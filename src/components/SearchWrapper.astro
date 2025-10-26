@@ -3,20 +3,20 @@ import { getCollection } from 'astro:content'
 
 import SearchManager from './SearchManager.astro'
 
-const collections = (await getCollection('collection')).map((component) => {
+const collections = (await getCollection('collection')).map(({ data }) => {
   return {
-    title: component.data.title,
-    emoji: component.data.emoji,
-    terms: component.data.terms,
-    slug: `/components/${component.data.category}/${component.data.slug}`,
+    title: data.title,
+    emoji: data.emoji,
+    terms: data.terms,
+    slug: `/components/${data.category}/${data.slug}`,
   }
 })
 
-const posts = (await getCollection('blog')).map((post) => {
+const posts = (await getCollection('blog')).map(({ data }) => {
   return {
-    title: post.data.title,
-    emoji: post.data.emoji,
-    slug: `/blog/${post.data.slug}`,
+    title: data.title,
+    emoji: data.emoji,
+    slug: `/blog/${data.slug}`,
   }
 })
 ---

@@ -5,7 +5,7 @@ interface Props {
   components: CollectionEntry<'component'>[]
 }
 
-const { components } = Astro.props as Props
+const { components } = Astro.props
 
 const count = components.reduce(
   (total: number, component: CollectionEntry<'component'>['data']) => {
