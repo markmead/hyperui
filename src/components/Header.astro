@@ -6,10 +6,11 @@ import HeaderCta from './HeaderCta.astro'
 import HeaderAstro from './HeaderAstro.astro'
 import Social from './Social.astro'
 import SearchWrapper from './SearchWrapper.astro'
+import DropdownManager from './DropdownManager.astro'
 ---
 
 <header class="border-b border-stone-300 bg-white">
-  <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4">
+  <div class="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4">
     <nav class="flex flex-1 items-center gap-8">
       <h2 class="font-medium">
         <a href="/">
@@ -18,7 +19,7 @@ import SearchWrapper from './SearchWrapper.astro'
         </a>
       </h2>
 
-      <div class="flex gap-4">
+      <div class="hidden gap-4 sm:flex">
         <HeaderLink href="/components/application">Application</HeaderLink>
         <HeaderLink href="/components/marketing">Marketing</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
@@ -28,6 +29,8 @@ import SearchWrapper from './SearchWrapper.astro'
     <SearchWrapper />
 
     <Social />
+
+    <DropdownManager />
   </div>
 </header>
 

@@ -70,7 +70,7 @@ const { collections, posts } = Astro.props as Props
   <div
     x-cloak
     x-show="q.length > 0"
-    x-transition.duration.500ms
+    x-transition
     class="absolute top-full mt-2 max-h-72 w-full overflow-y-auto rounded-lg border border-stone-300 bg-white shadow-lg"
   >
     <template x-if="results.length === 0">

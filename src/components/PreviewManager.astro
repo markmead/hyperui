@@ -36,7 +36,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
 
     <button
       type="button"
-      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
+      class="hidden items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm md:inline-flex"
       :class="{ 'bg-stone-100': isCopied }"
       @click="copyHtml"
     >
@@ -44,7 +44,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
       <span x-text="isCopied ? 'Copied' : 'Copy'"></span>
     </button>
 
-    <div class="flex flex-1 justify-end gap-2">
+    <div class="hidden flex-1 justify-end gap-2 md:flex">
       <template x-for="breakpoint in breakpoints">
         <button
           type="button"
