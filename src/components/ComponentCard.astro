@@ -13,7 +13,7 @@ const { component } = Astro.props as Props
 <li>
   <a
     href={`/components/${component.category}/${component.slug}`}
-    class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 sm:p-6"
+    class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-pink-500 focus:outline-0 sm:p-6"
   >
     <span aria-hidden="true" class="text-xl">
       {component.emoji}

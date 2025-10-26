@@ -62,7 +62,10 @@ const formattedComponents = components
         {
           formattedComponents.map((component) => (
             <div id={component.id} class="space-y-4">
-              <a href={`#${component.id}`} class="inline-block">
+              <a
+                href={`#${component.id}`}
+                class="inline-block focus:ring-2 focus:ring-pink-500 focus:outline-0"
+              >
                 <h2 class="text-xl font-bold text-stone-900">{component.title}</h2>
               </a>
 

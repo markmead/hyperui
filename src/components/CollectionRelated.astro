@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
 
+import ComponentCard from './ComponentCard.astro'
+
 interface Props {
   category: string
   slug: string
@@ -20,18 +22,11 @@ const components = (await getCollection('collection'))
     <div class="border-t border-stone-100 pt-8">
       <strong class="block text-xl font-bold">Related Components</strong>
 
-      <div class="mt-4 flex flex-wrap gap-2">
+      <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {components.map((component) => (
-          <a
-            href={`/components/${component.data.category}/${component.data.slug}`}
-            class="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2 shadow-sm transition-colors hover:bg-stone-100"
-          >
-            <span aria-hidden="true">{component.data.emoji}</span>
-
-            <h3 class="font-medium text-stone-900">{component.data.title}</h3>
-          </a>
+          <ComponentCard component={component.data} />
         ))}
-      </div>
+      </ul>
     </div>
   )
 }

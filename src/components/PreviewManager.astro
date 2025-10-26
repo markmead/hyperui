@@ -16,8 +16,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
   <div class="flex items-center gap-4">
     <button
       type="button"
-      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
-      :class="{'bg-stone-100': isPreview }"
+      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
       @click="togglePreview"
     >
       <span aria-hidden="true" x-text="isPreview ? '👀' : '👾'"></span>
@@ -26,8 +25,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
 
     <button
       type="button"
-      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
-      :class="{'bg-stone-100': isRtl }"
+      class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
       @click="toggleDirection"
     >
       <span aria-hidden="true" x-text="isRtl ? '👈' : '👉'"> </span>
@@ -37,7 +35,6 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
     <button
       type="button"
       class="hidden items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm md:inline-flex"
-      :class="{ 'bg-stone-100': isCopied }"
       @click="copyHtml"
     >
       <span aria-hidden="true">📋</span>
@@ -48,8 +45,8 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
       <template x-for="breakpoint in breakpoints">
         <button
           type="button"
-          class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm"
-          :class="{ 'bg-stone-100': maxWidth === breakpoint.width }"
+          class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+          :class="{ 'border-blue-500 ring-1 ring-blue-500': maxWidth === breakpoint.width, 'border-stone-300': maxWidth !== breakpoint.width }"
           @click="setWidth(breakpoint.width)"
         >
           <span aria-hidden="true" x-text="breakpoint.emoji"></span>
@@ -90,7 +87,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
             href={`https://github.com/${contributor}`}
             target="_blank"
             rel="noreferrer"
-            class="font-medium underline transition-colors hover:text-stone-900"
+            class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
           >
             {contributor}
           </a>
@@ -114,7 +111,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
                 href={`https://www.npmjs.com/package/${plugin}`}
                 target="_blank"
                 rel="noreferrer"
-                class="font-medium underline transition-colors hover:text-stone-900"
+                class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
               >
                 {plugin}
               </a>

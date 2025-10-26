@@ -53,7 +53,7 @@ const { collections, posts } = Astro.props as Props
       type="text"
       x-model="q"
       placeholder="Search..."
-      class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm"
+      class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
       autocomplete="off"
       @keydown.prevent.window.slash="$el.focus()"
     />
@@ -82,7 +82,7 @@ const { collections, posts } = Astro.props as Props
         <li>
           <a
             :href="result.slug"
-            class="block px-4 py-2 font-medium text-pretty text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900"
+            class="block px-4 py-2 font-medium text-pretty text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0 focus:ring-inset"
           >
             <div class="flex gap-2">
               <span aria-hidden="true" x-text="result.emoji"></span>
