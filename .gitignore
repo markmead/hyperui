@@ -8,12 +8,11 @@ dist/
 node_modules/
 
 # logs
-yarn-debug.log*
-yarn-error.log*
+*.log
+*.tmp
 
 # environment variables
-.env
-.env.production
+.env*
 
 # macOS
 .DS_Store
