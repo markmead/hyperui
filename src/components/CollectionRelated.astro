@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content'
+
+import ComponentCard from './ComponentCard.astro'
+
+interface Props {
+  category: string
+  slug: string
+  terms: string[]
+}
+
+const { category, slug, terms } = Astro.props
+
+const components = (await getCollection('collection'))
+  .filter(({ data }) => data.category === category)
+  .filter(({ data }) => data.terms.some((term) => terms.includes(term)))
+  .filter(({ data }) => data.slug !== slug)
+  .map(({ data }) => data)
+---
+
+{
+  components.length > 0 && (
+    <div class="border-t border-stone-100 pt-8">
+      <h2 class="text-xl font-bold">Related Components</h2>
+
+      <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {components.map((component) => (
+          <ComponentCard component={component} />
+        ))}
+      </ul>
+    </div>
+  )
+}

@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  components: CollectionEntry<'component'>[]
+}
+
+const { components } = Astro.props
+
+const count = components.reduce(
+  (total: number, component: CollectionEntry<'component'>['data']) => {
+    if (component.dark) {
+      return total + 2
+    }
+
+    return total + 1
+  },
+  0
+)
+---
+
+<span>
+  {count} components
+</span>

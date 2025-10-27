@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme inline {
+  --font-sans: var(--font-inter);
+}

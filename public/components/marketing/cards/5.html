@@ -1,41 +1,105 @@
-<a href="#" class="group relative block h-64 sm:h-80 lg:h-96">
-  <span class="absolute inset-0 border-2 border-dashed border-black"></span>
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-md p-6">
+    <a href="#" class="block rounded-lg p-4 shadow-xs shadow-indigo-100">
+      <img
+        alt=""
+        src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        class="h-56 w-full rounded-md object-cover"
+      />
 
-  <div
-    class="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2"
-  >
-    <div
-      class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="size-10 sm:size-12"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
+      <div class="mt-2">
+        <dl>
+          <div>
+            <dt class="sr-only">Price</dt>
 
-      <h2 class="mt-4 text-xl font-medium sm:text-2xl">Go around the world</h2>
-    </div>
+            <dd class="text-sm text-gray-500">$240,000</dd>
+          </div>
 
-    <div
-      class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8"
-    >
-      <h3 class="mt-4 text-xl font-medium sm:text-2xl">Go around the world</h3>
+          <div>
+            <dt class="sr-only">Address</dt>
 
-      <p class="mt-4 text-sm sm:text-base">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, praesentium voluptatem
-        omnis atque culpa repellendus.
-      </p>
+            <dd class="font-medium">123 Wallaby Avenue, Park Road</dd>
+          </div>
+        </dl>
 
-      <p class="mt-8 font-bold">Read more</p>
-    </div>
-  </div>
-</a>
+        <div class="mt-6 flex items-center gap-8 text-xs">
+          <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+            <svg
+              class="size-4 text-indigo-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+              />
+            </svg>
+
+            <div class="mt-1.5 sm:mt-0">
+              <p class="text-gray-500">Parking</p>
+
+              <p class="font-medium">2 spaces</p>
+            </div>
+          </div>
+
+          <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+            <svg
+              class="size-4 text-indigo-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+              />
+            </svg>
+
+            <div class="mt-1.5 sm:mt-0">
+              <p class="text-gray-500">Bathroom</p>
+
+              <p class="font-medium">2 rooms</p>
+            </div>
+          </div>
+
+          <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+            <svg
+              class="size-4 text-indigo-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+
+            <div class="mt-1.5 sm:mt-0">
+              <p class="text-gray-500">Bedroom</p>
+
+              <p class="font-medium">4 rooms</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </body>
+</html>

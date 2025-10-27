@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content'
+
+import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../consts'
+
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import ComponentCard from '../components/ComponentCard.astro'
+
+const collections = await getCollection('collection')
+
+const application = collections
+  .filter(({ data }) => data.category === 'application')
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+
+const marketing = collections
+  .filter(({ data }) => data.category === 'marketing')
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE} />
+  </head>
+
+  <body class="font-sans antialiased">
+    <Header />
+
+    <main>
+      <Hero title="HyperUI" subtitle="Free Open Source Tailwind CSS v4 Components">
+        A collection of free, copy-paste Tailwind CSS components for building modern web
+        applications. From marketing pages to admin dashboards, find ready-to-use UI components that
+        speed up your development. No installation required.
+      </Hero>
+
+      <div class="mx-auto max-w-7xl space-y-8 px-4 pb-8">
+        <section>
+          <a href="/components/application" class="inline-block">
+            <h2 class="text-xl font-bold sm:text-2xl">Application Components</h2>
+          </a>
+
+          <ul
+            aria-label="Application Components"
+            class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+          >
+            {application.map((component) => <ComponentCard component={component} />)}
+          </ul>
+        </section>
+
+        <section>
+          <a href="/components/marketing" class="inline-block">
+            <h2 class="text-xl font-bold sm:text-2xl">Marketing Components</h2>
+          </a>
+
+          <ul
+            aria-label="Marketing Components"
+            class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+          >
+            {marketing.map((component) => <ComponentCard component={component} />)}
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

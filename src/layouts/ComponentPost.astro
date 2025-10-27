@@ -1,0 +1,92 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import PreviewWrapper from '../components/PreviewWrapper.astro'
+import CollectionRelated from '../components/CollectionRelated.astro'
+
+type Props = CollectionEntry<'collection'>['data']
+
+const { title, description, slug, category, wrapper, terms, components } = Astro.props
+
+const formattedComponents = components
+  .map((component, index) => {
+    const { dark, ...rest } = component
+
+    const baseComponent = {
+      ...rest,
+      id: `component-${index + 1}`,
+      dark: false,
+      index: index + 1,
+    }
+
+    if (!dark) {
+      return [baseComponent]
+    }
+
+    const contributors =
+      Object.prototype.toString.call(dark) === '[object Object]'
+        ? // @ts-expect-error We know dark is an object at this point.
+          dark.contributors
+        : component.contributors
+
+    return [
+      baseComponent,
+      {
+        ...rest,
+        contributors,
+        id: `component-${index + 1}-dark`,
+        dark: true,
+        index: index + 1,
+        title: `${component.title} (Dark)`,
+      },
+    ]
+  })
+  .flat()
+---
+
+<html lang="en" class="scroll-pt-16 scroll-smooth">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body class="font-sans antialiased">
+    <Header />
+
+    <main class="mx-auto max-w-7xl space-y-8 px-4 py-8">
+      <slot />
+
+      <div class="space-y-8">
+        {
+          formattedComponents.map((component) => (
+            <div id={component.id} class="space-y-4">
+              <a
+                href={`#${component.id}`}
+                class="inline-block focus:ring-2 focus:ring-pink-500 focus:outline-0"
+              >
+                <h2 class="text-xl font-bold text-stone-900">{component.title}</h2>
+              </a>
+
+              <PreviewWrapper
+                title={component.title}
+                category={category}
+                slug={slug}
+                wrapper={wrapper}
+                dark={component.dark}
+                plugins={component.plugins}
+                contributors={component.contributors}
+                index={component.index}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <CollectionRelated terms={terms} slug={slug} category={category} />
+    </main>
+
+    <Footer />
+  </body>
+</html>

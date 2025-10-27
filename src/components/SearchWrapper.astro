@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content'
+
+import SearchManager from './SearchManager.astro'
+
+const collections = (await getCollection('collection')).map(({ data }) => {
+  return {
+    title: data.title,
+    emoji: data.emoji,
+    terms: data.terms,
+    slug: `/components/${data.category}/${data.slug}`,
+  }
+})
+
+const posts = (await getCollection('blog')).map(({ data }) => {
+  return {
+    title: data.title,
+    emoji: data.emoji,
+    slug: `/blog/${data.slug}`,
+  }
+})
+---
+
+<div class="hidden md:block">
+  <SearchManager collections={collections} posts={posts} />
+</div>

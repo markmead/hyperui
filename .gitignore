@@ -1,31 +1,18 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# build output
+dist/
 
-# Dependencies
+# generated types
+.astro/
+
+# dependencies
 node_modules/
 
-# Next.js
-.next/
-out/
+# logs
+*.log
+*.tmp
 
-# Vercel
-.vercel/
+# environment variables
+.env*
 
 # macOS
 .DS_Store
-
-# ENVs
-.env*
-
-# CSS
-public/*.css
-
-# VS Code
-# VS Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
-.history/
-
-# Miscellaneous
-*.log
-*.tmp

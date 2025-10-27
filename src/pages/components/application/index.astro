@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content'
+
+import {
+  SEO_TITLE_APPLICATION_COMPONENTS,
+  SEO_DESCRIPTION_APPLICATION_COMPONENTS,
+} from '../../../consts'
+
+import BaseHead from '../../../components/BaseHead.astro'
+import Footer from '../../../components/Footer.astro'
+import Header from '../../../components/Header.astro'
+import Hero from '../../../components/Hero.astro'
+import ComponentCard from '../../../components/ComponentCard.astro'
+
+const components = (await getCollection('collection'))
+  .filter(({ data }) => data.category === 'application')
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={SEO_TITLE_APPLICATION_COMPONENTS}
+      description={SEO_DESCRIPTION_APPLICATION_COMPONENTS}
+    />
+  </head>
+
+  <body class="font-sans antialiased">
+    <Header />
+
+    <main>
+      <Hero title="Application" subtitle="Free Tailwind CSS Application Components">
+        Build powerful admin dashboards and web applications with production-ready UI components.
+        From data tables and forms to navigation menus and modals, each component is designed for
+        functionality and accessibility.
+      </Hero>
+
+      <section class="mx-auto max-w-7xl px-4 pb-8">
+        <ul
+          aria-label="Application Components"
+          class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+        >
+          {components.map((component) => <ComponentCard component={component} />)}
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

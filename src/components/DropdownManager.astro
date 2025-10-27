@@ -1,0 +1,63 @@
+---
+import HeaderLink from './HeaderLink.astro'
+---
+
+<div x-data="{ open: false }" class="relative block sm:hidden">
+  <button
+    type="button"
+    aria-haspopup="true"
+    :aria-expanded="open"
+    aria-controls="dropdown-menu"
+    aria-label="Open site navigation"
+    class="rounded border border-stone-200 bg-stone-50 p-2 text-stone-700 shadow-xs focus:ring-2 focus:ring-pink-500 focus:outline-0"
+    @click="open = !open"
+  >
+    <svg
+      x-cloak
+      x-show="!open"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+
+    <svg
+      x-cloak
+      x-show="open"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <div
+    x-cloak
+    x-show="open"
+    x-transition
+    id="dropdown-menu"
+    role="menu"
+    class="absolute top-full right-0 mt-2 w-64 divide-y divide-stone-200 overflow-hidden rounded-lg border border-stone-300 bg-white py-1 shadow-lg"
+  >
+    <HeaderLink class="block px-4 py-2 focus:ring-inset" href="/components/application">
+      Application
+    </HeaderLink>
+
+    <HeaderLink class="block px-4 py-2 focus:ring-inset" href="/components/marketing">
+      Marketing
+    </HeaderLink>
+
+    <HeaderLink class="block px-4 py-2 focus:ring-inset" href="/blog">Blog</HeaderLink>
+  </div>
+</div>

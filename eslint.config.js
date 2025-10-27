@@ -1,36 +1,26 @@
-import { FlatCompat } from '@eslint/eslintrc'
+// @ts-check
+import { defineConfig } from 'eslint/config'
 
-import js from '@eslint/js'
-import react from 'eslint-plugin-react'
-import unicorn from 'eslint-plugin-unicorn'
+import baseEslint from '@eslint/js'
+import globals from 'globals'
+import astroEslint from 'eslint-plugin-astro'
+import tsEslint from 'typescript-eslint'
 
-const flatCompat = new FlatCompat()
-
-const eslintConfig = [
+export default defineConfig([
   {
-    ignores: ['**/.next/**', '**/node_modules/**', '**/out/**'],
+    ignores: ['**/dist', '**/node_modules', '**/.astro'],
   },
 
-  js.configs.recommended,
-  react.configs.flat.recommended,
-  unicorn.configs.recommended,
+  baseEslint.configs.recommended,
+  ...tsEslint.configs.recommended,
+  ...astroEslint.configs.recommended,
 
   {
-    rules: {
-      'unicorn/better-regex': 'error',
-      'unicorn/no-keyword-prefix': 'error',
-      'unicorn/no-unused-properties': 'error',
-      'unicorn/consistent-function-scoping': 'off',
-      'unicorn/filename-case': 'off',
-      'unicorn/import-style': 'off',
-      'unicorn/no-array-reduce': 'off',
-      'unicorn/prevent-abbreviations': 'off',
+    files: ['src/**', 'public/**'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
     },
   },
-
-  ...flatCompat.config({
-    extends: ['next/core-web-vitals'],
-  }),
-]
-
-export default eslintConfig
+])

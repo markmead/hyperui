@@ -1,0 +1,71 @@
+---
+import '../styles/global.css'
+
+import { Font } from 'astro:assets'
+
+import OgImage from '../assets/og.jpg'
+
+import { SITE_TITLE } from '../consts'
+
+import type { ImageMetadata } from 'astro'
+
+interface Props {
+  title: string
+  description: string
+  image?: ImageMetadata
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const { title, description, image = OgImage } = Astro.props
+
+const pageTitle = `${title} | ${SITE_TITLE}`
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href={new URL('rss.xml', Astro.site)}
+/>
+
+<meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<title>{pageTitle}</title>
+<meta name="title" content={pageTitle} />
+<meta name="description" content={description} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:site_name" content={SITE_TITLE} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={pageTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<script is:inline src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
+<Font cssVariable="--font-inter" preload />
+
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+
+  @view-transition {
+    navigation: auto;
+  }
+</style>
