@@ -71,8 +71,8 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
       title={title}
       class:list={[
         'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300',
-        wrapper,
         dark ? 'bg-gray-900' : 'bg-white',
+        wrapper,
       ]}
       loading={index === 1 && !dark ? 'eager' : 'lazy'}
       x-ref="iframe"

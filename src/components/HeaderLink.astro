@@ -3,12 +3,15 @@ import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'a'>
 
-const { href, ...props } = Astro.props
+const { class: classNames = '', href, ...props } = Astro.props
 ---
 
 <a
   href={href}
-  class="font-medium text-stone-700 transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
+  class:list={[
+    'font-medium text-stone-700 transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0',
+    classNames
+  ]}
   {...props}
 >
   <slot />
