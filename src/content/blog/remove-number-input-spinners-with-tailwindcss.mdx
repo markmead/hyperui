@@ -1,83 +1,65 @@
 ---
-title: How to Remove Spinners on Number Input with Tailwind CSS (3 Levels) (v3)
-description: This guide will show you how to eliminate the spinners that appear on number
-  inputs using Tailwind CSS.
+title: How to remove the spinners on a number inputs with Tailwind CSS
+description: This guide will show you how to eliminate the spinners that appear on number inputs using Tailwind CSS v4 and  CSS techniques.
 slug: remove-number-input-spinners-with-tailwindcss
 emoji: 🎚️
 pubDate: 12/05/2022
-updatedDate: 12/05/2022
+updatedDate: 10/28/2025
 ---
 
 import BaseAd from '../../components/BaseAd.astro'
 
 <BaseAd />
 
-I recommend using
-[@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) when
-dealing with inputs. It provides excellent defaults and accelerates the styling
-process.
+If you've ever wanted to remove the spinners from a number input, you're not alone.
 
----
+While they can be useful, they can also be distracting or unwanted. Let's see how to remove them in Tailwind CSS.
 
-If you've ever wished to remove the spinners from a number input, you're not
-alone.
+## CSS Class
 
-While they can be useful, they can also be problematic. So let's eliminate them.
-
-## CSS Class (Level 1)
-
-This solution works regardless of the CSS framework you use.
+This solution works in any framework and uses CSS properties.
 
 ```css
 .no-spinner {
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .no-spinner::-webkit-outer-spin-button,
 .no-spinner::-webkit-inner-spin-button {
+  appearance: none;
   margin: 0;
-  -webkit-appearance: none;
 }
 ```
 
-You can now add the `no-spinner` class to your number inputs to remove the
-spinners.
+Add the `no-spinner` class to your number inputs to remove the spinners.
 
-## Tailwind CSS Class (Level 2)
+## Tailwind CSS Class
 
 ```css
 @layer components {
   .no-spinner {
-    -moz-appearance: textfield;
+    appearance: textfield;
   }
 
   .no-spinner::-webkit-outer-spin-button,
   .no-spinner::-webkit-inner-spin-button {
+    appearance: none;
     margin: 0;
-    -webkit-appearance: none;
   }
 }
 ```
 
-This solution integrates the `no-spinner` class into Tailwind CSS.
+This integrates the `no-spinner` class into Tailwind CSS v4. It will show up in Tailwind CSS Intellisense in VS Code.
 
-Now, it will appear as a suggested class when using
-[Tailwind CSS Intellisense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code).
-
-## Tailwind CSS Class Names (Level 3)
-
-Prepare yourself.
+## Tailwind CSS Inline
 
 ```html
 <input
   type="number"
-  class="[-moz-appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+  class="[appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
 />
 ```
 
-You can see this approach in action in this
-[quantity input component](/components/application/quantity-inputs#component-2).
-Don't worry, I've included the CSS snippet as well.
+[Take a look at the 3 examples here](https://play.tailwindcss.com/9lCLR4jK5d?layout=preview).
 
-That's all. Which approach should you use? I suggest adding a Tailwind CSS class
-with `@layer`, but the choice is up to you.
+That's all! Which approach should you use? I recommend adding a Tailwind CSS class with `@layer`, but the choice is yours.
