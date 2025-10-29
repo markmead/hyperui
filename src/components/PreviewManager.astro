@@ -35,8 +35,9 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
     </button>
 
     <span class="hidden md:block">
-      <span aria-live="polite" class="sr-only" x-text="isCopied ? 'Copied to clipboard.' : ''"
-      ></span>
+      <span x-cloak x-show="isCopied" aria-live="polite" class="sr-only">
+        Copied to clipboard.
+      </span>
 
       <button
         type="button"
@@ -109,27 +110,25 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
     }
   </p>
 
-  <p class="text-stone-700">
-    {
-      plugins && (
-        <>
-          Plugins:
-          {plugins
-            .map((plugin) => (
-              <a
-                href={`https://www.npmjs.com/package/${plugin}`}
-                target="_blank"
-                rel="noreferrer"
-                class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
-              >
-                {plugin}
-              </a>
-            ))
-            .reduce((prevPlugin, currentPlugin) => [prevPlugin, ', ', currentPlugin])}
-        </>
-      )
-    }
-  </p>
+  {
+    plugins && (
+      <p class="text-stone-700">
+        Plugins:
+        {plugins
+          .map((plugin) => (
+            <a
+              href={`https://www.npmjs.com/package/${plugin}`}
+              target="_blank"
+              rel="noreferrer"
+              class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
+            >
+              {plugin}
+            </a>
+          ))
+          .reduce((prevPlugin, currentPlugin) => [prevPlugin, ', ', currentPlugin])}
+      </p>
+    )
+  }
 </div>
 
 <script>

@@ -2,6 +2,14 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@view-transition {
+  navigation: auto;
+}
+
 @theme inline {
   --font-sans: var(--font-inter);
+}
+
+[x-cloak] {
+  display: none !important;
 }

@@ -56,16 +56,6 @@ const pageTitle = `${title} | ${SITE_TITLE}`
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
-<script is:inline src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+<script is:inline defer src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
 
 <Font cssVariable="--font-inter" preload />
-
-<style>
-  [x-cloak] {
-    display: none !important;
-  }
-
-  @view-transition {
-    navigation: auto;
-  }
-</style>
