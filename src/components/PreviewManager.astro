@@ -20,8 +20,8 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
       class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
       @click="togglePreview"
     >
-      <span aria-hidden="true" x-text="isPreview ? '👀' : '👾'"></span>
-      <span x-text="isPreview ? 'Preview' : 'HTML'"></span>
+      <span aria-hidden="true" x-text="isPreview ? '👀' : '👾'">👀</span>
+      <span x-text="isPreview ? 'Preview' : 'HTML'">Preview</span>
     </button>
 
     <button
@@ -30,8 +30,8 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
       class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
       @click="toggleDirection"
     >
-      <span aria-hidden="true" x-text="isRtl ? '👈' : '👉'"> </span>
-      <span x-text="isRtl ? 'RTL' : 'LTR'"></span>
+      <span aria-hidden="true" x-text="isRtl ? '👈' : '👉'">👉</span>
+      <span x-text="isRtl ? 'RTL' : 'LTR'">LTR</span>
     </button>
 
     <span class="hidden md:block">
@@ -46,7 +46,7 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
         @click="copyHtml"
       >
         <span aria-hidden="true">📋</span>
-        <span x-text="isCopied ? 'Copied' : 'Copy'"></span>
+        <span x-text="isCopied ? 'Copied' : 'Copy'">Copy</span>
       </button>
     </span>
 
