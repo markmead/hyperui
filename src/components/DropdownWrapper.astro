@@ -1,0 +1,10 @@
+---
+import DropdownMenu from './DropdownMenu.astro'
+import DropdownToggle from './DropdownToggle.astro'
+---
+
+<div x-data="{ open: false }" class="relative block sm:hidden">
+  <DropdownToggle />
+
+  <DropdownMenu />
+</div>
