@@ -1,0 +1,49 @@
+---
+interface Props {
+  src: string
+}
+
+const { src } = Astro.props
+---
+
+<preview-direction data-src={src}>
+  <button
+    type="button"
+    aria-label="Toggle direction"
+    aria-pressed="true"
+    class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+  >
+    <span data-emoji aria-hidden="true">👉</span>
+    <span data-text>LTR</span>
+  </button>
+</preview-direction>
+
+<script>
+  class PreviewDirection extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector('button') as HTMLButtonElement
+      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement
+      const text = button.querySelector('span[data-text]') as HTMLSpanElement
+
+      button.addEventListener('click', () => {
+        let ltr = button.getAttribute('aria-pressed') === 'true'
+
+        button.setAttribute('aria-pressed', ltr ? 'false' : 'true')
+
+        ltr = !ltr
+
+        emoji.textContent = ltr ? '👉' : '👈'
+        text.textContent = ltr ? 'LTR' : 'RTL'
+
+        document.dispatchEvent(
+          new CustomEvent(`preview:direction:${this.dataset.src}`, {
+            detail: { ltr },
+            bubbles: true,
+          })
+        )
+      })
+    }
+  }
+
+  customElements.define('preview-direction', PreviewDirection)
+</script>

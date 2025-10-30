@@ -1,5 +1,19 @@
 ---
-import PreviewManager from './PreviewManager.astro'
+import PreviewIframe from './PreviewIframe.astro'
+import PreviewBreakpoints from './PreviewBreakpoints.astro'
+import PreviewCode from './PreviewCode.astro'
+import PreviewView from './PreviewView.astro'
+import PreviewRefs from './PreviewRefs.astro'
+import PreviewDirection from './PreviewDirection.astro'
+import PreviewCopy from './PreviewCopy.astro'
+
+const breakpoints = [
+  { name: 'Mobile', emoji: '📱', width: '340px' },
+  { name: 'Small', emoji: '🐛', width: '640px' },
+  { name: 'Medium', emoji: '🦭', width: '768px' },
+  { name: 'Large', emoji: '🐴', width: '1024px' },
+  { name: 'Full', emoji: '🌕', width: '100%' },
+]
 
 interface Props {
   title: string
@@ -19,14 +33,18 @@ const src = dark
   : `/components/${category}/${slug}/${index}.html`
 ---
 
-<div>
-  <PreviewManager
-    src={src}
-    index={index}
-    title={title}
-    wrapper={wrapper}
-    dark={dark}
-    contributors={contributors}
-    plugins={plugins}
-  />
+<div class="space-y-4">
+  <div class="flex items-center gap-2">
+    <PreviewView src={src} />
+    <PreviewDirection src={src} />
+    <PreviewCopy src={src} />
+
+    <PreviewBreakpoints src={src} breakpoints={breakpoints} />
+  </div>
+
+  <PreviewIframe src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
+  <PreviewCode src={src} />
+
+  <PreviewRefs title="Contributors" url="https://github.com/" refs={contributors} />
+  <PreviewRefs title="Plugins" url="https://www.npmjs.com/package/" refs={plugins || []} />
 </div>

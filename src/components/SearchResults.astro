@@ -1,0 +1,110 @@
+---
+interface Collection {
+  title: string
+  emoji: string
+  terms: string[]
+  slug: string
+}
+
+interface Posts {
+  title: string
+  emoji: string
+  slug: string
+}
+
+interface Props {
+  collections: Array<Collection>
+  posts: Array<Posts>
+}
+
+const { collections, posts } = Astro.props
+---
+
+<search-results data-collections={JSON.stringify(collections)} data-posts={JSON.stringify(posts)}>
+  <div
+    data-container="false"
+    class="absolute top-full mt-2 w-full rounded-lg border border-stone-300 bg-white py-1 shadow-lg data-[container=false]:hidden data-[container=true]:block"
+  >
+    <p data-error="false" class="px-4 py-2 text-stone-700 data-[error=false]:hidden">
+      No results found.
+    </p>
+
+    <ul data-list role="listbox" class="max-h-72 divide-y divide-stone-200 overflow-y-auto"></ul>
+  </div>
+</search-results>
+
+<script>
+  class SearchResults extends HTMLElement {
+    connectedCallback() {
+      const collections = JSON.parse(this.dataset.collections || '[]')
+      const posts = JSON.parse(this.dataset.posts || '[]')
+
+      const container = this.querySelector('[data-container]') as HTMLElement
+      const error = this.querySelector('[data-error]') as HTMLElement
+      const ul = this.querySelector('[data-list]') as HTMLUListElement
+
+      document.addEventListener('input:escape', () => {
+        ul.innerHTML = ''
+
+        error.setAttribute('data-error', 'false')
+        container.setAttribute('data-container', 'false')
+      })
+
+      document.addEventListener('input:search', (event) => {
+        const { detail } = event as CustomEvent
+
+        const query = detail.value.toLowerCase()
+
+        if (!query) {
+          ul.innerHTML = ''
+
+          error.setAttribute('data-error', 'false')
+          container.setAttribute('data-container', 'false')
+
+          return
+        }
+
+        container.setAttribute('data-container', 'true')
+
+        const results = [...collections, ...posts].filter(({ title, terms = [] }) => {
+          const includesTitle = title.toLowerCase().includes(query)
+          const includesTerms = terms.length
+            ? terms.some((term: string) => term.toLowerCase().includes(query))
+            : false
+
+          return includesTitle || includesTerms
+        })
+
+        if (results.length === 0) {
+          ul.innerHTML = ''
+
+          error.setAttribute('data-error', 'true')
+
+          return
+        }
+
+        ul.innerHTML = results
+          .map(
+            ({ title, emoji, slug }) => `
+          <li role="option">
+            <a
+              href="${slug}"
+              class="block px-4 py-2 font-medium text-pretty text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0 focus:ring-inset"
+            >
+              <div class="flex gap-2">
+                <span aria-hidden="true">${emoji}</span>
+                <span>${title}</span>
+              </div>
+            </a>
+          </li>
+        `
+          )
+          .join('')
+
+        error.setAttribute('data-error', 'false')
+      })
+    }
+  }
+
+  customElements.define('search-results', SearchResults)
+</script>

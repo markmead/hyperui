@@ -1,0 +1,67 @@
+<dropdown-button>
+  <button
+    type="button"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="dropdown-menu"
+    aria-label="Open navigation"
+    class="rounded border border-stone-200 bg-stone-50 p-2 text-stone-700 shadow-xs focus:ring-2 focus:ring-pink-500 focus:outline-0"
+  >
+    <svg
+      data-open="false"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5 data-[open=false]:block data-[open=true]:hidden"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+
+    <svg
+      data-open="false"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5 data-[open=false]:hidden data-[open=true]:block"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+</dropdown-button>
+
+<script>
+  class DropdownButton extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector('button') as HTMLButtonElement
+      const svgs = button.querySelectorAll('svg')
+
+      let open = false
+
+      button.addEventListener('click', () => {
+        open = !open
+
+        button.setAttribute('aria-expanded', open ? 'true' : 'false')
+
+        svgs.forEach((svg) => {
+          svg.setAttribute('data-open', open ? 'true' : 'false')
+        })
+
+        this.dispatchEvent(
+          new CustomEvent('dropdown:toggle', {
+            detail: { open },
+            bubbles: true,
+          })
+        )
+      })
+    }
+  }
+
+  customElements.define('dropdown-button', DropdownButton)
+</script>

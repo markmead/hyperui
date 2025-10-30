@@ -1,0 +1,58 @@
+---
+interface Props {
+  src: string
+  breakpoints: Array<{ name: string; width: string; emoji: string }>
+}
+
+const { src, breakpoints } = Astro.props
+---
+
+<preview-breakpoints data-src={src} class="hidden flex-1 justify-end md:flex">
+  <div class="flex gap-2">
+    {
+      breakpoints.map(({ name, width, emoji }) => (
+        <button
+          data-breakpoint={width}
+          data-active={width === '100%' ? 'true' : 'false'}
+          aria-pressed={width === '100%' ? 'true' : 'false'}
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+        >
+          <span aria-hidden="true">{emoji}</span>
+          <span>{name}</span>
+        </button>
+      ))
+    }
+  </div>
+</preview-breakpoints>
+
+<script>
+  class PreviewBreakpoints extends HTMLElement {
+    connectedCallback() {
+      const buttons = this.querySelectorAll('button[data-breakpoint]')
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const width = button.getAttribute('data-breakpoint')
+
+          buttons.forEach((btn) => {
+            btn.setAttribute('data-active', 'false')
+            btn.setAttribute('aria-pressed', 'false')
+          })
+
+          button.setAttribute('data-active', 'true')
+          button.setAttribute('aria-pressed', 'true')
+
+          this.dispatchEvent(
+            new CustomEvent(`breakpoint:change:${this.dataset.src}`, {
+              detail: { width },
+              bubbles: true,
+            })
+          )
+        })
+      })
+    }
+  }
+
+  customElements.define('preview-breakpoints', PreviewBreakpoints)
+</script>

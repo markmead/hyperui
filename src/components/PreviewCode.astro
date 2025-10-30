@@ -1,0 +1,46 @@
+---
+interface Props {
+  src: string
+}
+
+const { src } = Astro.props
+---
+
+<preview-code data-src={src} class="block">
+  <div
+    data-preview="true"
+    class="prose prose-pre:m-0 prose-pre:rounded-xl prose-pre:shadow-sm max-w-none data-[preview=true]:hidden"
+  >
+    <div data-html></div>
+  </div>
+</preview-code>
+
+<script>
+  import { codeToHtml } from 'shiki'
+
+  class PreviewCode extends HTMLElement {
+    connectedCallback() {
+      const wrapper = this.querySelector('[data-preview]') as HTMLDivElement
+      const container = this.querySelector('[data-html]') as HTMLDivElement
+
+      document.addEventListener(`iframe:loaded:${this.dataset.src}`, async (event) => {
+        const { detail } = event as CustomEvent
+
+        const html = await codeToHtml(detail.content, {
+          lang: 'html',
+          theme: 'github-dark',
+        })
+
+        container.innerHTML = html
+      })
+
+      document.addEventListener(`preview:view:${this.dataset.src}`, async (event) => {
+        const { detail } = event as CustomEvent
+
+        wrapper.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
+      })
+    }
+  }
+
+  customElements.define('preview-code', PreviewCode)
+</script>
