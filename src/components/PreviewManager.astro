@@ -87,48 +87,6 @@ const { src, index, title, wrapper, dark, contributors, plugins } = Astro.props
   >
     <div x-html="htmlHighlighted"></div>
   </div>
-
-  <p class="text-stone-700">
-    Contributors:
-    {
-      contributors
-        .map((contributor) => (
-          <a
-            href={`https://github.com/${contributor}`}
-            target="_blank"
-            rel="noreferrer"
-            class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
-          >
-            {contributor}
-          </a>
-        ))
-        .reduce((prevContributor, currentContributor) => [
-          prevContributor,
-          ', ',
-          currentContributor,
-        ])
-    }
-  </p>
-
-  {
-    plugins && (
-      <p class="text-stone-700">
-        Plugins:
-        {plugins
-          .map((plugin) => (
-            <a
-              href={`https://www.npmjs.com/package/${plugin}`}
-              target="_blank"
-              rel="noreferrer"
-              class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
-            >
-              {plugin}
-            </a>
-          ))
-          .reduce((prevPlugin, currentPlugin) => [prevPlugin, ', ', currentPlugin])}
-      </p>
-    )
-  }
 </div>
 
 <script>

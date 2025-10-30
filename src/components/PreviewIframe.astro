@@ -1,0 +1,95 @@
+---
+interface Props {
+  src: string
+  title: string
+  dark?: boolean
+  wrapper?: string
+  index?: number
+}
+
+const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
+---
+
+<preview-iframe data-src={src} class="block">
+  <iframe
+    data-preview="true"
+    src={src}
+    title={title}
+    class:list={[
+      'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
+      dark ? 'bg-gray-900' : 'bg-white',
+      wrapper,
+    ]}
+    style="max-width: 100%;"
+    loading={index === 1 && !dark ? 'lazy' : 'lazy'}></iframe>
+</preview-iframe>
+
+<script>
+  class PreviewIframe extends HTMLElement {
+    connectedCallback() {
+      const wrapper = this.querySelector('[data-preview]') as HTMLDivElement
+      const iframe = this.querySelector('iframe') as HTMLIFrameElement
+      const html = ''
+
+      const dispatchLoadedEvent = () => {
+        const content = iframe.contentDocument || iframe.contentWindow?.document
+
+        this.dispatchEvent(
+          new CustomEvent(`iframe:loaded:${this.dataset.src}`, {
+            detail: {
+              content: content?.body?.innerHTML
+                .split('\n')
+                .map((line) => line.slice(4))
+                .join('\n')
+                .trim(),
+            },
+            bubbles: true,
+          })
+        )
+      }
+
+      iframe.addEventListener('load', dispatchLoadedEvent)
+
+      if (
+        iframe.contentDocument &&
+        iframe.contentDocument.readyState === 'complete' &&
+        iframe.contentDocument.body.innerHTML.trim() !== ''
+      ) {
+        dispatchLoadedEvent()
+      }
+
+      document.addEventListener(`breakpoint:change:${this.dataset.src}`, (event) => {
+        const { detail } = event as CustomEvent
+
+        iframe.style.maxWidth = detail.width
+      })
+
+      document.addEventListener(`preview:view:${this.dataset.src}`, (event) => {
+        const { detail } = event as CustomEvent
+
+        wrapper.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
+      })
+
+      document.addEventListener(`preview:direction:${this.dataset.src}`, (event) => {
+        const { detail } = event as CustomEvent
+
+        const content = iframe.contentDocument || iframe.contentWindow?.document
+
+        content?.documentElement.setAttribute('dir', detail.ltr ? 'ltr' : 'rtl')
+      })
+
+      document.addEventListener(`preview:copy:${this.dataset.src}`, () => {
+        const content = iframe.contentDocument || iframe.contentWindow?.document
+        const html = content?.body?.innerHTML
+          .split('\n')
+          .map((line) => line.slice(4))
+          .join('\n')
+          .trim()
+
+        navigator.clipboard.writeText(html || '')
+      })
+    }
+  }
+
+  customElements.define('preview-iframe', PreviewIframe)
+</script>

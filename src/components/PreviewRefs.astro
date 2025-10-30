@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string
+  url: string
+  refs: string[]
+}
+
+const { title, url, refs } = Astro.props
+---
+
+<preview-refs class="block">
+  {
+    refs.length ? (
+      <p class="text-stone-700">
+        {title}:
+        {refs
+          .map((ref) => (
+            <a
+              href={`${url}${ref}`}
+              target="_blank"
+              rel="noreferrer"
+              class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
+            >
+              {ref}
+            </a>
+          ))
+          .reduce((prevRef, currentRef) => [prevRef, ', ', currentRef])}
+      </p>
+    ) : null
+  }
+</preview-refs>
+
+<script>
+  class PreviewRefs extends HTMLElement {
+    connectedCallback() {}
+  }
+
+  customElements.define('preview-refs', PreviewRefs)
+</script>
