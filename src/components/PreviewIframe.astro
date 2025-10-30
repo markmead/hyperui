@@ -29,7 +29,6 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
     connectedCallback() {
       const wrapper = this.querySelector('[data-preview]') as HTMLDivElement
       const iframe = this.querySelector('iframe') as HTMLIFrameElement
-      const html = ''
 
       const dispatchLoadedEvent = () => {
         const content = iframe.contentDocument || iframe.contentWindow?.document
