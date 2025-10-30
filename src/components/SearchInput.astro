@@ -1,0 +1,46 @@
+<search-input>
+  <label for="search">
+    <input
+      id="search"
+      type="text"
+      placeholder="Search..."
+      class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+      autocomplete="off"
+    />
+
+    <span class="sr-only"> Search </span>
+  </label>
+</search-input>
+
+<script>
+  class SearchInput extends HTMLElement {
+    connectedCallback() {
+      const input = this.querySelector('input[type="text"]') as HTMLInputElement
+
+      input.addEventListener('input', () => {
+        this.dispatchEvent(
+          new CustomEvent('input:search', {
+            bubbles: true,
+            detail: { value: input.value },
+          })
+        )
+      })
+
+      input.addEventListener('keydown', (event) => {
+        if (event?.key !== 'Escape') {
+          return
+        }
+
+        input.blur()
+
+        this.dispatchEvent(
+          new CustomEvent('input:escape', {
+            bubbles: true,
+          })
+        )
+      })
+    }
+  }
+
+  customElements.define('search-input', SearchInput)
+</script>

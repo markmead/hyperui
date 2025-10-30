@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
 
-import SearchManager from './SearchManager.astro'
+import SearchInput from './SearchInput.astro'
+import SearchResults from './SearchResults.astro'
 
 const collections = (await getCollection('collection')).map(({ data }) => {
   return {
@@ -21,6 +22,7 @@ const posts = (await getCollection('blog')).map(({ data }) => {
 })
 ---
 
-<div class="hidden md:block">
-  <SearchManager collections={collections} posts={posts} />
+<div class="relative hidden md:block">
+  <SearchInput />
+  <SearchResults collections={collections} posts={posts} />
 </div>
