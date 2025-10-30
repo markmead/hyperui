@@ -7,12 +7,10 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 import { defineConfig, fontProviders } from 'astro/config'
 
-import alpinejs from '@astrojs/alpinejs'
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hyperui.dev',
-  integrations: [mdx(), sitemap(), alpinejs()],
+  integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
