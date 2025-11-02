@@ -39,7 +39,10 @@ const { collections, posts } = Astro.props
     private collectionItems: Result[] = []
     private postItems: Result[] = []
 
+    private searchResults: Result[] = []
+
     private escapeHandler: (() => void) | null = null
+    private enterHandler: (() => void) | null = null
     private searchHandler: ((searchEvent: Event) => void) | null = null
 
     connectedCallback() {
@@ -59,10 +62,24 @@ const { collections, posts } = Astro.props
       }
 
       this.escapeHandler = () => {
+        this.searchResults = []
+
         resultsEl.innerHTML = ''
 
         containerEl.setAttribute('data-container', 'false')
         errorEl.setAttribute('data-error', 'false')
+      }
+
+      this.enterHandler = () => {
+        if (this.searchResults.length !== 1) {
+          return
+        }
+
+        const [searchResult] = this.searchResults
+
+        const returnUrl = new URL(searchResult.slug, globalThis.location.href)
+
+        globalThis.location.href = returnUrl.toString()
       }
 
       this.searchHandler = (searchEvent: Event) => {
@@ -70,6 +87,8 @@ const { collections, posts } = Astro.props
         const searchQuery = searchEventTyped.detail.value.toLowerCase()
 
         if (!searchQuery) {
+          this.searchResults = []
+
           resultsEl.innerHTML = ''
 
           containerEl.setAttribute('data-container', 'false')
@@ -93,12 +112,16 @@ const { collections, posts } = Astro.props
         )
 
         if (searchResults.length === 0) {
+          this.searchResults = []
+
           resultsEl.innerHTML = ''
 
           errorEl.setAttribute('data-error', 'true')
 
           return
         }
+
+        this.searchResults = searchResults
 
         resultsEl.innerHTML = searchResults
           .map(({ title, slug, emoji }) => {
@@ -122,15 +145,18 @@ const { collections, posts } = Astro.props
       }
 
       document.addEventListener('input:escape', this.escapeHandler)
+      document.addEventListener('input:enter', this.enterHandler)
       document.addEventListener('input:search', this.searchHandler)
     }
 
     disconnectedCallback() {
-      if (this.escapeHandler && this.searchHandler) {
+      if (this.escapeHandler && this.enterHandler && this.searchHandler) {
         document.removeEventListener('input:escape', this.escapeHandler)
+        document.removeEventListener('input:enter', this.enterHandler)
         document.removeEventListener('input:search', this.searchHandler)
 
         this.escapeHandler = null
+        this.enterHandler = null
         this.searchHandler = null
       }
 

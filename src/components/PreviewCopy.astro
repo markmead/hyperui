@@ -23,8 +23,8 @@ const { src } = Astro.props
 <script>
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
-    private timeoutId: number | null = null
     private contentSrc: string | null = null
+    private timeoutId: ReturnType<typeof setTimeout> | null = null
 
     private clickHandler: (() => void) | null = null
 
@@ -70,7 +70,7 @@ const { src } = Astro.props
 
         buttonEl.setAttribute('aria-pressed', 'true')
 
-        this.timeoutId = window.setTimeout(() => {
+        this.timeoutId = globalThis.setTimeout(() => {
           if (this.isConnected) {
             buttonEmoji.textContent = '📋'
             buttonText.textContent = 'Copy'

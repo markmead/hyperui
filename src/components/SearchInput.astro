@@ -36,13 +36,23 @@
       this.keydownHandler = (keyboardEvent: KeyboardEvent) => {
         const pressedKey = keyboardEvent.key
 
-        if (pressedKey !== 'Escape') {
+        if (pressedKey === 'Escape') {
+          inputEl.blur()
+
+          this.dispatchEvent(new CustomEvent('input:escape', { bubbles: true }))
+
           return
         }
 
-        inputEl.blur()
+        if (pressedKey === 'Enter') {
+          keyboardEvent.preventDefault()
 
-        this.dispatchEvent(new CustomEvent('input:escape', { bubbles: true }))
+          this.dispatchEvent(new CustomEvent('input:enter', { bubbles: true }))
+
+          return
+        }
+
+        return
       }
 
       inputEl.addEventListener('input', this.inputHandler)

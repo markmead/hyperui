@@ -21,7 +21,6 @@ export default defineConfig({
     syntaxHighlight: false,
     rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
   },
-
   experimental: {
     fonts: [
       {
