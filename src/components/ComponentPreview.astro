@@ -39,9 +39,9 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
 
-    private breakpointHandler: ((event: Event) => void) | null = null
-    private viewHandler: ((event: Event) => void) | null = null
-    private directionHandler: ((event: Event) => void) | null = null
+    private breakpointHandler: ((breakpointEvent: Event) => void) | null = null
+    private viewHandler: ((viewEvent: Event) => void) | null = null
+    private directionHandler: ((directionEvent: Event) => void) | null = null
     private copyHandler: (() => void) | null = null
 
     connectedCallback() {
@@ -85,12 +85,18 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.viewHandler = async (viewEvent: Event) => {
+      this.viewHandler = (viewEvent: Event) => {
         const isPreviewing = (viewEvent as CustomEvent).detail.previewing
+
         const previewEls = this.querySelectorAll('[data-preview]')
 
         if (!isPreviewing && !this.contentHtml) {
-          await this.fetchAndDisplayCode()
+          if (this.iframeEl?.contentDocument) {
+            const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
+
+            this.contentHtml = this.sanitizeContent((docClone as Document).body.innerHTML)
+            this.previewEl!.innerText = this.contentHtml
+          }
         }
 
         previewEls.forEach((previewEl) => {
@@ -124,39 +130,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
     }
 
-    private async fetchAndDisplayCode() {
-      try {
-        const contentResponse = await fetch(this.contentSrc!)
-
-        if (!contentResponse.ok) {
-          return
-        }
-
-        const contentHtml = await contentResponse.text()
-
-        const bodyContent = this.extractBodyContent(contentHtml)
-        const sanitizedContent = this.sanitizeContent(bodyContent)
-
-        this.contentHtml = sanitizedContent
-
-        if (this.previewEl) {
-          this.previewEl.textContent = sanitizedContent
-        }
-      } catch {
-        // We do nothing
-      }
-    }
-
-    private extractBodyContent(contentHtml: string): string {
-      const domParser = new DOMParser()
-      const domDoc = domParser.parseFromString(contentHtml, 'text/html')
-
-      return domDoc.body ? domDoc.body.innerHTML : contentHtml
-    }
-
     private sanitizeContent(contentHtml: string): string {
-      const INDENTATION_SPACES = 2
-
       return contentHtml
         .split('\n')
         .map((htmlLine) => htmlLine.replace(/^\s{4}/, ''))
