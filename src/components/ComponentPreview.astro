@@ -144,11 +144,11 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         return
       }
 
-      this.isLoaded = true
-
       const sanitized = this.sanitizeContent(content.body.innerHTML)
 
       await this.renderCode(this.code, sanitized)
+
+      this.isLoaded = true
     }
 
     private getIframeContent(): Document | null {
