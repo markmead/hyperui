@@ -9,6 +9,7 @@ interface Collection {
 interface Post {
   title: string
   emoji: string
+  terms: string[]
   slug: string
 }
 
@@ -35,22 +36,34 @@ const { collections, posts } = Astro.props
 
 <script>
   class SearchResults extends HTMLElement {
+    private escapeHandler: ((event: Event) => void) | null = null
+    private searchHandler: ((event: Event) => void) | null = null
+    private collections: Array<{ title: string; emoji: string; slug: string }> = []
+    private posts: Array<{ title: string; emoji: string; slug: string }> = []
+
     connectedCallback() {
-      const collections = JSON.parse(this.dataset.collections || '[]')
-      const posts = JSON.parse(this.dataset.posts || '[]')
+      const container = this.querySelector('[data-container]')
+      const error = this.querySelector('[data-error]')
+      const ul = this.querySelector('[data-list]')
 
-      const container = this.querySelector('[data-container]') as HTMLElement
-      const error = this.querySelector('[data-error]') as HTMLElement
-      const ul = this.querySelector('[data-list]') as HTMLUListElement
+      if (!container || !error || !ul) {
+        return
+      }
 
-      document.addEventListener('input:escape', () => {
+      try {
+        this.collections = JSON.parse(this.dataset.collections || '[]')
+        this.posts = JSON.parse(this.dataset.posts || '[]')
+      } catch {
+        return
+      }
+
+      this.escapeHandler = () => {
         ul.innerHTML = ''
-
         container.setAttribute('data-container', 'false')
         error.setAttribute('data-error', 'false')
-      })
+      }
 
-      document.addEventListener('input:search', (event) => {
+      this.searchHandler = (event: Event) => {
         const { detail } = event as CustomEvent
 
         const query = detail.value.toLowerCase()
@@ -66,10 +79,10 @@ const { collections, posts } = Astro.props
 
         container.setAttribute('data-container', 'true')
 
-        const results = [...collections, ...posts].filter(({ title, terms = [] }) => {
+        const results = [...this.collections, ...this.posts].filter(({ title, terms = [] }) => {
           const includesTitle = title.toLowerCase().includes(query)
-          const includesTerms = terms.length
-            ? terms.some((term: string) => term.toLowerCase().includes(query))
+          const includesTerms = (terms as string[]).length
+            ? (terms as string[]).some((term: string) => term.toLowerCase().includes(query))
             : false
 
           return includesTitle || includesTerms
@@ -102,7 +115,22 @@ const { collections, posts } = Astro.props
           .join('')
 
         error.setAttribute('data-error', 'false')
-      })
+      }
+
+      document.addEventListener('input:escape', this.escapeHandler)
+      document.addEventListener('input:search', this.searchHandler)
+    }
+
+    disconnectedCallback() {
+      if (this.escapeHandler && this.searchHandler) {
+        document.removeEventListener('input:escape', this.escapeHandler)
+        document.removeEventListener('input:search', this.searchHandler)
+        this.escapeHandler = null
+        this.searchHandler = null
+      }
+
+      this.collections = []
+      this.posts = []
     }
   }
 

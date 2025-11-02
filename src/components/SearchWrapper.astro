@@ -17,6 +17,7 @@ const posts = (await getCollection('blog')).map(({ data }) => {
   return {
     title: data.title,
     emoji: data.emoji,
+    terms: data.terms,
     slug: `/blog/${data.slug}`,
   }
 })

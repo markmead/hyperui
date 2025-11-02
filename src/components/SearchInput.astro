@@ -14,10 +14,17 @@
 
 <script>
   class SearchInput extends HTMLElement {
-    connectedCallback() {
-      const input = this.querySelector('input') as HTMLInputElement
+    private inputHandler: ((event: Event) => void) | null = null
+    private keydownHandler: ((event: KeyboardEvent) => void) | null = null
 
-      input.addEventListener('input', () => {
+    connectedCallback() {
+      const input = this.querySelector('input')
+
+      if (!input) {
+        return
+      }
+
+      this.inputHandler = () => {
         this.dispatchEvent(
           new CustomEvent('input:search', {
             bubbles: true,
@@ -26,9 +33,9 @@
             },
           })
         )
-      })
+      }
 
-      input.addEventListener('keydown', (event) => {
+      this.keydownHandler = (event: KeyboardEvent) => {
         if (event?.key !== 'Escape') {
           return
         }
@@ -40,7 +47,21 @@
             bubbles: true,
           })
         )
-      })
+      }
+
+      input.addEventListener('input', this.inputHandler)
+      input.addEventListener('keydown', this.keydownHandler)
+    }
+
+    disconnectedCallback() {
+      const input = this.querySelector('input')
+
+      if (input && this.inputHandler && this.keydownHandler) {
+        input.removeEventListener('input', this.inputHandler)
+        input.removeEventListener('keydown', this.keydownHandler)
+        this.inputHandler = null
+        this.keydownHandler = null
+      }
     }
   }
 
