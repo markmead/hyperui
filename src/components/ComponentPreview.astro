@@ -27,13 +27,11 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     data-preview="true"
     class="prose prose-pre:m-0 prose-pre:rounded-xl prose-pre:shadow-sm max-w-none data-[preview=true]:hidden"
   >
-    <div data-html></div>
+    <pre data-html></pre>
   </div>
 </component-preview>
 
 <script>
-  import { codeToHtml } from 'shiki'
-
   class ComponentPreview extends HTMLElement {
     private isLoaded = false
     private contentSrc: string | null = null
@@ -152,7 +150,11 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
       const sanitizedContent = this.sanitizeContent(iframeContent.body.innerHTML)
 
-      await this.renderCode(sanitizedContent)
+      if (!this.previewEl) {
+        return
+      }
+
+      this.previewEl.textContent = sanitizedContent
 
       this.isLoaded = true
     }
@@ -173,25 +175,6 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         .map((htmlLine) => htmlLine.replace(new RegExp(`^\\s{${INDENTATION_SPACES}}`, ''), ''))
         .join('\n')
         .trim()
-    }
-
-    private async renderCode(content: string): Promise<void> {
-      if (!this.previewEl) {
-        return
-      }
-
-      try {
-        const shikiHtml = await codeToHtml(content, {
-          lang: 'html',
-          theme: 'github-dark',
-        })
-
-        if (this.isConnected) {
-          this.previewEl.innerHTML = shikiHtml
-        }
-      } catch {
-        // We do nothing
-      }
     }
   }
 

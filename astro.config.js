@@ -8,13 +8,20 @@ import { defineConfig, fontProviders } from 'astro/config'
 
 export default defineConfig({
   site: 'https://hyperui.dev',
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    sitemap(),
+    mdx({
+      optimize: true,
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
   markdown: {
+    syntaxHighlight: false,
     rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
   },
+
   experimental: {
     fonts: [
       {
