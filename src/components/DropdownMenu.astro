@@ -26,16 +26,17 @@ import HeaderLink from './HeaderLink.astro'
     private toggleHandler: ((event: Event) => void) | null = null
 
     connectedCallback() {
-      const dropdown = this.querySelector('[data-dropdown]') as HTMLDivElement | null
+      const dropdownEl = this.querySelector('[data-dropdown]') as HTMLDivElement | null
 
-      if (!dropdown) {
+      if (!dropdownEl) {
         return
       }
 
-      this.toggleHandler = (event: Event) => {
-        const { detail } = event as CustomEvent
+      this.toggleHandler = (toggleEvent: Event) => {
+        const toggleEventTyped = toggleEvent as CustomEvent
+        const isOpen = toggleEventTyped.detail.open
 
-        dropdown.setAttribute('data-dropdown', detail.open ? 'true' : 'false')
+        dropdownEl.setAttribute('data-dropdown', isOpen ? 'true' : 'false')
       }
 
       document.addEventListener('dropdown:toggle', this.toggleHandler)

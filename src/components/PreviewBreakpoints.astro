@@ -1,8 +1,8 @@
 ---
 interface Breakpoint {
   name: string
-  width: string
   emoji: string
+  width: string
 }
 
 interface Props {
@@ -15,7 +15,7 @@ const { src, breakpoints } = Astro.props
 
 <preview-breakpoints data-src={src} class="hidden flex-1 justify-end gap-2 md:flex">
   {
-    breakpoints.map(({ name, width, emoji }) => (
+    breakpoints.map(({ emoji, name, width }) => (
       <button
         data-breakpoint={width}
         aria-pressed={width === '100%' ? 'true' : 'false'}
@@ -32,56 +32,60 @@ const { src, breakpoints } = Astro.props
 <script>
   class PreviewBreakpoints extends HTMLElement {
     private isProcessing = false
+    private contentSrc: string | null = null
+
     private activeButton: HTMLButtonElement | null = null
-    private clickHandler: ((event: Event) => void) | null = null
+
+    private clickHandler: ((clickEvent: Event) => void) | null = null
 
     connectedCallback() {
-      const src = this.dataset.src
+      this.contentSrc = this.dataset.src || null
 
-      if (!src) {
+      if (!this.contentSrc) {
         return
       }
 
-      const buttons = [...this.querySelectorAll('button[data-breakpoint]')] as HTMLButtonElement[]
+      const buttonEls = [...this.querySelectorAll('button[data-breakpoint]')] as HTMLButtonElement[]
 
-      if (buttons.length === 0) {
+      if (buttonEls.length === 0) {
         return
       }
 
       this.activeButton =
-        buttons.find((btn) => btn.getAttribute('aria-pressed') === 'true') || buttons.at(-1)!
+        buttonEls.find((buttonEl) => buttonEl.getAttribute('aria-pressed') === 'true') ||
+        buttonEls.at(-1)!
 
-      this.clickHandler = (event) => this.handleButtonClick(event, src)
+      this.clickHandler = (clickEvent) => this.handleButtonClick(clickEvent)
 
       this.addEventListener('click', this.clickHandler)
     }
 
-    private handleButtonClick(event: Event, src: string) {
+    private handleButtonClick(clickEvent: Event) {
       if (this.isProcessing) {
         return
       }
 
-      const target = event.target as HTMLElement
-      const button = target.closest('button[data-breakpoint]') as HTMLButtonElement | null
+      const targetEl = clickEvent.target as HTMLElement
+      const buttonEl = targetEl.closest('button[data-breakpoint]') as HTMLButtonElement | null
 
-      if (!button) {
+      if (!buttonEl) {
         return
       }
 
       this.isProcessing = true
 
-      const width = button.getAttribute('data-breakpoint')
+      const width = buttonEl.getAttribute('data-breakpoint')
 
-      if (this.activeButton && this.activeButton !== button) {
+      if (this.activeButton && this.activeButton !== buttonEl) {
         this.activeButton.setAttribute('aria-pressed', 'false')
       }
 
-      button.setAttribute('aria-pressed', 'true')
+      buttonEl.setAttribute('aria-pressed', 'true')
 
-      this.activeButton = button
+      this.activeButton = buttonEl
 
       document.dispatchEvent(
-        new CustomEvent(`breakpoint:change:${src}`, {
+        new CustomEvent(`breakpoint:change:${this.contentSrc}`, {
           bubbles: true,
           detail: { width },
         })

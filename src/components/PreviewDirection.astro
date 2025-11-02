@@ -21,25 +21,27 @@ const { src } = Astro.props
 <script>
   class PreviewDirection extends HTMLElement {
     private isProcessing = false
-    private clickHandler: ((event: Event) => void) | null = null
+    private contentSrc: string | null = null
+
+    private clickHandler: (() => void) | null = null
 
     connectedCallback() {
-      const src = this.dataset.src
+      this.contentSrc = this.dataset.src || null
 
-      if (!src) {
+      if (!this.contentSrc) {
         return
       }
 
-      const button = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
 
-      if (!button) {
+      if (!buttonEl) {
         return
       }
 
-      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement | null
-      const text = button.querySelector('span[data-text]') as HTMLSpanElement | null
+      const buttonEmoji = buttonEl.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
 
-      if (!emoji || !text) {
+      if (!buttonEmoji || !buttonText) {
         return
       }
 
@@ -50,16 +52,16 @@ const { src } = Astro.props
 
         this.isProcessing = true
 
-        const isLtr = button.getAttribute('aria-pressed') === 'true'
+        const isLtr = buttonEl.getAttribute('aria-pressed') === 'true'
         const newState = !isLtr
 
-        button.setAttribute('aria-pressed', String(newState))
+        buttonEl.setAttribute('aria-pressed', String(newState))
 
-        emoji.textContent = newState ? '👉' : '👈'
-        text.textContent = newState ? 'LTR' : 'RTL'
+        buttonEmoji.textContent = newState ? '👉' : '👈'
+        buttonText.textContent = newState ? 'LTR' : 'RTL'
 
         document.dispatchEvent(
-          new CustomEvent(`preview:direction:${src}`, {
+          new CustomEvent(`preview:direction:${this.contentSrc}`, {
             bubbles: true,
             detail: { ltr: newState },
           })
@@ -68,14 +70,14 @@ const { src } = Astro.props
         this.isProcessing = false
       }
 
-      button.addEventListener('click', this.clickHandler)
+      buttonEl.addEventListener('click', this.clickHandler)
     }
 
     disconnectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
 
-      if (button && this.clickHandler) {
-        button.removeEventListener('click', this.clickHandler)
+      if (buttonEl && this.clickHandler) {
+        buttonEl.removeEventListener('click', this.clickHandler)
 
         this.clickHandler = null
       }

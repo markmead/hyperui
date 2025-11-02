@@ -20,53 +20,55 @@ const { src } = Astro.props
 
 <script>
   class PreviewView extends HTMLElement {
-    private clickHandler: ((event: Event) => void) | null = null
+    private contentSrc: string | null = null
+
+    private clickHandler: (() => void) | null = null
 
     connectedCallback() {
-      const src = this.dataset.src
+      this.contentSrc = this.dataset.src || null
 
-      if (!src) {
+      if (!this.contentSrc) {
         return
       }
 
-      const button = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
 
-      if (!button) {
+      if (!buttonEl) {
         return
       }
 
-      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement | null
-      const text = button.querySelector('span[data-text]') as HTMLSpanElement | null
+      const buttonEmoji = buttonEl.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
 
-      if (!emoji || !text) {
+      if (!buttonEmoji || !buttonText) {
         return
       }
 
       this.clickHandler = () => {
-        const isPreviewing = button.getAttribute('aria-pressed') === 'true'
+        const isPreviewing = buttonEl.getAttribute('aria-pressed') === 'true'
         const newState = !isPreviewing
 
-        button.setAttribute('aria-pressed', String(newState))
+        buttonEl.setAttribute('aria-pressed', String(newState))
 
-        emoji.textContent = newState ? '👀' : '👾'
-        text.textContent = newState ? 'Preview' : 'HTML'
+        buttonEmoji.textContent = newState ? '👀' : '👾'
+        buttonText.textContent = newState ? 'Preview' : 'HTML'
 
         document.dispatchEvent(
-          new CustomEvent(`preview:view:${src}`, {
+          new CustomEvent(`preview:view:${this.contentSrc}`, {
             bubbles: true,
             detail: { previewing: newState },
           })
         )
       }
 
-      button.addEventListener('click', this.clickHandler)
+      buttonEl.addEventListener('click', this.clickHandler)
     }
 
     disconnectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
 
-      if (button && this.clickHandler) {
-        button.removeEventListener('click', this.clickHandler)
+      if (buttonEl && this.clickHandler) {
+        buttonEl.removeEventListener('click', this.clickHandler)
 
         this.clickHandler = null
       }

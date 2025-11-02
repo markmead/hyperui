@@ -14,13 +14,13 @@
 
 <script>
   class SearchInput extends HTMLElement {
-    private inputHandler: ((event: Event) => void) | null = null
-    private keydownHandler: ((event: KeyboardEvent) => void) | null = null
+    private inputHandler: (() => void) | null = null
+    private keydownHandler: ((keyboardEvent: KeyboardEvent) => void) | null = null
 
     connectedCallback() {
-      const input = this.querySelector('input') as HTMLInputElement | null
+      const inputEl = this.querySelector('input') as HTMLInputElement | null
 
-      if (!input) {
+      if (!inputEl) {
         return
       }
 
@@ -28,31 +28,33 @@
         this.dispatchEvent(
           new CustomEvent('input:search', {
             bubbles: true,
-            detail: { value: input.value },
+            detail: { value: inputEl.value },
           })
         )
       }
 
-      this.keydownHandler = (event: KeyboardEvent) => {
-        if (event.key !== 'Escape') {
+      this.keydownHandler = (keyboardEvent: KeyboardEvent) => {
+        const pressedKey = keyboardEvent.key
+
+        if (pressedKey !== 'Escape') {
           return
         }
 
-        input.blur()
+        inputEl.blur()
 
         this.dispatchEvent(new CustomEvent('input:escape', { bubbles: true }))
       }
 
-      input.addEventListener('input', this.inputHandler)
-      input.addEventListener('keydown', this.keydownHandler)
+      inputEl.addEventListener('input', this.inputHandler)
+      inputEl.addEventListener('keydown', this.keydownHandler)
     }
 
     disconnectedCallback() {
-      const input = this.querySelector('input') as HTMLInputElement | null
+      const inputEl = this.querySelector('input') as HTMLInputElement | null
 
-      if (input && this.inputHandler && this.keydownHandler) {
-        input.removeEventListener('input', this.inputHandler)
-        input.removeEventListener('keydown', this.keydownHandler)
+      if (inputEl && this.inputHandler && this.keydownHandler) {
+        inputEl.removeEventListener('input', this.inputHandler)
+        inputEl.removeEventListener('keydown', this.keydownHandler)
 
         this.inputHandler = null
         this.keydownHandler = null

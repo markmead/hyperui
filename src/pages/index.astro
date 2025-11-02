@@ -4,10 +4,10 @@ import { getCollection } from 'astro:content'
 import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../consts'
 
 import BaseHead from '../components/BaseHead.astro'
+import ComponentCard from '../components/ComponentCard.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import Hero from '../components/Hero.astro'
-import ComponentCard from '../components/ComponentCard.astro'
 
 const collections = await getCollection('collection')
 

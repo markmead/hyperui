@@ -1,10 +1,10 @@
 ---
 import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
-import PreviewView from './PreviewView.astro'
-import PreviewRefs from './PreviewRefs.astro'
-import PreviewDirection from './PreviewDirection.astro'
 import PreviewCopy from './PreviewCopy.astro'
+import PreviewDirection from './PreviewDirection.astro'
+import PreviewRefs from './PreviewRefs.astro'
+import PreviewView from './PreviewView.astro'
 
 const breakpoints = [
   { name: 'Mobile', emoji: '📱', width: '340px' },
@@ -15,17 +15,17 @@ const breakpoints = [
 ]
 
 interface Props {
+  index: number
+  slug: string
   title: string
   category: string
-  slug: string
-  wrapper: string
-  index: number
   contributors: string[]
-  plugins?: string[]
   dark: boolean
+  wrapper: string
+  plugins?: string[]
 }
 
-const { title, category, slug, wrapper, index, dark, contributors, plugins } = Astro.props
+const { index, slug, title, category, contributors, dark, wrapper, plugins } = Astro.props
 
 const src = dark
   ? `/components/${category}/${slug}/${index}-dark.html`

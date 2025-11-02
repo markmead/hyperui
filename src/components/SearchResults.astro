@@ -1,9 +1,9 @@
 ---
 interface Result {
+  slug: string
   title: string
   emoji: string
   terms: string[]
-  slug: string
 }
 
 interface Props {
@@ -29,90 +29,96 @@ const { collections, posts } = Astro.props
 
 <script>
   interface Result {
+    slug: string
     title: string
     emoji: string
     terms: string[]
-    slug: string
   }
 
   class SearchResults extends HTMLElement {
-    private escapeHandler: ((event: Event) => void) | null = null
-    private searchHandler: ((event: Event) => void) | null = null
-    private collections: Result[] = []
-    private posts: Result[] = []
+    private collectionItems: Result[] = []
+    private postItems: Result[] = []
+
+    private escapeHandler: (() => void) | null = null
+    private searchHandler: ((searchEvent: Event) => void) | null = null
 
     connectedCallback() {
-      const container = this.querySelector('[data-container]') as HTMLDivElement | null
-      const error = this.querySelector('[data-error]') as HTMLParagraphElement | null
-      const ul = this.querySelector('[data-list]') as HTMLUListElement | null
+      const containerEl = this.querySelector('[data-container]') as HTMLDivElement | null
+      const errorEl = this.querySelector('[data-error]') as HTMLParagraphElement | null
+      const resultsEl = this.querySelector('[data-list]') as HTMLUListElement | null
 
-      if (!container || !error || !ul) {
+      if (!containerEl || !errorEl || !resultsEl) {
         return
       }
 
       try {
-        this.collections = JSON.parse(this.dataset.collections || '[]')
-        this.posts = JSON.parse(this.dataset.posts || '[]')
+        this.collectionItems = JSON.parse(this.dataset.collections || '[]')
+        this.postItems = JSON.parse(this.dataset.posts || '[]')
       } catch {
         return
       }
 
       this.escapeHandler = () => {
-        ul.innerHTML = ''
-        container.setAttribute('data-container', 'false')
-        error.setAttribute('data-error', 'false')
+        resultsEl.innerHTML = ''
+
+        containerEl.setAttribute('data-container', 'false')
+        errorEl.setAttribute('data-error', 'false')
       }
 
-      this.searchHandler = (event: Event) => {
-        const { detail } = event as CustomEvent
+      this.searchHandler = (searchEvent: Event) => {
+        const searchEventTyped = searchEvent as CustomEvent
+        const searchQuery = searchEventTyped.detail.value.toLowerCase()
 
-        const query = detail.value.toLowerCase()
+        if (!searchQuery) {
+          resultsEl.innerHTML = ''
 
-        if (!query) {
-          ul.innerHTML = ''
-
-          container.setAttribute('data-container', 'false')
-          error.setAttribute('data-error', 'false')
-
-          return
-        }
-
-        container.setAttribute('data-container', 'true')
-
-        const results = [...this.collections, ...this.posts].filter(({ title, terms }) => {
-          const includesTitle = title.toLowerCase().includes(query)
-          const includesTerms = terms.some((term: string) => term.toLowerCase().includes(query))
-
-          return includesTitle || includesTerms
-        })
-
-        if (results.length === 0) {
-          ul.innerHTML = ''
-
-          error.setAttribute('data-error', 'true')
+          containerEl.setAttribute('data-container', 'false')
+          errorEl.setAttribute('data-error', 'false')
 
           return
         }
 
-        ul.innerHTML = results
-          .map(
-            ({ title, emoji, slug }) => `
-          <li role="option">
-            <a
-              href="${slug}"
-              class="block px-4 py-2 font-medium text-pretty text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0 focus:ring-inset"
-            >
-              <div class="flex gap-2">
-                <span aria-hidden="true">${emoji}</span>
-                <span>${title}</span>
-              </div>
-            </a>
-          </li>
-        `
-          )
+        containerEl.setAttribute('data-container', 'true')
+
+        const searchResults = [...this.collectionItems, ...this.postItems].filter(
+          (potentialResult) => {
+            const resultTitle = potentialResult.title.toLowerCase()
+            const resultTerms = potentialResult.terms.map((searchTerm) => searchTerm.toLowerCase())
+
+            return (
+              resultTitle.includes(searchQuery) ||
+              resultTerms.some((resultTerm) => resultTerm.includes(searchQuery))
+            )
+          }
+        )
+
+        if (searchResults.length === 0) {
+          resultsEl.innerHTML = ''
+
+          errorEl.setAttribute('data-error', 'true')
+
+          return
+        }
+
+        resultsEl.innerHTML = searchResults
+          .map(({ title, slug, emoji }) => {
+            return `
+              <li role="option">
+                <a
+                  href="${slug}"
+                  class="block px-4 py-2 font-medium text-pretty text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0 focus:ring-inset"
+                >
+                  <div class="flex gap-2">
+                    <span aria-hidden="true">${emoji}</span>
+                    <span>${title}</span>
+                  </div>
+                </a>
+              </li>
+            `
+          })
           .join('')
 
-        error.setAttribute('data-error', 'false')
+        errorEl.setAttribute('data-error', 'false')
       }
 
       document.addEventListener('input:escape', this.escapeHandler)
@@ -123,12 +129,13 @@ const { collections, posts } = Astro.props
       if (this.escapeHandler && this.searchHandler) {
         document.removeEventListener('input:escape', this.escapeHandler)
         document.removeEventListener('input:search', this.searchHandler)
+
         this.escapeHandler = null
         this.searchHandler = null
       }
 
-      this.collections = []
-      this.posts = []
+      this.collectionItems = []
+      this.postItems = []
     }
   }
 

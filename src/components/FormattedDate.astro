@@ -4,7 +4,7 @@ interface Props {
   class?: string
 }
 
-const { date, class: className } = Astro.props
+const { date, class: className = '' } = Astro.props
 ---
 
 <time datetime={date.toISOString()} class={className}>

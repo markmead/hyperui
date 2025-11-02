@@ -33,22 +33,6 @@ const blog = defineCollection({
     }),
 })
 
-const component = z.array(
-  z.object({
-    title: z.string(),
-    contributors: z.array(z.string()).default(['markmead']),
-    plugins: z.array(z.string()).optional(),
-    dark: z
-      .union([
-        z.boolean(),
-        z.object({
-          contributors: z.array(z.string()).default(['markmead']),
-        }),
-      ])
-      .optional(),
-  })
-)
-
 const collection = defineCollection({
   loader: glob({
     base: './src/content/collection',
@@ -65,8 +49,22 @@ const collection = defineCollection({
       terms: z.array(z.string()),
       pubDate: z.coerce.date().optional(),
       updatedDate: z.coerce.date().optional(),
-      components: component,
+      components: z.array(
+        z.object({
+          title: z.string(),
+          contributors: z.array(z.string()).default(['markmead']),
+          plugins: z.array(z.string()).optional(),
+          dark: z
+            .union([
+              z.boolean(),
+              z.object({
+                contributors: z.array(z.string()).default(['markmead']),
+              }),
+            ])
+            .optional(),
+        })
+      ),
     }),
 })
 
-export const collections = { page, blog, component, collection }
+export const collections = { page, blog, collection }

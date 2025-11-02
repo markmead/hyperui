@@ -4,12 +4,12 @@ import { getCollection } from 'astro:content'
 import ComponentCard from './ComponentCard.astro'
 
 interface Props {
-  category: string
   slug: string
+  category: string
   terms: string[]
 }
 
-const { category, slug, terms } = Astro.props
+const { slug, category, terms } = Astro.props
 
 const components = (await getCollection('collection'))
   .filter(({ data }) => data.category === category)

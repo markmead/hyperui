@@ -2,14 +2,14 @@
 import type { CollectionEntry } from 'astro:content'
 
 import BaseHead from '../components/BaseHead.astro'
+import CollectionRelated from '../components/CollectionRelated.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
-import CollectionRelated from '../components/CollectionRelated.astro'
 
 type Props = CollectionEntry<'collection'>['data']
 
-const { title, description, slug, category, wrapper, terms, components } = Astro.props
+const { category, components, description, slug, terms, title, wrapper } = Astro.props
 
 const formattedComponents = components
   .map((component, index) => {
@@ -17,8 +17,8 @@ const formattedComponents = components
 
     const baseComponent = {
       ...rest,
-      id: `component-${index + 1}`,
       dark: false,
+      id: `component-${index + 1}`,
       index: index + 1,
     }
 
@@ -37,8 +37,8 @@ const formattedComponents = components
       {
         ...rest,
         contributors,
-        id: `component-${index + 1}-dark`,
         dark: true,
+        id: `component-${index + 1}-dark`,
         index: index + 1,
         title: `${component.title} (Dark)`,
       },

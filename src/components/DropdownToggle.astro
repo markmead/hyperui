@@ -39,24 +39,25 @@
 <script>
   class DropdownButton extends HTMLElement {
     private isOpen = false
-    private clickHandler: ((event: Event) => void) | null = null
+
+    private clickHandler: (() => void) | null = null
 
     connectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
 
-      if (!button) {
+      if (!buttonEl) {
         return
       }
 
-      const svgs = [...this.querySelectorAll('svg')] as SVGElement[]
+      const buttonSVGs = [...buttonEl.querySelectorAll('svg')] as SVGElement[]
 
       this.clickHandler = () => {
         this.isOpen = !this.isOpen
 
-        button.setAttribute('aria-expanded', String(this.isOpen))
-        button.setAttribute('aria-label', this.isOpen ? 'Close navigation' : 'Open navigation')
+        buttonEl.setAttribute('aria-expanded', String(this.isOpen))
+        buttonEl.setAttribute('aria-label', this.isOpen ? 'Close navigation' : 'Open navigation')
 
-        svgs.forEach((svg) => svg.setAttribute('data-open', String(this.isOpen)))
+        buttonSVGs.forEach((svgEl) => svgEl.setAttribute('data-open', String(this.isOpen)))
 
         document.dispatchEvent(
           new CustomEvent('dropdown:toggle', {
@@ -66,14 +67,14 @@
         )
       }
 
-      button.addEventListener('click', this.clickHandler)
+      buttonEl.addEventListener('click', this.clickHandler)
     }
 
     disconnectedCallback() {
-      const button = this.querySelector('button')
+      const buttonEl = this.querySelector('button')
 
-      if (button && this.clickHandler) {
-        button.removeEventListener('click', this.clickHandler)
+      if (buttonEl && this.clickHandler) {
+        buttonEl.removeEventListener('click', this.clickHandler)
 
         this.clickHandler = null
       }

@@ -3,11 +3,11 @@ interface Props {
   src: string
   title: string
   dark?: boolean
-  wrapper?: string
   index?: number
+  wrapper?: string
 }
 
-const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
+const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 ---
 
 <component-preview data-src={src} class="block">
@@ -16,9 +16,9 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
     src={src}
     title={title}
     class:list={[
-      'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
-      dark ? 'bg-gray-900' : 'bg-white',
       wrapper,
+      dark ? 'bg-gray-900' : 'bg-white',
+      'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
     ]}
     style="max-width: 100%;"
     loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
@@ -35,26 +35,29 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
   import { codeToHtml } from 'shiki'
 
   class ComponentPreview extends HTMLElement {
-    private iframe: HTMLIFrameElement | null = null
-    private code: HTMLDivElement | null = null
-    private boundHandlers = new Map<string, EventListener>()
     private isLoaded = false
+    private contentSrc: string | null = null
+
+    private iframeEl: HTMLIFrameElement | null = null
+    private previewEl: HTMLDivElement | null = null
+
+    private boundHandlers = new Map<string, EventListener>()
 
     connectedCallback() {
-      const src = this.dataset.src
+      this.contentSrc = this.dataset.src || null
 
-      if (!src) {
+      if (!this.contentSrc) {
         return
       }
 
-      this.iframe = this.querySelector('iframe') as HTMLIFrameElement | null
-      this.code = this.querySelector('[data-html]') as HTMLDivElement | null
+      this.iframeEl = this.querySelector('iframe') as HTMLIFrameElement | null
+      this.previewEl = this.querySelector('[data-html]') as HTMLDivElement | null
 
-      if (!this.iframe || !this.code) {
+      if (!this.iframeEl || !this.previewEl) {
         return
       }
 
-      this.setupEventListeners(src)
+      this.setupEventListeners()
       this.handleInitialLoad()
     }
 
@@ -64,68 +67,71 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       this.boundHandlers.clear()
     }
 
-    private setupEventListeners(src: string) {
-      const breakpointHandler = (event: Event) => {
-        const { detail } = event as CustomEvent
+    private setupEventListeners() {
+      const breakpointHandler = (breakpointEvent: Event) => {
+        const breakpointEventTyped = breakpointEvent as CustomEvent
+        const newWidth = breakpointEventTyped.detail.width
 
-        if (this.iframe) {
-          this.iframe.style.maxWidth = detail.width
+        if (this.iframeEl) {
+          this.iframeEl.style.maxWidth = newWidth
         }
       }
 
-      const viewHandler = (event: Event) => {
-        const { detail } = event as CustomEvent
+      const viewHandler = (viewEvent: Event) => {
+        const viewEventTyped = viewEvent as CustomEvent
+        const isPreviewing = viewEventTyped.detail.previewing
 
-        const previewElements = this.querySelectorAll('[data-preview]')
+        const previewEls: Element[] = [...this.querySelectorAll('[data-preview]')]
 
-        previewElements.forEach((element) => {
-          element.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
+        previewEls.forEach((previewEl) => {
+          previewEl.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
         })
       }
 
-      const directionHandler = (event: Event) => {
-        const { detail } = event as CustomEvent
+      const directionHandler = (directionEvent: Event) => {
+        const directionEventTyped = directionEvent as CustomEvent
+        const isLtr = directionEventTyped.detail.ltr
 
-        const content = this.getIframeContent()
+        const iframeContent = this.getIframeContent()
 
-        if (content) {
-          content.documentElement.setAttribute('dir', detail.ltr ? 'ltr' : 'rtl')
+        if (iframeContent) {
+          iframeContent.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
         }
       }
 
       const copyHandler = () => {
-        const content = this.getIframeContent()
+        const iframeContent = this.getIframeContent()
 
-        if (content) {
-          const html = this.sanitizeContent(content.body.innerHTML)
+        if (iframeContent) {
+          const contentHtml = this.sanitizeContent(iframeContent.body.innerHTML)
 
-          navigator.clipboard.writeText(html)
+          navigator.clipboard.writeText(contentHtml)
         }
       }
 
       const loadHandler = () => this.onIframeLoaded()
 
-      this.boundHandlers.set(`breakpoint:change:${src}`, breakpointHandler)
-      this.boundHandlers.set(`preview:view:${src}`, viewHandler)
-      this.boundHandlers.set(`preview:direction:${src}`, directionHandler)
-      this.boundHandlers.set(`preview:copy:${src}`, copyHandler)
+      this.boundHandlers.set(`breakpoint:change:${this.contentSrc}`, breakpointHandler)
+      this.boundHandlers.set(`preview:view:${this.contentSrc}`, viewHandler)
+      this.boundHandlers.set(`preview:direction:${this.contentSrc}`, directionHandler)
+      this.boundHandlers.set(`preview:copy:${this.contentSrc}`, copyHandler)
       this.boundHandlers.set(`iframe:load`, loadHandler)
 
-      this.iframe?.addEventListener('load', loadHandler)
+      this.iframeEl?.addEventListener('load', loadHandler)
 
-      document.addEventListener(`breakpoint:change:${src}`, breakpointHandler)
-      document.addEventListener(`preview:view:${src}`, viewHandler)
-      document.addEventListener(`preview:direction:${src}`, directionHandler)
-      document.addEventListener(`preview:copy:${src}`, copyHandler)
+      document.addEventListener(`breakpoint:change:${this.contentSrc}`, breakpointHandler)
+      document.addEventListener(`preview:view:${this.contentSrc}`, viewHandler)
+      document.addEventListener(`preview:direction:${this.contentSrc}`, directionHandler)
+      document.addEventListener(`preview:copy:${this.contentSrc}`, copyHandler)
     }
 
     private handleInitialLoad() {
-      if (!this.iframe) {
+      if (!this.iframeEl) {
         return
       }
 
       try {
-        if (this.iframe.contentDocument?.readyState === 'complete') {
+        if (this.iframeEl.contentDocument?.readyState === 'complete') {
           this.onIframeLoaded()
         }
       } catch {
@@ -138,48 +144,50 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         return
       }
 
-      const content = this.getIframeContent()
+      const iframeContent = this.getIframeContent()
 
-      if (!content) {
+      if (!iframeContent) {
         return
       }
 
-      const sanitized = this.sanitizeContent(content.body.innerHTML)
+      const sanitizedContent = this.sanitizeContent(iframeContent.body.innerHTML)
 
-      await this.renderCode(this.code, sanitized)
+      await this.renderCode(sanitizedContent)
 
       this.isLoaded = true
     }
 
     private getIframeContent(): Document | null {
       try {
-        return this.iframe?.contentDocument || this.iframe?.contentWindow?.document || null
+        return this.iframeEl?.contentDocument || this.iframeEl?.contentWindow?.document || null
       } catch {
         return null
       }
     }
 
-    private sanitizeContent(html: string): string {
-      return html
+    private sanitizeContent(contentHtml: string): string {
+      const INDENTATION_SPACES = 4
+
+      return contentHtml
         .split('\n')
-        .map((line) => line.replace(/^\s{4}/, ''))
+        .map((htmlLine) => htmlLine.replace(new RegExp(`^\\s{${INDENTATION_SPACES}}`, ''), ''))
         .join('\n')
         .trim()
     }
 
-    private async renderCode(container: HTMLDivElement | null, content: string): Promise<void> {
-      if (!container) {
+    private async renderCode(content: string): Promise<void> {
+      if (!this.previewEl) {
         return
       }
 
       try {
-        const html = await codeToHtml(content, {
+        const shikiHtml = await codeToHtml(content, {
           lang: 'html',
           theme: 'github-dark',
         })
 
         if (this.isConnected) {
-          container.innerHTML = html
+          this.previewEl.innerHTML = shikiHtml
         }
       } catch {
         // We do nothing
