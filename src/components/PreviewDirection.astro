@@ -37,8 +37,10 @@ const { src } = Astro.props
 
         document.dispatchEvent(
           new CustomEvent(`preview:direction:${this.dataset.src}`, {
-            detail: { ltr },
             bubbles: true,
+            detail: {
+              ltr,
+            },
           })
         )
       })

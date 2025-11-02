@@ -6,15 +6,15 @@ interface Collection {
   slug: string
 }
 
-interface Posts {
+interface Post {
   title: string
   emoji: string
   slug: string
 }
 
 interface Props {
-  collections: Array<Collection>
-  posts: Array<Posts>
+  collections: Collection[]
+  posts: Post[]
 }
 
 const { collections, posts } = Astro.props
@@ -46,8 +46,8 @@ const { collections, posts } = Astro.props
       document.addEventListener('input:escape', () => {
         ul.innerHTML = ''
 
-        error.setAttribute('data-error', 'false')
         container.setAttribute('data-container', 'false')
+        error.setAttribute('data-error', 'false')
       })
 
       document.addEventListener('input:search', (event) => {
@@ -58,8 +58,8 @@ const { collections, posts } = Astro.props
         if (!query) {
           ul.innerHTML = ''
 
-          error.setAttribute('data-error', 'false')
           container.setAttribute('data-container', 'false')
+          error.setAttribute('data-error', 'false')
 
           return
         }

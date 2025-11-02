@@ -49,14 +49,14 @@
 
         button.setAttribute('aria-expanded', open ? 'true' : 'false')
 
-        svgs.forEach((svg) => {
-          svg.setAttribute('data-open', open ? 'true' : 'false')
-        })
+        svgs.forEach((svg) => svg.setAttribute('data-open', open ? 'true' : 'false'))
 
         this.dispatchEvent(
           new CustomEvent('dropdown:toggle', {
-            detail: { open },
             bubbles: true,
+            detail: {
+              open,
+            },
           })
         )
       })

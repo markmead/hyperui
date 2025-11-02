@@ -15,13 +15,15 @@
 <script>
   class SearchInput extends HTMLElement {
     connectedCallback() {
-      const input = this.querySelector('input[type="text"]') as HTMLInputElement
+      const input = this.querySelector('input') as HTMLInputElement
 
       input.addEventListener('input', () => {
         this.dispatchEvent(
           new CustomEvent('input:search', {
             bubbles: true,
-            detail: { value: input.value },
+            detail: {
+              value: input.value,
+            },
           })
         )
       })

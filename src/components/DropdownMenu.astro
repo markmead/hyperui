@@ -24,13 +24,12 @@ import HeaderLink from './HeaderLink.astro'
 <script>
   class DropdownMenu extends HTMLElement {
     connectedCallback() {
+      const dropdown = this.querySelector('[data-dropdown]') as HTMLElement
+
       document.addEventListener('dropdown:toggle', (event) => {
         const { detail } = event as CustomEvent
 
-        this.querySelector('[data-dropdown]')?.setAttribute(
-          'data-dropdown',
-          detail.open ? 'true' : 'false'
-        )
+        dropdown.setAttribute('data-dropdown', detail.open ? 'true' : 'false')
       })
     }
   }

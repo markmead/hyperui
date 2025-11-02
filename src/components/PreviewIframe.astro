@@ -30,30 +30,27 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       const wrapper = this.querySelector('[data-preview]') as HTMLDivElement
       const iframe = this.querySelector('iframe') as HTMLIFrameElement
 
-      const dispatchLoadedEvent = () => {
-        const content = iframe.contentDocument || iframe.contentWindow?.document
+      const content = iframe.contentDocument || (iframe.contentWindow?.document as Document)
+      const html = content.body.innerHTML
+        .split('\n')
+        .map((line) => line.slice(4))
+        .join('\n')
+        .trim()
 
+      const dispatchLoadedEvent = () => {
         this.dispatchEvent(
           new CustomEvent(`iframe:loaded:${this.dataset.src}`, {
-            detail: {
-              content: content?.body?.innerHTML
-                .split('\n')
-                .map((line) => line.slice(4))
-                .join('\n')
-                .trim(),
-            },
             bubbles: true,
+            detail: {
+              content: html,
+            },
           })
         )
       }
 
       iframe.addEventListener('load', dispatchLoadedEvent)
 
-      if (
-        iframe.contentDocument &&
-        iframe.contentDocument.readyState === 'complete' &&
-        iframe.contentDocument.body.innerHTML.trim() !== ''
-      ) {
+      if (content.readyState === 'complete' && content.body.innerHTML.trim() !== '') {
         dispatchLoadedEvent()
       }
 
@@ -72,19 +69,10 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       document.addEventListener(`preview:direction:${this.dataset.src}`, (event) => {
         const { detail } = event as CustomEvent
 
-        const content = iframe.contentDocument || iframe.contentWindow?.document
-
-        content?.documentElement.setAttribute('dir', detail.ltr ? 'ltr' : 'rtl')
+        content.documentElement.setAttribute('dir', detail.ltr ? 'ltr' : 'rtl')
       })
 
       document.addEventListener(`preview:copy:${this.dataset.src}`, () => {
-        const content = iframe.contentDocument || iframe.contentWindow?.document
-        const html = content?.body?.innerHTML
-          .split('\n')
-          .map((line) => line.slice(4))
-          .join('\n')
-          .trim()
-
         navigator.clipboard.writeText(html || '')
       })
     }
