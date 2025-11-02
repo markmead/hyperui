@@ -81,9 +81,7 @@ const { collections, posts } = Astro.props
 
         const results = [...this.collections, ...this.posts].filter(({ title, terms = [] }) => {
           const includesTitle = title.toLowerCase().includes(query)
-          const includesTerms = (terms as string[]).length
-            ? (terms as string[]).some((term: string) => term.toLowerCase().includes(query))
-            : false
+          const includesTerms = terms.some((term: string) => term.toLowerCase().includes(query))
 
           return includesTitle || includesTerms
         })
