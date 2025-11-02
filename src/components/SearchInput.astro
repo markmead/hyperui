@@ -1,0 +1,64 @@
+<search-input>
+  <label for="search">
+    <input
+      id="search"
+      type="text"
+      placeholder="Search..."
+      class="h-10 w-screen max-w-xs rounded-lg border border-stone-300 bg-white pr-10 text-stone-900 placeholder-stone-500 shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+      autocomplete="off"
+    />
+
+    <span class="sr-only"> Search </span>
+  </label>
+</search-input>
+
+<script>
+  class SearchInput extends HTMLElement {
+    private inputHandler: ((event: Event) => void) | null = null
+    private keydownHandler: ((event: KeyboardEvent) => void) | null = null
+
+    connectedCallback() {
+      const input = this.querySelector('input') as HTMLInputElement | null
+
+      if (!input) {
+        return
+      }
+
+      this.inputHandler = () => {
+        this.dispatchEvent(
+          new CustomEvent('input:search', {
+            bubbles: true,
+            detail: { value: input.value },
+          })
+        )
+      }
+
+      this.keydownHandler = (event: KeyboardEvent) => {
+        if (event.key !== 'Escape') {
+          return
+        }
+
+        input.blur()
+
+        this.dispatchEvent(new CustomEvent('input:escape', { bubbles: true }))
+      }
+
+      input.addEventListener('input', this.inputHandler)
+      input.addEventListener('keydown', this.keydownHandler)
+    }
+
+    disconnectedCallback() {
+      const input = this.querySelector('input') as HTMLInputElement | null
+
+      if (input && this.inputHandler && this.keydownHandler) {
+        input.removeEventListener('input', this.inputHandler)
+        input.removeEventListener('keydown', this.keydownHandler)
+
+        this.inputHandler = null
+        this.keydownHandler = null
+      }
+    }
+  }
+
+  customElements.define('search-input', SearchInput)
+</script>

@@ -1,0 +1,86 @@
+---
+interface Props {
+  src: string
+}
+
+const { src } = Astro.props
+---
+
+<preview-direction data-src={src}>
+  <button
+    type="button"
+    aria-label="Toggle direction"
+    aria-pressed="true"
+    class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+  >
+    <span data-emoji aria-hidden="true">👉</span>
+    <span data-text>LTR</span>
+  </button>
+</preview-direction>
+
+<script>
+  class PreviewDirection extends HTMLElement {
+    private isProcessing = false
+    private clickHandler: ((event: Event) => void) | null = null
+
+    connectedCallback() {
+      const src = this.dataset.src
+
+      if (!src) {
+        return
+      }
+
+      const button = this.querySelector('button') as HTMLButtonElement | null
+
+      if (!button) {
+        return
+      }
+
+      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const text = button.querySelector('span[data-text]') as HTMLSpanElement | null
+
+      if (!emoji || !text) {
+        return
+      }
+
+      this.clickHandler = () => {
+        if (this.isProcessing) {
+          return
+        }
+
+        this.isProcessing = true
+
+        const isLtr = button.getAttribute('aria-pressed') === 'true'
+        const newState = !isLtr
+
+        button.setAttribute('aria-pressed', String(newState))
+
+        emoji.textContent = newState ? '👉' : '👈'
+        text.textContent = newState ? 'LTR' : 'RTL'
+
+        document.dispatchEvent(
+          new CustomEvent(`preview:direction:${src}`, {
+            bubbles: true,
+            detail: { ltr: newState },
+          })
+        )
+
+        this.isProcessing = false
+      }
+
+      button.addEventListener('click', this.clickHandler)
+    }
+
+    disconnectedCallback() {
+      const button = this.querySelector('button') as HTMLButtonElement | null
+
+      if (button && this.clickHandler) {
+        button.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
+    }
+  }
+
+  customElements.define('preview-direction', PreviewDirection)
+</script>

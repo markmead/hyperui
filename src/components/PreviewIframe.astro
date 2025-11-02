@@ -1,0 +1,173 @@
+---
+interface Props {
+  src: string
+  title: string
+  dark?: boolean
+  wrapper?: string
+  index?: number
+}
+
+const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
+---
+
+<preview-iframe data-src={src} class="block">
+  <iframe
+    data-preview="true"
+    src={src}
+    title={title}
+    class={`w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block ${dark ? 'bg-gray-900' : 'bg-white'} ${wrapper}`}
+    style="max-width: 100%;"
+    loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
+</preview-iframe>
+
+<script>
+  class PreviewIframe extends HTMLElement {
+    private iframe: HTMLIFrameElement | null = null
+    private wrapper: HTMLDivElement | null = null
+    private boundHandlers = new Map<string, EventListener>()
+    private isLoaded = false
+
+    connectedCallback() {
+      const src = this.dataset.src
+
+      if (!src) {
+        return
+      }
+
+      this.iframe = this.querySelector('iframe') as HTMLIFrameElement | null
+      this.wrapper = this.querySelector('[data-preview]') as HTMLDivElement | null
+
+      if (!this.iframe || !this.wrapper) {
+        return
+      }
+
+      this.setupEventListeners(src)
+      this.handleInitialLoad()
+
+      const contentRequestHandler = () => {
+        if (this.isLoaded) {
+          this.dispatchLoadedEvent()
+        }
+      }
+
+      document.addEventListener(`iframe:content:request:${src}`, contentRequestHandler)
+
+      this.boundHandlers.set(`iframe:content:request:${src}`, contentRequestHandler)
+    }
+
+    disconnectedCallback() {
+      const src = this.dataset.src
+
+      if (src) {
+        this.boundHandlers.forEach((handler, eventName) => {
+          document.removeEventListener(eventName, handler)
+        })
+      }
+
+      this.boundHandlers.clear()
+    }
+
+    private setupEventListeners(src: string) {
+      const breakpointHandler = (event: Event) => {
+        const { detail } = event as CustomEvent
+
+        if (this.iframe) {
+          this.iframe.style.maxWidth = detail.width
+        }
+      }
+
+      const viewHandler = (event: Event) => {
+        const { detail } = event as CustomEvent
+
+        if (this.wrapper) {
+          this.wrapper.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
+        }
+      }
+
+      const directionHandler = (event: Event) => {
+        const { detail } = event as CustomEvent
+
+        const content = this.getIframeContent()
+
+        if (content) {
+          content.documentElement.setAttribute('dir', detail.ltr ? 'ltr' : 'rtl')
+        }
+      }
+
+      const copyHandler = () => {
+        const content = this.getIframeContent()
+
+        if (content) {
+          const html = this.sanitizeContent(content.body.innerHTML)
+
+          navigator.clipboard.writeText(html)
+        }
+      }
+
+      const loadHandler = () => this.dispatchLoadedEvent()
+
+      this.boundHandlers.set(`breakpoint:change:${src}`, breakpointHandler)
+      this.boundHandlers.set(`preview:view:${src}`, viewHandler)
+      this.boundHandlers.set(`preview:direction:${src}`, directionHandler)
+      this.boundHandlers.set(`preview:copy:${src}`, copyHandler)
+      this.boundHandlers.set(`iframe:load`, loadHandler)
+
+      this.iframe?.addEventListener('load', loadHandler)
+      document.addEventListener(`breakpoint:change:${src}`, breakpointHandler)
+      document.addEventListener(`preview:view:${src}`, viewHandler)
+      document.addEventListener(`preview:direction:${src}`, directionHandler)
+      document.addEventListener(`preview:copy:${src}`, copyHandler)
+    }
+
+    private handleInitialLoad() {
+      if (!this.iframe) {
+        return
+      }
+
+      try {
+        if (this.iframe.contentDocument?.readyState === 'complete') {
+          this.dispatchLoadedEvent()
+        }
+      } catch {
+        // Cross-origin or not yet accessible
+      }
+    }
+
+    private dispatchLoadedEvent() {
+      const content = this.getIframeContent()
+
+      if (!content) {
+        return
+      }
+
+      const sanitized = this.sanitizeContent(content.body.innerHTML)
+
+      this.isLoaded = true
+
+      this.dispatchEvent(
+        new CustomEvent(`iframe:loaded:${this.dataset.src}`, {
+          bubbles: true,
+          detail: { content: sanitized },
+        })
+      )
+    }
+
+    private getIframeContent(): Document | null {
+      try {
+        return this.iframe?.contentDocument || this.iframe?.contentWindow?.document || null
+      } catch {
+        return null
+      }
+    }
+
+    private sanitizeContent(html: string): string {
+      return html
+        .split('\n')
+        .map((line) => line.replace(/^\s{4}/, ''))
+        .join('\n')
+        .trim()
+    }
+  }
+
+  customElements.define('preview-iframe', PreviewIframe)
+</script>

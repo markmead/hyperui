@@ -1,0 +1,84 @@
+<dropdown-button>
+  <button
+    type="button"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="dropdown-menu"
+    aria-label="Open navigation"
+    class="rounded border border-stone-200 bg-stone-50 p-2 text-stone-700 shadow-xs focus:ring-2 focus:ring-pink-500 focus:outline-0"
+  >
+    <svg
+      data-open="false"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5 data-[open=false]:block data-[open=true]:hidden"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+
+    <svg
+      data-open="false"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5 data-[open=false]:hidden data-[open=true]:block"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+</dropdown-button>
+
+<script>
+  class DropdownButton extends HTMLElement {
+    private isOpen = false
+    private clickHandler: ((event: Event) => void) | null = null
+
+    connectedCallback() {
+      const button = this.querySelector('button') as HTMLButtonElement | null
+
+      if (!button) {
+        return
+      }
+
+      const svgs = [...this.querySelectorAll('svg')] as SVGElement[]
+
+      this.clickHandler = () => {
+        this.isOpen = !this.isOpen
+
+        button.setAttribute('aria-expanded', String(this.isOpen))
+        button.setAttribute('aria-label', this.isOpen ? 'Close navigation' : 'Open navigation')
+
+        svgs.forEach((svg) => svg.setAttribute('data-open', String(this.isOpen)))
+
+        document.dispatchEvent(
+          new CustomEvent('dropdown:toggle', {
+            bubbles: true,
+            detail: { open: this.isOpen },
+          })
+        )
+      }
+
+      button.addEventListener('click', this.clickHandler)
+    }
+
+    disconnectedCallback() {
+      const button = this.querySelector('button')
+
+      if (button && this.clickHandler) {
+        button.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
+    }
+  }
+
+  customElements.define('dropdown-button', DropdownButton)
+</script>
