@@ -10,20 +10,33 @@ interface Props {
 const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 ---
 
-<preview-iframe data-src={src} class="block">
+<component-preview data-src={src} class="block">
   <iframe
     data-preview="true"
     src={src}
     title={title}
-    class={`w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block ${dark ? 'bg-gray-900' : 'bg-white'} ${wrapper}`}
+    class:list={[
+      'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
+      dark ? 'bg-gray-900' : 'bg-white',
+      wrapper,
+    ]}
     style="max-width: 100%;"
     loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
-</preview-iframe>
+
+  <div
+    data-preview="true"
+    class="prose prose-pre:m-0 prose-pre:rounded-xl prose-pre:shadow-sm max-w-none data-[preview=true]:hidden"
+  >
+    <div data-html></div>
+  </div>
+</component-preview>
 
 <script>
-  class PreviewIframe extends HTMLElement {
+  import { codeToHtml } from 'shiki'
+
+  class ComponentPreview extends HTMLElement {
     private iframe: HTMLIFrameElement | null = null
-    private wrapper: HTMLDivElement | null = null
+    private code: HTMLDivElement | null = null
     private boundHandlers = new Map<string, EventListener>()
     private isLoaded = false
 
@@ -35,34 +48,18 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       }
 
       this.iframe = this.querySelector('iframe') as HTMLIFrameElement | null
-      this.wrapper = this.querySelector('[data-preview]') as HTMLDivElement | null
+      this.code = this.querySelector('[data-html]') as HTMLDivElement | null
 
-      if (!this.iframe || !this.wrapper) {
+      if (!this.iframe || !this.code) {
         return
       }
 
       this.setupEventListeners(src)
       this.handleInitialLoad()
-
-      const contentRequestHandler = () => {
-        if (this.isLoaded) {
-          this.dispatchLoadedEvent()
-        }
-      }
-
-      document.addEventListener(`iframe:content:request:${src}`, contentRequestHandler)
-
-      this.boundHandlers.set(`iframe:content:request:${src}`, contentRequestHandler)
     }
 
     disconnectedCallback() {
-      const src = this.dataset.src
-
-      if (src) {
-        this.boundHandlers.forEach((handler, eventName) => {
-          document.removeEventListener(eventName, handler)
-        })
-      }
+      this.boundHandlers.forEach((handler, event) => document.removeEventListener(event, handler))
 
       this.boundHandlers.clear()
     }
@@ -79,9 +76,11 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       const viewHandler = (event: Event) => {
         const { detail } = event as CustomEvent
 
-        if (this.wrapper) {
-          this.wrapper.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
-        }
+        const previewElements = this.querySelectorAll('[data-preview]')
+
+        previewElements.forEach((element) => {
+          element.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
+        })
       }
 
       const directionHandler = (event: Event) => {
@@ -104,7 +103,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         }
       }
 
-      const loadHandler = () => this.dispatchLoadedEvent()
+      const loadHandler = () => this.onIframeLoaded()
 
       this.boundHandlers.set(`breakpoint:change:${src}`, breakpointHandler)
       this.boundHandlers.set(`preview:view:${src}`, viewHandler)
@@ -113,6 +112,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       this.boundHandlers.set(`iframe:load`, loadHandler)
 
       this.iframe?.addEventListener('load', loadHandler)
+
       document.addEventListener(`breakpoint:change:${src}`, breakpointHandler)
       document.addEventListener(`preview:view:${src}`, viewHandler)
       document.addEventListener(`preview:direction:${src}`, directionHandler)
@@ -126,14 +126,18 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 
       try {
         if (this.iframe.contentDocument?.readyState === 'complete') {
-          this.dispatchLoadedEvent()
+          this.onIframeLoaded()
         }
       } catch {
-        // Cross-origin or not yet accessible
+        // We do nothing
       }
     }
 
-    private dispatchLoadedEvent() {
+    private async onIframeLoaded() {
+      if (this.isLoaded) {
+        return
+      }
+
       const content = this.getIframeContent()
 
       if (!content) {
@@ -142,14 +146,9 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 
       const sanitized = this.sanitizeContent(content.body.innerHTML)
 
-      this.isLoaded = true
+      await this.renderCode(this.code, sanitized)
 
-      this.dispatchEvent(
-        new CustomEvent(`iframe:loaded:${this.dataset.src}`, {
-          bubbles: true,
-          detail: { content: sanitized },
-        })
-      )
+      this.isLoaded = true
     }
 
     private getIframeContent(): Document | null {
@@ -167,7 +166,26 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         .join('\n')
         .trim()
     }
+
+    private async renderCode(container: HTMLDivElement | null, content: string): Promise<void> {
+      if (!container) {
+        return
+      }
+
+      try {
+        const html = await codeToHtml(content, {
+          lang: 'html',
+          theme: 'github-dark',
+        })
+
+        if (this.isConnected) {
+          container.innerHTML = html
+        }
+      } catch {
+        // We do nothing
+      }
+    }
   }
 
-  customElements.define('preview-iframe', PreviewIframe)
+  customElements.define('component-preview', ComponentPreview)
 </script>

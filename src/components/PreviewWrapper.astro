@@ -1,7 +1,6 @@
 ---
-import PreviewIframe from './PreviewIframe.astro'
+import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
-import PreviewCode from './PreviewCode.astro'
 import PreviewView from './PreviewView.astro'
 import PreviewRefs from './PreviewRefs.astro'
 import PreviewDirection from './PreviewDirection.astro'
@@ -42,8 +41,7 @@ const src = dark
     <PreviewBreakpoints src={src} breakpoints={breakpoints} />
   </div>
 
-  <PreviewIframe src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
-  <PreviewCode src={src} />
+  <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
 
   <PreviewRefs title="Contributors" url="https://github.com/" refs={contributors} />
   <PreviewRefs title="Plugins" url="https://www.npmjs.com/package/" refs={plugins || []} />
