@@ -27,7 +27,7 @@ const blog = defineCollection({
       description: z.string(),
       slug: z.string(),
       emoji: z.string(),
-      terms: z.array(z.string()).optional(),
+      terms: z.array(z.string()),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date(),
     }),

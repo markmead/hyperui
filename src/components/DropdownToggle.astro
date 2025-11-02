@@ -58,6 +58,7 @@
         this.isOpen = !this.isOpen
 
         button.setAttribute('aria-expanded', String(this.isOpen))
+        button.setAttribute('aria-label', this.isOpen ? 'Close navigation' : 'Open navigation')
 
         svgs.forEach((svg) => svg.setAttribute('data-open', String(this.isOpen)))
 

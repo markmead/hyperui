@@ -17,7 +17,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
     title={title}
     class={`w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block ${dark ? 'bg-gray-900' : 'bg-white'} ${wrapper}`}
     style="max-width: 100%;"
-    loading={index === 1 && !dark ? 'lazy' : 'lazy'}></iframe>
+    loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
 </preview-iframe>
 
 <script>
@@ -106,7 +106,9 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
     }
 
     private handleInitialLoad() {
-      if (!this.iframe) return
+      if (!this.iframe) {
+        return
+      }
 
       try {
         const doc = this.iframe.contentDocument

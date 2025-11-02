@@ -1,12 +1,5 @@
 ---
-interface Collection {
-  title: string
-  emoji: string
-  terms: string[]
-  slug: string
-}
-
-interface Post {
+interface Result {
   title: string
   emoji: string
   terms: string[]
@@ -14,8 +7,8 @@ interface Post {
 }
 
 interface Props {
-  collections: Collection[]
-  posts: Post[]
+  collections: Result[]
+  posts: Result[]
 }
 
 const { collections, posts } = Astro.props
@@ -35,11 +28,18 @@ const { collections, posts } = Astro.props
 </search-results>
 
 <script>
+  interface Result {
+    title: string
+    emoji: string
+    terms: string[]
+    slug: string
+  }
+
   class SearchResults extends HTMLElement {
     private escapeHandler: ((event: Event) => void) | null = null
     private searchHandler: ((event: Event) => void) | null = null
-    private collections: Array<{ title: string; emoji: string; slug: string }> = []
-    private posts: Array<{ title: string; emoji: string; slug: string }> = []
+    private collections: Result[] = []
+    private posts: Result[] = []
 
     connectedCallback() {
       const container = this.querySelector('[data-container]')
