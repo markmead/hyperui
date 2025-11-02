@@ -22,38 +22,68 @@ const { src } = Astro.props
 
 <script>
   class PreviewCopy extends HTMLElement {
+    private timeoutId: number | null = null
+    private isProcessing = false
+
     connectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement
-      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement
-      const text = button.querySelector('span[data-text]') as HTMLSpanElement
-      const polite = this.querySelector('span[data-polite]') as HTMLSpanElement
+      const src = this.dataset.src
+
+      if (!src) {
+        return
+      }
+
+      const button = this.querySelector('button')
+      const emoji = button?.querySelector('span[data-emoji]')
+      const text = button?.querySelector('span[data-text]')
+      const polite = this.querySelector('span[data-polite]')
+
+      if (!button || !emoji || !text || !polite) {
+        return
+      }
 
       button.addEventListener('click', () => {
-        let copied = button.getAttribute('aria-pressed') === 'true'
+        if (this.isProcessing) {
+          return
+        }
 
-        button.setAttribute('aria-pressed', copied ? 'false' : 'true')
+        this.isProcessing = true
 
-        copied = !copied
-
-        emoji.textContent = copied ? '✅' : '📋'
-        text.textContent = copied ? 'Copied' : 'Copy'
-
-        polite.textContent = copied ? 'Copied to clipboard.' : ''
+        if (this.timeoutId !== null) {
+          clearTimeout(this.timeoutId)
+        }
 
         document.dispatchEvent(
-          new CustomEvent(`preview:copy:${this.dataset.src}`, {
+          new CustomEvent(`preview:copy:${src}`, {
             bubbles: true,
           })
         )
 
-        setTimeout(() => {
-          emoji.textContent = '📋'
-          text.textContent = 'Copy'
-          polite.textContent = ''
+        emoji.textContent = '✅'
+        text.textContent = 'Copied'
+        polite.textContent = 'Copied to clipboard.'
 
-          button.setAttribute('aria-pressed', 'false')
+        button.setAttribute('aria-pressed', 'true')
+
+        this.timeoutId = window.setTimeout(() => {
+          if (this.isConnected) {
+            emoji.textContent = '📋'
+            text.textContent = 'Copy'
+            polite.textContent = ''
+
+            button.setAttribute('aria-pressed', 'false')
+          }
+
+          this.isProcessing = false
         }, 1500)
       })
+    }
+
+    disconnectedCallback() {
+      if (this.timeoutId !== null) {
+        clearTimeout(this.timeoutId)
+
+        this.timeoutId = null
+      }
     }
   }
 

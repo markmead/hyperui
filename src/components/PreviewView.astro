@@ -21,25 +21,39 @@ const { src } = Astro.props
 <script>
   class PreviewView extends HTMLElement {
     connectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement
-      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement
-      const text = button.querySelector('span[data-text]') as HTMLSpanElement
+      const src = this.dataset.src
+
+      if (!src) {
+        return
+      }
+
+      const button = this.querySelector('button')
+
+      if (!button) {
+        return
+      }
+
+      const emoji = button.querySelector('span[data-emoji]')
+      const text = button.querySelector('span[data-text]')
+
+      if (!emoji || !text) {
+        return
+      }
 
       button.addEventListener('click', () => {
-        let previewing = button.getAttribute('aria-pressed') === 'true'
+        const isPreviewing = button.getAttribute('aria-pressed') === 'true'
+        const newState = !isPreviewing
 
-        button.setAttribute('aria-pressed', previewing ? 'false' : 'true')
+        button.setAttribute('aria-pressed', String(newState))
 
-        previewing = !previewing
-
-        emoji.textContent = previewing ? '👀' : '👾'
-        text.textContent = previewing ? 'Preview' : 'HTML'
+        emoji.textContent = newState ? '👀' : '👾'
+        text.textContent = newState ? 'Preview' : 'HTML'
 
         document.dispatchEvent(
-          new CustomEvent(`preview:view:${this.dataset.src}`, {
+          new CustomEvent(`preview:view:${src}`, {
             bubbles: true,
             detail: {
-              previewing,
+              previewing: newState,
             },
           })
         )

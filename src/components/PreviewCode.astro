@@ -19,26 +19,64 @@ const { src } = Astro.props
   import { codeToHtml } from 'shiki'
 
   class PreviewCode extends HTMLElement {
-    connectedCallback() {
-      const wrapper = this.querySelector('[data-preview]') as HTMLDivElement
-      const container = this.querySelector('[data-html]') as HTMLDivElement
+    private abortController: AbortController | null = null
 
-      document.addEventListener(`iframe:loaded:${this.dataset.src}`, async (event) => {
+    connectedCallback() {
+      const src = this.dataset.src
+
+      if (!src) {
+        return
+      }
+
+      const wrapper = this.querySelector('[data-preview]')
+      const container = this.querySelector('[data-html]')
+
+      if (!wrapper || !container) {
+        return
+      }
+
+      this.abortController = new AbortController()
+
+      const iframeLoadedHandler = async (event: Event) => {
         const { detail } = event as CustomEvent
 
-        const html = await codeToHtml(detail.content, {
+        await this.renderCode(container as HTMLDivElement, detail.content)
+      }
+
+      const viewHandler = (event: Event) => {
+        const { detail } = event as CustomEvent
+
+        const isPreviewMode = detail.previewing
+
+        wrapper.setAttribute('data-preview', isPreviewMode ? 'true' : 'false')
+      }
+
+      document.addEventListener(`iframe:loaded:${src}`, iframeLoadedHandler, {
+        signal: this.abortController.signal,
+      })
+
+      document.addEventListener(`preview:view:${src}`, viewHandler, {
+        signal: this.abortController.signal,
+      })
+    }
+
+    disconnectedCallback() {
+      this.abortController?.abort()
+    }
+
+    private async renderCode(container: HTMLDivElement, content: string): Promise<void> {
+      try {
+        const html = await codeToHtml(content, {
           lang: 'html',
           theme: 'github-dark',
         })
 
-        container.innerHTML = html
-      })
-
-      document.addEventListener(`preview:view:${this.dataset.src}`, async (event) => {
-        const { detail } = event as CustomEvent
-
-        wrapper.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
-      })
+        if (this.isConnected) {
+          container.innerHTML = html
+        }
+      } catch {
+        // We do nothing
+      }
     }
   }
 

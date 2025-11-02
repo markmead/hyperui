@@ -38,28 +38,50 @@
 
 <script>
   class DropdownButton extends HTMLElement {
+    private isOpen = false
+    private clickHandler: ((event: Event) => void) | null = null
+
     connectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement
-      const svgs = button.querySelectorAll('svg')
+      const button = this.querySelector('button')
 
-      let open = false
+      if (!button) {
+        return
+      }
 
-      button.addEventListener('click', () => {
-        open = !open
+      const svgs = this.querySelectorAll('svg')
 
-        button.setAttribute('aria-expanded', open ? 'true' : 'false')
+      if (svgs.length === 0) {
+        return
+      }
 
-        svgs.forEach((svg) => svg.setAttribute('data-open', open ? 'true' : 'false'))
+      this.clickHandler = () => {
+        this.isOpen = !this.isOpen
 
-        this.dispatchEvent(
+        button.setAttribute('aria-expanded', String(this.isOpen))
+
+        svgs.forEach((svg) => svg.setAttribute('data-open', String(this.isOpen)))
+
+        document.dispatchEvent(
           new CustomEvent('dropdown:toggle', {
             bubbles: true,
             detail: {
-              open,
+              open: this.isOpen,
             },
           })
         )
-      })
+      }
+
+      button.addEventListener('click', this.clickHandler)
+    }
+
+    disconnectedCallback() {
+      const button = this.querySelector('button')
+
+      if (button && this.clickHandler) {
+        button.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
     }
   }
 

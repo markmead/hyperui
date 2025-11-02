@@ -20,29 +20,53 @@ const { src } = Astro.props
 
 <script>
   class PreviewDirection extends HTMLElement {
+    private isProcessing = false
+
     connectedCallback() {
-      const button = this.querySelector('button') as HTMLButtonElement
-      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement
-      const text = button.querySelector('span[data-text]') as HTMLSpanElement
+      const src = this.dataset.src
+
+      if (!src) {
+        return
+      }
+
+      const button = this.querySelector('button')
+
+      if (!button) {
+        return
+      }
+
+      const emoji = button.querySelector('span[data-emoji]')
+      const text = button.querySelector('span[data-text]')
+
+      if (!emoji || !text) {
+        return
+      }
 
       button.addEventListener('click', () => {
-        let ltr = button.getAttribute('aria-pressed') === 'true'
+        if (this.isProcessing) {
+          return
+        }
 
-        button.setAttribute('aria-pressed', ltr ? 'false' : 'true')
+        this.isProcessing = true
 
-        ltr = !ltr
+        const isLtr = button.getAttribute('aria-pressed') === 'true'
+        const newState = !isLtr
 
-        emoji.textContent = ltr ? '👉' : '👈'
-        text.textContent = ltr ? 'LTR' : 'RTL'
+        button.setAttribute('aria-pressed', String(newState))
+
+        emoji.textContent = newState ? '👉' : '👈'
+        text.textContent = newState ? 'LTR' : 'RTL'
 
         document.dispatchEvent(
-          new CustomEvent(`preview:direction:${this.dataset.src}`, {
+          new CustomEvent(`preview:direction:${src}`, {
             bubbles: true,
             detail: {
-              ltr,
+              ltr: newState,
             },
           })
         )
+
+        this.isProcessing = false
       })
     }
   }
