@@ -83,8 +83,7 @@ const { collections, posts } = Astro.props
       }
 
       this.searchHandler = (searchEvent: Event) => {
-        const searchEventTyped = searchEvent as CustomEvent
-        const searchQuery = searchEventTyped.detail.value.toLowerCase()
+        const searchQuery = (searchEvent as CustomEvent).detail.value.toLowerCase()
 
         if (!searchQuery) {
           this.searchResults = []

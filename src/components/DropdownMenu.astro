@@ -33,8 +33,7 @@ import HeaderLink from './HeaderLink.astro'
       }
 
       this.toggleHandler = (toggleEvent: Event) => {
-        const toggleEventTyped = toggleEvent as CustomEvent
-        const isOpen = toggleEventTyped.detail.open
+        const isOpen = (toggleEvent as CustomEvent).detail.open
 
         dropdownEl.setAttribute('data-dropdown', isOpen ? 'true' : 'false')
       }
