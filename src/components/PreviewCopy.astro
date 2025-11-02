@@ -33,12 +33,17 @@ const { src } = Astro.props
         return
       }
 
-      const button = this.querySelector('button')
-      const emoji = button?.querySelector('span[data-emoji]')
-      const text = button?.querySelector('span[data-text]')
-      const polite = this.querySelector('span[data-polite]')
+      const button = this.querySelector('button') as HTMLButtonElement | null
+      const polite = this.querySelector('span[data-polite]') as HTMLSpanElement | null
 
-      if (!button || !emoji || !text || !polite) {
+      if (!button || !polite) {
+        return
+      }
+
+      const emoji = button?.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const text = button?.querySelector('span[data-text]') as HTMLSpanElement | null
+
+      if (!emoji || !text) {
         return
       }
 
@@ -53,11 +58,7 @@ const { src } = Astro.props
           clearTimeout(this.timeoutId)
         }
 
-        document.dispatchEvent(
-          new CustomEvent(`preview:copy:${src}`, {
-            bubbles: true,
-          })
-        )
+        document.dispatchEvent(new CustomEvent(`preview:copy:${src}`, { bubbles: true }))
 
         emoji.textContent = '✅'
         text.textContent = 'Copied'
@@ -82,7 +83,7 @@ const { src } = Astro.props
     }
 
     disconnectedCallback() {
-      const button = this.querySelector('button')
+      const button = this.querySelector('button') as HTMLButtonElement | null
 
       if (button && this.clickHandler) {
         button.removeEventListener('click', this.clickHandler)

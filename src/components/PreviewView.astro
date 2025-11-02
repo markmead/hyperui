@@ -29,14 +29,14 @@ const { src } = Astro.props
         return
       }
 
-      const button = this.querySelector('button')
+      const button = this.querySelector('button') as HTMLButtonElement | null
 
       if (!button) {
         return
       }
 
-      const emoji = button.querySelector('span[data-emoji]')
-      const text = button.querySelector('span[data-text]')
+      const emoji = button.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const text = button.querySelector('span[data-text]') as HTMLSpanElement | null
 
       if (!emoji || !text) {
         return
@@ -54,9 +54,7 @@ const { src } = Astro.props
         document.dispatchEvent(
           new CustomEvent(`preview:view:${src}`, {
             bubbles: true,
-            detail: {
-              previewing: newState,
-            },
+            detail: { previewing: newState },
           })
         )
       }
@@ -65,7 +63,7 @@ const { src } = Astro.props
     }
 
     disconnectedCallback() {
-      const button = this.querySelector('button')
+      const button = this.querySelector('button') as HTMLButtonElement | null
 
       if (button && this.clickHandler) {
         button.removeEventListener('click', this.clickHandler)

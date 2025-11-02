@@ -42,17 +42,13 @@
     private clickHandler: ((event: Event) => void) | null = null
 
     connectedCallback() {
-      const button = this.querySelector('button')
+      const button = this.querySelector('button') as HTMLButtonElement | null
 
       if (!button) {
         return
       }
 
-      const svgs = this.querySelectorAll('svg')
-
-      if (svgs.length === 0) {
-        return
-      }
+      const svgs = [...this.querySelectorAll('svg')] as SVGElement[]
 
       this.clickHandler = () => {
         this.isOpen = !this.isOpen
@@ -65,9 +61,7 @@
         document.dispatchEvent(
           new CustomEvent('dropdown:toggle', {
             bubbles: true,
-            detail: {
-              open: this.isOpen,
-            },
+            detail: { open: this.isOpen },
           })
         )
       }

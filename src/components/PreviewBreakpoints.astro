@@ -42,7 +42,7 @@ const { src, breakpoints } = Astro.props
         return
       }
 
-      const buttons = [...this.querySelectorAll<HTMLButtonElement>('button[data-breakpoint]')]
+      const buttons = [...this.querySelectorAll('button[data-breakpoint]')] as HTMLButtonElement[]
 
       if (buttons.length === 0) {
         return

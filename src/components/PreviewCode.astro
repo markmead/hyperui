@@ -28,8 +28,8 @@ const { src } = Astro.props
         return
       }
 
-      const wrapper = this.querySelector('[data-preview]')
-      const container = this.querySelector('[data-html]')
+      const wrapper = this.querySelector('[data-preview]') as HTMLDivElement | null
+      const container = this.querySelector('[data-html]') as HTMLDivElement | null
 
       if (!wrapper || !container) {
         return
@@ -43,21 +43,21 @@ const { src } = Astro.props
         await this.renderCode(container as HTMLDivElement, detail.content)
       }
 
-      const viewHandler = (event: Event) => {
-        const { detail } = event as CustomEvent
-
-        const isPreviewMode = detail.previewing
-
-        wrapper.setAttribute('data-preview', isPreviewMode ? 'true' : 'false')
-      }
-
       document.addEventListener(`iframe:loaded:${src}`, iframeLoadedHandler, {
         signal: this.abortController.signal,
       })
 
-      document.addEventListener(`preview:view:${src}`, viewHandler, {
-        signal: this.abortController.signal,
-      })
+      document.addEventListener(
+        `preview:view:${src}`,
+        (event: Event) => {
+          const { detail } = event as CustomEvent
+
+          wrapper.setAttribute('data-preview', detail.previewing ? 'true' : 'false')
+        },
+        { signal: this.abortController.signal }
+      )
+
+      document.dispatchEvent(new CustomEvent(`iframe:content:request:${src}`, { bubbles: true }))
     }
 
     disconnectedCallback() {

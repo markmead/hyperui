@@ -18,7 +18,7 @@
     private keydownHandler: ((event: KeyboardEvent) => void) | null = null
 
     connectedCallback() {
-      const input = this.querySelector('input')
+      const input = this.querySelector('input') as HTMLInputElement | null
 
       if (!input) {
         return
@@ -28,25 +28,19 @@
         this.dispatchEvent(
           new CustomEvent('input:search', {
             bubbles: true,
-            detail: {
-              value: input.value,
-            },
+            detail: { value: input.value },
           })
         )
       }
 
       this.keydownHandler = (event: KeyboardEvent) => {
-        if (event?.key !== 'Escape') {
+        if (event.key !== 'Escape') {
           return
         }
 
         input.blur()
 
-        this.dispatchEvent(
-          new CustomEvent('input:escape', {
-            bubbles: true,
-          })
-        )
+        this.dispatchEvent(new CustomEvent('input:escape', { bubbles: true }))
       }
 
       input.addEventListener('input', this.inputHandler)
@@ -54,11 +48,12 @@
     }
 
     disconnectedCallback() {
-      const input = this.querySelector('input')
+      const input = this.querySelector('input') as HTMLInputElement | null
 
       if (input && this.inputHandler && this.keydownHandler) {
         input.removeEventListener('input', this.inputHandler)
         input.removeEventListener('keydown', this.keydownHandler)
+
         this.inputHandler = null
         this.keydownHandler = null
       }

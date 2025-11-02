@@ -23,8 +23,9 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 <script>
   class PreviewIframe extends HTMLElement {
     private iframe: HTMLIFrameElement | null = null
-    private wrapper: HTMLElement | null = null
+    private wrapper: HTMLDivElement | null = null
     private boundHandlers = new Map<string, EventListener>()
+    private isLoaded = false
 
     connectedCallback() {
       const src = this.dataset.src
@@ -33,8 +34,8 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         return
       }
 
-      this.iframe = this.querySelector('iframe')
-      this.wrapper = this.querySelector('[data-preview]')
+      this.iframe = this.querySelector('iframe') as HTMLIFrameElement | null
+      this.wrapper = this.querySelector('[data-preview]') as HTMLDivElement | null
 
       if (!this.iframe || !this.wrapper) {
         return
@@ -42,6 +43,16 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 
       this.setupEventListeners(src)
       this.handleInitialLoad()
+
+      const contentRequestHandler = () => {
+        if (this.isLoaded) {
+          this.dispatchLoadedEvent()
+        }
+      }
+
+      document.addEventListener(`iframe:content:request:${src}`, contentRequestHandler)
+
+      this.boundHandlers.set(`iframe:content:request:${src}`, contentRequestHandler)
     }
 
     disconnectedCallback() {
@@ -114,16 +125,13 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       }
 
       try {
-        const doc = this.iframe.contentDocument
-
-        if (doc?.readyState === 'complete') {
+        if (this.iframe.contentDocument?.readyState === 'complete') {
           this.dispatchLoadedEvent()
         }
       } catch {
-        // We do nothing
+        // Cross-origin or not yet accessible
       }
     }
-
     private dispatchLoadedEvent() {
       const content = this.getIframeContent()
 
@@ -132,6 +140,8 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       }
 
       const sanitized = this.sanitizeContent(content.body.innerHTML)
+
+      this.isLoaded = true
 
       this.dispatchEvent(
         new CustomEvent(`iframe:loaded:${this.dataset.src}`, {

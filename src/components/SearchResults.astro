@@ -42,9 +42,9 @@ const { collections, posts } = Astro.props
     private posts: Result[] = []
 
     connectedCallback() {
-      const container = this.querySelector('[data-container]')
-      const error = this.querySelector('[data-error]')
-      const ul = this.querySelector('[data-list]')
+      const container = this.querySelector('[data-container]') as HTMLDivElement | null
+      const error = this.querySelector('[data-error]') as HTMLParagraphElement | null
+      const ul = this.querySelector('[data-list]') as HTMLUListElement | null
 
       if (!container || !error || !ul) {
         return
