@@ -33,16 +33,15 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
 <script>
   class ComponentPreview extends HTMLElement {
-    private isLoaded = false
     private contentSrc: string | null = null
+    private contentHtml: string | null = null
 
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
 
-    private loadHandler: (() => void) | null = null
-    private breakpointHandler: ((breakpointEvent: Event) => void) | null = null
-    private viewHandler: ((viewEvent: Event) => void) | null = null
-    private directionHandler: ((directionEvent: Event) => void) | null = null
+    private breakpointHandler: ((event: Event) => void) | null = null
+    private viewHandler: ((event: Event) => void) | null = null
+    private directionHandler: ((event: Event) => void) | null = null
     private copyHandler: (() => void) | null = null
 
     connectedCallback() {
@@ -59,21 +58,10 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return
       }
 
-      // Reset loaded state in case component is being reused
-      this.isLoaded = false
-
       this.setupEventListeners()
-
-      this.checkIframeLoaded()
-
-      globalThis.queueMicrotask(() => this.checkIframeLoaded())
     }
 
     disconnectedCallback() {
-      if (this.iframeEl && this.loadHandler) {
-        this.iframeEl.removeEventListener('load', this.loadHandler)
-      }
-
       if (
         this.contentSrc &&
         this.breakpointHandler &&
@@ -97,9 +85,13 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.viewHandler = (viewEvent: Event) => {
+      this.viewHandler = async (viewEvent: Event) => {
         const isPreviewing = (viewEvent as CustomEvent).detail.previewing
         const previewEls = this.querySelectorAll('[data-preview]')
+
+        if (!isPreviewing && !this.contentHtml) {
+          await this.fetchAndDisplayCode()
+        }
 
         previewEls.forEach((previewEl) => {
           previewEl.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
@@ -108,26 +100,21 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
       this.directionHandler = (directionEvent: Event) => {
         const isLtr = (directionEvent as CustomEvent).detail.ltr
-        const iframeContent = this.getIframeContent()
 
-        if (iframeContent) {
-          iframeContent.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
+        if (this.iframeEl?.contentDocument) {
+          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
+        }
+
+        if (this.iframeEl?.contentDocument) {
+          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
         }
       }
 
       this.copyHandler = () => {
-        const iframeContent = this.getIframeContent()
-
-        if (iframeContent) {
-          const contentHtml = this.sanitizeContent(iframeContent.body.innerHTML)
-
-          navigator.clipboard.writeText(contentHtml)
+        if (this.previewEl?.textContent) {
+          navigator.clipboard.writeText(this.previewEl.textContent)
         }
       }
-
-      this.loadHandler = () => this.onIframeLoaded()
-
-      this.iframeEl?.addEventListener('load', this.loadHandler)
 
       if (this.contentSrc) {
         document.addEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
@@ -137,56 +124,42 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
     }
 
-    private checkIframeLoaded() {
-      if (!this.iframeEl) {
-        return
-      }
-
+    private async fetchAndDisplayCode() {
       try {
-        if (this.iframeEl.contentDocument?.readyState === 'complete') {
-          this.onIframeLoaded()
+        const contentResponse = await fetch(this.contentSrc!)
+
+        if (!contentResponse.ok) {
+          return
+        }
+
+        const contentHtml = await contentResponse.text()
+
+        const bodyContent = this.extractBodyContent(contentHtml)
+        const sanitizedContent = this.sanitizeContent(bodyContent)
+
+        this.contentHtml = sanitizedContent
+
+        if (this.previewEl) {
+          this.previewEl.textContent = sanitizedContent
         }
       } catch {
         // We do nothing
       }
     }
 
-    private onIframeLoaded() {
-      if (this.isLoaded) {
-        return
-      }
+    private extractBodyContent(contentHtml: string): string {
+      const domParser = new DOMParser()
+      const domDoc = domParser.parseFromString(contentHtml, 'text/html')
 
-      const iframeContent = this.getIframeContent()
-
-      if (!iframeContent) {
-        return
-      }
-
-      const sanitizedContent = this.sanitizeContent(iframeContent.body.innerHTML)
-
-      if (!this.previewEl) {
-        return
-      }
-
-      this.previewEl.textContent = sanitizedContent
-
-      this.isLoaded = true
-    }
-
-    private getIframeContent(): Document | null {
-      try {
-        return this.iframeEl?.contentDocument || this.iframeEl?.contentWindow?.document || null
-      } catch {
-        return null
-      }
+      return domDoc.body ? domDoc.body.innerHTML : contentHtml
     }
 
     private sanitizeContent(contentHtml: string): string {
-      const INDENTATION_SPACES = 4
+      const INDENTATION_SPACES = 2
 
       return contentHtml
         .split('\n')
-        .map((htmlLine) => htmlLine.replace(new RegExp(`^\\s{${INDENTATION_SPACES}}`, ''), ''))
+        .map((htmlLine) => htmlLine.replace(/^\s{4}/, ''))
         .join('\n')
         .trim()
     }
