@@ -10,12 +10,16 @@ interface Props {
 const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 ---
 
-<component-preview data-src={src} class="block space-y-4">
+<component-preview data-src={src} class="block">
   <iframe
     data-preview="true"
     src={src}
     title={title}
-    class={`w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block ${dark ? 'bg-gray-900' : 'bg-white'} ${wrapper}`}
+    class:list={[
+      'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
+      dark ? 'bg-gray-900' : 'bg-white',
+      wrapper,
+    ]}
     style="max-width: 100%;"
     loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
 
