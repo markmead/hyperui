@@ -60,7 +60,10 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       this.setupEventListeners()
+
       this.checkIframeLoaded()
+
+      globalThis.queueMicrotask(() => this.checkIframeLoaded())
     }
 
     disconnectedCallback() {
