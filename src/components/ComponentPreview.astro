@@ -36,7 +36,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 
   class ComponentPreview extends HTMLElement {
     private iframe: HTMLIFrameElement | null = null
-    private codeContainer: HTMLDivElement | null = null
+    private code: HTMLDivElement | null = null
     private boundHandlers = new Map<string, EventListener>()
     private isLoaded = false
 
@@ -48,9 +48,9 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       }
 
       this.iframe = this.querySelector('iframe') as HTMLIFrameElement | null
-      this.codeContainer = this.querySelector('[data-html]') as HTMLDivElement | null
+      this.code = this.querySelector('[data-html]') as HTMLDivElement | null
 
-      if (!this.iframe || !this.codeContainer) {
+      if (!this.iframe || !this.code) {
         return
       }
 
@@ -59,9 +59,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
     }
 
     disconnectedCallback() {
-      this.boundHandlers.forEach((handler, eventName) => {
-        document.removeEventListener(eventName, handler)
-      })
+      this.boundHandlers.forEach((handler, event) => document.removeEventListener(event, handler))
 
       this.boundHandlers.clear()
     }
@@ -114,6 +112,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
       this.boundHandlers.set(`iframe:load`, loadHandler)
 
       this.iframe?.addEventListener('load', loadHandler)
+
       document.addEventListener(`breakpoint:change:${src}`, breakpointHandler)
       document.addEventListener(`preview:view:${src}`, viewHandler)
       document.addEventListener(`preview:direction:${src}`, directionHandler)
@@ -149,7 +148,7 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
 
       const sanitized = this.sanitizeContent(content.body.innerHTML)
 
-      await this.renderCode(this.codeContainer as HTMLDivElement, sanitized)
+      await this.renderCode(this.code, sanitized)
     }
 
     private getIframeContent(): Document | null {
@@ -168,7 +167,11 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         .trim()
     }
 
-    private async renderCode(container: HTMLDivElement, content: string): Promise<void> {
+    private async renderCode(container: HTMLDivElement | null, content: string): Promise<void> {
+      if (!container) {
+        return
+      }
+
       try {
         const html = await codeToHtml(content, {
           lang: 'html',
