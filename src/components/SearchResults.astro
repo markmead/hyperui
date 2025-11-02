@@ -79,7 +79,7 @@ const { collections, posts } = Astro.props
 
         container.setAttribute('data-container', 'true')
 
-        const results = [...this.collections, ...this.posts].filter(({ title, terms = [] }) => {
+        const results = [...this.collections, ...this.posts].filter(({ title, terms }) => {
           const includesTitle = title.toLowerCase().includes(query)
           const includesTerms = terms.some((term: string) => term.toLowerCase().includes(query))
 

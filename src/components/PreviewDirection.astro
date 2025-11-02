@@ -21,6 +21,7 @@ const { src } = Astro.props
 <script>
   class PreviewDirection extends HTMLElement {
     private isProcessing = false
+    private clickHandler: ((event: Event) => void) | null = null
 
     connectedCallback() {
       const src = this.dataset.src
@@ -42,7 +43,7 @@ const { src } = Astro.props
         return
       }
 
-      button.addEventListener('click', () => {
+      this.clickHandler = () => {
         if (this.isProcessing) {
           return
         }
@@ -67,7 +68,19 @@ const { src } = Astro.props
         )
 
         this.isProcessing = false
-      })
+      }
+
+      button.addEventListener('click', this.clickHandler)
+    }
+
+    disconnectedCallback() {
+      const button = this.querySelector('button')
+
+      if (button && this.clickHandler) {
+        button.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
     }
   }
 

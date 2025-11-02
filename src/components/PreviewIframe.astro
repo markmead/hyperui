@@ -93,12 +93,15 @@ const { src, title, dark = false, wrapper = '', index = 1 } = Astro.props
         }
       }
 
+      const loadHandler = () => this.dispatchLoadedEvent()
+
       this.boundHandlers.set(`breakpoint:change:${src}`, breakpointHandler)
       this.boundHandlers.set(`preview:view:${src}`, viewHandler)
       this.boundHandlers.set(`preview:direction:${src}`, directionHandler)
       this.boundHandlers.set(`preview:copy:${src}`, copyHandler)
+      this.boundHandlers.set(`iframe:load`, loadHandler)
 
-      this.iframe?.addEventListener('load', () => this.dispatchLoadedEvent())
+      this.iframe?.addEventListener('load', loadHandler)
       document.addEventListener(`breakpoint:change:${src}`, breakpointHandler)
       document.addEventListener(`preview:view:${src}`, viewHandler)
       document.addEventListener(`preview:direction:${src}`, directionHandler)

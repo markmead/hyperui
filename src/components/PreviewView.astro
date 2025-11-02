@@ -20,6 +20,8 @@ const { src } = Astro.props
 
 <script>
   class PreviewView extends HTMLElement {
+    private clickHandler: ((event: Event) => void) | null = null
+
     connectedCallback() {
       const src = this.dataset.src
 
@@ -40,7 +42,7 @@ const { src } = Astro.props
         return
       }
 
-      button.addEventListener('click', () => {
+      this.clickHandler = () => {
         const isPreviewing = button.getAttribute('aria-pressed') === 'true'
         const newState = !isPreviewing
 
@@ -57,7 +59,19 @@ const { src } = Astro.props
             },
           })
         )
-      })
+      }
+
+      button.addEventListener('click', this.clickHandler)
+    }
+
+    disconnectedCallback() {
+      const button = this.querySelector('button')
+
+      if (button && this.clickHandler) {
+        button.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
     }
   }
 

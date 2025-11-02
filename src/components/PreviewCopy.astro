@@ -24,6 +24,7 @@ const { src } = Astro.props
   class PreviewCopy extends HTMLElement {
     private timeoutId: number | null = null
     private isProcessing = false
+    private clickHandler: ((event: Event) => void) | null = null
 
     connectedCallback() {
       const src = this.dataset.src
@@ -41,7 +42,7 @@ const { src } = Astro.props
         return
       }
 
-      button.addEventListener('click', () => {
+      this.clickHandler = () => {
         if (this.isProcessing) {
           return
         }
@@ -75,10 +76,20 @@ const { src } = Astro.props
 
           this.isProcessing = false
         }, 1500)
-      })
+      }
+
+      button.addEventListener('click', this.clickHandler)
     }
 
     disconnectedCallback() {
+      const button = this.querySelector('button')
+
+      if (button && this.clickHandler) {
+        button.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
+
       if (this.timeoutId !== null) {
         clearTimeout(this.timeoutId)
 

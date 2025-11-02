@@ -33,6 +33,7 @@ const { src, breakpoints } = Astro.props
   class PreviewBreakpoints extends HTMLElement {
     private isProcessing = false
     private activeButton: HTMLButtonElement | null = null
+    private clickHandler: ((event: Event) => void) | null = null
 
     connectedCallback() {
       const src = this.dataset.src
@@ -50,7 +51,9 @@ const { src, breakpoints } = Astro.props
       this.activeButton =
         buttons.find((btn) => btn.getAttribute('aria-pressed') === 'true') || buttons.at(-1)!
 
-      this.addEventListener('click', (event) => this.handleButtonClick(event, src))
+      this.clickHandler = (event) => this.handleButtonClick(event, src)
+
+      this.addEventListener('click', this.clickHandler)
     }
 
     private handleButtonClick(event: Event, src: string) {
@@ -88,6 +91,12 @@ const { src, breakpoints } = Astro.props
     }
 
     disconnectedCallback() {
+      if (this.clickHandler) {
+        this.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
+
       this.activeButton = null
     }
   }
