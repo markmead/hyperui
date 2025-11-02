@@ -59,6 +59,9 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return
       }
 
+      // Reset loaded state in case component is being reused
+      this.isLoaded = false
+
       this.setupEventListeners()
 
       this.checkIframeLoaded()
