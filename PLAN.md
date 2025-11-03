@@ -13,7 +13,7 @@ This document outlines additional components and collections to be added to Hype
 
 ### Navigation & Organization
 
-- [ ] **Tabs** - Tabbed navigation for organizing content within a page or section _(High Priority)_
+- [x] **Tabs** - Tabbed navigation for organizing content within a page or section _(High Priority)_
 - [ ] **Accordion** - Expandable/collapsible content sections - can repurpose existing FAQs collection _(High Priority)_
 - [ ] **Drawers/Slide-overs** - Side panels that slide in from screen edges for additional content _(Medium Priority)_
 - [ ] **Tree View** - Hierarchical list navigation for file systems and nested data _(Low Priority)_
@@ -42,7 +42,7 @@ This document outlines additional components and collections to be added to Hype
 ### High Priority (Start Here)
 
 1. ~Toast Notifications~
-2. Tabs
+2. ~Tabs~
 3. Accordion (repurpose FAQs)
 4. Logo Clouds
 5. Team Sections
