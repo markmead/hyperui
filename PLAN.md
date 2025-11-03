@@ -6,7 +6,7 @@ This document outlines additional components and collections to be added to Hype
 
 ### User Feedback
 
-- [ ] **Toast Notifications** - Temporary success/error/info/warning messages that appear and auto-dismiss _(High Priority)_
+- [x] **Toast Notifications** - Temporary success/error/info/warning messages that appear and auto-dismiss _(High Priority)_
 - [ ] **Empty States** - UI for when tables, lists, searches, or pages have no content to display _(Medium Priority)_
 - [ ] **Loading States/Spinners** - Various loading indicators, skeleton screens, and loading placeholders _(Low Priority)_
 - [ ] **Progress Bars** - Linear and circular progress indicators for tasks and workflows _(Low Priority)_
@@ -41,7 +41,7 @@ This document outlines additional components and collections to be added to Hype
 
 ### High Priority (Start Here)
 
-1. Toast Notifications
+1. ~Toast Notifications~
 2. Tabs
 3. Accordion (repurpose FAQs)
 4. Logo Clouds
@@ -77,3 +77,16 @@ This document outlines additional components and collections to be added to Hype
 - Consider dark mode variants where applicable
 - **No carousels** - static layouts only
 - Avoid components that require external libraries (date pickers, color pickers, etc.)
+
+## Additional Considerations for Future Collections
+
+### Suggested Additions
+
+- [ ] **Skip Links/A11y Navigation** - Accessibility-focused navigation patterns.
+- [ ] **Notification/Alert Badges** - Badge components for displaying unread counts, status indicators, and notification dots alongside existing alerts.
+- [ ] **Error State Patterns** - Form validation feedback, inline error messages, and error boundary patterns.
+- [ ] **Help Tooltips** - Tooltip and helper patterns for contextual information, form hints, and instructional overlays.
+
+### FAQ vs Accordion Note
+
+FAQs will remain as a marketing-focused collection. A separate **Accordion** collection will be created with application-UI-focused designs, optimized for form layouts, data organization, and dashboard use cases.
