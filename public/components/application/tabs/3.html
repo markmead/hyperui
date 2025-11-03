@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-3xl p-6">
+    <div class="flex gap-4">
+      <div class="border-r border-gray-200">
+        <div role="tablist" class="-mr-px flex flex-col gap-1">
+          <button
+            role="tab"
+            aria-selected="true"
+            class="border-r-2 border-blue-600 px-4 py-2 text-left text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
+          >
+            General
+          </button>
+
+          <button
+            role="tab"
+            aria-selected="false"
+            class="border-r-2 border-transparent px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700"
+          >
+            Privacy
+          </button>
+
+          <button
+            role="tab"
+            aria-selected="false"
+            class="border-r-2 border-transparent px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700"
+          >
+            Security
+          </button>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="flex-1">
+        <h3 class="text-xl font-semibold text-gray-900">Profile Information</h3>
+
+        <p class="mt-4 text-gray-700">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil exercitationem voluptatum,
+          debitis repellendus ea ipsam facere est maxime quia reprehenderit. Accusantium minima
+          laborum explicabo. Labore inventore, quos laudantium rem quaerat ad. Ex amet voluptatibus
+          quidem, debitis dolore harum laudantium dolor!
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
