@@ -5,7 +5,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "lint": "eslint .",
-    "format": "prettier --write .",
+    "format": "prettier --write . --ignore-path .prettierignore",
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
   },
   "dependencies": {
