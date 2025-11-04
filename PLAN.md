@@ -22,15 +22,15 @@ This document outlines additional components and collections to be added to Hype
 
 ### Social Proof & Trust
 
-- [ ] **Logo Clouds** - Client/partner logo displays and brand showcases _(High Priority)_
+- [x] **Logo Clouds** - Client/partner logo displays and brand showcases _(High Priority)_
 - [ ] **Testimonials** - Customer quotes, reviews, and success stories _(Low Priority)_
 - [ ] **Social Proof** - Review ratings, user counts, trust badges, and social validation _(Low Priority)_
 - [ ] **Comparison Tables** - Feature comparison layouts - could use/replace existing Pricings collection _(Low Priority)_
 
 ### Content Sections
 
-- [ ] **Team Sections** - Team member profiles, bios, and organizational charts _(High Priority)_
-- [ ] **Contact Forms** - Various contact form styles and inquiry forms _(High Priority)_
+- [x] **Team Sections** - Team member profiles, bios, and organizational charts _(High Priority)_
+- [x] **Contact Forms** - Various contact form styles and inquiry forms _(High Priority)_
 - [ ] **Feature Grids** - Product/service feature showcases and benefit highlights _(Medium Priority)_
 - [ ] **Galleries** - Image/video gallery layouts and media grids _(Medium Priority)_
 - [ ] **Navigation Menus** - Mega menus and dropdown navigation patterns _(Low Priority)_
@@ -44,9 +44,9 @@ This document outlines additional components and collections to be added to Hype
 1. ~Toast Notifications~
 2. ~Tabs~
 3. ~Accordion (repurpose FAQs)~
-4. Logo Clouds
-5. Team Sections
-6. Contact Forms
+4. ~Logo Clouds~
+5. ~Team Sections~
+6. ~Contact Forms~
 
 ### Medium Priority
 
