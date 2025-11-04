@@ -1,1 +1,14 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# vs code
+.vscode/
+
+# css
 public/component.css

@@ -8,6 +8,10 @@ interface Props {
 }
 
 const { component } = Astro.props
+
+const componentsForCount = component.components.map(({ dark }) => ({
+  dark: !!dark,
+}))
 ---
 
 <li>
@@ -15,12 +19,24 @@ const { component } = Astro.props
     href={`/components/${component.category}/${component.slug}`}
     class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-pink-500 focus:outline-0 sm:p-6"
   >
+  <div class="flex items-center justify-between gap-4">
+
     <span aria-hidden="true" class="text-xl">
       {component.emoji}
     </span>
 
+    {component.tag && (
+      <span
+        class="rounded-full -mt-7 -mr-3 text-xs/none px-2 py-1 capitalize border border-blue-300 bg-blue-50 text-blue-900 font-medium"
+      >
+        {component.tag}
+      </span>
+    )}
+
+  </div>
+
     <p class="mt-4 text-sm text-stone-700">
-      <FormattedCount components={component.components} />
+      <FormattedCount components={componentsForCount} />
     </p>
 
     <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">

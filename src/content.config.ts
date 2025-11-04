@@ -45,6 +45,7 @@ const collection = defineCollection({
       slug: z.string(),
       category: z.enum(['marketing', 'application']),
       emoji: z.string(),
+      tag: z.enum(['new', 'updated']).optional(),
       wrapper: z.string().default('h-[600px]'),
       terms: z.array(z.string()),
       pubDate: z.coerce.date().optional(),
