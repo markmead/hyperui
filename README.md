@@ -66,7 +66,7 @@ HyperUI has a wide range of freely available components. These components includ
 - [Stats](https://www.hyperui.dev/components/application/stats)
 - [Steps](https://www.hyperui.dev/components/application/steps)
 - [Tables](https://www.hyperui.dev/components/application/tables)
-- [Tabs](https://www.hyperui.dev/components/application/tabs
+- [Tabs](https://www.hyperui.dev/components/application/tabs)
 - [Textareas](https://www.hyperui.dev/components/application/textareas)
 - [Timelines](https://www.hyperui.dev/components/application/timelines)
 - [Toasts](https://www.hyperui.dev/components/application/toasts)
