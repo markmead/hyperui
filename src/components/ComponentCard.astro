@@ -8,19 +8,38 @@ interface Props {
 }
 
 const { component } = Astro.props
+
+const componentsForCount = component.components.map(({ dark }) => ({
+  dark: !!dark,
+}))
 ---
 
 <li>
   <a
     href={`/components/${component.category}/${component.slug}`}
-    class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-pink-500 focus:outline-0 sm:p-6"
+    class="relative flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-pink-500 focus:outline-0 sm:p-6"
   >
+    {
+      component.tag && (
+        <span
+          class:list={[
+            'absolute top-3 right-3 rounded-full border px-2 py-1 text-xs/none font-medium capitalize',
+            component.tag === 'new'
+              ? 'border-green-300 bg-green-100 text-green-900'
+              : 'border-blue-300 bg-blue-100 text-blue-900',
+          ]}
+        >
+          {component.tag}
+        </span>
+      )
+    }
+
     <span aria-hidden="true" class="text-xl">
       {component.emoji}
     </span>
 
     <p class="mt-4 text-sm text-stone-700">
-      <FormattedCount components={component.components} />
+      <FormattedCount components={componentsForCount} />
     </p>
 
     <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
