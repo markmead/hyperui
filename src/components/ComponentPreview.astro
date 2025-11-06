@@ -58,8 +58,6 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return
       }
 
-      this.setupHtml()
-
       this.setupEventListeners()
     }
 
@@ -92,6 +90,12 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         const previewEls = this.querySelectorAll('[data-preview]')
 
+        const contentHtml = this.getContent()
+
+        if (contentHtml && this.previewEl) {
+          this.previewEl.textContent = contentHtml
+        }
+
         previewEls.forEach((previewEl) => {
           previewEl.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
         })
@@ -106,8 +110,14 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       this.copyHandler = () => {
-        if (this.contentHtml) {
-          navigator.clipboard.writeText(this.contentHtml)
+        const contentHtml = this.getContent()
+
+        try {
+          if (contentHtml) {
+            navigator.clipboard.writeText(contentHtml)
+          }
+        } catch {
+          // We do nothing
         }
       }
 
@@ -119,29 +129,20 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
     }
 
-    private setupHtml() {
-      if (!this.iframeEl) {
-        return
+    private getContent(): string | null {
+      if (this.contentHtml) {
+        return this.contentHtml
       }
 
-      if (this.iframeEl.contentDocument?.readyState === 'complete') {
-        this.extractContent()
-
-        return
-      }
-
-      this.iframeEl.addEventListener('load', () => this.extractContent(), { once: true })
-    }
-
-    private extractContent() {
       if (this.iframeEl?.contentDocument) {
         const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
 
         this.contentHtml = this.sanitizeContent((docClone as Document).body.innerHTML)
-        if (this.previewEl) {
-          this.previewEl.innerText = this.contentHtml
-        }
+
+        return this.contentHtml
       }
+
+      return null
     }
 
     private sanitizeContent(contentHtml: string): string {
