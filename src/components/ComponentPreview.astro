@@ -124,7 +124,9 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
 
         this.contentHtml = this.sanitizeContent((docClone as Document).body.innerHTML)
-        this.previewEl!.innerText = this.contentHtml
+        if (this.previewEl) {
+          this.previewEl.innerText = this.contentHtml
+        }
       }
     }
 
