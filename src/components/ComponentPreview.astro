@@ -58,7 +58,10 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return
       }
 
-      this.setupHtml()
+      // Wait for iframe content to load before setting up HTML
+      this.iframeEl.addEventListener('load', () => {
+        this.setupHtml()
+      })
 
       this.setupEventListeners()
     }
