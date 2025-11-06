@@ -120,6 +120,20 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     }
 
     private setupHtml() {
+      if (!this.iframeEl) {
+        return
+      }
+
+      if (this.iframeEl.contentDocument?.readyState === 'complete') {
+        this.extractContent()
+
+        return
+      }
+
+      this.iframeEl.addEventListener('load', () => this.extractContent(), { once: true })
+    }
+
+    private extractContent() {
       if (this.iframeEl?.contentDocument) {
         const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
 
