@@ -1,4 +1,4 @@
-# HyperUI Component Guidelines
+# Component Guidelines
 
 ## Core Philosophy
 
@@ -29,7 +29,7 @@ HyperUI is a **component library for developers**. Components should be:
 
 ## Styling Approach
 
-- **Primary accent color**: Use indigo-600 for consistent CTAs and interactive elements
+- **Primary accent color**: Use for CTAs and interactive elements
 - **Neutrals**: Grays for borders, text, secondary content
 - **Backgrounds**: Prefer white/transparent or very subtle grays
 - **Hover states**: Subtle color changes, not dramatic transformations
@@ -45,29 +45,6 @@ Each component should have:
 4. Responsive design (if applicable)
 5. Obvious primary/secondary actions
 6. No unnecessary decoration
-
-## Examples of What to Avoid
-
-❌ **Bad**: Empty state with gradient background, colorful icons, and playful illustrations
-
-```html
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100">
-  <svg class="text-blue-400">...</svg>
-  <p class="text-purple-600">Oopsie woopsie!</p>
-</body>
-```
-
-✅ **Good**: Empty state with clean structure, neutral styling, actionable content
-
-```html
-<body class="flex items-center justify-center p-6">
-  <div class="max-w-md text-center">
-    <svg class="text-gray-400">...</svg>
-    <h3 class="text-lg font-semibold text-gray-900">No items yet</h3>
-    <button class="bg-indigo-600 text-white">Create Item</button>
-  </div>
-</body>
-```
 
 ## For Future Development
 
