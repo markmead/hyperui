@@ -20,8 +20,8 @@ const { src } = Astro.props
 
 <script>
   class PreviewDirection extends HTMLElement {
-    private isProcessing = false
     private contentSrc: string | null = null
+    private isProcessing = false
 
     private clickHandler: (() => void) | null = null
 

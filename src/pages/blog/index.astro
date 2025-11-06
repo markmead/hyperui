@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 
-import { SEO_TITLE_BLOG, SEO_DESCRIPTION_BLOG } from '../../consts'
+import { SEO_DESCRIPTION_BLOG, SEO_TITLE_BLOG } from '../../consts'
 
 import BaseHead from '../../components/BaseHead.astro'
 import Footer from '../../components/Footer.astro'
@@ -17,7 +17,7 @@ const posts = (await getCollection('blog'))
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SEO_TITLE_BLOG} description={SEO_DESCRIPTION_BLOG} />
+    <BaseHead description={SEO_DESCRIPTION_BLOG} title={SEO_TITLE_BLOG} />
 
     <script
       type="application/ld+json"
@@ -27,13 +27,13 @@ const posts = (await getCollection('blog'))
         name: SEO_TITLE_BLOG,
         description: SEO_DESCRIPTION_BLOG,
         url: `${Astro.site}/blog`,
-        blogPost: posts.map((post) => ({
+        blogPost: posts.map(({ description, pubDate, slug, title, updatedDate }) => ({
           '@type': 'BlogPosting',
-          headline: post.title,
-          url: `${Astro.site}/blog/${post.slug}`,
-          datePublished: post.pubDate,
-          dateModified: post.updatedDate,
-          description: post.description,
+          headline: title,
+          url: `${Astro.site}/blog/${slug}`,
+          datePublished: pubDate,
+          dateModified: updatedDate,
+          description: description,
           author: {
             '@type': 'Person',
             name: 'HyperUI',
@@ -56,21 +56,19 @@ const posts = (await getCollection('blog'))
       <section class="mx-auto max-w-7xl px-4 pb-8">
         <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {
-            posts.map((post) => (
+            posts.map(({ emoji, slug, title, updatedDate }) => (
               <li>
                 <a
-                  href={`/blog/${post.slug}`}
+                  href={`/blog/${slug}`}
                   class="flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-pink-500 focus:outline-0 sm:p-6"
                 >
                   <span aria-hidden="true" class="text-xl sm:text-2xl">
-                    {post.emoji}
+                    {emoji}
                   </span>
 
-                  <FormattedDate date={post.updatedDate} class="mt-4 text-sm text-stone-700" />
+                  <FormattedDate date={updatedDate} class="mt-4 text-sm text-stone-700" />
 
-                  <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
-                    {post.title}
-                  </h2>
+                  <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">{title}</h2>
                 </a>
               </li>
             ))

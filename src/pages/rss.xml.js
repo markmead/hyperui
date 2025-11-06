@@ -10,9 +10,9 @@ export async function GET(context) {
     .sort((a, b) => b.updatedDate.valueOf() - a.updatedDate.valueOf())
 
   return rss({
-    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: context.site,
+    title: SITE_TITLE,
     items: posts.map((post) => ({
       ...post,
       link: `/blog/${post.slug}/`,

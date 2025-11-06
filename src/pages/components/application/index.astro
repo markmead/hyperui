@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content'
 
 import {
-  SEO_TITLE_APPLICATION_COMPONENTS,
   SEO_DESCRIPTION_APPLICATION_COMPONENTS,
+  SEO_TITLE_APPLICATION_COMPONENTS,
 } from '../../../consts'
 
 import BaseHead from '../../../components/BaseHead.astro'
@@ -22,8 +22,8 @@ const components = (await getCollection('collection'))
 <html lang="en">
   <head>
     <BaseHead
-      title={SEO_TITLE_APPLICATION_COMPONENTS}
       description={SEO_DESCRIPTION_APPLICATION_COMPONENTS}
+      title={SEO_TITLE_APPLICATION_COMPONENTS}
     />
   </head>
 

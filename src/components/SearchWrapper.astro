@@ -5,30 +5,30 @@ import SearchInput from './SearchInput.astro'
 import SearchResults from './SearchResults.astro'
 
 interface Result {
-  slug: string
-  title: string
-  emoji: string
   category: string
+  emoji: string
+  slug: string
   terms: string[]
+  title: string
 }
 
 const collections: Result[] = (await getCollection('collection')).map(({ data }) => {
   return {
-    slug: `/components/${data.category}/${data.slug}`,
-    title: data.title,
-    emoji: data.emoji,
     category: data.category,
+    emoji: data.emoji,
+    slug: `/components/${data.category}/${data.slug}`,
     terms: data.terms,
+    title: data.title,
   }
 })
 
 const posts: Result[] = (await getCollection('blog')).map(({ data }) => {
   return {
-    slug: `/blog/${data.slug}`,
-    title: data.title,
-    emoji: data.emoji,
     category: '',
+    emoji: data.emoji,
+    slug: `/blog/${data.slug}`,
     terms: data.terms,
+    title: data.title,
   }
 })
 ---

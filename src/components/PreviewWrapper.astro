@@ -15,17 +15,17 @@ const breakpoints = [
 ]
 
 interface Props {
-  index: number
-  slug: string
-  title: string
   category: string
   contributors: string[]
   dark: boolean
+  index: number
+  slug: string
+  title: string
   wrapper: string
   plugins?: string[]
 }
 
-const { index, slug, title, category, contributors, dark, wrapper, plugins } = Astro.props
+const { category, contributors, dark, index, slug, title, wrapper, plugins = [] } = Astro.props
 
 const src = dark
   ? `/components/${category}/${slug}/${index}-dark.html`

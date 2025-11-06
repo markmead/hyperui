@@ -1,16 +1,16 @@
 ---
 interface Breakpoint {
-  name: string
   emoji: string
+  name: string
   width: string
 }
 
 interface Props {
-  src: string
   breakpoints: Breakpoint[]
+  src: string
 }
 
-const { src, breakpoints } = Astro.props
+const { breakpoints, src } = Astro.props
 ---
 
 <preview-breakpoints data-src={src} class="hidden flex-1 justify-end gap-2 md:flex">
@@ -31,8 +31,8 @@ const { src, breakpoints } = Astro.props
 
 <script>
   class PreviewBreakpoints extends HTMLElement {
-    private isProcessing = false
     private contentSrc: string | null = null
+    private isProcessing = false
 
     private activeButton: HTMLButtonElement | null = null
 
