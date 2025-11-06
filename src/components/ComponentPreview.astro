@@ -90,13 +90,10 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         const previewEls = this.querySelectorAll('[data-preview]')
 
-        if (!isPreviewing && !this.contentHtml) {
-          if (this.iframeEl?.contentDocument) {
-            const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
+        const contentHtml = this.getContent()
 
-            this.contentHtml = this.sanitizeContent((docClone as Document).body.innerHTML)
-            this.previewEl!.innerText = this.contentHtml
-          }
+        if (contentHtml && this.previewEl) {
+          this.previewEl.textContent = contentHtml
         }
 
         previewEls.forEach((previewEl) => {
@@ -110,15 +107,17 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         if (this.iframeEl?.contentDocument) {
           this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
         }
-
-        if (this.iframeEl?.contentDocument) {
-          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
-        }
       }
 
       this.copyHandler = () => {
-        if (this.previewEl?.textContent) {
-          navigator.clipboard.writeText(this.previewEl.textContent)
+        const contentHtml = this.getContent()
+
+        try {
+          if (contentHtml) {
+            navigator.clipboard.writeText(contentHtml)
+          }
+        } catch {
+          // We do nothing
         }
       }
 
@@ -128,6 +127,22 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         document.addEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
         document.addEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
       }
+    }
+
+    private getContent(): string | null {
+      if (this.contentHtml) {
+        return this.contentHtml
+      }
+
+      if (this.iframeEl?.contentDocument) {
+        const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
+
+        this.contentHtml = this.sanitizeContent((docClone as Document).body.innerHTML)
+
+        return this.contentHtml
+      }
+
+      return null
     }
 
     private sanitizeContent(contentHtml: string): string {
