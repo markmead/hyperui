@@ -1,9 +1,10 @@
 ---
 interface Result {
-  slug: string
-  title: string
+  category: string
   emoji: string
+  slug: string
   terms: string[]
+  title: string
 }
 
 interface Props {
@@ -29,10 +30,11 @@ const { collections, posts } = Astro.props
 
 <script>
   interface Result {
-    slug: string
-    title: string
+    category: string
     emoji: string
+    slug: string
     terms: string[]
+    title: string
   }
 
   class SearchResults extends HTMLElement {
@@ -41,8 +43,8 @@ const { collections, posts } = Astro.props
 
     private searchResults: Result[] = []
 
-    private escapeHandler: (() => void) | null = null
     private enterHandler: (() => void) | null = null
+    private escapeHandler: (() => void) | null = null
     private searchHandler: ((searchEvent: Event) => void) | null = null
 
     connectedCallback() {
@@ -61,15 +63,6 @@ const { collections, posts } = Astro.props
         return
       }
 
-      this.escapeHandler = () => {
-        this.searchResults = []
-
-        resultsEl.innerHTML = ''
-
-        containerEl.setAttribute('data-container', 'false')
-        errorEl.setAttribute('data-error', 'false')
-      }
-
       this.enterHandler = () => {
         if (this.searchResults.length !== 1) {
           return
@@ -80,6 +73,15 @@ const { collections, posts } = Astro.props
         const returnUrl = new URL(searchResult.slug, globalThis.location.href)
 
         globalThis.location.href = returnUrl.toString()
+      }
+
+      this.escapeHandler = () => {
+        this.searchResults = []
+
+        resultsEl.innerHTML = ''
+
+        containerEl.setAttribute('data-container', 'false')
+        errorEl.setAttribute('data-error', 'false')
       }
 
       this.searchHandler = (searchEvent: Event) => {
@@ -100,12 +102,12 @@ const { collections, posts } = Astro.props
 
         const searchResults = [...this.collectionItems, ...this.postItems].filter(
           (potentialResult) => {
-            const resultTitle = potentialResult.title.toLowerCase()
             const resultTerms = potentialResult.terms.map((searchTerm) => searchTerm.toLowerCase())
+            const resultTitle = potentialResult.title.toLowerCase()
 
             return (
-              resultTitle.includes(searchQuery) ||
-              resultTerms.some((resultTerm) => resultTerm.includes(searchQuery))
+              resultTerms.some((resultTerm) => resultTerm.includes(searchQuery)) ||
+              resultTitle.includes(searchQuery)
             )
           }
         )
@@ -123,7 +125,7 @@ const { collections, posts } = Astro.props
         this.searchResults = searchResults
 
         resultsEl.innerHTML = searchResults
-          .map(({ title, slug, emoji }) => {
+          .map(({ category, emoji, slug, title }) => {
             return `
               <li role="option">
                 <a
@@ -134,6 +136,8 @@ const { collections, posts } = Astro.props
                     <span aria-hidden="true">${emoji}</span>
                     <span>${title}</span>
                   </div>
+
+                  ${category ? `<p class="text-sm text-stone-700 mt-1 capitalize">${category}</p>` : ''}
                 </a>
               </li>
             `
@@ -143,19 +147,19 @@ const { collections, posts } = Astro.props
         errorEl.setAttribute('data-error', 'false')
       }
 
-      document.addEventListener('input:escape', this.escapeHandler)
       document.addEventListener('input:enter', this.enterHandler)
+      document.addEventListener('input:escape', this.escapeHandler)
       document.addEventListener('input:search', this.searchHandler)
     }
 
     disconnectedCallback() {
-      if (this.escapeHandler && this.enterHandler && this.searchHandler) {
-        document.removeEventListener('input:escape', this.escapeHandler)
+      if (this.enterHandler && this.escapeHandler && this.searchHandler) {
         document.removeEventListener('input:enter', this.enterHandler)
+        document.removeEventListener('input:escape', this.escapeHandler)
         document.removeEventListener('input:search', this.searchHandler)
 
-        this.escapeHandler = null
         this.enterHandler = null
+        this.escapeHandler = null
         this.searchHandler = null
       }
 

@@ -7,8 +7,8 @@ This document outlines additional components and collections to be added to Hype
 ### User Feedback
 
 - [x] **Toast Notifications** - Temporary success/error/info/warning messages that appear and auto-dismiss _(High Priority)_
-- [ ] **Empty States** - UI for when tables, lists, searches, or pages have no content to display _(Medium Priority)_
-- [ ] **Loading States/Spinners** - Various loading indicators, skeleton screens, and loading placeholders _(Low Priority)_
+- [x] **Empty States** - UI for when tables, lists, searches, or pages have no content to display _(Medium Priority)_
+- [x] **Loading States/Spinners** - Various loading indicators, skeleton screens, and loading placeholders _(Low Priority)_
 - [ ] **Progress Bars** - Linear and circular progress indicators for tasks and workflows _(Low Priority)_
 
 ### Navigation & Organization
@@ -50,14 +50,14 @@ This document outlines additional components and collections to be added to Hype
 
 ### Medium Priority
 
-7. Empty States
+7. ~Empty States~
 8. Drawers/Slide-overs
 9. Feature Grids
 10. Galleries
 
 ### Low Priority
 
-11. Loading States/Spinners
+11. ~Loading States/Spinners~
 12. Progress Bars
 13. Tree View
 14. Testimonials

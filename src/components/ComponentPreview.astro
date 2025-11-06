@@ -33,16 +33,16 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
 <script>
   class ComponentPreview extends HTMLElement {
-    private contentSrc: string | null = null
     private contentHtml: string | null = null
+    private contentSrc: string | null = null
 
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((breakpointEvent: Event) => void) | null = null
-    private viewHandler: ((viewEvent: Event) => void) | null = null
-    private directionHandler: ((directionEvent: Event) => void) | null = null
     private copyHandler: (() => void) | null = null
+    private directionHandler: ((directionEvent: Event) => void) | null = null
+    private viewHandler: ((viewEvent: Event) => void) | null = null
 
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
@@ -65,14 +65,19 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       if (
         this.contentSrc &&
         this.breakpointHandler &&
-        this.viewHandler &&
+        this.copyHandler &&
         this.directionHandler &&
-        this.copyHandler
+        this.viewHandler
       ) {
         document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
-        document.removeEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
-        document.removeEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
         document.removeEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
+        document.removeEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
+        document.removeEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
+
+        this.breakpointHandler = null
+        this.copyHandler = null
+        this.directionHandler = null
+        this.viewHandler = null
       }
     }
 
@@ -82,6 +87,26 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         if (this.iframeEl) {
           this.iframeEl.style.maxWidth = newWidth
+        }
+      }
+
+      this.copyHandler = () => {
+        const contentHtml = this.getContent()
+
+        try {
+          if (contentHtml) {
+            navigator.clipboard.writeText(contentHtml)
+          }
+        } catch {
+          // We do nothing
+        }
+      }
+
+      this.directionHandler = (directionEvent: Event) => {
+        const isLtr = (directionEvent as CustomEvent).detail.ltr
+
+        if (this.iframeEl?.contentDocument) {
+          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
         }
       }
 
@@ -101,31 +126,11 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         })
       }
 
-      this.directionHandler = (directionEvent: Event) => {
-        const isLtr = (directionEvent as CustomEvent).detail.ltr
-
-        if (this.iframeEl?.contentDocument) {
-          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
-        }
-      }
-
-      this.copyHandler = () => {
-        const contentHtml = this.getContent()
-
-        try {
-          if (contentHtml) {
-            navigator.clipboard.writeText(contentHtml)
-          }
-        } catch {
-          // We do nothing
-        }
-      }
-
       if (this.contentSrc) {
         document.addEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
-        document.addEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
-        document.addEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
         document.addEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
+        document.addEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
+        document.addEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
       }
     }
 

@@ -1,33 +1,41 @@
 // @ts-check
 import mdx from '@astrojs/mdx'
+import rehypeExternalLinks from 'rehype-external-links'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
-import rehypeExternalLinks from 'rehype-external-links'
 
 import { defineConfig, fontProviders } from 'astro/config'
 
 export default defineConfig({
   site: 'https://hyperui.dev',
   integrations: [
-    sitemap(),
     mdx({
       optimize: true,
     }),
+    sitemap(),
   ],
   vite: {
     plugins: [tailwindcss()],
   },
   markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          rel: ['noreferrer'],
+          target: '_blank',
+        },
+      ],
+    ],
     syntaxHighlight: false,
-    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noreferrer'] }]],
   },
   experimental: {
     fonts: [
       {
-        name: 'Inter',
         cssVariable: '--font-inter',
-        weights: [400, 500, 600, 700],
+        name: 'Inter',
         provider: fontProviders.google(),
+        weights: [400, 500, 600, 700],
       },
     ],
   },

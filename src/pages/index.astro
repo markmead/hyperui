@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 
-import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../consts'
+import { SEO_DESCRIPTION_SITE, SEO_TITLE_SITE } from '../consts'
 
 import BaseHead from '../components/BaseHead.astro'
 import ComponentCard from '../components/ComponentCard.astro'
@@ -24,7 +24,7 @@ const marketing = collections
 
 <html lang="en">
   <head>
-    <BaseHead title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE} />
+    <BaseHead description={SEO_DESCRIPTION_SITE} title={SEO_TITLE_SITE} />
   </head>
 
   <body class="font-sans antialiased">

@@ -60,24 +60,24 @@ const formattedComponents = components
 
       <div class="space-y-8">
         {
-          formattedComponents.map((component) => (
-            <div id={component.id} class="space-y-4">
+          formattedComponents.map(({ contributors, dark, id, index, plugins, title }) => (
+            <div id={id} class="space-y-4">
               <a
-                href={`#${component.id}`}
+                href={`#${id}`}
                 class="inline-block focus:ring-2 focus:ring-pink-500 focus:outline-0"
               >
-                <h2 class="text-xl font-bold text-stone-900">{component.title}</h2>
+                <h2 class="text-xl font-bold text-stone-900">{title}</h2>
               </a>
 
               <PreviewWrapper
-                title={component.title}
                 category={category}
+                contributors={contributors}
+                dark={dark}
+                index={index}
+                plugins={plugins}
                 slug={slug}
+                title={title}
                 wrapper={wrapper}
-                dark={component.dark}
-                plugins={component.plugins}
-                contributors={component.contributors}
-                index={component.index}
               />
             </div>
           ))

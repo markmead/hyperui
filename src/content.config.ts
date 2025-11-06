@@ -8,10 +8,10 @@ const page = defineCollection({
   }),
   schema: () =>
     z.object({
-      title: z.string(),
       description: z.string(),
-      slug: z.string(),
       pubDate: z.coerce.date(),
+      slug: z.string(),
+      title: z.string(),
       updatedDate: z.coerce.date(),
     }),
 })
@@ -23,12 +23,12 @@ const blog = defineCollection({
   }),
   schema: () =>
     z.object({
-      title: z.string(),
       description: z.string(),
-      slug: z.string(),
       emoji: z.string(),
-      terms: z.array(z.string()),
       pubDate: z.coerce.date(),
+      slug: z.string(),
+      terms: z.array(z.string()),
+      title: z.string(),
       updatedDate: z.coerce.date(),
     }),
 })
@@ -40,21 +40,20 @@ const collection = defineCollection({
   }),
   schema: () =>
     z.object({
-      title: z.string(),
+      category: z.enum(['application', 'marketing']),
       description: z.string(),
-      slug: z.string(),
-      category: z.enum(['marketing', 'application']),
       emoji: z.string(),
-      tag: z.enum(['new', 'updated']).optional(),
-      wrapper: z.string().default('h-[600px]'),
+      slug: z.string(),
       terms: z.array(z.string()),
+      title: z.string(),
+      wrapper: z.string().default('h-[600px]'),
       pubDate: z.coerce.date().optional(),
+      tag: z.enum(['new', 'updated']).optional(),
       updatedDate: z.coerce.date().optional(),
       components: z.array(
         z.object({
-          title: z.string(),
           contributors: z.array(z.string()).default(['markmead']),
-          plugins: z.array(z.string()).optional(),
+          title: z.string(),
           dark: z
             .union([
               z.boolean(),
@@ -63,6 +62,7 @@ const collection = defineCollection({
               }),
             ])
             .optional(),
+          plugins: z.array(z.string()).optional(),
         })
       ),
     }),
