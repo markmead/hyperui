@@ -3,6 +3,7 @@ interface Result {
   slug: string
   title: string
   emoji: string
+  category: string
   terms: string[]
 }
 
@@ -32,6 +33,7 @@ const { collections, posts } = Astro.props
     slug: string
     title: string
     emoji: string
+    category: string
     terms: string[]
   }
 
@@ -123,7 +125,7 @@ const { collections, posts } = Astro.props
         this.searchResults = searchResults
 
         resultsEl.innerHTML = searchResults
-          .map(({ title, slug, emoji }) => {
+          .map(({ title, slug, emoji, category }) => {
             return `
               <li role="option">
                 <a
@@ -134,6 +136,8 @@ const { collections, posts } = Astro.props
                     <span aria-hidden="true">${emoji}</span>
                     <span>${title}</span>
                   </div>
+
+                  ${category ? `<p class="text-sm text-stone-700 mt-1 capitalize">${category}</p>` : ''}
                 </a>
               </li>
             `
