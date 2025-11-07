@@ -31,8 +31,7 @@ This document outlines additional components and collections to be added to Hype
 
 - [x] **Team Sections** - Team member profiles, bios, and organizational charts _(High Priority)_
 - [x] **Contact Forms** - Various contact form styles and inquiry forms _(High Priority)_
-- [ ] **Feature Grids** - Product/service feature showcases and benefit highlights _(Medium Priority)_
-- [ ] **Galleries** - Image/video gallery layouts and media grids _(Medium Priority)_
+- [x] **Feature Grids** - Product/service feature showcases and benefit highlights _(Medium Priority)_
 - [ ] **Navigation Menus** - Mega menus and dropdown navigation patterns _(Low Priority)_
 - [ ] **Login/Signup Forms** - Authentication form designs and user registration _(Low Priority)_
 - [ ] **Search Bars** - Hero/header search components and prominent search layouts _(Low Priority)_
@@ -52,20 +51,19 @@ This document outlines additional components and collections to be added to Hype
 
 7. ~Empty States~
 8. Drawers/Slide-overs
-9. Feature Grids
-10. Galleries
+9. ~Feature Grids~
 
 ### Low Priority
 
-11. ~Loading States/Spinners~
-12. Progress Bars
-13. Tree View
-14. Testimonials
-15. Social Proof
-16. Comparison Tables
-17. Navigation Menus
-18. Login/Signup Forms
-19. Search Bars
+10. ~Loading States/Spinners~
+11. Progress Bars
+12. Tree View
+13. Testimonials
+14. Social Proof
+15. Comparison Tables
+16. Navigation Menus
+17. Login/Signup Forms
+18. Search Bars
 
 ## Implementation Notes
 
