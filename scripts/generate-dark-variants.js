@@ -49,11 +49,33 @@ const COLOR_FAMILIES = [
   'stone',
 ]
 
+const VARIANT_PREFIXES = [
+  'hover',
+  // 'focus',
+  'active',
+  'disabled',
+  'group-hover',
+  // 'group-focus',
+  'dark',
+  'group',
+  'peer-hover',
+  // 'peer-focus',
+]
+
 function transformClass(className) {
-  // Extract variant prefix (e.g., "hover:", "group-hover:")
   const variantMatch = className.match(/^([\w-]*?):(.+)$/)
-  const variantPrefix = variantMatch ? `${variantMatch[1]}:` : ''
-  const classWithoutVariant = variantMatch ? variantMatch[2] : className
+
+  let variantPrefix = ''
+  let classWithoutVariant = className
+
+  if (variantMatch) {
+    const potentialVariant = variantMatch[1]
+
+    if (VARIANT_PREFIXES.includes(potentialVariant)) {
+      variantPrefix = `${potentialVariant}:`
+      classWithoutVariant = variantMatch[2]
+    }
+  }
 
   const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
 
@@ -77,7 +99,7 @@ function transformClass(className) {
   }
 
   for (const colorFamily of COLOR_FAMILIES) {
-    const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d{1,3})(.*?)$`)
+    const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d+)(.*?)$`)
     const colorMatch = classWithoutVariant.match(colorRegex)
 
     if (colorMatch) {
