@@ -6,7 +6,8 @@
     "build": "astro build",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
+    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
+    "dark:generate": "node scripts/generate-dark-variants.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.8",
