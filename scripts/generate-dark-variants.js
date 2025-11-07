@@ -5,7 +5,7 @@ import fs from 'fs'
 import path from 'path'
 
 const SHADE_MAP = {
-  50: 900,
+  50: 800,
   100: 800,
   200: 700,
   300: 600,
@@ -49,30 +49,35 @@ const COLOR_FAMILIES = [
 ]
 
 function transformClass(className) {
-  const gray900Match = className.match(/^(.*?)(gray-900)(\/\d+)?$/)
+  // Extract variant prefix (e.g., "hover:", "group-hover:")
+  const variantMatch = className.match(/^([\w-]*?):(.+)$/)
+  const variantPrefix = variantMatch ? `${variantMatch[1]}:` : ''
+  const classWithoutVariant = variantMatch ? variantMatch[2] : className
+
+  const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
 
   if (gray900Match) {
     const [, grayPrefix, , graySuffix = ''] = gray900Match
 
-    return `${className} dark:${grayPrefix}white${graySuffix}`
+    return `${className} dark:${variantPrefix}${grayPrefix}white${graySuffix}`
   }
 
   for (const [lightColor, darkColor] of Object.entries(COLOR_MAP)) {
-    if (className.includes(lightColor)) {
-      const colorMatch = className.match(/^([\w-]*)(white|black)(.*?)$/)
+    if (classWithoutVariant.includes(lightColor)) {
+      const colorMatch = classWithoutVariant.match(/^([\w-]*)(white|black)(.*?)$/)
 
       if (colorMatch) {
         const [, colorPrefix, , colorSuffix] = colorMatch
         const darkClass = `${colorPrefix}${darkColor}${colorSuffix}`
 
-        return `${className} dark:${darkClass}`
+        return `${className} dark:${variantPrefix}${darkClass}`
       }
     }
   }
 
   for (const colorFamily of COLOR_FAMILIES) {
     const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d{1,3})(.*?)$`)
-    const colorMatch = className.match(colorRegex)
+    const colorMatch = classWithoutVariant.match(colorRegex)
 
     if (colorMatch) {
       const [, colorPrefix, colorShade, colorSuffix] = colorMatch
@@ -83,7 +88,7 @@ function transformClass(className) {
         const darkShade = SHADE_MAP[shadeNum]
         const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
 
-        return `${className} dark:${darkClass}`
+        return `${className} dark:${variantPrefix}${darkClass}`
       }
     }
   }
