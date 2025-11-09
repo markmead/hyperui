@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-3xl p-6">
+    <div role="tablist" class="flex gap-2">
+      <button
+        role="tab"
+        aria-selected="true"
+        class="rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+      >
+        Featured
+      </button>
+
+      <button
+        role="tab"
+        aria-selected="false"
+        class="rounded-full bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+      >
+        Popular
+      </button>
+
+      <button
+        role="tab"
+        aria-selected="false"
+        class="rounded-full bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+      >
+        Trending
+      </button>
+    </div>
+
+    <div role="tabpanel" class="mt-4">
+      <p class="text-gray-700 dark:text-gray-200">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic dicta
+        quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste odio
+        consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos, temporibus
+        perspiciatis!
+      </p>
+    </div>
+  </body>
+</html>

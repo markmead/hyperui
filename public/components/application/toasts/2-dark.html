@@ -9,32 +9,34 @@
   <body class="ml-auto max-w-md p-6">
     <div
       role="alert"
-      class="border-s-4 border-blue-700 bg-blue-50 p-4 dark:border-blue-600 dark:bg-blue-800"
+      class="rounded-md border border-red-500 bg-red-50 p-4 shadow-sm dark:border-red-400 dark:bg-red-800"
     >
-      <div class="flex items-center gap-2 text-blue-700 dark:text-blue-200">
+      <div class="flex items-start gap-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6"
+          class="-mt-0.5 size-6 text-red-700 dark:text-red-200"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
           />
         </svg>
 
-        <strong class="block leading-tight font-medium text-blue-800 dark:text-blue-100">
-          Info
-        </strong>
-      </div>
+        <div class="flex-1">
+          <strong class="block leading-tight font-medium text-red-800 dark:text-red-100">
+            Error
+          </strong>
 
-      <p class="mt-1 text-sm text-blue-700 dark:text-blue-200">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, dignissimos.
-      </p>
+          <p class="mt-0.5 text-sm text-red-700 dark:text-red-200">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, dignissimos.
+          </p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
