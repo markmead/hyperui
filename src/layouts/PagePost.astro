@@ -1,48 +1,36 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import BaseHead from '../components/BaseHead.astro'
-import Footer from '../components/Footer.astro'
+import BaseLayout from './BaseLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
-import Header from '../components/Header.astro'
 
 type Props = CollectionEntry<'page'>['data']
 
 const { description, pubDate, title, updatedDate } = Astro.props
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
+<BaseLayout description={description} title={title}>
+  <main class="mx-auto max-w-7xl px-4 py-8">
+    <article class="prose mx-auto">
+      <h1>{title}</h1>
 
-  <body class="font-sans antialiased">
-    <Header />
+      <p class="flex items-center gap-2">
+        <span>
+          Published: <FormattedDate date={pubDate} />
+        </span>
 
-    <main class="mx-auto max-w-7xl px-4 py-8">
-      <article class="prose mx-auto">
-        <h1>{title}</h1>
+        <span>/</span>
 
-        <p class="flex items-center gap-2">
-          <span>
-            Published: <FormattedDate date={pubDate} />
-          </span>
+        {
+          updatedDate && (
+            <span>
+              Updated: <FormattedDate date={updatedDate} />
+            </span>
+          )
+        }
+      </p>
 
-          <span>/</span>
-
-          {
-            updatedDate && (
-              <span>
-                Updated: <FormattedDate date={updatedDate} />
-              </span>
-            )
-          }
-        </p>
-
-        <slot />
-      </article>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+      <slot />
+    </article>
+  </main>
+</BaseLayout>

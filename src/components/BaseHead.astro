@@ -24,21 +24,18 @@ const pageTitle = `${title} | ${SITE_TITLE}`
 ---
 
 <meta charset="utf-8" />
+<meta name="generator" content={Astro.generator} />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+<link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link
   rel="alternate"
   type="application/rss+xml"
   title={SITE_TITLE}
   href={new URL('rss.xml', Astro.site)}
 />
-
-<meta name="generator" content={Astro.generator} />
-
-<link rel="canonical" href={canonicalURL} />
-
-<link rel="sitemap" href="/sitemap-index.xml" />
 
 <title>{pageTitle}</title>
 <meta name="title" content={pageTitle} />

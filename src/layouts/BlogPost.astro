@@ -1,65 +1,54 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import BaseHead from '../components/BaseHead.astro'
-import Footer from '../components/Footer.astro'
+import BaseLayout from './BaseLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
-import Header from '../components/Header.astro'
 
 type Props = CollectionEntry<'blog'>['data']
 
 const { description, pubDate, title, updatedDate } = Astro.props
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<BaseLayout description={description} title={title}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: description,
+      url: Astro.url,
+      datePublished: pubDate,
+      dateModified: updatedDate,
+      author: {
+        '@type': 'Person',
+        name: 'HyperUI',
+      },
+    })}
+  />
 
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: title,
-        description: description,
-        url: Astro.url,
-        datePublished: pubDate,
-        dateModified: updatedDate,
-        author: {
-          '@type': 'Person',
-          name: 'HyperUI',
-        },
-      })}
-    />
-  </head>
+  <main class="mx-auto max-w-7xl px-4 py-8">
+    <article class="prose mx-auto">
+      <h1>{title}</h1>
 
-  <body class="font-sans antialiased">
-    <Header />
+      <p class="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <span>
+          Published: <FormattedDate date={pubDate} />
+        </span>
 
-    <main class="mx-auto max-w-7xl px-4 py-8">
-      <article class="prose mx-auto">
-        <h1>{title}</h1>
+        <span class="hidden sm:block">/</span>
 
-        <p class="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <span>
-            Published: <FormattedDate date={pubDate} />
-          </span>
+        {
+          updatedDate && (
+            <span>
+              Updated: <FormattedDate date={updatedDate} />
+            </span>
+          )
+        }
+      </p>
 
-          <span class="hidden sm:block">/</span>
-
-          {
-            updatedDate && (
-              <span>
-                Updated: <FormattedDate date={updatedDate} />
-              </span>
-            )
-          }
-        </p>
-
-        <slot />
-      </article>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+      <slot />
+    </article>
+  </main>
+</BaseLayout>

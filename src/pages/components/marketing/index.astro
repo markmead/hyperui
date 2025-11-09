@@ -6,10 +6,8 @@ import {
   SEO_TITLE_MARKETING_COMPONENTS,
 } from '../../../consts'
 
-import BaseHead from '../../../components/BaseHead.astro'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
-import Footer from '../../../components/Footer.astro'
-import Header from '../../../components/Header.astro'
 import Hero from '../../../components/Hero.astro'
 
 const components = (await getCollection('collection'))
@@ -18,35 +16,22 @@ const components = (await getCollection('collection'))
   .sort((a, b) => a.title.localeCompare(b.title))
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      description={SEO_DESCRIPTION_MARKETING_COMPONENTS}
-      title={SEO_TITLE_MARKETING_COMPONENTS}
-    />
-  </head>
+<BaseLayout
+  description={SEO_DESCRIPTION_MARKETING_COMPONENTS}
+  title={SEO_TITLE_MARKETING_COMPONENTS}
+>
+  <Hero title="Marketing" subtitle="Free Tailwind CSS Marketing Components">
+    Create stunning landing pages and marketing websites with conversion-focused UI components. From
+    hero sections and pricing tables to testimonials and CTAs, everything is crafted to engage
+    visitors and drive results.
+  </Hero>
 
-  <body class="font-sans antialiased">
-    <Header />
-
-    <main>
-      <Hero title="Marketing" subtitle="Free Tailwind CSS Marketing Components">
-        Create stunning landing pages and marketing websites with conversion-focused UI components.
-        From hero sections and pricing tables to testimonials and CTAs, everything is crafted to
-        engage visitors and drive results.
-      </Hero>
-
-      <section class="mx-auto max-w-7xl px-4 pb-8">
-        <ul
-          aria-label="Marketing Components"
-          class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
-        >
-          {components.map((component) => <ComponentCard component={component} />)}
-        </ul>
-      </section>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <section class="mx-auto max-w-7xl px-4 pb-8">
+    <ul
+      aria-label="Marketing Components"
+      class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+    >
+      {components.map((component) => <ComponentCard component={component} />)}
+    </ul>
+  </section>
+</BaseLayout>
