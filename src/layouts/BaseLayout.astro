@@ -1,4 +1,6 @@
 ---
+import Analytics from '@vercel/analytics/astro'
+
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import BaseHead from '../components/BaseHead.astro'
@@ -24,5 +26,7 @@ const { description, title, ads = true } = Astro.props
     <slot />
 
     <Footer />
+
+    <Analytics />
   </body>
 </html>
