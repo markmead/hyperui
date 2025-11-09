@@ -32,6 +32,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 </component-preview>
 
 <script>
+  import { track } from '@vercel/analytics'
+
   class ComponentPreview extends HTMLElement {
     private contentHtml: string | null = null
     private contentSrc: string | null = null
@@ -87,6 +89,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         if (this.iframeEl) {
           this.iframeEl.style.maxWidth = newWidth
+
+          track('Breakpoint', { component: this.contentSrc, width: newWidth })
         }
       }
 
@@ -96,6 +100,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         try {
           if (contentHtml) {
             navigator.clipboard.writeText(contentHtml)
+
+            track('Copy', { component: this.contentSrc })
           }
         } catch {
           // We do nothing
@@ -107,6 +113,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         if (this.iframeEl?.contentDocument) {
           this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
+
+          track('Direction', { component: this.contentSrc, direction: isLtr ? 'ltr' : 'rtl' })
         }
       }
 
@@ -124,6 +132,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         previewEls.forEach((previewEl) => {
           previewEl.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
         })
+
+        track('View', { component: this.contentSrc, view: isPreviewing ? 'preview' : 'code' })
       }
 
       if (this.contentSrc) {
