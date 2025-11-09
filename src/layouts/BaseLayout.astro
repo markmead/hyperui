@@ -3,17 +3,18 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import BaseHead from '../components/BaseHead.astro'
 
-type Props = {
+interface Props {
   description: string
   title: string
+  ads?: boolean
 }
 
-const { description, title } = Astro.props
+const { description, title, ads = true } = Astro.props
 ---
 
 <html lang="en" class="scroll-pt-16 scroll-smooth">
   <head>
-    <BaseHead description={description} title={title} />
+    <BaseHead ads={ads} description={description} title={title} />
 
     <slot name="head" />
   </head>
