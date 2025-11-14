@@ -100,8 +100,8 @@ const { collections, posts } = Astro.props
 
         containerEl.setAttribute('data-container', 'true')
 
-        const searchResults = [...this.collectionItems, ...this.postItems].filter(
-          (potentialResult) => {
+        const searchResults = [...this.collectionItems, ...this.postItems]
+          .filter((potentialResult) => {
             const resultTerms = potentialResult.terms.map((searchTerm) => searchTerm.toLowerCase())
             const resultTitle = potentialResult.title.toLowerCase()
 
@@ -109,8 +109,24 @@ const { collections, posts } = Astro.props
               resultTerms.some((resultTerm) => resultTerm.includes(searchQuery)) ||
               resultTitle.includes(searchQuery)
             )
-          }
-        )
+          })
+          .sort((resultA, resultB) => {
+            const aTitle = resultA.title.toLowerCase()
+            const bTitle = resultB.title.toLowerCase()
+
+            const aTitleMatch = aTitle.includes(searchQuery)
+            const bTitleMatch = bTitle.includes(searchQuery)
+
+            if (aTitleMatch && !bTitleMatch) {
+              return -1
+            }
+
+            if (!aTitleMatch && bTitleMatch) {
+              return 1
+            }
+
+            return 0
+          })
 
         if (searchResults.length === 0) {
           this.searchResults = []
