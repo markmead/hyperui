@@ -5,6 +5,6 @@
     "package.json": "yarn.lock",
     "astro.config.js": "tsconfig.json",
     "eslint.config.js": ".prettierrc",
-    "README.md": "CONTRIBUTING.md, COMPONENT_GUIDELINES.md, PLAN.md, LICENSE"
+    "README.md": "CONTRIBUTING.md, COMPONENT_GUIDELINES.md, LICENSE"
   }
 }
