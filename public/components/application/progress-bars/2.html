@@ -7,7 +7,7 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-md space-y-6 p-6">
-    <div>
+    <div role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
       <div class="flex justify-between gap-4">
         <span class="text-sm font-medium text-gray-900">Updating</span>
 
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div>
+    <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
       <div class="flex justify-between gap-4">
         <span class="text-sm font-medium text-gray-900">Downloading</span>
 
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div>
+    <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
       <div class="flex justify-between gap-4">
         <span class="text-sm font-medium text-gray-900">Loading</span>
 
