@@ -9,9 +9,9 @@
   <body class="p-6">
     <form
       action="#"
-      class="mx-auto grid max-w-lg grid-cols-1 gap-4 rounded-lg border border-gray-300 bg-gray-100 p-6 sm:grid-cols-2"
+      class="mx-auto max-w-md space-y-4 rounded-lg border border-gray-300 bg-gray-100 p-6"
     >
-      <div class="md:col-span-2">
+      <div>
         <label class="block text-sm font-medium text-gray-900" for="name">Name</label>
 
         <input
@@ -33,18 +33,61 @@
         />
       </div>
 
+      <fieldset>
+        <legend class="block text-sm font-medium text-gray-900">Inquiry</legend>
+
+        <div class="mt-2 space-y-2">
+          <div class="flex items-center gap-2">
+            <input
+              class="size-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              id="general-inquiry"
+              type="checkbox"
+              name="inquiry-type"
+              value="general-inquiry"
+            />
+
+            <label class="block text-sm text-gray-900" for="general-inquiry">General Inquiry</label>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input
+              class="size-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              id="support"
+              type="checkbox"
+              name="inquiry-type"
+              value="support"
+            />
+
+            <label class="block text-sm text-gray-900" for="support">Support</label>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input
+              class="size-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              id="feedback"
+              type="checkbox"
+              name="inquiry-type"
+              value="feedback"
+            />
+
+            <label class="block text-sm text-gray-900" for="feedback">Feedback</label>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input
+              class="size-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              id="other"
+              type="checkbox"
+              name="inquiry-type"
+              value="other"
+            />
+
+            <label class="block text-sm text-gray-900" for="other">Other</label>
+          </div>
+        </div>
+      </fieldset>
+
       <div>
-        <label class="block text-sm font-medium text-gray-900" for="phone">Phone</label>
-
-        <input
-          class="mt-1 w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:outline-none"
-          id="phone"
-          type="tel"
-          placeholder="Your phone"
-        />
-      </div>
-
-      <div class="md:col-span-2">
         <label class="block text-sm font-medium text-gray-900" for="message">Message</label>
 
         <textarea
@@ -55,14 +98,12 @@
         ></textarea>
       </div>
 
-      <div class="md:col-span-2">
-        <button
-          class="block w-full rounded-lg border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-indigo-600"
-          type="submit"
-        >
-          Send Message
-        </button>
-      </div>
+      <button
+        class="block w-full rounded-lg border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-indigo-600"
+        type="submit"
+      >
+        Send Message
+      </button>
     </form>
   </body>
 </html>
