@@ -17,6 +17,7 @@ HyperUI is a **component library for developers**. Components should be:
 - ❌ Unnecessary animations or effects that don't improve UX
 - ❌ External dependencies (date pickers, carousels, third-party libraries)
 - ❌ Opinionated styling that forces a specific design direction
+- ❌ Dark mode variants unless explicitly requested
 
 ## What We DO Do
 

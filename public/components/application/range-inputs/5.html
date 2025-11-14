@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <label for="maxVolume">
+      <span class="block text-sm font-medium text-gray-900">Max Volume</span>
+
+      <input
+        type="range"
+        name="maxVolume"
+        id="maxVolume"
+        min="0"
+        max="100"
+        value="20"
+        list="volumeTicks"
+        class="mt-1 w-full"
+      />
+
+      <datalist
+        id="volumeTicks"
+        class="flex w-full flex-col justify-between [writing-mode:vertical-lr]"
+      >
+        <option value="0" label="0"></option>
+        <option value="25" label="25"></option>
+        <option value="50" label="50"></option>
+        <option value="75" label="75"></option>
+        <option value="100" label="100"></option>
+      </datalist>
+    </label>
+  </body>
+</html>
