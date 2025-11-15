@@ -42,7 +42,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((breakpointEvent: Event) => void) | null = null
-    private copyHandler: (() => void) | null = null
+    private copyHandler: ((copyEvent: Event) => void) | null = null
     private directionHandler: ((directionEvent: Event) => void) | null = null
     private viewHandler: ((viewEvent: Event) => void) | null = null
 
@@ -94,14 +94,16 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.copyHandler = () => {
+      this.copyHandler = (copyEvent: Event) => {
         const contentHtml = this.getContent()
+        const copyVariant = (copyEvent as CustomEvent).detail?.variant || 'baseVariant'
 
         try {
           if (contentHtml) {
             navigator.clipboard.writeText(contentHtml)
 
             track('Copy', { component: this.contentSrc })
+            track('CopyVariant', { component: this.contentSrc, variant: copyVariant })
           }
         } catch {
           // We do nothing

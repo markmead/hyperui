@@ -11,7 +11,7 @@ const { src } = Astro.props
     type="button"
     aria-label="Copy HTML"
     aria-pressed="false"
-    class="inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
+    class="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2 font-medium shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-0"
   >
     <span data-emoji aria-hidden="true">📋</span>
     <span data-text>Copy</span>
@@ -21,15 +21,47 @@ const { src } = Astro.props
 </preview-copy>
 
 <script>
+  type CopyVariant = 'baseVariant' | 'isFirstVariant'
+
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
     private contentSrc: string | null = null
+    private copyVariant: CopyVariant = 'baseVariant'
     private timeoutId: ReturnType<typeof setTimeout> | null = null
 
     private clickHandler: (() => void) | null = null
 
+    private resolveVariant(): CopyVariant {
+      const storageKey = 'CopyVariant'
+      const availableVariants: CopyVariant[] = ['baseVariant', 'isFirstVariant']
+
+      try {
+        const storedVariant = sessionStorage.getItem(storageKey) as CopyVariant
+
+        if (storedVariant && availableVariants.includes(storedVariant)) {
+          return storedVariant
+        }
+      } catch {
+        // We do nothing
+      }
+
+      const randomVariant = availableVariants[Math.floor(Math.random() * availableVariants.length)]
+
+      try {
+        sessionStorage.setItem(storageKey, randomVariant)
+      } catch {
+        // We do nothing
+      }
+
+      return randomVariant
+    }
+
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
+
+      const assignedVariant = this.resolveVariant()
+
+      this.copyVariant = assignedVariant
 
       if (!this.contentSrc) {
         return
@@ -42,8 +74,19 @@ const { src } = Astro.props
         return
       }
 
-      const buttonEmoji = buttonEl?.querySelector('span[data-emoji]') as HTMLSpanElement | null
-      const buttonText = buttonEl?.querySelector('span[data-text]') as HTMLSpanElement | null
+      const variantClassMap: Record<CopyVariant, string[]> = {
+        baseVariant: [],
+        isFirstVariant: ['order-first'],
+      }
+
+      const classesToAdd = variantClassMap[assignedVariant]
+
+      if (classesToAdd.length) {
+        this.classList.add(...classesToAdd)
+      }
+
+      const buttonEmoji = buttonEl.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
 
       if (!buttonEmoji || !buttonText) {
         return
@@ -61,7 +104,10 @@ const { src } = Astro.props
         }
 
         document.dispatchEvent(
-          new CustomEvent(`preview:copy:${this.contentSrc}`, { bubbles: true })
+          new CustomEvent(`preview:copy:${this.contentSrc}`, {
+            bubbles: true,
+            detail: { variant: this.copyVariant },
+          })
         )
 
         buttonEmoji.textContent = '✅'
