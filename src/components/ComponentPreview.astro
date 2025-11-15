@@ -96,7 +96,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
       this.copyHandler = (copyEvent: Event) => {
         const contentHtml = this.getContent()
-        const copyVariant = (copyEvent as CustomEvent).detail?.variant || 'control'
+        const copyVariant = (copyEvent as CustomEvent).detail?.variant || 'baseVariant'
 
         try {
           if (contentHtml) {
