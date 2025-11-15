@@ -52,6 +52,7 @@ HyperUI has a wide range of freely available components. These components includ
 - [Details Lists](https://www.hyperui.dev/components/application/details-list)
 - [Dividers](https://www.hyperui.dev/components/application/dividers)
 - [Dropdowns](https://www.hyperui.dev/components/application/dropdown)
+- [Empty States](https://www.hyperui.dev/components/application/empty-states)
 - [File Uploaders](https://www.hyperui.dev/components/application/file-uploaders)
 - [Filters](https://www.hyperui.dev/components/application/filters)
 - [Grids](https://www.hyperui.dev/components/application/grids)
