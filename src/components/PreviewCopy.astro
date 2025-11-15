@@ -79,10 +79,6 @@ const { src } = Astro.props
         isFirstVariant: ['order-first'],
       }
 
-      const allVariantClasses = Array.from(new Set(Object.values(variantClassMap).flat()))
-
-      this.classList.remove(...allVariantClasses)
-
       const classesToAdd = variantClassMap[assignedVariant]
 
       if (classesToAdd.length) {
