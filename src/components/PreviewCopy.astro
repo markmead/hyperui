@@ -36,10 +36,10 @@ const { src } = Astro.props
       const availableVariants: CopyVariant[] = ['baseVariant', 'isFirstVariant']
 
       try {
-        const storedVariant = sessionStorage.getItem(storageKey)
+        const storedVariant = sessionStorage.getItem(storageKey) as CopyVariant
 
-        if (storedVariant && availableVariants.includes(storedVariant as CopyVariant)) {
-          return storedVariant as CopyVariant
+        if (storedVariant && availableVariants.includes(storedVariant)) {
+          return storedVariant
         }
       } catch {
         // We do nothing
