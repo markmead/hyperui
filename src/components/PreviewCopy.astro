@@ -4,47 +4,14 @@ interface Props {
 }
 
 const { src } = Astro.props
-
-type CopyVariant = 'control' | 'animated' | 'gradient'
-
-function getOrAssignVariant(): CopyVariant {
-  const storageKey = 'hyperui:copy-variant'
-
-  const availableVariants: CopyVariant[] = ['control', 'animated', 'gradient']
-
-  const storedVariant = sessionStorage.getItem(storageKey)
-
-  if (storedVariant && availableVariants.includes(storedVariant as CopyVariant)) {
-    return storedVariant as CopyVariant
-  }
-
-  const randomVariant = availableVariants[Math.floor(Math.random() * availableVariants.length)]
-
-  sessionStorage.setItem(storageKey, randomVariant)
-
-  return randomVariant
-}
-
-const assignedVariant = getOrAssignVariant()
-
-const variantClasses = {
-  control: '',
-  animated: 'animate-pulse hover:animate-none',
-  gradient: 'bg-gradient-to-r from-pink-500 to-rose-500 text-white border-0',
-}
 ---
 
-<preview-copy data-src={src} data-variant={assignedVariant} class="hidden md:block">
+<preview-copy data-src={src} class="hidden md:block">
   <button
     type="button"
     aria-label="Copy HTML"
     aria-pressed="false"
-    class:list={[
-      'inline-flex items-center gap-2 rounded-lg border border-stone-300 px-4 py-2 font-medium shadow-sm transition-all duration-200 focus:ring-2 focus:ring-pink-500 focus:outline-0',
-      variantClasses[assignedVariant as CopyVariant],
-      assignedVariant === 'animated' && 'hover:shadow-lg',
-      assignedVariant === 'gradient' && 'hover:shadow-lg hover:shadow-pink-500/20',
-    ]}
+    class="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2 font-medium shadow-sm transition-all duration-200 focus:ring-2 focus:ring-pink-500 focus:outline-0"
   >
     <span data-emoji aria-hidden="true">📋</span>
     <span data-text>Copy</span>
@@ -54,19 +21,47 @@ const variantClasses = {
 </preview-copy>
 
 <script>
-  type CopyVariant = 'control' | 'animated' | 'gradient'
+  type CopyVariant = 'baseVariant' | 'isFirstVariant'
 
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
     private contentSrc: string | null = null
-    private copyVariant: CopyVariant = 'control'
+    private copyVariant: CopyVariant = 'baseVariant'
     private timeoutId: ReturnType<typeof setTimeout> | null = null
 
     private clickHandler: (() => void) | null = null
 
+    private resolveVariant(): CopyVariant {
+      const storageKey = 'CopyVariant'
+      const availableVariants: CopyVariant[] = ['baseVariant', 'isFirstVariant']
+
+      try {
+        const storedVariant = sessionStorage.getItem(storageKey)
+
+        if (storedVariant && availableVariants.includes(storedVariant as CopyVariant)) {
+          return storedVariant as CopyVariant
+        }
+      } catch {
+        // We do nothing
+      }
+
+      const randomVariant = availableVariants[Math.floor(Math.random() * availableVariants.length)]
+
+      try {
+        sessionStorage.setItem(storageKey, randomVariant)
+      } catch {
+        // We do nothing
+      }
+
+      return randomVariant
+    }
+
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
-      this.copyVariant = (this.dataset.variant as CopyVariant) || 'control'
+
+      const assignedVariant = this.resolveVariant()
+
+      this.copyVariant = assignedVariant
 
       if (!this.contentSrc) {
         return
@@ -79,8 +74,23 @@ const variantClasses = {
         return
       }
 
-      const buttonEmoji = buttonEl?.querySelector('span[data-emoji]') as HTMLSpanElement | null
-      const buttonText = buttonEl?.querySelector('span[data-text]') as HTMLSpanElement | null
+      const variantClassMap: Record<CopyVariant, string[]> = {
+        baseVariant: [],
+        isFirstVariant: ['order-first'],
+      }
+
+      const allVariantClasses = Array.from(new Set(Object.values(variantClassMap).flat()))
+
+      this.classList.remove(...allVariantClasses)
+
+      const classesToAdd = variantClassMap[assignedVariant]
+
+      if (classesToAdd.length) {
+        this.classList.add(...classesToAdd)
+      }
+
+      const buttonEmoji = buttonEl.querySelector('span[data-emoji]') as HTMLSpanElement | null
+      const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
 
       if (!buttonEmoji || !buttonText) {
         return
