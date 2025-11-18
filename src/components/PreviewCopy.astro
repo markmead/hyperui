@@ -21,7 +21,12 @@ const { src } = Astro.props
 </preview-copy>
 
 <script>
-  type CopyVariant = 'baseVariant' | 'isFirstVariant'
+  type CopyVariant =
+    | 'baseVariant'
+    | 'isFirstVariant'
+    | 'isHighlightedVariant'
+    | 'isDetailedTextVariant'
+    | 'isPrimaryVariant'
 
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
@@ -33,7 +38,13 @@ const { src } = Astro.props
 
     private resolveVariant(): CopyVariant {
       const storageKey = 'CopyVariant'
-      const availableVariants: CopyVariant[] = ['baseVariant', 'isFirstVariant']
+      const availableVariants: CopyVariant[] = [
+        'baseVariant',
+        'isFirstVariant',
+        'isHighlightedVariant',
+        'isDetailedTextVariant',
+        'isPrimaryVariant',
+      ]
 
       try {
         const storedVariant = sessionStorage.getItem(storageKey) as CopyVariant
@@ -77,6 +88,29 @@ const { src } = Astro.props
       const variantClassMap: Record<CopyVariant, string[]> = {
         baseVariant: [],
         isFirstVariant: ['order-first'],
+        isHighlightedVariant: [
+          '[&>button]:relative',
+          '[&>button]:before:-right-1',
+          '[&>button]:before:-top-1',
+          '[&>button]:before:absolute',
+          '[&>button]:before:bg-pink-500',
+          '[&>button]:before:rounded-full',
+          '[&>button]:before:size-3',
+          '[&>button]:after:-right-1',
+          '[&>button]:after:-top-1',
+          '[&>button]:after:[animation-duration:1.5s]',
+          '[&>button]:after:absolute',
+          '[&>button]:after:animate-ping',
+          '[&>button]:after:bg-pink-300',
+          '[&>button]:after:rounded-full',
+          '[&>button]:after:size-3',
+        ],
+        isDetailedTextVariant: [],
+        isPrimaryVariant: [
+          '[&>button]:bg-pink-500/10',
+          '[&>button]:border-pink-500',
+          '[&>button]:shadow-pink-300',
+        ],
       }
 
       const classesToAdd = variantClassMap[assignedVariant]
@@ -90,6 +124,10 @@ const { src } = Astro.props
 
       if (!buttonEmoji || !buttonText) {
         return
+      }
+
+      if (assignedVariant === 'isDetailedTextVariant') {
+        buttonText.textContent = 'Copy HTML'
       }
 
       this.clickHandler = () => {
