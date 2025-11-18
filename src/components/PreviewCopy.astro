@@ -157,7 +157,8 @@ const { src } = Astro.props
         this.timeoutId = globalThis.setTimeout(() => {
           if (this.isConnected) {
             buttonEmoji.textContent = '📋'
-            buttonText.textContent = 'Copy'
+            buttonText.textContent =
+              assignedVariant === 'isDetailedTextVariant' ? 'Copy HTML' : 'Copy'
             politeEl.textContent = ''
 
             buttonEl.setAttribute('aria-pressed', 'false')
