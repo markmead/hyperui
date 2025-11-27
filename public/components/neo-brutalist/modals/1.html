@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <div
+      class="relative w-full max-w-lg border-2 border-black bg-white p-8 shadow-[8px_8px_0_0_#000]"
+    >
+      <button class="absolute top-4 right-4 text-black transition-transform hover:rotate-90">
+        <span class="sr-only">Close</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <h2 class="text-2xl font-bold text-black">Are you sure?</h2>
+
+      <p class="mt-4 text-gray-700">
+        This action cannot be undone. This will permanently delete your account and remove your data
+        from our servers.
+      </p>
+
+      <div class="mt-8 flex justify-end gap-4">
+        <button
+          class="border-2 border-black bg-white px-6 py-2 font-bold text-black hover:bg-gray-50"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="border-2 border-black bg-red-500 px-6 py-2 font-bold text-white shadow-[4px_4px_0_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

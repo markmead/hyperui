@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <div class="relative">
+      <div class="inline-flex items-center overflow-hidden border-2 border-black bg-white shadow-[4px_4px_0_0_#000]">
+        <a href="#" class="border-r-2 border-black px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700">
+          Edit
+        </a>
+
+        <button class="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
+          <span class="sr-only">Menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        class="absolute end-0 z-10 mt-2 w-56 border-2 border-black bg-white shadow-[4px_4px_0_0_#000]"
+        role="menu"
+      >
+        <div class="p-2">
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-gray-500 hover:bg-yellow-400 hover:text-black hover:font-bold"
+            role="menuitem"
+          >
+            View on Storefront
+          </a>
+
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-gray-500 hover:bg-yellow-400 hover:text-black hover:font-bold"
+            role="menuitem"
+          >
+            View Warehouse Info
+          </a>
+
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-gray-500 hover:bg-yellow-400 hover:text-black hover:font-bold"
+            role="menuitem"
+          >
+            Duplicate Product
+          </a>
+
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-gray-500 hover:bg-yellow-400 hover:text-black hover:font-bold"
+            role="menuitem"
+          >
+            Unpublish Product
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

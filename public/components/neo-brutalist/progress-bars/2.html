@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <div class="w-full max-w-md">
+      <span id="ProgressLabel" class="sr-only">Loading</span>
+
+      <span
+        role="progressbar"
+        aria-labelledby="ProgressLabel"
+        aria-valuenow="50"
+        class="block border-2 border-black bg-white p-1 shadow-[4px_4px_0_0_#000]"
+      >
+        <span
+          class="block h-4 bg-[repeating-linear-gradient(45deg,_var(--tw-gradient-from)_0,_var(--tw-gradient-from)_10px,_var(--tw-gradient-to)_10px,_var(--tw-gradient-to)_20px)] from-yellow-400 to-yellow-500"
+          style="width: 50%"
+        ></span>
+      </span>
+    </div>
+  </body>
+</html>

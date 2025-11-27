@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <div
+      class="relative w-full max-w-md border-2 border-black bg-yellow-400 p-8 shadow-[8px_8px_0_0_#000]"
+    >
+      <h2 class="text-xl font-bold tracking-widest text-black uppercase">Subscribe</h2>
+
+      <p class="mt-2 text-sm font-medium text-black">
+        Get the latest news and updates delivered to your inbox.
+      </p>
+
+      <form class="mt-6 space-y-4">
+        <div>
+          <label for="email" class="sr-only">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="john@doe.com"
+            class="w-full border-2 border-black p-3 text-sm shadow-[4px_4px_0_0_#000] focus:shadow-none focus:outline-none"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full border-2 border-black bg-black px-6 py-3 font-bold tracking-widest text-white uppercase hover:bg-gray-900"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

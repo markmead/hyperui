@@ -13,6 +13,10 @@ export const SEO_DESCRIPTION_MARKETING_COMPONENTS =
   'Free Tailwind CSS components for landing pages, marketing sites, and portfolios. Create high-converting, responsive marketing websites with ease.'
 export const SEO_TITLE_MARKETING_COMPONENTS = 'Tailwind CSS Marketing Components'
 
+export const SEO_DESCRIPTION_NEO_BRUTALIST_COMPONENTS =
+  'Free Neo-Brutalist Tailwind CSS components. Big, bold designs with thick borders and hard shadows.'
+export const SEO_TITLE_NEO_BRUTALIST_COMPONENTS = 'Neo-Brutalist Tailwind CSS Components'
+
 export const SEO_DESCRIPTION_BLOG =
   'Learn Tailwind CSS best practices, web development tips, and component tutorials. Stay updated with the latest techniques to build better websites.'
 export const SEO_TITLE_BLOG = 'Tailwind CSS Tips & Tutorials'

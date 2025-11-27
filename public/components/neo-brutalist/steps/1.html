@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <div>
+      <h2 class="sr-only">Steps</h2>
+
+      <div
+        class="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:bg-gray-200 after:content-['']"
+      >
+        <ol class="relative z-10 flex justify-between text-sm font-bold text-gray-500">
+          <li class="flex items-center gap-2 bg-white p-2">
+            <span
+              class="flex size-6 items-center justify-center border-2 border-black bg-black text-white"
+            >
+              1
+            </span>
+            <span class="hidden sm:block"> Details </span>
+          </li>
+
+          <li class="flex items-center gap-2 bg-white p-2">
+            <span
+              class="flex size-6 items-center justify-center border-2 border-black bg-yellow-400 text-black"
+            >
+              2
+            </span>
+            <span class="hidden sm:block"> Address </span>
+          </li>
+
+          <li class="flex items-center gap-2 bg-white p-2">
+            <span
+              class="flex size-6 items-center justify-center border-2 border-black bg-white text-black"
+            >
+              3
+            </span>
+            <span class="hidden sm:block"> Payment </span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </body>
+</html>

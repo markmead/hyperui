@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <div class="relative w-full max-w-2xl border-2 border-black bg-white shadow-[8px_8px_0_0_#000]">
+      <div class="flex items-center justify-between border-b-2 border-black bg-gray-50 px-6 py-4">
+        <h3 class="font-bold text-black">Terms of Service</h3>
+        <button class="text-black hover:text-gray-700">
+          <span class="sr-only">Close</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-6">
+        <div class="prose prose-sm max-h-64 overflow-y-auto border-2 border-black p-4">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+            architecto beatae vitae dicta sunt explicabo.
+          </p>
+        </div>
+
+        <div class="mt-6 flex justify-end gap-4">
+          <button class="border-2 border-black bg-white px-6 py-2 font-bold text-black hover:bg-gray-50">
+            Decline
+          </button>
+          <button
+            class="border-2 border-black bg-green-400 px-6 py-2 font-bold text-black shadow-[4px_4px_0_0_#000] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

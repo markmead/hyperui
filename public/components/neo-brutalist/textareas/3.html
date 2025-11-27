@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <div class="w-full max-w-xs">
+      <label for="textarea-no-resize" class="block text-sm font-bold text-black">
+        Fixed Height
+      </label>
+
+      <textarea
+        id="textarea-no-resize"
+        class="mt-1 w-full resize-none border-2 border-black p-3 text-sm shadow-[4px_4px_0_0_#000] focus:shadow-none focus:outline-none"
+        rows="4"
+        placeholder="You cannot resize this textarea..."
+      ></textarea>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <fieldset class="flex flex-wrap gap-4">
+      <legend class="sr-only">Color</legend>
+
+      <div>
+        <input type="radio" name="Color" value="Red" id="ColorRed" class="peer hidden" />
+
+        <label
+          for="ColorRed"
+          class="flex cursor-pointer items-center justify-center border-2 border-black bg-white px-4 py-2 text-sm font-bold shadow-[4px_4px_0_0_#000] peer-checked:bg-red-500 peer-checked:text-white hover:bg-gray-50"
+        >
+          Red
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="Color" value="Blue" id="ColorBlue" class="peer hidden" />
+
+        <label
+          for="ColorBlue"
+          class="flex cursor-pointer items-center justify-center border-2 border-black bg-white px-4 py-2 text-sm font-bold shadow-[4px_4px_0_0_#000] peer-checked:bg-blue-500 peer-checked:text-white hover:bg-gray-50"
+        >
+          Blue
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="Color" value="Green" id="ColorGreen" class="peer hidden" />
+
+        <label
+          for="ColorGreen"
+          class="flex cursor-pointer items-center justify-center border-2 border-black bg-white px-4 py-2 text-sm font-bold shadow-[4px_4px_0_0_#000] peer-checked:bg-green-500 peer-checked:text-white hover:bg-gray-50"
+        >
+          Green
+        </label>
+      </div>
+    </fieldset>
+  </body>
+</html>

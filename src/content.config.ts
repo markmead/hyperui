@@ -36,11 +36,11 @@ const blog = defineCollection({
 const collection = defineCollection({
   loader: glob({
     base: './src/content/collection',
-    pattern: '{application,marketing}/**/*.{md,mdx}',
+    pattern: '{application,marketing,neo-brutalist}/**/*.{md,mdx}',
   }),
   schema: () =>
     z.object({
-      category: z.enum(['application', 'marketing']),
+      category: z.enum(['application', 'marketing', 'neo-brutalist']),
       description: z.string(),
       emoji: z.string(),
       slug: z.string(),

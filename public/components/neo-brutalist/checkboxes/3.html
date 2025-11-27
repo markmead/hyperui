@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <fieldset class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <legend class="sr-only">Delivery</legend>
+
+      <div>
+        <input
+          type="checkbox"
+          name="DeliveryOption"
+          value="DeliveryStandard"
+          id="DeliveryStandard"
+          class="peer hidden"
+        />
+
+        <label
+          for="DeliveryStandard"
+          class="flex cursor-pointer items-center justify-between border-2 border-black bg-white p-4 text-sm font-bold shadow-[4px_4px_0_0_#000] peer-checked:bg-yellow-400 peer-checked:text-black hover:bg-gray-50"
+        >
+          <p class="text-black">Standard</p>
+          <p class="text-black">Free</p>
+        </label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          name="DeliveryOption"
+          value="DeliveryPriority"
+          id="DeliveryPriority"
+          class="peer hidden"
+        />
+
+        <label
+          for="DeliveryPriority"
+          class="flex cursor-pointer items-center justify-between border-2 border-black bg-white p-4 text-sm font-bold shadow-[4px_4px_0_0_#000] peer-checked:bg-yellow-400 peer-checked:text-black hover:bg-gray-50"
+        >
+          <p class="text-black">Priority</p>
+          <p class="text-black">£9.99</p>
+        </label>
+      </div>
+    </fieldset>
+  </body>
+</html>

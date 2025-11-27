@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" class="font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-6">
+    <div class="w-full max-w-xs">
+      <label for="textarea-helper" class="block text-sm font-bold text-black"> Bio </label>
+
+      <textarea
+        id="textarea-helper"
+        class="mt-1 w-full border-2 border-black p-3 text-sm shadow-[4px_4px_0_0_#000] focus:shadow-none focus:outline-none"
+        rows="4"
+        placeholder="Tell us about yourself..."
+      ></textarea>
+
+      <p class="mt-1 text-xs font-bold text-gray-500">Max 500 characters.</p>
+    </div>
+  </body>
+</html>
