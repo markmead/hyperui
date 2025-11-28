@@ -6,19 +6,41 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
-    <label for="Option1" class="flex cursor-pointer items-start gap-4">
-      <div class="flex items-center">
-        <input
-          type="checkbox"
-          class="size-6 border-2 border-black bg-white text-black shadow-[2px_2px_0_0] focus:ring-0 focus:ring-offset-0"
-          id="Option1"
-        />
-      </div>
+  <body class="mx-auto max-w-lg p-6">
+    <fieldset>
+      <legend class="sr-only">Checkboxes</legend>
 
-      <div>
-        <strong class="font-bold text-black"> Option 1 </strong>
+      <div class="flex flex-col items-start gap-3">
+        <label for="Option1" class="inline-flex items-center gap-3">
+          <input
+            type="checkbox"
+            class="size-6 border-2 border-black shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-yellow-300"
+            id="Option1"
+          />
+
+          <span class="font-semibold"> Option 1 </span>
+        </label>
+
+        <label for="Option2" class="inline-flex items-center gap-3">
+          <input
+            type="checkbox"
+            class="size-6 border-2 border-black shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-yellow-300"
+            id="Option2"
+          />
+
+          <span class="font-semibold"> Option 2 </span>
+        </label>
+
+        <label for="Option3" class="inline-flex items-center gap-3">
+          <input
+            type="checkbox"
+            class="size-6 border-2 border-black shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-yellow-300"
+            id="Option3"
+          />
+
+          <span class="font-semibold"> Option 3 </span>
+        </label>
       </div>
-    </label>
+    </fieldset>
   </body>
 </html>

@@ -6,43 +6,68 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
-    <fieldset class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      <legend class="sr-only">Delivery</legend>
+  <body class="mx-auto max-w-lg p-6">
+    <fieldset>
+      <legend class="sr-only">Checkboxes</legend>
 
-      <div>
-        <input
-          type="checkbox"
-          name="DeliveryOption"
-          value="DeliveryStandard"
-          id="DeliveryStandard"
-          class="peer hidden"
-        />
-
+      <div
+        class="flex flex-col items-start divide-y-2 divide-black border-2 border-black shadow-[4px_4px_0_0]"
+      >
         <label
-          for="DeliveryStandard"
-          class="flex cursor-pointer items-center justify-between border-2 border-black bg-white p-4 text-sm font-bold shadow-[4px_4px_0_0] peer-checked:bg-yellow-400 peer-checked:text-black hover:bg-gray-50"
+          for="Option1"
+          class="inline-flex items-start gap-3 p-4 focus-within:bg-yellow-300 hover:bg-yellow-100"
         >
-          <p class="text-black">Standard</p>
-          <p class="text-black">Free</p>
+          <input
+            type="checkbox"
+            class="size-6 border-2 border-black shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black"
+            id="Option1"
+          />
+
+          <div>
+            <strong class="font-semibold"> Option 1 </strong>
+
+            <p class="mt-0.5 text-sm text-pretty">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, distinctio.
+            </p>
+          </div>
         </label>
-      </div>
-
-      <div>
-        <input
-          type="checkbox"
-          name="DeliveryOption"
-          value="DeliveryPriority"
-          id="DeliveryPriority"
-          class="peer hidden"
-        />
 
         <label
-          for="DeliveryPriority"
-          class="flex cursor-pointer items-center justify-between border-2 border-black bg-white p-4 text-sm font-bold shadow-[4px_4px_0_0] peer-checked:bg-yellow-400 peer-checked:text-black hover:bg-gray-50"
+          for="Option2"
+          class="inline-flex items-start gap-3 p-4 focus-within:bg-yellow-300 hover:bg-yellow-100"
         >
-          <p class="text-black">Priority</p>
-          <p class="text-black">£9.99</p>
+          <input
+            type="checkbox"
+            class="size-6 border-2 border-black shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black"
+            id="Option2"
+          />
+
+          <div>
+            <strong class="font-semibold"> Option 2 </strong>
+
+            <p class="mt-0.5 text-sm text-pretty">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, distinctio.
+            </p>
+          </div>
+        </label>
+
+        <label
+          for="Option3"
+          class="inline-flex items-start gap-3 p-4 focus-within:bg-yellow-300 hover:bg-yellow-100"
+        >
+          <input
+            type="checkbox"
+            class="size-6 border-2 border-black shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black"
+            id="Option3"
+          />
+
+          <div>
+            <strong class="font-semibold"> Option 3 </strong>
+
+            <p class="mt-0.5 text-sm text-pretty">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, distinctio.
+            </p>
+          </div>
         </label>
       </div>
     </fieldset>
