@@ -22,7 +22,6 @@ const [application, marketing, neobrutalism, blog] = await Promise.all([
 const allCollections = [...application, ...marketing, ...neobrutalism]
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
-  .flat()
 
 const collections: Result[] = allCollections.map(({ category, emoji, slug, terms, title }) => {
   return {
