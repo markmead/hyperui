@@ -10,8 +10,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
 import Hero from '../../../components/Hero.astro'
 
-const components = (await getCollection('collection'))
-  .filter(({ data }) => data.category === 'marketing')
+const components = (await getCollection('marketing'))
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 ---

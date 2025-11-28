@@ -7,15 +7,15 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import ComponentCard from '../components/ComponentCard.astro'
 import Hero from '../components/Hero.astro'
 
-const collections = await getCollection('collection')
-
-const application = collections
-  .filter(({ data }) => data.category === 'application')
+const application = (await getCollection('application'))
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 
-const marketing = collections
-  .filter(({ data }) => data.category === 'marketing')
+const marketing = (await getCollection('marketing'))
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+
+const neobrutalism = (await getCollection('neobrutalism'))
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 ---
@@ -53,5 +53,37 @@ const marketing = collections
         {marketing.map((component) => <ComponentCard component={component} />)}
       </ul>
     </section>
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+      <div class="lg:col-span-3">
+        <h2 class="text-xl font-bold sm:text-2xl">Neobrutalism Components</h2>
+      </div>
+
+      {neobrutalism.map((component) => <ComponentCard component={component} />)}
+    </div>
+
+    <div class="text-center">
+      <a href="/components/neobrutalism" class="inline-block">
+        <span
+          class="inline-flex items-center justify-center gap-2 rounded-sm border border-stone-900 bg-stone-900 px-8 py-3 text-white transition hover:bg-transparent hover:text-stone-900 focus:ring-3 focus:ring-yellow-400 focus:outline-0"
+        >
+          <span class="text-sm font-medium"> View All Neobrutalism </span>
+
+          <svg
+            class="size-4 rtl:rotate-180"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
   </div>
 </BaseLayout>

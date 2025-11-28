@@ -5,7 +5,10 @@ import BaseLayout from './BaseLayout.astro'
 import CollectionRelated from '../components/CollectionRelated.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 
-type Props = CollectionEntry<'collection'>['data']
+type Props =
+  | CollectionEntry<'application'>['data']
+  | CollectionEntry<'marketing'>['data']
+  | CollectionEntry<'neobrutalism'>['data']
 
 const { category, components, description, slug, terms, title, wrapper } = Astro.props
 
