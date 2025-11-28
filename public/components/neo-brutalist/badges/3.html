@@ -6,11 +6,27 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
+  <body class="flex justify-center p-6">
     <span
-      class="border-2 border-black bg-purple-400 px-6 py-3 text-sm font-bold text-black shadow-[4px_4px_0_0]"
+      class="inline-flex items-center gap-3 border-2 border-black bg-white px-3 py-1.5 text-sm/none font-semibold shadow-[2px_2px_0_0]"
     >
-      Beta Feature
+      New Message
+
+      <button
+        type="button"
+        class="bg-black p-0.5 text-white shadow-[2px_2px_0_0] shadow-black hover:bg-white hover:text-black"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          class="size-4"
+        >
+          <path
+            d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"
+          />
+        </svg>
+      </button>
     </span>
   </body>
 </html>

@@ -6,16 +6,15 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
-    <div class="w-full max-w-xs">
-      <label for="textarea" class="block text-sm font-bold text-black"> Message </label>
+  <body class="mx-auto max-w-lg p-6">
+    <label for="Notes">
+      <span class="text-sm font-semibold"> Notes </span>
 
       <textarea
-        id="textarea"
-        class="mt-1 w-full border-2 border-black p-3 text-sm shadow-[4px_4px_0_0] focus:shadow-none focus:outline-none"
+        id="Notes"
+        class="mt-0.5 w-full resize-none border-2 border-black shadow-[4px_4px_0_0] focus:ring-2 focus:ring-yellow-300 sm:text-sm"
         rows="4"
-        placeholder="Enter your message..."
       ></textarea>
-    </div>
+    </label>
   </body>
 </html>

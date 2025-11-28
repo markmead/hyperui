@@ -6,18 +6,37 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
-    <div class="w-full max-w-xs">
-      <label for="textarea-helper" class="block text-sm font-bold text-black"> Bio </label>
+  <body class="mx-auto max-w-lg p-6">
+    <div>
+      <label for="Notes">
+        <span class="text-sm font-semibold"> Notes </span>
 
-      <textarea
-        id="textarea-helper"
-        class="mt-1 w-full border-2 border-black p-3 text-sm shadow-[4px_4px_0_0] focus:shadow-none focus:outline-none"
-        rows="4"
-        placeholder="Tell us about yourself..."
-      ></textarea>
+        <div
+          class="relative mt-0.5 overflow-hidden border-2 border-black shadow-[4px_4px_0_0] focus-within:ring-2 focus-within:ring-yellow-300"
+        >
+          <textarea
+            id="Notes"
+            class="w-full resize-none border-0 focus:ring-0 sm:text-sm"
+            rows="4"
+          ></textarea>
 
-      <p class="mt-1 text-xs font-bold text-gray-500">Max 500 characters.</p>
+          <div class="flex items-center justify-end gap-3 border-t-2 border-black p-3">
+            <button
+              type="button"
+              class="border-2 px-3 py-1.5 text-sm font-semibold shadow-[2px_2px_0_0] hover:bg-yellow-100 focus:border-yellow-300 focus:outline-0"
+            >
+              Clear
+            </button>
+
+            <button
+              type="button"
+              class="border-2 bg-yellow-300 px-3 py-1.5 text-sm font-semibold shadow-[2px_2px_0_0] hover:bg-yellow-400 focus:bg-yellow-300 focus:outline-0"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </label>
     </div>
   </body>
 </html>
