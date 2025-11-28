@@ -12,23 +12,29 @@ interface Result {
   title: string
 }
 
-const application = await getCollection('application')
-const marketing = await getCollection('marketing')
-const neobrutalism = await getCollection('neobrutalism')
+const [application, marketing, neobrutalism, blog] = await Promise.all([
+  getCollection('application'),
+  getCollection('marketing'),
+  getCollection('neobrutalism'),
+  getCollection('blog'),
+])
 
 const allCollections = [...application, ...marketing, ...neobrutalism]
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+  .flat()
 
-const collections: Result[] = allCollections.map(({ data }) => {
+const collections: Result[] = allCollections.map(({ category, emoji, slug, terms, title }) => {
   return {
-    category: data.category,
-    emoji: data.emoji,
-    slug: `/components/${data.category}/${data.slug}`,
-    terms: data.terms,
-    title: data.title,
+    category,
+    emoji,
+    slug: `/components/${category}/${slug}`,
+    terms,
+    title,
   }
 })
 
-const posts: Result[] = (await getCollection('blog')).map(({ data }) => {
+const posts: Result[] = blog.map(({ data }) => {
   return {
     category: '',
     emoji: data.emoji,
