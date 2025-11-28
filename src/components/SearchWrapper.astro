@@ -12,7 +12,13 @@ interface Result {
   title: string
 }
 
-const collections: Result[] = (await getCollection('collection')).map(({ data }) => {
+const application = await getCollection('application')
+const marketing = await getCollection('marketing')
+const neobrutalism = await getCollection('neobrutalism')
+
+const allCollections = [...application, ...marketing, ...neobrutalism]
+
+const collections: Result[] = allCollections.map(({ data }) => {
   return {
     category: data.category,
     emoji: data.emoji,

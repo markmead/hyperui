@@ -4,9 +4,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content'
 import ComponentPost from '../../../layouts/ComponentPost.astro'
 
 export async function getStaticPaths() {
-  const collections = (await getCollection('collection')).filter(
-    ({ data }) => data.category === 'neo-brutalist'
-  )
+  const collections = await getCollection('neobrutalism')
 
   return collections.map((component) => ({
     params: { slug: component.data.slug },
@@ -14,7 +12,7 @@ export async function getStaticPaths() {
   }))
 }
 
-type Props = CollectionEntry<'collection'>
+type Props = CollectionEntry<'neobrutalism'>
 
 const collection = Astro.props
 

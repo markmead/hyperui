@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content'
+
+import {
+  SEO_DESCRIPTION_NEOBRUTALISM_COMPONENTS,
+  SEO_TITLE_NEOBRUTALISM_COMPONENTS,
+} from '../../../consts'
+
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import ComponentCard from '../../../components/ComponentCard.astro'
+import Hero from '../../../components/Hero.astro'
+
+const components = (await getCollection('neobrutalism'))
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+---
+
+<BaseLayout
+  description={SEO_DESCRIPTION_NEOBRUTALISM_COMPONENTS}
+  title={SEO_TITLE_NEOBRUTALISM_COMPONENTS}
+>
+  <Hero title="Neobrutalism" subtitle="Free Neobrutalism Tailwind CSS Components">
+    A collection of free, copy-paste Tailwind CSS components for building modern web applications.
+    From marketing pages to admin dashboards, find ready-to-use UI components that speed up your
+    development. No installation required.
+  </Hero>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <ul
+      aria-label="Neobrutalism Components"
+      class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+    >
+      {components.map((component) => <ComponentCard component={component} />)}
+    </ul>
+  </main>
+</BaseLayout>
