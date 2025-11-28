@@ -7,17 +7,15 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import ComponentCard from '../components/ComponentCard.astro'
 import Hero from '../components/Hero.astro'
 
-const collections = await getCollection('collection')
-
-const application = collections
-  .filter(({ data }) => data.category === 'application')
-  .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
-
-const marketing = collections
-  .filter(({ data }) => data.category === 'marketing')
-  .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
+const [application, marketing, neobrutalism] = (
+  await Promise.all([
+    getCollection('application'),
+    getCollection('marketing'),
+    getCollection('neobrutalism'),
+  ])
+).map((collection) =>
+  collection.map(({ data }) => data).sort((a, b) => a.title.localeCompare(b.title))
+)
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_SITE} title={SEO_TITLE_SITE}>
@@ -51,6 +49,19 @@ const marketing = collections
         class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
       >
         {marketing.map((component) => <ComponentCard component={component} />)}
+      </ul>
+    </section>
+
+    <section>
+      <a href="/components/neobrutalism" class="inline-block">
+        <h2 class="text-xl font-bold sm:text-2xl">Neobrutalism Components</h2>
+      </a>
+
+      <ul
+        aria-label="Neobrutalism Components"
+        class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+      >
+        {neobrutalism.map((component) => <ComponentCard component={component} />)}
       </ul>
     </section>
   </div>

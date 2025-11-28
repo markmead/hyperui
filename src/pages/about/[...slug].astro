@@ -4,9 +4,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content'
 import PagePost from '../../layouts/PagePost.astro'
 
 export async function getStaticPaths() {
-  const pages = await getCollection('page')
-
-  return pages.map((page) => ({
+  return (await getCollection('page')).map((page) => ({
     params: { slug: page.data.slug },
     props: page,
   }))

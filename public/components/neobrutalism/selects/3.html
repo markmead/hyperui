@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-xs p-6">
+    <label for="Headline">
+      <span class="text-sm font-semibold"> Headliner </span>
+
+      <div class="relative">
+        <input
+          type="text"
+          id="Headline"
+          list="HeadlineList"
+          placeholder="Please select"
+          class="mt-0.5 w-full border-2 border-black shadow-[4px_4px_0_0] focus:ring-2 focus:ring-yellow-300 sm:text-sm [&::-webkit-calendar-picker-indicator]:opacity-0"
+        />
+
+        <span class="absolute inset-y-0 right-0 grid w-8 place-content-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="size-4"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </div>
+
+      <datalist name="Headline" id="HeadlineList">
+        <option value="JM">John Mayer</option>
+        <option value="SRV">Stevie Ray Vaughn</option>
+        <option value="JH">Jimi Hendrix</option>
+        <option value="BBK">B.B King</option>
+        <option value="AK">Albert King</option>
+        <option value="BG">Buddy Guy</option>
+        <option value="EC">Eric Clapton</option>
+      </datalist>
+    </label>
+  </body>
+</html>

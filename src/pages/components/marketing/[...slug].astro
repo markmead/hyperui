@@ -4,17 +4,13 @@ import { type CollectionEntry, getCollection, render } from 'astro:content'
 import ComponentPost from '../../../layouts/ComponentPost.astro'
 
 export async function getStaticPaths() {
-  const collections = (await getCollection('collection')).filter(
-    ({ data }) => data.category === 'marketing'
-  )
-
-  return collections.map((component) => ({
+  return (await getCollection('marketing')).map((component) => ({
     params: { slug: component.data.slug },
     props: component,
   }))
 }
 
-type Props = CollectionEntry<'collection'>
+type Props = CollectionEntry<'marketing'>
 
 const collection = Astro.props
 

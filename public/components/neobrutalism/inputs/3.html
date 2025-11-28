@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <label for="Search">
+      <span class="sr-only"> Search </span>
+
+      <div
+        class="flex border-2 shadow-[4px_4px_0_0] focus-within:ring-2 focus-within:ring-yellow-300"
+      >
+        <input type="search" id="Search" class="w-full border-none focus:ring-0 sm:text-sm" />
+
+        <button
+          type="submit"
+          class="bg-yellow-300 px-4 py-2 text-xs/none font-bold tracking-wide uppercase hover:bg-yellow-400 focus:bg-yellow-400 focus:outline-0"
+        >
+          Search
+        </button>
+      </div>
+    </label>
+  </body>
+</html>

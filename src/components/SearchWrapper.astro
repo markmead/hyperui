@@ -12,17 +12,28 @@ interface Result {
   title: string
 }
 
-const collections: Result[] = (await getCollection('collection')).map(({ data }) => {
+const [application, marketing, neobrutalism, blog] = await Promise.all([
+  getCollection('application'),
+  getCollection('marketing'),
+  getCollection('neobrutalism'),
+  getCollection('blog'),
+])
+
+const allCollections = [...application, ...marketing, ...neobrutalism]
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+
+const collections: Result[] = allCollections.map(({ category, emoji, slug, terms, title }) => {
   return {
-    category: data.category,
-    emoji: data.emoji,
-    slug: `/components/${data.category}/${data.slug}`,
-    terms: data.terms,
-    title: data.title,
+    category,
+    emoji,
+    slug: `/components/${category}/${slug}`,
+    terms,
+    title,
   }
 })
 
-const posts: Result[] = (await getCollection('blog')).map(({ data }) => {
+const posts: Result[] = blog.map(({ data }) => {
   return {
     category: '',
     emoji: data.emoji,
@@ -33,7 +44,7 @@ const posts: Result[] = (await getCollection('blog')).map(({ data }) => {
 })
 ---
 
-<div class="relative hidden md:block">
+<div class="relative hidden sm:block">
   <SearchInput />
   <SearchResults collections={collections} posts={posts} />
 </div>

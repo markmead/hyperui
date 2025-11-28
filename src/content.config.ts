@@ -33,39 +33,61 @@ const blog = defineCollection({
     }),
 })
 
-const collection = defineCollection({
-  loader: glob({
-    base: './src/content/collection',
-    pattern: '{application,marketing}/**/*.{md,mdx}',
-  }),
-  schema: () =>
+const collection = z.object({
+  description: z.string(),
+  emoji: z.string(),
+  slug: z.string(),
+  terms: z.array(z.string()),
+  title: z.string(),
+  wrapper: z.string().default('h-[600px]'),
+  pubDate: z.coerce.date().optional(),
+  tag: z.enum(['new', 'updated']).optional(),
+  updatedDate: z.coerce.date().optional(),
+  components: z.array(
     z.object({
-      category: z.enum(['application', 'marketing']),
-      description: z.string(),
-      emoji: z.string(),
-      slug: z.string(),
-      terms: z.array(z.string()),
+      contributors: z.array(z.string()).default(['markmead']),
       title: z.string(),
-      wrapper: z.string().default('h-[600px]'),
-      pubDate: z.coerce.date().optional(),
-      tag: z.enum(['new', 'updated']).optional(),
-      updatedDate: z.coerce.date().optional(),
-      components: z.array(
-        z.object({
-          contributors: z.array(z.string()).default(['markmead']),
-          title: z.string(),
-          dark: z
-            .union([
-              z.boolean(),
-              z.object({
-                contributors: z.array(z.string()).default(['markmead']),
-              }),
-            ])
-            .optional(),
-          plugins: z.array(z.string()).optional(),
-        })
-      ),
-    }),
+      dark: z
+        .union([
+          z.boolean(),
+          z.object({
+            contributors: z.array(z.string()).default(['markmead']),
+          }),
+        ])
+        .optional(),
+      plugins: z.array(z.string()).optional(),
+    })
+  ),
 })
 
-export const collections = { page, blog, collection }
+const application = defineCollection({
+  loader: glob({
+    base: './src/content/collection/application',
+    pattern: '**/*.{md,mdx}',
+  }),
+  schema: collection.extend({
+    category: z.literal('application'),
+  }),
+})
+
+const marketing = defineCollection({
+  loader: glob({
+    base: './src/content/collection/marketing',
+    pattern: '**/*.{md,mdx}',
+  }),
+  schema: collection.extend({
+    category: z.literal('marketing'),
+  }),
+})
+
+const neobrutalism = defineCollection({
+  loader: glob({
+    base: './src/content/collection/neobrutalism',
+    pattern: '**/*.{md,mdx}',
+  }),
+  schema: collection.extend({
+    category: z.literal('neobrutalism'),
+  }),
+})
+
+export const collections = { page, blog, application, marketing, neobrutalism }
