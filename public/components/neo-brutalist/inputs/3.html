@@ -6,20 +6,22 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
-    <form class="flex w-full max-w-md border-2 border-black shadow-[4px_4px_0_0]">
-      <input
-        type="text"
-        class="w-full border-none bg-white p-3 text-sm focus:outline-none"
-        placeholder="Search..."
-      />
+  <body class="mx-auto max-w-sm p-6">
+    <label for="Search">
+      <span class="sr-only"> Search </span>
 
-      <button
-        class="border-l-2 border-black bg-yellow-400 px-6 text-sm font-bold text-black uppercase hover:bg-yellow-500"
-        type="submit"
+      <div
+        class="flex overflow-hidden rounded border-2 shadow-[4px_4px_0_0] focus-within:ring-2 focus-within:ring-yellow-300"
       >
-        Search
-      </button>
-    </form>
+        <input type="search" id="Search" class="w-full border-none focus:ring-0 sm:text-sm" />
+
+        <button
+          type="submit"
+          class="bg-yellow-300 px-4 py-2 text-xs/none font-bold tracking-wide uppercase hover:bg-yellow-400 focus:bg-yellow-400 focus:outline-0"
+        >
+          Search
+        </button>
+      </div>
+    </label>
   </body>
 </html>

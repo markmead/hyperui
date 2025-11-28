@@ -6,11 +6,15 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-6">
-    <input
-      type="email"
-      class="w-full max-w-xs border-2 border-black p-3 text-sm shadow-[4px_4px_0_0] focus:shadow-none focus:outline-none"
-      placeholder="john@doe.com"
-    />
+  <body class="mx-auto max-w-sm p-6">
+    <label for="Email">
+      <span class="text-xs/none font-semibold tracking-wide uppercase"> Email </span>
+
+      <input
+        type="email"
+        id="Email"
+        class="mt-0.5 w-full rounded border-2 border-black shadow-[4px_4px_0_0] sm:text-sm"
+      />
+    </label>
   </body>
 </html>
