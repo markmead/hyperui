@@ -7,7 +7,7 @@ HyperUI is a **component library for developers**. Components should be:
 1. **Clean and neutral** - Use minimal styling that focuses on structure and usability
 2. **Easily customizable** - Avoid unnecessary decorative styling (gradients, excessive color) that developers can't easily override
 3. **Semantic and accessible** - Proper HTML structure, accessible markup, ARIA labels where needed
-4. **Production-ready** - Components that can be dropped directly into projects with Tailwind CSS
+4. **Production-ready** - Components that can be dropped directly into projects with Tailwind CSS v4
 5. **Copy-paste friendly** - Developers should understand and be able to modify the code easily
 
 ## What We DON'T Do
@@ -22,7 +22,7 @@ HyperUI is a **component library for developers**. Components should be:
 ## What We DO Do
 
 - ✅ Neutral color palettes (grays, blacks, whites, primary accent color)
-- ✅ Tailwind CSS utilities only (no custom CSS where possible)
+- ✅ Tailwind CSS v4 utilities only (no custom CSS where possible)
 - ✅ Clear semantic HTML structure
 - ✅ Accessibility-first approach
 - ✅ Multiple variants that show different use cases, not different "themes"
