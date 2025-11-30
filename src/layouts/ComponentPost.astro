@@ -5,12 +5,17 @@ import BaseLayout from './BaseLayout.astro'
 import CollectionRelated from '../components/CollectionRelated.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 
-type Props =
+type Props = (
   | CollectionEntry<'application'>['data']
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
+) & {
+  heading: string
+}
 
-const { category, components, description, slug, terms, title, wrapper } = Astro.props
+const { category, components, description, slug, terms, wrapper, heading } = Astro.props
+
+const pageTitle = `Free Tailwind CSS ${heading} | HyperUI`
 
 const formattedComponents = components
   .map((component, index) => {
@@ -48,7 +53,7 @@ const formattedComponents = components
   .flat()
 ---
 
-<BaseLayout description={description} title={title}>
+<BaseLayout description={description} title={pageTitle}>
   <main class="mx-auto max-w-7xl space-y-8 px-4 py-8">
     <slot />
 
