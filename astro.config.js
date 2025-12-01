@@ -29,13 +29,16 @@ export default defineConfig({
     ],
     syntaxHighlight: false,
   },
+  redirects: {
+    '/components/marketing/forms': '/components/marketing/contact-forms',
+  },
   experimental: {
     fonts: [
       {
         cssVariable: '--font-inter',
         name: 'Inter',
         provider: fontProviders.google(),
-        weights: [400, 500, 600, 700],
+        weights: [400, 500, 600, 700, 800],
       },
     ],
   },
