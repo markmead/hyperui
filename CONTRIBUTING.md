@@ -6,9 +6,9 @@ Thank you for your interest in improving HyperUI. For full contribution guidelin
 
 ```bash
 git clone git@github.com:markmead/hyperui.git
-yarn install
-yarn dev
-yarn css --watch
+pnpm install
+pnpm dev
+pnpm css --watch
 ```
 
 ## Bug? Idea?

@@ -11,9 +11,9 @@
   "dependencies": {
     "@astrojs/mdx": "4.3.13",
     "@astrojs/rss": "4.0.14",
-    "@astrojs/sitemap": "3.6.1",
+    "@astrojs/sitemap": "3.6.0",
     "@vercel/analytics": "^1.6.1",
-    "astro": "5.16.7"
+    "astro": "5.16.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
@@ -30,6 +30,5 @@
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.52.0"
-  },
-  "packageManager": "yarn@1.22.22"
+  }
 }
