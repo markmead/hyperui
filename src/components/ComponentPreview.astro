@@ -163,11 +163,20 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     }
 
     private sanitizeContent(contentHtml: string): string {
-      return contentHtml
+      let sanitized = contentHtml
         .split('\n')
         .map((htmlLine) => htmlLine.replace(/^\s{4}/, ''))
         .join('\n')
         .trim()
+
+      // Fix: Restore trailing slash for input elements    
+      const regexWithAttrs = new RegExp(`<input(\\s[^>]*[^/])>`, 'gi')
+      sanitized = sanitized.replace(regexWithAttrs, `<input$1 />`)
+
+      const regexNoAttrs = new RegExp(`<input>`, 'gi')
+      sanitized = sanitized.replace(regexNoAttrs, `<input />`)
+
+      return sanitized
     }
   }
 
