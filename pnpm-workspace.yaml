@@ -1,0 +1,6 @@
+minimumReleaseAge: 1440
+strictDepBuilds: true
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - sharp
