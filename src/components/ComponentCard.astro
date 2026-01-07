@@ -4,10 +4,7 @@ import FormattedCount from './FormattedCount.astro'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
-  component:
-    | CollectionEntry<'application'>['data']
-    | CollectionEntry<'marketing'>['data']
-    | CollectionEntry<'neobrutalism'>['data']
+  component: CollectionEntry['data'] | CollectionEntry['data'] | CollectionEntry['data']
 }
 
 const { component } = Astro.props
