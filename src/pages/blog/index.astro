@@ -43,7 +43,7 @@ const posts = (await getCollection('blog'))
     challenges.
   </Hero>
 
-  <section class="mx-auto max-w-7xl px-4 pb-8">
+  <main id="main-content" class="mx-auto max-w-7xl px-4 pb-8">
     <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {
         posts.map(({ emoji, slug, title, updatedDate }) => (
@@ -64,5 +64,5 @@ const posts = (await getCollection('blog'))
         ))
       }
     </ul>
-  </section>
+  </main>
 </BaseLayout>
