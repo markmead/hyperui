@@ -35,23 +35,3 @@ Some developers use React/JSX. A toggle to copy components with JSX syntax (`cla
 ### Border Radius Standardization
 
 Components use varying border radius values (`rounded-sm`, `rounded-md`, `rounded-lg`). While intentional variation is fine, worth reviewing for consistency within similar component types.
-
-### Responsive Images
-
-Marketing components with placeholder images don't use `srcset` or `sizes` attributes. For components that ship with images, this could improve performance guidance.
-
----
-
-## Completed Items (This Review)
-
-- ✅ Fixed HeaderLink class prop naming
-- ✅ Fixed ComponentCard type definitions
-- ✅ Fixed TypeScript workaround in ComponentPost
-- ✅ Added preconnect resource hints
-- ✅ Optimized font loading in component.css
-- ✅ Added error handling in search
-- ✅ Added ARIA live regions for search results
-- ✅ Added skip link to site
-- ✅ Added component counts to category pages
-- ✅ Added Schema.org markup to component pages
-- ✅ Removed .DS_Store from content folder
