@@ -36,18 +36,6 @@ Some developers use React/JSX. A toggle to copy components with JSX syntax (`cla
 
 Components use varying border radius values (`rounded-sm`, `rounded-md`, `rounded-lg`). While intentional variation is fine, worth reviewing for consistency within similar component types.
 
-### GitHub Stars Count
-
-**Location:** `src/components/Social.astro`
-
-The star count is hardcoded as `11k`. Options:
-
-1. Fetch dynamically at build time via GitHub API
-2. Remove the number entirely
-3. Keep as-is (current approach)
-
-Not a priority fix, but worth noting.
-
 ### Responsive Images
 
 Marketing components with placeholder images don't use `srcset` or `sizes` attributes. For components that ship with images, this could improve performance guidance.
