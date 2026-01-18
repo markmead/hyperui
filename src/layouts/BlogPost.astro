@@ -10,24 +10,6 @@ const { description, pubDate, title, updatedDate } = Astro.props
 ---
 
 <BaseLayout description={description} title={title}>
-  <script
-    slot="head"
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: title,
-      description: description,
-      url: Astro.url,
-      datePublished: pubDate,
-      dateModified: updatedDate,
-      author: {
-        '@type': 'Person',
-        name: 'HyperUI',
-      },
-    })}
-  />
-
   <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
     <article class="prose mx-auto">
       <h1>{title}</h1>
