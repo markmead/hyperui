@@ -26,6 +26,8 @@ const { collections, posts } = Astro.props
 
     <ul data-list role="listbox" class="max-h-72 divide-y divide-stone-200 overflow-y-auto"></ul>
   </div>
+
+  <span data-status aria-live="polite" class="sr-only"></span>
 </search-results>
 
 <script>
@@ -51,8 +53,9 @@ const { collections, posts } = Astro.props
       const containerEl = this.querySelector('[data-container]') as HTMLDivElement | null
       const errorEl = this.querySelector('[data-error]') as HTMLParagraphElement | null
       const resultsEl = this.querySelector('[data-list]') as HTMLUListElement | null
+      const statusEl = this.querySelector('[data-status]') as HTMLSpanElement | null
 
-      if (!containerEl || !errorEl || !resultsEl) {
+      if (!containerEl || !errorEl || !resultsEl || !statusEl) {
         return
       }
 
@@ -116,6 +119,7 @@ const { collections, posts } = Astro.props
           this.searchResults = []
 
           resultsEl.innerHTML = ''
+          statusEl.textContent = 'No results found'
 
           errorEl.setAttribute('data-error', 'true')
 
@@ -123,6 +127,8 @@ const { collections, posts } = Astro.props
         }
 
         this.searchResults = searchResults
+
+        statusEl.textContent = `${searchResults.length} ${searchResults.length === 1 ? 'result' : 'results'} found`
 
         resultsEl.innerHTML = searchResults
           .map(({ category, emoji, slug, title }) => {

@@ -9,6 +9,7 @@ import {
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
 import Hero from '../../../components/Hero.astro'
+import CollectionStats from '../../../components/CollectionStats.astro'
 
 const components = (await getCollection('marketing'))
   .map(({ data }) => data)
@@ -23,14 +24,16 @@ const components = (await getCollection('marketing'))
     Create stunning landing pages and marketing websites with conversion-focused UI components. From
     hero sections and pricing tables to testimonials and CTAs, everything is crafted to engage
     visitors and drive results.
+
+    <CollectionStats slot="cta" components={components} />
   </Hero>
 
-  <section class="mx-auto max-w-7xl px-4 pb-8">
+  <main id="main-content" class="mx-auto max-w-7xl px-4 pb-8">
     <ul
       aria-label="Marketing Components"
       class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
     >
       {components.map((component) => <ComponentCard component={component} />)}
     </ul>
-  </section>
+  </main>
 </BaseLayout>
