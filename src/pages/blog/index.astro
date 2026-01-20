@@ -13,37 +13,13 @@ const posts = (await getCollection('blog'))
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_BLOG} title={SEO_TITLE_BLOG}>
-  <script
-    slot="head"
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Blog',
-      name: SEO_TITLE_BLOG,
-      description: SEO_DESCRIPTION_BLOG,
-      url: `${Astro.site}/blog`,
-      blogPost: posts.map(({ description, pubDate, slug, title, updatedDate }) => ({
-        '@type': 'BlogPosting',
-        headline: title,
-        url: `${Astro.site}/blog/${slug}`,
-        datePublished: pubDate,
-        dateModified: updatedDate,
-        description: description,
-        author: {
-          '@type': 'Person',
-          name: 'HyperUI',
-        },
-      })),
-    })}
-  />
-
   <Hero title="Tailwind CSS Blog" subtitle="Tips, Tricks & Real-World Solutions">
     Learn practical Tailwind CSS techniques through tutorials and guides built from real-world
     experience. Discover best practices, performance tips, and clever solutions to common styling
     challenges.
   </Hero>
 
-  <section class="mx-auto max-w-7xl px-4 pb-8">
+  <main id="main-content" class="mx-auto max-w-7xl px-4 pb-8">
     <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {
         posts.map(({ emoji, slug, title, updatedDate }) => (
@@ -64,5 +40,5 @@ const posts = (await getCollection('blog'))
         ))
       }
     </ul>
-  </section>
+  </main>
 </BaseLayout>

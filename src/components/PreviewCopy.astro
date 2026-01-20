@@ -21,56 +21,15 @@ const { src } = Astro.props
 </preview-copy>
 
 <script>
-  type CopyVariant =
-    | 'baseVariant'
-    | 'isCombinedVariant'
-    | 'isDetailedTextVariant'
-    | 'isPrimaryVariant'
-
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
     private contentSrc: string | null = null
-    private copyVariant: CopyVariant = 'baseVariant'
     private timeoutId: ReturnType<typeof setTimeout> | null = null
 
     private clickHandler: (() => void) | null = null
 
-    private resolveVariant(): CopyVariant {
-      const storageKey = 'CopyVariant'
-      const availableVariants: CopyVariant[] = [
-        'baseVariant',
-        'isCombinedVariant',
-        'isDetailedTextVariant',
-        'isPrimaryVariant',
-      ]
-
-      try {
-        const storedVariant = sessionStorage.getItem(storageKey) as CopyVariant
-
-        if (storedVariant && availableVariants.includes(storedVariant)) {
-          return storedVariant
-        }
-      } catch {
-        // We do nothing
-      }
-
-      const randomVariant = availableVariants[Math.floor(Math.random() * availableVariants.length)]
-
-      try {
-        sessionStorage.setItem(storageKey, randomVariant)
-      } catch {
-        // We do nothing
-      }
-
-      return randomVariant
-    }
-
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
-
-      const assignedVariant = this.resolveVariant()
-
-      this.copyVariant = assignedVariant
 
       if (!this.contentSrc) {
         return
@@ -83,36 +42,11 @@ const { src } = Astro.props
         return
       }
 
-      const variantClassMap: Record<CopyVariant, string[]> = {
-        baseVariant: [],
-        isCombinedVariant: [
-          '[&>button]:bg-pink-500/10',
-          '[&>button]:border-pink-500',
-          '[&>button]:shadow-pink-300',
-        ],
-        isDetailedTextVariant: [],
-        isPrimaryVariant: [
-          '[&>button]:bg-pink-500/10',
-          '[&>button]:border-pink-500',
-          '[&>button]:shadow-pink-300',
-        ],
-      }
-
-      const classesToAdd = variantClassMap[assignedVariant]
-
-      if (classesToAdd.length) {
-        this.classList.add(...classesToAdd)
-      }
-
       const buttonEmoji = buttonEl.querySelector('span[data-emoji]') as HTMLSpanElement | null
       const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
 
       if (!buttonEmoji || !buttonText) {
         return
-      }
-
-      if (assignedVariant === 'isDetailedTextVariant' || assignedVariant === 'isCombinedVariant') {
-        buttonText.textContent = 'Copy HTML'
       }
 
       this.clickHandler = () => {
@@ -129,7 +63,6 @@ const { src } = Astro.props
         document.dispatchEvent(
           new CustomEvent(`preview:copy:${this.contentSrc}`, {
             bubbles: true,
-            detail: { variant: this.copyVariant },
           })
         )
 
@@ -142,10 +75,7 @@ const { src } = Astro.props
         this.timeoutId = globalThis.setTimeout(() => {
           if (this.isConnected) {
             buttonEmoji.textContent = '📋'
-            buttonText.textContent =
-              assignedVariant === 'isDetailedTextVariant' || assignedVariant === 'isCombinedVariant'
-                ? 'Copy HTML'
-                : 'Copy'
+            buttonText.textContent = 'Copy'
             politeEl.textContent = ''
 
             buttonEl.setAttribute('aria-pressed', 'false')

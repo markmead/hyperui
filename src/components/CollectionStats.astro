@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  components:
+    | CollectionEntry<'application'>['data'][]
+    | CollectionEntry<'marketing'>['data'][]
+    | CollectionEntry<'neobrutalism'>['data'][]
+}
+
+const { components } = Astro.props
+
+const totalComponents = components.reduce((total, { components }) => {
+  return total + components.reduce((sum, { dark }) => sum + (dark ? 2 : 1), 0)
+}, 0)
+---
+
+<div
+  class="inline-flex items-center gap-2 rounded-sm border border-stone-300 px-3 py-1 font-semibold"
+>
+  <span aria-hidden="true" class="text-lg"> 📣 </span>
+
+  <p class="text-stone-700">
+    {totalComponents} components across {components.length} collections
+  </p>
+</div>

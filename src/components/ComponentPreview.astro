@@ -94,16 +94,14 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.copyHandler = (copyEvent: Event) => {
+      this.copyHandler = () => {
         const contentHtml = this.getContent()
-        const copyVariant = (copyEvent as CustomEvent).detail?.variant || 'baseVariant'
 
         try {
           if (contentHtml) {
             navigator.clipboard.writeText(contentHtml)
 
             track('Copy', { component: this.contentSrc })
-            track('CopyVariant', { component: this.contentSrc, variant: copyVariant })
           }
         } catch {
           // We do nothing
