@@ -10,6 +10,15 @@ pnpm install
 pnpm dev
 pnpm css --watch
 ```
+This will:
+
+Clone the project
+
+Install dependencies
+
+Start the development server
+
+Watch Tailwind CSS changes in real-time
 
 ## Bug? Idea?
 
