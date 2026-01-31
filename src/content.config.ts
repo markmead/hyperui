@@ -5,6 +5,7 @@ const page = defineCollection({
   loader: glob({
     base: './src/content/about',
     pattern: '**/*.{md,mdx}',
+    retainBody: false,
   }),
   schema: () =>
     z.object({
@@ -20,6 +21,7 @@ const blog = defineCollection({
   loader: glob({
     base: './src/content/blog',
     pattern: '**/*.{md,mdx}',
+    retainBody: false,
   }),
   schema: () =>
     z.object({
@@ -64,6 +66,7 @@ const application = defineCollection({
   loader: glob({
     base: './src/content/collection/application',
     pattern: '**/*.{md,mdx}',
+    retainBody: false,
   }),
   schema: collection.extend({
     category: z.literal('application'),
@@ -74,6 +77,7 @@ const marketing = defineCollection({
   loader: glob({
     base: './src/content/collection/marketing',
     pattern: '**/*.{md,mdx}',
+    retainBody: false,
   }),
   schema: collection.extend({
     category: z.literal('marketing'),
@@ -84,6 +88,7 @@ const neobrutalism = defineCollection({
   loader: glob({
     base: './src/content/collection/neobrutalism',
     pattern: '**/*.{md,mdx}',
+    retainBody: false,
   }),
   schema: collection.extend({
     category: z.literal('neobrutalism'),

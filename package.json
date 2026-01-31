@@ -13,7 +13,7 @@
     "@astrojs/rss": "4.0.15",
     "@astrojs/sitemap": "3.7.0",
     "@vercel/analytics": "^1.6.1",
-    "astro": "5.16.11"
+    "astro": "5.17.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
