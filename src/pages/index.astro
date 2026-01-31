@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content'
 import { SEO_DESCRIPTION_SITE, SEO_TITLE_SITE } from '../consts'
 
 import BaseLayout from '../layouts/BaseLayout.astro'
+import CollectionStats from '../components/CollectionStats.astro'
 import ComponentCard from '../components/ComponentCard.astro'
 import Hero from '../components/Hero.astro'
 
@@ -16,6 +17,8 @@ const [application, marketing, neobrutalism] = (
 ).map((collection) =>
   collection.map(({ data }) => data).sort((a, b) => a.title.localeCompare(b.title))
 )
+
+const components = [...application, ...marketing, ...neobrutalism]
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_SITE} title={SEO_TITLE_SITE}>
@@ -23,6 +26,8 @@ const [application, marketing, neobrutalism] = (
     A collection of free, copy-paste Tailwind CSS components for building modern web applications.
     From marketing pages to admin dashboards, find ready-to-use UI components that speed up your
     development. No installation required.
+
+    <CollectionStats slot="cta" components={components} />
   </Hero>
 
   <main id="main-content" class="mx-auto max-w-7xl space-y-8 px-4 pb-8">

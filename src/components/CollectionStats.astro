@@ -16,11 +16,13 @@ const totalComponents = components.reduce((total, { components }) => {
 ---
 
 <div
-  class="inline-flex items-center gap-2 rounded-sm border border-stone-300 px-3 py-1 font-semibold"
+  class="inline-flex items-center gap-2 rounded-md border border-stone-300 bg-stone-50 px-3 py-1 font-semibold shadow-sm"
 >
-  <span aria-hidden="true" class="text-lg"> 📣 </span>
+  <span aria-hidden="true" class="text-xl"> 📣 </span>
 
-  <p class="text-stone-700">
+  <p class="text-lg text-stone-700">
     {totalComponents} components across {components.length} collections
   </p>
+
+  <span aria-hidden="true" class="-scale-x-100 text-xl"> 📣 </span>
 </div>
