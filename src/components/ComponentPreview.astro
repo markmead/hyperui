@@ -18,7 +18,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     class:list={[
       wrapper,
       dark ? 'bg-gray-900' : 'bg-white',
-      'w-full rounded-xl shadow-sm ring ring-stone-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
+      'w-full rounded-xl shadow-sm ring ring-gray-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
     ]}
     style="max-width: 100%;"
     loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>

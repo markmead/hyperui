@@ -9,5 +9,5 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Google Sans Flex', sans-serif;
 }

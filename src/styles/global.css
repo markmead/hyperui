@@ -7,5 +7,5 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-google-sans-flex);
 }

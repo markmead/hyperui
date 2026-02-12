@@ -22,9 +22,9 @@ const componentsForCount = components.map(({ dark }) => ({
 <li>
   <a
     href={`/components/${category}/${slug}`}
-    class="group block rounded-lg border border-gray-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
+    class="group block rounded-lg border border-gray-200 bg-white p-6 transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
   >
-    <h3 class="text-xl text-gray-900">
+    <h3 class="text-xl font-medium text-gray-900">
       {title}
     </h3>
 
@@ -37,7 +37,7 @@ const componentsForCount = components.map(({ dark }) => ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        class="size-5 text-gray-400 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+        class="size-5 text-gray-400 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100"
       >
         <path
           fill-rule="evenodd"

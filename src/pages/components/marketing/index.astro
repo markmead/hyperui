@@ -8,7 +8,7 @@ import {
 
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
-import Hero from '../../../components/Hero.astro'
+import PageHeroSlim from '../../../components/PageHeroSlim.astro'
 
 const components = (await getCollection('marketing'))
   .map(({ data }) => data)
@@ -19,11 +19,10 @@ const components = (await getCollection('marketing'))
   description={SEO_DESCRIPTION_MARKETING_COMPONENTS}
   title={SEO_TITLE_MARKETING_COMPONENTS}
 >
-  <Hero title="Marketing" subtitle="Free Tailwind CSS Marketing Components">
-    Create stunning landing pages and marketing websites with conversion-focused UI components. From
-    hero sections and pricing tables to testimonials and CTAs, everything is crafted to engage
-    visitors and drive results.
-  </Hero>
+  <PageHeroSlim
+    title="Marketing"
+    description="Free Tailwind CSS marketing components that can be used in your next project."
+  />
 
   <main id="main-content" class="mx-auto max-w-7xl px-4 pb-8">
     <ul

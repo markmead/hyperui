@@ -61,11 +61,8 @@ const formattedComponents = components
       {
         formattedComponents.map(({ contributors, dark, id, index, plugins, title }) => (
           <div id={id} class="space-y-4">
-            <a
-              href={`#${id}`}
-              class="inline-block focus:ring-2 focus:ring-pink-500 focus:outline-0"
-            >
-              <h2 class="text-xl font-bold text-stone-900">{title}</h2>
+            <a href={`#${id}`} class="inline-block">
+              <h2 class="text-xl font-bold text-gray-900">{title}</h2>
             </a>
 
             <PreviewWrapper

@@ -10,7 +10,7 @@ const { refs, title, url } = Astro.props
 
 {
   refs.length ? (
-    <p class="text-stone-700">
+    <p class="text-gray-700">
       {title}:
       {refs
         .map((ref) => (
@@ -18,7 +18,7 @@ const { refs, title, url } = Astro.props
             href={`${url}${ref}`}
             target="_blank"
             rel="noreferrer"
-            class="font-medium underline transition-colors hover:text-stone-900 focus:ring-2 focus:ring-pink-500 focus:outline-0"
+            class="font-medium underline transition-colors hover:text-gray-900"
           >
             {ref}
           </a>

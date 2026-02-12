@@ -1,6 +1,6 @@
 ---
 title: Accordions
-description: Free responsive accordion components built with Tailwind CSS v4. Collapsible content sections for organizing information, forms, settings, and hierarchical data with customizable animations and styling.
+description: Collapsible content sections for organizing information in an accessible way.
 category: application
 emoji: 🎯
 slug: accordions
@@ -15,10 +15,6 @@ components:
   - { title: 'Compact', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import PageHeroSlim from '../../../components/PageHeroSlim.astro'
 
-<CollectionHeader>
-  # Accordion Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<PageHeroSlim title="Accordion" description={frontmatter.description} />

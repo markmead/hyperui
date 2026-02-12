@@ -6,7 +6,6 @@ import SearchResults from './SearchResults.astro'
 
 interface Result {
   category: string
-  emoji: string
   slug: string
   terms: string[]
   title: string
@@ -23,10 +22,9 @@ const allCollections = [...application, ...marketing, ...neobrutalism]
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 
-const collections: Result[] = allCollections.map(({ category, emoji, slug, terms, title }) => {
+const collections: Result[] = allCollections.map(({ category, slug, terms, title }) => {
   return {
     category,
-    emoji,
     slug: `/components/${category}/${slug}`,
     terms,
     title,
@@ -36,7 +34,6 @@ const collections: Result[] = allCollections.map(({ category, emoji, slug, terms
 const posts: Result[] = blog.map(({ data }) => {
   return {
     category: '',
-    emoji: data.emoji,
     slug: `/blog/${data.slug}`,
     terms: data.terms,
     title: data.title,

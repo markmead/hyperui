@@ -36,8 +36,8 @@ export default defineConfig({
   experimental: {
     fonts: [
       {
-        cssVariable: '--font-inter',
-        name: 'Inter',
+        cssVariable: '--font-google-sans-flex',
+        name: 'Google Sans Flex',
         provider: fontProviders.google(),
         weights: [400, 500, 600, 700, 800],
       },
