@@ -6,6 +6,7 @@ dist/
 
 # dependencies
 node_modules/
+pnpm-lock.yaml
 
 # vs code
 .vscode/
