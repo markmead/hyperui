@@ -12,7 +12,7 @@ interface Props {
 
 const { component } = Astro.props
 
-const { category, components, emoji, slug, tag, title } = component
+const { category, components, slug, title } = component
 
 const componentsForCount = components.map(({ dark }) => ({
   dark: !!dark,
@@ -22,33 +22,28 @@ const componentsForCount = components.map(({ dark }) => ({
 <li>
   <a
     href={`/components/${category}/${slug}`}
-    class="relative flex h-full flex-col rounded-lg border border-stone-300 p-4 shadow-sm transition-colors hover:bg-stone-100 focus:ring-2 focus:ring-pink-500 focus:outline-0 sm:p-6"
+    class="group block rounded-lg border border-gray-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
   >
-    {
-      tag && (
-        <span
-          class:list={[
-            'absolute top-3 right-3 rounded-full border px-2 py-1 text-xs/none font-medium capitalize',
-            tag === 'new'
-              ? 'border-green-300 bg-green-100 text-green-900'
-              : 'border-blue-300 bg-blue-100 text-blue-900',
-          ]}
-        >
-          {tag}
-        </span>
-      )
-    }
-
-    <span aria-hidden="true" class="text-xl">
-      {emoji}
-    </span>
-
-    <p class="mt-4 text-sm text-stone-700">
-      <FormattedCount components={componentsForCount} />
-    </p>
-
-    <h2 class="mt-1 font-medium text-pretty text-stone-900 sm:text-lg">
+    <h3 class="text-xl text-gray-900">
       {title}
-    </h2>
+    </h3>
+
+    <div class="mt-1 flex items-center justify-between">
+      <p class="text-sm text-gray-600">
+        <FormattedCount components={componentsForCount} />
+      </p>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="size-5 text-gray-400 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </div>
   </a>
 </li>
