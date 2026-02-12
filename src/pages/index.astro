@@ -14,7 +14,7 @@ const [application, marketing, neobrutalism] = (
     getCollection('neobrutalism'),
   ])
 ).map((collection) =>
-  collection.map(({ data }) => data).sort((a, b) => a.title.localeCompare(b.title))
+  collection.map(({ data }) => data).sort((a, b) => a.title.localeCompare(b.title)),
 )
 ---
 

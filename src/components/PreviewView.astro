@@ -57,7 +57,7 @@ const { src } = Astro.props
           new CustomEvent(`preview:view:${this.contentSrc}`, {
             bubbles: true,
             detail: { previewing: newState },
-          })
+          }),
         )
       }
 

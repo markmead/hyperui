@@ -88,7 +88,7 @@ const { breakpoints, src } = Astro.props
         new CustomEvent(`breakpoint:change:${this.contentSrc}`, {
           bubbles: true,
           detail: { width },
-        })
+        }),
       )
 
       this.isProcessing = false

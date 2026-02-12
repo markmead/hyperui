@@ -63,7 +63,7 @@ const { src } = Astro.props
         document.dispatchEvent(
           new CustomEvent(`preview:copy:${this.contentSrc}`, {
             bubbles: true,
-          })
+          }),
         )
 
         buttonEmoji.textContent = '✅'

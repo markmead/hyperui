@@ -64,7 +64,7 @@ const { src } = Astro.props
           new CustomEvent(`preview:direction:${this.contentSrc}`, {
             bubbles: true,
             detail: { ltr: newState },
-          })
+          }),
         )
 
         this.isProcessing = false

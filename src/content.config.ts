@@ -58,7 +58,7 @@ const collection = z.object({
         ])
         .optional(),
       plugins: z.array(z.string()).optional(),
-    })
+    }),
   ),
 })
 

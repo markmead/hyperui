@@ -1,19 +1,17 @@
 // @ts-check
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 
-import astroEslint from 'eslint-plugin-astro'
-import baseEslint from '@eslint/js'
+import astro from 'eslint-plugin-astro'
+import js from '@eslint/js'
 import globals from 'globals'
-import tsEslint from 'typescript-eslint'
+import ts from 'typescript-eslint'
 
 export default defineConfig([
-  {
-    ignores: ['**/.astro', '**/dist', '**/node_modules', '**/public/*.css'],
-  },
+  globalIgnores(['dist', '.astro']),
 
-  baseEslint.configs.recommended,
-  ...tsEslint.configs.recommended,
-  ...astroEslint.configs.recommended,
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  ...astro.configs.recommended,
 
   {
     files: ['public/**', 'src/**'],

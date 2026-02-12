@@ -112,7 +112,7 @@ const { collections, posts } = Astro.props
               resultTerms.some((resultTerm) => resultTerm.includes(searchQuery)) ||
               resultTitle.includes(searchQuery)
             )
-          }
+          },
         )
 
         if (searchResults.length === 0) {
