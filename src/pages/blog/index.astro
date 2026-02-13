@@ -5,7 +5,7 @@ import { SEO_DESCRIPTION_BLOG, SEO_TITLE_BLOG } from '../../consts'
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import FormattedDate from '../../components/FormattedDate.astro'
-import Hero from '../../components/Hero.astro'
+import PageHeroSlim from '../../components/PageHeroSlim.astro'
 
 const posts = (await getCollection('blog'))
   .map(({ data }) => data)
@@ -13,11 +13,10 @@ const posts = (await getCollection('blog'))
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_BLOG} title={SEO_TITLE_BLOG}>
-  <Hero title="Tailwind CSS Blog" subtitle="Tips, Tricks & Real-World Solutions">
-    Learn practical Tailwind CSS techniques through tutorials and guides built from real-world
-    experience. Discover best practices, performance tips, and clever solutions to common styling
-    challenges.
-  </Hero>
+  <PageHeroSlim
+    title="Tailwind CSS Blog"
+    description="Tips, tricks and real-world solutions for working with Tailwind CSS"
+  />
 
   <main id="main-content" class="mx-auto max-w-7xl px-4 pb-8">
     <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -1,8 +1,8 @@
 ---
 import Analytics from '@vercel/analytics/astro'
 
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import SiteHeader from '../components/SiteHeader.astro'
+import SiteFooter from '../components/SiteFooter.astro'
 import BaseHead from '../components/BaseHead.astro'
 
 interface Props {
@@ -28,11 +28,11 @@ const { description, title, ads = true } = Astro.props
       Skip to content
     </a>
 
-    <Header />
+    <SiteHeader />
 
     <slot />
 
-    <Footer />
+    <SiteFooter />
 
     <Analytics />
   </body>
