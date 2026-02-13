@@ -18,7 +18,7 @@ const { collections, posts } = Astro.props
 <search-results data-collections={JSON.stringify(collections)} data-posts={JSON.stringify(posts)}>
   <div
     data-container="false"
-    class="absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg data-[container=false]:hidden data-[container=true]:block"
+    class="absolute top-full right-0 z-50 mt-2 w-64 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg data-[container=false]:hidden data-[container=true]:block md:w-80"
   >
     <p data-error="false" class="px-4 py-2 text-gray-700 data-[error=false]:hidden">
       No results found.
