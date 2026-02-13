@@ -2,7 +2,6 @@
 title: Toasts
 description: Toast notification components for Tailwind CSS. Responsive UI elements for displaying temporary feedback messages including success, error, warning, and info states with auto-dismiss functionality and customizable positioning.
 category: application
-emoji: 🔔
 slug: toasts
 wrapper: h-[400px]
 terms:
@@ -18,10 +17,6 @@ components:
   - { title: 'Standout', dark: { contributors: ['WinnyChang'] } }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Toast Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

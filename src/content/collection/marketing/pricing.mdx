@@ -2,7 +2,6 @@
 title: Pricing
 description: Pricing components built with Tailwind CSS v4. These responsive, customizable pricing tables and plan layouts are ideal for SaaS, eCommerce, and service websites. Improve conversions and SEO with clear, accessible pricing options for your users.
 category: marketing
-emoji: 💰
 slug: pricing
 terms:
   - plan
@@ -13,10 +12,6 @@ components:
   - { title: 'Options with tier, description, price, call to action and features' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Pricing Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

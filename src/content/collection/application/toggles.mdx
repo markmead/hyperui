@@ -2,7 +2,6 @@
 title: Toggles
 description: Application UI toggle components built with Tailwind CSS v4. These responsive, customizable toggles are perfect for forms, settings, and user preferences in modern web applications. Enhance accessibility, SEO, and mobile usability with these interactive UI elements.
 category: application
-emoji: 🎚
 slug: toggles
 wrapper: h-[200px]
 terms:
@@ -25,10 +24,6 @@ components:
   - { title: 'Apple', dark: true, plugins: ['@tailwindcss/forms'], contributors: ['GlintonLiao'] }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Toggle Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

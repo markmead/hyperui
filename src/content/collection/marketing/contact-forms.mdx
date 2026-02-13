@@ -2,7 +2,6 @@
 title: Contact Forms
 description: Explore a curated collection of contact form components built with Tailwind CSS v4. Display contact forms with modern, responsive layouts perfect for marketing websites and lead generation.
 category: marketing
-emoji: 📧
 slug: contact-forms
 terms:
   - input
@@ -16,10 +15,6 @@ components:
   - { title: 'Side-by-side form with description', dark: true, plugins: ['@tailwindcss/forms'] }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Contact Form Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

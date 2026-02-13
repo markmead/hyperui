@@ -2,7 +2,6 @@
 title: Polls
 description: Interactive poll and survey components built with Tailwind CSS v4. Use these blocks to gather feedback, run surveys, or engage users on marketing websites and web applications.
 category: marketing
-emoji: 📊
 slug: polls
 terms:
   - feedback
@@ -13,10 +12,6 @@ components:
   - { title: 'Rating poll', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Poll Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

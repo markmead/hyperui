@@ -2,7 +2,6 @@
 title: Skip Links
 description: Skip link components for Tailwind CSS. Accessibility patterns for keyboard navigation and screen reader support. Improve user experience and WCAG compliance with hidden skip links that reveal on focus.
 category: application
-emoji: ⌨️
 slug: skip-links
 wrapper: h-[300px]
 terms:
@@ -13,10 +12,6 @@ components:
   - { title: 'Skip links with title and light background' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Skip Links Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

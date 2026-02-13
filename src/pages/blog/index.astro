@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content'
 import { SEO_DESCRIPTION_BLOG, SEO_TITLE_BLOG } from '../../consts'
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import PageHeroSlim from '../../components/PageHeroSlim.astro'
+import BaseHero from '../../components/BaseHero.astro'
 import BlogCard from '../../components/BlogCard.astro'
 
 const posts = (await getCollection('blog')).sort(
@@ -13,7 +13,7 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_BLOG} title={SEO_TITLE_BLOG}>
-  <PageHeroSlim
+  <BaseHero
     title="Tailwind CSS Blog"
     description="Tips, tricks and real-world solutions for working with Tailwind CSS"
   />

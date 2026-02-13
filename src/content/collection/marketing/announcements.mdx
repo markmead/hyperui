@@ -2,7 +2,6 @@
 title: Announcements
 description: Discover announcement components built with Tailwind CSS v4. These responsive, accessible banners and notification bars are perfect for marketing websites, SaaS products, and eCommerce stores. Easily highlight updates, promotions, or important messages with customizable UI elements optimized for SEO and user engagement.
 category: marketing
-emoji: 📣
 slug: announcements
 wrapper: h-[200px]
 terms:
@@ -18,10 +17,6 @@ components:
   - { title: 'Floating with dismiss', dark: { contributors: ['WinnyChang'] } }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Announcement Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

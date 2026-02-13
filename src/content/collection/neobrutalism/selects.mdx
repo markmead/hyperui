@@ -2,7 +2,6 @@
 title: Selects
 description: Neobrutalism-style select components built with Tailwind CSS v4. Featuring thick borders, hard shadows, and custom dropdown styling. Great for forms, filtering options, and menus with a bold, high-contrast design.
 category: neobrutalism
-emoji: 🔽
 slug: selects
 wrapper: h-[400px]
 terms:
@@ -15,10 +14,6 @@ components:
   - { title: 'Datalist', plugins: ['@tailwindcss/forms'] }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Select Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

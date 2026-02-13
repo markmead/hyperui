@@ -2,7 +2,6 @@
 title: Dividers
 description: Selection of layout dividers components created with Tailwind CSS v4. These responsive horizontal dividers include basic, gradient, and aligned styles for separating content sections in your web applications and UI designs.
 category: application
-emoji: 🗡️
 slug: dividers
 wrapper: h-[200px]
 terms:
@@ -17,10 +16,6 @@ components:
   - { title: 'Right align gradient', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Divider Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

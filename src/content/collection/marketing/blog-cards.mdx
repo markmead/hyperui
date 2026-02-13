@@ -2,7 +2,6 @@
 title: Blog Cards
 description: Discover modern blog card components built with Tailwind CSS v4. Enhance your marketing pages with responsive, customizable blog cards for posts, articles, and news—optimized for performance and SEO.
 category: marketing
-emoji: 📰
 slug: blog-cards
 terms:
   - blog
@@ -18,10 +17,6 @@ components:
   - { title: 'Background image with overlay containing date, title and excerpt' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Blog Card Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

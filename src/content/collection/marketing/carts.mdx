@@ -2,7 +2,6 @@
 title: Carts
 description: Cart components crafted with Tailwind CSS v4 for eCommerce and online stores. These responsive, accessible shopping cart UIs are fully customizable and optimized for seamless checkout experiences, mobile usability, and SEO best practices.
 category: marketing
-emoji: 🛒
 slug: carts
 terms:
   - checkout
@@ -13,10 +12,6 @@ components:
   - { title: 'Page', plugins: ['@tailwindcss/forms'] }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Cart Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

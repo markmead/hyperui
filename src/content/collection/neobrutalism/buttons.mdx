@@ -2,7 +2,6 @@
 title: Buttons
 description: Neobrutalism-style button components built with Tailwind CSS v4. Featuring thick borders, hard shadows, and interactive hover states. Perfect for calls-to-action, forms, and navigation with a bold, retro design.
 category: neobrutalism
-emoji: 🔘
 slug: buttons
 wrapper: h-[200px]
 terms:
@@ -16,10 +15,6 @@ components:
   - { title: 'Double border' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Button Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

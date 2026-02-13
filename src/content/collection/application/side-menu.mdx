@@ -2,7 +2,6 @@
 title: Side Menu
 description: Application UI side menu components built with Tailwind CSS v4. These responsive, customizable navigation menus are perfect for dashboards, admin panels, and web applications. Enhance user experience and SEO with accessible, mobile-friendly side navigation.
 category: application
-emoji: 🎮
 slug: side-menu
 terms:
   - navigation
@@ -13,10 +12,6 @@ components:
         with accordion menu' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Side Menu Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

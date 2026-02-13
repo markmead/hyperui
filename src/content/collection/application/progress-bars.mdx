@@ -2,7 +2,6 @@
 title: Progress Bars
 description: Progress bar components built with Tailwind CSS v4. Responsive progress indicators for tasks, uploads, and workflows. Features linear bars, circular progress, segmented steps, and status labels. Customizable and accessible for modern web applications.
 category: application
-emoji: 📊
 slug: progress-bars
 wrapper: h-[400px]
 terms:
@@ -16,10 +15,6 @@ components:
   - { title: 'Circular progress' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Progress Bar Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

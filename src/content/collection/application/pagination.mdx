@@ -2,7 +2,6 @@
 title: Pagination
 description: Responsive pagination components designed with Tailwind CSS v4. Perfect for page navigation in web applications, dashboards, and data tables. Features numbered links, previous/next buttons, and more. Optimized for SEO, accessibility, and mobile usability.
 category: application
-emoji: 🔢
 slug: pagination
 wrapper: h-[200px]
 terms:
@@ -16,10 +15,6 @@ components:
   - { title: 'X/Y', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Pagination Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

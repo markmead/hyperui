@@ -2,7 +2,6 @@
 title: Dropdowns
 description: Application UI dropdown components built with Tailwind CSS v4. These responsive, customizable dropdown menus are ideal for navigation, filters, settings, and user actions in modern web applications. Enhance user experience and SEO with accessible, mobile-friendly dropdowns.
 category: application
-emoji: 💧
 slug: dropdown
 terms:
   - menu
@@ -13,10 +12,6 @@ components:
   - { title: 'Grouped', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Dropdown Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

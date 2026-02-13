@@ -2,7 +2,6 @@
 title: Textareas
 description: Responsive textarea components for forms and user input fields created with Tailwind CSS v4. These customizable, accessible text input areas are ideal for web applications, contact forms, comment sections, and feedback forms. Optimized for SEO and mobile usability.
 category: application
-emoji: 🔌
 slug: textareas
 wrapper: h-[400px]
 terms:
@@ -14,10 +13,6 @@ components:
   - { title: 'Actions outside', dark: true, plugins: ['@tailwindcss/forms'] }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Textarea Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

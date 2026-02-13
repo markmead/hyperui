@@ -2,7 +2,6 @@
 title: Header
 description: Header components designed with Tailwind CSS v4 for marketing websites and web applications. These responsive, SEO-optimized headers feature navigation, branding, and call-to-action layouts, making them perfect for landing pages, SaaS, and eCommerce projects.
 category: marketing
-emoji: 🗺
 slug: headers
 wrapper: h-[400px]
 terms:
@@ -15,10 +14,6 @@ components:
   - { title: 'Icon on the left, links and user dropdown on the right', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Header Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

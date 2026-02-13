@@ -2,7 +2,6 @@
 title: Breadcrumbs
 description: Breadcrumb components built with Tailwind CSS v4. These responsive navigation breadcrumbs help users track their location within websites and applications. Perfect for ecommerce, dashboards, and multi-level navigation. Customizable with dividers and icons, optimized for SEO and accessibility.
 category: application
-emoji: 🍞
 slug: breadcrumbs
 wrapper: h-[200px]
 terms:
@@ -16,10 +15,6 @@ components:
   - { title: 'Grouped with chevron divider', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Breadcrumb Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

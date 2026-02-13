@@ -1,22 +1,6 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 
-const page = defineCollection({
-  loader: glob({
-    base: './src/content/about',
-    pattern: '**/*.{md,mdx}',
-    retainBody: false,
-  }),
-  schema: () =>
-    z.object({
-      description: z.string(),
-      pubDate: z.coerce.date(),
-      slug: z.string(),
-      title: z.string(),
-      updatedDate: z.coerce.date(),
-    }),
-})
-
 const blog = defineCollection({
   loader: glob({
     base: './src/content/blog',
@@ -26,7 +10,6 @@ const blog = defineCollection({
   schema: () =>
     z.object({
       description: z.string(),
-      emoji: z.string(),
       pubDate: z.coerce.date(),
       slug: z.string(),
       terms: z.array(z.string()),
@@ -37,7 +20,6 @@ const blog = defineCollection({
 
 const collection = z.object({
   description: z.string(),
-  emoji: z.string(),
   slug: z.string(),
   terms: z.array(z.string()),
   title: z.string(),
@@ -95,4 +77,4 @@ const neobrutalism = defineCollection({
   }),
 })
 
-export const collections = { page, blog, application, marketing, neobrutalism }
+export const collections = { blog, application, marketing, neobrutalism }

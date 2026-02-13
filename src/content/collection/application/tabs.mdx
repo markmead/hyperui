@@ -2,7 +2,6 @@
 title: Tabs
 description: Responsive tab components for Tailwind CSS v4. Tabbed navigation UI for organizing content sections with customizable styles, icons, and interactions. Accessible tabs component library for modern web applications.
 category: application
-emoji: 📑
 slug: tabs
 wrapper: h-[400px]
 terms:
@@ -15,10 +14,6 @@ components:
   - { title: 'Pills', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Tab Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

@@ -2,7 +2,6 @@
 title: Alerts
 description: Neobrutalism-style alert components built with Tailwind CSS v4. Featuring thick borders, hard shadows, and bold colors. Perfect for displaying important messages, notifications, and feedback with a retro, high-contrast look.
 category: neobrutalism
-emoji: 📢
 slug: alerts
 wrapper: h-[400px]
 terms:
@@ -15,10 +14,6 @@ components:
   - { title: 'Error' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Alert Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

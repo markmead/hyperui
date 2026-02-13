@@ -2,7 +2,6 @@
 title: Loaders
 description: Loader components for Tailwind CSS. UI patterns for data fetching progress, skeleton screens, and loading indicators for dashboards, forms, and content loading.
 category: application
-emoji: ⏳
 slug: loaders
 wrapper: h-[200px]
 terms:
@@ -17,10 +16,6 @@ components:
   - { title: 'Bounce effect', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Loader Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

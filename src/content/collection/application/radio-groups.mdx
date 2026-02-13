@@ -1,7 +1,6 @@
 ---
 title: Radio Groups
 description: Radio group components built with Tailwind CSS v4. These responsive, customizable radio inputs are perfect for forms, settings, and user preferences in web applications. Optimized for accessibility, SEO, and mobile usability.
-emoji: 📻
 category: application
 slug: radio-groups
 wrapper: h-[400px]
@@ -15,10 +14,6 @@ components:
   - { title: 'Color variant' }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Radio Group Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

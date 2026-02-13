@@ -10,7 +10,7 @@ type Props = CollectionEntry<'blog'>
 
 const { data, body } = Astro.props
 
-const { description, pubDate, title, updatedDate } = data
+const { description, pubDate, title } = data
 
 const readingTime = calculateReadingTime(body)
 ---
@@ -84,7 +84,7 @@ const readingTime = calculateReadingTime(body)
         </p>
       </header>
 
-      <div class="prose prose-gray mt-8 max-w-none border-t border-gray-200 pt-8">
+      <div class="prose prose-headings:font-medium mt-8 max-w-none border-t border-gray-200 pt-8">
         <slot />
       </div>
 

@@ -2,7 +2,6 @@
 title: Inputs
 description: Form input components crafted with Tailwind CSS v4. Responsive text fields, search boxes, and form controls optimized for web applications. Customizable input elements with various styles including icons and floating labels for modern UI design.
 category: application
-emoji: 🔌
 slug: inputs
 wrapper: h-[200px]
 terms:
@@ -15,10 +14,6 @@ components:
   - { title: 'Floating label', dark: true, plugins: ['@tailwindcss/forms'] }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Input Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

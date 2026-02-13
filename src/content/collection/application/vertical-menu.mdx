@@ -2,7 +2,6 @@
 title: Vertical Menu
 description: Discover vertical menu UI components for applications, built with Tailwind CSS v4. Enhance your sidebar navigation and menu design using modern, customizable Tailwind v4 patterns.
 category: application
-emoji: 🍟
 slug: vertical-menu
 terms:
   - navigation
@@ -18,10 +17,6 @@ components:
   - { title: 'Base with divided sections', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Vertical Menu Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

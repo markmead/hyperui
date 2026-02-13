@@ -2,7 +2,6 @@
 title: Accordions
 description: Collapsible content sections for organizing information in an accessible way.
 category: application
-emoji: 🎯
 slug: accordions
 terms:
   - collapse
@@ -15,6 +14,6 @@ components:
   - { title: 'Compact', dark: true }
 ---
 
-import PageHeroSlim from '../../../components/PageHeroSlim.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<PageHeroSlim title="Accordion" description={frontmatter.description} />
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

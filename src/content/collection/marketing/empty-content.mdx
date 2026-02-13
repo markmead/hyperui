@@ -2,7 +2,6 @@
 title: Empty Content
 description: Empty content components for Tailwind CSS. Engagement-focused patterns for marketing sites and e-commerce with friendly messaging and exploration-oriented actions, helping users discover related content and stay engaged.
 category: marketing
-emoji: 🎯
 slug: empty-content
 terms:
   - placeholder
@@ -14,10 +13,6 @@ components:
   - { title: 'No stock', dark: true }
 ---
 
-import CollectionHeader from '../../../components/CollectionHeader.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
-<CollectionHeader>
-  # Empty Content Components
-
-  <p>{frontmatter.description}</p>
-</CollectionHeader>
+<BaseHero title={frontmatter.title} description={frontmatter.description} />

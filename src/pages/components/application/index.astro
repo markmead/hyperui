@@ -8,7 +8,7 @@ import {
 
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
-import PageHeroSlim from '../../../components/PageHeroSlim.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
 const components = (await getCollection('application'))
   .map(({ data }) => data)
@@ -19,7 +19,7 @@ const components = (await getCollection('application'))
   description={SEO_DESCRIPTION_APPLICATION_COMPONENTS}
   title={SEO_TITLE_APPLICATION_COMPONENTS}
 >
-  <PageHeroSlim
+  <BaseHero
     title="Application"
     description="Free Tailwind CSS application components that can be used in your next project."
   />

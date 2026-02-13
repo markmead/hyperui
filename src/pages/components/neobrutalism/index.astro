@@ -8,7 +8,7 @@ import {
 
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
-import PageHeroSlim from '../../../components/PageHeroSlim.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
 const components = (await getCollection('neobrutalism'))
   .map(({ data }) => data)
@@ -19,7 +19,7 @@ const components = (await getCollection('neobrutalism'))
   description={SEO_DESCRIPTION_NEOBRUTALISM_COMPONENTS}
   title={SEO_TITLE_NEOBRUTALISM_COMPONENTS}
 >
-  <PageHeroSlim
+  <BaseHero
     title="Neobrutalism"
     description="Free Tailwind CSS neobrutalism components that can be used in your next project."
   />

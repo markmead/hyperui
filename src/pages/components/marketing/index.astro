@@ -8,7 +8,7 @@ import {
 
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import ComponentCard from '../../../components/ComponentCard.astro'
-import PageHeroSlim from '../../../components/PageHeroSlim.astro'
+import BaseHero from '../../../components/BaseHero.astro'
 
 const components = (await getCollection('marketing'))
   .map(({ data }) => data)
@@ -19,7 +19,7 @@ const components = (await getCollection('marketing'))
   description={SEO_DESCRIPTION_MARKETING_COMPONENTS}
   title={SEO_TITLE_MARKETING_COMPONENTS}
 >
-  <PageHeroSlim
+  <BaseHero
     title="Marketing"
     description="Free Tailwind CSS marketing components that can be used in your next project."
   />
