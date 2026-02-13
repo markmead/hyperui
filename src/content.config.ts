@@ -21,7 +21,7 @@ const blog = defineCollection({
   loader: glob({
     base: './src/content/blog',
     pattern: '**/*.{md,mdx}',
-    retainBody: false,
+    retainBody: true,
   }),
   schema: () =>
     z.object({

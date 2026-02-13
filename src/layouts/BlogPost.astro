@@ -1,36 +1,113 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
+import { calculateReadingTime } from '../utils/readingTime'
+
 import BaseLayout from './BaseLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
 
-type Props = CollectionEntry<'blog'>['data']
+type Props = CollectionEntry<'blog'>
 
-const { description, pubDate, title, updatedDate } = Astro.props
+const { data, body } = Astro.props
+
+const { description, pubDate, title, updatedDate } = data
+
+const readingTime = calculateReadingTime(body)
 ---
 
 <BaseLayout description={description} title={title}>
-  <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
-    <article class="prose mx-auto">
-      <h1>{title}</h1>
+  <main id="main-content" class="mx-auto max-w-3xl px-4 py-16">
+    <article>
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-gray-700 transition-colors hover:text-gray-900"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="size-5"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z"
+            clip-rule="evenodd"></path>
+        </svg>
 
-      <p class="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <span>
-          Published: <FormattedDate date={pubDate} />
-        </span>
+        <span>Back to blog</span>
+      </a>
 
-        <span class="hidden sm:block">/</span>
+      <header class="mt-8 space-y-4">
+        <div class="flex items-center gap-4 text-sm text-gray-600">
+          <div class="flex items-center gap-1.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+              ></path>
+            </svg>
 
-        {
-          updatedDate && (
-            <span>
-              Updated: <FormattedDate date={updatedDate} />
-            </span>
-          )
-        }
-      </p>
+            <FormattedDate date={pubDate} />
+          </div>
 
-      <slot />
+          <div class="flex items-center gap-1.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+            </svg>
+
+            <span>{readingTime} min read</span>
+          </div>
+        </div>
+
+        <h1 class="text-4xl font-medium md:text-5xl">{title}</h1>
+
+        <p class="text-xl text-gray-600">
+          {description}
+        </p>
+      </header>
+
+      <div class="prose prose-gray mt-8 max-w-none border-t border-gray-200 pt-8">
+        <slot />
+      </div>
+
+      <footer class="mt-16 border-t border-gray-200 pt-8">
+        <a
+          href="/blog"
+          class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-sm text-gray-900 transition-colors hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="size-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z"
+              clip-rule="evenodd"></path>
+          </svg>
+
+          <span>Back to all articles</span>
+        </a>
+      </footer>
     </article>
   </main>
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 interface Result {
   category: string
+  components?: number
   slug: string
   terms: string[]
   title: string
@@ -17,13 +18,13 @@ const { collections, posts } = Astro.props
 <search-results data-collections={JSON.stringify(collections)} data-posts={JSON.stringify(posts)}>
   <div
     data-container="false"
-    class="absolute top-full right-0 mt-2 w-screen max-w-72 rounded-lg border border-gray-200 bg-white py-1 shadow-lg data-[container=false]:hidden data-[container=true]:block"
+    class="absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg data-[container=false]:hidden data-[container=true]:block"
   >
     <p data-error="false" class="px-4 py-2 text-gray-700 data-[error=false]:hidden">
       No results found.
     </p>
 
-    <ul data-list role="listbox" class="max-h-72 divide-y divide-gray-200 overflow-y-auto"></ul>
+    <div data-list class="max-h-96 divide-y divide-gray-200 overflow-y-auto"></div>
   </div>
 
   <span data-status aria-live="polite" class="sr-only"></span>
@@ -32,6 +33,7 @@ const { collections, posts } = Astro.props
 <script>
   interface Result {
     category: string
+    components?: number
     slug: string
     terms: string[]
     title: string
@@ -101,8 +103,8 @@ const { collections, posts } = Astro.props
 
         containerEl.setAttribute('data-container', 'true')
 
-        const searchResults = [...this.collectionItems, ...this.postItems].filter(
-          (potentialResult) => {
+        const filterResults = (items: Result[]) => {
+          return items.filter((potentialResult) => {
             const resultTerms = potentialResult.terms.map((searchTerm) => searchTerm.toLowerCase())
             const resultTitle = potentialResult.title.toLowerCase()
 
@@ -110,10 +112,15 @@ const { collections, posts } = Astro.props
               resultTerms.some((resultTerm) => resultTerm.includes(searchQuery)) ||
               resultTitle.includes(searchQuery)
             )
-          },
-        )
+          })
+        }
 
-        if (searchResults.length === 0) {
+        const filteredCollections = filterResults(this.collectionItems)
+        const filteredPosts = filterResults(this.postItems)
+
+        const totalResults = filteredCollections.length + filteredPosts.length
+
+        if (totalResults === 0) {
           this.searchResults = []
 
           resultsEl.innerHTML = ''
@@ -124,40 +131,53 @@ const { collections, posts } = Astro.props
           return
         }
 
-        this.searchResults = searchResults
+        this.searchResults = [...filteredCollections, ...filteredPosts]
 
-        statusEl.textContent = `${searchResults.length} ${searchResults.length === 1 ? 'result' : 'results'} found`
+        statusEl.textContent = `${totalResults} ${totalResults === 1 ? 'result' : 'results'} found`
 
-        resultsEl.innerHTML = searchResults
-          .map(({ category, slug, title }) => {
-            return `
-              <li role="option">
-                <a
-                  href="${slug}"
-                  class="flex items-center group justify-between gap-4 px-4 py-2  focus:ring-inset"
-                >
-                  <div>
-                    <h3 class="font-medium text-gray-900">${title}</h3>
+        const renderSection = (title: string, items: Result[]) => {
+          if (items.length === 0) {
+            return ''
+          }
 
-                    ${category ? `<p class="text-sm text-gray-600 capitalize">${category}</p>` : ''}
-                  </div>
+          return `
+            <div>
+              <strong class="px-3 py-2 text-xs font-medium text-gray-500 bg-gray-50 block">
+                ${title}
+              </strong>
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    class="size-5 text-gray-400 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </a>
-              </li>
-            `
-          })
-          .join('')
+              <ul role="listbox" class="divide-y divide-gray-200 border-t border-gray-200">
+                ${items
+                  .map(({ category, components, slug, title }) => {
+                    return `
+                      <li role="option">
+                        <a
+                          href="${slug}"
+                          class="block px-4 py-3 hover:bg-gray-50"
+                        >
+                          <div class="flex items-center justify-between gap-2">
+                            <h3 class="text-sm text-gray-900 font-medium">${title}</h3>
+
+                            <span class="text-xs text-gray-500 shrink-0 capitalize">
+                              ${category}
+                            </span>
+                          </div>
+
+                          ${components ? `<p class="text-xs text-gray-500 mt-0.5">${components} components</p>` : ''}
+                        </a>
+                      </li>
+                    `
+                  })
+                  .join('')}
+              </ul>
+            </div>
+          `
+        }
+
+        resultsEl.innerHTML = `
+          ${renderSection('Components', filteredCollections)}
+          ${renderSection('Blog Posts', filteredPosts)}
+        `
 
         errorEl.setAttribute('data-error', 'false')
       }

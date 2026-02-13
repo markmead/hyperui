@@ -6,6 +6,7 @@ import SearchResults from './SearchResults.astro'
 
 interface Result {
   category: string
+  components?: number
   slug: string
   terms: string[]
   title: string
@@ -22,9 +23,12 @@ const allCollections = [...application, ...marketing, ...neobrutalism]
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 
-const collections: Result[] = allCollections.map(({ category, slug, terms, title }) => {
+const collections: Result[] = allCollections.map(({ category, components, slug, terms, title }) => {
+  const componentCount = components.length + components.filter(({ dark }) => !!dark).length
+
   return {
     category,
+    components: componentCount,
     slug: `/components/${category}/${slug}`,
     terms,
     title,

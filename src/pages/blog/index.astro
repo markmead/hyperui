@@ -4,12 +4,12 @@ import { getCollection } from 'astro:content'
 import { SEO_DESCRIPTION_BLOG, SEO_TITLE_BLOG } from '../../consts'
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import FormattedDate from '../../components/FormattedDate.astro'
 import PageHeroSlim from '../../components/PageHeroSlim.astro'
+import BlogCard from '../../components/BlogCard.astro'
 
-const posts = (await getCollection('blog'))
-  .map(({ data }) => data)
-  .sort((a, b) => b.updatedDate.valueOf() - a.updatedDate.valueOf())
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf(),
+)
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_BLOG} title={SEO_TITLE_BLOG}>
@@ -18,26 +18,7 @@ const posts = (await getCollection('blog'))
     description="Tips, tricks and real-world solutions for working with Tailwind CSS"
   />
 
-  <main id="main-content" class="mx-auto max-w-7xl px-4 pb-8">
-    <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {
-        posts.map(({ emoji, slug, title, updatedDate }) => (
-          <li>
-            <a
-              href={`/blog/${slug}`}
-              class="flex h-full flex-col rounded-lg border border-gray-300 p-4 shadow-sm transition-colors hover:bg-gray-100 sm:p-6"
-            >
-              <span aria-hidden="true" class="text-xl sm:text-2xl">
-                {emoji}
-              </span>
-
-              <FormattedDate date={updatedDate} class="mt-4 text-sm text-gray-700" />
-
-              <h2 class="mt-1 font-medium text-pretty text-gray-900 sm:text-lg">{title}</h2>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+  <main id="main-content" class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
+    {posts.map((post) => <BlogCard post={post} />)}
   </main>
 </BaseLayout>
