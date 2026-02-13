@@ -8,13 +8,14 @@ import PreviewView from './PreviewView.astro'
 
 const breakpoints = [
   { name: 'Mobile', emoji: '📱', width: '340px' },
-  { name: 'Small', emoji: '🐛', width: '640px' },
-  { name: 'Medium', emoji: '🦭', width: '768px' },
-  { name: 'Large', emoji: '🐴', width: '1024px' },
+  { name: 'SM', emoji: '🐛', width: '640px' },
+  { name: 'MD', emoji: '🦭', width: '768px' },
+  { name: 'LG', emoji: '🐴', width: '1024px' },
   { name: 'Full', emoji: '🌕', width: '100%' },
 ]
 
 interface Props {
+  id: string
   category: string
   contributors: string[]
   dark: boolean
@@ -25,24 +26,36 @@ interface Props {
   plugins?: string[]
 }
 
-const { category, contributors, dark, index, slug, title, wrapper, plugins = [] } = Astro.props
+const { id, category, contributors, dark, index, slug, title, wrapper, plugins = [] } = Astro.props
 
 const src = dark
   ? `/components/${category}/${slug}/${index}-dark.html`
   : `/components/${category}/${slug}/${index}.html`
 ---
 
-<div class="space-y-4">
-  <div class="flex items-center gap-2">
-    <PreviewView src={src} />
-    <PreviewDirection src={src} />
-    <PreviewCopy src={src} />
+<div class="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+  <div class="p-4">
+    <div class="flex items-center justify-between gap-4">
+      <a href={`#${id}`} class="inline-block">
+        <h3 class="text-lg font-medium text-gray-900">{title}</h3>
+      </a>
 
-    <PreviewBreakpoints src={src} breakpoints={breakpoints} />
+      <div class="flex flex-wrap items-center gap-2">
+        <PreviewBreakpoints src={src} breakpoints={breakpoints} />
+        <PreviewDirection src={src} />
+        <PreviewView src={src} />
+        <PreviewCopy src={src} />
+      </div>
+    </div>
+
+    <div class="mt-1 flex flex-wrap items-center gap-2 text-sm text-gray-600">
+      <PreviewRefs url="https://github.com/" refs={contributors} />
+
+      <span> / </span>
+
+      <PreviewRefs url="https://www.npmjs.com/package/" refs={plugins || []} />
+    </div>
   </div>
-
-  <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
-
-  <PreviewRefs title="Contributors" url="https://github.com/" refs={contributors} />
-  <PreviewRefs title="Plugins" url="https://www.npmjs.com/package/" refs={plugins || []} />
 </div>
+
+<ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />

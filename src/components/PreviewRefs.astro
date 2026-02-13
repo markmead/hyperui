@@ -1,17 +1,15 @@
 ---
 interface Props {
   refs: string[]
-  title: string
   url: string
 }
 
-const { refs, title, url } = Astro.props
+const { refs, url } = Astro.props
 ---
 
 {
   refs.length ? (
-    <p class="text-gray-700">
-      {title}:
+    <p>
       {refs
         .map((ref) => (
           <a

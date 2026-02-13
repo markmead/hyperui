@@ -1,6 +1,5 @@
 ---
 interface Breakpoint {
-  emoji: string
   name: string
   width: string
 }
@@ -13,17 +12,16 @@ interface Props {
 const { breakpoints, src } = Astro.props
 ---
 
-<preview-breakpoints data-src={src} class="hidden flex-1 justify-end gap-2 md:flex">
+<preview-breakpoints data-src={src} class="hidden items-center gap-1 md:flex">
   {
-    breakpoints.map(({ emoji, name, width }) => (
+    breakpoints.map(({ name, width }) => (
       <button
         data-breakpoint={width}
         aria-pressed={width === '100%' ? 'true' : 'false'}
         type="button"
-        class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium shadow-sm"
+        class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 aria-pressed:bg-black aria-pressed:text-white"
       >
-        <span aria-hidden="true">{emoji}</span>
-        <span>{name}</span>
+        {name}
       </button>
     ))
   }

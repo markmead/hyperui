@@ -10,7 +10,7 @@ interface Props {
 const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 ---
 
-<component-preview data-src={src} class="block">
+<component-preview data-src={src} class="block border-t border-gray-200">
   <iframe
     data-preview="true"
     src={src}
@@ -18,7 +18,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     class:list={[
       wrapper,
       dark ? 'bg-gray-900' : 'bg-white',
-      'w-full rounded-xl shadow-sm ring ring-gray-300 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
+      'mx-auto w-full ring ring-gray-200 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
     ]}
     style="max-width: 100%;"
     loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
