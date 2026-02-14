@@ -13,7 +13,7 @@
     "@astrojs/rss": "4.0.15",
     "@astrojs/sitemap": "3.7.0",
     "@vercel/analytics": "^1.6.1",
-    "astro": "5.17.1"
+    "astro": "5.17.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -30,6 +30,6 @@
     "rehype-external-links": "^3.0.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0"
+    "typescript-eslint": "^8.55.0"
   }
 }
