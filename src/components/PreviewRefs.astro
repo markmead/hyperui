@@ -2,21 +2,23 @@
 interface Props {
   refs: string[]
   url: string
+  prefix?: string
 }
 
-const { refs, url } = Astro.props
+const { refs, url, prefix } = Astro.props
 ---
 
 {
   refs.length ? (
-    <p>
+    <p class="text-sm text-gray-500">
+      {prefix}
       {refs
         .map((ref) => (
           <a
             href={`${url}${ref}`}
             target="_blank"
             rel="noreferrer"
-            class="font-medium underline transition-colors hover:text-gray-900"
+            class="font-medium transition-colors hover:text-gray-900"
           >
             {ref}
           </a>
