@@ -33,7 +33,7 @@ const src = dark
   : `/components/${category}/${slug}/${index}.html`
 ---
 
-<div class="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+<div id={id} class="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
   <div class="p-4">
     <div class="flex items-center justify-between gap-4">
       <a href={`#${id}`} class="inline-block">
@@ -56,6 +56,6 @@ const src = dark
       <PreviewRefs url="https://www.npmjs.com/package/" refs={plugins || []} />
     </div>
   </div>
-</div>
 
-<ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
+  <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
+</div>

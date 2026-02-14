@@ -53,25 +53,23 @@ const formattedComponents = components
 ---
 
 <BaseLayout description={description} title={pageTitle}>
-  <main id="main-content" class="mx-auto max-w-7xl space-y-8 px-4 py-8">
+  <main id="main-content" class="mx-auto max-w-7xl space-y-8 px-4">
     <slot />
 
     <div class="space-y-8">
       {
         formattedComponents.map(({ contributors, dark, id, index, plugins, title }) => (
-          <div id={id} class="space-y-4">
-            <PreviewWrapper
-              id={id}
-              category={category}
-              contributors={contributors}
-              dark={dark}
-              index={index}
-              plugins={plugins}
-              slug={slug}
-              title={title}
-              wrapper={wrapper}
-            />
-          </div>
+          <PreviewWrapper
+            id={id}
+            category={category}
+            contributors={contributors}
+            dark={dark}
+            index={index}
+            plugins={plugins}
+            slug={slug}
+            title={title}
+            wrapper={wrapper}
+          />
         ))
       }
     </div>

@@ -1,8 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro'
 
-import SiteHeader from '../components/SiteHeader.astro'
-import SiteFooter from '../components/SiteFooter.astro'
 import BaseHead from '../components/BaseHead.astro'
 
 interface Props {
@@ -15,11 +13,11 @@ const { description, title } = Astro.props
 
 <html lang="en" class="scroll-pt-16 scroll-smooth">
   <head>
-    <BaseHead description={description} title={title} />
+    <BaseHead ads={false} description={description} title={title} />
 
     <slot name="head" />
   </head>
-  <body class="font-sans antialiased">
+  <body class="flex min-h-svh items-center justify-center font-sans antialiased">
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:font-medium focus:text-gray-900 focus:shadow-lg"
@@ -27,11 +25,7 @@ const { description, title } = Astro.props
       Skip to content
     </a>
 
-    <SiteHeader />
-
     <slot />
-
-    <SiteFooter />
 
     <Analytics />
   </body>
