@@ -1,8 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import FormattedCount from './FormattedCount.astro'
-
 interface Props {
   component:
     | CollectionEntry<'application'>['data']
@@ -14,9 +12,7 @@ const { component } = Astro.props
 
 const { category, components, slug, title } = component
 
-const componentsForCount = components.map(({ dark }) => ({
-  dark: !!dark,
-}))
+const componentCount = components.length + components.filter(({ dark }) => !!dark).length
 ---
 
 <li>
@@ -30,7 +26,7 @@ const componentsForCount = components.map(({ dark }) => ({
 
     <div class="mt-1 flex items-center justify-between">
       <p class="text-sm text-gray-600">
-        <FormattedCount components={componentsForCount} />
+        {componentCount} components
       </p>
 
       <svg

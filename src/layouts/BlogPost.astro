@@ -10,7 +10,7 @@ type Props = CollectionEntry<'blog'>
 
 const { data, body } = Astro.props
 
-const { description, pubDate, title } = data
+const { description, title, updatedDate } = data
 
 const readingTime = calculateReadingTime(body)
 ---
@@ -55,7 +55,7 @@ const readingTime = calculateReadingTime(body)
               ></path>
             </svg>
 
-            <FormattedDate date={pubDate} />
+            <FormattedDate date={updatedDate} />
           </div>
 
           <div class="flex items-center gap-1.5">
