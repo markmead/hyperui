@@ -28,6 +28,7 @@ export default defineConfig({
         },
       ],
     ],
+    syntaxHighlight: false,
   },
   redirects: {
     '/components/marketing/forms': '/components/marketing/contact-forms',
