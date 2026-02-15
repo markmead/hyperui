@@ -28,6 +28,7 @@
 
     <button
       type="button"
+      aria-label="Clear"
       class="absolute inset-y-0 right-0 inline-flex size-9 items-center justify-center text-gray-400 transition-opacity peer-placeholder-shown:opacity-0 hover:text-gray-600"
     >
       <svg
@@ -52,6 +53,10 @@
     private keydownHandler: ((keyboardEvent: KeyboardEvent) => void) | null = null
     private clearHandler: (() => void) | null = null
 
+    private updateButtonState(inputEl: HTMLInputElement, buttonEl: HTMLButtonElement) {
+      buttonEl.disabled = !inputEl.value
+    }
+
     connectedCallback() {
       const inputEl = this.querySelector('input') as HTMLInputElement | null
       const buttonEl = this.querySelector('button') as HTMLButtonElement | null
@@ -60,8 +65,12 @@
         return
       }
 
+      this.updateButtonState(inputEl, buttonEl)
+
       this.inputHandler = () => {
         track('Search')
+
+        this.updateButtonState(inputEl, buttonEl)
 
         this.dispatchEvent(
           new CustomEvent('input:search', {
@@ -95,6 +104,8 @@
 
       this.clearHandler = () => {
         inputEl.value = ''
+
+        this.updateButtonState(inputEl, buttonEl)
 
         this.dispatchEvent(
           new CustomEvent('input:search', {
