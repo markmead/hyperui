@@ -11,7 +11,7 @@ const { refs, url, prefix } = Astro.props
 {
   refs.length ? (
     <p class="text-sm text-gray-500">
-      {prefix}
+      {prefix ? `${prefix} ` : null}
       {refs
         .map((ref) => (
           <a

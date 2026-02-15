@@ -68,7 +68,11 @@ const src = dark
 
   <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
 
-  <div class="border-t border-gray-200 px-4 py-2">
-    <PreviewRefs prefix="Plugins: " url="https://www.npmjs.com/package/" refs={plugins || []} />
-  </div>
+  {
+    plugins.length ? (
+      <div class="border-t border-gray-200 px-4 py-2">
+        <PreviewRefs prefix="Plugins:" url="https://www.npmjs.com/package/" refs={plugins} />
+      </div>
+    ) : null
+  }
 </div>

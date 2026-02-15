@@ -14,10 +14,10 @@ const [application, marketing, neobrutalism] = (
     getCollection('neobrutalism'),
   ])
 )
-  .map((collection) => collection.slice(0, 9))
   .map((collection) =>
     collection.map(({ data }) => data).sort((a, b) => a.title.localeCompare(b.title)),
   )
+  .map((collection) => collection.slice(0, 9))
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_SITE} title={SEO_TITLE_SITE}>
