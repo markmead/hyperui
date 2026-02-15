@@ -24,9 +24,6 @@ const collection = z.object({
   terms: z.array(z.string()),
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
-  pubDate: z.coerce.date().optional(),
-  tag: z.enum(['new', 'updated']).optional(),
-  updatedDate: z.coerce.date().optional(),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),
