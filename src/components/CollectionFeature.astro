@@ -7,14 +7,13 @@ interface Props {
   title: string
   description: string
   slug: string
-  button: string
   components:
     | CollectionEntry<'application'>['data']['components']
     | CollectionEntry<'marketing'>['data']['components']
     | CollectionEntry<'neobrutalism'>['data']['components']
 }
 
-const { title, description, slug, button, components } = Astro.props
+const { title, description, slug, components } = Astro.props
 ---
 
 <section class="py-16">
@@ -27,7 +26,7 @@ const { title, description, slug, button, components } = Astro.props
   </ul>
 
   <a href={`/components/${slug}`} class="group mt-8 inline-flex items-center gap-2 text-gray-700">
-    <span>{button}</span>
+    <span>View all {slug} components</span>
 
     <svg
       xmlns="http://www.w3.org/2000/svg"
