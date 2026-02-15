@@ -51,7 +51,7 @@ const { breakpoints, src } = Astro.props
 
       this.activeButton =
         buttonEls.find((buttonEl) => buttonEl.getAttribute('aria-pressed') === 'true') ||
-        buttonEls.at(-1)!
+        buttonEls[buttonEls.length - 1]
 
       this.clickHandler = (clickEvent) => this.handleButtonClick(clickEvent)
 
@@ -72,7 +72,7 @@ const { breakpoints, src } = Astro.props
 
       this.isProcessing = true
 
-      const width = buttonEl.getAttribute('data-breakpoint')
+      const width = buttonEl.getAttribute('data-breakpoint')!
 
       if (this.activeButton && this.activeButton !== buttonEl) {
         this.activeButton.setAttribute('aria-pressed', 'false')

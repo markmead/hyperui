@@ -25,7 +25,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
   <div
     data-preview="true"
-    class="prose prose-pre:m-0 prose-pre:rounded-xl prose-pre:shadow-sm max-w-none data-[preview=true]:hidden"
+    class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none data-[preview=true]:hidden"
   >
     <pre data-html></pre>
   </div>
@@ -41,10 +41,12 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
 
-    private breakpointHandler: ((breakpointEvent: Event) => void) | null = null
+    private breakpointHandler: ((breakpointEvent: CustomEvent<{ width: string }>) => void) | null =
+      null
     private copyHandler: ((copyEvent: Event) => void) | null = null
-    private directionHandler: ((directionEvent: Event) => void) | null = null
-    private viewHandler: ((viewEvent: Event) => void) | null = null
+    private directionHandler: ((directionEvent: CustomEvent<{ ltr: boolean }>) => void) | null =
+      null
+    private viewHandler: ((viewEvent: CustomEvent<{ previewing: boolean }>) => void) | null = null
 
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
@@ -84,8 +86,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     }
 
     private setupEventListeners() {
-      this.breakpointHandler = (breakpointEvent: Event) => {
-        const newWidth = (breakpointEvent as CustomEvent).detail.width
+      this.breakpointHandler = (breakpointEvent: CustomEvent<{ width: string }>) => {
+        const newWidth = breakpointEvent.detail.width
 
         if (this.iframeEl) {
           this.iframeEl.style.maxWidth = newWidth
@@ -108,8 +110,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.directionHandler = (directionEvent: Event) => {
-        const isLtr = (directionEvent as CustomEvent).detail.ltr
+      this.directionHandler = (directionEvent: CustomEvent<{ ltr: boolean }>) => {
+        const isLtr = directionEvent.detail.ltr
 
         if (this.iframeEl?.contentDocument) {
           this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
@@ -118,8 +120,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.viewHandler = (viewEvent: Event) => {
-        const isPreviewing = (viewEvent as CustomEvent).detail.previewing
+      this.viewHandler = (viewEvent: CustomEvent<{ previewing: boolean }>) => {
+        const isPreviewing = viewEvent.detail.previewing
 
         const previewEls = this.querySelectorAll('[data-preview]')
 
@@ -152,7 +154,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       if (this.iframeEl?.contentDocument) {
         const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
 
-        this.contentHtml = this.sanitizeContent((docClone as Document).body.innerHTML)
+        this.contentHtml = this.sanitizeContent(docClone.body.innerHTML)
 
         return this.contentHtml
       }

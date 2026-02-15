@@ -25,7 +25,7 @@ import HeaderLink from './HeaderLink.astro'
 
 <script>
   class DropdownMenu extends HTMLElement {
-    private toggleHandler: ((event: Event) => void) | null = null
+    private toggleHandler: ((event: CustomEvent<{ open: boolean }>) => void) | null = null
 
     connectedCallback() {
       const dropdownEl = this.querySelector('[data-dropdown]') as HTMLDivElement | null
@@ -34,8 +34,8 @@ import HeaderLink from './HeaderLink.astro'
         return
       }
 
-      this.toggleHandler = (toggleEvent: Event) => {
-        const isOpen = (toggleEvent as CustomEvent).detail.open
+      this.toggleHandler = (toggleEvent: CustomEvent<{ open: boolean }>) => {
+        const isOpen = toggleEvent.detail.open
 
         dropdownEl.setAttribute('data-dropdown', isOpen ? 'true' : 'false')
       }

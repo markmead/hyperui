@@ -47,12 +47,12 @@ const { collections, posts } = Astro.props
 
     private enterHandler: (() => void) | null = null
     private escapeHandler: (() => void) | null = null
-    private searchHandler: ((searchEvent: Event) => void) | null = null
+    private searchHandler: ((searchEvent: CustomEvent<{ value: string }>) => void) | null = null
 
     connectedCallback() {
       const containerEl = this.querySelector('[data-container]') as HTMLDivElement | null
       const errorEl = this.querySelector('[data-error]') as HTMLParagraphElement | null
-      const resultsEl = this.querySelector('[data-list]') as HTMLUListElement | null
+      const resultsEl = this.querySelector('[data-list]') as HTMLDivElement | null
       const statusEl = this.querySelector('[data-status]') as HTMLSpanElement | null
 
       if (!containerEl || !errorEl || !resultsEl || !statusEl) {
@@ -87,8 +87,8 @@ const { collections, posts } = Astro.props
         errorEl.setAttribute('data-error', 'false')
       }
 
-      this.searchHandler = (searchEvent: Event) => {
-        const searchQuery = (searchEvent as CustomEvent).detail.value.toLowerCase()
+      this.searchHandler = (searchEvent: CustomEvent<{ value: string }>) => {
+        const searchQuery = searchEvent.detail.value.toLowerCase()
 
         if (!searchQuery) {
           this.searchResults = []
