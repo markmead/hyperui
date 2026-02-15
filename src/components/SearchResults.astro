@@ -31,6 +31,8 @@ const { collections, posts } = Astro.props
 </search-results>
 
 <script>
+  import { track } from '@vercel/analytics'
+
   interface Result {
     category: string
     components?: number
@@ -47,6 +49,7 @@ const { collections, posts } = Astro.props
 
     private enterHandler: (() => void) | null = null
     private escapeHandler: (() => void) | null = null
+    private resultClickHandler: ((clickEvent: MouseEvent) => void) | null = null
     private searchHandler: ((searchEvent: CustomEvent<{ value: string }>) => void) | null = null
 
     connectedCallback() {
@@ -85,6 +88,17 @@ const { collections, posts } = Astro.props
 
         containerEl.setAttribute('data-container', 'false')
         errorEl.setAttribute('data-error', 'false')
+      }
+
+      this.resultClickHandler = (clickEvent: MouseEvent) => {
+        const clickTarget = clickEvent.target as HTMLElement
+        const resultLink = clickTarget.closest('a')
+
+        if (resultLink) {
+          track('Search Result Clicked', {
+            href: resultLink.getAttribute('href') || '',
+          })
+        }
       }
 
       this.searchHandler = (searchEvent: CustomEvent<{ value: string }>) => {
@@ -185,17 +199,30 @@ const { collections, posts } = Astro.props
       document.addEventListener('input:enter', this.enterHandler)
       document.addEventListener('input:escape', this.escapeHandler)
       document.addEventListener('input:search', this.searchHandler)
+      resultsEl.addEventListener('click', this.resultClickHandler)
     }
 
     disconnectedCallback() {
-      if (this.enterHandler && this.escapeHandler && this.searchHandler) {
+      const resultsEl = this.querySelector('[data-list]') as HTMLDivElement | null
+
+      if (
+        this.enterHandler &&
+        this.escapeHandler &&
+        this.searchHandler &&
+        this.resultClickHandler
+      ) {
         document.removeEventListener('input:enter', this.enterHandler)
         document.removeEventListener('input:escape', this.escapeHandler)
         document.removeEventListener('input:search', this.searchHandler)
 
+        if (resultsEl) {
+          resultsEl.removeEventListener('click', this.resultClickHandler)
+        }
+
         this.enterHandler = null
         this.escapeHandler = null
         this.searchHandler = null
+        this.resultClickHandler = null
       }
 
       this.collectionItems = []

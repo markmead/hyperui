@@ -45,6 +45,8 @@
 </search-input>
 
 <script>
+  import { track } from '@vercel/analytics'
+
   class SearchInput extends HTMLElement {
     private inputHandler: (() => void) | null = null
     private keydownHandler: ((keyboardEvent: KeyboardEvent) => void) | null = null
@@ -59,6 +61,8 @@
       }
 
       this.inputHandler = () => {
+        track('Search')
+
         this.dispatchEvent(
           new CustomEvent('input:search', {
             bubbles: true,
