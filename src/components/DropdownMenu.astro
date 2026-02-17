@@ -28,23 +28,23 @@ import HeaderLink from './HeaderLink.astro'
     private toggleHandler: ((event: CustomEvent<{ open: boolean }>) => void) | null = null
 
     connectedCallback() {
-      const dropdownEl = this.querySelector('[data-dropdown]') as HTMLDivElement | null
+      const dropdownEl = this.querySelector('[data-dropdown]')
 
       if (!dropdownEl) {
         return
       }
 
-      this.toggleHandler = (toggleEvent: CustomEvent<{ open: boolean }>) => {
-        const isOpen = toggleEvent.detail.open
-
-        dropdownEl.setAttribute('data-dropdown', isOpen ? 'true' : 'false')
+      this.toggleHandler = (toggleEvent) => {
+        dropdownEl.setAttribute('data-dropdown', toggleEvent.detail.open ? 'true' : 'false')
       }
 
+      // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
       document.addEventListener('dropdown:toggle', this.toggleHandler)
     }
 
     disconnectedCallback() {
       if (this.toggleHandler) {
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener('dropdown:toggle', this.toggleHandler)
 
         this.toggleHandler = null

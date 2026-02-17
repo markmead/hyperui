@@ -43,15 +43,16 @@ const { breakpoints, src } = Astro.props
         return
       }
 
-      const buttonEls = [...this.querySelectorAll('button[data-breakpoint]')] as HTMLButtonElement[]
+      const buttonEls = [...this.querySelectorAll<HTMLButtonElement>('button[data-breakpoint]')]
 
       if (buttonEls.length === 0) {
         return
       }
 
       this.activeButton =
-        buttonEls.find((buttonEl) => buttonEl.getAttribute('aria-pressed') === 'true') ||
-        buttonEls[buttonEls.length - 1]
+        buttonEls.find((buttonEl) => buttonEl.getAttribute('aria-pressed') === 'true') ??
+        buttonEls[buttonEls.length - 1] ??
+        null
 
       this.clickHandler = (clickEvent) => this.handleButtonClick(clickEvent)
 
@@ -64,7 +65,7 @@ const { breakpoints, src } = Astro.props
       }
 
       const targetEl = clickEvent.target as HTMLElement
-      const buttonEl = targetEl.closest('button[data-breakpoint]') as HTMLButtonElement | null
+      const buttonEl = targetEl.closest<HTMLButtonElement>('button[data-breakpoint]')
 
       if (!buttonEl) {
         return

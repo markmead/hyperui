@@ -12,7 +12,7 @@ const { data, body } = Astro.props
 
 const { description, title, updatedDate } = data
 
-const readingTime = calculateReadingTime(body)
+const readingTime = calculateReadingTime(body ?? '')
 ---
 
 <BaseLayout description={description} title={title}>

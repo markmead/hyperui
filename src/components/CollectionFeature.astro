@@ -7,10 +7,11 @@ interface Props {
   title: string
   description: string
   slug: string
-  components:
-    | CollectionEntry<'application'>['data']['components']
-    | CollectionEntry<'marketing'>['data']['components']
-    | CollectionEntry<'neobrutalism'>['data']['components']
+  components: (
+    | CollectionEntry<'application'>['data']
+    | CollectionEntry<'marketing'>['data']
+    | CollectionEntry<'neobrutalism'>['data']
+  )[]
 }
 
 const { title, description, slug, components } = Astro.props

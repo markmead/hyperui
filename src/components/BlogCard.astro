@@ -14,7 +14,7 @@ const { data, body } = post
 
 const { slug, title, description, updatedDate } = data
 
-const readingTime = calculateReadingTime(body)
+const readingTime = calculateReadingTime(body ?? '')
 ---
 
 <a href={`/blog/${slug}`} class="block">
@@ -33,7 +33,7 @@ const readingTime = calculateReadingTime(body)
 
       <p class="text-sm text-gray-600">{description}</p>
 
-      <div class="group inline-flex items-center gap-2 text-gray-700">
+      <div class="inline-flex items-center gap-2 text-gray-700">
         <span>Read article</span>
 
         <svg

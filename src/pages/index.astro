@@ -7,17 +7,24 @@ import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
 
-const [application, marketing, neobrutalism] = (
-  await Promise.all([
-    getCollection('application'),
-    getCollection('marketing'),
-    getCollection('neobrutalism'),
-  ])
-)
-  .map((collection) =>
-    collection.map(({ data }) => data).sort((a, b) => a.title.localeCompare(b.title)),
-  )
-  .map((collection) => collection.slice(0, 9))
+const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
+  getCollection('application'),
+  getCollection('marketing'),
+  getCollection('neobrutalism'),
+])
+
+const application = applicationRaw
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+  .slice(0, 9)
+const marketing = marketingRaw
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+  .slice(0, 9)
+const neobrutalism = neobrutalismRaw
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+  .slice(0, 9)
 ---
 
 <BaseLayout description={SEO_DESCRIPTION_SITE} title={SEO_TITLE_SITE}>

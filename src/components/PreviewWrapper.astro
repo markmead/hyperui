@@ -23,7 +23,7 @@ interface Props {
   slug: string
   title: string
   wrapper: string
-  plugins?: string[]
+  plugins?: string[] | undefined
 }
 
 const { id, category, contributors, dark, index, slug, title, wrapper, plugins = [] } = Astro.props

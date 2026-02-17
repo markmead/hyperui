@@ -49,14 +49,14 @@ const { collections, posts } = Astro.props
 
     private enterHandler: (() => void) | null = null
     private escapeHandler: (() => void) | null = null
-    private resultClickHandler: ((clickEvent: MouseEvent) => void) | null = null
-    private searchHandler: ((searchEvent: CustomEvent<{ value: string }>) => void) | null = null
+    private resultClickHandler: ((clickEvent: Event) => void) | null = null
+    private searchHandler: ((event: CustomEvent<{ value: string }>) => void) | null = null
 
     connectedCallback() {
-      const containerEl = this.querySelector('[data-container]') as HTMLDivElement | null
-      const errorEl = this.querySelector('[data-error]') as HTMLParagraphElement | null
-      const resultsEl = this.querySelector('[data-list]') as HTMLDivElement | null
-      const statusEl = this.querySelector('[data-status]') as HTMLSpanElement | null
+      const containerEl = this.querySelector('[data-container]')
+      const errorEl = this.querySelector('[data-error]')
+      const resultsEl = this.querySelector('[data-list]')
+      const statusEl = this.querySelector('[data-status]')
 
       if (!containerEl || !errorEl || !resultsEl || !statusEl) {
         return
@@ -76,6 +76,10 @@ const { collections, posts } = Astro.props
 
         const [searchResult] = this.searchResults
 
+        if (!searchResult) {
+          return
+        }
+
         const returnUrl = new URL(searchResult.slug, globalThis.location.href)
 
         globalThis.location.href = returnUrl.toString()
@@ -90,7 +94,7 @@ const { collections, posts } = Astro.props
         errorEl.setAttribute('data-error', 'false')
       }
 
-      this.resultClickHandler = (clickEvent: MouseEvent) => {
+      this.resultClickHandler = (clickEvent) => {
         const clickTarget = clickEvent.target as HTMLElement
         const resultLink = clickTarget.closest('a')
 
@@ -101,7 +105,7 @@ const { collections, posts } = Astro.props
         }
       }
 
-      this.searchHandler = (searchEvent: CustomEvent<{ value: string }>) => {
+      this.searchHandler = (searchEvent) => {
         const searchQuery = searchEvent.detail.value.toLowerCase()
 
         if (!searchQuery) {
@@ -196,12 +200,13 @@ const { collections, posts } = Astro.props
 
       document.addEventListener('input:enter', this.enterHandler)
       document.addEventListener('input:escape', this.escapeHandler)
+      // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
       document.addEventListener('input:search', this.searchHandler)
       resultsEl.addEventListener('click', this.resultClickHandler)
     }
 
     disconnectedCallback() {
-      const resultsEl = this.querySelector('[data-list]') as HTMLDivElement | null
+      const resultsEl = this.querySelector('[data-list]')
 
       if (
         this.enterHandler &&
@@ -211,6 +216,7 @@ const { collections, posts } = Astro.props
       ) {
         document.removeEventListener('input:enter', this.enterHandler)
         document.removeEventListener('input:escape', this.escapeHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener('input:search', this.searchHandler)
 
         if (resultsEl) {

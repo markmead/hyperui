@@ -41,12 +41,10 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
 
-    private breakpointHandler: ((breakpointEvent: CustomEvent<{ width: string }>) => void) | null =
-      null
-    private copyHandler: ((copyEvent: Event) => void) | null = null
-    private directionHandler: ((directionEvent: CustomEvent<{ ltr: boolean }>) => void) | null =
-      null
-    private viewHandler: ((viewEvent: CustomEvent<{ previewing: boolean }>) => void) | null = null
+    private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
+    private copyHandler: (() => void) | null = null
+    private directionHandler: ((event: CustomEvent<{ ltr: boolean }>) => void) | null = null
+    private viewHandler: ((event: CustomEvent<{ previewing: boolean }>) => void) | null = null
 
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
@@ -55,8 +53,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return
       }
 
-      this.iframeEl = this.querySelector('iframe') as HTMLIFrameElement | null
-      this.previewEl = this.querySelector('[data-html]') as HTMLPreElement | null
+      this.iframeEl = this.querySelector('iframe')
+      this.previewEl = this.querySelector('[data-html]')
 
       if (!this.iframeEl || !this.previewEl) {
         return
@@ -73,9 +71,12 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         this.directionHandler &&
         this.viewHandler
       ) {
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
         document.removeEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
 
         this.breakpointHandler = null
@@ -86,7 +87,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     }
 
     private setupEventListeners() {
-      this.breakpointHandler = (breakpointEvent: CustomEvent<{ width: string }>) => {
+      this.breakpointHandler = (breakpointEvent) => {
         const newWidth = breakpointEvent.detail.width
 
         if (this.iframeEl) {
@@ -110,7 +111,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.directionHandler = (directionEvent: CustomEvent<{ ltr: boolean }>) => {
+      this.directionHandler = (directionEvent) => {
         const isLtr = directionEvent.detail.ltr
 
         if (this.iframeEl?.contentDocument) {
@@ -120,7 +121,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.viewHandler = (viewEvent: CustomEvent<{ previewing: boolean }>) => {
+      this.viewHandler = (viewEvent) => {
         const isPreviewing = viewEvent.detail.previewing
 
         const previewEls = this.querySelectorAll('[data-preview]')
@@ -139,9 +140,12 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       if (this.contentSrc) {
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
         document.addEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
       }
     }
