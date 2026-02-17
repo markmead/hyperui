@@ -56,8 +56,8 @@
     }
 
     connectedCallback() {
-      const inputEl = this.querySelector('input') as HTMLInputElement | null
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
+      const inputEl = this.querySelector('input')
+      const buttonEl = this.querySelector('button')
 
       if (!inputEl || !buttonEl) {
         return
@@ -94,8 +94,6 @@
 
           return
         }
-
-        return
       }
 
       this.clearHandler = () => {
@@ -117,8 +115,8 @@
     }
 
     disconnectedCallback() {
-      const inputEl = this.querySelector('input') as HTMLInputElement | null
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
+      const inputEl = this.querySelector('input')
+      const buttonEl = this.querySelector('button')
 
       if (inputEl && this.inputHandler && this.keydownHandler) {
         inputEl.removeEventListener('input', this.inputHandler)

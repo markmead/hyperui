@@ -61,15 +61,15 @@ const { src } = Astro.props
         return
       }
 
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button')
 
       if (!buttonEl) {
         return
       }
 
-      const previewIcon = buttonEl.querySelector('svg[data-preview]') as SVGElement | null
-      const codeIcon = buttonEl.querySelector('svg[data-code]') as SVGElement | null
-      const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
+      const previewIcon = buttonEl.querySelector('svg[data-preview]')
+      const codeIcon = buttonEl.querySelector('svg[data-code]')
+      const buttonText = buttonEl.querySelector('span[data-text]')
 
       if (!previewIcon || !codeIcon || !buttonText) {
         return
@@ -103,7 +103,7 @@ const { src } = Astro.props
     }
 
     disconnectedCallback() {
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button')
 
       if (buttonEl && this.clickHandler) {
         buttonEl.removeEventListener('click', this.clickHandler)

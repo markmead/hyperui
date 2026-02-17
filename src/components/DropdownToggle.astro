@@ -43,13 +43,13 @@
     private clickHandler: (() => void) | null = null
 
     connectedCallback() {
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button')
 
       if (!buttonEl) {
         return
       }
 
-      const buttonSVGs = [...buttonEl.querySelectorAll('svg')] as SVGElement[]
+      const buttonSVGs = [...buttonEl.querySelectorAll('svg')]
 
       this.clickHandler = () => {
         this.isOpen = !this.isOpen

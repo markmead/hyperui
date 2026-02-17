@@ -49,14 +49,14 @@ const { src } = Astro.props
         return
       }
 
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
-      const politeEl = this.querySelector('span[data-polite]') as HTMLSpanElement | null
+      const buttonEl = this.querySelector('button')
+      const politeEl = this.querySelector('span[data-polite]')
 
       if (!buttonEl || !politeEl) {
         return
       }
 
-      const buttonText = buttonEl.querySelector('span[data-text]') as HTMLSpanElement | null
+      const buttonText = buttonEl.querySelector('span[data-text]')
 
       if (!buttonText) {
         return
@@ -100,7 +100,7 @@ const { src } = Astro.props
     }
 
     disconnectedCallback() {
-      const buttonEl = this.querySelector('button') as HTMLButtonElement | null
+      const buttonEl = this.querySelector('button')
 
       if (buttonEl && this.clickHandler) {
         buttonEl.removeEventListener('click', this.clickHandler)
