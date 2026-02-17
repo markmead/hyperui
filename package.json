@@ -4,11 +4,13 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "4.3.13",
     "@astrojs/rss": "4.0.15",
     "@astrojs/sitemap": "3.7.0",
