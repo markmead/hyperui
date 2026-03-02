@@ -1,3 +1,7 @@
+---
+import { Search, X } from '@lucide/astro'
+---
+
 <search-input>
   <label for="search" class="relative block">
     <span class="sr-only"> Search </span>
@@ -5,17 +9,7 @@
     <span
       class="pointer-events-none absolute inset-y-0 left-0 inline-flex size-9 items-center justify-center text-gray-400"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        class="size-4"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z"
-          clip-rule="evenodd"></path>
-      </svg>
+      <Search class="size-4" />
     </span>
 
     <input
@@ -31,16 +25,7 @@
       aria-label="Clear"
       class="absolute inset-y-0 right-0 inline-flex size-9 items-center justify-center text-gray-400 transition-opacity peer-placeholder-shown:opacity-0 hover:text-gray-600"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        class="size-5"
-      >
-        <path
-          d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"
-        ></path>
-      </svg>
+      <X class="size-4" />
     </button>
   </label>
 </search-input>
