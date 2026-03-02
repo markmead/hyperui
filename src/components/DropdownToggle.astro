@@ -1,5 +1,5 @@
 ---
-import { ChevronDown, ChevronUp } from '@lucide/astro'
+import { Menu, X } from '@lucide/astro'
 ---
 
 <dropdown-button>
@@ -11,12 +11,9 @@ import { ChevronDown, ChevronUp } from '@lucide/astro'
     aria-label="Open navigation"
     class="inline-flex rounded-lg bg-gray-100 p-2 md:hidden"
   >
-    <ChevronDown
-      data-open="false"
-      class="size-4 data-[open=false]:inline data-[open=true]:hidden"
-    />
+    <Menu data-open="false" class="size-4 data-[open=false]:inline data-[open=true]:hidden" />
 
-    <ChevronUp data-open="false" class="size-4 data-[open=false]:hidden data-[open=true]:inline" />
+    <X data-open="false" class="size-4 data-[open=false]:hidden data-[open=true]:inline" />
   </button>
 </dropdown-button>
 

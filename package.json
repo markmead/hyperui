@@ -13,12 +13,12 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "4.3.13",
     "@astrojs/sitemap": "3.7.0",
+    "@lucide/astro": "^0.575.0",
     "@vercel/analytics": "^1.6.1",
     "astro": "5.17.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@lucide/astro": "^0.575.0",
     "@tailwindcss/cli": "^4.2.1",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
