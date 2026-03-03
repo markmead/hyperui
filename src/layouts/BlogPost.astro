@@ -12,12 +12,33 @@ type Props = CollectionEntry<'blog'>
 
 const { data, body } = Astro.props
 
-const { title, description, updatedDate } = data
+const { title, description, pubDate, updatedDate } = data
 
 const readingTime = calculateReadingTime(body ?? '')
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const blogPostSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  mainEntityOfPage: canonicalURL,
+  datePublished: pubDate.toISOString(),
+  dateModified: updatedDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'HyperUI',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'HyperUI',
+    url: Astro.site,
+  },
+}
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} structuredData={blogPostSchema}>
   <main id="main-content" class="mx-auto max-w-3xl px-4 py-8 md:py-16">
     <article>
       <a

@@ -13,13 +13,42 @@ interface Props {
   description: string
   title: string
   image?: ImageMetadata
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { description, title, image = OgImage } = Astro.props
+const { description, title, image = OgImage, structuredData } = Astro.props
 
 const pageTitle = `${title} | ${SITE_TITLE}`
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_TITLE,
+  url: Astro.site,
+}
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description,
+  url: canonicalURL,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: SITE_TITLE,
+    url: Astro.site,
+  },
+}
+
+const additionalSchema = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : []
+
+const schemas = [websiteSchema, webpageSchema, ...additionalSchema]
 ---
 
 <meta charset="utf-8" />
@@ -48,3 +77,9 @@ const pageTitle = `${title} | ${SITE_TITLE}`
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
 <Font cssVariable="--font-google-sans-flex" preload />
+
+{
+  schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  ))
+}

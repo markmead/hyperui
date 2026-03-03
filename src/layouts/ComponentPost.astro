@@ -50,9 +50,33 @@ const formattedComponents = components
     ]
   })
   .flat()
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const componentPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: pageTitle,
+  description,
+  url: canonicalURL,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'HyperUI',
+    url: Astro.site,
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: formattedComponents.map((component, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: component.title,
+      url: `${canonicalURL}#${component.id}`,
+    })),
+  },
+}
 ---
 
-<BaseLayout title={pageTitle} description={description}>
+<BaseLayout title={pageTitle} description={description} structuredData={componentPageSchema}>
   <main id="main-content" class="mx-auto max-w-7xl space-y-8 px-4">
     <slot />
 

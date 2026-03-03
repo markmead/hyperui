@@ -8,14 +8,15 @@ import BaseHead from '../components/BaseHead.astro'
 interface Props {
   title: string
   description: string
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>
 }
 
-const { title, description } = Astro.props
+const { title, description, structuredData } = Astro.props
 ---
 
 <html lang="en" class="scroll-pt-16 scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} {...(structuredData ? { structuredData } : {})} />
 
     <slot name="head" />
   </head>
