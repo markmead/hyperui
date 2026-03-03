@@ -25,7 +25,7 @@ const relatedComponents = (await getCollection(category))
   {
     relatedComponents.length > 0 && (
       <div>
-        <p class="text-2xl font-medium">Related components</p>
+        <h2 class="text-2xl font-medium">Related components</h2>
 
         <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {relatedComponents.map((component) => (

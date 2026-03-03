@@ -4,9 +4,7 @@ HyperUI is a free, open-source component library of copy-paste Tailwind CSS v4 H
 
 Primary site: https://hyperui.dev
 Canonical sitemap: https://hyperui.dev/sitemap-index.xml
-Feeds:
-- https://hyperui.dev/rss.xml
-- https://hyperui.dev/components.xml
+Feed: https://hyperui.dev/rss.xml
 License: MIT
 Source repository: https://github.com/markmead/hyperui
 
@@ -34,4 +32,4 @@ There is no package to install. Users typically:
 
 ## Freshness and canonicality
 Use the canonical URL for each page and prefer pages listed in the sitemap.
-For recent updates, check both feed URLs.
+For recent updates, check the RSS feed.
