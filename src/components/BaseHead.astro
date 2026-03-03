@@ -57,6 +57,13 @@ const schemas = [websiteSchema, webpageSchema, ...additionalSchema]
 
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="HyperUI Blog RSS" href="/rss.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="HyperUI Components RSS"
+  href="/components.xml"
+/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
 <title>{pageTitle}</title>
@@ -80,6 +87,6 @@ const schemas = [websiteSchema, webpageSchema, ...additionalSchema]
 
 {
   schemas.map((schema) => (
-    <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
   ))
 }

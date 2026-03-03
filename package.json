@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "4.3.13",
+    "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "3.7.0",
     "@lucide/astro": "^0.575.0",
     "@vercel/analytics": "^1.6.1",

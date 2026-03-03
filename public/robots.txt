@@ -7,3 +7,7 @@ Disallow: /components/
 Allow: /
 
 Sitemap: https://hyperui.dev/sitemap-index.xml
+
+# Feeds
+Sitemap: https://hyperui.dev/rss.xml
+Sitemap: https://hyperui.dev/components.xml
