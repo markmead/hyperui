@@ -13,22 +13,22 @@ type Props = {
 
 const { slug, terms, category } = Astro.props
 
-const relatedComponents = (await getCollection(category))
+const termsSet = new Set(terms)
+
+const components = (await getCollection(category))
   .map(({ data }) => data)
-  .filter(
-    (component) => component.slug !== slug && component.terms.some((term) => terms.includes(term)),
-  )
+  .filter((item) => item.slug !== slug && item.terms.some((term) => termsSet.has(term)))
   .slice(0, 5)
 ---
 
 <div class="mt-16 space-y-8">
   {
-    relatedComponents.length > 0 && (
+    components.length > 0 && (
       <div>
         <h2 class="text-2xl font-medium">Related components</h2>
 
         <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {relatedComponents.map((component) => (
+          {components.map((component) => (
             <ComponentCard component={component} />
           ))}
         </ul>

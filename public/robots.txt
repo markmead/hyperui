@@ -2,7 +2,9 @@ User-agent: *
 
 Disallow: /component.js
 Disallow: /component.css
-Disallow: /components/*/*/*.html
+Disallow: /components/application/
+Disallow: /components/marketing/
+Disallow: /components/neobrutalism/
 
 Allow: /
 
