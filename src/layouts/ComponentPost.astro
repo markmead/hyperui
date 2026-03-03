@@ -91,13 +91,13 @@ const componentPageSchema = {
     <div class="mx-auto max-w-7xl space-y-8 px-4">
       {
         formattedComponents.map(
-          ({ contributors, dark, description, id, index, plugins, title }) => (
+          ({ contributors, dark, id, index, plugins, title, description = '' }) => (
             <PreviewWrapper
               id={id}
               category={category}
               contributors={contributors}
               dark={dark}
-              {...(description ? { description } : {})}
+              description={description}
               index={index}
               plugins={plugins}
               slug={slug}

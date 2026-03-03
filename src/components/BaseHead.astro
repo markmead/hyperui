@@ -40,8 +40,6 @@ const webpageSchema = {
     url: Astro.site,
   },
 }
-
-const schemas = [websiteSchema, webpageSchema]
 ---
 
 <meta charset="utf-8" />
@@ -78,8 +76,5 @@ const schemas = [websiteSchema, webpageSchema]
 
 <Font cssVariable="--font-google-sans-flex" preload />
 
-{
-  schemas.map((schema) => (
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
-  ))
-}
+<script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(webpageSchema)} />

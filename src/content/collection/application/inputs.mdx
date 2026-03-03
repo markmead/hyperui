@@ -8,10 +8,22 @@ terms:
   - filter
   - form
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with icon', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with button', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Floating label', dark: true, plugins: ['@tailwindcss/forms'] }
+  - title: Base
+    description: Standard text input with label and border styling
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Base with icon
+    description: Input field with an icon positioned on the right side
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Base with button
+    description: Search input with an integrated action button
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Floating label
+    description: Input with animated label that floats above on focus
+    dark: true
+    plugins: ['@tailwindcss/forms']
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

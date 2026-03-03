@@ -50,34 +50,36 @@ const src = dark
 <div id={id} class="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
   <div class="p-4">
     <div class="flex items-center justify-between gap-4">
-      <a href={`#${id}`} class="group flex items-center gap-2">
-        <h3 class="text-lg font-medium text-gray-900">{title}</h3>
+      <div>
+        <a href={`#${id}`} class="group flex items-center gap-2">
+          <h3 class="text-lg font-medium text-gray-900">{title}</h3>
 
-        <Hash
-          class="size-4 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-gray-900"
-        />
-      </a>
+          <Hash
+            class="size-4 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-gray-900"
+          />
+        </a>
 
-      <div class="flex flex-wrap items-center gap-2">
+        <PreviewRefs url="https://github.com/" refs={contributors} />
+      </div>
+
+      <div class="hidden flex-wrap items-center gap-2 md:flex">
         <PreviewBreakpoints src={src} breakpoints={breakpoints} />
         <PreviewDirection src={src} />
         <PreviewView src={src} />
         <PreviewCopy src={src} />
       </div>
     </div>
-
-    {description && <p class="mt-2 text-sm text-gray-600">{description}</p>}
-
-    <PreviewRefs url="https://github.com/" refs={contributors} />
   </div>
 
   <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
 
-  {
-    plugins.length ? (
-      <div class="border-t border-gray-200 px-4 py-2">
+  <div class="space-y-2 border-t border-gray-200 px-4 py-2">
+    {description && <p class="text-sm text-gray-700">{description}</p>}
+
+    {
+      plugins.length ? (
         <PreviewRefs prefix="Plugins:" url="https://www.npmjs.com/package/" refs={plugins} />
-      </div>
-    ) : null
-  }
+      ) : null
+    }
+  </div>
 </div>

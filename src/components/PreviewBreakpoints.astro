@@ -12,7 +12,7 @@ interface Props {
 const { breakpoints, src } = Astro.props
 ---
 
-<preview-breakpoints data-src={src} class="hidden items-center gap-1 md:flex">
+<preview-breakpoints data-src={src} class="flex gap-1">
   {
     breakpoints.map(({ name, width }) => (
       <button
