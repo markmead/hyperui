@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
+import RelatedComponents from '../components/RelatedComponents.astro'
 
 type Props = (
   | CollectionEntry<'application'>['data']
@@ -74,36 +75,13 @@ const componentPageSchema = {
     })),
   },
 }
-
-// Find related components by matching terms
-type AllCollections =
-  | CollectionEntry<'application'>['data']
-  | CollectionEntry<'marketing'>['data']
-  | CollectionEntry<'neobrutalism'>['data']
-
-let allComponents: AllCollections[] = []
-
-if (category === 'application') {
-  const { getCollection } = await import('astro:content')
-  allComponents = (await getCollection('application')).map(({ data }) => data)
-} else if (category === 'marketing') {
-  const { getCollection } = await import('astro:content')
-  allComponents = (await getCollection('marketing')).map(({ data }) => data)
-} else if (category === 'neobrutalism') {
-  const { getCollection } = await import('astro:content')
-  allComponents = (await getCollection('neobrutalism')).map(({ data }) => data)
-}
-
-const relatedComponents = allComponents
-  .filter((comp) => comp.slug !== slug && comp.terms.some((term) => terms.includes(term)))
-  .slice(0, 5)
 ---
 
 <BaseLayout title={pageTitle} description={description} structuredData={componentPageSchema}>
-  <main id="main-content" class="mx-auto max-w-7xl space-y-8 px-4">
+  <main id="main-content">
     <slot />
 
-    <div class="space-y-8">
+    <div class="mx-auto max-w-7xl space-y-8 px-4">
       {
         formattedComponents.map(
           ({ contributors, dark, description, id, index, plugins, title }) => (
@@ -122,38 +100,8 @@ const relatedComponents = allComponents
           ),
         )
       }
-    </div>
 
-    <div class="space-y-4 border-t border-gray-200 pt-8">
-      {
-        relatedComponents.length > 0 && (
-          <div>
-            <p class="text-sm font-medium text-gray-900">Related components</p>
-            <ul class="mt-2 space-y-1">
-              {relatedComponents.map((comp) => (
-                <li>
-                  <a
-                    href={`/components/${comp.category}/${comp.slug}`}
-                    class="text-sm text-blue-600 hover:underline"
-                  >
-                    {comp.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
-      {
-        relatedComponents.length === 0 && (
-          <p class="text-sm text-gray-600">
-            Explore more:{' '}
-            <a href={`/components/${category}`} class="font-medium text-blue-600 hover:underline">
-              View all {category}
-            </a>
-          </p>
-        )
-      }
+      <RelatedComponents slug={slug} terms={terms} category={category} />
     </div>
   </main>
 </BaseLayout>
