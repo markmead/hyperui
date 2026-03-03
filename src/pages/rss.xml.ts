@@ -1,10 +1,12 @@
-import rss from '@astrojs/rss'
+import type { APIContext } from 'astro'
 import { getCollection } from 'astro:content'
+
+import rss from '@astrojs/rss'
 
 import { SITE_TITLE, SEO_DESCRIPTION_BLOG } from '../consts'
 
-export async function GET(context: { site: URL | undefined }) {
-  const site = context.site ?? 'https://hyperui.dev'
+export async function GET(context: APIContext) {
+  const site = context.site ?? new URL('https://hyperui.dev')
 
   const posts = (await getCollection('blog')).sort(
     (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf(),
