@@ -27,6 +27,7 @@ const collection = z.object({
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),
+      description: z.string().optional(),
       title: z.string(),
       dark: z
         .union([

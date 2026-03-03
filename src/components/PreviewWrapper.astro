@@ -21,6 +21,7 @@ interface Props {
   category: string
   contributors: string[]
   dark: boolean
+  description?: string
   index: number
   slug: string
   title: string
@@ -28,7 +29,18 @@ interface Props {
   plugins?: string[] | undefined
 }
 
-const { id, category, contributors, dark, index, slug, title, wrapper, plugins = [] } = Astro.props
+const {
+  id,
+  category,
+  contributors,
+  dark,
+  description,
+  index,
+  slug,
+  title,
+  wrapper,
+  plugins = [],
+} = Astro.props
 
 const src = dark
   ? `/components/${category}/${slug}/${index}-dark.html`
@@ -53,6 +65,8 @@ const src = dark
         <PreviewCopy src={src} />
       </div>
     </div>
+
+    {description && <p class="mt-2 text-sm text-gray-600">{description}</p>}
 
     <PreviewRefs url="https://github.com/" refs={contributors} />
   </div>
