@@ -16,7 +16,11 @@ const { title, description, structuredData } = Astro.props
 
 <html lang="en" class="scroll-pt-16 scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} {...(structuredData ? { structuredData } : {})} />
+    <BaseHead
+      title={title}
+      description={description}
+      {...structuredData ? { structuredData } : {}}
+    />
 
     <slot name="head" />
   </head>

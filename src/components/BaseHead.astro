@@ -87,6 +87,6 @@ const schemas = [websiteSchema, webpageSchema, ...additionalSchema]
 
 {
   schemas.map((schema) => (
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   ))
 }
