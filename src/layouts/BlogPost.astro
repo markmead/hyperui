@@ -38,7 +38,14 @@ const blogPostSchema = {
 }
 ---
 
-<BaseLayout title={title} description={description} structuredData={blogPostSchema}>
+<BaseLayout title={title} description={description}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    is:inline
+    set:html={JSON.stringify(blogPostSchema)}
+  />
+
   <main id="main-content" class="mx-auto max-w-3xl px-4 py-8 md:py-16">
     <article>
       <a

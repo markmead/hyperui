@@ -13,12 +13,11 @@ interface Props {
   description: string
   title: string
   image?: ImageMetadata
-  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { description, title, image = OgImage, structuredData } = Astro.props
+const { description, title, image = OgImage } = Astro.props
 
 const pageTitle = `${title} | ${SITE_TITLE}`
 
@@ -42,13 +41,7 @@ const webpageSchema = {
   },
 }
 
-const additionalSchema = structuredData
-  ? Array.isArray(structuredData)
-    ? structuredData
-    : [structuredData]
-  : []
-
-const schemas = [websiteSchema, webpageSchema, ...additionalSchema]
+const schemas = [websiteSchema, webpageSchema]
 ---
 
 <meta charset="utf-8" />

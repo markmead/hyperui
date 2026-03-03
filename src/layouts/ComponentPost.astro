@@ -77,7 +77,14 @@ const componentPageSchema = {
 }
 ---
 
-<BaseLayout title={pageTitle} description={description} structuredData={componentPageSchema}>
+<BaseLayout title={pageTitle} description={description}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    is:inline
+    set:html={JSON.stringify(componentPageSchema)}
+  />
+
   <main id="main-content">
     <slot />
 
