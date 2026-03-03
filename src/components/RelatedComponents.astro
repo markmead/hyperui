@@ -21,9 +21,9 @@ const relatedComponents = (await getCollection(category))
   .slice(0, 5)
 ---
 
-{
-  relatedComponents.length > 0 && (
-    <div class="mt-16 space-y-8">
+<div class="mt-16 space-y-8">
+  {
+    relatedComponents.length > 0 && (
       <div>
         <p class="text-2xl font-medium">Related components</p>
 
@@ -33,15 +33,12 @@ const relatedComponents = (await getCollection(category))
           ))}
         </ul>
       </div>
+    )
+  }
 
-      <a
-        href={`/components/${category}`}
-        class="group inline-flex items-center gap-2 text-gray-700"
-      >
-        <span>View all {category} components</span>
+  <a href={`/components/${category}`} class="group inline-flex items-center gap-2 text-gray-700">
+    <span>View all {category} components</span>
 
-        <ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
-      </a>
-    </div>
-  )
-}
+    <ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
+  </a>
+</div>

@@ -4,6 +4,7 @@ import { Hash } from '@lucide/astro'
 import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
 import PreviewCopy from './PreviewCopy.astro'
+import PreviewDetails from './PreviewDetails.astro'
 import PreviewDirection from './PreviewDirection.astro'
 import PreviewRefs from './PreviewRefs.astro'
 import PreviewView from './PreviewView.astro'
@@ -21,11 +22,11 @@ interface Props {
   category: string
   contributors: string[]
   dark: boolean
-  description?: string
   index: number
   slug: string
   title: string
   wrapper: string
+  description?: string
   plugins?: string[] | undefined
 }
 
@@ -34,11 +35,11 @@ const {
   category,
   contributors,
   dark,
-  description,
   index,
   slug,
   title,
   wrapper,
+  description = '',
   plugins = [],
 } = Astro.props
 
@@ -73,13 +74,5 @@ const src = dark
 
   <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
 
-  <div class="space-y-2 border-t border-gray-200 px-4 py-2">
-    {description && <p class="text-sm text-gray-700">{description}</p>}
-
-    {
-      plugins.length ? (
-        <PreviewRefs prefix="Plugins:" url="https://www.npmjs.com/package/" refs={plugins} />
-      ) : null
-    }
-  </div>
+  <PreviewDetails description={description} plugins={plugins} />
 </div>
