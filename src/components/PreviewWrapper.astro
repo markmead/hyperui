@@ -1,5 +1,6 @@
 ---
 import { Hash } from '@lucide/astro'
+import type { ComponentPreview as ComponentPreviewType } from '../types/component'
 
 import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
@@ -18,30 +19,15 @@ const breakpoints = [
 ]
 
 interface Props {
-  id: string
+  component: ComponentPreviewType
   category: string
-  contributors: string[]
-  dark: boolean
-  index: number
   slug: string
-  title: string
   wrapper: string
-  description?: string
-  plugins?: string[] | undefined
 }
 
-const {
-  id,
-  category,
-  contributors,
-  dark,
-  index,
-  slug,
-  title,
-  wrapper,
-  description = '',
-  plugins = [],
-} = Astro.props
+const { component, category, slug, wrapper } = Astro.props
+
+const { contributors, dark, id, index, title, description = '', plugins = [] } = component
 
 const src = dark
   ? `/examples/${category}/${slug}/${index}-dark.html`

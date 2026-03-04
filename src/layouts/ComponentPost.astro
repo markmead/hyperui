@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import type { ComponentPreview } from '../types/component'
 
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
@@ -17,7 +18,7 @@ const { category, components, description, slug, terms, wrapper, heading } = Ast
 
 const pageTitle = `Free Tailwind CSS ${heading} | HyperUI`
 
-const formattedComponents = components
+const formattedComponents: ComponentPreview[] = components
   .map((component, index) => {
     const { dark, ...rest } = component
 
@@ -90,22 +91,9 @@ const componentPageSchema = {
 
     <div class="mx-auto max-w-7xl space-y-8 px-4">
       {
-        formattedComponents.map(
-          ({ contributors, dark, id, index, plugins, title, description = '' }) => (
-            <PreviewWrapper
-              id={id}
-              category={category}
-              contributors={contributors}
-              dark={dark}
-              index={index}
-              slug={slug}
-              title={title}
-              wrapper={wrapper}
-              description={description}
-              plugins={plugins}
-            />
-          ),
-        )
+        formattedComponents.map((component) => (
+          <PreviewWrapper component={component} category={category} slug={slug} wrapper={wrapper} />
+        ))
       }
 
       <RelatedComponents slug={slug} terms={terms} category={category} />
