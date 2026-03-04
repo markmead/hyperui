@@ -14,11 +14,9 @@ type Props = CollectionEntry<'marketing'>
 
 const collection = Astro.props
 
-const { Content, headings } = await render(collection)
-
-const heading = headings.find(({ depth }) => depth === 1)?.text || ''
+const { Content } = await render(collection)
 ---
 
-<ComponentPost {...collection.data} heading={heading}>
+<ComponentPost {...collection.data}>
   <Content />
 </ComponentPost>

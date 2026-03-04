@@ -6,17 +6,14 @@ import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 import RelatedComponents from '../components/RelatedComponents.astro'
 
-type Props = (
+type Props =
   | CollectionEntry<'application'>['data']
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
-) & {
-  heading: string
-}
 
-const { category, components, description, slug, terms, wrapper, heading } = Astro.props
+const { title, category, components, description, slug, terms, wrapper } = Astro.props
 
-const pageTitle = `Free Tailwind CSS ${heading} | HyperUI`
+const pageTitle = `Free Tailwind CSS ${title}`
 
 const formattedComponents: ComponentPreview[] = components
   .map((component, index) => {
