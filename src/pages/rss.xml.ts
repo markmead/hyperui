@@ -1,4 +1,5 @@
 import type { APIContext } from 'astro'
+
 import { getCollection } from 'astro:content'
 
 import rss from '@astrojs/rss'
@@ -16,11 +17,11 @@ export async function GET(context: APIContext) {
     title: `${SITE_TITLE} Blog`,
     description: SEO_DESCRIPTION_BLOG,
     site,
-    items: posts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.pubDate,
-      description: post.data.description,
-      link: `/blog/${post.data.slug}`,
+    items: posts.map(({ data }) => ({
+      title: data.title,
+      pubDate: data.pubDate,
+      description: data.description,
+      link: `/blog/${data.slug}`,
     })),
   })
 }

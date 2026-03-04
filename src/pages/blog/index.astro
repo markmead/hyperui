@@ -17,13 +17,13 @@ const blogListSchema = {
   name: 'HyperUI Blog',
   description: SEO_DESCRIPTION_BLOG,
   url: new URL('/blog', Astro.site),
-  blogPost: posts.map((post) => ({
+  blogPost: posts.map(({ data }) => ({
     '@type': 'BlogPosting',
-    headline: post.data.title,
-    description: post.data.description,
-    datePublished: post.data.pubDate.toISOString(),
-    dateModified: post.data.updatedDate.toISOString(),
-    url: new URL(`/blog/${post.data.slug}`, Astro.site),
+    headline: data.title,
+    description: data.description,
+    datePublished: data.pubDate.toISOString(),
+    dateModified: data.updatedDate.toISOString(),
+    url: new URL(`/blog/${data.slug}`, Astro.site),
   })),
 }
 ---
