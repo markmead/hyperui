@@ -42,6 +42,6 @@ const blogListSchema = {
   />
 
   <main id="main-content" class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
-    {posts.map((post) => <BlogCard post={post} />)}
+    {posts.map((post) => <BlogCard {post} />)}
   </main>
 </BaseLayout>

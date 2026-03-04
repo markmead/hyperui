@@ -37,9 +37,9 @@ const src = dark
 <div id={id} class="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
   <div class="p-4">
     <div class="flex items-center justify-between gap-4">
-      <div>
+      <div class="space-y-1">
         <a href={`#${id}`} class="group flex items-center gap-2">
-          <h3 class="text-lg font-medium text-gray-900">{title}</h3>
+          <h2 class="text-lg font-medium text-gray-900">{title}</h2>
 
           <Hash
             class="size-4 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-gray-900"
@@ -50,15 +50,15 @@ const src = dark
       </div>
 
       <div class="hidden shrink-0 items-center gap-2 md:flex">
-        <PreviewBreakpoints src={src} breakpoints={breakpoints} />
-        <PreviewDirection src={src} />
-        <PreviewView src={src} />
-        <PreviewCopy src={src} />
+        <PreviewBreakpoints {src} {breakpoints} />
+        <PreviewDirection {src} />
+        <PreviewView {src} />
+        <PreviewCopy {src} />
       </div>
     </div>
   </div>
 
-  <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
+  <ComponentPreview {src} {index} {title} {wrapper} {dark} />
 
-  <PreviewDetails description={description} plugins={plugins} />
+  <PreviewDetails {description} {plugins} />
 </div>

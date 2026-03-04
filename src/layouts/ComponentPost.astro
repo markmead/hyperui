@@ -75,7 +75,7 @@ const componentPageSchema = {
 }
 ---
 
-<BaseLayout title={pageTitle} description={description}>
+<BaseLayout title={pageTitle} {description}>
   <script
     type="application/ld+json"
     slot="head"
@@ -89,11 +89,11 @@ const componentPageSchema = {
     <div class="mx-auto max-w-7xl space-y-8 px-4">
       {
         formattedComponents.map((component) => (
-          <PreviewWrapper component={component} category={category} slug={slug} wrapper={wrapper} />
+          <PreviewWrapper {component} {category} {slug} {wrapper} />
         ))
       }
 
-      <RelatedComponents slug={slug} terms={terms} category={category} />
+      <RelatedComponents {slug} {terms} {category} />
     </div>
   </main>
 </BaseLayout>

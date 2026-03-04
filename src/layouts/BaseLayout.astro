@@ -15,7 +15,7 @@ const { title, description } = Astro.props
 
 <html lang="en" class="scroll-pt-16 scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead {title} {description} />
 
     <slot name="head" />
   </head>

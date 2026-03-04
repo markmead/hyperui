@@ -13,8 +13,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 <component-preview data-src={src} class="block border-t border-gray-200">
   <iframe
     data-preview="true"
-    src={src}
-    title={title}
+    {src}
+    {title}
     class:list={[
       wrapper,
       dark ? 'bg-gray-900' : 'bg-white',

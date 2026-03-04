@@ -7,7 +7,7 @@ const { href, class: className = '', ...props } = Astro.props
 ---
 
 <a
-  href={href}
+  {href}
   class:list={[
     'text-sm font-medium text-gray-600 transition-colors hover:text-gray-900',
     className,
