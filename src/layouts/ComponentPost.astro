@@ -1,22 +1,21 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import type { ComponentPreview } from '../types/component'
 
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
+import RelatedComponents from '../components/RelatedComponents.astro'
 
-type Props = (
+type Props =
   | CollectionEntry<'application'>['data']
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
-) & {
-  heading: string
-}
 
-const { category, components, description, slug, wrapper, heading } = Astro.props
+const { title, category, components, description, slug, terms, wrapper } = Astro.props
 
-const pageTitle = `Free Tailwind CSS ${heading} | HyperUI`
+const pageTitle = `Free Tailwind CSS ${title}`
 
-const formattedComponents = components
+const formattedComponents: ComponentPreview[] = components
   .map((component, index) => {
     const { dark, ...rest } = component
 
@@ -50,28 +49,51 @@ const formattedComponents = components
     ]
   })
   .flat()
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const componentPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: pageTitle,
+  description,
+  url: canonicalURL,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'HyperUI',
+    url: Astro.site,
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: formattedComponents.map((component, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: component.title,
+      url: `${canonicalURL}#${component.id}`,
+    })),
+  },
+}
 ---
 
 <BaseLayout title={pageTitle} description={description}>
-  <main id="main-content" class="mx-auto max-w-7xl space-y-8 px-4">
+  <script
+    type="application/ld+json"
+    slot="head"
+    is:inline
+    set:html={JSON.stringify(componentPageSchema)}
+  />
+
+  <main id="main-content">
     <slot />
 
-    <div class="space-y-8">
+    <div class="mx-auto max-w-7xl space-y-8 px-4">
       {
-        formattedComponents.map(({ contributors, dark, id, index, plugins, title }) => (
-          <PreviewWrapper
-            id={id}
-            category={category}
-            contributors={contributors}
-            dark={dark}
-            index={index}
-            plugins={plugins}
-            slug={slug}
-            title={title}
-            wrapper={wrapper}
-          />
+        formattedComponents.map((component) => (
+          <PreviewWrapper component={component} category={category} slug={slug} wrapper={wrapper} />
         ))
       }
+
+      <RelatedComponents slug={slug} terms={terms} category={category} />
     </div>
   </main>
 </BaseLayout>

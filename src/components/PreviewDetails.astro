@@ -1,0 +1,24 @@
+---
+import PreviewRefs from './PreviewRefs.astro'
+
+interface Props {
+  description?: string
+  plugins?: string[]
+}
+
+const { description = '', plugins = [] } = Astro.props
+
+const show = description || plugins.length > 0
+---
+
+{
+  show && (
+    <div class="space-y-2 border-t border-gray-200 px-4 py-2">
+      {description && <p class="text-sm text-gray-700">{description}</p>}
+
+      {plugins.length ? (
+        <PreviewRefs prefix="Plugins:" url="https://www.npmjs.com/package/" refs={plugins} />
+      ) : null}
+    </div>
+  )
+}

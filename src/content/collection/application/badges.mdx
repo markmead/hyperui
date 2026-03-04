@@ -1,6 +1,6 @@
 ---
 title: Badges
-description: Responsive badge and tag components for Tailwind CSS v4. These customizable UI elements include base badges, icon badges, dismissible badges, and themed variations—ideal for notifications, statuses, and labels in web applications and dashboards. Optimized for SEO and accessibility.
+description: Responsive badge and tag components with base badges, icon badges, dismissible badges, and themed variations for notifications, statuses, and labels in web applications and dashboards.
 category: application
 slug: badges
 wrapper: h-[200px]
@@ -8,11 +8,21 @@ terms:
   - alert
   - status
 components:
-  - { title: 'Base', dark: true }
-  - { title: 'Base with icon', dark: true }
-  - { title: 'Base with dismiss', dark: true }
-  - { title: 'Icon', dark: true }
-  - { title: 'Themed with icon', dark: true }
+  - title: Base
+    description: Simple pill-shaped badges with solid and outlined variants
+    dark: true
+  - title: Base with icon
+    description: Badges with icons positioned on the left side
+    dark: true
+  - title: Base with dismiss
+    description: Removable badges with close button for tags and filters
+    dark: true
+  - title: Icon only
+    description: Compact icon-only badges without text labels
+    dark: true
+  - title: Themed with icon
+    description: Status badges with semantic colors for success, warning, and error states
+    dark: true
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

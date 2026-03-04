@@ -20,6 +20,26 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const { description, title, image = OgImage } = Astro.props
 
 const pageTitle = `${title} | ${SITE_TITLE}`
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_TITLE,
+  url: Astro.site,
+}
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description,
+  url: canonicalURL,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: SITE_TITLE,
+    url: Astro.site,
+  },
+}
 ---
 
 <meta charset="utf-8" />
@@ -28,6 +48,7 @@ const pageTitle = `${title} | ${SITE_TITLE}`
 
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="HyperUI RSS" href="/rss.xml" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
 <title>{pageTitle}</title>
@@ -48,3 +69,6 @@ const pageTitle = `${title} | ${SITE_TITLE}`
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
 <Font cssVariable="--font-google-sans-flex" preload />
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(webpageSchema)} />

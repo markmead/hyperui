@@ -10,9 +10,32 @@ import BlogCard from '../../components/BlogCard.astro'
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf(),
 )
+
+const blogListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'HyperUI Blog',
+  description: SEO_DESCRIPTION_BLOG,
+  url: new URL('/blog', Astro.site),
+  blogPost: posts.map(({ data }) => ({
+    '@type': 'BlogPosting',
+    headline: data.title,
+    description: data.description,
+    datePublished: data.pubDate.toISOString(),
+    dateModified: data.updatedDate.toISOString(),
+    url: new URL(`/blog/${data.slug}`, Astro.site),
+  })),
+}
 ---
 
 <BaseLayout title={SEO_TITLE_BLOG} description={SEO_DESCRIPTION_BLOG}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    is:inline
+    set:html={JSON.stringify(blogListSchema)}
+  />
+
   <BaseHero
     title="Tailwind CSS Blog"
     description="Tips, tricks and real-world solutions for working with Tailwind CSS"

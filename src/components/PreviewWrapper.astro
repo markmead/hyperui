@@ -1,9 +1,11 @@
 ---
 import { Hash } from '@lucide/astro'
+import type { ComponentPreview as ComponentPreviewType } from '../types/component'
 
 import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
 import PreviewCopy from './PreviewCopy.astro'
+import PreviewDetails from './PreviewDetails.astro'
 import PreviewDirection from './PreviewDirection.astro'
 import PreviewRefs from './PreviewRefs.astro'
 import PreviewView from './PreviewView.astro'
@@ -17,53 +19,46 @@ const breakpoints = [
 ]
 
 interface Props {
-  id: string
+  component: ComponentPreviewType
   category: string
-  contributors: string[]
-  dark: boolean
-  index: number
   slug: string
-  title: string
   wrapper: string
-  plugins?: string[] | undefined
 }
 
-const { id, category, contributors, dark, index, slug, title, wrapper, plugins = [] } = Astro.props
+const { component, category, slug, wrapper } = Astro.props
+
+const { contributors, dark, id, index, title, description = '', plugins = [] } = component
 
 const src = dark
-  ? `/components/${category}/${slug}/${index}-dark.html`
-  : `/components/${category}/${slug}/${index}.html`
+  ? `/examples/${category}/${slug}/${index}-dark.html`
+  : `/examples/${category}/${slug}/${index}.html`
 ---
 
 <div id={id} class="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
   <div class="p-4">
     <div class="flex items-center justify-between gap-4">
-      <a href={`#${id}`} class="group flex items-center gap-2">
-        <h3 class="text-lg font-medium text-gray-900">{title}</h3>
+      <div>
+        <a href={`#${id}`} class="group flex items-center gap-2">
+          <h3 class="text-lg font-medium text-gray-900">{title}</h3>
 
-        <Hash
-          class="size-4 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-gray-900"
-        />
-      </a>
+          <Hash
+            class="size-4 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-gray-900"
+          />
+        </a>
 
-      <div class="flex flex-wrap items-center gap-2">
+        <PreviewRefs url="https://github.com/" refs={contributors} />
+      </div>
+
+      <div class="hidden shrink-0 items-center gap-2 md:flex">
         <PreviewBreakpoints src={src} breakpoints={breakpoints} />
         <PreviewDirection src={src} />
         <PreviewView src={src} />
         <PreviewCopy src={src} />
       </div>
     </div>
-
-    <PreviewRefs url="https://github.com/" refs={contributors} />
   </div>
 
   <ComponentPreview src={src} index={index} title={title} wrapper={wrapper} dark={dark} />
 
-  {
-    plugins.length ? (
-      <div class="border-t border-gray-200 px-4 py-2">
-        <PreviewRefs prefix="Plugins:" url="https://www.npmjs.com/package/" refs={plugins} />
-      </div>
-    ) : null
-  }
+  <PreviewDetails description={description} plugins={plugins} />
 </div>

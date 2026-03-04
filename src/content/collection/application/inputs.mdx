@@ -1,6 +1,6 @@
 ---
 title: Inputs
-description: Form input components crafted with Tailwind CSS v4. Responsive text fields, search boxes, and form controls optimized for web applications. Customizable input elements with various styles including icons and floating labels for modern UI design.
+description: Form input components with responsive text fields, search boxes, and form controls. Customizable input elements with various styles including icons and floating labels.
 category: application
 slug: inputs
 wrapper: h-[200px]
@@ -8,10 +8,22 @@ terms:
   - filter
   - form
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with icon', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with button', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Floating label', dark: true, plugins: ['@tailwindcss/forms'] }
+  - title: Base
+    description: Standard text input with label and border styling
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Base with icon
+    description: Input field with an icon positioned on the right side
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Base with button
+    description: Search input with an integrated action button
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Floating label
+    description: Input with animated label that floats above on focus
+    dark: true
+    plugins: ['@tailwindcss/forms']
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

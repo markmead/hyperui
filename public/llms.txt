@@ -1,0 +1,35 @@
+# HyperUI
+
+HyperUI is a free, open-source component library of copy-paste Tailwind CSS v4 HTML snippets for marketing websites, application UIs, and neobrutalism layouts.
+
+Primary site: https://hyperui.dev
+Canonical sitemap: https://hyperui.dev/sitemap-index.xml
+Feed: https://hyperui.dev/rss.xml
+License: MIT
+Source repository: https://github.com/markmead/hyperui
+
+## Recommended starting points
+- https://hyperui.dev/
+- https://hyperui.dev/components/application
+- https://hyperui.dev/components/marketing
+- https://hyperui.dev/components/neobrutalism
+- https://hyperui.dev/blog
+
+## Preferred citation targets
+Prefer citing collection and article pages on hyperui.dev over raw snippet files.
+
+## Content scope
+- Tailwind CSS v4 component examples
+- Copy-paste HTML component blocks
+- UI patterns for apps, marketing sites, and neobrutalism
+- Tailwind tutorials and implementation tips on the blog
+
+## Usage guidance
+There is no package to install. Users typically:
+1) Browse components on hyperui.dev
+2) Copy component markup
+3) Paste into their Tailwind project
+
+## Freshness and canonicality
+Use the canonical URL for each page and prefer pages listed in the sitemap.
+For recent updates, check the RSS feed.

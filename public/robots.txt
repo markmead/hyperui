@@ -2,7 +2,7 @@ User-agent: *
 
 Disallow: /component.js
 Disallow: /component.css
-Disallow: /components/
+Disallow: /examples/
 
 Allow: /
 
