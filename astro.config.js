@@ -30,17 +30,15 @@ export default defineConfig({
     ],
     syntaxHighlight: false,
   },
+  fonts: [
+    {
+      cssVariable: '--font-google-sans-flex',
+      name: 'Google Sans Flex',
+      provider: fontProviders.google(),
+      weights: [400, 500, 600, 700, 800],
+    },
+  ],
   redirects: {
     '/components/marketing/forms': '/components/marketing/contact-forms',
-  },
-  experimental: {
-    fonts: [
-      {
-        cssVariable: '--font-google-sans-flex',
-        name: 'Google Sans Flex',
-        provider: fontProviders.google(),
-        weights: [400, 500, 600, 700, 800],
-      },
-    ],
   },
 })
