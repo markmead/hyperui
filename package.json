@@ -10,13 +10,13 @@
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/mdx": "4.3.13",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "3.7.0",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/mdx": "5.0.0",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "3.7.1",
     "@lucide/astro": "^0.577.0",
     "@vercel/analytics": "^1.6.1",
-    "astro": "5.18.0"
+    "astro": "6.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
