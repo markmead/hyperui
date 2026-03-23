@@ -10,29 +10,29 @@
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.7",
-    "@astrojs/mdx": "5.0.0",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "5.0.2",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "3.7.1",
     "@lucide/astro": "^0.577.0",
-    "@vercel/analytics": "^1.6.1",
-    "astro": "6.0.1"
+    "@vercel/analytics": "^2.0.1",
+    "astro": "6.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@tailwindcss/cli": "^4.2.1",
+    "@tailwindcss/cli": "^4.2.2",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.1",
-    "eslint": "^10.0.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "eslint": "^10.1.0",
     "eslint-plugin-astro": "^1.6.0",
     "globals": "^17.4.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "rehype-external-links": "^3.0.0",
-    "tailwindcss": "^4.2.1",
+    "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.57.1"
   }
 }
