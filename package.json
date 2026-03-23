@@ -5,6 +5,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
+    "test": "playwright test",
+    "test:ui": "playwright show-report",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
@@ -20,10 +22,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/cli": "^4.2.2",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^25.5.0",
     "eslint": "^10.1.0",
     "eslint-plugin-astro": "^1.6.0",
     "globals": "^17.4.0",
