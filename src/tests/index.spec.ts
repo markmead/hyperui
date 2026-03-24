@@ -1,17 +1,13 @@
 import { test, expect } from '@playwright/test'
 
-const BASE_URL = 'http://localhost:4321/'
-
 test('has title', async ({ page }) => {
-  await page.goto(BASE_URL)
+  await page.goto('')
 
   await expect(page).toHaveTitle('Free Tailwind CSS v4 Components | HyperUI')
 })
 
 test.describe('Component category sections', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL)
-  })
+  test.beforeEach(async ({ page }) => await page.goto(''))
 
   test('can navigate to application components', async ({ page }) => {
     const viewAllLink = page.getByRole('link', { name: 'View all application components' })
@@ -20,7 +16,7 @@ test.describe('Component category sections', () => {
 
     await viewAllLink.click()
 
-    await expect(page).toHaveURL(`${BASE_URL}components/application`)
+    await expect(page).toHaveURL('/components/application')
     await expect(page).toHaveTitle('Tailwind CSS Application UI Components | HyperUI')
   })
 
@@ -31,7 +27,7 @@ test.describe('Component category sections', () => {
 
     await componentLink.click()
 
-    await expect(page).toHaveURL(`${BASE_URL}components/application/accordions`)
+    await expect(page).toHaveURL('/components/application/accordions')
     await expect(page).toHaveTitle('Free Tailwind CSS Accordions | HyperUI')
 
     await expect(
