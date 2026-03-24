@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Locator } from '@playwright/test'
 
 test('has title', async ({ page }) => {
   await page.goto('')
@@ -10,7 +10,7 @@ test.describe('Component category sections', () => {
   test.beforeEach(async ({ page }) => await page.goto(''))
 
   test('can navigate to application components', async ({ page }) => {
-    const viewAllLink = page.getByRole('link', { name: 'View all application components' })
+    const viewAllLink: Locator = page.getByRole('link', { name: 'View all application components' })
 
     await expect(viewAllLink).toBeVisible()
 
@@ -21,7 +21,7 @@ test.describe('Component category sections', () => {
   })
 
   test('can navigate to application component', async ({ page }) => {
-    const componentLink = page.locator('a[href="/components/application/accordions"]')
+    const componentLink: Locator = page.locator('a[href="/components/application/accordions"]')
 
     await expect(componentLink).toBeVisible()
 

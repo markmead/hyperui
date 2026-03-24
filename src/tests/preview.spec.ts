@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Locator } from '@playwright/test'
 
 const PAGE_URL = '/components/application/accordions'
 const FIRST_IFRAME = '[src="/examples/application/accordions/1.html"]'
@@ -45,7 +45,7 @@ test.describe('Component preview breakpoints', () => {
   test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
 
   test('defaults to full breakpoint', async ({ page }) => {
-    const fullButton = page
+    const fullButton: Locator = page
       .locator('preview-breakpoints')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Full' })
@@ -63,7 +63,7 @@ test.describe('Component preview breakpoints', () => {
   })
 
   test('can set to medium breakpoint', async ({ page }) => {
-    const mediumButton = page
+    const mediumButton: Locator = page
       .locator('preview-breakpoints')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'MD' })
@@ -89,7 +89,7 @@ test.describe('Component preview direction', () => {
   test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
 
   test('defaults to left-to-right', async ({ page }) => {
-    const ltrButton = page
+    const ltrButton: Locator = page
       .locator('preview-direction')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Toggle direction' })
@@ -106,7 +106,7 @@ test.describe('Component preview direction', () => {
   })
 
   test('can toggle to right-to-left', async ({ page }) => {
-    const ltrButton = page
+    const ltrButton: Locator = page
       .locator('preview-direction')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Toggle direction' })
@@ -132,7 +132,7 @@ test.describe('Component preview view', () => {
   test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
 
   test('defaults to preview', async ({ page }) => {
-    const viewButton = page
+    const viewButton: Locator = page
       .locator('preview-view')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Toggle preview mode' })
@@ -149,7 +149,7 @@ test.describe('Component preview view', () => {
   })
 
   test('can toggle to code view', async ({ page }) => {
-    const viewButton = page
+    const viewButton: Locator = page
       .locator('preview-view')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Toggle preview mode' })
@@ -180,7 +180,7 @@ test.describe('Component preview copy to clipboard', () => {
 
     await page.goto(PAGE_URL)
 
-    const copyButton = page
+    const copyButton: Locator = page
       .locator('preview-copy')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Copy HTML' })
@@ -206,7 +206,7 @@ test.describe('Component preview copy to clipboard', () => {
 
     await page.goto(PAGE_URL)
 
-    const copyButton = page
+    const copyButton: Locator = page
       .locator('preview-copy')
       .and(page.locator(FIRST_PREVIEW))
       .getByRole('button', { name: 'Copy HTML' })
