@@ -9,7 +9,9 @@ test.describe('Skip to content link', () => {
     skipToContentLink = page.getByRole('link', { name: 'Skip to content' })
   })
 
-  test('exists in the DOM', async () => await expect(skipToContentLink).toBeAttached())
+  test('exists in the DOM', async () => {
+    await expect(skipToContentLink).toBeAttached()
+  })
 
   test('in viewport when focused', async ({ page, browserName }) => {
     test.skip(browserName === 'webkit', 'WebKit does not handle focus correctly in this case')

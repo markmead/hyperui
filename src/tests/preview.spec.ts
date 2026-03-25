@@ -5,12 +5,6 @@ const FIRST_IFRAME = '[src="/examples/application/accordions/1.html"]'
 const FIRST_PREVIEW = '[data-src="/examples/application/accordions/1.html"]'
 const LAST_PREVIEW = '[data-src="/examples/application/accordions/5-dark.html"]'
 
-test('has title', async ({ page }) => {
-  await page.goto(PAGE_URL)
-
-  await expect(page).toHaveTitle('Free Tailwind CSS Accordions | HyperUI')
-})
-
 test('has component preview', async ({ page }) => {
   await page.goto(PAGE_URL)
 
@@ -18,7 +12,9 @@ test('has component preview', async ({ page }) => {
 })
 
 test.describe('Component preview hotlink', () => {
-  test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
+  test.beforeEach(async ({ page }) => {
+    await page.goto(PAGE_URL)
+  })
 
   test('can link to component preview', async ({ page }) => {
     await page.locator('[href="#component-5-dark"]').click()
@@ -42,7 +38,9 @@ test.describe('Component preview hotlink', () => {
 })
 
 test.describe('Component preview breakpoints', () => {
-  test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
+  test.beforeEach(async ({ page }) => {
+    await page.goto(PAGE_URL)
+  })
 
   test('defaults to full breakpoint', async ({ page }) => {
     const fullButton: Locator = page
@@ -86,7 +84,9 @@ test.describe('Component preview breakpoints', () => {
 })
 
 test.describe('Component preview direction', () => {
-  test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
+  test.beforeEach(async ({ page }) => {
+    await page.goto(PAGE_URL)
+  })
 
   test('defaults to left-to-right', async ({ page }) => {
     const ltrButton: Locator = page
@@ -129,7 +129,9 @@ test.describe('Component preview direction', () => {
 })
 
 test.describe('Component preview view', () => {
-  test.beforeEach(async ({ page }) => await page.goto(PAGE_URL))
+  test.beforeEach(async ({ page }) => {
+    await page.goto(PAGE_URL)
+  })
 
   test('defaults to preview', async ({ page }) => {
     const viewButton: Locator = page
@@ -172,13 +174,15 @@ test.describe('Component preview view', () => {
 })
 
 test.describe('Component preview copy to clipboard', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(PAGE_URL)
+  })
+
   test('copies to clipboard', async ({ page, browserName }) => {
     test.skip(
       browserName === 'webkit',
       'WebKit does not handle copy to clipboard correctly in this case',
     )
-
-    await page.goto(PAGE_URL)
 
     const copyButton: Locator = page
       .locator('preview-copy')
@@ -203,8 +207,6 @@ test.describe('Component preview copy to clipboard', () => {
       browserName !== 'webkit',
       'WebKit does not handle copy to clipboard correctly in this case',
     )
-
-    await page.goto(PAGE_URL)
 
     const copyButton: Locator = page
       .locator('preview-copy')

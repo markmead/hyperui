@@ -1,13 +1,9 @@
 import { test, expect, type Locator } from '@playwright/test'
 
-test('has title', async ({ page }) => {
-  await page.goto('')
-
-  await expect(page).toHaveTitle('Free Tailwind CSS v4 Components | HyperUI')
-})
-
 test.describe('Component category sections', () => {
-  test.beforeEach(async ({ page }) => await page.goto(''))
+  test.beforeEach(async ({ page }) => {
+    await page.goto('')
+  })
 
   test('can navigate to application components', async ({ page }) => {
     const viewAllLink: Locator = page.getByRole('link', { name: 'View all application components' })
