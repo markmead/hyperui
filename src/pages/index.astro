@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content'
 
 import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../consts'
 
+import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
 
@@ -40,6 +41,10 @@ const neobrutalism = neobrutalismRaw
         project. With a range of components, you can build your next marketing website, admin
         dashboard, eCommerce store and much more.
       </p>
+
+      <div class="*:mx-auto">
+        <BaseAd />
+      </div>
     </div>
   </section>
 
