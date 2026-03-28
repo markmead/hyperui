@@ -13,12 +13,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@astrojs/mdx": "5.0.2",
-    "@astrojs/rss": "^4.0.17",
-    "@astrojs/sitemap": "3.7.1",
-    "@lucide/astro": "^0.577.0",
+    "@astrojs/mdx": "5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "3.7.2",
+    "@lucide/astro": "^1.7.0",
     "@vercel/analytics": "^2.0.1",
-    "astro": "6.0.8"
+    "astro": "6.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -36,7 +36,7 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "rehype-external-links": "^3.0.0",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "typescript-eslint": "^8.57.2"
   }
 }
