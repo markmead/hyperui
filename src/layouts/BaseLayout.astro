@@ -29,6 +29,17 @@ const { title, description } = Astro.props
 
     <SiteHeader />
 
+    <aside
+      class="border-b border-gray-200 bg-gray-50 p-4 text-center text-sm font-medium text-gray-700"
+    >
+      Enjoying HyperUI? Consider <a
+        href="https://github.com/markmead/hyperui"
+        class="underline transition-colors hover:text-gray-900"
+        target="_blank"
+        rel="noreferrer">starring the repository on GitHub</a
+      > to show your support!
+    </aside>
+
     <slot />
 
     <SiteFooter />
