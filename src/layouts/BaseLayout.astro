@@ -1,6 +1,8 @@
 ---
 import Analytics from '@vercel/analytics/astro'
 
+import { ExternalLink } from '@lucide/astro'
+
 import SiteHeader from '../components/SiteHeader.astro'
 import SiteFooter from '../components/SiteFooter.astro'
 import BaseHead from '../components/BaseHead.astro'
@@ -22,7 +24,7 @@ const { title, description } = Astro.props
   <body class="font-sans antialiased">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:font-medium focus:text-gray-900 focus:shadow-lg"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:z-60 focus:-translate-x-1/2 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-gray-900 focus:shadow-lg"
     >
       Skip to content
     </a>
@@ -43,6 +45,17 @@ const { title, description } = Astro.props
     <slot />
 
     <SiteFooter />
+
+    <a
+      href="https://js.hyperui.dev/?ref=hyperui"
+      target="_blank"
+      rel="noreferrer"
+      class="fixed right-4 bottom-4 z-60 inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-lg transition-colors hover:border-gray-800 hover:bg-gray-800"
+    >
+      HyperUX — Behavior-first Alpine.js patterns you can copy, adapt, and ship.
+
+      <ExternalLink class="size-4" />
+    </a>
 
     <Analytics />
   </body>
