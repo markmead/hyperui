@@ -46,16 +46,18 @@ const { title, description } = Astro.props
 
     <SiteFooter />
 
-    <a
-      href="https://js.hyperui.dev/?ref=hyperui"
-      target="_blank"
-      rel="noreferrer"
-      class="fixed right-4 bottom-4 z-60 inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-lg transition-colors hover:border-gray-800 hover:bg-gray-800"
-    >
-      HyperUX — Behavior-first Alpine.js patterns you can copy, adapt, and ship.
+    <div class="pointer-events-none fixed inset-x-0 bottom-0 z-60 flex justify-end p-4">
+      <a
+        href="https://js.hyperui.dev/?ref=hyperui"
+        target="_blank"
+        rel="noreferrer"
+        class="pointer-events-auto inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-lg transition-colors hover:border-gray-800 hover:bg-gray-800"
+      >
+        HyperUX — Behavior-first Alpine.js patterns you can copy, adapt, and ship.
 
-      <ExternalLink class="size-4" />
-    </a>
+        <ExternalLink class="size-4 shrink-0" />
+      </a>
+    </div>
 
     <Analytics />
   </body>
