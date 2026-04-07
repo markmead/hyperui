@@ -13,3 +13,6 @@ pnpm-lock.yaml
 
 # css
 public/component.css
+
+# wrangler
+wrangler.jsonc

@@ -9,16 +9,19 @@
     "test:ui": "playwright show-report",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
+    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
+    "generate-types": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "^13.1.7",
     "@astrojs/mdx": "5.0.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "3.7.2",
     "@lucide/astro": "^1.7.0",
     "@vercel/analytics": "^2.0.1",
-    "astro": "6.1.1"
+    "astro": "6.1.1",
+    "wrangler": "^4.80.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -38,5 +41,8 @@
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.57.2"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }

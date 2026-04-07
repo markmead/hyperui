@@ -7,17 +7,22 @@ import sitemap from '@astrojs/sitemap'
 import rehypeExternalLinks from 'rehype-external-links'
 import tailwindcss from '@tailwindcss/vite'
 
+import cloudflare from '@astrojs/cloudflare'
+
 export default defineConfig({
   site: 'https://hyperui.dev',
+
   integrations: [
     mdx({
       optimize: true,
     }),
     sitemap(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   markdown: {
     rehypePlugins: [
       [
@@ -30,6 +35,7 @@ export default defineConfig({
     ],
     syntaxHighlight: false,
   },
+
   fonts: [
     {
       cssVariable: '--font-google-sans-flex',
@@ -38,7 +44,10 @@ export default defineConfig({
       weights: [400, 500, 600, 700, 800],
     },
   ],
+
   redirects: {
     '/components/marketing/forms': '/components/marketing/contact-forms',
   },
+
+  adapter: cloudflare(),
 })
