@@ -2,15 +2,13 @@
   "name": "hyperui",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "wrangler types && astro dev",
+    "build": "wrangler types && astro build",
     "check": "astro check",
     "test": "playwright test",
-    "test:ui": "playwright show-report",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
-    "generate-types": "wrangler types"
+    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
@@ -19,7 +17,6 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "3.7.2",
     "@lucide/astro": "^1.7.0",
-    "@vercel/analytics": "^2.0.1",
     "astro": "6.1.1",
     "wrangler": "^4.80.0"
   },

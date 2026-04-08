@@ -31,8 +31,6 @@ const { collections, posts } = Astro.props
 </search-results>
 
 <script>
-  import { track } from '@vercel/analytics'
-
   interface Result {
     category: string
     components?: number
@@ -49,7 +47,6 @@ const { collections, posts } = Astro.props
 
     private enterHandler: (() => void) | null = null
     private escapeHandler: (() => void) | null = null
-    private resultClickHandler: ((clickEvent: Event) => void) | null = null
     private searchHandler: ((event: CustomEvent<{ value: string }>) => void) | null = null
 
     connectedCallback() {
@@ -92,17 +89,6 @@ const { collections, posts } = Astro.props
 
         containerEl.setAttribute('data-container', 'false')
         errorEl.setAttribute('data-error', 'false')
-      }
-
-      this.resultClickHandler = (clickEvent) => {
-        const clickTarget = clickEvent.target as HTMLElement
-        const resultLink = clickTarget.closest('a')
-
-        if (resultLink) {
-          track('Search Result Clicked', {
-            href: resultLink.getAttribute('href') || '',
-          })
-        }
       }
 
       this.searchHandler = (searchEvent) => {
@@ -202,31 +188,18 @@ const { collections, posts } = Astro.props
       document.addEventListener('input:escape', this.escapeHandler)
       // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
       document.addEventListener('input:search', this.searchHandler)
-      resultsEl.addEventListener('click', this.resultClickHandler)
     }
 
     disconnectedCallback() {
-      const resultsEl = this.querySelector('[data-list]')
-
-      if (
-        this.enterHandler &&
-        this.escapeHandler &&
-        this.searchHandler &&
-        this.resultClickHandler
-      ) {
+      if (this.enterHandler && this.escapeHandler && this.searchHandler) {
         document.removeEventListener('input:enter', this.enterHandler)
         document.removeEventListener('input:escape', this.escapeHandler)
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener('input:search', this.searchHandler)
 
-        if (resultsEl) {
-          resultsEl.removeEventListener('click', this.resultClickHandler)
-        }
-
         this.enterHandler = null
         this.escapeHandler = null
         this.searchHandler = null
-        this.resultClickHandler = null
       }
 
       this.collectionItems = []

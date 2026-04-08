@@ -1,6 +1,4 @@
 ---
-import Analytics from '@vercel/analytics/astro'
-
 import { ExternalLink } from '@lucide/astro'
 
 import SiteHeader from '../components/SiteHeader.astro'
@@ -58,7 +56,5 @@ const { title, description } = Astro.props
         <ExternalLink class="size-4 shrink-0" />
       </a>
     </div>
-
-    <Analytics />
   </body>
 </html>

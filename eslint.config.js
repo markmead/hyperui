@@ -7,7 +7,7 @@ import globals from 'globals'
 import typescript from 'typescript-eslint'
 
 export default defineConfig([
-  globalIgnores(['dist', '.astro']),
+  globalIgnores(['dist', '.astro', '*.d.ts']),
 
   js.configs.recommended,
   ...typescript.configs.recommended,
