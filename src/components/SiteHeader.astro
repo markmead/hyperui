@@ -1,6 +1,8 @@
 ---
 import { SITE_TITLE } from '../consts'
 
+import { ExternalLink } from '@lucide/astro'
+
 import DropdownWrapper from './DropdownWrapper.astro'
 import HeaderLink from './HeaderLink.astro'
 import SearchWrapper from './SearchWrapper.astro'
@@ -19,6 +21,15 @@ import SearchWrapper from './SearchWrapper.astro'
       <HeaderLink href="/components/marketing"> Marketing </HeaderLink>
       <HeaderLink href="/components/neobrutalism"> Neobrutalism </HeaderLink>
       <HeaderLink href="/blog"> Blog </HeaderLink>
+      <HeaderLink
+        href="https://js.hyperui.dev?ref=hyperui"
+        class="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 transition-colors hover:bg-gray-50"
+        target="_blank"
+        rel="noreferrer"
+      >
+        UX
+        <ExternalLink class="size-4 shrink-0" />
+      </HeaderLink>
     </nav>
 
     <div class="flex flex-1 items-center justify-end gap-2">

@@ -1,4 +1,6 @@
 ---
+import { ExternalLink } from '@lucide/astro'
+
 import HeaderLink from './HeaderLink.astro'
 ---
 
@@ -22,6 +24,16 @@ import HeaderLink from './HeaderLink.astro'
     </HeaderLink>
 
     <HeaderLink class="block px-4 py-2 focus:ring-inset" href="/blog"> Blog </HeaderLink>
+
+    <HeaderLink
+      href="https://js.hyperui.dev?ref=hyperui"
+      class="flex items-center gap-1 border-t border-gray-200 bg-gray-50 px-4 py-2 focus:ring-inset"
+      target="_blank"
+      rel="noreferrer"
+    >
+      HyperUX
+      <ExternalLink class="size-4 shrink-0" />
+    </HeaderLink>
   </div>
 </dropdown-menu>
 
