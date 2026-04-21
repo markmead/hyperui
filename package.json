@@ -17,7 +17,7 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "3.7.2",
     "@lucide/astro": "^1.7.0",
-    "astro": "6.1.1",
+    "astro": "6.1.6",
     "wrangler": "^4.81.0"
   },
   "devDependencies": {
