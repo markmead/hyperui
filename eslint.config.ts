@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 import astro from 'eslint-plugin-astro'

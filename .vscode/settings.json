@@ -3,8 +3,8 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml",
-    "astro.config.js": "tsconfig.json",
-    "eslint.config.js": ".prettierrc",
+    "astro.config.ts": "tsconfig.json",
+    "eslint.config.ts": ".prettierrc",
     "README.md": "CONTRIBUTING.md, LICENSE"
   }
 }

@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig, fontProviders } from 'astro/config'
 
 import mdx from '@astrojs/mdx'
@@ -44,10 +43,6 @@ export default defineConfig({
       weights: [400, 500, 600, 700, 800],
     },
   ],
-
-  redirects: {
-    '/components/marketing/forms': '/components/marketing/contact-forms',
-  },
 
   adapter: cloudflare(),
 })
