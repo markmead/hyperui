@@ -1,0 +1,114 @@
+---
+import { Moon } from '@lucide/astro'
+
+interface Props {
+  src: string
+}
+
+const { src } = Astro.props
+---
+
+<preview-dark data-src={src}>
+  <button
+    type="button"
+    aria-label="Generate dark mode preview"
+    aria-pressed="false"
+    class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50"
+  >
+    <Moon class="size-4" />
+
+    <span data-text>Dark</span>
+  </button>
+</preview-dark>
+
+<script>
+  class PreviewDark extends HTMLElement {
+    private contentSrc: string | null = null
+    private isProcessing = false
+
+    private clickHandler: (() => void) | null = null
+
+    connectedCallback() {
+      this.contentSrc = this.dataset.src || null
+
+      if (!this.contentSrc) {
+        return
+      }
+
+      const buttonEl = this.querySelector('button')
+
+      if (!buttonEl) {
+        return
+      }
+
+      const buttonText = buttonEl.querySelector('span[data-text]')
+
+      if (!buttonText) {
+        return
+      }
+
+      this.clickHandler = async () => {
+        if (this.isProcessing) {
+          return
+        }
+
+        this.isProcessing = true
+        buttonEl.setAttribute('disabled', '')
+        buttonText.textContent = 'Loading...'
+
+        try {
+          const htmlResponse = await fetch(this.contentSrc!)
+
+          if (!htmlResponse.ok) {
+            throw new Error(`Failed to fetch component HTML (${htmlResponse.status})`)
+          }
+
+          const html = await htmlResponse.text()
+
+          const darkResponse = await fetch('/api/dark', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html }),
+          })
+
+          if (!darkResponse.ok) {
+            const error = await darkResponse.json().catch(() => ({ error: 'Unknown error' }))
+            throw new Error(error.error ?? 'Dark mode generation failed')
+          }
+
+          const { html: darkHtml } = await darkResponse.json()
+
+          document.dispatchEvent(
+            new CustomEvent(`preview:dark:${this.contentSrc}`, {
+              bubbles: true,
+              detail: { html: darkHtml },
+            }),
+          )
+
+          buttonEl.setAttribute('aria-pressed', 'true')
+          buttonText.textContent = 'Dark'
+        } catch (err) {
+          console.error('[PreviewDark]', err)
+          buttonText.textContent = 'Dark'
+        } finally {
+          buttonEl.removeAttribute('disabled')
+          this.isProcessing = false
+        }
+      }
+
+      buttonEl.addEventListener('click', this.clickHandler)
+    }
+
+    disconnectedCallback() {
+      const buttonEl = this.querySelector('button')
+
+      if (buttonEl && this.clickHandler) {
+        buttonEl.removeEventListener('click', this.clickHandler)
+
+        this.clickHandler = null
+      }
+    }
+  }
+
+  customElements.define('preview-dark', PreviewDark)
+</script>

@@ -5,6 +5,7 @@ import type { ComponentPreview as ComponentPreviewType } from '../types/componen
 import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
 import PreviewCopy from './PreviewCopy.astro'
+import PreviewDark from './PreviewDark.astro'
 import PreviewDetails from './PreviewDetails.astro'
 import PreviewDirection from './PreviewDirection.astro'
 import PreviewRefs from './PreviewRefs.astro'
@@ -53,6 +54,7 @@ const src = dark
         <PreviewBreakpoints {src} {breakpoints} />
         <PreviewDirection {src} />
         <PreviewView {src} />
+        {!dark && <PreviewDark {src} />}
         <PreviewCopy {src} />
       </div>
     </div>
