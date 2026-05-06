@@ -154,7 +154,9 @@ const { src } = Astro.props
         } catch (err) {
           console.error('[PreviewDark]', err)
         } finally {
-          buttonText.textContent = 'Dark'
+          const BUTTON_LABEL = 'Dark'
+
+          buttonText.textContent = BUTTON_LABEL
           buttonEl.removeAttribute('disabled')
           this.isProcessing = false
         }
