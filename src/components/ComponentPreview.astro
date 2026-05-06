@@ -11,17 +11,23 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 ---
 
 <component-preview data-src={src} class="block border-t border-gray-200">
-  <iframe
-    data-preview="true"
-    {src}
-    {title}
-    class:list={[
-      wrapper,
-      dark ? 'bg-gray-900' : 'bg-white',
-      'mx-auto w-full ring ring-gray-200 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
-    ]}
-    style="max-width: 100%;"
-    loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
+  <div class="relative">
+    <iframe
+      data-preview="true"
+      {src}
+      {title}
+      class:list={[
+        wrapper,
+        dark ? 'bg-gray-900' : 'bg-white',
+        'mx-auto w-full ring ring-gray-200 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
+      ]}
+      style="max-width: 100%;"
+      loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
+
+    <div data-dark-overlay aria-hidden="true" class="pointer-events-none absolute inset-0 hidden overflow-hidden">
+      <div data-dark-sweep class="absolute inset-y-0 w-[200%] -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+    </div>
+  </div>
 
   <div
     data-preview="true"
@@ -35,13 +41,16 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
   class ComponentPreview extends HTMLElement {
     private contentHtml: string | null = null
     private contentSrc: string | null = null
+    private originalSrc: string | null = null
 
     private iframeEl: HTMLIFrameElement | null = null
+    private overlayEl: HTMLElement | null = null
+    private sweepEl: HTMLElement | null = null
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
     private copyHandler: (() => void) | null = null
-    private darkHandler: ((event: CustomEvent<{ html: string }>) => void) | null = null
+    private darkHandler: ((event: CustomEvent<{ html: string | null; dark: boolean }>) => void) | null = null
     private directionHandler: ((event: CustomEvent<{ ltr: boolean }>) => void) | null = null
     private viewHandler: ((event: CustomEvent<{ previewing: boolean }>) => void) | null = null
 
@@ -53,11 +62,15 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       this.iframeEl = this.querySelector('iframe')
+      this.overlayEl = this.querySelector('[data-dark-overlay]')
+      this.sweepEl = this.querySelector('[data-dark-sweep]')
       this.previewEl = this.querySelector('[data-html]')
 
       if (!this.iframeEl || !this.previewEl) {
         return
       }
+
+      this.originalSrc = this.iframeEl.src
 
       this.setupEventListeners()
     }
@@ -119,14 +132,24 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       this.darkHandler = (darkEvent) => {
-        const darkHtml = darkEvent.detail.html
+        const { html: darkHtml, dark } = darkEvent.detail
 
-        if (this.iframeEl && darkHtml) {
-          this.iframeEl.srcdoc = darkHtml
-          // Invalidate the cached body HTML so that the copy button returns
-          // the dark variant instead of the previously cached light version.
+        if (!this.iframeEl) return
+
+        this.runSweep(() => {
+          if (dark && darkHtml) {
+            this.iframeEl!.classList.remove('bg-white')
+            this.iframeEl!.classList.add('bg-gray-900')
+            this.iframeEl!.srcdoc = darkHtml
+          } else {
+            this.iframeEl!.classList.remove('bg-gray-900')
+            this.iframeEl!.classList.add('bg-white')
+            this.iframeEl!.removeAttribute('srcdoc')
+            this.iframeEl!.src = this.originalSrc!
+          }
+          // Invalidate cached body HTML so the copy button returns the correct variant.
           this.contentHtml = null
-        }
+        })
       }
 
       this.viewHandler = (viewEvent) => {
@@ -181,7 +204,51 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         .join('\n')
         .trim()
     }
+
+    /**
+     * Shows a shimmer sweep animation over the iframe, calls `swapFn` at the
+     * midpoint so the content change is hidden behind the passing highlight,
+     * then hides the overlay once the sweep finishes.
+     */
+    private runSweep(swapFn: () => void) {
+      if (!this.overlayEl || !this.sweepEl) {
+        swapFn()
+        return
+      }
+
+      const SWEEP_DURATION = 700
+      const SWAP_DELAY = SWEEP_DURATION / 2
+
+      this.overlayEl.classList.remove('hidden')
+      this.sweepEl.classList.add('animate-sweep')
+
+      setTimeout(swapFn, SWAP_DELAY)
+
+      setTimeout(() => {
+        if (this.overlayEl) {
+          this.overlayEl.classList.add('hidden')
+        }
+        if (this.sweepEl) {
+          this.sweepEl.classList.remove('animate-sweep')
+        }
+      }, SWEEP_DURATION + 50)
+    }
   }
 
   customElements.define('component-preview', ComponentPreview)
 </script>
+
+<style>
+  @keyframes sweep {
+    from {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    to {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+
+  .animate-sweep {
+    animation: sweep 0.7s ease-in-out forwards;
+  }
+</style>

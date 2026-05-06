@@ -182,7 +182,9 @@ const { src } = Astro.props
 
   class PreviewDark extends HTMLElement {
     private contentSrc: string | null = null
+    private isDark = false
     private isProcessing = false
+    private cachedDarkHtml: string | null = null
 
     private clickHandler: (() => void) | null = null
 
@@ -210,11 +212,41 @@ const { src } = Astro.props
           return
         }
 
-        const BUTTON_LABEL = 'Dark'
+        // Toggle back to light
+        if (this.isDark) {
+          this.isDark = false
+          buttonText.textContent = 'Dark'
+          buttonEl.setAttribute('aria-pressed', 'false')
 
+          document.dispatchEvent(
+            new CustomEvent(`preview:dark:${this.contentSrc}`, {
+              bubbles: true,
+              detail: { html: null, dark: false },
+            }),
+          )
+
+          return
+        }
+
+        // Toggle to dark — use cached HTML if available
+        if (this.cachedDarkHtml) {
+          this.isDark = true
+          buttonText.textContent = 'Light'
+          buttonEl.setAttribute('aria-pressed', 'true')
+
+          document.dispatchEvent(
+            new CustomEvent(`preview:dark:${this.contentSrc}`, {
+              bubbles: true,
+              detail: { html: this.cachedDarkHtml, dark: true },
+            }),
+          )
+
+          return
+        }
+
+        // First time — fetch, transform, cache
         this.isProcessing = true
         buttonEl.setAttribute('disabled', '')
-        buttonText.textContent = 'Loading...'
 
         try {
           const htmlResponse = await fetch(this.contentSrc!)
@@ -224,20 +256,21 @@ const { src } = Astro.props
           }
 
           const html = await htmlResponse.text()
-          const darkHtml = toDarkTheme(html)
+          this.cachedDarkHtml = toDarkTheme(html)
 
           document.dispatchEvent(
             new CustomEvent(`preview:dark:${this.contentSrc}`, {
               bubbles: true,
-              detail: { html: darkHtml },
+              detail: { html: this.cachedDarkHtml, dark: true },
             }),
           )
 
+          this.isDark = true
+          buttonText.textContent = 'Light'
           buttonEl.setAttribute('aria-pressed', 'true')
         } catch (err) {
           console.error('[PreviewDark]', err)
         } finally {
-          buttonText.textContent = BUTTON_LABEL
           buttonEl.removeAttribute('disabled')
           this.isProcessing = false
         }
