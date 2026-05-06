@@ -218,9 +218,12 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
       const SWEEP_DURATION = 700
       const SWAP_DELAY = SWEEP_DURATION / 2
+      // Small buffer to let the CSS animation fully complete before hiding the overlay.
+      const CLEANUP_BUFFER = 50
 
       this.overlayEl.classList.remove('hidden')
-      this.sweepEl.classList.add('animate-sweep')
+      // Drive animation duration from the JS constant so both stay in sync.
+      this.sweepEl.style.animation = `sweep ${SWEEP_DURATION}ms ease-in-out forwards`
 
       setTimeout(swapFn, SWAP_DELAY)
 
@@ -229,9 +232,9 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
           this.overlayEl.classList.add('hidden')
         }
         if (this.sweepEl) {
-          this.sweepEl.classList.remove('animate-sweep')
+          this.sweepEl.style.animation = ''
         }
-      }, SWEEP_DURATION + 50)
+      }, SWEEP_DURATION + CLEANUP_BUFFER)
     }
   }
 
@@ -246,9 +249,5 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     to {
       transform: translateX(200%) skewX(-12deg);
     }
-  }
-
-  .animate-sweep {
-    animation: sweep 0.7s ease-in-out forwards;
   }
 </style>
