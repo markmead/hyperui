@@ -28,7 +28,7 @@ interface Props {
 
 const { component, category, slug, wrapper } = Astro.props
 
-const { contributors, dark, id, index, title, description = '', plugins = [] } = component
+const { contributors, dark, hasDarkVariant, id, index, title, description = '', plugins = [] } = component
 
 const src = dark
   ? `/examples/${category}/${slug}/${index}-dark.html`
@@ -54,7 +54,7 @@ const src = dark
         <PreviewBreakpoints {src} {breakpoints} />
         <PreviewDirection {src} />
         <PreviewView {src} />
-        {!dark && <PreviewDark {src} />}
+        {!dark && !hasDarkVariant && <PreviewDark {src} />}
         <PreviewCopy {src} />
       </div>
     </div>

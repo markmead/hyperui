@@ -24,8 +24,12 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       style="max-width: 100%;"
       loading={index === 1 && !dark ? 'eager' : 'lazy'}></iframe>
 
-    <div data-dark-overlay aria-hidden="true" class="pointer-events-none absolute inset-0 hidden overflow-hidden">
-      <div data-dark-sweep class="absolute inset-y-0 w-[200%] -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+    <div data-dark-overlay aria-hidden="true" class="pointer-events-none absolute inset-0 hidden overflow-hidden bg-gray-900/80">
+      <div data-dark-sweep class="absolute inset-y-0 w-[60%] -left-[60%] bg-gradient-to-r from-transparent via-white/25 to-transparent"></div>
+
+      <div class="absolute inset-0 flex items-center justify-center">
+        <p data-dark-label class="text-sm font-medium text-white">Generating dark mode...</p>
+      </div>
     </div>
   </div>
 
@@ -46,6 +50,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     private iframeEl: HTMLIFrameElement | null = null
     private overlayEl: HTMLElement | null = null
     private sweepEl: HTMLElement | null = null
+    private labelEl: HTMLElement | null = null
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
@@ -64,6 +69,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       this.iframeEl = this.querySelector('iframe')
       this.overlayEl = this.querySelector('[data-dark-overlay]')
       this.sweepEl = this.querySelector('[data-dark-sweep]')
+      this.labelEl = this.querySelector('[data-dark-label]')
       this.previewEl = this.querySelector('[data-html]')
 
       if (!this.iframeEl || !this.previewEl) {
@@ -136,7 +142,9 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         if (!this.iframeEl) return
 
-        this.runSweep(() => {
+        const label = dark ? 'Generating dark mode...' : 'Restoring light mode...'
+
+        this.runSweep(label, () => {
           if (dark && darkHtml) {
             this.iframeEl!.classList.remove('bg-white')
             this.iframeEl!.classList.add('bg-gray-900')
@@ -206,20 +214,25 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     }
 
     /**
-     * Shows a shimmer sweep animation over the iframe, calls `swapFn` at the
-     * midpoint so the content change is hidden behind the passing highlight,
-     * then hides the overlay once the sweep finishes.
+     * Shows a prominent shimmer sweep animation over the iframe for at least
+     * 1.5 s, then calls `swapFn` to change the content, and finally hides the
+     * overlay. A text `label` is displayed in the overlay while it is active.
      */
-    private runSweep(swapFn: () => void) {
+    private runSweep(label: string, swapFn: () => void) {
       if (!this.overlayEl || !this.sweepEl) {
         swapFn()
         return
       }
 
-      const SWEEP_DURATION = 700
-      const SWAP_DELAY = SWEEP_DURATION / 2
-      // Small buffer to let the CSS animation fully complete before hiding the overlay.
-      const CLEANUP_BUFFER = 50
+      // Sweep animation runs for SWEEP_DURATION ms; content swaps at SWAP_DELAY.
+      const SWEEP_DURATION = 1500
+      const SWAP_DELAY = SWEEP_DURATION
+      // Small buffer so the overlay lingers briefly after the swap.
+      const CLEANUP_BUFFER = 200
+
+      if (this.labelEl) {
+        this.labelEl.textContent = label
+      }
 
       this.overlayEl.classList.remove('hidden')
       // Drive animation duration from the JS constant so both stay in sync.
