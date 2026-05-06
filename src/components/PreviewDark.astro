@@ -22,80 +22,161 @@ const { src } = Astro.props
 </preview-dark>
 
 <script>
-  const DARK_CLASS_MAP: Record<string, string> = {
-    // Backgrounds
-    'bg-white': 'dark:bg-gray-900',
-    'bg-gray-50': 'dark:bg-gray-800',
-    'bg-gray-100': 'dark:bg-gray-800',
-    'bg-gray-200': 'dark:bg-gray-700',
-    'bg-gray-300': 'dark:bg-gray-600',
-
-    // Text
-    'text-gray-900': 'dark:text-white',
-    'text-gray-800': 'dark:text-gray-100',
-    'text-gray-700': 'dark:text-gray-200',
-    'text-gray-600': 'dark:text-gray-300',
-    'text-gray-500': 'dark:text-gray-400',
-    'text-gray-400': 'dark:text-gray-500',
-
-    // Borders
-    'border-gray-100': 'dark:border-gray-800',
-    'border-gray-200': 'dark:border-gray-700',
-    'border-gray-300': 'dark:border-gray-600',
-
-    // Divide
-    'divide-gray-100': 'dark:divide-gray-800',
-    'divide-gray-200': 'dark:divide-gray-700',
-    'divide-gray-300': 'dark:divide-gray-600',
-
-    // Ring offset
-    'ring-offset-white': 'dark:ring-offset-gray-900',
-
-    // Hover
-    'hover:bg-white': 'dark:hover:bg-gray-900',
-    'hover:bg-gray-50': 'dark:hover:bg-gray-800',
-    'hover:bg-gray-100': 'dark:hover:bg-gray-700',
-    'hover:text-gray-900': 'dark:hover:text-white',
-    'hover:text-gray-700': 'dark:hover:text-gray-200',
-    'hover:text-gray-500/75': 'dark:hover:text-white/75',
-    'hover:border-gray-300': 'dark:hover:border-gray-600',
-
-    // Focus
-    'focus:ring-offset-white': 'dark:focus:ring-offset-gray-900',
-
-    // Semantic colors
-    'bg-green-100': 'dark:bg-green-700',
-    'text-green-600': 'dark:text-green-50',
-    'bg-red-100': 'dark:bg-red-700',
-    'text-red-600': 'dark:text-red-50',
-    'bg-blue-100': 'dark:bg-blue-700',
-    'text-blue-600': 'dark:text-blue-50',
-    'bg-purple-100': 'dark:bg-purple-700',
-    'text-purple-700': 'dark:text-purple-100',
-    'bg-amber-100': 'dark:bg-amber-700',
-    'text-amber-600': 'dark:text-amber-50',
-    'bg-teal-100': 'dark:bg-teal-700',
-    'text-teal-600': 'dark:text-teal-300',
+  /**
+   * Maps a shade number to its dark-mode equivalent.
+   * 900 is intentionally excluded — it is handled separately for gray via
+   * the gray-900 → white special case; for all other color families a -900
+   * shade is already dark enough and does not need a dark: counterpart.
+   */
+  const SHADE_MAP: Record<number, number> = {
+    50: 800,
+    100: 800,
+    200: 700,
+    300: 600,
+    400: 500,
+    500: 400,
+    600: 300,
+    700: 200,
+    800: 100,
   }
 
-  function toDarkTheme(html: string): string {
-    return html.replace(/class="([^"]*)"/g, (match, classes: string) => {
-      const tokens = classes.trim().split(/\s+/)
-      const existingSet = new Set(tokens)
-      const toAdd: string[] = []
+  /** Maps specific standalone color tokens to their dark-mode equivalents. */
+  const COLOR_MAP: Record<string, string> = {
+    white: 'gray-900',
+    'white/': 'gray-900/',
+    black: 'white',
+    'black/': 'white/',
+  }
 
-      for (const token of tokens) {
-        const darkClass = DARK_CLASS_MAP[token]
+  /** All Tailwind CSS color families. */
+  const COLOR_FAMILIES: string[] = [
+    'red',
+    'orange',
+    'amber',
+    'yellow',
+    'lime',
+    'green',
+    'emerald',
+    'teal',
+    'cyan',
+    'sky',
+    'blue',
+    'indigo',
+    'violet',
+    'purple',
+    'fuchsia',
+    'pink',
+    'rose',
+    'slate',
+    'gray',
+    'zinc',
+    'neutral',
+    'stone',
+  ]
 
-        if (darkClass && !existingSet.has(darkClass)) {
-          toAdd.push(darkClass)
-          existingSet.add(darkClass)
+  /**
+   * Variant prefixes that should be stripped before colour matching so the
+   * resulting dark: class is re-prefixed correctly.
+   * `dark` is included to prevent `dark:dark:` double-prefixing, though
+   * `transformClassAttribute` already skips classes that start with `dark:`.
+   */
+  const VARIANT_PREFIXES: string[] = [
+    'hover',
+    'focus',
+    'active',
+    'disabled',
+    'group-hover',
+    'group-focus',
+    'group',
+    'peer-hover',
+    'peer-focus',
+    'peer-checked',
+    'checked',
+    'has-checked',
+    'before',
+    'after',
+    'placeholder',
+    'ltr',
+    'rtl',
+    'dark',
+  ]
+
+  /**
+   * Returns the dark-mode equivalent of a single Tailwind class, or the
+   * original class unchanged if no mapping is found.
+   */
+  function transformClass(className: string): string {
+    const variantMatch = className.match(/^([\w-]*?):(.+)$/)
+
+    let variantPrefix = ''
+    let classWithoutVariant = className
+
+    if (variantMatch) {
+      const potentialVariant = variantMatch[1]
+
+      if (VARIANT_PREFIXES.includes(potentialVariant)) {
+        variantPrefix = `${potentialVariant}:`
+        classWithoutVariant = variantMatch[2]
+      }
+    }
+
+    // gray-900 maps to white (e.g. text-gray-900 → dark:text-white)
+    const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
+
+    if (gray900Match) {
+      const [, grayPrefix, , graySuffix = ''] = gray900Match
+
+      return `${className} dark:${variantPrefix}${grayPrefix}white${graySuffix}`
+    }
+
+    // white / black tokens (e.g. bg-white → dark:bg-gray-900)
+    for (const [lightColor, darkColor] of Object.entries(COLOR_MAP)) {
+      if (classWithoutVariant.includes(lightColor)) {
+        const colorMatch = classWithoutVariant.match(/^([\w-]*)(white|black)(.*?)$/)
+
+        if (colorMatch) {
+          const [, colorPrefix, , colorSuffix] = colorMatch
+          const darkClass = `${colorPrefix}${darkColor}${colorSuffix}`
+
+          return `${className} dark:${variantPrefix}${darkClass}`
         }
       }
+    }
 
-      if (toAdd.length === 0) return match
+    // All named colour families with numeric shades (e.g. bg-blue-100 → dark:bg-blue-800)
+    for (const colorFamily of COLOR_FAMILIES) {
+      const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d+)(.*?)$`)
+      const colorMatch = classWithoutVariant.match(colorRegex)
 
-      return `class="${[...tokens, ...toAdd].join(' ')}"`
+      if (colorMatch) {
+        const [, colorPrefix, colorShade, colorSuffix] = colorMatch
+        const shadeNum = parseInt(colorShade, 10)
+
+        if (shadeNum in SHADE_MAP) {
+          const darkShade = SHADE_MAP[shadeNum]
+          const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
+
+          return `${className} dark:${variantPrefix}${darkClass}`
+        }
+      }
+    }
+
+    return className
+  }
+
+  /** Transforms all Tailwind classes in a class attribute string. */
+  function transformClassAttribute(classAttr: string): string {
+    return classAttr
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((className) => (className.startsWith('dark:') ? className : transformClass(className)))
+      .join(' ')
+  }
+
+  /** Transforms all class="..." attributes in an HTML string. */
+  function toDarkTheme(html: string): string {
+    return html.replace(/class="([^"]*)"/g, (_, classAttr: string) => {
+      return `class="${transformClassAttribute(classAttr)}"`
     })
   }
 
@@ -129,6 +210,8 @@ const { src } = Astro.props
           return
         }
 
+        const BUTTON_LABEL = 'Dark'
+
         this.isProcessing = true
         buttonEl.setAttribute('disabled', '')
         buttonText.textContent = 'Loading...'
@@ -154,8 +237,6 @@ const { src } = Astro.props
         } catch (err) {
           console.error('[PreviewDark]', err)
         } finally {
-          const BUTTON_LABEL = 'Dark'
-
           buttonText.textContent = BUTTON_LABEL
           buttonEl.removeAttribute('disabled')
           this.isProcessing = false
@@ -178,4 +259,5 @@ const { src } = Astro.props
 
   customElements.define('preview-dark', PreviewDark)
 </script>
+
 

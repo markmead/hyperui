@@ -3,8 +3,8 @@
 /**
  * Dark Mode Variant Generator (CLI)
  *
- * Generates -dark.html versions of component HTML files by appending
- * Tailwind CSS dark: variant classes based on a predefined class map.
+ * Generates -dark.html versions of component HTML files by adding
+ * Tailwind CSS dark: variant classes based on a shade/color map.
  *
  * Usage:
  *   pnpm dark:generate <component-folder>
@@ -13,148 +13,259 @@
  *   pnpm dark:generate public/examples/application/accordions
  */
 
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs'
-import { join, resolve } from 'path'
+import fs from 'fs'
+import path from 'path'
 
-const DARK_CLASS_MAP = {
-  // Backgrounds
-  'bg-white': 'dark:bg-gray-900',
-  'bg-gray-50': 'dark:bg-gray-800',
-  'bg-gray-100': 'dark:bg-gray-800',
-  'bg-gray-200': 'dark:bg-gray-700',
-  'bg-gray-300': 'dark:bg-gray-600',
-
-  // Text
-  'text-gray-900': 'dark:text-white',
-  'text-gray-800': 'dark:text-gray-100',
-  'text-gray-700': 'dark:text-gray-200',
-  'text-gray-600': 'dark:text-gray-300',
-  'text-gray-500': 'dark:text-gray-400',
-  'text-gray-400': 'dark:text-gray-500',
-
-  // Borders
-  'border-gray-100': 'dark:border-gray-800',
-  'border-gray-200': 'dark:border-gray-700',
-  'border-gray-300': 'dark:border-gray-600',
-
-  // Divide
-  'divide-gray-100': 'dark:divide-gray-800',
-  'divide-gray-200': 'dark:divide-gray-700',
-  'divide-gray-300': 'dark:divide-gray-600',
-
-  // Ring offset
-  'ring-offset-white': 'dark:ring-offset-gray-900',
-
-  // Hover
-  'hover:bg-white': 'dark:hover:bg-gray-900',
-  'hover:bg-gray-50': 'dark:hover:bg-gray-800',
-  'hover:bg-gray-100': 'dark:hover:bg-gray-700',
-  'hover:text-gray-900': 'dark:hover:text-white',
-  'hover:text-gray-700': 'dark:hover:text-gray-200',
-  'hover:text-gray-500/75': 'dark:hover:text-white/75',
-  'hover:border-gray-300': 'dark:hover:border-gray-600',
-
-  // Focus
-  'focus:ring-offset-white': 'dark:focus:ring-offset-gray-900',
-
-  // Semantic colors
-  'bg-green-100': 'dark:bg-green-700',
-  'text-green-600': 'dark:text-green-50',
-  'bg-red-100': 'dark:bg-red-700',
-  'text-red-600': 'dark:text-red-50',
-  'bg-blue-100': 'dark:bg-blue-700',
-  'text-blue-600': 'dark:text-blue-50',
-  'bg-purple-100': 'dark:bg-purple-700',
-  'text-purple-700': 'dark:text-purple-100',
-  'bg-amber-100': 'dark:bg-amber-700',
-  'text-amber-600': 'dark:text-amber-50',
-  'bg-teal-100': 'dark:bg-teal-700',
-  'text-teal-600': 'dark:text-teal-300',
+/**
+ * Maps a shade number to its dark-mode equivalent.
+ * 900 is intentionally excluded — it is handled separately for gray via
+ * the gray-900 → white special case; for all other color families a -900
+ * shade is already dark enough and does not need a dark: counterpart.
+ */
+const SHADE_MAP = {
+  50: 800,
+  100: 800,
+  200: 700,
+  300: 600,
+  400: 500,
+  500: 400,
+  600: 300,
+  700: 200,
+  800: 100,
 }
 
-function toDarkTheme(html) {
-  return html.replace(/class="([^"]*)"/g, (match, classes) => {
-    const tokens = classes.trim().split(/\s+/)
-    const existingSet = new Set(tokens)
-    const toAdd = []
+/** Maps specific standalone color tokens to their dark-mode equivalents. */
+const COLOR_MAP = {
+  white: 'gray-900',
+  'white/': 'gray-900/',
+  black: 'white',
+  'black/': 'white/',
+}
 
-    for (const token of tokens) {
-      const darkClass = DARK_CLASS_MAP[token]
+/** All Tailwind CSS color families. */
+const COLOR_FAMILIES = [
+  'red',
+  'orange',
+  'amber',
+  'yellow',
+  'lime',
+  'green',
+  'emerald',
+  'teal',
+  'cyan',
+  'sky',
+  'blue',
+  'indigo',
+  'violet',
+  'purple',
+  'fuchsia',
+  'pink',
+  'rose',
+  'slate',
+  'gray',
+  'zinc',
+  'neutral',
+  'stone',
+]
 
-      if (darkClass && !existingSet.has(darkClass)) {
-        toAdd.push(darkClass)
-        existingSet.add(darkClass)
+/**
+ * Variant prefixes that should be stripped before colour matching so the
+ * resulting dark: class is re-prefixed correctly.
+ * `dark` is included to prevent `dark:dark:` double-prefixing, though
+ * `transformClassAttribute` already skips classes that start with `dark:`.
+ */
+const VARIANT_PREFIXES = [
+  'hover',
+  'focus',
+  'active',
+  'disabled',
+  'group-hover',
+  'group-focus',
+  'group',
+  'peer-hover',
+  'peer-focus',
+  'peer-checked',
+  'checked',
+  'has-checked',
+  'before',
+  'after',
+  'placeholder',
+  'ltr',
+  'rtl',
+  'dark',
+]
+
+/**
+ * Returns the dark-mode equivalent of a single Tailwind class, or the
+ * original class unchanged if no mapping is found.
+ */
+function transformClass(className) {
+  const variantMatch = className.match(/^([\w-]*?):(.+)$/)
+
+  let variantPrefix = ''
+  let classWithoutVariant = className
+
+  if (variantMatch) {
+    const potentialVariant = variantMatch[1]
+
+    if (VARIANT_PREFIXES.includes(potentialVariant)) {
+      variantPrefix = `${potentialVariant}:`
+      classWithoutVariant = variantMatch[2]
+    }
+  }
+
+  // gray-900 maps to white (e.g. text-gray-900 → dark:text-white)
+  const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
+
+  if (gray900Match) {
+    const [, grayPrefix, , graySuffix = ''] = gray900Match
+
+    return `${className} dark:${variantPrefix}${grayPrefix}white${graySuffix}`
+  }
+
+  // white / black tokens (e.g. bg-white → dark:bg-gray-900)
+  for (const [lightColor, darkColor] of Object.entries(COLOR_MAP)) {
+    if (classWithoutVariant.includes(lightColor)) {
+      const colorMatch = classWithoutVariant.match(/^([\w-]*)(white|black)(.*?)$/)
+
+      if (colorMatch) {
+        const [, colorPrefix, , colorSuffix] = colorMatch
+        const darkClass = `${colorPrefix}${darkColor}${colorSuffix}`
+
+        return `${className} dark:${variantPrefix}${darkClass}`
       }
     }
+  }
 
-    if (toAdd.length === 0) return match
+  // All named colour families with numeric shades (e.g. bg-blue-100 → dark:bg-blue-800)
+  for (const colorFamily of COLOR_FAMILIES) {
+    const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d+)(.*?)$`)
+    const colorMatch = classWithoutVariant.match(colorRegex)
 
-    return `class="${[...tokens, ...toAdd].join(' ')}"`
+    if (colorMatch) {
+      const [, colorPrefix, colorShade, colorSuffix] = colorMatch
+      const shadeNum = parseInt(colorShade, 10)
+
+      if (shadeNum in SHADE_MAP) {
+        const darkShade = SHADE_MAP[shadeNum]
+        const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
+
+        return `${className} dark:${variantPrefix}${darkClass}`
+      }
+    }
+  }
+
+  return className
+}
+
+/** Transforms all Tailwind classes in a class attribute string. */
+function transformClassAttribute(classAttr) {
+  if (!classAttr) return classAttr
+
+  return classAttr
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((className) => (className.startsWith('dark:') ? className : transformClass(className)))
+    .join(' ')
+}
+
+/** Transforms all class="..." attributes in an HTML string. */
+function toDarkTheme(htmlContent) {
+  return htmlContent.replace(/class="([^"]*)"/g, (_, classAttr) => {
+    return `class="${transformClassAttribute(classAttr)}"`
   })
 }
 
-function main() {
-  const [, , folderArg] = process.argv
+function isPathWithinBounds(targetPath, allowedParent) {
+  const normalizedTarget = path.normalize(path.resolve(targetPath))
+  const normalizedParent = path.normalize(path.resolve(allowedParent))
 
-  if (!folderArg) {
-    console.error('Usage: pnpm dark:generate <component-folder>')
-    console.error('Example: pnpm dark:generate public/examples/application/accordions')
+  return (
+    normalizedTarget.startsWith(normalizedParent + path.sep) ||
+    normalizedTarget === normalizedParent
+  )
+}
+
+function validateComponentPath(folderPath) {
+  const absolutePath = path.resolve(folderPath)
+  const projectRoot = process.cwd()
+  const allowedComponentPath = path.join(projectRoot, 'public', 'examples')
+
+  if (!isPathWithinBounds(absolutePath, allowedComponentPath)) {
+    console.error(`❌ Error: Component path must be within "${allowedComponentPath}"`)
+    console.error(`🙅 Provided path: ${absolutePath}`)
+
     process.exit(1)
   }
 
-  const folder = resolve(folderArg)
+  return absolutePath
+}
 
-  if (!existsSync(folder)) {
-    console.error(`Folder not found: ${folder}`)
+function processFolder() {
+  const folderPath = process.argv[2]
+
+  if (!folderPath) {
+    console.error('❌ Error: Please provide a folder path')
+    console.error('Usage: pnpm dark:generate public/examples/<category>/<component>')
+
     process.exit(1)
   }
 
-  const stat = statSync(folder)
+  const absolutePath = validateComponentPath(folderPath)
 
-  if (!stat.isDirectory()) {
-    console.error(`Not a directory: ${folder}`)
+  if (!fs.existsSync(absolutePath)) {
+    console.error(`❌ Error: Folder not found: ${absolutePath}`)
+
     process.exit(1)
   }
 
-  const files = readdirSync(folder).filter(
-    (f) => f.endsWith('.html') && !f.endsWith('-dark.html'),
+  if (!fs.statSync(absolutePath).isDirectory()) {
+    console.error(`❌ Error: Path is not a directory: ${absolutePath}`)
+
+    process.exit(1)
+  }
+
+  const htmlFiles = fs.readdirSync(absolutePath).filter((file) => file.endsWith('.html'))
+  const lightFiles = htmlFiles.filter((file) => !file.includes('-dark'))
+  const darkFiles = new Set(htmlFiles.filter((file) => file.includes('-dark')))
+
+  const filesToProcess = lightFiles.filter(
+    (htmlFile) => !darkFiles.has(htmlFile.replace('.html', '-dark.html')),
   )
 
-  if (files.length === 0) {
-    console.log('No HTML files found to process.')
+  if (filesToProcess.length === 0) {
+    console.log('✅ No files need dark variants in this folder')
+
     return
   }
 
-  console.log(`Found ${files.length} HTML file(s) to process in ${folder}\n`)
+  console.log(`📁 Processing folder: ${absolutePath}`)
+  console.log(`🔍 Found ${filesToProcess.length} file(s) without dark variants\n`)
 
   let created = 0
-  let skipped = 0
 
-  for (const file of files) {
-    const filePath = join(folder, file)
-    const darkFilePath = join(folder, file.replace('.html', '-dark.html'))
-
-    if (existsSync(darkFilePath)) {
-      console.log(`⏭  Skipping ${file} — dark variant already exists`)
-      skipped++
-      continue
-    }
+  for (const processFile of filesToProcess) {
+    const lightPath = path.join(absolutePath, processFile)
+    const darkPath = path.join(absolutePath, processFile.replace('.html', '-dark.html'))
 
     try {
-      const html = readFileSync(filePath, 'utf8')
-      const darkHtml = toDarkTheme(html)
+      const lightContent = fs.readFileSync(lightPath, 'utf-8')
+      const darkContent = toDarkTheme(lightContent)
 
-      writeFileSync(darkFilePath, darkHtml, 'utf8')
+      fs.writeFileSync(darkPath, darkContent, 'utf-8')
 
-      console.log(`✓  Generated ${file.replace('.html', '-dark.html')}`)
+      console.log(`✨ Created: ${processFile.replace('.html', '-dark.html')}`)
+
       created++
-    } catch (err) {
-      console.error(`✗  Error processing ${file}: ${err.message}`)
+    } catch {
+      console.error(`❌ Error processing ${processFile}`)
     }
   }
 
-  console.log(`\nDone. Created: ${created}, Skipped: ${skipped}`)
+  console.log('')
+  console.log(`✅ Done! Generated ${created} dark variant(s)`)
+  console.log('👋 Remember to manually update the related .mdx file with dark: true if needed')
 }
 
-main()
+processFolder()
 
