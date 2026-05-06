@@ -52,6 +52,8 @@ const { src } = Astro.props
           return
         }
 
+        const BUTTON_LABEL = 'Dark'
+
         this.isProcessing = true
         buttonEl.setAttribute('disabled', '')
         buttonText.textContent = 'Loading...'
@@ -86,10 +88,10 @@ const { src } = Astro.props
           )
 
           buttonEl.setAttribute('aria-pressed', 'true')
-          buttonText.textContent = 'Dark'
+          buttonText.textContent = BUTTON_LABEL
         } catch (err) {
           console.error('[PreviewDark]', err)
-          buttonText.textContent = 'Dark'
+          buttonText.textContent = BUTTON_LABEL
         } finally {
           buttonEl.removeAttribute('disabled')
           this.isProcessing = false

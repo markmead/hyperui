@@ -123,7 +123,8 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
         if (this.iframeEl && darkHtml) {
           this.iframeEl.srcdoc = darkHtml
-          // Reset cached content so copy reflects the dark HTML
+          // Invalidate the cached body HTML so that the copy button returns
+          // the dark variant instead of the previously cached light version.
           this.contentHtml = null
         }
       }
