@@ -3,89 +3,97 @@
 /**
  * Dark Mode Variant Generator (CLI)
  *
- * Generates -dark.html versions of component HTML files by adding
- * Tailwind CSS dark: variant classes using the OpenAI API.
+ * Generates -dark.html versions of component HTML files by appending
+ * Tailwind CSS dark: variant classes based on a predefined class map.
  *
  * Usage:
  *   pnpm dark:generate <component-folder>
  *
  * Example:
  *   pnpm dark:generate public/examples/application/accordions
- *
- * Requirements:
- *   OPENAI_API_KEY environment variable must be set.
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs'
 import { join, resolve } from 'path'
 
-const SYSTEM_PROMPT = `You are a Tailwind CSS dark mode expert. Add dark: variant classes to an HTML file that uses Tailwind CSS.
+const DARK_CLASS_MAP = {
+  // Backgrounds
+  'bg-white': 'dark:bg-gray-900',
+  'bg-gray-50': 'dark:bg-gray-800',
+  'bg-gray-100': 'dark:bg-gray-800',
+  'bg-gray-200': 'dark:bg-gray-700',
+  'bg-gray-300': 'dark:bg-gray-600',
 
-Rules:
-1. Keep the HTML structure EXACTLY the same — only modify class attributes.
-2. Append dark: variant classes to existing class strings where appropriate.
-3. Do not add dark: classes that are already present.
-4. Return ONLY the modified HTML — no markdown fences, no explanations.
-5. The <html> element already has class="dark" to enable Tailwind dark mode.
+  // Text
+  'text-gray-900': 'dark:text-white',
+  'text-gray-800': 'dark:text-gray-100',
+  'text-gray-700': 'dark:text-gray-200',
+  'text-gray-600': 'dark:text-gray-300',
+  'text-gray-500': 'dark:text-gray-400',
+  'text-gray-400': 'dark:text-gray-500',
 
-Common transformations:
-- bg-white            → add dark:bg-gray-900
-- bg-gray-50          → add dark:bg-gray-800
-- bg-gray-100         → add dark:bg-gray-800
-- bg-gray-200         → add dark:bg-gray-700
-- text-gray-900       → add dark:text-white
-- text-gray-800       → add dark:text-gray-100
-- text-gray-700       → add dark:text-gray-200
-- text-gray-600       → add dark:text-gray-300
-- text-gray-500       → add dark:text-gray-400
-- border-gray-100     → add dark:border-gray-800
-- border-gray-200     → add dark:border-gray-700
-- hover:bg-gray-50    → add dark:hover:bg-gray-800
-- hover:bg-gray-100   → add dark:hover:bg-gray-700
-- ring-gray-200       → add dark:ring-gray-700`
+  // Borders
+  'border-gray-100': 'dark:border-gray-800',
+  'border-gray-200': 'dark:border-gray-700',
+  'border-gray-300': 'dark:border-gray-600',
 
-async function generateDark(html) {
-  const apiKey = process.env.OPENAI_API_KEY
+  // Divide
+  'divide-gray-100': 'dark:divide-gray-800',
+  'divide-gray-200': 'dark:divide-gray-700',
+  'divide-gray-300': 'dark:divide-gray-600',
 
-  if (!apiKey) {
-    throw new Error(
-      'OPENAI_API_KEY environment variable is required.\n' +
-        'Set it with: export OPENAI_API_KEY=your-key',
-    )
-  }
+  // Ring offset
+  'ring-offset-white': 'dark:ring-offset-gray-900',
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: html },
-      ],
-      temperature: 0.1,
-    }),
-  })
+  // Hover
+  'hover:bg-white': 'dark:hover:bg-gray-900',
+  'hover:bg-gray-50': 'dark:hover:bg-gray-800',
+  'hover:bg-gray-100': 'dark:hover:bg-gray-700',
+  'hover:text-gray-900': 'dark:hover:text-white',
+  'hover:text-gray-700': 'dark:hover:text-gray-200',
+  'hover:text-gray-500/75': 'dark:hover:text-white/75',
+  'hover:border-gray-300': 'dark:hover:border-gray-600',
 
-  if (!response.ok) {
-    const error = await response.text()
-    throw new Error(`OpenAI API error (${response.status}): ${error}`)
-  }
+  // Focus
+  'focus:ring-offset-white': 'dark:focus:ring-offset-gray-900',
 
-  const data = await response.json()
-  const content = data.choices?.[0]?.message?.content
-
-  if (!content) {
-    throw new Error('Empty response from OpenAI API')
-  }
-
-  return content.trim()
+  // Semantic colors
+  'bg-green-100': 'dark:bg-green-700',
+  'text-green-600': 'dark:text-green-50',
+  'bg-red-100': 'dark:bg-red-700',
+  'text-red-600': 'dark:text-red-50',
+  'bg-blue-100': 'dark:bg-blue-700',
+  'text-blue-600': 'dark:text-blue-50',
+  'bg-purple-100': 'dark:bg-purple-700',
+  'text-purple-700': 'dark:text-purple-100',
+  'bg-amber-100': 'dark:bg-amber-700',
+  'text-amber-600': 'dark:text-amber-50',
+  'bg-teal-100': 'dark:bg-teal-700',
+  'text-teal-600': 'dark:text-teal-300',
 }
 
-async function main() {
+function toDarkTheme(html) {
+  return html.replace(/class="([^"]*)"/g, (match, classes) => {
+    const tokens = classes.trim().split(/\s+/)
+    const existingSet = new Set(tokens)
+    const toAdd = []
+
+    for (const token of tokens) {
+      const darkClass = DARK_CLASS_MAP[token]
+
+      if (darkClass && !existingSet.has(darkClass)) {
+        toAdd.push(darkClass)
+        existingSet.add(darkClass)
+      }
+    }
+
+    if (toAdd.length === 0) return match
+
+    return `class="${[...tokens, ...toAdd].join(' ')}"`
+  })
+}
+
+function main() {
   const [, , folderArg] = process.argv
 
   if (!folderArg) {
@@ -132,26 +140,21 @@ async function main() {
       continue
     }
 
-    process.stdout.write(`⚙  Generating dark variant for ${file}...`)
-
     try {
       const html = readFileSync(filePath, 'utf8')
-      const darkHtml = await generateDark(html)
+      const darkHtml = toDarkTheme(html)
 
-      writeFileSync(darkFilePath, darkHtml + '\n', 'utf8')
+      writeFileSync(darkFilePath, darkHtml, 'utf8')
 
-      process.stdout.write(' ✓\n')
+      console.log(`✓  Generated ${file.replace('.html', '-dark.html')}`)
       created++
     } catch (err) {
-      process.stdout.write(' ✗\n')
-      console.error(`   Error: ${err.message}`)
+      console.error(`✗  Error processing ${file}: ${err.message}`)
     }
   }
 
   console.log(`\nDone. Created: ${created}, Skipped: ${skipped}`)
 }
 
-main().catch((err) => {
-  console.error(err.message)
-  process.exit(1)
-})
+main()
+
