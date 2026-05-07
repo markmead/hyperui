@@ -1,9 +1,9 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 import fs from 'fs'
 import path from 'path'
 
-const SHADE_MAP: Record<number, number | 'white'> = {
+const SHADE_MAP = {
   50: 800,
   100: 800,
   200: 700,
@@ -16,14 +16,14 @@ const SHADE_MAP: Record<number, number | 'white'> = {
   900: 'white',
 }
 
-const COLOR_MAP: Record<string, string> = {
+const COLOR_MAP = {
   white: 'gray-900',
   'white/': 'gray-900/',
   black: 'white',
   'black/': 'white/',
 }
 
-const COLOR_FAMILIES: string[] = [
+const COLOR_FAMILIES = [
   'red',
   'orange',
   'amber',
@@ -48,16 +48,9 @@ const COLOR_FAMILIES: string[] = [
   'stone',
 ]
 
-const VARIANT_PREFIXES: string[] = [
-  'hover',
-  'active',
-  'disabled',
-  'group-hover',
-  'group',
-  'peer-hover',
-]
+const VARIANT_PREFIXES = ['hover', 'active', 'disabled', 'group-hover', 'group', 'peer-hover']
 
-function transformClass(className: string): string {
+function transformClass(className) {
   const variantMatch = className.match(/^([\w-]*?):(.+)$/)
 
   let variantPrefix = ''
@@ -117,7 +110,7 @@ function transformClass(className: string): string {
   return className
 }
 
-function transformClassAttribute(classAttr: string): string {
+function transformClassAttribute(classAttr) {
   if (!classAttr) return classAttr
 
   return classAttr
@@ -127,15 +120,15 @@ function transformClassAttribute(classAttr: string): string {
     .join(' ')
 }
 
-function transformHtmlContent(htmlContent: string): string {
-  return htmlContent.replace(/class="([^"]*)"/g, (_, classAttr: string) => {
+function transformHtmlContent(htmlContent) {
+  return htmlContent.replace(/class="([^"]*)"/g, (_, classAttr) => {
     const transformedClass = transformClassAttribute(classAttr)
 
     return `class="${transformedClass}"`
   })
 }
 
-function isPathWithinBounds(targetPath: string, allowedParent: string): boolean {
+function isPathWithinBounds(targetPath, allowedParent) {
   const normalizedTarget = path.normalize(path.resolve(targetPath))
   const normalizedParent = path.normalize(path.resolve(allowedParent))
 
@@ -145,7 +138,7 @@ function isPathWithinBounds(targetPath: string, allowedParent: string): boolean 
   )
 }
 
-function validateComponentPath(folderPath: string): string {
+function validateComponentPath(folderPath) {
   const absolutePath = path.resolve(folderPath)
   const projectRoot = process.cwd()
   const allowedComponentPath = path.join(projectRoot, 'public', 'examples')
@@ -160,7 +153,7 @@ function validateComponentPath(folderPath: string): string {
   return absolutePath
 }
 
-function processFolder(): void {
+function processFolder() {
   const folderPath = process.argv[2]
 
   if (!folderPath) {
@@ -189,7 +182,7 @@ function processFolder(): void {
   const darkFiles = new Set(htmlFiles.filter((file) => file.includes('-dark')))
 
   const filesToProcess = lightFiles.filter(
-    (htmlFile) => !darkFiles.has(htmlFile.replace('.html', '-dark.html'))
+    (htmlFile) => !darkFiles.has(htmlFile.replace('.html', '-dark.html')),
   )
 
   if (filesToProcess.length === 0) {
