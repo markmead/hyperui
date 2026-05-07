@@ -8,7 +8,8 @@
     "test": "playwright test",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m"
+    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
+    "dark:generate": "tsx scripts/generate-dark-variants.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
@@ -37,7 +38,8 @@
     "rehype-external-links": "^3.0.0",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.0"
+    "typescript-eslint": "^8.59.0",
+    "tsx": "^4.21.0"
   },
   "overrides": {
     "vite": "^7"
