@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
+import { fileURLToPath } from 'url'
+
 import fs from 'fs'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
 const SHADE_MAP = {
   50: 800,
@@ -174,6 +175,12 @@ function validateComponentPath(folderPath, projectRoot) {
 }
 
 function processFolder() {
+  if (process.env.NODE_ENV === 'production') {
+    console.error('❌ Error: This script is blocked in production.')
+
+    process.exit(1)
+  }
+
   const folderPath = process.argv[2]
 
   if (!folderPath) {
