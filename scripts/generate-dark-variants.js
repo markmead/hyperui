@@ -13,7 +13,7 @@ const SHADE_MAP = {
   600: 300,
   700: 200,
   800: 100,
-  900: 'white',
+  900: 50,
 }
 
 const COLOR_MAP = {
