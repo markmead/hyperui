@@ -56,22 +56,22 @@ function getProjectRoot() {
 }
 
 function splitVariantPrefix(className) {
-  let squareDepth = 0
-  let parenDepth = 0
+  let bracketDepth = 0
+  let parenthesisDepth = 0
   let braceDepth = 0
   let lastSeparatorIndex = -1
 
   for (let index = 0; index < className.length; index++) {
-    const character = className[index]
+    const char = className[index]
 
-    if (character === '[') squareDepth++
-    if (character === ']') squareDepth = Math.max(0, squareDepth - 1)
-    if (character === '(') parenDepth++
-    if (character === ')') parenDepth = Math.max(0, parenDepth - 1)
-    if (character === '{') braceDepth++
-    if (character === '}') braceDepth = Math.max(0, braceDepth - 1)
+    if (char === '[') bracketDepth++
+    if (char === ']' && bracketDepth > 0) bracketDepth--
+    if (char === '(') parenthesisDepth++
+    if (char === ')' && parenthesisDepth > 0) parenthesisDepth--
+    if (char === '{') braceDepth++
+    if (char === '}' && braceDepth > 0) braceDepth--
 
-    if (character === ':' && squareDepth === 0 && parenDepth === 0 && braceDepth === 0) {
+    if (char === ':' && bracketDepth === 0 && parenthesisDepth === 0 && braceDepth === 0) {
       lastSeparatorIndex = index
     }
   }
