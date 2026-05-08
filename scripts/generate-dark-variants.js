@@ -2,6 +2,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
 const SHADE_MAP = {
   50: 800,
@@ -48,22 +49,48 @@ const COLOR_FAMILIES = [
   'stone',
 ]
 
-const VARIANT_PREFIXES = ['hover', 'active', 'disabled', 'group-hover', 'group', 'peer-hover']
+function getProjectRoot() {
+  const scriptFilePath = fileURLToPath(import.meta.url)
 
-function transformClass(className) {
-  const variantMatch = className.match(/^([\w-]*?):(.+)$/)
+  return path.resolve(path.dirname(scriptFilePath), '..')
+}
 
-  let variantPrefix = ''
-  let classWithoutVariant = className
+function splitVariantPrefix(className) {
+  let squareDepth = 0
+  let parenDepth = 0
+  let braceDepth = 0
+  let lastSeparatorIndex = -1
 
-  if (variantMatch) {
-    const potentialVariant = variantMatch[1] ?? ''
+  for (let index = 0; index < className.length; index++) {
+    const character = className[index]
 
-    if (VARIANT_PREFIXES.includes(potentialVariant)) {
-      variantPrefix = `${potentialVariant}:`
-      classWithoutVariant = variantMatch[2] ?? className
+    if (character === '[') squareDepth++
+    if (character === ']') squareDepth = Math.max(0, squareDepth - 1)
+    if (character === '(') parenDepth++
+    if (character === ')') parenDepth = Math.max(0, parenDepth - 1)
+    if (character === '{') braceDepth++
+    if (character === '}') braceDepth = Math.max(0, braceDepth - 1)
+
+    if (character === ':' && squareDepth === 0 && parenDepth === 0 && braceDepth === 0) {
+      lastSeparatorIndex = index
     }
   }
+
+  if (lastSeparatorIndex === -1) {
+    return {
+      variantPrefix: '',
+      classWithoutVariant: className,
+    }
+  }
+
+  return {
+    variantPrefix: className.slice(0, lastSeparatorIndex + 1),
+    classWithoutVariant: className.slice(lastSeparatorIndex + 1),
+  }
+}
+
+function transformClass(className) {
+  const { variantPrefix, classWithoutVariant } = splitVariantPrefix(className)
 
   const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
 
@@ -138,9 +165,8 @@ function isPathWithinBounds(targetPath, allowedParent) {
   )
 }
 
-function validateComponentPath(folderPath) {
-  const absolutePath = path.resolve(folderPath)
-  const projectRoot = process.cwd()
+function validateComponentPath(folderPath, projectRoot) {
+  const absolutePath = path.resolve(projectRoot, folderPath)
   const allowedComponentPath = path.join(projectRoot, 'public', 'examples')
 
   if (!isPathWithinBounds(absolutePath, allowedComponentPath)) {
@@ -150,10 +176,30 @@ function validateComponentPath(folderPath) {
     process.exit(1)
   }
 
+  if (fs.existsSync(absolutePath)) {
+    const realAbsolutePath = fs.realpathSync.native(absolutePath)
+    const realAllowedComponentPath = fs.realpathSync.native(allowedComponentPath)
+
+    if (!isPathWithinBounds(realAbsolutePath, realAllowedComponentPath)) {
+      console.error(`❌ Error: Component path must be within "${allowedComponentPath}"`)
+      console.error(`🙅‍♀️ Provided path: ${absolutePath}`)
+
+      process.exit(1)
+    }
+  }
+
   return absolutePath
 }
 
 function processFolder() {
+  if (process.env.NODE_ENV === 'production' && process.env.ALLOW_DARK_GENERATE !== '1') {
+    console.error(
+      '❌ Error: This script is blocked in production. Set ALLOW_DARK_GENERATE=1 to override.',
+    )
+
+    process.exit(1)
+  }
+
   const folderPath = process.argv[2]
 
   if (!folderPath) {
@@ -163,7 +209,8 @@ function processFolder() {
     process.exit(1)
   }
 
-  const absolutePath = validateComponentPath(folderPath)
+  const projectRoot = getProjectRoot()
+  const absolutePath = validateComponentPath(folderPath, projectRoot)
 
   if (!fs.existsSync(absolutePath)) {
     console.error(`❌ Error: Folder not found: ${absolutePath}`)
