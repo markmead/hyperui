@@ -56,25 +56,7 @@ function getProjectRoot() {
 }
 
 function splitVariantPrefix(className) {
-  let bracketDepth = 0
-  let parenthesisDepth = 0
-  let braceDepth = 0
-  let lastSeparatorIndex = -1
-
-  for (let index = 0; index < className.length; index++) {
-    const char = className[index]
-
-    if (char === '[') bracketDepth++
-    if (char === ']' && bracketDepth > 0) bracketDepth--
-    if (char === '(') parenthesisDepth++
-    if (char === ')' && parenthesisDepth > 0) parenthesisDepth--
-    if (char === '{') braceDepth++
-    if (char === '}' && braceDepth > 0) braceDepth--
-
-    if (char === ':' && bracketDepth === 0 && parenthesisDepth === 0 && braceDepth === 0) {
-      lastSeparatorIndex = index
-    }
-  }
+  const lastSeparatorIndex = className.lastIndexOf(':')
 
   if (lastSeparatorIndex === -1) {
     return {
@@ -192,14 +174,6 @@ function validateComponentPath(folderPath, projectRoot) {
 }
 
 function processFolder() {
-  if (process.env.NODE_ENV === 'production' && process.env.ALLOW_DARK_GENERATE !== '1') {
-    console.error(
-      '❌ Error: This script is blocked in production. Set ALLOW_DARK_GENERATE=1 to override.',
-    )
-
-    process.exit(1)
-  }
-
   const folderPath = process.argv[2]
 
   if (!folderPath) {
