@@ -7,17 +7,21 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-sm p-6">
-    <label for="Search">
+    <label for="Search" class="text-black">
       <span class="sr-only"> Search </span>
 
       <div
-        class="flex border-2 shadow-[4px_4px_0_0] focus-within:ring-2 focus-within:ring-yellow-300"
+        class="flex border-2 shadow-[4px_4px_0_0] shadow-black focus-within:ring-2 focus-within:ring-yellow-300"
       >
-        <input type="search" id="Search" class="w-full border-none focus:ring-0 sm:text-sm" />
+        <input
+          type="search"
+          id="Search"
+          class="w-full border-none bg-white focus:ring-0 sm:text-sm"
+        />
 
         <button
           type="submit"
-          class="bg-yellow-300 px-4 py-2 text-xs/none font-bold tracking-wide uppercase hover:bg-yellow-400 focus:bg-yellow-400 focus:outline-0"
+          class="bg-yellow-200 px-4 py-2 text-xs/none font-bold tracking-wide text-black uppercase hover:bg-yellow-400 focus:bg-yellow-400 focus:outline-0"
         >
           Search
         </button>
