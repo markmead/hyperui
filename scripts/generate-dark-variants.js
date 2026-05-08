@@ -20,9 +20,7 @@ const SHADE_MAP = {
 
 const COLOR_MAP = {
   white: 'gray-900',
-  'white/': 'gray-900/',
   black: 'white',
-  'black/': 'white/',
 }
 
 const COLOR_FAMILIES = [
@@ -223,6 +221,7 @@ function processFolder() {
   console.log(`🔍 Found ${filesToProcess.length} file(s) without dark variants\n`)
 
   let generatedCount = 0
+  let failedCount = 0
 
   for (const processFile of filesToProcess) {
     const lightPath = path.join(absolutePath, processFile)
@@ -239,11 +238,17 @@ function processFolder() {
       generatedCount++
     } catch (error) {
       console.error(`❌ Error processing ${processFile}: ${error}`)
+      failedCount++
     }
   }
 
   console.log('')
-  console.log(`✅ Done! Generated ${generatedCount} dark variant(s)`)
+  if (failedCount > 0) {
+    console.log(`⚠️ Done with errors. Generated ${generatedCount} dark variant(s), failed ${failedCount}`)
+    process.exitCode = 1
+  } else {
+    console.log(`✅ Done! Generated ${generatedCount} dark variant(s)`)
+  }
   console.log('👋 Remember to manually update the related .mdx file with dark: true if needed')
 }
 
