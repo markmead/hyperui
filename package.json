@@ -13,11 +13,11 @@
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/cloudflare": "^13.5.0",
-    "@astrojs/mdx": "5.0.3",
+    "@astrojs/mdx": "5.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "3.7.2",
     "@lucide/astro": "^1.14.0",
-    "astro": "6.1.6",
+    "astro": "6.3.1",
     "wrangler": "^4.90.0"
   },
   "devDependencies": {
