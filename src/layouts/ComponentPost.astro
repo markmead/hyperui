@@ -2,6 +2,8 @@
 import type { CollectionEntry } from 'astro:content'
 import type { ComponentPreview } from '../types/component'
 
+import { Moon } from '@lucide/astro'
+
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 import RelatedComponents from '../components/RelatedComponents.astro'
@@ -12,6 +14,9 @@ type Props =
   | CollectionEntry<'neobrutalism'>['data']
 
 const { title, category, components, description, slug, terms, wrapper } = Astro.props
+
+const darkCount = components.filter(({ dark }) => !!dark).length
+const totalCount = components.length
 
 const pageTitle = `Free Tailwind CSS ${title}`
 
@@ -87,6 +92,28 @@ const componentPageSchema = {
     <slot />
 
     <div class="mx-auto max-w-7xl space-y-8 px-4">
+      <div class="max-w-lg rounded-lg border border-gray-200 bg-gray-50 p-4 text-gray-600">
+        <div class="inline-flex items-center gap-2">
+          <Moon class="size-5 shrink-0" />
+
+          <p class="font-medium">
+            {darkCount} of {totalCount} components have dark mode variants
+          </p>
+        </div>
+
+        <p class="text-sm text-pretty">
+          Need a dark mode component or found a bug?
+          <a
+            href="https://github.com/markmead/hyperui/issues/new"
+            target="_blank"
+            rel="noreferrer"
+            class="underline transition-colors hover:text-gray-900"
+          >
+            Create an issue on GitHub
+          </a>
+        </p>
+      </div>
+
       {
         formattedComponents.map((component) => (
           <PreviewWrapper {component} {category} {slug} {wrapper} />
