@@ -146,13 +146,25 @@ function isPathWithinBounds(targetPath, allowedParent) {
   )
 }
 
+function getDisplayPath(targetPath, projectRoot) {
+  const relativePath = path.relative(projectRoot, targetPath)
+
+  if (!relativePath || relativePath === '') {
+    return '.'
+  }
+
+  return relativePath.startsWith('..') ? path.basename(targetPath) : relativePath
+}
+
 function validateComponentPath(folderPath, projectRoot) {
   const absolutePath = path.resolve(projectRoot, folderPath)
   const allowedComponentPath = path.join(projectRoot, 'public', 'examples')
+  const allowedComponentDisplayPath = getDisplayPath(allowedComponentPath, projectRoot)
+  const providedDisplayPath = getDisplayPath(absolutePath, projectRoot)
 
   if (!isPathWithinBounds(absolutePath, allowedComponentPath)) {
-    console.error(`❌ Error: Component path must be within "${allowedComponentPath}"`)
-    console.error(`🙅‍♀️ Provided path: ${absolutePath}`)
+    console.error(`❌ Error: Component path must be within "${allowedComponentDisplayPath}"`)
+    console.error(`🙅‍♀️ Provided path: ${providedDisplayPath}`)
 
     process.exit(1)
   }
@@ -162,8 +174,8 @@ function validateComponentPath(folderPath, projectRoot) {
     const realAllowedComponentPath = fs.realpathSync.native(allowedComponentPath)
 
     if (!isPathWithinBounds(realAbsolutePath, realAllowedComponentPath)) {
-      console.error(`❌ Error: Component path must be within "${allowedComponentPath}"`)
-      console.error(`🙅‍♀️ Provided path: ${absolutePath}`)
+      console.error(`❌ Error: Component path must be within "${allowedComponentDisplayPath}"`)
+      console.error(`🙅‍♀️ Provided path: ${providedDisplayPath}`)
 
       process.exit(1)
     }
@@ -190,15 +202,16 @@ function processFolder() {
 
   const projectRoot = getProjectRoot()
   const absolutePath = validateComponentPath(folderPath, projectRoot)
+  const displayPath = getDisplayPath(absolutePath, projectRoot)
 
   if (!fs.existsSync(absolutePath)) {
-    console.error(`❌ Error: Folder not found: ${absolutePath}`)
+    console.error(`❌ Error: Folder not found: ${displayPath}`)
 
     process.exit(1)
   }
 
   if (!fs.statSync(absolutePath).isDirectory()) {
-    console.error(`❌ Error: Path is not a directory: ${absolutePath}`)
+    console.error(`❌ Error: Path is not a directory: ${displayPath}`)
 
     process.exit(1)
   }
@@ -217,7 +230,7 @@ function processFolder() {
     return
   }
 
-  console.log(`📁 Processing folder: ${absolutePath}`)
+  console.log(`📁 Processing folder: ${displayPath}`)
   console.log(`🔍 Found ${filesToProcess.length} file(s) without dark variants\n`)
 
   let generatedCount = 0
