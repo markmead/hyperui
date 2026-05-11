@@ -203,9 +203,9 @@ function processFolder() {
     process.exit(1)
   }
 
-  const htmlFiles = fs.readdirSync(absolutePath).filter((file) => file.endsWith('.html'))
-  const lightFiles = htmlFiles.filter((file) => !file.includes('-dark'))
-  const darkFiles = new Set(htmlFiles.filter((file) => file.includes('-dark')))
+  const htmlFiles = fs.readdirSync(absolutePath).filter((htmlFile) => htmlFile.endsWith('.html'))
+  const lightFiles = htmlFiles.filter((htmlFile) => !htmlFile.includes('-dark'))
+  const darkFiles = new Set(htmlFiles.filter((htmlFile) => htmlFile.includes('-dark')))
 
   const filesToProcess = lightFiles.filter(
     (htmlFile) => !darkFiles.has(htmlFile.replace('.html', '-dark.html')),
@@ -236,19 +236,23 @@ function processFolder() {
       console.log(`✨ Created: ${processFile.replace('.html', '-dark.html')}`)
 
       generatedCount++
-    } catch (error) {
-      console.error(`❌ Error processing ${processFile}: ${error}`)
+    } catch (processError) {
+      console.error(`❌ Error processing ${processFile}: ${processError}`)
+
       failedCount++
     }
   }
 
-  console.log('')
   if (failedCount > 0) {
-    console.log(`⚠️ Done with errors. Generated ${generatedCount} dark variant(s), failed ${failedCount}`)
+    console.log(
+      `⚠️ Done with errors. Generated ${generatedCount} dark variant(s), failed ${failedCount}`,
+    )
+
     process.exitCode = 1
   } else {
     console.log(`✅ Done! Generated ${generatedCount} dark variant(s)`)
   }
+
   console.log('👋 Remember to manually update the related .mdx file with dark: true if needed')
 }
 
