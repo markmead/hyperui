@@ -94,12 +94,13 @@ const componentPageSchema = {
     <div class="mx-auto max-w-7xl space-y-8 px-4">
       {
         darkCount > 0 && (
-          <p class="inline-flex items-center gap-2 text-sm text-gray-500">
-            <Moon class="size-4" />
-            {darkCount} of {totalCount} component{totalCount === 1 ? '' : 's'} {darkCount === 1 ? 'has' : 'have'} a dark mode variant{darkCount === 1 ? '' : 's'}
-          </p>
+          <div class="inline-flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 p-2 text-gray-700">
+            <Moon class="size-5" />
+            {darkCount} of {totalCount} components have dark mode variants
+          </div>
         )
       }
+
       {
         formattedComponents.map((component) => (
           <PreviewWrapper {component} {category} {slug} {wrapper} />

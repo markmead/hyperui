@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import { ArrowRight, Moon } from '@lucide/astro'
+import { ArrowRight } from '@lucide/astro'
 
 interface Props {
   component:
@@ -15,8 +15,6 @@ const { component } = Astro.props
 const { category, components, slug, title } = component
 
 const componentCount = components.length + components.filter(({ dark }) => !!dark).length
-
-const darkCount = components.filter(({ dark }) => !!dark).length
 ---
 
 <li>
@@ -33,20 +31,9 @@ const darkCount = components.filter(({ dark }) => !!dark).length
         {componentCount} components
       </p>
 
-      <div class="flex items-center gap-3">
-        {
-          darkCount > 0 && (
-            <span class="inline-flex items-center gap-1 text-sm text-gray-500" aria-label={`${darkCount} dark mode variant${darkCount === 1 ? '' : 's'}`}>
-              <Moon class="size-4" />
-              {darkCount}
-            </span>
-          )
-        }
-
-        <ArrowRight
-          class="size-5 text-gray-400 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100"
-        />
-      </div>
+      <ArrowRight
+        class="size-5 text-gray-400 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100"
+      />
     </div>
   </a>
 </li>
