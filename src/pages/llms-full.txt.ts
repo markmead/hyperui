@@ -8,9 +8,9 @@ const categoryTitles = {
   marketing: 'Marketing',
   neobrutalism: 'Neobrutalism',
 } as const
-const DEFAULT_COMPONENT_DESCRIPTION = 'Tailwind CSS component example.'
+const DEFAULT_COMPONENT_DESCRIPTION = 'Tailwind CSS v4 component example.'
 
-const componentSourceByPath = import.meta.glob('../../public/examples/**/*.html', {
+const componentSourceByPath = import.meta.glob<string>('/public/examples/**/*.html', {
   query: '?raw',
   import: 'default',
 })
@@ -25,14 +25,14 @@ function cleanBlogBody(body: string) {
 
 async function getComponentSource(category: string, slug: string, index: number, dark: boolean) {
   const filename = dark ? `${index}-dark.html` : `${index}.html`
-  const path = `../../public/examples/${category}/${slug}/${filename}`
+  const path = `/public/examples/${category}/${slug}/${filename}`
   const getSource = componentSourceByPath[path]
 
   if (!getSource) {
     return `<!-- Source unavailable: ${path} -->`
   }
 
-  return getSource() as Promise<string>
+  return getSource()
 }
 
 export const prerender = true
@@ -63,8 +63,8 @@ export const GET: APIRoute = async () => {
       sections.push(`#### ${entry.data.title}`)
       sections.push(entry.data.description)
 
-      for (const [index, component] of entry.data.components.entries()) {
-        const number = index + 1
+      for (const [zeroBasedIndex, component] of entry.data.components.entries()) {
+        const number = zeroBasedIndex + 1
         const componentDescription = component.description ?? DEFAULT_COMPONENT_DESCRIPTION
 
         sections.push('')
@@ -103,7 +103,11 @@ export const GET: APIRoute = async () => {
     sections.push(`- Updated: ${post.data.updatedDate.toISOString().slice(0, 10)}`)
     sections.push(`- Description: ${post.data.description}`)
     sections.push('')
-    sections.push(cleanBlogBody(post.body ?? ''))
+    const cleanBody = cleanBlogBody(post.body ?? '')
+
+    if (cleanBody) {
+      sections.push(cleanBody)
+    }
   }
 
   return new Response(sections.join('\n'), {
