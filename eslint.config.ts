@@ -20,4 +20,12 @@ export default defineConfig([
       },
     },
   },
+  {
+    files: ['scripts/**'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
 ])
