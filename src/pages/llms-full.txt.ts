@@ -8,6 +8,7 @@ const categoryTitles = {
   marketing: 'Marketing',
   neobrutalism: 'Neobrutalism',
 } as const
+const DEFAULT_COMPONENT_DESCRIPTION = 'Tailwind CSS component example.'
 
 const componentSourceByPath = import.meta.glob('../../public/examples/**/*.html', {
   query: '?raw',
@@ -28,7 +29,7 @@ async function getComponentSource(category: string, slug: string, index: number,
   const getSource = componentSourceByPath[path]
 
   if (!getSource) {
-    return '<!-- Source unavailable -->'
+    return `<!-- Source unavailable: ${path} -->`
   }
 
   return getSource() as Promise<string>
@@ -64,7 +65,7 @@ export const GET: APIRoute = async () => {
 
       for (const [index, component] of entry.data.components.entries()) {
         const number = index + 1
-        const componentDescription = component.description ?? 'Tailwind CSS component example.'
+        const componentDescription = component.description ?? DEFAULT_COMPONENT_DESCRIPTION
 
         sections.push('')
         sections.push(`##### Component ${number}: ${component.title}`)
