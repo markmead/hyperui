@@ -8,7 +8,8 @@ const categoryTitles = {
   marketing: 'Marketing',
   neobrutalism: 'Neobrutalism',
 } as const
-const DEFAULT_COMPONENT_DESCRIPTION = 'Tailwind CSS v4 component example.'
+const DEFAULT_COMPONENT_DESCRIPTION =
+  'A customizable Tailwind CSS v4 component ready for production use.'
 
 const componentSourceByPath = import.meta.glob<string>('/public/examples/**/*.html', {
   query: '?raw',
@@ -29,7 +30,7 @@ async function getComponentSource(category: string, slug: string, index: number,
   const getSource = componentSourceByPath[path]
 
   if (!getSource) {
-    return `<!-- Source unavailable: ${path} -->`
+    return `<!-- Component source file not found at ${path}. Verify the component exists and the path is correct. -->`
   }
 
   return getSource()
