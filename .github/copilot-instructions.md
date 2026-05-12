@@ -72,3 +72,15 @@ When adding new collections or components:
 4. If the answer to any is no, reconsider the approach
 
 **Remember**: We're not designing finished websites. We're providing building blocks that developers can use to build their own designs. Default to minimal, neutral output unless explicitly asked otherwise.
+
+# Issue and PR Naming
+
+- Use consistent casing for all GitHub issue and pull request titles.
+- Use sentence case for the description part.
+- Keep descriptions concise and specific.
+- Pull request titles must follow this exact format: `<Feature|Bugfix|Update|Epic> - Description`
+- Valid examples:
+  - `Feature - Add new card variants`
+  - `Bugfix - Fix mobile menu focus trap`
+  - `Update - Refresh accordion documentation`
+  - `Epic - Rework component search experience`

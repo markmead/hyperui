@@ -22,4 +22,15 @@ pnpm run css --watch
 3. Make your change.
 4. Open a PR for review.
 
+## Issue and PR title format
+
+- Use sentence case for the description part.
+- Keep descriptions concise and specific.
+- Pull request titles must use: `<Feature|Bugfix|Update|Epic> - Description`
+- Examples:
+  - `Feature - Add new card variants`
+  - `Bugfix - Resolve search input focus state`
+  - `Update - Improve footer component docs`
+  - `Epic - Refactor component preview architecture`
+
 For full examples and guidance, read: [How to contribute](https://www.hyperui.dev/blog/how-to-contribute)
