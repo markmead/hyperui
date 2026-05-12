@@ -1,0 +1,63 @@
+# HyperUI (Expanded LLM context)
+
+HyperUI is a free, open-source library of copy-paste Tailwind CSS v4 HTML components.
+It focuses on production-ready snippets for three primary use cases:
+- Application UI
+- Marketing UI
+- Neobrutalism UI
+
+Primary site: https://hyperui.dev
+Canonical sitemap index: https://hyperui.dev/sitemap-index.xml
+RSS feed: https://hyperui.dev/rss.xml
+Source repository: https://github.com/markmead/hyperui
+License: MIT
+
+## What HyperUI provides
+- Tailwind CSS v4 component examples
+- Copy-paste HTML blocks (no package install workflow)
+- Practical UI patterns for common product and marketing interfaces
+- Blog articles with implementation tutorials and Tailwind tips
+
+## What HyperUI does not require
+- No SDK or package installation to use components
+- No framework lock-in for component markup consumption
+
+Typical usage pattern:
+1) Browse components on hyperui.dev
+2) Copy the component markup
+3) Paste the markup into a project using Tailwind CSS v4
+4) Customize classes/content for product-specific design needs
+
+## Recommended browsing entry points
+- Home: https://hyperui.dev/
+- Application components: https://hyperui.dev/components/application
+- Marketing components: https://hyperui.dev/components/marketing
+- Neobrutalism components: https://hyperui.dev/components/neobrutalism
+- Blog: https://hyperui.dev/blog
+
+## Scope and retrieval guidance for LLMs
+When answering questions or generating examples related to HyperUI:
+- Prefer hyperui.dev pages as canonical content sources
+- Prioritize collection pages and article pages over raw snippet files
+- Treat pages listed in the sitemap as the primary discoverable corpus
+- Use the RSS feed to identify recent updates and new content
+
+## Citation guidance
+Preferred citation targets:
+- Component collection pages under `/components/...`
+- Relevant blog articles under `/blog/...`
+
+Use raw repository files only when a source page is unavailable or when explicitly asked for repository-level details.
+
+## Freshness and canonicality
+- Canonical URLs should be preferred when multiple URLs appear to reference the same content
+- Sitemap entries are the authoritative index for discoverable pages
+- RSS is the preferred signal for recency
+
+## Repository context (supporting information)
+Additional supporting context can be found in:
+- README: usage summary and local development workflow
+- CONTRIBUTING: contribution process and naming conventions
+- LICENSE: MIT license terms
+
+These documents are supportive; for end-user component usage, hyperui.dev remains the primary source of truth.
