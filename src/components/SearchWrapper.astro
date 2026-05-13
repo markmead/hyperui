@@ -13,17 +13,6 @@ interface Result {
   title: string
 }
 
-const toKeywordParts = (value: string) => {
-  return value
-    .toLowerCase()
-    .split(/[^a-z0-9]+/g)
-    .filter((part) => part.length > 1)
-}
-
-const buildSearchTerms = (baseTerms: string[], textValues: string[]) => {
-  return [...new Set([...baseTerms.map((term) => term.toLowerCase()), ...textValues.flatMap(toKeywordParts)])]
-}
-
 const [application, marketing, neobrutalism, blog] = await Promise.all([
   getCollection('application'),
   getCollection('marketing'),
@@ -38,16 +27,13 @@ const allCollections = [...application, ...marketing, ...neobrutalism]
 const collections: Result[] = allCollections.map(
   ({ category, components, description, slug, terms, title }) => {
     const componentCount = components.length + components.filter(({ dark }) => !!dark).length
-    const componentText = components.flatMap((component) => {
-      return [component.title, component.description || '']
-    })
 
     return {
       category,
       components: componentCount,
       description,
       slug: `/components/${category}/${slug}`,
-      terms: buildSearchTerms(terms, [title, slug, category, ...componentText]),
+      terms,
       title,
     }
   },
@@ -58,7 +44,7 @@ const posts: Result[] = blog.map(({ data }) => {
     category: '',
     description: data.description,
     slug: `/blog/${data.slug}`,
-    terms: buildSearchTerms(data.terms, [data.title, data.slug]),
+    terms: data.terms,
     title: data.title,
   }
 })
