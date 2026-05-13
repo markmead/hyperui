@@ -2,6 +2,7 @@
 interface Result {
   category: string
   components?: number
+  description?: string
   slug: string
   terms: string[]
   title: string
@@ -34,6 +35,7 @@ const { collections, posts } = Astro.props
   interface Result {
     category: string
     components?: number
+    description?: string
     slug: string
     terms: string[]
     title: string
@@ -109,13 +111,15 @@ const { collections, posts } = Astro.props
 
         const filterResults = (items: Result[]) => {
           return items.filter((potentialResult) => {
-            const resultTerms = potentialResult.terms.map((searchTerm) => searchTerm.toLowerCase())
-            const resultTitle = potentialResult.title.toLowerCase()
+            const searchableText = [
+              potentialResult.description || '',
+              potentialResult.title,
+              ...(potentialResult.terms || []),
+            ]
+              .join(' ')
+              .toLowerCase()
 
-            return (
-              resultTerms.some((resultTerm) => resultTerm.includes(searchQuery)) ||
-              resultTitle.includes(searchQuery)
-            )
+            return searchableText.includes(searchQuery)
           })
         }
 
