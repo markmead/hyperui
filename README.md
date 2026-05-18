@@ -1,12 +1,8 @@
 # HyperUI
 
-![](https://img.shields.io/github/stars/markmead/hyperui?style=social)
-![](https://img.shields.io/github/issues/markmead/hyperui)
-![](https://img.shields.io/github/license/markmead/hyperui)
+Free, open-source Tailwind CSS components for marketing sites, web apps, and eCommerce projects.
 
-Free, open-source Tailwind CSS v4 components for marketing sites, web apps, and eCommerce projects.
-
-Browse components on [hyperui.dev](https://hyperui.dev), copy the markup, and paste it into your Tailwind project.
+Browse components on [hyperui.dev](https://hyperui.dev), copy the markup, and paste it into your Tailwind CSS project.
 
 ## Use HyperUI
 

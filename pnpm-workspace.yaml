@@ -1,8 +1,8 @@
 packages: []
 strictDepBuilds: true
 minimumReleaseAge: 1440
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - sharp
-  - workerd
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true
+  workerd: true
