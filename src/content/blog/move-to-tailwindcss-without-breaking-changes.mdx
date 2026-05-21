@@ -1,9 +1,9 @@
 ---
-title: Moving to Tailwind CSS from another framework? Use a Prefix!
-description: Migrating to Tailwind CSS from another CSS framework? Here's a simple solution to avoid class conflicts.
+title: How to Move to Tailwind CSS Without Breaking Existing Styles
+description: Migrating from another CSS framework? Use a Tailwind CSS prefix to avoid class conflicts and ship incrementally.
 slug: move-to-tailwindcss-without-breaking-changes
 pubDate: 2022-10-26
-updatedDate: 2025-08-08
+updatedDate: 2026-05-21
 terms:
   - migration
   - prefix
@@ -14,43 +14,68 @@ import BaseAd from '../../components/BaseAd.astro'
 
 <BaseAd />
 
-I've heard this a few times:
+Moving from Bootstrap, Bulma, or another utility framework?
 
-> I'm switching to Tailwind CSS, but my old framework keeps breaking things!
+If both systems are loaded at the same time, class name collisions are common.
+The cleanest way to avoid that is to add a Tailwind prefix.
 
-Whether you're moving from Bootstrap, Bulma, or any other CSS framework,
-Tailwind CSS makes it easy to avoid class name conflicts.
+## Use a Prefix
 
-**The magic line?**
+In Tailwind CSS v4, set a prefix directly in your import:
 
 ```css
 @import 'tailwindcss' prefix(tw);
 ```
 
-Add this to your CSS entry file and Tailwind will generate classes like
-`tw-flex` instead of `flex`. You can use any prefix you like, such as `app` or
-`custom`:
+Now Tailwind utilities are generated as `tw-flex`, `tw-grid`, `tw-text-sm`, and so on.
+
+You can use any prefix:
 
 ```css
 @import 'tailwindcss' prefix(app);
 ```
 
-This prevents conflicts with utility classes from other frameworks, making your
-migration much smoother.
+This gives you a safe migration path where old and new classes can coexist.
 
-**What about CSS resets?**
+## Example
 
-Most CSS frameworks include their own CSS resets (normalize/base styles). If you
-notice style conflicts, you can disable Tailwind's base styles by omitting the
-base import:
+Before prefixing, this might conflict with another framework:
 
-```css
-/* @import "tailwindcss/base"; */
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+```html
+<div class="flex items-center gap-2">...</div>
 ```
 
-This keeps your previous framework's styles intact while you transition.
+After prefixing Tailwind:
 
-For more details, check out the
-[Tailwind CSS docs on prefix](https://tailwindcss.com/docs/configuration#prefix).
+```html
+<div class="tw-flex tw-items-center tw-gap-2">...</div>
+```
+
+You can migrate component-by-component instead of rewriting everything at once.
+
+## What About Resets?
+
+Many CSS frameworks ship base styles.
+
+Tailwind v4 includes Preflight by default. If that clashes with your existing framework during migration, import Tailwind layers explicitly and skip `preflight.css`:
+
+```css
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+/* @import 'tailwindcss/preflight.css' layer(base); */
+@import 'tailwindcss/utilities.css' layer(utilities);
+```
+
+That keeps your current framework's reset/base behavior while you migrate.
+
+## Why This Approach Works
+
+- Prefixing avoids utility name collisions.
+- Layered imports let you choose whether Tailwind Preflight runs.
+- You can ship incrementally without breaking existing pages.
+
+References:
+
+- [Tailwind CSS docs: Prefix](https://tailwindcss.com/docs/styling-with-utility-classes#using-the-prefix-option)
+- [Tailwind CSS docs: Preflight](https://tailwindcss.com/docs/preflight)
