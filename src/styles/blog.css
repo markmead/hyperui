@@ -31,3 +31,13 @@
   --animate-easing: --value([*]);
   animation-timing-function: var(--animate-easing);
 }
+
+@utility no-spinner {
+  appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}
