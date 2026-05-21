@@ -13,13 +13,15 @@
 }
 
 @utility animate-duration-* {
-  --animate-duration: --value(integer) ms;
+  /* prettier-ignore */
+  --animate-duration: --value(integer)ms;
   --animate-duration: --value([time]);
   animation-duration: var(--animate-duration);
 }
 
 @utility animate-delay-* {
-  --animate-delay: --value(integer) ms;
+  /* prettier-ignore */
+  --animate-delay: --value(integer)ms;
   --animate-delay: --value([time]);
   animation-delay: var(--animate-delay);
 }

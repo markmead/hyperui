@@ -42,7 +42,7 @@ If you want reusable classes that feel native, use `@utility` with the `animate-
 
 Add this to a stylesheet that Tailwind processes (for example, your global CSS):
 
-{/* prettier-ignore */}
+{/* prettier-ignore-start */}
 ```css
 @utility animate-duration-* {
   --animate-duration: --value(integer)ms;
@@ -62,6 +62,7 @@ Add this to a stylesheet that Tailwind processes (for example, your global CSS):
   animation-timing-function: var(--animate-easing);
 }
 ```
+{/* prettier-ignore-end */}
 
 This gives you classes like:
 
