@@ -1,9 +1,9 @@
 ---
-title: How to Add Animation Duration, Delay and Easing Support to Tailwind CSS (v3)
-description: Currently, Tailwind CSS does not support animation duration, delay, and easing. Learn how to add these features yourself.
+title: How to Add Animation Duration, Delay and Easing Support to Tailwind CSS
+description: Tailwind CSS still doesn't ship dedicated animation duration, delay, and easing utilities. Here's a clean v4 approach.
 slug: animation-duration-delay-with-tailwindcss
 pubDate: 2023-08-25
-updatedDate: 2025-08-08
+updatedDate: 2026-05-18
 terms:
   - animation
   - duration
@@ -11,138 +11,124 @@ terms:
 ---
 
 import BaseAd from '../../components/BaseAd.astro'
+import ComponentPreview from '../../components/ComponentPreview.astro'
 
 <BaseAd />
 
-It's important to mention that you can use JIT for one-off classes, such as:
+## Live Demo
 
-- `[animation-duration:_2s]`
-- `[animation-delay:_0.5s]`
-- `[animation-timing-function:_linear]`
+<div class="overflow-hidden rounded-lg border border-gray-200">
+  <ComponentPreview
+    src="/examples/blog/animate-duration-delay/1.html"
+    title="Animation utilities live demo"
+    wrapper="h-[400px]"
+  />
+</div>
+
+Tailwind CSS doesn't include first-class duration and delay utilities for animations.
+
+The demo uses the following classes:
+
+- Duration: `animate-duration-150`, `animate-duration-300`, `animate-duration-700`, `animate-duration-3000`
+- Delay: `animate-delay-150`, `animate-delay-300`, `animate-delay-700`, `animate-delay-3000`
+- Easing: `animate-ease-in`, `animate-ease-out`, `animate-ease-in-out`, `animate-ease-[cubic-bezier(0.9,-0.7,0.1,1.7)]`
+- Base animation: `animate-pulse`
 
 ---
 
-It may seem strange that Tailwind CSS doesn't include this, but let's proceed.
+If you want reusable classes that feel native, use `@utility` with the `animate-*` naming style.
 
-## Adding Animation Duration Classes to Tailwind CSS
+## Add Classes in Tailwind CSS
 
-To do this, add the following to your `tailwind.config.js`:
+Add this to a stylesheet that Tailwind processes (for example, your global CSS):
 
-```js
-const plugin = require('tailwindcss/plugin')
+{/* prettier-ignore */}
+```css
+@utility animate-duration-* {
+  --animate-duration: --value(integer)ms;
+  --animate-duration: --value([time]);
+  animation-duration: var(--animate-duration);
+}
 
-module.exports = {
-  plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'animate-duration': (value) => ({
-            animationDuration: value,
-          }),
-        },
-        { values: theme('transitionDuration') },
-      )
-    }),
-  ],
+@utility animate-delay-* {
+  --animate-delay: --value(integer)ms;
+  --animate-delay: --value([time]);
+  animation-delay: var(--animate-delay);
+}
+
+@utility animate-ease-* {
+  --animate-easing: --value(--ease-*);
+  --animate-easing: --value([*]);
+  animation-timing-function: var(--animate-easing);
 }
 ```
 
-This will add the `duration` classes used for transitions to animations with the
-`animate-` prefix:
+This gives you classes like:
 
-- `animate-duration-0`
-- `animate-duration-75`
-- `animate-duration-100`
-- `animate-duration-150`
-- `animate-duration-200`
-- `animate-duration-300`
-- `animate-duration-500`
-- `animate-duration-700`
-- `animate-duration-1000`
+- `animate-duration-<number>`
+- `animate-delay-<number>`
+- `animate-ease-<in, out, in-out>`
+- `animate-ease-[cubic-bezier(.17,.67,.83,.67)]`
+- `animate-ease-[cubic-bezier(0.9,-0.7,0.1,1.7)]`
 
-## Adding Animation Delay Classes to Tailwind CSS
+Classes extend from the existing `transition-` classes:
 
-Add the following to your `tailwind.config.js`:
+- https://tailwindcss.com/docs/transition-duration
+- https://tailwindcss.com/docs/transition-delay
+- https://tailwindcss.com/docs/transition-timing-function
 
-```js
-const plugin = require('tailwindcss/plugin')
+Arbitrary values also work:
 
-module.exports = {
-  plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'animate-delay': (value) => ({
-            animationDelay: value,
-          }),
-        },
-        { values: theme('transitionDelay') },
-      )
-    }),
-  ],
-}
+- `animate-duration-[1.2s]`
+- `animate-delay-[250ms]`
+- `animate-ease-[cubic-bezier(.17,.67,.83,.67)]`
+
+The live demo includes this exact custom easing class:
+
+- `animate-ease-[cubic-bezier(0.9,-0.7,0.1,1.7)]`
+
+## Why This Works
+
+The custom utilities set both CSS variables and CSS properties:
+
+- `animate-duration-*` maps numeric suffixes like `150` to `150ms`, then sets `--animate-duration` and `animation-duration`
+- `animate-delay-*` maps numeric suffixes like `300` to `300ms`, then sets `--animate-delay` and `animation-delay`
+- `animate-ease-*` maps easing tokens like `in`, `out`, and `in-out`, and also accepts arbitrary timing functions like `cubic-bezier(...)`
+
+Existing classes like `animate-spin` keep working, but now they can have overrides with the added utility classes.
+
+## Quick Example
+
+```html
+<div class="animate-duration-700 animate-delay-300 animate-ease-in-out animate-spin">...</div>
 ```
 
-This will add the `delay` classes used for transitions to animations with the
-`animate-` prefix:
+This also works:
 
-- `animate-delay-0`
-- `animate-delay-75`
-- `animate-delay-100`
-- `animate-delay-150`
-- `animate-delay-200`
-- `animate-delay-300`
-- `animate-delay-500`
-- `animate-delay-700`
-- `animate-delay-1000`
-
-## Adding Animation Easing Classes to Tailwind CSS
-
-Add the following to your `tailwind.config.js`:
-
-```js
-const plugin = require('tailwindcss/plugin')
-
-module.exports = {
-  plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'animate-ease': (value) => ({
-            animationTimingFunction: value,
-          }),
-        },
-        { values: theme('transitionTimingFunction') },
-      )
-    }),
-  ],
-}
+```html
+<div class="animate-delay-700 animate-duration-[1500ms] animate-ease-in-out animate-spin">...</div>
 ```
 
-This will add the `ease` classes used for transitions to animations with the
-`animate-` prefix:
+The recommended approach in this post is the `@utility` setup above because it gives you reusable, consistent classes.
 
-- `animate-ease`
-- `animate-ease-linear`
-- `animate-ease-in`
-- `animate-ease-out`
-- `animate-ease-in-out`
-
-Check out the [Tailwind Play](https://play.tailwindcss.com/DFSnsN3Vc6) example.
-
-The added classes will appear in
-[Tailwind CSS IntelliSense](https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code).
-
-This also means you can use JIT, for example:
+For one-off cases, use arbitrary utility values with the same class names:
 
 - `animate-duration-[5s]`
-- `animate-delay-[0.25s]`
-- `animate-ease-[cubic-bezier(.17,_.67,_.83,_.67)]`
+- `animate-delay-[250ms]`
+- `animate-ease-[cubic-bezier(.17,.67,.83,.67)]`
 
----
+If needed, you can also use arbitrary properties directly:
 
-And that's it.
+- `[animation-duration:5s]`
+- `[animation-delay:0.25s]`
+- `[animation-timing-function:cubic-bezier(.17,.67,.83,.67)]`
 
-That's all you need to do to add animation duration, delay, and easing support
-to Tailwind CSS while it's not yet part of the core. Perhaps it will be included
-in the future.
+For custom easing curves, `animate-ease-[...]` is usually the clearest option.
+
+Example from the live demo:
+
+- `animate-ease-[cubic-bezier(0.9,-0.7,0.1,1.7)]`
+
+Example variable override:
+
+- `[--animate-easing:cubic-bezier(.17,.67,.83,.67)]`
