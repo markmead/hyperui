@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+@import 'tailwindcss' source(none);
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@source '../../public/examples/blog';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Google Sans Flex', sans-serif;
+}
+
+@utility animate-duration-* {
+  /* prettier-ignore */
+  --animate-duration: --value(integer)ms;
+  --animate-duration: --value([time]);
+  animation-duration: var(--animate-duration);
+}
+
+@utility animate-delay-* {
+  /* prettier-ignore */
+  --animate-delay: --value(integer)ms;
+  --animate-delay: --value([time]);
+  animation-delay: var(--animate-delay);
+}
+
+@utility animate-ease-* {
+  --animate-easing: --value(--ease-*);
+  --animate-easing: --value([*]);
+  animation-timing-function: var(--animate-easing);
+}

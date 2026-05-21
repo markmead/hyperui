@@ -10,7 +10,7 @@ interface Props {
 const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 ---
 
-<component-preview data-src={src} class="block border-t border-gray-200">
+<component-preview data-src={src} class="block">
   <iframe
     data-preview="true"
     {src}
