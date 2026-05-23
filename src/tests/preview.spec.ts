@@ -1,10 +1,12 @@
-import { test, expect, type Locator } from '@playwright/test'
+import { test, expect, type Locator, type Page } from '@playwright/test'
 
 const PAGE_URL = '/components/application/accordions'
 const MODALS_PAGE_URL = '/components/application/modals'
 const FIRST_IFRAME = '[src="/examples/application/accordions/1.html"]'
 const FIRST_PREVIEW = '[data-src="/examples/application/accordions/1.html"]'
 const LAST_PREVIEW = '[data-src="/examples/application/accordions/5-dark.html"]'
+const getFirstPreviewCopyTooltip = (page: Page): Locator =>
+  page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]')
 
 test('has component preview', async ({ page }) => {
   await page.goto(PAGE_URL)
@@ -197,17 +199,13 @@ test.describe('Component preview copy to clipboard', () => {
 
     await expect(copyButton).toHaveText('Copied')
     await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
-    await expect(
-      page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]'),
-    ).toBeVisible()
+    await expect(getFirstPreviewCopyTooltip(page)).toBeVisible()
 
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
 
     expect(clipboardText).toContain('<details')
 
-    await expect(
-      page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]'),
-    ).toBeHidden({ timeout: 3000 })
+    await expect(getFirstPreviewCopyTooltip(page)).toBeHidden({ timeout: 3000 })
   })
 
   test('copies to clipboard (WebKit)', async ({ page, browserName }) => {
@@ -228,9 +226,7 @@ test.describe('Component preview copy to clipboard', () => {
 
     await expect(copyButton).toHaveText('Copied')
     await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
-    await expect(
-      page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]'),
-    ).toBeVisible()
+    await expect(getFirstPreviewCopyTooltip(page)).toBeVisible()
   })
 })
 

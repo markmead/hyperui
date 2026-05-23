@@ -8,26 +8,29 @@ interface Props {
 const { src } = Astro.props
 ---
 
-<preview-copy data-src={src} class="relative">
-  <button
-    type="button"
-    aria-label="Copy HTML"
-    aria-pressed="false"
-    class="inline-flex items-center justify-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:pointer-events-none disabled:opacity-50"
-  >
-    <Clipboard class="size-4" />
+<preview-copy data-src={src}>
+  <span class="relative inline-flex">
+    <button
+      type="button"
+      aria-label="Copy HTML"
+      aria-pressed="false"
+      class="inline-flex items-center justify-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:pointer-events-none disabled:opacity-50"
+    >
+      <Clipboard class="size-4" />
 
-    <span data-text>Copy</span>
-  </button>
+      <span data-text>Copy</span>
+    </button>
+
+    <span
+      data-tooltip
+      data-visible="false"
+      class="pointer-events-none absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded-md border border-gray-200 bg-white px-2 py-1 text-xs font-medium whitespace-nowrap text-gray-700 opacity-100 shadow-sm transition-opacity data-[visible=false]:invisible data-[visible=false]:opacity-0"
+    >
+      Copied
+    </span>
+  </span>
 
   <span data-polite aria-live="polite" class="sr-only"> </span>
-  <span
-    data-tooltip
-    data-visible="false"
-    class="absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded-md border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700 shadow-sm data-[visible=false]:hidden"
-  >
-    Copied
-  </span>
 </preview-copy>
 
 <script>
