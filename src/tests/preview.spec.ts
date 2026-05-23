@@ -230,18 +230,17 @@ test.describe('Component preview copy to clipboard', () => {
   })
 })
 
-test.describe('Component preview HyperUX badge', () => {
+test.describe('Component preview HyperUX pattern link', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(MODALS_PAGE_URL)
   })
 
-  test('shows link to HyperUX for configured interactive components', async ({ page }) => {
-    const hyperuxLink: Locator = page
+  test('shows "Check-out the HyperUX" for collections with a pattern URL', async ({ page }) => {
+    const patternLink: Locator = page
       .locator('#component-1')
-      .getByRole('link', { name: /HyperUX/i })
+      .getByRole('link', { name: 'Check-out the HyperUX' })
 
-    await expect(hyperuxLink).toBeVisible()
-    await expect(hyperuxLink).toHaveAttribute('href', 'https://js.hyperui.dev/components/modals')
-    await expect(hyperuxLink).toContainText('HyperUX')
+    await expect(patternLink).toBeVisible()
+    await expect(patternLink).toHaveAttribute('href', 'https://js.hyperui.dev/components/modals')
   })
 })

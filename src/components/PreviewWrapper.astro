@@ -21,22 +21,14 @@ const breakpoints = [
 interface Props {
   component: ComponentPreviewType
   category: string
+  pattern?: string
   slug: string
   wrapper: string
 }
 
-const { component, category, slug, wrapper } = Astro.props
+const { component, category, pattern, slug, wrapper } = Astro.props
 
-const {
-  contributors,
-  dark,
-  hyperux,
-  id,
-  index,
-  title,
-  description = '',
-  plugins = [],
-} = component
+const { contributors, dark, id, index, title, description = '', plugins = [] } = component
 
 const src = dark
   ? `/examples/${category}/${slug}/${index}-dark.html`
@@ -60,16 +52,15 @@ const src = dark
 
       <div class="hidden shrink-0 items-center gap-2 md:flex">
         {
-          hyperux && (
+          pattern && (
             <a
-              href={hyperux.href}
+              href={pattern}
               target="_blank"
               rel="noreferrer"
-              data-analytics="preview-hyperux-click"
-              aria-label={`View ${hyperux.title || 'interactive pattern'} on HyperUX`}
-              class="inline-flex items-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
+              data-analytics="preview-pattern-click"
+              class="inline-flex items-center gap-1 text-sm text-gray-600 underline transition-colors hover:text-gray-900"
             >
-              <span>HyperUX</span>
+              <span>Check-out the HyperUX</span>
               <ExternalLink class="size-3.5 shrink-0" />
             </a>
           )

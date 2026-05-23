@@ -13,7 +13,7 @@ type Props =
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
 
-const { title, category, components, description, slug, terms, wrapper } = Astro.props
+const { title, category, components, description, pattern, slug, terms, wrapper } = Astro.props
 
 const darkCount = components.filter(({ dark }) => !!dark).length
 const totalCount = components.length
@@ -116,7 +116,7 @@ const componentPageSchema = {
 
       {
         formattedComponents.map((component) => (
-          <PreviewWrapper {component} {category} {slug} {wrapper} />
+          <PreviewWrapper {component} {category} {slug} {wrapper} {pattern} />
         ))
       }
 

@@ -21,6 +21,7 @@ const blog = defineCollection({
 
 const collection = z.object({
   description: z.string(),
+  pattern: z.string().url().optional(),
   slug: z.string(),
   terms: z.array(z.string()),
   title: z.string(),
@@ -37,12 +38,6 @@ const collection = z.object({
             contributors: z.array(z.string()).default(['markmead']),
           }),
         ])
-        .optional(),
-      hyperux: z
-        .object({
-          href: z.string().url(),
-          title: z.string().optional(),
-        })
         .optional(),
       plugins: z.array(z.string()).optional(),
     }),
