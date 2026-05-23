@@ -1,5 +1,5 @@
 ---
-import { Hash } from '@lucide/astro'
+import { ExternalLink, Hash } from '@lucide/astro'
 import type { ComponentPreview as ComponentPreviewType } from '../types/component'
 
 import ComponentPreview from './ComponentPreview.astro'
@@ -27,7 +27,16 @@ interface Props {
 
 const { component, category, slug, wrapper } = Astro.props
 
-const { contributors, dark, id, index, title, description = '', plugins = [] } = component
+const {
+  contributors,
+  dark,
+  hyperux,
+  id,
+  index,
+  title,
+  description = '',
+  plugins = [],
+} = component
 
 const src = dark
   ? `/examples/${category}/${slug}/${index}-dark.html`
@@ -50,6 +59,21 @@ const src = dark
       </div>
 
       <div class="hidden shrink-0 items-center gap-2 md:flex">
+        {
+          hyperux && (
+            <a
+              href={hyperux.href}
+              target="_blank"
+              rel="noreferrer"
+              data-analytics="preview-hyperux-click"
+              aria-label={`View ${hyperux.title || 'interactive pattern'} on HyperUX`}
+              class="inline-flex items-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
+            >
+              <span>HyperUX</span>
+              <ExternalLink class="size-3.5 shrink-0" />
+            </a>
+          )
+        }
         <PreviewBreakpoints {src} {breakpoints} />
         <PreviewDirection {src} />
         <PreviewView {src} />

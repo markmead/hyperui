@@ -8,7 +8,7 @@ interface Props {
 const { src } = Astro.props
 ---
 
-<preview-copy data-src={src}>
+<preview-copy data-src={src} class="relative">
   <button
     type="button"
     aria-label="Copy HTML"
@@ -21,6 +21,13 @@ const { src } = Astro.props
   </button>
 
   <span data-polite aria-live="polite" class="sr-only"> </span>
+  <span
+    data-tooltip
+    data-visible="false"
+    class="absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded-md border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700 shadow-sm data-[visible=false]:hidden"
+  >
+    Copied
+  </span>
 </preview-copy>
 
 <script>
@@ -40,8 +47,9 @@ const { src } = Astro.props
 
       const buttonEl = this.querySelector('button')
       const politeEl = this.querySelector('span[data-polite]')
+      const tooltipEl = this.querySelector('span[data-tooltip]')
 
-      if (!buttonEl || !politeEl) {
+      if (!buttonEl || !politeEl || !tooltipEl) {
         return
       }
 
@@ -70,6 +78,7 @@ const { src } = Astro.props
 
         buttonText.textContent = 'Copied'
         politeEl.textContent = 'Copied to clipboard.'
+        tooltipEl.setAttribute('data-visible', 'true')
 
         buttonEl.setAttribute('aria-pressed', 'true')
 
@@ -77,6 +86,7 @@ const { src } = Astro.props
           if (this.isConnected) {
             buttonText.textContent = 'Copy'
             politeEl.textContent = ''
+            tooltipEl.setAttribute('data-visible', 'false')
 
             buttonEl.setAttribute('aria-pressed', 'false')
           }

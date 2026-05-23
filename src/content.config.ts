@@ -38,6 +38,12 @@ const collection = z.object({
           }),
         ])
         .optional(),
+      hyperux: z
+        .object({
+          href: z.string().url(),
+          title: z.string().optional(),
+        })
+        .optional(),
       plugins: z.array(z.string()).optional(),
     }),
   ),

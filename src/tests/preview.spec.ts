@@ -1,6 +1,7 @@
 import { test, expect, type Locator } from '@playwright/test'
 
 const PAGE_URL = '/components/application/accordions'
+const MODALS_PAGE_URL = '/components/application/modals'
 const FIRST_IFRAME = '[src="/examples/application/accordions/1.html"]'
 const FIRST_PREVIEW = '[data-src="/examples/application/accordions/1.html"]'
 const LAST_PREVIEW = '[data-src="/examples/application/accordions/5-dark.html"]'
@@ -196,10 +197,17 @@ test.describe('Component preview copy to clipboard', () => {
 
     await expect(copyButton).toHaveText('Copied')
     await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
+    await expect(
+      page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]'),
+    ).toBeVisible()
 
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
 
     expect(clipboardText).toContain('<details')
+
+    await expect(
+      page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]'),
+    ).toBeHidden({ timeout: 3000 })
   })
 
   test('copies to clipboard (WebKit)', async ({ page, browserName }) => {
@@ -220,5 +228,24 @@ test.describe('Component preview copy to clipboard', () => {
 
     await expect(copyButton).toHaveText('Copied')
     await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
+    await expect(
+      page.locator('preview-copy').and(page.locator(FIRST_PREVIEW)).locator('[data-tooltip]'),
+    ).toBeVisible()
+  })
+})
+
+test.describe('Component preview HyperUX badge', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(MODALS_PAGE_URL)
+  })
+
+  test('shows link to HyperUX for configured interactive components', async ({ page }) => {
+    const hyperuxLink: Locator = page
+      .locator('#component-1')
+      .getByRole('link', { name: /HyperUX/i })
+
+    await expect(hyperuxLink).toBeVisible()
+    await expect(hyperuxLink).toHaveAttribute('href', 'https://js.hyperui.dev/components/modals')
+    await expect(hyperuxLink).toContainText('HyperUX')
   })
 })

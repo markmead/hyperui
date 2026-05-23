@@ -5,5 +5,11 @@ export interface ComponentPreview {
   index: number
   title: string
   description?: string | undefined
+  hyperux?:
+    | {
+        href: string
+        title?: string | undefined
+      }
+    | undefined
   plugins?: string[] | undefined
 }
