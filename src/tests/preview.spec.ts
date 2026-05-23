@@ -235,10 +235,10 @@ test.describe('Component preview HyperUX pattern link', () => {
     await page.goto(MODALS_PAGE_URL)
   })
 
-  test('shows "Check-out the HyperUX" for collections with a pattern URL', async ({ page }) => {
+  test('shows "Check out the HyperUX" for collections with a pattern URL', async ({ page }) => {
     const patternLink: Locator = page
       .locator('#component-1')
-      .getByRole('link', { name: 'Check-out the HyperUX' })
+      .getByRole('link', { name: 'Check out the HyperUX' })
 
     await expect(patternLink).toBeVisible()
     await expect(patternLink).toHaveAttribute('href', 'https://js.hyperui.dev/components/modals')
