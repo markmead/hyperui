@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import type { ComponentPreview } from '../types/component'
 
-import { Moon } from '@lucide/astro'
+import { Moon, Dot } from '@lucide/astro'
 
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
@@ -13,16 +13,8 @@ type Props =
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
 
-const {
-  title,
-  category,
-  components,
-  description,
-  slug,
-  terms,
-  wrapper,
-  pattern = null,
-} = Astro.props
+const { title, category, components, description, slug, terms, wrapper, pattern, updated } =
+  Astro.props
 
 const darkCount = components.filter(({ dark }) => !!dark).length
 const totalCount = components.length
@@ -101,42 +93,71 @@ const componentPageSchema = {
     <slot />
 
     <div class="mx-auto max-w-7xl space-y-8 px-4">
-      <div class="max-w-lg rounded-lg border border-gray-200 bg-gray-50 p-4 text-gray-600">
-        <div class="inline-flex items-center gap-2">
-          <Moon class="size-5 shrink-0" />
+      <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+        <span>
+          {darkCount}/{totalCount} Dark Mode
 
-          <p class="font-medium">
-            {darkCount} of {totalCount} components have dark mode variants
-          </p>
-        </div>
+          {
+            darkCount !== totalCount && (
+              <a
+                href="https://github.com/markmead/hyperui/issues/new"
+                target="_blank"
+                rel="noreferrer"
+                class="text-gray-500 transition-colors hover:text-gray-700"
+              >
+                (Request)
+              </a>
+            )
+          }
+        </span>
 
-        <p class="text-sm text-pretty">
-          Need a dark mode component or found a bug?
-          <a
-            href="https://github.com/markmead/hyperui/issues/new"
-            target="_blank"
-            rel="noreferrer"
-            class="underline transition-colors hover:text-gray-900"
-          >
-            Create an issue on GitHub
-          </a>
-        </p>
+        <Dot class="size-6 text-gray-400" />
+
+        {
+          pattern && (
+            <>
+              <a
+                href={pattern}
+                target="_blank"
+                rel="noreferrer"
+                class="transition-colors hover:text-gray-900"
+              >
+                HyperUX Pattern Available
+              </a>
+
+              <Dot class="size-6 text-gray-400" />
+            </>
+          )
+        }
+
+        <span class="group relative">
+          Updated:
+          {
+            updated?.commit ? (
+              <a
+                href={`https://github.com/markmead/hyperui/commit/${updated?.commit}`}
+                target="_blank"
+                rel="noreferrer"
+                class="transition-colors hover:text-gray-900"
+              >
+                {updated.date.toLocaleDateString(undefined, {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </a>
+            ) : (
+              <>
+                N/A
+                <span class="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  No commit information available
+                  <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+                </span>
+              </>
+            )
+          }
+        </span>
       </div>
-
-      {
-        pattern && (
-          <div class="max-w-lg rounded-lg border border-gray-200 bg-gray-50 p-4 text-gray-600">
-            <a
-              href={pattern.url}
-              target="_blank"
-              rel="noreferrer"
-              class="font-medium underline transition-colors hover:text-gray-900"
-            >
-              {pattern.description}
-            </a>
-          </div>
-        )
-      }
 
       {
         formattedComponents.map((component) => (

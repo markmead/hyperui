@@ -25,10 +25,11 @@ const collection = z.object({
   terms: z.array(z.string()),
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
-  pattern: z
+  pattern: z.string().optional(),
+  updated: z
     .object({
-      url: z.string(),
-      description: z.string(),
+      date: z.coerce.date(),
+      commit: z.string().optional(),
     })
     .optional(),
   components: z.array(
