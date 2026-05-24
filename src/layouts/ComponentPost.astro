@@ -133,22 +133,24 @@ const componentPageSchema = {
         <span class="group relative">
           Updated:
           {
-            updated?.commit ? (
+            updated?.date ? (
               <a
-                href={`https://github.com/markmead/hyperui/commit/${updated?.commit}`}
+                href={`https://github.com/markmead/hyperui/commit/${updated.commit}`}
                 target="_blank"
                 rel="noreferrer"
                 class="transition-colors hover:text-gray-900"
               >
-                {updated.date.toLocaleDateString(undefined, {
+                {updated.date.toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'short',
                   day: 'numeric',
+                  timeZone: 'UTC',
                 })}
               </a>
             ) : (
               <>
                 N/A
+                <span class="sr-only">No commit information available</span>
                 <span class="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100">
                   No commit information available
                   <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />

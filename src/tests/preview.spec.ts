@@ -11,6 +11,20 @@ test('has component preview', async ({ page }) => {
   await expect(page.locator('component-preview').and(page.locator(FIRST_PREVIEW))).toBeVisible()
 })
 
+test.describe('Component pattern link', () => {
+  test('is visible when pattern metadata exists', async ({ page }) => {
+    await page.goto('/components/application/tabs')
+
+    await expect(page.getByRole('link', { name: 'HyperUX Pattern Available' })).toBeVisible()
+  })
+
+  test('is hidden when pattern metadata does not exist', async ({ page }) => {
+    await page.goto(PAGE_URL)
+
+    await expect(page.getByRole('link', { name: 'HyperUX Pattern Available' })).toHaveCount(0)
+  })
+})
+
 test.describe('Component preview hotlink', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(PAGE_URL)
