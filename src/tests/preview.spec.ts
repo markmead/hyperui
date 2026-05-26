@@ -15,13 +15,20 @@ test.describe('Component pattern link', () => {
   test('is visible when pattern metadata exists', async ({ page }) => {
     await page.goto('/components/application/tabs')
 
-    await expect(page.getByRole('link', { name: 'HyperUX Pattern Available' })).toBeVisible()
+    const patternLink = page.getByRole('link', { name: 'HyperUX Pattern Available' })
+
+    await expect(patternLink).toBeVisible()
+
+    await patternLink.hover()
+
+    await expect(page.getByText('View related HyperUX pattern documentation')).toBeVisible()
   })
 
   test('is hidden when pattern metadata does not exist', async ({ page }) => {
     await page.goto(PAGE_URL)
 
     await expect(page.getByRole('link', { name: 'HyperUX Pattern Available' })).toHaveCount(0)
+    await expect(page.getByText('N/A')).toBeVisible()
   })
 })
 

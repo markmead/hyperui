@@ -1,0 +1,17 @@
+---
+interface Props {
+  text: string
+  class?: string
+}
+
+const { text, class: className } = Astro.props
+---
+
+<span class:list={['group/tooltip relative inline-flex items-center', className]}>
+  <slot />
+
+  <span class="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity group-hover/tooltip:opacity-100 group-focus-within/tooltip:opacity-100">
+    {text}
+    <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+  </span>
+</span>

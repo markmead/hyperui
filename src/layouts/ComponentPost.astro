@@ -7,6 +7,7 @@ import { Dot } from '@lucide/astro'
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 import RelatedComponents from '../components/RelatedComponents.astro'
+import TooltipWrapper from '../components/TooltipWrapper.astro'
 
 type Props =
   | CollectionEntry<'application'>['data']
@@ -116,21 +117,23 @@ const componentPageSchema = {
         {
           pattern && (
             <>
-              <a
-                href={pattern}
-                target="_blank"
-                rel="noreferrer"
-                class="transition-colors hover:text-gray-900"
-              >
-                HyperUX Pattern Available
-              </a>
+              <TooltipWrapper text="View related HyperUX pattern documentation">
+                <a
+                  href={pattern}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="transition-colors hover:text-gray-900"
+                >
+                  HyperUX Pattern Available
+                </a>
+              </TooltipWrapper>
 
               <Dot class="size-6 text-gray-400" />
             </>
           )
         }
 
-        <span class="group relative">
+        <span>
           Updated:
           {
             updated?.commit ? (
@@ -149,12 +152,10 @@ const componentPageSchema = {
               </a>
             ) : (
               <>
-                Not available
+                <TooltipWrapper text="No commit information available">
+                  N/A
+                </TooltipWrapper>
                 <span class="sr-only">No commit information available.</span>
-                <span class="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100">
-                  No commit information available
-                  <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
-                </span>
               </>
             )
           }
