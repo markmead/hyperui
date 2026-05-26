@@ -21,7 +21,10 @@ test.describe('Component pattern link', () => {
 
     await patternLink.hover()
 
-    await expect(page.getByText('View related HyperUX pattern documentation')).toBeVisible()
+    await expect(page.getByText('View related HyperUX pattern documentation')).toHaveCSS(
+      'opacity',
+      /^1(\.0+)?$/,
+    )
   })
 
   test('is hidden when pattern metadata does not exist', async ({ page }) => {
