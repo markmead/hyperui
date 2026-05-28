@@ -4,24 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/component.css" rel="stylesheet" />
-    <script src="/component.js" defer></script>
   </head>
-  <body>
-    <div
-      class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modalTitle"
+  <body class="grid h-screen place-content-center">
+    <button
+      data-modal-open
+      class="block rounded-lg border border-indigo-600 dark:border-indigo-300 bg-indigo-600 dark:bg-indigo-300 px-12 py-3 text-sm font-medium text-white dark:text-gray-900 transition-colors hover:bg-transparent hover:text-indigo-600 dark:hover:text-indigo-300 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
     >
-      <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900">
+      Open Modal
+    </button>
+
+    <dialog
+      closedby="any"
+      aria-labelledby="modalTitle"
+      aria-describedby="modalDescription"
+      class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
+    >
+      <div class="flex flex-col gap-4">
         <div class="flex items-start justify-between">
-          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
-            Modal Title
-          </h2>
+          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
 
           <button
             type="button"
-            class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+            data-modal-close
+            class="-me-4 -mt-4 rounded-full p-2 text-gray-400 dark:text-gray-500 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-600 dark:hover:text-gray-300 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
             aria-label="Close"
           >
             <svg
@@ -41,29 +46,40 @@
           </button>
         </div>
 
-        <div class="mt-4">
-          <p class="text-pretty text-gray-700 dark:text-gray-200">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-            consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+        <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
+          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
 
-        <footer class="mt-6 flex justify-end gap-2">
+        <div class="flex justify-end gap-2">
           <button
             type="button"
-            class="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+            data-modal-close
+            class="rounded bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
           >
             Cancel
           </button>
 
           <button
             type="button"
-            class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            data-modal-close
+            class="rounded bg-blue-600 dark:bg-blue-300 px-4 py-2 text-sm font-medium text-white dark:text-gray-900 transition-colors hover:bg-blue-700 dark:hover:bg-blue-200 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
           >
             Done
           </button>
-        </footer>
+        </div>
       </div>
-    </div>
+    </dialog>
+
+    <script>
+      const modal = document.querySelector('dialog')
+      const openBtn = document.querySelector('[data-modal-open]')
+
+      openBtn.addEventListener('click', () => modal.showModal())
+
+      document.querySelectorAll('[data-modal-close]').forEach((button) => {
+        button.addEventListener('click', () => modal.close())
+      })
+    </script>
   </body>
 </html>

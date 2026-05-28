@@ -1,6 +1,5 @@
 User-agent: *
 
-Disallow: /component.js
 Disallow: /component.css
 Disallow: /examples/
 
