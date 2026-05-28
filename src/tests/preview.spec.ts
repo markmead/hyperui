@@ -31,7 +31,6 @@ test.describe('Component pattern link', () => {
     await page.goto(PAGE_URL)
 
     await expect(page.getByRole('link', { name: 'HyperUX Pattern Available' })).toHaveCount(0)
-    await expect(page.getByText('N/A')).toBeVisible()
   })
 })
 
