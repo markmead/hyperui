@@ -2,18 +2,20 @@
 import type { CollectionEntry } from 'astro:content'
 import type { ComponentPreview } from '../types/component'
 
-import { Moon } from '@lucide/astro'
+import { Dot } from '@lucide/astro'
 
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 import RelatedComponents from '../components/RelatedComponents.astro'
+import TooltipWrapper from '../components/TooltipWrapper.astro'
 
 type Props =
   | CollectionEntry<'application'>['data']
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
 
-const { title, category, components, description, slug, terms, wrapper } = Astro.props
+const { title, category, components, description, slug, terms, wrapper, pattern, updated } =
+  Astro.props
 
 const darkCount = components.filter(({ dark }) => !!dark).length
 const totalCount = components.length
@@ -92,26 +94,72 @@ const componentPageSchema = {
     <slot />
 
     <div class="mx-auto max-w-7xl space-y-8 px-4">
-      <div class="max-w-lg rounded-lg border border-gray-200 bg-gray-50 p-4 text-gray-600">
-        <div class="inline-flex items-center gap-2">
-          <Moon class="size-5 shrink-0" />
+      <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+        <span>
+          {darkCount}/{totalCount} Dark Mode
 
-          <p class="font-medium">
-            {darkCount} of {totalCount} components have dark mode variants
-          </p>
-        </div>
+          {
+            darkCount !== totalCount && (
+              <a
+                href="https://github.com/markmead/hyperui/issues/new"
+                target="_blank"
+                rel="noreferrer"
+                class="text-gray-500 transition-colors hover:text-gray-700"
+              >
+                (Request)
+              </a>
+            )
+          }
+        </span>
 
-        <p class="text-sm text-pretty">
-          Need a dark mode component or found a bug?
-          <a
-            href="https://github.com/markmead/hyperui/issues/new"
-            target="_blank"
-            rel="noreferrer"
-            class="underline transition-colors hover:text-gray-900"
-          >
-            Create an issue on GitHub
-          </a>
-        </p>
+        <Dot class="size-6 text-gray-400" />
+
+        {
+          pattern && (
+            <>
+              <TooltipWrapper text="View related HyperUX pattern documentation">
+                <a
+                  href={pattern}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="transition-colors hover:text-gray-900"
+                >
+                  HyperUX Pattern Available
+                </a>
+              </TooltipWrapper>
+
+              <Dot class="size-6 text-gray-400" />
+            </>
+          )
+        }
+
+        <span>
+          Updated:
+          {
+            updated?.commit ? (
+              <a
+                href={`https://github.com/markmead/hyperui/commit/${updated.commit}`}
+                target="_blank"
+                rel="noreferrer"
+                class="transition-colors hover:text-gray-900"
+              >
+                {updated.date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                  timeZone: 'UTC',
+                })}
+              </a>
+            ) : (
+              <>
+                <TooltipWrapper text="No commit information available">
+                  N/A
+                </TooltipWrapper>
+                <span class="sr-only">No commit information available.</span>
+              </>
+            )
+          }
+        </span>
       </div>
 
       {

@@ -25,6 +25,13 @@ const collection = z.object({
   terms: z.array(z.string()),
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
+  pattern: z.url().optional(),
+  updated: z
+    .object({
+      date: z.coerce.date(),
+      commit: z.string(),
+    })
+    .optional(),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),
