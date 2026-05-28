@@ -51,11 +51,112 @@ const { collections, posts } = Astro.props
     private escapeHandler: (() => void) | null = null
     private searchHandler: ((event: CustomEvent<{ value: string }>) => void) | null = null
 
+    private resetResults(resultsEl: HTMLElement) {
+      resultsEl.replaceChildren()
+    }
+
+    private normalizePath(slug: string): string {
+      try {
+        const candidateUrl = new URL(slug, globalThis.location.origin)
+
+        if (candidateUrl.origin !== globalThis.location.origin) {
+          return '/'
+        }
+
+        return `${candidateUrl.pathname}${candidateUrl.search}${candidateUrl.hash}`
+      } catch {
+        return '/'
+      }
+    }
+
+    private createResultItem(result: Result): HTMLLIElement {
+      const listItem = document.createElement('li')
+
+      listItem.setAttribute('role', 'option')
+
+      const anchorEl = document.createElement('a')
+
+      anchorEl.setAttribute('href', this.normalizePath(result.slug))
+      anchorEl.className = 'block px-4 py-3 hover:bg-gray-50'
+
+      const contentEl = document.createElement('div')
+
+      contentEl.className = 'flex items-center justify-between gap-2'
+
+      const titleEl = document.createElement('h3')
+
+      titleEl.className = 'text-sm text-gray-900 font-medium'
+      titleEl.textContent = result.title
+
+      contentEl.appendChild(titleEl)
+
+      if (result.category) {
+        const categoryEl = document.createElement('span')
+
+        categoryEl.className = 'text-xs text-gray-500 shrink-0 capitalize'
+        categoryEl.textContent = result.category
+
+        contentEl.appendChild(categoryEl)
+      }
+
+      anchorEl.appendChild(contentEl)
+
+      if (result.components) {
+        const componentCountEl = document.createElement('p')
+
+        componentCountEl.className = 'text-xs text-gray-500 mt-0.5'
+        componentCountEl.textContent = `${result.components} components`
+
+        anchorEl.appendChild(componentCountEl)
+      }
+
+      listItem.appendChild(anchorEl)
+
+      return listItem
+    }
+
+    private createResultSection(title: string, items: Result[]): HTMLDivElement {
+      const titleEl = document.createElement('strong')
+
+      titleEl.className = 'px-3 py-2 text-xs font-medium text-gray-500 bg-gray-50 block'
+      titleEl.textContent = title
+
+      const listEl = document.createElement('ul')
+
+      listEl.setAttribute('role', 'listbox')
+      listEl.className = 'divide-y divide-gray-200 border-t border-gray-200'
+
+      items.forEach((item) => {
+        listEl.appendChild(this.createResultItem(item))
+      })
+
+      const sectionEl = document.createElement('div')
+
+      sectionEl.appendChild(titleEl)
+      sectionEl.appendChild(listEl)
+
+      return sectionEl
+    }
+
+    private renderResults(resultsEl: HTMLElement, collections: Result[], posts: Result[]) {
+      const fragment = document.createDocumentFragment()
+
+      if (collections.length > 0) {
+        fragment.appendChild(this.createResultSection('Components', collections))
+      }
+
+      if (posts.length > 0) {
+        fragment.appendChild(this.createResultSection('Blog Posts', posts))
+      }
+
+      resultsEl.replaceChildren(fragment)
+    }
+
     connectedCallback() {
-      const containerEl = this.querySelector('[data-container]')
-      const errorEl = this.querySelector('[data-error]')
-      const resultsEl = this.querySelector('[data-list]')
-      const statusEl = this.querySelector('[data-status]')
+      const containerEl = this.querySelector('[data-container]') as HTMLElement | null
+      const errorEl = this.querySelector('[data-error]') as HTMLElement | null
+      const resultsEl = this.querySelector('[data-list]') as HTMLElement | null
+      const statusEl = this.querySelector('[data-status]') as HTMLElement | null
 
       if (!containerEl || !errorEl || !resultsEl || !statusEl) {
         return
@@ -87,7 +188,7 @@ const { collections, posts } = Astro.props
       this.escapeHandler = () => {
         this.searchResults = []
 
-        resultsEl.innerHTML = ''
+        this.resetResults(resultsEl)
 
         containerEl.setAttribute('data-container', 'false')
         errorEl.setAttribute('data-error', 'false')
@@ -99,7 +200,7 @@ const { collections, posts } = Astro.props
         if (!searchQuery) {
           this.searchResults = []
 
-          resultsEl.innerHTML = ''
+          this.resetResults(resultsEl)
 
           containerEl.setAttribute('data-container', 'false')
           errorEl.setAttribute('data-error', 'false')
@@ -131,7 +232,7 @@ const { collections, posts } = Astro.props
         if (totalResults === 0) {
           this.searchResults = []
 
-          resultsEl.innerHTML = ''
+          this.resetResults(resultsEl)
           statusEl.textContent = 'No results found'
 
           errorEl.setAttribute('data-error', 'true')
@@ -143,47 +244,7 @@ const { collections, posts } = Astro.props
 
         statusEl.textContent = `${totalResults} ${totalResults === 1 ? 'result' : 'results'} found`
 
-        const renderSection = (title: string, items: Result[]) => {
-          if (items.length === 0) {
-            return ''
-          }
-
-          return `
-            <div>
-              <strong class="px-3 py-2 text-xs font-medium text-gray-500 bg-gray-50 block">
-                ${title}
-              </strong>
-
-              <ul role="listbox" class="divide-y divide-gray-200 border-t border-gray-200">
-                ${items
-                  .map(({ category, components, slug, title }) => {
-                    return `
-                      <li role="option">
-                        <a
-                          href="${slug}"
-                          class="block px-4 py-3 hover:bg-gray-50"
-                        >
-                          <div class="flex items-center justify-between gap-2">
-                            <h3 class="text-sm text-gray-900 font-medium">${title}</h3>
-
-                            ${category ? `<span class="text-xs text-gray-500 shrink-0 capitalize">${category}</span>` : ''}
-                          </div>
-
-                          ${components ? `<p class="text-xs text-gray-500 mt-0.5">${components} components</p>` : ''}
-                        </a>
-                      </li>
-                    `
-                  })
-                  .join('')}
-              </ul>
-            </div>
-          `
-        }
-
-        resultsEl.innerHTML = `
-          ${renderSection('Components', filteredCollections)}
-          ${renderSection('Blog Posts', filteredPosts)}
-        `
+        this.renderResults(resultsEl, filteredCollections, filteredPosts)
 
         errorEl.setAttribute('data-error', 'false')
       }
