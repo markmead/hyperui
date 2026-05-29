@@ -1,132 +1,120 @@
-<!doctype html>
-<html lang="en" class="dark font-sans antialiased">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://hyperui.dev/component.css" rel="stylesheet" />
-  </head>
-  <body class="flex justify-end p-6">
-    <div
-      class="relative w-screen max-w-sm border border-gray-300 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8 dark:border-gray-600 dark:bg-gray-800"
-      aria-modal="true"
-      role="dialog"
-      tabindex="-1"
+<div
+  class="relative w-screen max-w-sm border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-4 py-8 sm:px-6 lg:px-8"
+  aria-modal="true"
+  role="dialog"
+  tabindex="-1"
+>
+  <button class="absolute inset-e-4 top-4 text-gray-600 dark:text-gray-300 transition hover:scale-110">
+    <span class="sr-only">Close cart</span>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5"
     >
-      <button
-        class="absolute inset-e-4 top-4 text-gray-600 transition hover:scale-110 dark:text-gray-300"
-      >
-        <span class="sr-only">Close cart</span>
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-5"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+  <div class="mt-4 space-y-6">
+    <ul class="space-y-4">
+      <li class="flex items-center gap-4">
+        <img
+          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
+          alt=""
+          class="size-16 rounded-sm object-cover"
+        />
 
-      <div class="mt-4 space-y-6">
-        <ul class="space-y-4">
-          <li class="flex items-center gap-4">
-            <img
-              src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
-              alt=""
-              class="size-16 rounded-sm object-cover"
-            />
+        <div>
+          <h3 class="text-sm text-gray-900 dark:text-white">Basic Tee 6-Pack</h3>
+
+          <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
+            <div>
+              <dt class="inline">Size:</dt>
+              <dd class="inline">XXS</dd>
+            </div>
 
             <div>
-              <h3 class="text-sm text-gray-900 dark:text-white">Basic Tee 6-Pack</h3>
-
-              <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
-                <div>
-                  <dt class="inline">Size:</dt>
-                  <dd class="inline">XXS</dd>
-                </div>
-
-                <div>
-                  <dt class="inline">Color:</dt>
-                  <dd class="inline">White</dd>
-                </div>
-              </dl>
+              <dt class="inline">Color:</dt>
+              <dd class="inline">White</dd>
             </div>
-          </li>
-
-          <li class="flex items-center gap-4">
-            <img
-              src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
-              alt=""
-              class="size-16 rounded-sm object-cover"
-            />
-
-            <div>
-              <h3 class="text-sm text-gray-900 dark:text-white">Basic Tee 6-Pack</h3>
-
-              <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
-                <div>
-                  <dt class="inline">Size:</dt>
-                  <dd class="inline">XXS</dd>
-                </div>
-
-                <div>
-                  <dt class="inline">Color:</dt>
-                  <dd class="inline">White</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-
-          <li class="flex items-center gap-4">
-            <img
-              src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
-              alt=""
-              class="size-16 rounded-sm object-cover"
-            />
-
-            <div>
-              <h3 class="text-sm text-gray-900 dark:text-white">Basic Tee 6-Pack</h3>
-
-              <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
-                <div>
-                  <dt class="inline">Size:</dt>
-                  <dd class="inline">XXS</dd>
-                </div>
-
-                <div>
-                  <dt class="inline">Color:</dt>
-                  <dd class="inline">White</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-        </ul>
-
-        <div class="space-y-4 text-center">
-          <a
-            href="#"
-            class="block rounded-sm border border-gray-300 bg-gray-50 px-5 py-3 text-sm text-gray-700 transition-colors hover:text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:text-white"
-          >
-            View my cart (2)
-          </a>
-
-          <a
-            href="#"
-            class="block rounded-sm border border-blue-600 bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-blue-700 hover:bg-blue-700 dark:border-blue-300 dark:bg-blue-300 dark:text-gray-900 dark:hover:border-blue-200 dark:hover:bg-blue-200"
-          >
-            Checkout
-          </a>
-
-          <a
-            href="#"
-            class="inline-block text-sm text-gray-600 underline underline-offset-4 transition-colors hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
-          >
-            Continue shopping
-          </a>
+          </dl>
         </div>
-      </div>
+      </li>
+
+      <li class="flex items-center gap-4">
+        <img
+          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
+          alt=""
+          class="size-16 rounded-sm object-cover"
+        />
+
+        <div>
+          <h3 class="text-sm text-gray-900 dark:text-white">Basic Tee 6-Pack</h3>
+
+          <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
+            <div>
+              <dt class="inline">Size:</dt>
+              <dd class="inline">XXS</dd>
+            </div>
+
+            <div>
+              <dt class="inline">Color:</dt>
+              <dd class="inline">White</dd>
+            </div>
+          </dl>
+        </div>
+      </li>
+
+      <li class="flex items-center gap-4">
+        <img
+          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
+          alt=""
+          class="size-16 rounded-sm object-cover"
+        />
+
+        <div>
+          <h3 class="text-sm text-gray-900 dark:text-white">Basic Tee 6-Pack</h3>
+
+          <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
+            <div>
+              <dt class="inline">Size:</dt>
+              <dd class="inline">XXS</dd>
+            </div>
+
+            <div>
+              <dt class="inline">Color:</dt>
+              <dd class="inline">White</dd>
+            </div>
+          </dl>
+        </div>
+      </li>
+    </ul>
+
+    <div class="space-y-4 text-center">
+      <a
+        href="#"
+        class="block rounded-sm border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-5 py-3 text-sm text-gray-700 dark:text-gray-200 transition-colors hover:text-gray-900 dark:hover:text-white"
+      >
+        View my cart (2)
+      </a>
+
+      <a
+        href="#"
+        class="block rounded-sm border border-blue-600 dark:border-blue-300 bg-blue-600 dark:bg-blue-300 px-5 py-3 text-sm font-semibold text-white dark:text-gray-900 transition-colors hover:border-blue-700 dark:hover:border-blue-200 hover:bg-blue-700 dark:hover:bg-blue-200"
+      >
+        Checkout
+      </a>
+
+      <a
+        href="#"
+        class="inline-block text-sm text-gray-600 dark:text-gray-300 underline underline-offset-4 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
+      >
+        Continue shopping
+      </a>
     </div>
-  </body>
-</html>
+  </div>
+</div>
