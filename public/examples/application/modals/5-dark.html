@@ -1,73 +1,63 @@
-<!doctype html>
-<html lang="en" class="dark font-sans antialiased">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://hyperui.dev/component.css" rel="stylesheet" />
-  </head>
-  <body class="p-6">
-    <button
-      data-modal-open
-      class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
-    >
-      Open
-    </button>
+<button
+  data-modal-open
+  class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
+>
+  Open
+</button>
 
-    <dialog
-      closedby="any"
-      aria-labelledby="modalTitle"
-      aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
-    >
-      <div class="flex flex-col gap-4">
-        <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
+<dialog
+  closedby="any"
+  aria-labelledby="modalTitle"
+  aria-describedby="modalDescription"
+  class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
+>
+  <div class="flex flex-col gap-4">
+    <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
 
-        <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+    <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
+      consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
 
-        <label for="Confirm" class="block">
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
-            Please type "Confirm" to complete action
-          </span>
+    <label for="Confirm" class="block">
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
+        Please type "Confirm" to complete action
+      </span>
 
-          <input
-            type="text"
-            id="Confirm"
-            class="mt-0.5 w-full rounded border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 sm:text-sm"
-          />
-        </label>
+      <input
+        type="text"
+        id="Confirm"
+        class="mt-0.5 w-full rounded border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 sm:text-sm"
+      />
+    </label>
 
-        <div class="flex justify-end gap-2">
-          <button
-            type="button"
-            data-modal-close
-            class="rounded bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
-          >
-            Cancel
-          </button>
+    <div class="flex justify-end gap-2">
+      <button
+        type="button"
+        data-modal-close
+        class="rounded bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
+      >
+        Cancel
+      </button>
 
-          <button
-            type="button"
-            data-modal-close
-            class="rounded bg-blue-600 dark:bg-blue-300 px-4 py-2 text-sm font-medium text-white dark:text-gray-900 transition-colors hover:bg-blue-700 dark:hover:bg-blue-200 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
-          >
-            Done
-          </button>
-        </div>
-      </div>
-    </dialog>
+      <button
+        type="button"
+        data-modal-close
+        class="rounded bg-blue-600 dark:bg-blue-300 px-4 py-2 text-sm font-medium text-white dark:text-gray-900 transition-colors hover:bg-blue-700 dark:hover:bg-blue-200 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
+      >
+        Done
+      </button>
+    </div>
+  </div>
+</dialog>
 
-    <script>
-      const modalEl = document.querySelector('dialog')
-      const openButtonEl = document.querySelector('[data-modal-open]')
+<script>
+  const modalEl = document.querySelector('dialog')
+  const openButtonEl = document.querySelector('[data-modal-open]')
 
-      openButtonEl.addEventListener('click', () => modalEl.showModal())
+  openButtonEl.addEventListener('click', () => modalEl.showModal())
 
-      document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
-        buttonEl.addEventListener('click', () => modalEl.close())
-      })
-    </script>
-  </body>
-</html>
+  document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
+    buttonEl.addEventListener('click', () => modalEl.close())
+  })
+</script>

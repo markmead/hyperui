@@ -1,67 +1,57 @@
-<!doctype html>
-<html lang="en" class="dark font-sans antialiased">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://hyperui.dev/component.css" rel="stylesheet" />
-  </head>
-  <body class="p-6">
-    <button
-      data-modal-open
-      class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
-    >
-      Open
-    </button>
+<button
+  data-modal-open
+  class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
+>
+  Open
+</button>
 
-    <dialog
-      closedby="any"
-      aria-labelledby="modalTitle"
-      aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
-    >
-      <div class="flex flex-col gap-4">
-        <div class="flex items-start justify-between">
-          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
+<dialog
+  closedby="any"
+  aria-labelledby="modalTitle"
+  aria-describedby="modalDescription"
+  class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
+>
+  <div class="flex flex-col gap-4">
+    <div class="flex items-start justify-between">
+      <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
 
-          <button
-            type="button"
-            data-modal-close
-            class="-me-4 -mt-4 rounded-full p-2 text-gray-400 dark:text-gray-500 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-600 dark:hover:text-gray-300 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
-            aria-label="Close"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
+      <button
+        type="button"
+        data-modal-close
+        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 dark:text-gray-500 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-600 dark:hover:text-gray-300 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
+        aria-label="Close"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
 
-        <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-    </dialog>
+    <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
+      consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+</dialog>
 
-    <script>
-      const modalEl = document.querySelector('dialog')
-      const openButtonEl = document.querySelector('[data-modal-open]')
+<script>
+  const modalEl = document.querySelector('dialog')
+  const openButtonEl = document.querySelector('[data-modal-open]')
 
-      openButtonEl.addEventListener('click', () => modalEl.showModal())
+  openButtonEl.addEventListener('click', () => modalEl.showModal())
 
-      document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
-        buttonEl.addEventListener('click', () => modalEl.close())
-      })
-    </script>
-  </body>
-</html>
+  document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
+    buttonEl.addEventListener('click', () => modalEl.close())
+  })
+</script>

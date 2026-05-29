@@ -1,43 +1,33 @@
-<!doctype html>
-<html lang="en" class="dark font-sans antialiased">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://hyperui.dev/component.css" rel="stylesheet" />
-  </head>
-  <body class="p-6">
-    <button
-      data-modal-open
-      class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
-    >
-      Open
-    </button>
+<button
+  data-modal-open
+  class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
+>
+  Open
+</button>
 
-    <dialog
-      closedby="any"
-      aria-labelledby="modalTitle"
-      aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
-    >
-      <div class="flex flex-col gap-4">
-        <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
+<dialog
+  closedby="any"
+  aria-labelledby="modalTitle"
+  aria-describedby="modalDescription"
+  class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
+>
+  <div class="flex flex-col gap-4">
+    <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
 
-        <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-    </dialog>
+    <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
+      consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+</dialog>
 
-    <script>
-      const modalEl = document.querySelector('dialog')
-      const openButtonEl = document.querySelector('[data-modal-open]')
+<script>
+  const modalEl = document.querySelector('dialog')
+  const openButtonEl = document.querySelector('[data-modal-open]')
 
-      openButtonEl.addEventListener('click', () => modalEl.showModal())
+  openButtonEl.addEventListener('click', () => modalEl.showModal())
 
-      document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
-        buttonEl.addEventListener('click', () => modalEl.close())
-      })
-    </script>
-  </body>
-</html>
+  document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
+    buttonEl.addEventListener('click', () => modalEl.close())
+  })
+</script>
