@@ -5,15 +5,20 @@ interface Props {
   dark?: boolean
   index?: number
   wrapper?: string
+  body?: string
 }
 
-const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
+const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.props
 ---
 
-<component-preview data-src={src} class="block">
+<component-preview
+  data-src={src}
+  data-body={body}
+  data-dark={dark ? 'true' : 'false'}
+  class="block"
+>
   <iframe
     data-preview="true"
-    {src}
     {title}
     sandbox="allow-scripts"
     class:list={[
@@ -26,27 +31,41 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
   <div
     data-preview="true"
-    class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none data-[preview=true]:hidden"
+    class="prose prose-pre:m-0 prose-pre:rounded-none max-h-150 max-w-none overflow-auto data-[preview=true]:hidden"
   >
     <pre data-html></pre>
   </div>
 </component-preview>
 
 <script>
+  const PREVIEW_MESSAGE_TYPE = 'hyperui:preview-direction'
+  const COMPONENT_STYLESHEET_PATH = '/component.css'
+  const COMPONENT_SCRIPT_PATH = '/component.js'
+
   class ComponentPreview extends HTMLElement {
+    private static componentCssTextPromise: Promise<string | null> | null = null
+    private static componentJsTextPromise: Promise<string | null> | null = null
+
     private contentHtml: string | null = null
     private contentSrc: string | null = null
+    private rawSourceHtml: string | null = null
+    private contentBodyClass: string = ''
+    private isDarkPreview: boolean = false
 
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
+    private previewDirection: 'ltr' | 'rtl' = 'ltr'
 
-    private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
-    private copyHandler: (() => void) | null = null
-    private directionHandler: ((event: CustomEvent<{ ltr: boolean }>) => void) | null = null
-    private viewHandler: ((event: CustomEvent<{ previewing: boolean }>) => void) | null = null
+    private breakpointHandler: EventListener | null = null
+    private copyHandler: EventListener | null = null
+    private directionHandler: EventListener | null = null
+    private viewHandler: EventListener | null = null
+    private iframeLoadHandler: (() => void) | null = null
 
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
+      this.contentBodyClass = this.dataset.body || ''
+      this.isDarkPreview = this.dataset.dark === 'true'
 
       if (!this.contentSrc) {
         return
@@ -59,34 +78,41 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return
       }
 
+      this.loadContent()
       this.setupEventListeners()
+
+      this.iframeLoadHandler = () => {
+        this.postDirectionToIframe()
+      }
+
+      this.iframeEl.addEventListener('load', this.iframeLoadHandler)
     }
 
     disconnectedCallback() {
-      if (
-        this.contentSrc &&
-        this.breakpointHandler &&
-        this.copyHandler &&
-        this.directionHandler &&
-        this.viewHandler
-      ) {
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
-        document.removeEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.removeEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.removeEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
+      if (this.contentSrc) {
+        this.removeDocumentListener(
+          this.buildEventName('breakpoint:change'),
+          this.breakpointHandler,
+        )
+        this.removeDocumentListener(this.buildEventName('preview:copy'), this.copyHandler)
+        this.removeDocumentListener(this.buildEventName('preview:direction'), this.directionHandler)
+        this.removeDocumentListener(this.buildEventName('preview:view'), this.viewHandler)
+      }
 
-        this.breakpointHandler = null
-        this.copyHandler = null
-        this.directionHandler = null
-        this.viewHandler = null
+      this.breakpointHandler = null
+      this.copyHandler = null
+      this.directionHandler = null
+      this.viewHandler = null
+
+      if (this.iframeEl && this.iframeLoadHandler) {
+        this.iframeEl.removeEventListener('load', this.iframeLoadHandler)
+        this.iframeLoadHandler = null
       }
     }
 
     private setupEventListeners() {
-      this.breakpointHandler = (breakpointEvent) => {
+      this.breakpointHandler = (event) => {
+        const breakpointEvent = event as CustomEvent<{ width: string }>
         const newWidth = breakpointEvent.detail.width
 
         if (this.iframeEl) {
@@ -95,35 +121,25 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       this.copyHandler = () => {
-        const contentHtml = this.getContent()
-
-        try {
-          if (contentHtml) {
-            navigator.clipboard.writeText(contentHtml)
-          }
-        } catch {
-          // We do nothing
-        }
+        void this.copyPreviewContent()
       }
 
-      this.directionHandler = (directionEvent) => {
-        const isLtr = directionEvent.detail.ltr
+      this.directionHandler = (event) => {
+        const directionEvent = event as CustomEvent<{ ltr: boolean }>
+        const isLeftToRight = directionEvent.detail.ltr
 
-        if (this.iframeEl?.contentDocument) {
-          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
-        }
+        this.previewDirection = isLeftToRight ? 'ltr' : 'rtl'
+
+        this.postDirectionToIframe()
       }
 
-      this.viewHandler = (viewEvent) => {
+      this.viewHandler = (event) => {
+        const viewEvent = event as CustomEvent<{ previewing: boolean }>
         const isPreviewing = viewEvent.detail.previewing
 
         const previewEls = this.querySelectorAll('[data-preview]')
 
-        const contentHtml = this.getContent()
-
-        if (contentHtml && this.previewEl) {
-          this.previewEl.textContent = contentHtml
-        }
+        void this.syncPreviewCodeView()
 
         previewEls.forEach((previewEl) => {
           previewEl.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
@@ -131,38 +147,225 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       }
 
       if (this.contentSrc) {
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.addEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
-        document.addEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.addEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.addEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
+        this.addDocumentListener(this.buildEventName('breakpoint:change'), this.breakpointHandler)
+        this.addDocumentListener(this.buildEventName('preview:copy'), this.copyHandler)
+        this.addDocumentListener(this.buildEventName('preview:direction'), this.directionHandler)
+        this.addDocumentListener(this.buildEventName('preview:view'), this.viewHandler)
       }
     }
 
-    private getContent(): string | null {
+    private buildEventName(eventPrefix: string): string {
+      return `${eventPrefix}:${this.contentSrc}`
+    }
+
+    private addDocumentListener(eventName: string, handler: EventListener | null) {
+      if (!handler) {
+        return
+      }
+
+      globalThis.document.addEventListener(eventName, handler)
+    }
+
+    private removeDocumentListener(eventName: string, handler: EventListener | null) {
+      if (!handler) {
+        return
+      }
+
+      globalThis.document.removeEventListener(eventName, handler)
+    }
+
+    private async copyPreviewContent() {
+      try {
+        const contentHtml = await this.getContent()
+
+        if (contentHtml) {
+          await navigator.clipboard.writeText(contentHtml)
+        }
+      } catch {
+        // We do nothing
+      }
+    }
+
+    private async syncPreviewCodeView() {
+      const contentHtml = await this.getContent()
+
+      if (contentHtml && this.previewEl) {
+        this.previewEl.textContent = contentHtml
+      }
+    }
+
+    private async loadContent() {
+      if (!this.contentSrc || !this.iframeEl) {
+        return
+      }
+
+      try {
+        const [componentCssText, componentJsText] = await Promise.all([
+          this.loadComponentStylesheet(),
+          this.loadComponentScript(),
+        ])
+
+        const sourceResponse = await fetch(this.contentSrc, { credentials: 'same-origin' })
+
+        if (!sourceResponse.ok) {
+          return
+        }
+
+        const sourceDocumentHtml = await sourceResponse.text()
+
+        this.rawSourceHtml = sourceDocumentHtml
+        this.contentHtml = this.extractBodyContent(sourceDocumentHtml)
+
+        this.iframeEl.srcdoc = this.buildPreviewDocument(
+          sourceDocumentHtml,
+          componentCssText,
+          componentJsText,
+        )
+      } catch {
+        // We do nothing
+      }
+    }
+
+    private async loadComponentStylesheet(): Promise<string | null> {
+      if (!ComponentPreview.componentCssTextPromise) {
+        ComponentPreview.componentCssTextPromise = this.fetchTextAsset(COMPONENT_STYLESHEET_PATH)
+      }
+
+      return ComponentPreview.componentCssTextPromise
+    }
+
+    private async loadComponentScript(): Promise<string | null> {
+      if (!ComponentPreview.componentJsTextPromise) {
+        ComponentPreview.componentJsTextPromise = this.fetchTextAsset(COMPONENT_SCRIPT_PATH)
+      }
+
+      return ComponentPreview.componentJsTextPromise
+    }
+
+    private async fetchTextAsset(assetPath: string): Promise<string | null> {
+      try {
+        const assetResponse = await fetch(assetPath, { credentials: 'same-origin' })
+
+        if (!assetResponse.ok) {
+          return null
+        }
+
+        return assetResponse.text()
+      } catch {
+        return null
+      }
+    }
+
+    private buildPreviewDocument(
+      sourceDocumentHtml: string,
+      componentCssText: string | null,
+      componentJsText: string | null,
+    ): string {
+      const headHtml = this.buildPreviewHead(componentCssText, componentJsText)
+      const bodyClassAttribute = [
+        'dark font-sans antialiased',
+        this.contentBodyClass ?? '',
+        this.isDarkPreview ? 'bg-gray-900' : 'bg-white',
+      ]
+        .filter(Boolean)
+        .join(' ')
+
+      return `
+        <!doctype html>
+        <html>
+          <head>${headHtml}</head>
+          <body class="${bodyClassAttribute}">
+            ${sourceDocumentHtml}
+          </body>
+        </html>`
+    }
+
+    private buildPreviewHead(
+      componentCssText: string | null,
+      componentJsText: string | null,
+    ): string {
+      return [
+        '<meta charset="UTF-8" />',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+        '<meta name="color-scheme" content="light dark" />',
+        this.buildComponentStylesheetTag(componentCssText),
+        this.buildPreviewConfigScriptTag(),
+        this.buildDirectionScriptTag(componentJsText),
+      ].join('')
+    }
+
+    private buildComponentStylesheetTag(componentCssText: string | null): string {
+      if (!componentCssText) {
+        return ''
+      }
+
+      return `<style data-preview-component-css>${this.escapeStyleTag(componentCssText)}</style>`
+    }
+
+    private buildPreviewConfigScriptTag(): string {
+      const allowedOrigin = this.escapeScriptText(globalThis.location.origin)
+      const previewMessageType = this.escapeScriptText(PREVIEW_MESSAGE_TYPE)
+
+      return `<script>globalThis.__HYPERUI_PREVIEW_ORIGIN='${allowedOrigin}';globalThis.__HYPERUI_PREVIEW_MESSAGE_TYPE='${previewMessageType}';<\/script>`
+    }
+
+    private buildDirectionScriptTag(componentJsText: string | null): string {
+      if (!componentJsText) {
+        return ''
+      }
+
+      return `<script data-preview-component-js>${this.escapeScriptTag(componentJsText)}<\/script>`
+    }
+
+    private async getContent(): Promise<string | null> {
       if (this.contentHtml) {
         return this.contentHtml
       }
 
-      if (this.iframeEl?.contentDocument) {
-        const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
-
-        this.contentHtml = this.sanitizeContent(docClone.body.innerHTML)
+      if (this.rawSourceHtml) {
+        this.contentHtml = this.extractBodyContent(this.rawSourceHtml)
 
         return this.contentHtml
       }
 
-      return null
+      await this.loadContent()
+
+      return this.contentHtml
     }
 
-    private sanitizeContent(contentHtml: string): string {
-      return contentHtml
-        .split('\n')
-        .map((htmlLine) => htmlLine.replace(/^\s{4}/, ''))
-        .join('\n')
-        .trim()
+    private extractBodyContent(documentHtml: string): string | null {
+      return documentHtml
+    }
+
+    private escapeScriptText(scriptValue: string): string {
+      return scriptValue.replaceAll('\\', '\\\\').replaceAll("'", "\\'")
+    }
+
+    private escapeStyleTag(styleValue: string): string {
+      return styleValue.replace(/<\/style/gi, '<\\/style')
+    }
+
+    private escapeScriptTag(scriptValue: string): string {
+      return scriptValue.replace(/<\/script/gi, '<\\/script')
+    }
+
+    private postDirectionToIframe() {
+      if (!this.iframeEl?.contentWindow) {
+        return
+      }
+
+      try {
+        // Use wildcard delivery and validate origin in the child
+        this.iframeEl.contentWindow.postMessage(
+          {
+            type: PREVIEW_MESSAGE_TYPE,
+            direction: this.previewDirection,
+          },
+          '*',
+        )
+      } catch {
+        // We do nothing
+      }
     }
   }
 

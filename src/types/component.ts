@@ -4,6 +4,7 @@ export interface ComponentPreview {
   id: string
   index: number
   title: string
+  body?: string | undefined
   description?: string | undefined
   plugins?: string[] | undefined
 }

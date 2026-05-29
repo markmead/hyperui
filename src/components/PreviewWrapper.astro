@@ -27,7 +27,16 @@ interface Props {
 
 const { component, category, slug, wrapper } = Astro.props
 
-const { contributors, dark, id, index, title, description = '', plugins = [] } = component
+const {
+  contributors,
+  dark,
+  id,
+  index,
+  title,
+  description = '',
+  plugins = [],
+  body = '',
+} = component
 
 const src = dark
   ? `/examples/${category}/${slug}/${index}-dark.html`
@@ -58,7 +67,7 @@ const src = dark
     </div>
   </div>
 
-  <ComponentPreview {src} {index} {title} {wrapper} {dark} />
+  <ComponentPreview {src} {index} {title} {wrapper} {dark} {body} />
 
   <PreviewDetails {description} {plugins} />
 </div>
