@@ -8,6 +8,7 @@ import PreviewCopy from './PreviewCopy.astro'
 import PreviewDetails from './PreviewDetails.astro'
 import PreviewDirection from './PreviewDirection.astro'
 import PreviewRefs from './PreviewRefs.astro'
+import PreviewView from './PreviewView.astro'
 
 const breakpoints = [
   { name: 'Mobile', width: '340px' },
@@ -60,6 +61,7 @@ const src = dark
       <div class="hidden shrink-0 items-center gap-2 md:flex">
         <PreviewBreakpoints {src} {breakpoints} />
         <PreviewDirection {src} />
+        <PreviewView {src} />
         <PreviewCopy {src} />
       </div>
     </div>

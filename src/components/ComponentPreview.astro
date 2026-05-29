@@ -26,7 +26,18 @@ const {
   data-dark={dark ? 'true' : 'false'}
   data-stylesheet={stylesheet}
   class="block"
+  aria-busy="true"
 >
+  <div
+    data-loading
+    class="flex items-center justify-center gap-2 border-b border-gray-200 bg-white px-4 py-3 text-sm text-gray-600"
+  >
+    <span
+      class="size-4 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700"
+      aria-hidden="true"></span>
+    <span>Loading preview...</span>
+  </div>
+
   <iframe
     data-preview="true"
     {title}
@@ -64,6 +75,7 @@ const {
 
     private iframeEl: HTMLIFrameElement | null = null
     private previewEl: HTMLPreElement | null = null
+    private loadingEl: HTMLElement | null = null
     private previewDirection: 'ltr' | 'rtl' = 'ltr'
 
     private breakpointHandler: EventListener | null = null
@@ -84,6 +96,7 @@ const {
 
       this.iframeEl = this.querySelector('iframe')
       this.previewEl = this.querySelector('[data-html]')
+      this.loadingEl = this.querySelector('[data-loading]')
 
       if (!this.iframeEl || !this.previewEl) {
         return
@@ -119,6 +132,8 @@ const {
         this.iframeEl.removeEventListener('load', this.iframeLoadHandler)
         this.iframeLoadHandler = null
       }
+
+      this.loadingEl = null
     }
 
     private setupEventListeners() {
@@ -207,6 +222,7 @@ const {
 
     private async loadContent() {
       if (!this.contentSrc || !this.iframeEl) {
+        this.setLoadingState(false)
         return
       }
 
@@ -219,6 +235,7 @@ const {
         const sourceResponse = await fetch(this.contentSrc, { credentials: 'same-origin' })
 
         if (!sourceResponse.ok) {
+          this.setLoadingState(false)
           return
         }
 
@@ -234,6 +251,16 @@ const {
         )
       } catch {
         // We do nothing
+      } finally {
+        this.setLoadingState(false)
+      }
+    }
+
+    private setLoadingState(isLoading: boolean) {
+      this.setAttribute('aria-busy', isLoading ? 'true' : 'false')
+
+      if (this.loadingEl) {
+        this.loadingEl.classList.toggle('hidden', !isLoading)
       }
     }
 
