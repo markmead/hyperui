@@ -156,43 +156,11 @@ test.describe('Component preview view', () => {
     await page.goto(PAGE_URL)
   })
 
-  test('defaults to preview', async ({ page }) => {
-    const viewButton: Locator = page
-      .locator('preview-view')
-      .and(page.locator(FIRST_PREVIEW))
-      .getByRole('button', { name: 'Toggle preview mode' })
-
-    await expect(viewButton).toBeVisible()
-    await expect(viewButton).toHaveAttribute('aria-pressed', 'true')
+  test('shows interactive preview without toggle button', async ({ page }) => {
+    await expect(page.locator('preview-view').and(page.locator(FIRST_PREVIEW))).toHaveCount(0)
 
     await expect(page.locator(FIRST_IFRAME)).toBeVisible()
     await expect(page.locator(FIRST_IFRAME)).toHaveAttribute('data-preview', 'true')
-
-    await expect(
-      page.locator('preview-view').and(page.locator(FIRST_PREVIEW)).locator('pre[data-html]'),
-    ).not.toBeVisible()
-  })
-
-  test('can toggle to code view', async ({ page }) => {
-    const viewButton: Locator = page
-      .locator('preview-view')
-      .and(page.locator(FIRST_PREVIEW))
-      .getByRole('button', { name: 'Toggle preview mode' })
-
-    await expect(viewButton).toBeVisible()
-    await expect(viewButton).toHaveAttribute('aria-pressed', 'true')
-
-    await viewButton.click()
-
-    await expect(viewButton).toHaveText('HTML')
-    await expect(viewButton).toHaveAttribute('aria-pressed', 'false')
-
-    await expect(
-      page.locator('component-preview').and(page.locator(FIRST_PREVIEW)).locator('pre[data-html]'),
-    ).toBeVisible()
-    await expect(page.locator(FIRST_IFRAME)).toHaveAttribute('data-preview', 'false')
-
-    await expect(page.locator(FIRST_IFRAME)).not.toBeVisible()
   })
 })
 
