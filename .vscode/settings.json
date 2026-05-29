@@ -4,7 +4,8 @@
   "explorer.fileNesting.patterns": {
     "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml",
     "astro.config.ts": "tsconfig.json",
-    "eslint.config.ts": ".prettierrc",
-    "README.md": "CONTRIBUTING.md, LICENSE"
+    "eslint.config.ts": ".prettierrc, .prettierignore",
+    "README.md": "CONTRIBUTING.md, LICENSE",
+    "wrangler.jsonc": "worker-configuration.d.ts"
   }
 }
