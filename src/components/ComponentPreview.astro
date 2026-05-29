@@ -226,6 +226,8 @@ const {
         return
       }
 
+      this.setLoadingState(true)
+
       try {
         const [componentCssText, componentJsText] = await Promise.all([
           this.loadComponentStylesheet(),
@@ -235,7 +237,6 @@ const {
         const sourceResponse = await fetch(this.contentSrc, { credentials: 'same-origin' })
 
         if (!sourceResponse.ok) {
-          this.setLoadingState(false)
           return
         }
 
