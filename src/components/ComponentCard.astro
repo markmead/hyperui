@@ -4,10 +4,7 @@ import type { CollectionEntry } from 'astro:content'
 import { ArrowRight } from '@lucide/astro'
 
 interface Props {
-  component:
-    | CollectionEntry<'application'>['data']
-    | CollectionEntry<'marketing'>['data']
-    | CollectionEntry<'neobrutalism'>['data']
+  component: CollectionEntry<'application'>['data'] | CollectionEntry<'marketing'>['data']
 }
 
 const { component } = Astro.props

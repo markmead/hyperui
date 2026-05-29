@@ -7,10 +7,9 @@ import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
 
-const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
+const [applicationRaw, marketingRaw] = await Promise.all([
   getCollection('application'),
   getCollection('marketing'),
-  getCollection('neobrutalism'),
 ])
 
 const application = applicationRaw
@@ -19,11 +18,6 @@ const application = applicationRaw
   .slice(0, 9)
 
 const marketing = marketingRaw
-  .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
-  .slice(0, 9)
-
-const neobrutalism = neobrutalismRaw
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
   .slice(0, 9)
@@ -64,13 +58,6 @@ const neobrutalism = neobrutalismRaw
       description="Components for building marketing websites and landing pages."
       slug="marketing"
       components={marketing}
-    />
-
-    <CollectionFeature
-      title="Neobrutalism Components"
-      description="Components for building neobrutalist designs."
-      slug="neobrutalism"
-      components={neobrutalism}
     />
   </main>
 </BaseLayout>

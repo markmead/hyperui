@@ -73,15 +73,4 @@ const marketing = defineCollection({
   }),
 })
 
-const neobrutalism = defineCollection({
-  loader: glob({
-    base: './src/content/collection/neobrutalism',
-    pattern: '**/*.{md,mdx}',
-    retainBody: false,
-  }),
-  schema: collection.extend({
-    category: z.literal('neobrutalism'),
-  }),
-})
-
-export const collections = { blog, application, marketing, neobrutalism }
+export const collections = { blog, application, marketing }
