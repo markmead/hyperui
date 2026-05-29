@@ -4,7 +4,8 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
-@source '../../public/examples';
+@source '../../public/examples/application';
+@source '../../public/examples/marketing';
 
 @custom-variant dark (&:where(.dark, .dark *));
 

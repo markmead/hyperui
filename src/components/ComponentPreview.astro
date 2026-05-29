@@ -6,15 +6,25 @@ interface Props {
   index?: number
   wrapper?: string
   body?: string
+  stylesheet?: string
 }
 
-const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.props
+const {
+  src,
+  title,
+  dark = false,
+  index = 1,
+  wrapper = '',
+  body = '',
+  stylesheet = '/component.css',
+} = Astro.props
 ---
 
 <component-preview
   data-src={src}
   data-body={body}
   data-dark={dark ? 'true' : 'false'}
+  data-stylesheet={stylesheet}
   class="block"
 >
   <iframe
@@ -39,17 +49,17 @@ const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.p
 
 <script>
   const PREVIEW_MESSAGE_TYPE = 'hyperui:preview-direction'
-  const COMPONENT_STYLESHEET_PATH = '/component.css'
   const COMPONENT_SCRIPT_PATH = '/component.js'
 
   class ComponentPreview extends HTMLElement {
-    private static componentCssTextPromise: Promise<string | null> | null = null
+    private static componentCssTextPromiseByPath = new Map<string, Promise<string | null>>()
     private static componentJsTextPromise: Promise<string | null> | null = null
 
     private contentHtml: string | null = null
     private contentSrc: string | null = null
     private rawSourceHtml: string | null = null
     private contentBodyClass: string = ''
+    private componentStylesheetPath: string = ''
     private isDarkPreview: boolean = false
 
     private iframeEl: HTMLIFrameElement | null = null
@@ -65,6 +75,7 @@ const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.p
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
       this.contentBodyClass = this.dataset.body || ''
+      this.componentStylesheetPath = this.dataset.stylesheet || ''
       this.isDarkPreview = this.dataset.dark === 'true'
 
       if (!this.contentSrc) {
@@ -227,11 +238,20 @@ const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.p
     }
 
     private async loadComponentStylesheet(): Promise<string | null> {
-      if (!ComponentPreview.componentCssTextPromise) {
-        ComponentPreview.componentCssTextPromise = this.fetchTextAsset(COMPONENT_STYLESHEET_PATH)
+      const stylesheetPath = this.componentStylesheetPath
+
+      if (!stylesheetPath) {
+        return null
       }
 
-      return ComponentPreview.componentCssTextPromise
+      if (!ComponentPreview.componentCssTextPromiseByPath.has(stylesheetPath)) {
+        ComponentPreview.componentCssTextPromiseByPath.set(
+          stylesheetPath,
+          this.fetchTextAsset(stylesheetPath),
+        )
+      }
+
+      return ComponentPreview.componentCssTextPromiseByPath.get(stylesheetPath) ?? null
     }
 
     private async loadComponentScript(): Promise<string | null> {
@@ -306,7 +326,10 @@ const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.p
       const allowedOrigin = this.escapeScriptText(globalThis.location.origin)
       const previewMessageType = this.escapeScriptText(PREVIEW_MESSAGE_TYPE)
 
-      return `<script>globalThis.__HYPERUI_PREVIEW_ORIGIN='${allowedOrigin}';globalThis.__HYPERUI_PREVIEW_MESSAGE_TYPE='${previewMessageType}';<\/script>`
+      return (
+        `<script>globalThis.__HYPERUI_PREVIEW_ORIGIN='${allowedOrigin}';globalThis.__HYPERUI_PREVIEW_MESSAGE_TYPE='${previewMessageType}';<` +
+        '/script>'
+      )
     }
 
     private buildDirectionScriptTag(componentJsText: string | null): string {
@@ -314,7 +337,9 @@ const { src, title, dark = false, index = 1, wrapper = '', body = '' } = Astro.p
         return ''
       }
 
-      return `<script data-preview-component-js>${this.escapeScriptTag(componentJsText)}<\/script>`
+      return (
+        `<script data-preview-component-js>${this.escapeScriptTag(componentJsText)}<` + '/script>'
+      )
     }
 
     private async getContent(): Promise<string | null> {
