@@ -157,10 +157,13 @@ test.describe('Component preview view', () => {
   })
 
   test('shows interactive preview without toggle button', async ({ page }) => {
-    await expect(page.locator('preview-view').and(page.locator(FIRST_PREVIEW))).toHaveCount(0)
+    await expect(page.getByRole('button', { name: 'Toggle preview mode' })).toHaveCount(0)
 
     await expect(page.locator(FIRST_IFRAME)).toBeVisible()
     await expect(page.locator(FIRST_IFRAME)).toHaveAttribute('data-preview', 'true')
+    await expect(
+      page.locator('component-preview').and(page.locator(FIRST_PREVIEW)).locator('pre[data-html]'),
+    ).not.toBeVisible()
   })
 })
 
