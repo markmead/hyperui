@@ -13,6 +13,11 @@
 - **Astro**: The documentation site is built with Astro.
 - **HTML**: Use semantic elements (`<nav>`, `<main>`, `<article>`) and ARIA attributes for accessibility.
 
+# Code Style
+
+- Use descriptive variable names with a minimum of two words.
+- Avoid single-word variable names unless they are clear, established exceptions (for example `id`, `x`, `y`, loop indexes, or third-party API constraints).
+
 # Component Guidelines
 
 ## Core Philosophy
