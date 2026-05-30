@@ -2,8 +2,6 @@
 import type { CollectionEntry } from 'astro:content'
 import type { ComponentPreview } from '../types/component'
 
-import { Dot } from '@lucide/astro'
-
 import BaseLayout from './BaseLayout.astro'
 import PreviewWrapper from '../components/PreviewWrapper.astro'
 import RelatedComponents from '../components/RelatedComponents.astro'
@@ -14,8 +12,18 @@ type Props =
   | CollectionEntry<'marketing'>['data']
   | CollectionEntry<'neobrutalism'>['data']
 
-const { title, category, components, description, slug, terms, wrapper, pattern, updated } =
-  Astro.props
+const {
+  //
+  title,
+  category,
+  components,
+  description,
+  slug,
+  terms,
+  wrapper,
+  pattern,
+  updated,
+} = Astro.props
 
 const darkCount = components.filter(({ dark }) => !!dark).length
 const totalCount = components.length
@@ -112,7 +120,7 @@ const componentPageSchema = {
           }
         </span>
 
-        <Dot class="size-6 text-gray-400" />
+        <span class="size-1 rounded-full bg-gray-400" aria-hidden="true"></span>
 
         {
           pattern && (
@@ -128,7 +136,7 @@ const componentPageSchema = {
                 </a>
               </TooltipWrapper>
 
-              <Dot class="size-6 text-gray-400" />
+              <span class="size-1 rounded-full bg-gray-400" aria-hidden="true" />
             </>
           )
         }
@@ -153,6 +161,7 @@ const componentPageSchema = {
             ) : (
               <>
                 <TooltipWrapper text="No commit information available">N/A</TooltipWrapper>
+
                 <span class="sr-only">No commit information available.</span>
               </>
             )
