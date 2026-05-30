@@ -12,8 +12,10 @@ Please open an issue first before starting work.
 git clone git@github.com:markmead/hyperui.git
 pnpm install
 pnpm dev
-pnpm run css --watch
+pnpm run css:component --watch
 ```
+
+To preview the blog styles, execute: `pnpm run css:blog`.
 
 ## Submit a contribution
 

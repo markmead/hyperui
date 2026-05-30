@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://hyperui.dev/component.css" rel="stylesheet" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
   </head>
   <body class="p-6">
     <button
       data-modal-open
-      class="rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-white"
+      class="rounded border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
     >
       Open
     </button>
@@ -17,16 +18,18 @@
       closedby="any"
       aria-labelledby="modalTitle"
       aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white dark:bg-gray-900 p-6 shadow-lg backdrop:bg-black/50 dark:backdrop:bg-white/50"
+      class="m-auto max-w-xl rounded-lg bg-white p-6 shadow-lg backdrop:bg-black/50 dark:bg-gray-900 dark:backdrop:bg-white/50"
     >
       <div class="flex flex-col gap-4">
         <div class="flex items-start justify-between">
-          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Modal Title</h2>
+          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
+            Modal Title
+          </h2>
 
           <button
             type="button"
             data-modal-close
-            class="-me-4 -mt-4 rounded-full p-2 text-gray-400 dark:text-gray-500 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-600 dark:hover:text-gray-300 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
+            class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-300 dark:focus:ring-indigo-300 dark:focus:ring-offset-gray-900 dark:focus-visible:ring-indigo-300 dark:focus-visible:ring-offset-gray-900"
             aria-label="Close"
           >
             <svg
@@ -55,7 +58,7 @@
           <button
             type="button"
             data-modal-close
-            class="rounded bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
+            class="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-indigo-300 dark:focus:ring-offset-gray-900 dark:focus-visible:ring-indigo-300 dark:focus-visible:ring-offset-gray-900"
           >
             Cancel
           </button>
@@ -63,7 +66,7 @@
           <button
             type="button"
             data-modal-close
-            class="rounded bg-blue-600 dark:bg-blue-300 px-4 py-2 text-sm font-medium text-white dark:text-gray-900 transition-colors hover:bg-blue-700 dark:hover:bg-blue-200 focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 dark:focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 focus-visible:outline-none"
+            class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:bg-blue-300 dark:text-gray-900 dark:hover:bg-blue-200 dark:focus:ring-indigo-300 dark:focus:ring-offset-gray-900 dark:focus-visible:ring-indigo-300 dark:focus-visible:ring-offset-gray-900"
           >
             Done
           </button>

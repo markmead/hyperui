@@ -17,8 +17,10 @@ There is no package to install.
 ```bash
 pnpm install
 pnpm dev
-pnpm run css --watch
+pnpm run css:component --watch
 ```
+
+To preview the blog styles, execute: `pnpm run css:blog`.
 
 ## Contributing
 

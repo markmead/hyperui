@@ -13,7 +13,11 @@ pnpm-lock.yaml
 .vscode/
 
 # css
-public/component.css
+public/*.css
+public/component.js
 
 # wrangler
 wrangler.jsonc
+
+# agents
+.agents/
