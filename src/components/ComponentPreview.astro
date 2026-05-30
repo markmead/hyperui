@@ -41,7 +41,6 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
     private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
     private copyHandler: (() => void) | null = null
-    private directionHandler: ((event: CustomEvent<{ ltr: boolean }>) => void) | null = null
     private viewHandler: ((event: CustomEvent<{ previewing: boolean }>) => void) | null = null
 
     connectedCallback() {
@@ -62,24 +61,15 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     }
 
     disconnectedCallback() {
-      if (
-        this.contentSrc &&
-        this.breakpointHandler &&
-        this.copyHandler &&
-        this.directionHandler &&
-        this.viewHandler
-      ) {
+      if (this.contentSrc && this.breakpointHandler && this.copyHandler && this.viewHandler) {
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
         document.removeEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.removeEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
 
         this.breakpointHandler = null
         this.copyHandler = null
-        this.directionHandler = null
         this.viewHandler = null
       }
     }
@@ -105,14 +95,6 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         }
       }
 
-      this.directionHandler = (directionEvent) => {
-        const isLtr = directionEvent.detail.ltr
-
-        if (this.iframeEl?.contentDocument) {
-          this.iframeEl.contentDocument.documentElement.setAttribute('dir', isLtr ? 'ltr' : 'rtl')
-        }
-      }
-
       this.viewHandler = (viewEvent) => {
         const isPreviewing = viewEvent.detail.previewing
 
@@ -133,8 +115,6 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
         document.addEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
-        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
-        document.addEventListener(`preview:direction:${this.contentSrc}`, this.directionHandler)
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
       }
