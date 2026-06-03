@@ -33,7 +33,7 @@ function getCommitEntriesForPath(targetPath: string) {
       },
     ).trim()
 
-    return gitLogResult ? gitLogResult.split('\n') : []
+    return gitLogResult ? gitLogResult.split(/\r?\n/) : []
   } catch {
     return []
   }
@@ -61,7 +61,7 @@ function getChangedFileCount(
 
     const changedTargetFiles = changedFileList
       ? changedFileList
-          .split('\n')
+          .split(/\r?\n/)
           .filter((changedFilePath) => changedFilePath.endsWith(targetFileExtension))
       : []
 
@@ -152,7 +152,7 @@ function getCollectionUpdated(collectionCategory: string, componentSlug: string)
 const blog = defineCollection({
   loader: glob({
     base: './src/content/blog',
-    pattern: '**/*.{md,mdx}',
+    pattern: '**/*.mdx',
     retainBody: true,
   }),
   schema: () =>
@@ -198,7 +198,7 @@ function createCollection(
   return defineCollection({
     loader: glob({
       base: sourceBasePath,
-      pattern: '**/*.{md,mdx}',
+      pattern: '**/*.mdx',
       retainBody: false,
     }),
     schema: collection
