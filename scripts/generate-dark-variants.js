@@ -195,7 +195,9 @@ function processFolder() {
 
   if (!folderPath) {
     console.error('❌ Error: Please provide a folder path')
-    console.error('Usage: pnpm dark:generate public/examples/<category>/<component-folder>')
+    console.error(
+      'Usage: pnpm generate:dark-variants public/examples/<category>/<component-folder>',
+    )
 
     process.exit(1)
   }

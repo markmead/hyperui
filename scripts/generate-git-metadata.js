@@ -156,6 +156,7 @@ function generateMetadata() {
     const collectionFiles = fs
       .readdirSync(categoryPath)
       .filter((fileItem) => fileItem.endsWith('.mdx'))
+      .sort((a, b) => a.localeCompare(b))
 
     for (const fileItem of collectionFiles) {
       const collectionSlug = path.basename(fileItem, '.mdx')
