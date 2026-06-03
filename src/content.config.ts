@@ -20,7 +20,7 @@ const changedMdxFileCountCache = new Map<string, number>()
 
 const commitSearchLimit = 500
 const highVolumeHtmlCommitThreshold = 250
-const highVolumeMdxCommitThreshold = 10
+const highVolumeMdxCommitThreshold = 5
 
 function getCommitEntriesForPath(targetPath: string) {
   try {
@@ -78,23 +78,7 @@ function getChangedFileCount(
   }
 }
 
-function getValidUpdatedMetadata(updatedMetadata?: UpdatedMeta) {
-  if (!updatedMetadata) {
-    return undefined
-  }
-
-  if (!commitShaPattern.test(updatedMetadata.commit)) {
-    return undefined
-  }
-
-  return updatedMetadata
-}
-
-function getCollectionUpdated(
-  collectionCategory: string,
-  componentSlug: string,
-  fallbackMetadata?: UpdatedMeta,
-) {
+function getCollectionUpdated(collectionCategory: string, componentSlug: string) {
   const cacheKey = `${collectionCategory}/${componentSlug}`
   const componentExamplesPath = `public/examples/${collectionCategory}/${componentSlug}`
   const componentContentPath = `src/content/collection/${collectionCategory}/${componentSlug}.mdx`
@@ -103,7 +87,7 @@ function getCollectionUpdated(
     return updatedMetadataCache.get(cacheKey)
   }
 
-  let updatedMetadata: UpdatedMeta | undefined = getValidUpdatedMetadata(fallbackMetadata)
+  let updatedMetadata: UpdatedMeta | undefined
 
   const commitSearchTargets = [
     {
@@ -189,12 +173,6 @@ const collection = z.object({
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
   pattern: z.url().optional(),
-  updated: z
-    .object({
-      date: z.coerce.date(),
-      commit: z.string().regex(commitShaPattern),
-    })
-    .optional(),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),
@@ -229,11 +207,7 @@ function createCollection(
       })
       .transform((collectionData) => ({
         ...collectionData,
-        updated: getCollectionUpdated(
-          collectionCategory,
-          collectionData.slug,
-          collectionData.updated,
-        ),
+        updated: getCollectionUpdated(collectionCategory, collectionData.slug),
       })),
   })
 }
