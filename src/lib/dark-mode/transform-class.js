@@ -1,4 +1,4 @@
-import { SHADE_MAP, COLOR_MAP, COLOR_FAMILIES } from '../../constants/dark-mode.js'
+import { COLOR_MAP, COLOR_FAMILIES } from '../../constants/dark-mode.js'
 
 /**
  * @param {string} className
@@ -120,13 +120,13 @@ export function transformClass(className, config, tagName = null) {
 
       if (config.utilities[utility] === false) return className
 
-      if (!(shadeNum in SHADE_MAP)) return className
+      if (!(shadeNum in config.shadeMap)) return className
 
       const ruleResult = applyRules(utility, colorFamily, shadeNum, tagName, config)
 
       if (ruleResult?.skip) return className
 
-      const darkShade = ruleResult?.darkShade ?? SHADE_MAP[shadeNum]
+      const darkShade = ruleResult?.darkShade ?? config.shadeMap[shadeNum]
       const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
 
       return `${className} dark:${variantPrefix}${darkClass}`
