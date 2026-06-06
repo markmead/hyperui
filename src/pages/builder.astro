@@ -1,0 +1,878 @@
+---
+import { getCollection } from 'astro:content'
+import BaseHead from '../components/BaseHead.astro'
+
+const pageTitle = 'Landing Page Builder'
+const pageDescription =
+  'Visually assemble and prototype entire landing pages using existing HyperUI components in real-time.'
+
+// Query component collections
+const [applicationCollection, marketingCollection, neobrutalismCollection] = await Promise.all([
+  getCollection('application'),
+  getCollection('marketing'),
+  getCollection('neobrutalism'),
+])
+
+// Restructure data collections flatly for high-speed client-side search and filtering
+const builderComponentGroups = [
+  ...applicationCollection,
+  ...marketingCollection,
+  ...neobrutalismCollection,
+]
+  .map((collectionGroup) => {
+    const currentCategory = collectionGroup.data.category
+    const currentSlug = collectionGroup.data.slug
+    const currentTitle = collectionGroup.data.title
+    const currentTerms = collectionGroup.data.terms || []
+
+    const groupVariants = collectionGroup.data.components.map((variantItem, variantIndex) => {
+      const componentIndex = variantIndex + 1
+      return {
+        title: variantItem.title,
+        description: variantItem.description || '',
+        category: currentCategory,
+        slug: currentSlug,
+        index: componentIndex,
+        exampleUrl: `/examples/${currentCategory}/${currentSlug}/${componentIndex}.html`,
+      }
+    })
+
+    return {
+      title: currentTitle,
+      slug: currentSlug,
+      category: currentCategory,
+      terms: currentTerms,
+      variants: groupVariants,
+    }
+  })
+  .sort((firstGroup, secondGroup) => firstGroup.title.localeCompare(secondGroup.title))
+---
+
+<html lang="en" class="h-screen overflow-hidden bg-gray-50">
+  <head>
+    <BaseHead title={pageTitle} description={pageDescription} />
+  </head>
+  <body
+    class="flex h-screen flex-col overflow-hidden bg-gray-50 font-sans text-gray-900 antialiased"
+  >
+    <!-- Builder Layout Root Container -->
+    <page-builder-workspace class="flex h-full flex-1 overflow-hidden">
+      <!-- Left Sidebar: Component Catalog -->
+      <aside
+        class="flex h-full w-80 shrink-0 flex-col overflow-hidden border-r border-gray-200 bg-white"
+      >
+        <!-- Sidebar Header: Search & Navigation Tabs -->
+        <div class="flex shrink-0 flex-col gap-3 border-b border-gray-100 p-4">
+          <div class="flex items-center justify-between">
+            <a
+              href="/"
+              class="text-base font-bold tracking-tight hover:opacity-80 focus:outline-none"
+            >
+              HyperUI Builder
+            </a>
+            <span
+              class="rounded border border-indigo-100 bg-indigo-50 px-2 py-0.5 text-[10px] font-bold tracking-wider text-indigo-700 uppercase"
+            >
+              Beta
+            </span>
+          </div>
+
+          <!-- Component Interactive Search -->
+          <div class="relative">
+            <input
+              type="text"
+              id="searchInputElement"
+              placeholder="Search components..."
+              class="focus:ring-indigo-550 focus:border-indigo-550 w-full rounded-lg border border-gray-200 py-2 pr-4 pl-9 text-sm transition-colors focus:ring-2 focus:outline-none"
+            />
+            <svg
+              class="absolute top-2.5 left-3 size-4 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+
+          <!-- Category Quick Filters Dropdown -->
+          <div class="border-b border-gray-100 pb-2">
+            <select
+              id="categorySelectElement"
+              class="w-full rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 transition-colors focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none"
+            >
+              <option value="all">All Categories</option>
+              <option value="application">Application</option>
+              <option value="marketing">Marketing</option>
+              <option value="neobrutalism">Neobrutalism</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Sidebar Content: Scrollable list of components & variants -->
+        <div class="flex-1 space-y-4 overflow-y-auto p-4" id="sidebarContainer">
+          {
+            builderComponentGroups.map((groupObject) => (
+              <div
+                class="component-group-wrapper space-y-1.5"
+                data-category={groupObject.category}
+                data-group-title={groupObject.title}
+                data-search-terms={groupObject.terms.join(' ')}
+              >
+                <h4 class="px-2 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                  {groupObject.title}
+                </h4>
+                <div class="space-y-1">
+                  {groupObject.variants.map((variantObject) => (
+                    <div class="variant-item-container flex w-full items-center justify-between gap-2 rounded border border-transparent px-2 py-1 text-xs font-medium text-gray-700 transition-all hover:bg-gray-100 hover:text-gray-900">
+                      <button
+                        type="button"
+                        class="sidebar-variant-button flex-1 cursor-pointer truncate text-left font-medium hover:text-gray-900 focus:outline-none"
+                        data-title={`${groupObject.title} - ${variantObject.title}`}
+                        data-url={variantObject.exampleUrl}
+                        data-category-label={groupObject.category}
+                      >
+                        {variantObject.title}
+                      </button>
+
+                      <div class="flex shrink-0 items-center gap-1.5">
+                        <span class="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 text-[9px] tracking-wide text-gray-500 capitalize uppercase">
+                          {groupObject.category.slice(0, 4)}
+                        </span>
+                        <button
+                          type="button"
+                          class="preview-variant-button cursor-pointer rounded p-1 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-700 focus:outline-none"
+                          title="Preview component"
+                          data-title={`${groupObject.title} - ${variantObject.title}`}
+                          data-url={variantObject.exampleUrl}
+                          data-category-label={groupObject.category}
+                        >
+                          <svg
+                            class="size-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </aside>
+
+      <!-- Center Canvas Area -->
+      <main class="flex h-full flex-1 flex-col overflow-hidden bg-gray-50">
+        <!-- Canvas Sticky Header -->
+        <header
+          class="flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-6"
+        >
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900">Prototype Canvas</h2>
+            <p class="mt-0.5 text-xs text-gray-500">
+              Stack and order components inside your workspace
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="clearCanvasButton"
+              class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-xs font-semibold text-gray-700 transition hover:bg-gray-50"
+            >
+              <svg
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                ></path>
+              </svg>
+              Clear Canvas
+            </button>
+            <button
+              type="button"
+              id="copyHtmlButton"
+              class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+            >
+              <svg
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                ></path>
+              </svg>
+              Copy Page HTML
+            </button>
+          </div>
+        </header>
+
+        <!-- Canvas Body (Scrollable sandbox stack list) -->
+        <div class="flex-1 space-y-6 overflow-y-auto p-6 md:p-8" id="canvasItemsContainer">
+          <!-- Canvas Empty State -->
+          <div
+            id="canvasEmptyState"
+            class="flex h-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-300 p-12 text-center"
+          >
+            <div class="text-indigo-650 shrink-0 rounded-full bg-indigo-50 p-3">
+              <svg
+                class="size-8 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-semibold text-gray-900">Workspace is empty</h3>
+            <p class="mt-2 max-w-sm text-xs text-gray-500">
+              Click any element in the left catalog directory to construct and prototype your
+              layouts. You can easily reorder and export.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <!-- Hover Modal Container (One dynamic iframe used across previews for performance) -->
+      <div
+        id="hoverModalContainer"
+        class="pointer-events-none fixed inset-0 z-50 flex hidden items-center justify-center bg-black/40 p-4 opacity-0 backdrop-blur-xs transition-all duration-350 ease-in-out md:p-8"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          id="hoverModalContent"
+          class="pointer-events-auto relative flex h-[80vh] w-full max-w-5xl scale-95 transform flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl transition-transform duration-350 ease-in-out"
+        >
+          <!-- Modal Header -->
+          <div
+            class="flex shrink-0 items-center justify-between border-b border-gray-200 bg-gray-50 px-6 py-4"
+          >
+            <div>
+              <h3 id="modalTitle" class="text-sm font-bold text-gray-900">Component Preview</h3>
+              <p
+                id="modalCategory"
+                class="mt-0.5 text-[10px] font-bold tracking-wider text-indigo-600 uppercase"
+              >
+                Category
+              </p>
+            </div>
+            <button
+              type="button"
+              id="closeModalButton"
+              class="cursor-pointer rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-900"
+              aria-label="Close preview"
+            >
+              <svg
+                class="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <!-- Modal IFrame Outer Frame Wrap -->
+          <div class="bg-gray-150 flex flex-1 items-center justify-center overflow-hidden p-4">
+            <iframe
+              id="modalIframe"
+              class="h-full w-full rounded-xl border border-gray-200 bg-white shadow-md"
+              src="about:blank"
+              title="Component Live Sandbox Preview"></iframe>
+          </div>
+          <div
+            class="shrink-0 border-t border-gray-200 bg-white px-6 py-3 text-[11px] text-gray-500"
+          >
+            Preview is displayed using active rendering rules. Click outside or use the close button
+            to dismiss.
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating notification message container -->
+      <div
+        id="toastNotificationElement"
+        class="pointer-events-none fixed right-4 bottom-4 z-50 translate-y-2 rounded-xl border border-gray-800 bg-gray-900 px-4 py-3 text-xs text-white opacity-0 shadow-lg transition-all duration-300"
+      >
+        Action completed successfully.
+      </div>
+    </page-builder-workspace>
+
+    <!-- Custom Client-Side Web Component Script Block -->
+    <script>
+      class PageBuilderWorkspace extends HTMLElement {
+        // Strict adherence to descriptive 2-word variables naming scheme - no exceptions
+        canvasBlockList: { uniqueId: string; exampleUrl: string; blockTitle: string }[] = []
+        hoverTimeoutId: number | null = null
+        activeSearchQuery: string = ''
+        activeCategoryFilter: string = 'all'
+
+        // Element references
+        searchInputElement: HTMLInputElement | null = null
+        sidebarButtons: NodeListOf<HTMLButtonElement> | null = null
+        previewButtons: NodeListOf<HTMLButtonElement> | null = null
+        canvasItemsContainer: HTMLElement | null = null
+        canvasEmptyState: HTMLElement | null = null
+        copyHtmlButton: HTMLButtonElement | null = null
+        clearCanvasButton: HTMLButtonElement | null = null
+        categorySelectElement: HTMLSelectElement | null = null
+
+        // Modal Elements
+        hoverModalContainer: HTMLElement | null = null
+        hoverModalContent: HTMLElement | null = null
+        modalIframe: HTMLIFrameElement | null = null
+        modalTitle: HTMLElement | null = null
+        modalCategory: HTMLElement | null = null
+        closeModalButton: HTMLButtonElement | null = null
+
+        // Feedback notification element
+        toastNotificationElement: HTMLElement | null = null
+
+        connectedCallback() {
+          // Binding components and caching DOM nodes
+          this.searchInputElement = this.querySelector('#searchInputElement')
+          this.sidebarButtons = this.querySelectorAll('.sidebar-variant-button')
+          this.previewButtons = this.querySelectorAll('.preview-variant-button')
+          this.canvasItemsContainer = this.querySelector('#canvasItemsContainer')
+          this.canvasEmptyState = this.querySelector('#canvasEmptyState')
+          this.copyHtmlButton = this.querySelector('#copyHtmlButton')
+          this.clearCanvasButton = this.querySelector('#clearCanvasButton')
+          this.categorySelectElement = this.querySelector('#categorySelectElement')
+
+          // Preview overlay binds
+          this.hoverModalContainer = this.querySelector('#hoverModalContainer')
+          this.hoverModalContent = this.querySelector('#hoverModalContent')
+          this.modalIframe = this.querySelector('#modalIframe')
+          this.modalTitle = this.querySelector('#modalTitle')
+          this.modalCategory = this.querySelector('#modalCategory')
+          this.closeModalButton = this.querySelector('#closeModalButton')
+
+          // Feedback alerts
+          this.toastNotificationElement = this.querySelector('#toastNotificationElement')
+
+          this.initializeBuilderWorkflow()
+        }
+
+        initializeBuilderWorkflow() {
+          // Input Search Actions
+          if (this.searchInputElement) {
+            this.searchInputElement.addEventListener('input', (inputEvent) => {
+              const targetElement = inputEvent.currentTarget as HTMLInputElement
+              this.activeSearchQuery = targetElement.value.trim().toLowerCase()
+              this.filterSidebarElements()
+            })
+          }
+
+          // Category quick filters select dropdown change handler
+          if (this.categorySelectElement) {
+            this.categorySelectElement.addEventListener('change', (changeEvent) => {
+              const targetSelect = changeEvent.currentTarget as HTMLSelectElement
+              this.activeCategoryFilter = targetSelect.value || 'all'
+              this.filterSidebarElements()
+            })
+          }
+
+          // Catalog add actions - clicking title buttons adds component directly
+          this.sidebarButtons?.forEach((sidebarButton) => {
+            sidebarButton.addEventListener('click', (clickEvent) => {
+              const currentClickedButton = clickEvent.currentTarget as HTMLButtonElement
+              const targetUrl = currentClickedButton.dataset.url || ''
+              const targetTitle = currentClickedButton.dataset.title || ''
+
+              this.addBlockToCanvas(targetUrl, targetTitle)
+
+              // Clear hover/active states immediately
+              this.hidePreviewModal()
+            })
+          })
+
+          // Dedicated preview click handlers
+          this.previewButtons?.forEach((previewButton) => {
+            previewButton.addEventListener('click', (clickEvent) => {
+              const currentClickedButton = clickEvent.currentTarget as HTMLButtonElement
+              const targetUrl = currentClickedButton.dataset.url || ''
+              const targetTitle = currentClickedButton.dataset.title || ''
+              const targetCategory = currentClickedButton.dataset.categoryLabel || ''
+
+              this.showPreviewModal(targetUrl, targetTitle, targetCategory)
+            })
+          })
+
+          // Canvas control actions for block layout arrangements
+          this.canvasItemsContainer?.addEventListener('click', (clickEvent) => {
+            if (!clickEvent.target) {
+              return
+            }
+            const targetClickedElement = clickEvent.target as HTMLElement
+
+            // Delete control hook
+            const deleteWidgetButton = targetClickedElement.closest(
+              '.delete-block-button',
+            ) as HTMLButtonElement
+            if (deleteWidgetButton) {
+              const targetBlockId = deleteWidgetButton.dataset.blockId || ''
+              this.deleteBlockFromCanvas(targetBlockId)
+              return
+            }
+
+            // Move Up control hook
+            const moveUpWidgetButton = targetClickedElement.closest(
+              '.move-block-up-button',
+            ) as HTMLButtonElement
+            if (moveUpWidgetButton) {
+              const targetBlockId = moveUpWidgetButton.dataset.blockId || ''
+              this.moveBlockPositionUp(targetBlockId)
+              return
+            }
+
+            // Move Down control hook
+            const moveDownWidgetButton = targetClickedElement.closest(
+              '.move-block-down-button',
+            ) as HTMLButtonElement
+            if (moveDownWidgetButton) {
+              const targetBlockId = moveDownWidgetButton.dataset.blockId || ''
+              this.moveBlockPositionDown(targetBlockId)
+              return
+            }
+          })
+
+          // Clear button interface events
+          if (this.clearCanvasButton) {
+            this.clearCanvasButton.addEventListener('click', () => {
+              this.canvasBlockList = []
+              this.renderCanvasWorkspace()
+              this.triggerToastFeedback('Design workspace catalog cleared.')
+            })
+          }
+
+          // HTML Builder compilation and export clipboard copy pipeline
+          if (this.copyHtmlButton) {
+            this.copyHtmlButton.addEventListener('click', () => {
+              this.exportCompiledCompositionHtml()
+            })
+          }
+
+          // Force hover modal dismissal helper clicks
+          if (this.closeModalButton) {
+            this.closeModalButton.addEventListener('click', () => {
+              this.hidePreviewModal()
+            })
+          }
+
+          // Gracefully close preview overlay when clicking on background masking bounds
+          if (this.hoverModalContainer) {
+            this.hoverModalContainer.addEventListener('click', (clickEvent) => {
+              const clickedTarget = clickEvent.target as HTMLElement
+              if (clickedTarget.id === 'hoverModalContainer') {
+                this.hidePreviewModal()
+              }
+            })
+          }
+        }
+
+        filterSidebarElements() {
+          const groupContainers = this.querySelectorAll('.component-group-wrapper')
+
+          groupContainers.forEach((groupElement) => {
+            const currentGroup = groupElement as HTMLElement
+            const categoryName = currentGroup.dataset.category || ''
+            const matchingHeadline = currentGroup.dataset.groupTitle?.toLowerCase() || ''
+            const matchingKeywords = currentGroup.dataset.searchTerms?.toLowerCase() || ''
+
+            let hasVisibleVariants = false
+            const variantItems = currentGroup.querySelectorAll('.variant-item-container')
+
+            variantItems.forEach((itemElement) => {
+              const currentItem = itemElement as HTMLElement
+              const currentVariantButton = currentItem.querySelector(
+                '.sidebar-variant-button',
+              ) as HTMLButtonElement
+              const variantTitleText = currentVariantButton?.dataset.title?.toLowerCase() || ''
+
+              // Ensure it passes category limits AND keyword text queries
+              const matchesCategoryState =
+                this.activeCategoryFilter === 'all' || categoryName === this.activeCategoryFilter
+              const matchesSearchKeywords =
+                this.activeSearchQuery === '' ||
+                variantTitleText.includes(this.activeSearchQuery) ||
+                matchingHeadline.includes(this.activeSearchQuery) ||
+                matchingKeywords.includes(this.activeSearchQuery)
+
+              if (matchesCategoryState && matchesSearchKeywords) {
+                currentItem.classList.remove('hidden')
+                hasVisibleVariants = true
+              } else {
+                currentItem.classList.add('hidden')
+              }
+            })
+
+            // Adjust outer block visible wrapper layout bounds accordingly
+            if (hasVisibleVariants) {
+              currentGroup.classList.remove('hidden')
+            } else {
+              currentGroup.classList.add('hidden')
+            }
+          })
+        }
+
+        showPreviewModal(targetUrl: string, targetTitle: string, targetCategory: string) {
+          if (
+            !this.hoverModalContainer ||
+            !this.modalIframe ||
+            !this.modalTitle ||
+            !this.modalCategory
+          ) {
+            return
+          }
+
+          // Populate iframe attributes
+          this.modalTitle.textContent = targetTitle
+          this.modalCategory.textContent = targetCategory
+          this.modalIframe.src = targetUrl
+
+          // Transition styling attributes
+          this.hoverModalContainer.classList.remove('hidden')
+          this.hoverModalContainer.classList.remove('opacity-0', 'pointer-events-none')
+          if (this.hoverModalContent) {
+            this.hoverModalContent.classList.remove('scale-95')
+            this.hoverModalContent.classList.add('scale-100')
+          }
+        }
+
+        hidePreviewModal() {
+          if (!this.hoverModalContainer) {
+            return
+          }
+
+          this.hoverModalContainer.classList.add('opacity-0', 'pointer-events-none')
+          if (this.hoverModalContent) {
+            this.hoverModalContent.classList.remove('scale-100')
+            this.hoverModalContent.classList.add('scale-95')
+          }
+
+          // Clear sandbox frame URL after CSS visual collapse transitions complete
+          globalThis.setTimeout(() => {
+            if (this.modalIframe && this.hoverModalContainer?.classList.contains('opacity-0')) {
+              this.modalIframe.src = 'about:blank'
+              this.hoverModalContainer?.classList.add('hidden')
+            }
+          }, 250)
+        }
+
+        addBlockToCanvas(targetUrl: string, targetTitle: string) {
+          const uniqueId = `block-${Math.random().toString(36).substring(2, 9)}`
+          const blockPayload = {
+            uniqueId: uniqueId,
+            exampleUrl: targetUrl,
+            blockTitle: targetTitle,
+          }
+
+          this.canvasBlockList.push(blockPayload)
+          this.renderCanvasWorkspace()
+          this.triggerToastFeedback(`Added "${targetTitle}" to sandbox layout.`)
+        }
+
+        deleteBlockFromCanvas(targetBlockId: string) {
+          this.canvasBlockList = this.canvasBlockList.filter(
+            (blockItem) => blockItem.uniqueId !== targetBlockId,
+          )
+          this.renderCanvasWorkspace()
+          this.triggerToastFeedback('Component removed from sandbox document.')
+        }
+
+        moveBlockPositionUp(targetBlockId: string) {
+          const targetIndex = this.canvasBlockList.findIndex(
+            (blockItem) => blockItem.uniqueId === targetBlockId,
+          )
+          if (targetIndex <= 0) {
+            return // Already at top bounds
+          }
+
+          // Swap elements in state array list with proper TS type safety checks
+          const placeholderElement = this.canvasBlockList[targetIndex]
+          const siblingElement = this.canvasBlockList[targetIndex - 1]
+          if (placeholderElement && siblingElement) {
+            this.canvasBlockList[targetIndex] = siblingElement
+            this.canvasBlockList[targetIndex - 1] = placeholderElement
+          }
+
+          this.renderCanvasWorkspace()
+        }
+
+        moveBlockPositionDown(targetBlockId: string) {
+          const targetIndex = this.canvasBlockList.findIndex(
+            (blockItem) => blockItem.uniqueId === targetBlockId,
+          )
+          if (targetIndex < 0 || targetIndex >= this.canvasBlockList.length - 1) {
+            return // Already at floor bounds
+          }
+
+          // Swap elements in state array list with proper TS type safety checks
+          const placeholderElement = this.canvasBlockList[targetIndex]
+          const siblingElement = this.canvasBlockList[targetIndex + 1]
+          if (placeholderElement && siblingElement) {
+            this.canvasBlockList[targetIndex] = siblingElement
+            this.canvasBlockList[targetIndex + 1] = placeholderElement
+          }
+
+          this.renderCanvasWorkspace()
+        }
+
+        renderCanvasWorkspace() {
+          if (!this.canvasItemsContainer || !this.canvasEmptyState) {
+            return
+          }
+
+          // Retrieve active template item nodes inside container
+          const existingBlockWrappers =
+            this.canvasItemsContainer.querySelectorAll('.canvas-block-card')
+          existingBlockWrappers.forEach((itemNode) => {
+            itemNode.remove()
+          })
+
+          if (this.canvasBlockList.length === 0) {
+            this.canvasEmptyState.classList.remove('hidden')
+            return
+          }
+
+          // Close overlay bounds
+          this.canvasEmptyState.classList.add('hidden')
+
+          // Generate stacked workspace layout block list
+          this.canvasBlockList.forEach((blockItem, indexNumber) => {
+            const cardFragment = document.createElement('div')
+            cardFragment.className =
+              'canvas-block-card bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col group transition-all duration-200 hover:border-gray-300'
+            cardFragment.id = blockItem.uniqueId
+
+            // Generate Header and actions toolbar
+            cardFragment.innerHTML = `
+              <div class="flex items-center justify-between border-b border-gray-150 px-4 py-3 bg-gray-50 shrink-0 select-none">
+                <div class="flex items-center gap-2">
+                  <span class="size-5 flex items-center justify-center rounded bg-gray-200 text-[10px] font-bold text-gray-600">
+                    ${indexNumber + 1}
+                  </span>
+                  <span class="text-xs font-semibold text-gray-800 truncate max-w-[200px] md:max-w-md">
+                    ${blockItem.blockTitle}
+                  </span>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button
+                    type="button"
+                    class="move-block-up-button p-1 hover:bg-gray-200 text-gray-400 hover:text-gray-700 rounded transition-colors cursor-pointer"
+                    data-block-id="${blockItem.uniqueId}"
+                    title="Move up layout order"
+                    ${indexNumber === 0 ? 'disabled class="opacity-30 pointer-events-none p-1"' : ''}
+                  >
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    class="move-block-down-button p-1 hover:bg-gray-200 text-gray-400 hover:text-gray-700 rounded transition-colors cursor-pointer"
+                    data-block-id="${blockItem.uniqueId}"
+                    title="Move down layout order"
+                    ${indexNumber === this.canvasBlockList.length - 1 ? 'disabled class="opacity-30 pointer-events-none p-1"' : ''}
+                  >
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div class="w-px h-4 bg-gray-200 mx-1"></div>
+                  <button
+                    type="button"
+                    class="delete-block-button p-1.5 hover:bg-red-50 text-gray-400 hover:text-red-600 rounded transition-colors cursor-pointer"
+                    data-block-id="${blockItem.uniqueId}"
+                    title="Delete layout block"
+                  >
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="relative bg-white flex-1 p-0.5 overflow-hidden">
+                <iframe
+                  src="${blockItem.exampleUrl}"
+                  class="w-full border-none pointer-events-none min-h-[100px] transition-all duration-300"
+                  tabindex="-1"
+                ></iframe>
+              </div>
+            `
+
+            if (this.canvasItemsContainer) {
+              this.canvasItemsContainer.appendChild(cardFragment)
+            }
+
+            // Connect dynamic self-sizing on sandbox iframe load
+            const activeIframe = cardFragment.querySelector('iframe') as HTMLIFrameElement
+            if (activeIframe) {
+              activeIframe.onload = () => {
+                this.resizeIframeBounds(activeIframe)
+              }
+            }
+          })
+        }
+
+        resizeIframeBounds(iframeElement: HTMLIFrameElement) {
+          try {
+            if (
+              iframeElement &&
+              iframeElement.contentWindow &&
+              iframeElement.contentWindow.document
+            ) {
+              const parsedBody = iframeElement.contentWindow.document.body
+              if (parsedBody) {
+                // Remove margins/paddings from body nodes inside iframe to lay flush with wrapper margins
+                parsedBody.style.margin = '0'
+                parsedBody.style.padding = '12px' // Nice flush spacer spacing within canvas items
+
+                // Fetch internal height bounds
+                const actualHeight = parsedBody.scrollHeight
+                iframeElement.style.height = `${actualHeight}px`
+              }
+            }
+          } catch {
+            // Mitigate any CORS blocks during loading transitions or script initialization
+            iframeElement.style.height = '250px'
+          }
+        }
+
+        async exportCompiledCompositionHtml() {
+          if (this.canvasBlockList.length === 0) {
+            this.triggerToastFeedback('Add layout blocks to your canvas prior to copying.')
+            return
+          }
+
+          this.triggerToastFeedback('Assembling landing page markup, please wait...')
+
+          try {
+            // Download raw templates parallelized
+            const fetchActions = this.canvasBlockList.map((blockItem) => {
+              return fetch(blockItem.exampleUrl).then((fetchResponse) => {
+                if (!fetchResponse.ok) {
+                  throw new Error(`Cloud fetching failed url: ${blockItem.exampleUrl}`)
+                }
+                return fetchResponse.text().then((responseText) => {
+                  return {
+                    blockTitle: blockItem.blockTitle,
+                    responseText: responseText,
+                  }
+                })
+              })
+            })
+
+            const loadedTemplates = await Promise.all(fetchActions)
+            const domParserInstance = new DOMParser()
+
+            // Map parsed documents inner HTML code fragments
+            const htmlFragments = loadedTemplates.map((templateItem) => {
+              const parsedDocument = domParserInstance.parseFromString(
+                templateItem.responseText,
+                'text/html',
+              )
+              const innerHtmlContent = parsedDocument.body.innerHTML || ''
+
+              return (
+                '  <!-- Start Block: ' +
+                templateItem.blockTitle +
+                ' -->\n  <section class="relative">\n  ' +
+                innerHtmlContent.trim() +
+                '\n  </section>\n  <!-- End Block: ' +
+                templateItem.blockTitle +
+                ' -->\n'
+              )
+            })
+
+            // Compose output HTML boilerplate with layout fragments via direct string concatenation
+            const docPrefix =
+              '<!DOCTYPE html>\n<html lang="en" class="scroll-smooth">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Landing Page Prototype - Composed with HyperUI</title>\n  \n  <!-- CSS Stylesheets -->\n  <script src="https://cdn.tailwindcss.com"><' +
+              '/script>\n  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">\n  \n  <style>\n    body {\n      font-family: \'Inter\', sans-serif;\n    }\n  </style>\n\n  <!-- Interactive Controls Preview Support -->\n  <script>\n    document.addEventListener("DOMContentLoaded", () => {\n      document.addEventListener("click", (clickEvent) => {\n        if (!clickEvent.target) return;\n        const targetElement = clickEvent.target as HTMLElement;\n        const closestAnchor = targetElement.closest("a");\n        if (closestAnchor && (closestAnchor.getAttribute("href") === "#" || closestAnchor.getAttribute("href") === "")) {\n          clickEvent.preventDefault();\n        }\n      });\n      document.addEventListener("submit", (submitEvent) => {\n        submitEvent.preventDefault();\n      });\n    });\n  <' +
+              '/script>\n</head>\n<body class="bg-white min-h-screen text-gray-900 antialiased flex flex-col justify-start">\n\n'
+
+            const docSuffix = '\n</body>\n</html>'
+
+            const compiledDocumentOutput = docPrefix + htmlFragments.join('\n') + docSuffix
+
+            // Copy to active workspace clipboard environment
+            await navigator.clipboard.writeText(compiledDocumentOutput)
+            this.triggerToastFeedback('Full page HTML copied to clipboard successfully!')
+          } catch {
+            this.triggerToastFeedback('Failed to compile layout content.')
+          }
+        }
+
+        triggerToastFeedback(messageContent: string) {
+          if (!this.toastNotificationElement) {
+            return
+          }
+
+          this.toastNotificationElement.textContent = messageContent
+          this.toastNotificationElement.classList.remove(
+            'opacity-0',
+            'translate-y-2',
+            'pointer-events-none',
+          )
+          this.toastNotificationElement.classList.add('opacity-100', 'translate-y-0')
+
+          const activeNotificationElement = this.toastNotificationElement
+
+          globalThis.setTimeout(() => {
+            if (
+              activeNotificationElement &&
+              activeNotificationElement.textContent === messageContent
+            ) {
+              activeNotificationElement.classList.remove('opacity-100', 'translate-y-0')
+              activeNotificationElement.classList.add(
+                'opacity-0',
+                'translate-y-2',
+                'pointer-events-none',
+              )
+            }
+          }, 3000)
+        }
+      }
+
+      customElements.define('page-builder-workspace', PageBuilderWorkspace)
+    </script>
+  </body>
+</html>
