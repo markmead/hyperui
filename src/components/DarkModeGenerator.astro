@@ -1,0 +1,826 @@
+---
+import { ChevronDown } from '@lucide/astro'
+---
+
+<dark-mode-generator class="block">
+  <div
+    class="flex min-h-[70vh] flex-col overflow-hidden rounded-lg border border-gray-200 lg:flex-row"
+  >
+    <!-- Sidebar: config -->
+    <aside
+      class="flex w-full shrink-0 flex-col divide-y divide-gray-200 border-b border-gray-200 bg-gray-50 lg:w-72 lg:border-r lg:border-b-0 xl:w-80"
+    >
+      <!-- Options -->
+      <div class="p-4">
+        <h3 class="mb-3 text-xs font-medium tracking-wide text-gray-500 uppercase">Options</h3>
+
+        <label class="flex cursor-pointer items-center gap-2.5 text-sm text-gray-700">
+          <input
+            type="checkbox"
+            data-overwrite-existing
+            class="size-5 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1"
+          />
+          Overwrite existing <code class="rounded bg-gray-200 px-1 py-0.5 text-xs">dark:</code> classes
+        </label>
+      </div>
+
+      <!-- Utilities (accordion) -->
+      <details class="group" open>
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+        >
+          <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Utilities</h3>
+          <ChevronDown
+            class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+          />
+        </summary>
+
+        <div class="border-t border-gray-200 p-4">
+          <div data-utilities class="flex flex-wrap gap-1.5"></div>
+        </div>
+      </details>
+
+      <!-- Shade map (accordion) -->
+      <details class="group" open>
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+        >
+          <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Shade map</h3>
+          <ChevronDown
+            class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+          />
+        </summary>
+
+        <div class="border-t border-gray-200 p-4">
+          <div data-shade-map class="grid grid-cols-2 gap-x-6 gap-y-3"></div>
+        </div>
+      </details>
+
+      <!-- Rules (accordion) -->
+      <details class="group flex-1" open>
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+        >
+          <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Rules</h3>
+
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              data-add-rule
+              class="inline-flex items-center gap-1 rounded-md bg-gray-900 px-2.5 py-1 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+            >
+              <svg
+                class="size-3.5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+              </svg>
+              Add rule
+            </button>
+
+            <ChevronDown
+              class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+            />
+          </div>
+        </summary>
+
+        <div class="border-t border-gray-200 p-4">
+          <ul data-rules class="space-y-2"></ul>
+        </div>
+      </details>
+
+      <!-- Actions -->
+      <div class="flex flex-wrap gap-2 p-4">
+        <button
+          type="button"
+          data-reset
+          title="Resets the shade map, utility toggles, and rules back to their defaults"
+          class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
+        >
+          Reset
+        </button>
+
+        <button
+          type="button"
+          data-export
+          class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
+        >
+          Export
+        </button>
+
+        <label
+          class="cursor-pointer rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
+        >
+          Import
+          <input type="file" data-import accept=".json" class="sr-only" />
+        </label>
+      </div>
+    </aside>
+
+    <!-- Main: input / preview -->
+    <div class="flex flex-1 flex-col divide-y divide-gray-200 overflow-hidden">
+      <!-- Input (collapsible) -->
+      <details class="group" open>
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-gray-50 [&::-webkit-details-marker]:hidden"
+        >
+          <span class="text-sm font-medium text-gray-700">Paste HTML</span>
+          <ChevronDown
+            class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+          />
+        </summary>
+
+        <div class="border-t border-gray-200 p-4">
+          <textarea
+            id="dmg-input"
+            data-input
+            rows="8"
+            aria-label="Paste HTML"
+            placeholder='<div class="bg-white text-gray-900">...</div>'
+            class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 font-mono text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-400 focus:outline-none"
+          ></textarea>
+        </div>
+      </details>
+
+      <!-- Preview + Code (fills remaining space) -->
+      <div class="flex flex-1 flex-col p-4">
+        <div class="mb-3 flex items-center justify-between gap-4">
+          <span class="text-sm font-medium text-gray-700">Preview</span>
+
+          <div class="flex shrink-0 items-center gap-2">
+            <span data-copy-polite aria-live="polite" class="sr-only"></span>
+
+            <button
+              type="button"
+              data-copy
+              aria-label="Copy output HTML"
+              aria-pressed="false"
+              class="inline-flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:pointer-events-none disabled:opacity-50"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                <path
+                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                ></path>
+              </svg>
+              <span data-copy-text>Copy</span>
+            </button>
+
+            <div class="flex items-center gap-1 rounded-md border border-gray-200 bg-white p-0.5">
+              <button
+                type="button"
+                data-preview-mode="light"
+                aria-pressed="true"
+                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
+              >
+                Light
+              </button>
+
+              <button
+                type="button"
+                data-preview-mode="dark"
+                aria-pressed="false"
+                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
+              >
+                Dark
+              </button>
+
+              <button
+                type="button"
+                data-preview-mode="split"
+                aria-pressed="false"
+                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
+              >
+                Split
+              </button>
+
+              <button
+                type="button"
+                data-preview-mode="code"
+                aria-pressed="false"
+                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
+              >
+                Code
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code view (hidden by default, shown in Code mode) -->
+        <div data-code-container class="hidden flex-1">
+          <div class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none">
+            <pre
+              data-output
+              class="min-h-150 overflow-auto text-sm whitespace-pre-wrap"
+            ></pre>
+          </div>
+        </div>
+
+        <!-- Preview iframes -->
+        <div
+          data-preview-container
+          class="grid min-h-0 flex-1 gap-4"
+          style="grid-template-columns: 1fr;"
+        >
+          <iframe
+            data-preview="light"
+            title="Light mode preview"
+            sandbox="allow-scripts"
+            class="h-full min-h-150 w-full rounded-lg border border-gray-200 bg-white"
+          ></iframe>
+
+          <iframe
+            data-preview="dark"
+            title="Dark mode preview"
+            sandbox="allow-scripts"
+            class="hidden h-full min-h-150 w-full rounded-lg border border-gray-800 bg-gray-900"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</dark-mode-generator>
+
+<script>
+  import {
+    loadConfig,
+    saveConfig,
+    resetConfig,
+    exportConfig,
+    importConfig,
+  } from '../lib/dark-mode/config.js'
+  import { transformHtmlDom } from '../lib/dark-mode/transform-html.js'
+
+  type Rule = {
+    id: string
+    enabled: boolean
+    utilities: string[] | null
+    shade: number | null
+    colors: string[] | null
+    darkShade: number | null
+    excludeElements: string[]
+    excludeColors: string[]
+  }
+
+  type Config = {
+    shadeMap: Record<number, number>
+    colorMap: Record<string, string>
+    utilities: Record<string, boolean>
+    rules: Rule[]
+    overwriteExisting: boolean
+  }
+
+  type PreviewMode = 'light' | 'dark' | 'split' | 'code'
+
+  const DEBOUNCE_MS = 250
+
+  const NO_SPINNER =
+    '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+
+  const INPUT_CLASS =
+    'mt-1 w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-sm focus:border-gray-400 focus:outline-none'
+
+  const NUMBER_INPUT_CLASS = `${INPUT_CLASS} ${NO_SPINNER}`
+
+  const ICON_MOVE_RIGHT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-4 shrink-0 text-gray-400"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>`
+
+  const ICON_PLUS = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-3 shrink-0"><path d="M5 12h14"/><path d="M12 5v14"/></svg>`
+
+  const ICON_MINUS = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-3 shrink-0"><path d="M5 12h14"/></svg>`
+
+  class DarkModeGenerator extends HTMLElement {
+    private config: Config = loadConfig() as Config
+    private debounceTimer: ReturnType<typeof setTimeout> | null = null
+    private copyTimer: ReturnType<typeof setTimeout> | null = null
+    private currentMode: PreviewMode = 'light'
+
+    connectedCallback() {
+      this.renderUtilityToggles()
+      this.renderShadeMap()
+      this.renderRules()
+      this.syncOverwriteExisting()
+      this.bindInput()
+      this.bindActions()
+    }
+
+    disconnectedCallback() {
+      if (this.debounceTimer) clearTimeout(this.debounceTimer)
+      if (this.copyTimer) clearTimeout(this.copyTimer)
+    }
+
+    // ── Render helpers ──────────────────────────────────────────────
+
+    private renderUtilityToggles() {
+      const container = this.querySelector<HTMLElement>('[data-utilities]')
+      if (!container) return
+
+      container.innerHTML = ''
+
+      for (const [name, enabled] of Object.entries(this.config.utilities)) {
+        const label = document.createElement('label')
+        label.className = 'cursor-pointer'
+
+        const checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.className = 'sr-only peer'
+        checkbox.checked = enabled
+        checkbox.setAttribute('aria-label', `${enabled ? 'Disable' : 'Enable'} ${name}`)
+        checkbox.addEventListener('change', () => {
+          this.config.utilities[name] = checkbox.checked
+          checkbox.setAttribute(
+            'aria-label',
+            `${checkbox.checked ? 'Disable' : 'Enable'} ${name}`,
+          )
+          this.save()
+          this.transform()
+        })
+
+        // Unchecked pill (+ icon — click to enable)
+        const offSpan = document.createElement('span')
+        offSpan.className =
+          'peer-checked:hidden inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2.5 py-0.5 text-xs font-medium text-gray-500'
+        offSpan.innerHTML = `${ICON_PLUS}${name}`
+
+        // Checked pill (− icon — click to disable)
+        const onSpan = document.createElement('span')
+        onSpan.className =
+          'hidden peer-checked:inline-flex items-center gap-1 rounded-full border border-gray-900 bg-gray-900 px-2.5 py-0.5 text-xs font-medium text-white'
+        onSpan.innerHTML = `${ICON_MINUS}${name}`
+
+        label.appendChild(checkbox)
+        label.appendChild(offSpan)
+        label.appendChild(onSpan)
+        container.appendChild(label)
+      }
+    }
+
+    private renderShadeMap() {
+      const container = this.querySelector<HTMLElement>('[data-shade-map]')
+      if (!container) return
+
+      container.innerHTML = ''
+
+      for (const [shade, dark] of Object.entries(this.config.shadeMap)) {
+        const wrapper = document.createElement('div')
+        wrapper.className = 'flex items-center gap-2'
+
+        const shadeLabel = document.createElement('span')
+        shadeLabel.className = 'w-8 shrink-0 text-sm font-medium text-gray-700'
+        shadeLabel.textContent = shade
+
+        const iconWrapper = document.createElement('span')
+        iconWrapper.innerHTML = ICON_MOVE_RIGHT
+
+        const inputId = `dmg-shade-${shade}`
+
+        const visualLabel = document.createElement('label')
+        visualLabel.className = 'sr-only'
+        visualLabel.setAttribute('for', inputId)
+        visualLabel.textContent = `Dark shade for shade-${shade}`
+
+        const input = document.createElement('input')
+        input.type = 'number'
+        input.id = inputId
+        input.className = `w-16 rounded-md border border-gray-200 bg-white px-2 py-1 text-sm focus:border-gray-400 focus:outline-none ${NO_SPINNER}`
+        input.value = String(dark)
+        input.min = '50'
+        input.max = '950'
+        input.step = '50'
+        input.addEventListener('change', () => {
+          const val = parseInt(input.value, 10)
+          if (!isNaN(val)) {
+            this.config.shadeMap[parseInt(shade, 10)] = val
+            this.save()
+            this.transform()
+          }
+        })
+
+        wrapper.appendChild(visualLabel)
+        wrapper.appendChild(shadeLabel)
+        wrapper.appendChild(iconWrapper)
+        wrapper.appendChild(input)
+        container.appendChild(wrapper)
+      }
+    }
+
+    private renderRules() {
+      const container = this.querySelector<HTMLElement>('[data-rules]')
+      if (!container) return
+
+      container.innerHTML = ''
+
+      if (this.config.rules.length === 0) {
+        const empty = document.createElement('p')
+        empty.className = 'text-xs text-gray-400'
+        empty.textContent = 'No rules. Add one to override shade map defaults.'
+        container.appendChild(empty)
+        return
+      }
+
+      for (const rule of this.config.rules) {
+        container.appendChild(this.buildRuleEl(rule))
+      }
+    }
+
+    private buildRuleEl(rule: Rule): HTMLElement {
+      const li = document.createElement('li')
+
+      li.innerHTML = `
+        <details class="overflow-hidden rounded-lg border border-gray-200 bg-white">
+          <summary class="flex cursor-pointer items-center justify-between gap-2 p-3 hover:bg-gray-50 list-none [&::-webkit-details-marker]:hidden">
+            <div class="flex min-w-0 items-center gap-2">
+              <input type="checkbox" class="rule-enabled size-5 shrink-0 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1" aria-label="Enable rule" />
+              <span class="rule-summary truncate text-xs text-gray-600"></span>
+            </div>
+            <div class="flex shrink-0 items-center gap-1">
+              <svg class="size-3.5 text-gray-400 transition-transform [[open]_&]:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              <button type="button" class="rule-delete rounded p-0.5 text-gray-400 transition-colors hover:text-red-500" aria-label="Delete rule">
+                <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+              </button>
+            </div>
+          </summary>
+
+          <div class="space-y-4 border-t border-gray-200 p-3">
+            <div>
+              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-500 uppercase">Apply when</h4>
+              <div class="space-y-3">
+                <label class="block text-sm text-gray-600">
+                  Utilities (comma-sep, blank = any)
+                  <input type="text" class="rule-utilities ${INPUT_CLASS}" placeholder="e.g. bg, text" />
+                </label>
+                <label class="block text-sm text-gray-600">
+                  Shade (blank = any)
+                  <input type="number" class="rule-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 600" min="50" max="950" step="50" />
+                </label>
+                <label class="block text-sm text-gray-600">
+                  Include only colors (comma-sep, blank = any)
+                  <input type="text" class="rule-colors ${INPUT_CLASS}" placeholder="e.g. blue, indigo" />
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-500 uppercase">In dark mode</h4>
+              <label class="block text-sm text-gray-600">
+                Use shade (blank = shade map)
+                <input type="number" class="rule-dark-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 300" min="50" max="950" step="50" />
+              </label>
+            </div>
+
+            <div>
+              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-500 uppercase">Skip when</h4>
+              <div class="space-y-3">
+                <label class="block text-sm text-gray-600">
+                  Elements (comma-sep)
+                  <input type="text" class="rule-exclude-elements ${INPUT_CLASS}" placeholder="e.g. button, a" />
+                </label>
+                <label class="block text-sm text-gray-600">
+                  Colors (comma-sep)
+                  <input type="text" class="rule-exclude-colors ${INPUT_CLASS}" placeholder="e.g. blue, indigo" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </details>
+      `
+
+      const enabledEl = li.querySelector<HTMLInputElement>('.rule-enabled')!
+      enabledEl.checked = rule.enabled
+
+      const utilitiesEl = li.querySelector<HTMLInputElement>('.rule-utilities')!
+      utilitiesEl.value = (rule.utilities ?? []).join(', ')
+
+      const shadeEl = li.querySelector<HTMLInputElement>('.rule-shade')!
+      if (rule.shade != null) shadeEl.value = String(rule.shade)
+
+      const darkShadeEl = li.querySelector<HTMLInputElement>('.rule-dark-shade')!
+      if (rule.darkShade != null) darkShadeEl.value = String(rule.darkShade)
+
+      const colorsEl = li.querySelector<HTMLInputElement>('.rule-colors')!
+      colorsEl.value = (rule.colors ?? []).join(', ')
+
+      const excludeElementsEl = li.querySelector<HTMLInputElement>('.rule-exclude-elements')!
+      excludeElementsEl.value = rule.excludeElements.join(', ')
+
+      const excludeColorsEl = li.querySelector<HTMLInputElement>('.rule-exclude-colors')!
+      excludeColorsEl.value = rule.excludeColors.join(', ')
+
+      this.updateRuleSummary(li, rule)
+
+      enabledEl.addEventListener('change', () => {
+        rule.enabled = enabledEl.checked
+        this.updateRuleSummary(li, rule)
+        this.save()
+        this.transform()
+      })
+
+      li.querySelector<HTMLButtonElement>('.rule-delete')?.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.config.rules = this.config.rules.filter((r) => r.id !== rule.id)
+        this.renderRules()
+        this.save()
+        this.transform()
+      })
+
+      const bind = (sel: string, fn: (v: string) => void) => {
+        li.querySelector(sel)?.addEventListener('change', (e) => {
+          fn((e.target as HTMLInputElement).value)
+          this.updateRuleSummary(li, rule)
+          this.save()
+          this.transform()
+        })
+      }
+
+      bind('.rule-utilities', (v) => {
+        const items = v
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+        rule.utilities = items.length > 0 ? items : null
+      })
+      bind('.rule-shade', (v) => {
+        const n = parseInt(v, 10)
+        rule.shade = isNaN(n) ? null : n
+      })
+      bind('.rule-dark-shade', (v) => {
+        const n = parseInt(v, 10)
+        rule.darkShade = isNaN(n) ? null : n
+      })
+      bind('.rule-colors', (v) => {
+        const items = v
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+        rule.colors = items.length > 0 ? items : null
+      })
+      bind('.rule-exclude-elements', (v) => {
+        rule.excludeElements = v
+          .split(',')
+          .map((s) => s.trim().toLowerCase())
+          .filter(Boolean)
+      })
+      bind('.rule-exclude-colors', (v) => {
+        rule.excludeColors = v
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+      })
+
+      return li
+    }
+
+    private updateRuleSummary(li: HTMLElement, rule: Rule) {
+      const el = li.querySelector<HTMLElement>('.rule-summary')
+      if (!el) return
+
+      const matchParts: string[] = []
+      if (rule.utilities && rule.utilities.length > 0) matchParts.push(rule.utilities.join('/'))
+      if (rule.shade != null) matchParts.push(`shade-${rule.shade}`)
+
+      const match = matchParts.length > 0 ? matchParts.join(' ') : 'All classes'
+      const darkStr = rule.darkShade != null ? `→ ${rule.darkShade}` : '→ shade map'
+
+      const skipParts: string[] = []
+      if (rule.excludeElements.length > 0) skipParts.push(rule.excludeElements.join(', '))
+      if (rule.excludeColors.length > 0) skipParts.push(`${rule.excludeColors.join(', ')} colors`)
+
+      const skipStr = skipParts.length > 0 ? ` (skip: ${skipParts.join('; ')})` : ''
+
+      el.textContent = `${match} ${darkStr}${skipStr}`
+    }
+
+    private syncOverwriteExisting() {
+      const el = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
+      if (!el) return
+
+      el.checked = this.config.overwriteExisting
+      el.addEventListener('change', () => {
+        this.config.overwriteExisting = el.checked
+        this.save()
+        this.transform()
+      })
+    }
+
+    // ── Binding ────────────────────────────────────────────────────
+
+    private bindInput() {
+      const input = this.querySelector<HTMLTextAreaElement>('[data-input]')
+      if (!input) return
+
+      input.addEventListener('input', () => {
+        if (this.debounceTimer) clearTimeout(this.debounceTimer)
+        this.debounceTimer = setTimeout(() => this.transform(), DEBOUNCE_MS)
+      })
+    }
+
+    private bindActions() {
+      // Add rule — stopPropagation so the Rules <details> doesn't toggle
+      this.querySelector('[data-add-rule]')?.addEventListener('click', (e) => {
+        e.stopPropagation()
+        const rule: Rule = {
+          id: crypto.randomUUID(),
+          enabled: true,
+          utilities: null,
+          shade: null,
+          colors: null,
+          darkShade: null,
+          excludeElements: [],
+          excludeColors: [],
+        }
+        this.config.rules.push(rule)
+        this.renderRules()
+        this.save()
+        // Ensure the Rules accordion is open, then open the new rule card
+        this.querySelector<HTMLDetailsElement>('[data-rules]')
+          ?.closest('details')
+          ?.setAttribute('open', '')
+        const ruleEls = this.querySelectorAll<HTMLDetailsElement>('[data-rules] details')
+        ruleEls[ruleEls.length - 1]?.setAttribute('open', '')
+      })
+
+      this.querySelector('[data-reset]')?.addEventListener('click', () => {
+        this.config = resetConfig() as Config
+        this.renderUtilityToggles()
+        this.renderShadeMap()
+        this.renderRules()
+        this.syncOverwriteExisting()
+        this.transform()
+      })
+
+      this.querySelector('[data-export]')?.addEventListener('click', () => {
+        const json = exportConfig(this.config)
+        const blob = new Blob([json], { type: 'application/json' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = 'dark-mode-config.json'
+        a.click()
+        URL.revokeObjectURL(url)
+      })
+
+      this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener('change', (e) => {
+        const file = (e.target as HTMLInputElement).files?.[0]
+        if (!file) return
+
+        const reader = new FileReader()
+        reader.onload = () => {
+          const result = importConfig(String(reader.result))
+          if (!result.ok) {
+            alert(`Import failed: ${result.error}`)
+            return
+          }
+          this.config = result.config as Config
+          this.renderUtilityToggles()
+          this.renderShadeMap()
+          this.renderRules()
+          this.syncOverwriteExisting()
+          this.save()
+          this.transform()
+        }
+        reader.readAsText(file)
+      })
+
+      const copyBtn = this.querySelector<HTMLButtonElement>('[data-copy]')
+      const copyText = this.querySelector<HTMLElement>('[data-copy-text]')
+      const copyPolite = this.querySelector<HTMLElement>('[data-copy-polite]')
+
+      copyBtn?.addEventListener('click', async () => {
+        const output = this.querySelector<HTMLPreElement>('[data-output]')?.textContent ?? ''
+        if (!output.trim()) return
+
+        try {
+          await navigator.clipboard.writeText(output)
+
+          if (copyText) copyText.textContent = 'Copied'
+          if (copyPolite) copyPolite.textContent = 'Copied to clipboard.'
+          copyBtn.setAttribute('aria-pressed', 'true')
+
+          if (this.copyTimer) clearTimeout(this.copyTimer)
+          this.copyTimer = setTimeout(() => {
+            if (copyText) copyText.textContent = 'Copy'
+            if (copyPolite) copyPolite.textContent = ''
+            copyBtn.setAttribute('aria-pressed', 'false')
+          }, 1500)
+        } catch {
+          // clipboard API unavailable
+        }
+      })
+
+      this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const mode = btn.dataset.previewMode as PreviewMode
+          this.setPreviewMode(mode)
+          this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((b) => {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false')
+          })
+        })
+      })
+    }
+
+    // ── Core logic ─────────────────────────────────────────────────
+
+    private transform() {
+      const input = this.querySelector<HTMLTextAreaElement>('[data-input]')?.value ?? ''
+      const outputEl = this.querySelector<HTMLPreElement>('[data-output]')
+
+      if (!outputEl) return
+
+      if (!input.trim()) {
+        outputEl.textContent = ''
+        this.updatePreviews('', '')
+        return
+      }
+
+      const result = transformHtmlDom(input, this.config)
+
+      outputEl.textContent = result
+      this.updatePreviews(input, result)
+    }
+
+    private updatePreviews(lightHtml: string, darkHtml: string) {
+      const lightFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
+      const darkFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
+
+      if (lightFrame) lightFrame.srcdoc = this.buildPreviewDoc(lightHtml, false)
+      if (darkFrame) darkFrame.srcdoc = this.buildPreviewDoc(darkHtml, true)
+    }
+
+    private buildPreviewDoc(html: string, isDark: boolean): string {
+      const bg = isDark ? '#111827' : '#ffffff'
+      const openTag = ['<', 'script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">'].join('')
+      const closeTag = ['</', 'script>'].join('')
+
+      return [
+        '<!doctype html>',
+        `<html lang="en"${isDark ? ' class="dark"' : ''}>`,
+        '<head>',
+        '<meta charset="utf-8" />',
+        '<meta name="viewport" content="width=device-width,initial-scale=1" />',
+        openTag + closeTag,
+        `<style>body{padding:1rem;background:${bg};}</style>`,
+        '</head>',
+        `<body>${html}</body>`,
+        '</html>',
+      ].join('\n')
+    }
+
+    private setPreviewMode(mode: PreviewMode) {
+      this.currentMode = mode
+
+      const previewContainer = this.querySelector<HTMLElement>('[data-preview-container]')
+      const codeContainer = this.querySelector<HTMLElement>('[data-code-container]')
+      const lightFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
+      const darkFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
+
+      if (!previewContainer || !codeContainer || !lightFrame || !darkFrame) return
+
+      if (mode === 'code') {
+        previewContainer.classList.add('hidden')
+        codeContainer.classList.remove('hidden')
+        return
+      }
+
+      previewContainer.classList.remove('hidden')
+      codeContainer.classList.add('hidden')
+
+      if (mode === 'light') {
+        previewContainer.style.gridTemplateColumns = '1fr'
+        lightFrame.classList.remove('hidden')
+        darkFrame.classList.add('hidden')
+      } else if (mode === 'dark') {
+        previewContainer.style.gridTemplateColumns = '1fr'
+        lightFrame.classList.add('hidden')
+        darkFrame.classList.remove('hidden')
+      } else {
+        previewContainer.style.gridTemplateColumns = '1fr 1fr'
+        lightFrame.classList.remove('hidden')
+        darkFrame.classList.remove('hidden')
+      }
+    }
+
+    private save() {
+      saveConfig(this.config)
+    }
+  }
+
+  customElements.define('dark-mode-generator', DarkModeGenerator)
+</script>

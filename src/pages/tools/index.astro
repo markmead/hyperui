@@ -1,0 +1,33 @@
+---
+import { SEO_TITLE_TOOLS, SEO_DESCRIPTION_TOOLS } from '../../constants/seo'
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BaseHero from '../../components/BaseHero.astro'
+---
+
+<BaseLayout title={SEO_TITLE_TOOLS} description={SEO_DESCRIPTION_TOOLS}>
+  <BaseHero
+    title="Tools"
+    description="Free browser-based tools to help you write better Tailwind CSS, faster."
+  />
+
+  <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <li>
+        <a
+          href="/tools/dark-mode-generator"
+          class="group flex h-full flex-col rounded-lg border border-gray-200 bg-white p-6 transition-colors hover:border-gray-300 hover:bg-gray-50"
+        >
+          <h2 class="text-lg font-medium text-gray-900 group-hover:text-gray-700">
+            Dark Mode Generator
+          </h2>
+
+          <p class="mt-2 text-sm text-gray-600">
+            Paste any Tailwind CSS HTML and generate dark mode variants automatically. Configure
+            rules to control which elements and colors are transformed.
+          </p>
+        </a>
+      </li>
+    </ul>
+  </main>
+</BaseLayout>
