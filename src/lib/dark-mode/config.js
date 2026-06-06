@@ -53,7 +53,9 @@ export const DEFAULT_CONFIG = {
  * @returns {DarkModeConfig}
  */
 export function normalizeConfig(raw) {
-  if (!raw || typeof raw !== 'object') return { ...DEFAULT_CONFIG }
+  if (!raw || typeof raw !== 'object') {
+    return { ...DEFAULT_CONFIG }
+  }
 
   const r = /** @type {Record<string, unknown>} */ (raw)
 
@@ -71,14 +73,18 @@ export function normalizeConfig(raw) {
 
 /** @param {unknown} raw @returns {DarkModeConfig['shadeMap']} */
 function normalizeShadeMap(raw) {
-  if (!raw || typeof raw !== 'object') return { ...DEFAULT_CONFIG.shadeMap }
+  if (!raw || typeof raw !== 'object') {
+    return { ...DEFAULT_CONFIG.shadeMap }
+  }
 
   const out = { ...DEFAULT_CONFIG.shadeMap }
 
   for (const [k, v] of Object.entries(raw)) {
     const shade = parseInt(k, 10)
 
-    if (!isNaN(shade) && typeof v === 'number') out[shade] = v
+    if (!isNaN(shade) && typeof v === 'number') {
+      out[shade] = v
+    }
   }
 
   return out
@@ -86,12 +92,16 @@ function normalizeShadeMap(raw) {
 
 /** @param {unknown} raw @returns {DarkModeConfig['colorMap']} */
 function normalizeColorMap(raw) {
-  if (!raw || typeof raw !== 'object') return { ...DEFAULT_CONFIG.colorMap }
+  if (!raw || typeof raw !== 'object') {
+    return { ...DEFAULT_CONFIG.colorMap }
+  }
 
   const out = { ...DEFAULT_CONFIG.colorMap }
 
   for (const [k, v] of Object.entries(raw)) {
-    if (typeof k === 'string' && typeof v === 'string') out[k] = v
+    if (typeof k === 'string' && typeof v === 'string') {
+      out[k] = v
+    }
   }
 
   return out
@@ -99,12 +109,16 @@ function normalizeColorMap(raw) {
 
 /** @param {unknown} raw @returns {DarkModeConfig['utilities']} */
 function normalizeUtilities(raw) {
-  if (!raw || typeof raw !== 'object') return { ...DEFAULT_CONFIG.utilities }
+  if (!raw || typeof raw !== 'object') {
+    return { ...DEFAULT_CONFIG.utilities }
+  }
 
   const out = { ...DEFAULT_CONFIG.utilities }
 
   for (const [k, v] of Object.entries(raw)) {
-    if (typeof k === 'string' && typeof v === 'boolean') out[k] = v
+    if (typeof k === 'string' && typeof v === 'boolean') {
+      out[k] = v
+    }
   }
 
   return out
@@ -112,18 +126,24 @@ function normalizeUtilities(raw) {
 
 /** @param {unknown} raw @returns {Rule[]} */
 function normalizeRules(raw) {
-  if (!Array.isArray(raw)) return []
+  if (!Array.isArray(raw)) {
+    return []
+  }
 
   return raw.map(normalizeRule).filter(Boolean)
 }
 
 /** @param {unknown} r @returns {Rule | null} */
 function normalizeRule(r) {
-  if (!r || typeof r !== 'object') return null
+  if (!r || typeof r !== 'object') {
+    return null
+  }
 
   const rule = /** @type {Record<string, unknown>} */ (r)
 
-  if (typeof rule.id !== 'string') return null
+  if (typeof rule.id !== 'string') {
+    return null
+  }
 
   // Migrate old `utility: string` field to `utilities: string[]`
   let utilities = null
@@ -138,9 +158,7 @@ function normalizeRule(r) {
     enabled: typeof rule.enabled === 'boolean' ? rule.enabled : true,
     utilities: utilities && utilities.length > 0 ? utilities : null,
     shade: typeof rule.shade === 'number' ? rule.shade : null,
-    colors: Array.isArray(rule.colors)
-      ? rule.colors.filter((s) => typeof s === 'string')
-      : null,
+    colors: Array.isArray(rule.colors) ? rule.colors.filter((s) => typeof s === 'string') : null,
     darkShade: typeof rule.darkShade === 'number' ? rule.darkShade : null,
     excludeElements: Array.isArray(rule.excludeElements)
       ? rule.excludeElements.filter((s) => typeof s === 'string')
@@ -155,12 +173,16 @@ function normalizeRule(r) {
 
 /** @returns {DarkModeConfig} */
 export function loadConfig() {
-  if (typeof localStorage === 'undefined') return { ...DEFAULT_CONFIG }
+  if (typeof localStorage === 'undefined') {
+    return { ...DEFAULT_CONFIG }
+  }
 
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
 
-    if (!raw) return { ...DEFAULT_CONFIG }
+    if (!raw) {
+      return { ...DEFAULT_CONFIG }
+    }
 
     return normalizeConfig(JSON.parse(raw))
   } catch {
@@ -170,7 +192,9 @@ export function loadConfig() {
 
 /** @param {DarkModeConfig} config @returns {void} */
 export function saveConfig(config) {
-  if (typeof localStorage === 'undefined') return
+  if (typeof localStorage === 'undefined') {
+    return
+  }
 
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config))

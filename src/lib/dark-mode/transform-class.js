@@ -32,11 +32,19 @@ function applyRules(utility, colorFamily, shade, tagName, config) {
   const normalizedTag = tagName ? tagName.toLowerCase() : null
 
   for (const rule of config.rules) {
-    if (!rule.enabled) continue
+    if (!rule.enabled) {
+      continue
+    }
 
-    if (rule.utilities && rule.utilities.length > 0 && !rule.utilities.includes(utility)) continue
-    if (rule.shade != null && rule.shade !== shade) continue
-    if (rule.colors && rule.colors.length > 0 && !rule.colors.includes(colorFamily)) continue
+    if (rule.utilities && rule.utilities.length > 0 && !rule.utilities.includes(utility)) {
+      continue
+    }
+    if (rule.shade !== null && rule.shade !== shade) {
+      continue
+    }
+    if (rule.colors && rule.colors.length > 0 && !rule.colors.includes(colorFamily)) {
+      continue
+    }
 
     if (rule.excludeElements && normalizedTag && rule.excludeElements.includes(normalizedTag)) {
       return { skip: true, darkShade: 0 }
@@ -46,7 +54,7 @@ function applyRules(utility, colorFamily, shade, tagName, config) {
       return { skip: true, darkShade: 0 }
     }
 
-    if (rule.darkShade != null) {
+    if (rule.darkShade !== null) {
       return { skip: false, darkShade: rule.darkShade }
     }
   }
@@ -74,11 +82,15 @@ export function transformClass(className, config, tagName = null) {
     const graySuffix = gray900Match[3] ?? ''
     const utility = grayPrefix.replace(/-$/, '')
 
-    if (config.utilities[utility] === false) return className
+    if (config.utilities[utility] === false) {
+      return className
+    }
 
     const ruleResult = applyRules(utility, 'gray', 900, tagName, config)
 
-    if (ruleResult?.skip) return className
+    if (ruleResult?.skip) {
+      return className
+    }
 
     return `${className} dark:${variantPrefix}${grayPrefix}white${graySuffix}`
   }
@@ -93,11 +105,15 @@ export function transformClass(className, config, tagName = null) {
         const colorSuffix = colorMatch[3] ?? ''
         const utility = colorPrefix.replace(/-$/, '')
 
-        if (config.utilities[utility] === false) return className
+        if (config.utilities[utility] === false) {
+          return className
+        }
 
         const ruleResult = applyRules(utility, lightColor, 0, tagName, config)
 
-        if (ruleResult?.skip) return className
+        if (ruleResult?.skip) {
+          return className
+        }
 
         const darkClass = `${colorPrefix}${darkColor}${colorSuffix}`
 
@@ -118,13 +134,19 @@ export function transformClass(className, config, tagName = null) {
       const shadeNum = parseInt(colorShade, 10)
       const utility = colorPrefix.replace(/-$/, '')
 
-      if (config.utilities[utility] === false) return className
+      if (config.utilities[utility] === false) {
+        return className
+      }
 
-      if (!(shadeNum in config.shadeMap)) return className
+      if (!(shadeNum in config.shadeMap)) {
+        return className
+      }
 
       const ruleResult = applyRules(utility, colorFamily, shadeNum, tagName, config)
 
-      if (ruleResult?.skip) return className
+      if (ruleResult?.skip) {
+        return className
+      }
 
       const darkShade = ruleResult?.darkShade ?? config.shadeMap[shadeNum]
       const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`

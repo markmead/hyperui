@@ -6,11 +6,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
   <div
     class="flex min-h-[70vh] flex-col overflow-hidden rounded-lg border border-gray-200 lg:flex-row"
   >
-    <!-- Sidebar: config -->
     <aside
       class="flex w-full shrink-0 flex-col divide-y divide-gray-200 border-b border-gray-200 bg-gray-50 lg:w-72 lg:border-r lg:border-b-0 xl:w-80"
     >
-      <!-- Options -->
       <div class="p-4">
         <h3 class="mb-3 text-xs font-medium tracking-wide text-gray-500 uppercase">Options</h3>
 
@@ -24,7 +22,6 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         </label>
       </div>
 
-      <!-- Utilities (accordion) -->
       <details class="group" open>
         <summary
           class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
@@ -40,7 +37,6 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         </div>
       </details>
 
-      <!-- Shade map (accordion) -->
       <details class="group" open>
         <summary
           class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
@@ -56,7 +52,6 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         </div>
       </details>
 
-      <!-- Rules (accordion) -->
       <details class="group flex-1" open>
         <summary
           class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
@@ -106,7 +101,6 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         </div>
       </details>
 
-      <!-- Actions -->
       <div class="flex flex-wrap gap-2 p-4">
         <button
           type="button"
@@ -134,9 +128,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
       </div>
     </aside>
 
-    <!-- Main: input / preview -->
     <div class="flex flex-1 flex-col divide-y divide-gray-200 overflow-hidden">
-      <!-- Input (collapsible) -->
       <details class="group" open>
         <summary
           class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-gray-50 [&::-webkit-details-marker]:hidden"
@@ -159,7 +151,6 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         </div>
       </details>
 
-      <!-- Preview + Code (fills remaining space) -->
       <div class="flex flex-1 flex-col p-4">
         <div class="mb-3 flex items-center justify-between gap-4">
           <span class="text-sm font-medium text-gray-700">Preview</span>
@@ -187,8 +178,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
                 aria-hidden="true"
               >
                 <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
-                <path
-                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
                 ></path>
               </svg>
               <span data-copy-text>Copy</span>
@@ -234,34 +224,24 @@ import { ChevronDown, Info, X } from '@lucide/astro'
           </div>
         </div>
 
-        <!-- Code view (hidden by default, shown in Code mode) -->
         <div data-code-container class="hidden flex-1">
           <div class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none">
-            <pre
-              data-output
-              class="min-h-150 overflow-auto text-sm whitespace-pre-wrap"
-            ></pre>
+            <pre data-output class="min-h-150 overflow-auto text-sm whitespace-pre-wrap"></pre>
           </div>
         </div>
 
-        <!-- Preview iframes -->
-        <div
-          data-preview-container
-          class="grid min-h-0 flex-1 grid-cols-2 gap-4"
-        >
+        <div data-preview-container class="grid min-h-0 flex-1 grid-cols-2 gap-4">
           <iframe
             data-preview="light"
             title="Light mode preview"
             sandbox="allow-scripts"
-            class="h-full min-h-150 w-full rounded-lg border border-gray-200 bg-white"
-          ></iframe>
+            class="h-full min-h-150 w-full rounded-lg border border-gray-200 bg-white"></iframe>
 
           <iframe
             data-preview="dark"
             title="Dark mode preview"
             sandbox="allow-scripts"
-            class="h-full min-h-150 w-full rounded-lg border border-gray-800 bg-gray-900"
-          ></iframe>
+            class="h-full min-h-150 w-full rounded-lg border border-gray-800 bg-gray-900"></iframe>
         </div>
       </div>
     </div>
@@ -291,8 +271,13 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
       <div class="space-y-3">
         <h3 class="font-medium text-gray-900">Make all text lighter in dark mode</h3>
-        <p class="text-gray-500">Match any <code class="rounded bg-gray-100 px-1 py-0.5">text-*</code> class and force shade 300 in dark mode, regardless of the shade map.</p>
-        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs">
+        <p class="text-gray-500">
+          Match any <code class="rounded bg-gray-100 px-1 py-0.5">text-*</code> class and force shade
+          300 in dark mode, regardless of the shade map.
+        </p>
+        <dl
+          class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
+        >
           <dt class="text-gray-400">Utilities</dt><dd>text</dd>
           <dt class="text-gray-400">Shade</dt><dd class="text-gray-400">—</dd>
           <dt class="text-gray-400">In dark mode</dt><dd>300</dd>
@@ -301,8 +286,13 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
       <div class="space-y-3">
         <h3 class="font-medium text-gray-900">Invert heavy backgrounds, skip buttons</h3>
-        <p class="text-gray-500">Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100 in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.</p>
-        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs">
+        <p class="text-gray-500">
+          Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100
+          in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.
+        </p>
+        <dl
+          class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
+        >
           <dt class="text-gray-400">Utilities</dt><dd>bg</dd>
           <dt class="text-gray-400">Shade</dt><dd>900</dd>
           <dt class="text-gray-400">In dark mode</dt><dd>100</dd>
@@ -312,8 +302,13 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
       <div class="space-y-3">
         <h3 class="font-medium text-gray-900">Keep brand colours untouched</h3>
-        <p class="text-gray-500">Match any utility but exclude indigo and violet so brand colours pass through without modification.</p>
-        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs">
+        <p class="text-gray-500">
+          Match any utility but exclude indigo and violet so brand colours pass through without
+          modification.
+        </p>
+        <dl
+          class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
+        >
           <dt class="text-gray-400">Utilities</dt><dd class="text-gray-400">—</dd>
           <dt class="text-gray-400">Shade</dt><dd class="text-gray-400">—</dd>
           <dt class="text-gray-400">In dark mode</dt><dd class="text-gray-400">—</dd>
@@ -388,15 +383,21 @@ import { ChevronDown, Info, X } from '@lucide/astro'
     }
 
     disconnectedCallback() {
-      if (this.debounceTimer) clearTimeout(this.debounceTimer)
-      if (this.copyTimer) clearTimeout(this.copyTimer)
+      if (this.debounceTimer) {
+        clearTimeout(this.debounceTimer)
+      }
+      if (this.copyTimer) {
+        clearTimeout(this.copyTimer)
+      }
     }
 
     // ── Render helpers ──────────────────────────────────────────────
 
     private renderUtilityToggles() {
       const container = this.querySelector<HTMLElement>('[data-utilities]')
-      if (!container) return
+      if (!container) {
+        return
+      }
 
       container.innerHTML = ''
 
@@ -411,10 +412,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         checkbox.setAttribute('aria-label', `${enabled ? 'Disable' : 'Enable'} ${name}`)
         checkbox.addEventListener('change', () => {
           this.config.utilities[name] = checkbox.checked
-          checkbox.setAttribute(
-            'aria-label',
-            `${checkbox.checked ? 'Disable' : 'Enable'} ${name}`,
-          )
+          checkbox.setAttribute('aria-label', `${checkbox.checked ? 'Disable' : 'Enable'} ${name}`)
           this.save()
           this.transform()
         })
@@ -440,7 +438,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
     private renderShadeMap() {
       const container = this.querySelector<HTMLElement>('[data-shade-map]')
-      if (!container) return
+      if (!container) {
+        return
+      }
 
       container.innerHTML = ''
 
@@ -449,7 +449,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
         wrapper.className = 'flex items-center gap-2'
 
         const shadeLabel = document.createElement('span')
-        shadeLabel.className = 'w-8 shrink-0 text-sm font-medium text-gray-700'
+        shadeLabel.className = 'w-8 text-right shrink-0 text-sm font-medium text-gray-700'
         shadeLabel.textContent = shade
 
         const iconWrapper = document.createElement('span')
@@ -489,7 +489,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
     private renderRules() {
       const container = this.querySelector<HTMLElement>('[data-rules]')
-      if (!container) return
+      if (!container) {
+        return
+      }
 
       container.innerHTML = ''
 
@@ -575,10 +577,14 @@ import { ChevronDown, Info, X } from '@lucide/astro'
       utilitiesEl.value = (rule.utilities ?? []).join(', ')
 
       const shadeEl = li.querySelector<HTMLInputElement>('.rule-shade')!
-      if (rule.shade != null) shadeEl.value = String(rule.shade)
+      if (rule.shade !== null) {
+        shadeEl.value = String(rule.shade)
+      }
 
       const darkShadeEl = li.querySelector<HTMLInputElement>('.rule-dark-shade')!
-      if (rule.darkShade != null) darkShadeEl.value = String(rule.darkShade)
+      if (rule.darkShade !== null) {
+        darkShadeEl.value = String(rule.darkShade)
+      }
 
       const colorsEl = li.querySelector<HTMLInputElement>('.rule-colors')!
       colorsEl.value = (rule.colors ?? []).join(', ')
@@ -655,18 +661,28 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
     private updateRuleSummary(li: HTMLElement, rule: Rule) {
       const el = li.querySelector<HTMLElement>('.rule-summary')
-      if (!el) return
+      if (!el) {
+        return
+      }
 
       const matchParts: string[] = []
-      if (rule.utilities && rule.utilities.length > 0) matchParts.push(rule.utilities.join('/'))
-      if (rule.shade != null) matchParts.push(`shade-${rule.shade}`)
+      if (rule.utilities && rule.utilities.length > 0) {
+        matchParts.push(rule.utilities.join('/'))
+      }
+      if (rule.shade !== null) {
+        matchParts.push(`shade-${rule.shade}`)
+      }
 
       const match = matchParts.length > 0 ? matchParts.join(' ') : 'All classes'
-      const darkStr = rule.darkShade != null ? `→ ${rule.darkShade}` : '→ shade map'
+      const darkStr = rule.darkShade !== null ? `→ ${rule.darkShade}` : '→ shade map'
 
       const skipParts: string[] = []
-      if (rule.excludeElements.length > 0) skipParts.push(rule.excludeElements.join(', '))
-      if (rule.excludeColors.length > 0) skipParts.push(`${rule.excludeColors.join(', ')} colors`)
+      if (rule.excludeElements.length > 0) {
+        skipParts.push(rule.excludeElements.join(', '))
+      }
+      if (rule.excludeColors.length > 0) {
+        skipParts.push(`${rule.excludeColors.join(', ')} colors`)
+      }
 
       const skipStr = skipParts.length > 0 ? ` (skip: ${skipParts.join('; ')})` : ''
 
@@ -675,7 +691,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
     private syncOverwriteExisting() {
       const el = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
-      if (!el) return
+      if (!el) {
+        return
+      }
 
       el.checked = this.config.overwriteExisting
       el.addEventListener('change', () => {
@@ -689,10 +707,14 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
     private bindInput() {
       const input = this.querySelector<HTMLTextAreaElement>('[data-input]')
-      if (!input) return
+      if (!input) {
+        return
+      }
 
       input.addEventListener('input', () => {
-        if (this.debounceTimer) clearTimeout(this.debounceTimer)
+        if (this.debounceTimer) {
+          clearTimeout(this.debounceTimer)
+        }
         this.debounceTimer = setTimeout(() => this.transform(), DEBOUNCE_MS)
       })
     }
@@ -710,7 +732,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
       })
 
       dialog?.addEventListener('click', (e) => {
-        if (e.target === dialog) dialog.close()
+        if (e.target === dialog) {
+          dialog.close()
+        }
       })
 
       // Add rule — stopPropagation so the Rules <details> doesn't toggle
@@ -759,7 +783,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
       this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener('change', (e) => {
         const file = (e.target as HTMLInputElement).files?.[0]
-        if (!file) return
+        if (!file) {
+          return
+        }
 
         const reader = new FileReader()
         reader.onload = () => {
@@ -785,23 +811,35 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
       copyBtn?.addEventListener('click', async () => {
         const output = this.querySelector<HTMLPreElement>('[data-output]')?.textContent ?? ''
-        if (!output.trim()) return
+        if (!output.trim()) {
+          return
+        }
 
         try {
           await navigator.clipboard.writeText(output)
 
-          if (copyText) copyText.textContent = 'Copied'
-          if (copyPolite) copyPolite.textContent = 'Copied to clipboard.'
+          if (copyText) {
+            copyText.textContent = 'Copied'
+          }
+          if (copyPolite) {
+            copyPolite.textContent = 'Copied to clipboard.'
+          }
           copyBtn.setAttribute('aria-pressed', 'true')
 
-          if (this.copyTimer) clearTimeout(this.copyTimer)
+          if (this.copyTimer) {
+            clearTimeout(this.copyTimer)
+          }
           this.copyTimer = setTimeout(() => {
-            if (copyText) copyText.textContent = 'Copy'
-            if (copyPolite) copyPolite.textContent = ''
+            if (copyText) {
+              copyText.textContent = 'Copy'
+            }
+            if (copyPolite) {
+              copyPolite.textContent = ''
+            }
             copyBtn.setAttribute('aria-pressed', 'false')
           }, 1500)
         } catch {
-          // clipboard API unavailable
+          // We do nothing
         }
       })
 
@@ -822,7 +860,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
       const input = this.querySelector<HTMLTextAreaElement>('[data-input]')?.value ?? ''
       const outputEl = this.querySelector<HTMLPreElement>('[data-output]')
 
-      if (!outputEl) return
+      if (!outputEl) {
+        return
+      }
 
       if (!input.trim()) {
         outputEl.textContent = ''
@@ -842,13 +882,20 @@ import { ChevronDown, Info, X } from '@lucide/astro'
       const lightFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
       const darkFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
 
-      if (lightFrame) lightFrame.srcdoc = this.buildPreviewDoc(lightHtml, false)
-      if (darkFrame) darkFrame.srcdoc = this.buildPreviewDoc(darkHtml, true)
+      if (lightFrame) {
+        lightFrame.srcdoc = this.buildPreviewDoc(lightHtml, false)
+      }
+      if (darkFrame) {
+        darkFrame.srcdoc = this.buildPreviewDoc(darkHtml, true)
+      }
     }
 
     private buildPreviewDoc(html: string, isDark: boolean): string {
       const bg = isDark ? '#111827' : '#ffffff'
-      const openTag = ['<', 'script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">'].join('')
+      const openTag = [
+        '<',
+        'script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">',
+      ].join('')
       const closeTag = ['</', 'script>'].join('')
 
       return [
@@ -874,7 +921,9 @@ import { ChevronDown, Info, X } from '@lucide/astro'
       const lightFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
       const darkFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
 
-      if (!previewContainer || !codeContainer || !lightFrame || !darkFrame) return
+      if (!previewContainer || !codeContainer || !lightFrame || !darkFrame) {
+        return
+      }
 
       if (mode === 'code') {
         previewContainer.classList.add('hidden')

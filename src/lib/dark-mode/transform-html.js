@@ -45,13 +45,17 @@ export function transformHtmlDom(htmlContent, config) {
  * @returns {string}
  */
 function transformClassAttribute(classAttr, config, tagName) {
-  if (!classAttr) return classAttr ?? ''
+  if (!classAttr) {
+    return classAttr ?? ''
+  }
 
   return classAttr
     .split(/\s+/)
     .filter(Boolean)
     .map((className) => {
-      if (!config.overwriteExisting && className.includes('dark:')) return className
+      if (!config.overwriteExisting && className.includes('dark:')) {
+        return className
+      }
 
       return transformClass(className, config, tagName)
     })
