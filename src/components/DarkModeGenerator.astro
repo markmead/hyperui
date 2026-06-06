@@ -753,7 +753,9 @@ import { ChevronDown } from '@lucide/astro'
       const result = transformHtmlDom(input, this.config)
 
       outputEl.textContent = result
-      this.updatePreviews(input, result)
+
+      const lightHtml = new DOMParser().parseFromString(input, 'text/html').body.innerHTML
+      this.updatePreviews(lightHtml, result)
     }
 
     private updatePreviews(lightHtml: string, darkHtml: string) {
