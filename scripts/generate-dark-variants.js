@@ -5,135 +5,13 @@ import { fileURLToPath } from 'url'
 import fs from 'fs'
 import path from 'path'
 
-const SHADE_MAP = {
-  50: 800,
-  100: 800,
-  200: 700,
-  300: 600,
-  400: 500,
-  500: 400,
-  600: 300,
-  700: 200,
-  800: 100,
-  900: 50,
-}
-
-const COLOR_MAP = {
-  white: 'gray-900',
-  black: 'white',
-}
-
-const COLOR_FAMILIES = [
-  'red',
-  'orange',
-  'amber',
-  'yellow',
-  'lime',
-  'green',
-  'emerald',
-  'teal',
-  'cyan',
-  'sky',
-  'blue',
-  'indigo',
-  'violet',
-  'purple',
-  'fuchsia',
-  'pink',
-  'rose',
-  'slate',
-  'gray',
-  'zinc',
-  'neutral',
-  'stone',
-]
+import { DEFAULT_CONFIG } from '../src/lib/dark-mode/config.js'
+import { transformHtmlString } from '../src/lib/dark-mode/transform-html.js'
 
 function getProjectRoot() {
   const scriptFilePath = fileURLToPath(import.meta.url)
 
   return path.resolve(path.dirname(scriptFilePath), '..')
-}
-
-function splitVariantPrefix(className) {
-  const lastSeparatorIndex = className.lastIndexOf(':')
-
-  if (lastSeparatorIndex === -1) {
-    return {
-      variantPrefix: '',
-      classWithoutVariant: className,
-    }
-  }
-
-  return {
-    variantPrefix: className.slice(0, lastSeparatorIndex + 1),
-    classWithoutVariant: className.slice(lastSeparatorIndex + 1),
-  }
-}
-
-function transformClass(className) {
-  const { variantPrefix, classWithoutVariant } = splitVariantPrefix(className)
-
-  const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
-
-  if (gray900Match) {
-    const grayPrefix = gray900Match[1] ?? ''
-    const graySuffix = gray900Match[3] ?? ''
-
-    return `${className} dark:${variantPrefix}${grayPrefix}white${graySuffix}`
-  }
-
-  for (const [lightColor, darkColor] of Object.entries(COLOR_MAP)) {
-    if (classWithoutVariant.includes(lightColor)) {
-      const colorMatch = classWithoutVariant.match(/^((?:[\w]+-)*)(white|black)(\/\d+)?$/)
-
-      if (colorMatch) {
-        const colorPrefix = colorMatch[1] ?? ''
-        const colorSuffix = colorMatch[3] ?? ''
-        const darkClass = `${colorPrefix}${darkColor}${colorSuffix}`
-
-        return `${className} dark:${variantPrefix}${darkClass}`
-      }
-    }
-  }
-
-  for (const colorFamily of COLOR_FAMILIES) {
-    const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d+)(.*?)$`)
-    const colorMatch = classWithoutVariant.match(colorRegex)
-
-    if (colorMatch) {
-      const colorPrefix = colorMatch[1] ?? ''
-      const colorShade = colorMatch[2] ?? '0'
-      const colorSuffix = colorMatch[3] ?? ''
-      const shadeNum = parseInt(colorShade, 10)
-
-      if (shadeNum in SHADE_MAP) {
-        const darkShade = SHADE_MAP[shadeNum]
-        const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
-
-        return `${className} dark:${variantPrefix}${darkClass}`
-      }
-    }
-  }
-
-  return className
-}
-
-function transformClassAttribute(classAttr) {
-  if (!classAttr) return classAttr
-
-  return classAttr
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((className) => (className.includes('dark:') ? className : transformClass(className)))
-    .join(' ')
-}
-
-function transformHtmlContent(htmlContent) {
-  return htmlContent.replace(/class="([^"]*)"/g, (_, classAttr) => {
-    const transformedClass = transformClassAttribute(classAttr)
-
-    return `class="${transformedClass}"`
-  })
 }
 
 function isPathWithinBounds(targetPath, allowedParent) {
@@ -244,7 +122,7 @@ function processFolder() {
 
     try {
       const lightContent = fs.readFileSync(lightPath, 'utf-8')
-      const darkContent = transformHtmlContent(lightContent)
+      const darkContent = transformHtmlString(lightContent, DEFAULT_CONFIG)
 
       fs.writeFileSync(darkPath, darkContent, 'utf-8')
 
