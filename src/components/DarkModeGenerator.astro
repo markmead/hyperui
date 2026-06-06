@@ -1,5 +1,5 @@
 ---
-import { ChevronDown } from '@lucide/astro'
+import { ChevronDown, Info, X } from '@lucide/astro'
 ---
 
 <dark-mode-generator class="block">
@@ -64,6 +64,15 @@ import { ChevronDown } from '@lucide/astro'
           <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Rules</h3>
 
           <div class="flex items-center gap-2">
+            <button
+              type="button"
+              data-rules-examples
+              aria-label="View rule examples"
+              class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white p-1 text-gray-400 transition-colors hover:border-gray-300 hover:text-gray-600"
+            >
+              <Info class="size-3.5" />
+            </button>
+
             <button
               type="button"
               data-add-rule
@@ -189,7 +198,7 @@ import { ChevronDown } from '@lucide/astro'
               <button
                 type="button"
                 data-preview-mode="light"
-                aria-pressed="true"
+                aria-pressed="false"
                 class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
               >
                 Light
@@ -207,7 +216,7 @@ import { ChevronDown } from '@lucide/astro'
               <button
                 type="button"
                 data-preview-mode="split"
-                aria-pressed="false"
+                aria-pressed="true"
                 class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
               >
                 Split
@@ -238,8 +247,7 @@ import { ChevronDown } from '@lucide/astro'
         <!-- Preview iframes -->
         <div
           data-preview-container
-          class="grid min-h-0 flex-1 gap-4"
-          style="grid-template-columns: 1fr;"
+          class="grid min-h-0 flex-1 grid-cols-2 gap-4"
         >
           <iframe
             data-preview="light"
@@ -252,12 +260,68 @@ import { ChevronDown } from '@lucide/astro'
             data-preview="dark"
             title="Dark mode preview"
             sandbox="allow-scripts"
-            class="hidden h-full min-h-150 w-full rounded-lg border border-gray-800 bg-gray-900"
+            class="h-full min-h-150 w-full rounded-lg border border-gray-800 bg-gray-900"
           ></iframe>
         </div>
       </div>
     </div>
   </div>
+  <dialog
+    data-rules-dialog
+    class="w-full max-w-lg rounded-xl border border-gray-200 bg-white p-0 shadow-xl backdrop:bg-black/40 open:flex open:flex-col"
+  >
+    <div class="flex items-center justify-between border-b border-gray-200 px-5 py-4">
+      <h2 class="text-sm font-semibold text-gray-900">Rule examples</h2>
+
+      <button
+        type="button"
+        data-rules-dialog-close
+        aria-label="Close"
+        class="rounded-md p-1 text-gray-400 transition-colors hover:text-gray-600"
+      >
+        <X class="size-4" />
+      </button>
+    </div>
+
+    <div class="space-y-5 overflow-y-auto px-5 py-4 text-sm text-gray-700">
+      <p class="text-gray-500">
+        Rules let you override the shade map for specific utilities, shades, or colours. The first
+        matching enabled rule wins.
+      </p>
+
+      <div class="space-y-3">
+        <h3 class="font-medium text-gray-900">Make all text lighter in dark mode</h3>
+        <p class="text-gray-500">Match any <code class="rounded bg-gray-100 px-1 py-0.5">text-*</code> class and force shade 300 in dark mode, regardless of the shade map.</p>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs">
+          <dt class="text-gray-400">Utilities</dt><dd>text</dd>
+          <dt class="text-gray-400">Shade</dt><dd class="text-gray-400">—</dd>
+          <dt class="text-gray-400">In dark mode</dt><dd>300</dd>
+        </dl>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="font-medium text-gray-900">Invert heavy backgrounds, skip buttons</h3>
+        <p class="text-gray-500">Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100 in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.</p>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs">
+          <dt class="text-gray-400">Utilities</dt><dd>bg</dd>
+          <dt class="text-gray-400">Shade</dt><dd>900</dd>
+          <dt class="text-gray-400">In dark mode</dt><dd>100</dd>
+          <dt class="text-gray-400">Skip elements</dt><dd>button</dd>
+        </dl>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="font-medium text-gray-900">Keep brand colours untouched</h3>
+        <p class="text-gray-500">Match any utility but exclude indigo and violet so brand colours pass through without modification.</p>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs">
+          <dt class="text-gray-400">Utilities</dt><dd class="text-gray-400">—</dd>
+          <dt class="text-gray-400">Shade</dt><dd class="text-gray-400">—</dd>
+          <dt class="text-gray-400">In dark mode</dt><dd class="text-gray-400">—</dd>
+          <dt class="text-gray-400">Skip colours</dt><dd>indigo, violet</dd>
+        </dl>
+      </div>
+    </div>
+  </dialog>
 </dark-mode-generator>
 
 <script>
@@ -311,7 +375,7 @@ import { ChevronDown } from '@lucide/astro'
     private config: Config = loadConfig() as Config
     private debounceTimer: ReturnType<typeof setTimeout> | null = null
     private copyTimer: ReturnType<typeof setTimeout> | null = null
-    private currentMode: PreviewMode = 'light'
+    private currentMode: PreviewMode = 'split'
 
     connectedCallback() {
       this.renderUtilityToggles()
@@ -320,6 +384,7 @@ import { ChevronDown } from '@lucide/astro'
       this.syncOverwriteExisting()
       this.bindInput()
       this.bindActions()
+      this.setPreviewMode('split')
     }
 
     disconnectedCallback() {
@@ -633,6 +698,21 @@ import { ChevronDown } from '@lucide/astro'
     }
 
     private bindActions() {
+      const dialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')
+
+      this.querySelector('[data-rules-examples]')?.addEventListener('click', (e) => {
+        e.stopPropagation()
+        dialog?.showModal()
+      })
+
+      this.querySelector('[data-rules-dialog-close]')?.addEventListener('click', () => {
+        dialog?.close()
+      })
+
+      dialog?.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close()
+      })
+
       // Add rule — stopPropagation so the Rules <details> doesn't toggle
       this.querySelector('[data-add-rule]')?.addEventListener('click', (e) => {
         e.stopPropagation()
@@ -806,15 +886,15 @@ import { ChevronDown } from '@lucide/astro'
       codeContainer.classList.add('hidden')
 
       if (mode === 'light') {
-        previewContainer.style.gridTemplateColumns = '1fr'
+        previewContainer.classList.remove('grid-cols-2')
         lightFrame.classList.remove('hidden')
         darkFrame.classList.add('hidden')
       } else if (mode === 'dark') {
-        previewContainer.style.gridTemplateColumns = '1fr'
+        previewContainer.classList.remove('grid-cols-2')
         lightFrame.classList.add('hidden')
         darkFrame.classList.remove('hidden')
       } else {
-        previewContainer.style.gridTemplateColumns = '1fr 1fr'
+        previewContainer.classList.add('grid-cols-2')
         lightFrame.classList.remove('hidden')
         darkFrame.classList.remove('hidden')
       }
