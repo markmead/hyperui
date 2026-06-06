@@ -778,6 +778,7 @@ import { ChevronDown } from '@lucide/astro'
         '<meta charset="utf-8" />',
         '<meta name="viewport" content="width=device-width,initial-scale=1" />',
         openTag + closeTag,
+        '<style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>',
         `<style>body{padding:1rem;background:${bg};}</style>`,
         '</head>',
         `<body>${html}</body>`,
