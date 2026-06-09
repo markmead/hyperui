@@ -1,0 +1,152 @@
+---
+import { X } from '@lucide/astro'
+---
+
+<dialog
+  data-rules-dialog
+  class="m-auto w-full max-w-4xl rounded-xl border border-gray-200 bg-white p-0 shadow-xl open:flex open:flex-col"
+>
+  <div class="flex items-center justify-between border-b border-gray-200 p-4">
+    <h2 class="text-xl font-medium text-gray-900">Rule examples</h2>
+
+    <button
+      type="button"
+      data-rules-dialog-close
+      aria-label="Close"
+      class="rounded-md p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+    >
+      <X class="size-5" />
+    </button>
+  </div>
+
+  <div class="space-y-4 overflow-y-auto p-4">
+    <p class="text-gray-600">
+      Rules let you override the shade map for specific utilities, shades, or colours. The first
+      matching enabled rule wins.
+    </p>
+
+    <div>
+      <h3 class="font-medium text-gray-900">Make all text lighter in dark mode</h3>
+
+      <p class="mt-2 text-gray-600">
+        Match any <code class="rounded bg-gray-100 px-1 py-0.5">text-*</code> class and force shade
+        300 in dark mode, regardless of the shade map.
+      </p>
+
+      <dl
+        class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
+      >
+        <dt>Utilities</dt>
+        <dd>text</dd>
+        <dt>Shade</dt>
+        <dd>—</dd>
+        <dt>In dark mode</dt>
+        <dd>300</dd>
+      </dl>
+
+      <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
+        <div class="grid grid-cols-2 divide-x divide-gray-200">
+          <div class="bg-gray-50 p-4">
+            <p class="text-sm font-medium text-gray-700">Before</p>
+
+            <pre
+              class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;h1 class="text-gray-900"&gt;Title&lt;/h1&gt;
+&lt;p class="text-gray-600"&gt;Subtitle&lt;/p&gt;</pre>
+          </div>
+
+          <div class="bg-gray-50 p-4">
+            <p class="text-sm font-medium text-gray-700">After</p>
+
+            <pre
+              class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;h1 class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Title&lt;/h1&gt;
+&lt;p class="text-gray-600 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Subtitle&lt;/p&gt;</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="font-medium text-gray-900">Invert heavy backgrounds, skip buttons</h3>
+
+      <p class="mt-2 text-gray-600">
+        Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100
+        in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.
+      </p>
+
+      <dl
+        class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
+      >
+        <dt>Utilities</dt>
+        <dd>bg</dd>
+        <dt>Shade</dt>
+        <dd>900</dd>
+        <dt>In dark mode</dt>
+        <dd>100</dd>
+        <dt>Skip elements</dt>
+        <dd>button</dd>
+      </dl>
+
+      <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
+        <div class="grid grid-cols-2 divide-x divide-gray-200">
+          <div class="bg-gray-50 p-4">
+            <p class="text-sm font-medium text-gray-700">Before</p>
+
+            <pre
+              class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 p-4"&gt;Panel&lt;/div&gt;
+&lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
+          </div>
+
+          <div class="bg-gray-50 p-4">
+            <p class="text-sm font-medium text-gray-700">After</p>
+
+            <pre
+              class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 <span class="text-emerald-600">dark:bg-gray-100</span> p-4"&gt;Panel&lt;/div&gt;
+&lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="font-medium text-gray-900">Keep brand colours untouched</h3>
+
+      <p class="mt-2 text-gray-600">
+        Match any utility but exclude indigo and violet so brand colours pass through without
+        modification.
+      </p>
+
+      <dl
+        class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
+      >
+        <dt>Utilities</dt>
+        <dd>—</dd>
+        <dt>Shade</dt>
+        <dd>—</dd>
+        <dt>In dark mode</dt>
+        <dd>—</dd>
+        <dt>Skip colours</dt>
+        <dd>indigo, violet</dd>
+      </dl>
+
+      <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
+        <div class="grid grid-cols-2 divide-x divide-gray-200">
+          <div class="bg-gray-50 p-4">
+            <p class="text-sm font-medium text-gray-700">Before</p>
+
+            <pre
+              class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900"&gt;Text&lt;/p&gt;
+&lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
+          </div>
+
+          <div class="bg-gray-50 p-4">
+            <p class="text-sm font-medium text-gray-700">After</p>
+
+            <pre
+              class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Text&lt;/p&gt;
+&lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>

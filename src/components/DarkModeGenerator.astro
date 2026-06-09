@@ -1,5 +1,6 @@
 ---
 import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
+import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
 ---
 
 <dark-mode-generator class="block">
@@ -201,154 +202,7 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
     </div>
   </div>
 
-  <dialog
-    data-rules-dialog
-    class="m-auto w-full max-w-4xl rounded-xl border border-gray-200 bg-white p-0 shadow-xl open:flex open:flex-col"
-  >
-    <div class="flex items-center justify-between border-b border-gray-200 p-4">
-      <h2 class="text-xl font-medium text-gray-900">Rule examples</h2>
-
-      <button
-        type="button"
-        data-rules-dialog-close
-        aria-label="Close"
-        class="rounded-md p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-      >
-        <X class="size-5" />
-      </button>
-    </div>
-
-    <div class="space-y-4 overflow-y-auto p-4">
-      <p class="text-gray-600">
-        Rules let you override the shade map for specific utilities, shades, or colours. The first
-        matching enabled rule wins.
-      </p>
-
-      <div>
-        <h3 class="font-medium text-gray-900">Make all text lighter in dark mode</h3>
-
-        <p class="mt-2 text-gray-600">
-          Match any <code class="rounded bg-gray-100 px-1 py-0.5">text-*</code> class and force shade
-          300 in dark mode, regardless of the shade map.
-        </p>
-
-        <dl
-          class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
-        >
-          <dt>Utilities</dt>
-          <dd>text</dd>
-          <dt>Shade</dt>
-          <dd>—</dd>
-          <dt>In dark mode</dt>
-          <dd>300</dd>
-        </dl>
-
-        <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
-          <div class="grid grid-cols-2 divide-x divide-gray-200">
-            <div class="bg-gray-50 p-4">
-              <p class="text-sm font-medium text-gray-700">Before</p>
-
-              <pre
-                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;h1 class="text-gray-900"&gt;Title&lt;/h1&gt;
-&lt;p class="text-gray-600"&gt;Subtitle&lt;/p&gt;</pre>
-            </div>
-
-            <div class="bg-gray-50 p-4">
-              <p class="text-sm font-medium text-gray-700">After</p>
-
-              <pre
-                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;h1 class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Title&lt;/h1&gt;
-&lt;p class="text-gray-600 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Subtitle&lt;/p&gt;</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="font-medium text-gray-900">Invert heavy backgrounds, skip buttons</h3>
-
-        <p class="mt-2 text-gray-600">
-          Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100
-          in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.
-        </p>
-
-        <dl
-          class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
-        >
-          <dt>Utilities</dt>
-          <dd>bg</dd>
-          <dt>Shade</dt>
-          <dd>900</dd>
-          <dt>In dark mode</dt>
-          <dd>100</dd>
-          <dt>Skip elements</dt>
-          <dd>button</dd>
-        </dl>
-
-        <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
-          <div class="grid grid-cols-2 divide-x divide-gray-200">
-            <div class="bg-gray-50 p-4">
-              <p class="text-sm font-medium text-gray-700">Before</p>
-
-              <pre
-                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 p-4"&gt;Panel&lt;/div&gt;
-&lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
-            </div>
-
-            <div class="bg-gray-50 p-4">
-              <p class="text-sm font-medium text-gray-700">After</p>
-
-              <pre
-                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 <span class="text-emerald-600">dark:bg-gray-100</span> p-4"&gt;Panel&lt;/div&gt;
-&lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="font-medium text-gray-900">Keep brand colours untouched</h3>
-
-        <p class="mt-2 text-gray-600">
-          Match any utility but exclude indigo and violet so brand colours pass through without
-          modification.
-        </p>
-
-        <dl
-          class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
-        >
-          <dt>Utilities</dt>
-          <dd>—</dd>
-          <dt>Shade</dt>
-          <dd>—</dd>
-          <dt>In dark mode</dt>
-          <dd>—</dd>
-          <dt>Skip colours</dt>
-          <dd>indigo, violet</dd>
-        </dl>
-
-        <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
-          <div class="grid grid-cols-2 divide-x divide-gray-200">
-            <div class="bg-gray-50 p-4">
-              <p class="text-sm font-medium text-gray-700">Before</p>
-
-              <pre
-                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900"&gt;Text&lt;/p&gt;
-&lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
-            </div>
-
-            <div class="bg-gray-50 p-4">
-              <p class="text-sm font-medium text-gray-700">After</p>
-
-              <pre
-                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Text&lt;/p&gt;
-&lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </dialog>
+  <DmgRulesExamplesDialog />
 </dark-mode-generator>
 
 <script>
@@ -360,6 +214,13 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
     importConfig,
   } from '../lib/dark-mode/config.js'
   import { transformHtmlDom } from '../lib/dark-mode/transform-html.js'
+  import { buildPreviewDocument } from '../lib/dark-mode/preview-document.js'
+  import {
+    renderUtilityToggles,
+    renderShadeMap,
+    renderRules,
+  } from '../lib/dark-mode/ui-renderer.js'
+  import { DEBOUNCE_DELAY_MS } from '../lib/dark-mode/element-constants.js'
 
   type Rule = {
     id: string
@@ -382,397 +243,128 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
 
   type PreviewMode = 'light' | 'dark' | 'split' | 'code'
 
-  const DEBOUNCE_MS = 250
-
-  const NO_SPINNER =
-    '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
-
-  const INPUT_CLASS =
-    'mt-1 w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-sm focus:border-gray-400 focus:outline-none'
-
-  const NUMBER_INPUT_CLASS = `${INPUT_CLASS} ${NO_SPINNER}`
-
-  const ICON_MOVE_RIGHT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-4 shrink-0 text-gray-400"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>`
-
-  const ICON_PLUS = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-3 shrink-0"><path d="M5 12h14"/><path d="M12 5v14"/></svg>`
-
-  const ICON_MINUS = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-3 shrink-0"><path d="M5 12h14"/></svg>`
-
   class DarkModeGenerator extends HTMLElement {
-    private config: Config = loadConfig() as Config
+    private generatorConfig: Config = loadConfig() as Config
     private debounceTimer: ReturnType<typeof setTimeout> | null = null
-    private copyTimer: ReturnType<typeof setTimeout> | null = null
-    private currentMode: PreviewMode = 'split'
+    private clipboardCopyTimer: ReturnType<typeof setTimeout> | null = null
+    private currentPreviewMode: PreviewMode = 'split'
 
     connectedCallback() {
-      this.renderUtilityToggles()
-      this.renderShadeMap()
-      this.renderRules()
+      this.refreshUtilityToggles()
+      this.refreshShadeMap()
+      this.refreshRules()
       this.syncOverwriteExisting()
-      this.bindInput()
-      this.bindActions()
-      this.setPreviewMode('split')
+      this.bindHtmlInput()
+      this.bindActionButtons()
+      this.applyPreviewMode('split')
     }
 
     disconnectedCallback() {
       if (this.debounceTimer) {
         clearTimeout(this.debounceTimer)
       }
-      if (this.copyTimer) {
-        clearTimeout(this.copyTimer)
+      if (this.clipboardCopyTimer) {
+        clearTimeout(this.clipboardCopyTimer)
       }
     }
 
     // ── Render helpers ──────────────────────────────────────────────
 
-    private renderUtilityToggles() {
-      const container = this.querySelector<HTMLElement>('[data-utilities]')
-      if (!container) {
+    private refreshUtilityToggles() {
+      const utilitiesContainer = this.querySelector<HTMLElement>('[data-utilities]')
+      if (!utilitiesContainer) {
         return
       }
-
-      container.innerHTML = ''
-
-      for (const [name, enabled] of Object.entries(this.config.utilities)) {
-        const label = document.createElement('label')
-        label.className = 'cursor-pointer'
-
-        const checkbox = document.createElement('input')
-        checkbox.type = 'checkbox'
-        checkbox.className = 'sr-only peer'
-        checkbox.checked = enabled
-        checkbox.setAttribute('aria-label', `${enabled ? 'Disable' : 'Enable'} ${name}`)
-        checkbox.addEventListener('change', () => {
-          this.config.utilities[name] = checkbox.checked
-          checkbox.setAttribute('aria-label', `${checkbox.checked ? 'Disable' : 'Enable'} ${name}`)
-          this.save()
-          this.transform()
-        })
-
-        // Unchecked pill (+ icon — click to enable)
-        const offSpan = document.createElement('span')
-        offSpan.className =
-          'peer-checked:hidden inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2.5 py-0.5 text-xs font-medium text-gray-500'
-        offSpan.innerHTML = `${ICON_PLUS}${name}`
-
-        // Checked pill (− icon — click to disable)
-        const onSpan = document.createElement('span')
-        onSpan.className =
-          'hidden peer-checked:inline-flex items-center gap-1 rounded-full border border-gray-900 bg-gray-900 px-2.5 py-0.5 text-xs font-medium text-white'
-        onSpan.innerHTML = `${ICON_MINUS}${name}`
-
-        label.appendChild(checkbox)
-        label.appendChild(offSpan)
-        label.appendChild(onSpan)
-        container.appendChild(label)
-      }
+      renderUtilityToggles(utilitiesContainer, this.generatorConfig, () => {
+        this.saveConfiguration()
+        this.transformAndRender()
+      })
     }
 
-    private renderShadeMap() {
-      const container = this.querySelector<HTMLElement>('[data-shade-map]')
-      if (!container) {
+    private refreshShadeMap() {
+      const shadeMapContainer = this.querySelector<HTMLElement>('[data-shade-map]')
+      if (!shadeMapContainer) {
         return
       }
-
-      container.innerHTML = ''
-
-      for (const [shade, dark] of Object.entries(this.config.shadeMap)) {
-        const wrapper = document.createElement('div')
-        wrapper.className = 'flex items-center gap-2'
-
-        const shadeLabel = document.createElement('span')
-        shadeLabel.className = 'w-8 text-right shrink-0 text-sm font-medium text-gray-700'
-        shadeLabel.textContent = shade
-
-        const iconWrapper = document.createElement('span')
-        iconWrapper.innerHTML = ICON_MOVE_RIGHT
-
-        const inputId = `dmg-shade-${shade}`
-
-        const visualLabel = document.createElement('label')
-        visualLabel.className = 'sr-only'
-        visualLabel.setAttribute('for', inputId)
-        visualLabel.textContent = `Dark shade for shade-${shade}`
-
-        const input = document.createElement('input')
-        input.type = 'number'
-        input.id = inputId
-        input.className = `w-16 rounded-md border border-gray-200 bg-white px-2 py-1 text-sm focus:border-gray-400 focus:outline-none ${NO_SPINNER}`
-        input.value = String(dark)
-        input.min = '50'
-        input.max = '950'
-        input.step = '50'
-        input.addEventListener('change', () => {
-          const val = parseInt(input.value, 10)
-          if (!isNaN(val)) {
-            this.config.shadeMap[parseInt(shade, 10)] = val
-            this.save()
-            this.transform()
-          }
-        })
-
-        wrapper.appendChild(visualLabel)
-        wrapper.appendChild(shadeLabel)
-        wrapper.appendChild(iconWrapper)
-        wrapper.appendChild(input)
-        container.appendChild(wrapper)
-      }
+      renderShadeMap(shadeMapContainer, this.generatorConfig, () => {
+        this.saveConfiguration()
+        this.transformAndRender()
+      })
     }
 
-    private renderRules() {
-      const container = this.querySelector<HTMLElement>('[data-rules]')
-      if (!container) {
+    private refreshRules() {
+      const rulesContainer = this.querySelector<HTMLElement>('[data-rules]')
+      if (!rulesContainer) {
         return
       }
-
-      container.innerHTML = ''
-
-      if (this.config.rules.length === 0) {
-        const empty = document.createElement('p')
-        empty.className = 'text-xs text-gray-400'
-        empty.textContent = 'No rules. Add one to override shade map defaults.'
-        container.appendChild(empty)
-        return
-      }
-
-      for (const rule of this.config.rules) {
-        container.appendChild(this.buildRuleEl(rule))
-      }
-    }
-
-    private buildRuleEl(rule: Rule): HTMLElement {
-      const li = document.createElement('li')
-
-      li.innerHTML = `
-        <details class="overflow-hidden rounded-lg border border-gray-200 bg-white">
-          <summary class="flex cursor-pointer items-center justify-between gap-2 p-3 hover:bg-gray-50 list-none [&::-webkit-details-marker]:hidden">
-            <div class="flex min-w-0 items-center gap-2">
-              <input type="checkbox" class="rule-enabled size-5 shrink-0 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1" aria-label="Enable rule" />
-              <span class="rule-summary truncate text-xs text-gray-600"></span>
-            </div>
-            <div class="flex shrink-0 items-center gap-1">
-              <svg class="size-3.5 text-gray-400 transition-transform [[open]_&]:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-              <button type="button" class="rule-delete rounded p-0.5 text-gray-400 transition-colors hover:text-red-500" aria-label="Delete rule">
-                <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-              </button>
-            </div>
-          </summary>
-
-          <div class="space-y-4 border-t border-gray-200 p-3">
-            <div>
-              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Apply when</h4>
-              <div class="space-y-3">
-                <label class="block text-sm text-gray-600">
-                  Utilities (comma-sep, blank = any)
-                  <input type="text" class="rule-utilities ${INPUT_CLASS}" placeholder="e.g. bg, text" />
-                </label>
-                <label class="block text-sm text-gray-600">
-                  Shade (blank = any)
-                  <input type="number" class="rule-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 600" min="50" max="950" step="50" />
-                </label>
-                <label class="block text-sm text-gray-600">
-                  Include only colors (comma-sep, blank = any)
-                  <input type="text" class="rule-colors ${INPUT_CLASS}" placeholder="e.g. blue, indigo" />
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">In dark mode</h4>
-              <label class="block text-sm text-gray-600">
-                Use shade (blank = shade map)
-                <input type="number" class="rule-dark-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 300" min="50" max="950" step="50" />
-              </label>
-            </div>
-
-            <div>
-              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Skip when</h4>
-              <div class="space-y-3">
-                <label class="block text-sm text-gray-600">
-                  Elements (comma-sep)
-                  <input type="text" class="rule-exclude-elements ${INPUT_CLASS}" placeholder="e.g. button, a" />
-                </label>
-                <label class="block text-sm text-gray-600">
-                  Colors (comma-sep)
-                  <input type="text" class="rule-exclude-colors ${INPUT_CLASS}" placeholder="e.g. blue, indigo" />
-                </label>
-              </div>
-            </div>
-          </div>
-        </details>
-      `
-
-      const enabledEl = li.querySelector<HTMLInputElement>('.rule-enabled')!
-      enabledEl.checked = rule.enabled
-
-      const utilitiesEl = li.querySelector<HTMLInputElement>('.rule-utilities')!
-      utilitiesEl.value = (rule.utilities ?? []).join(', ')
-
-      const shadeEl = li.querySelector<HTMLInputElement>('.rule-shade')!
-      if (rule.shade !== null) {
-        shadeEl.value = String(rule.shade)
-      }
-
-      const darkShadeEl = li.querySelector<HTMLInputElement>('.rule-dark-shade')!
-      if (rule.darkShade !== null) {
-        darkShadeEl.value = String(rule.darkShade)
-      }
-
-      const colorsEl = li.querySelector<HTMLInputElement>('.rule-colors')!
-      colorsEl.value = (rule.colors ?? []).join(', ')
-
-      const excludeElementsEl = li.querySelector<HTMLInputElement>('.rule-exclude-elements')!
-      excludeElementsEl.value = rule.excludeElements.join(', ')
-
-      const excludeColorsEl = li.querySelector<HTMLInputElement>('.rule-exclude-colors')!
-      excludeColorsEl.value = rule.excludeColors.join(', ')
-
-      this.updateRuleSummary(li, rule)
-
-      enabledEl.addEventListener('change', () => {
-        rule.enabled = enabledEl.checked
-        this.updateRuleSummary(li, rule)
-        this.save()
-        this.transform()
+      renderRules(rulesContainer, this.generatorConfig, {
+        onDelete: (deletedRuleId: string) => {
+          this.generatorConfig.rules = this.generatorConfig.rules.filter(
+            (existingRule) => existingRule.id !== deletedRuleId
+          )
+          this.refreshRules()
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+        onChange: () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
       })
-
-      li.querySelector<HTMLButtonElement>('.rule-delete')?.addEventListener('click', (e) => {
-        e.preventDefault()
-        this.config.rules = this.config.rules.filter((r) => r.id !== rule.id)
-        this.renderRules()
-        this.save()
-        this.transform()
-      })
-
-      const bind = (sel: string, fn: (v: string) => void) => {
-        li.querySelector(sel)?.addEventListener('change', (e) => {
-          fn((e.target as HTMLInputElement).value)
-          this.updateRuleSummary(li, rule)
-          this.save()
-          this.transform()
-        })
-      }
-
-      bind('.rule-utilities', (v) => {
-        const items = v
-          .split(',')
-          .map((s) => s.trim())
-          .filter(Boolean)
-        rule.utilities = items.length > 0 ? items : null
-      })
-      bind('.rule-shade', (v) => {
-        const n = parseInt(v, 10)
-        rule.shade = isNaN(n) ? null : n
-      })
-      bind('.rule-dark-shade', (v) => {
-        const n = parseInt(v, 10)
-        rule.darkShade = isNaN(n) ? null : n
-      })
-      bind('.rule-colors', (v) => {
-        const items = v
-          .split(',')
-          .map((s) => s.trim())
-          .filter(Boolean)
-        rule.colors = items.length > 0 ? items : null
-      })
-      bind('.rule-exclude-elements', (v) => {
-        rule.excludeElements = v
-          .split(',')
-          .map((s) => s.trim().toLowerCase())
-          .filter(Boolean)
-      })
-      bind('.rule-exclude-colors', (v) => {
-        rule.excludeColors = v
-          .split(',')
-          .map((s) => s.trim())
-          .filter(Boolean)
-      })
-
-      return li
-    }
-
-    private updateRuleSummary(li: HTMLElement, rule: Rule) {
-      const el = li.querySelector<HTMLElement>('.rule-summary')
-      if (!el) {
-        return
-      }
-
-      const matchParts: string[] = []
-      if (rule.utilities && rule.utilities.length > 0) {
-        matchParts.push(rule.utilities.join('/'))
-      }
-      if (rule.shade !== null) {
-        matchParts.push(`shade-${rule.shade}`)
-      }
-
-      const match = matchParts.length > 0 ? matchParts.join(' ') : 'All classes'
-      const darkStr = rule.darkShade !== null ? `→ ${rule.darkShade}` : '→ shade map'
-
-      const skipParts: string[] = []
-      if (rule.excludeElements.length > 0) {
-        skipParts.push(rule.excludeElements.join(', '))
-      }
-      if (rule.excludeColors.length > 0) {
-        skipParts.push(`${rule.excludeColors.join(', ')} colors`)
-      }
-
-      const skipStr = skipParts.length > 0 ? ` (skip: ${skipParts.join('; ')})` : ''
-
-      el.textContent = `${match} ${darkStr}${skipStr}`
     }
 
     private syncOverwriteExisting() {
-      const el = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
-      if (!el) {
+      const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
+      if (!overwriteCheckbox) {
         return
       }
 
-      el.checked = this.config.overwriteExisting
-      el.addEventListener('change', () => {
-        this.config.overwriteExisting = el.checked
-        this.save()
-        this.transform()
+      overwriteCheckbox.checked = this.generatorConfig.overwriteExisting
+      overwriteCheckbox.addEventListener('change', () => {
+        this.generatorConfig.overwriteExisting = overwriteCheckbox.checked
+        this.saveConfiguration()
+        this.transformAndRender()
       })
     }
 
     // ── Binding ────────────────────────────────────────────────────
 
-    private bindInput() {
-      const input = this.querySelector<HTMLTextAreaElement>('[data-input]')
-      if (!input) {
+    private bindHtmlInput() {
+      const htmlTextarea = this.querySelector<HTMLTextAreaElement>('[data-input]')
+      if (!htmlTextarea) {
         return
       }
 
-      input.addEventListener('input', () => {
+      htmlTextarea.addEventListener('input', () => {
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer)
         }
-        this.debounceTimer = setTimeout(() => this.transform(), DEBOUNCE_MS)
+        this.debounceTimer = setTimeout(() => this.transformAndRender(), DEBOUNCE_DELAY_MS)
       })
     }
 
-    private bindActions() {
-      const dialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')
+    private bindActionButtons() {
+      const rulesDialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')
 
-      this.querySelector('[data-rules-examples]')?.addEventListener('click', (e) => {
-        e.stopPropagation()
-        dialog?.showModal()
+      this.querySelector('[data-rules-examples]')?.addEventListener('click', (clickEvent) => {
+        clickEvent.stopPropagation()
+        rulesDialog?.showModal()
       })
 
       this.querySelector('[data-rules-dialog-close]')?.addEventListener('click', () => {
-        dialog?.close()
+        rulesDialog?.close()
       })
 
-      dialog?.addEventListener('click', (e) => {
-        if (e.target === dialog) {
-          dialog.close()
+      rulesDialog?.addEventListener('click', (clickEvent) => {
+        if (clickEvent.target === rulesDialog) {
+          rulesDialog.close()
         }
       })
 
-      // Add rule — stopPropagation so the Rules <details> doesn't toggle
-      this.querySelector('[data-add-rule]')?.addEventListener('click', (e) => {
-        e.stopPropagation()
-        const rule: Rule = {
+      // stopPropagation prevents the Rules <details> from toggling closed
+      this.querySelector('[data-add-rule]')?.addEventListener('click', (clickEvent) => {
+        clickEvent.stopPropagation()
+        const newRule: Rule = {
           id: crypto.randomUUID(),
           enabled: true,
           utilities: null,
@@ -782,105 +374,104 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
           excludeElements: [],
           excludeColors: [],
         }
-        this.config.rules.push(rule)
-        this.renderRules()
-        this.save()
-        // Ensure the Rules accordion is open, then open the new rule card
+        this.generatorConfig.rules.push(newRule)
+        this.refreshRules()
+        this.saveConfiguration()
         this.querySelector<HTMLDetailsElement>('[data-rules]')
           ?.closest('details')
           ?.setAttribute('open', '')
-        const ruleEls = this.querySelectorAll<HTMLDetailsElement>('[data-rules] details')
-        ruleEls[ruleEls.length - 1]?.setAttribute('open', '')
+        const ruleDetailEls = this.querySelectorAll<HTMLDetailsElement>('[data-rules] details')
+        ruleDetailEls[ruleDetailEls.length - 1]?.setAttribute('open', '')
       })
 
       this.querySelector('[data-reset]')?.addEventListener('click', () => {
-        this.config = resetConfig() as Config
-        this.renderUtilityToggles()
-        this.renderShadeMap()
-        this.renderRules()
+        this.generatorConfig = resetConfig() as Config
+        this.refreshUtilityToggles()
+        this.refreshShadeMap()
+        this.refreshRules()
         this.syncOverwriteExisting()
-        this.transform()
+        this.transformAndRender()
       })
 
       this.querySelector('[data-export]')?.addEventListener('click', () => {
-        const json = exportConfig(this.config)
-        const blob = new Blob([json], { type: 'application/json' })
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = 'dark-mode-config.json'
-        a.click()
-        URL.revokeObjectURL(url)
+        const exportJson = exportConfig(this.generatorConfig)
+        const exportBlob = new Blob([exportJson], { type: 'application/json' })
+        const downloadUrl = URL.createObjectURL(exportBlob)
+        const downloadLink = document.createElement('a')
+        downloadLink.href = downloadUrl
+        downloadLink.download = 'dark-mode-config.json'
+        downloadLink.click()
+        URL.revokeObjectURL(downloadUrl)
       })
 
-      this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener('change', (e) => {
-        const file = (e.target as HTMLInputElement).files?.[0]
-        if (!file) {
+      this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener('change', (changeEvent) => {
+        const importedFile = (changeEvent.target as HTMLInputElement).files?.[0]
+        if (!importedFile) {
           return
         }
 
-        const reader = new FileReader()
-        reader.onload = () => {
-          const result = importConfig(String(reader.result))
-          if (!result.ok) {
-            alert(`Import failed: ${result.error}`)
+        const fileReader = new FileReader()
+        fileReader.onload = () => {
+          const importResult = importConfig(String(fileReader.result))
+          if (!importResult.ok) {
+            alert(`Import failed: ${importResult.error}`)
             return
           }
-          this.config = result.config as Config
-          this.renderUtilityToggles()
-          this.renderShadeMap()
-          this.renderRules()
+          this.generatorConfig = importResult.config as Config
+          this.refreshUtilityToggles()
+          this.refreshShadeMap()
+          this.refreshRules()
           this.syncOverwriteExisting()
-          this.save()
-          this.transform()
+          this.saveConfiguration()
+          this.transformAndRender()
         }
-        reader.readAsText(file)
+        fileReader.readAsText(importedFile)
       })
 
-      const copyBtn = this.querySelector<HTMLButtonElement>('[data-copy]')
-      const copyText = this.querySelector<HTMLElement>('[data-copy-text]')
-      const copyPolite = this.querySelector<HTMLElement>('[data-copy-polite]')
+      const copyButton = this.querySelector<HTMLButtonElement>('[data-copy]')
+      const copyButtonText = this.querySelector<HTMLElement>('[data-copy-text]')
+      const copyLiveRegion = this.querySelector<HTMLElement>('[data-copy-polite]')
 
-      copyBtn?.addEventListener('click', async () => {
-        const output = this.querySelector<HTMLPreElement>('[data-output]')?.textContent ?? ''
-        if (!output.trim()) {
+      copyButton?.addEventListener('click', async () => {
+        const outputText = this.querySelector<HTMLPreElement>('[data-output]')?.textContent ?? ''
+        if (!outputText.trim()) {
           return
         }
 
         try {
-          await navigator.clipboard.writeText(output)
+          await navigator.clipboard.writeText(outputText)
 
-          if (copyText) {
-            copyText.textContent = 'Copied'
+          if (copyButtonText) {
+            copyButtonText.textContent = 'Copied'
           }
-          if (copyPolite) {
-            copyPolite.textContent = 'Copied to clipboard.'
+          if (copyLiveRegion) {
+            copyLiveRegion.textContent = 'Copied to clipboard.'
           }
-          copyBtn.setAttribute('aria-pressed', 'true')
+          copyButton.setAttribute('aria-pressed', 'true')
 
-          if (this.copyTimer) {
-            clearTimeout(this.copyTimer)
+          if (this.clipboardCopyTimer) {
+            clearTimeout(this.clipboardCopyTimer)
           }
-          this.copyTimer = setTimeout(() => {
-            if (copyText) {
-              copyText.textContent = 'Copy'
+          this.clipboardCopyTimer = setTimeout(() => {
+            if (copyButtonText) {
+              copyButtonText.textContent = 'Copy'
             }
-            if (copyPolite) {
-              copyPolite.textContent = ''
+            if (copyLiveRegion) {
+              copyLiveRegion.textContent = ''
             }
-            copyBtn.setAttribute('aria-pressed', 'false')
+            copyButton.setAttribute('aria-pressed', 'false')
           }, 1500)
         } catch {
-          // We do nothing
+          // clipboard write failed silently
         }
       })
 
-      this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const mode = btn.dataset.previewMode as PreviewMode
-          this.setPreviewMode(mode)
-          this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((b) => {
-            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false')
+      this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((modeButton) => {
+        modeButton.addEventListener('click', () => {
+          const previewMode = modeButton.dataset.previewMode as PreviewMode
+          this.applyPreviewMode(previewMode)
+          this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((otherButton) => {
+            otherButton.setAttribute('aria-pressed', otherButton === modeButton ? 'true' : 'false')
           })
         })
       })
@@ -888,76 +479,53 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
 
     // ── Core logic ─────────────────────────────────────────────────
 
-    private transform() {
-      const input = this.querySelector<HTMLTextAreaElement>('[data-input]')?.value ?? ''
-      const outputEl = this.querySelector<HTMLPreElement>('[data-output]')
+    private transformAndRender() {
+      const inputValue = this.querySelector<HTMLTextAreaElement>('[data-input]')?.value ?? ''
+      const outputElement = this.querySelector<HTMLPreElement>('[data-output]')
 
-      if (!outputEl) {
+      if (!outputElement) {
         return
       }
 
-      if (!input.trim()) {
-        outputEl.textContent = ''
-        this.updatePreviews('', '')
+      if (!inputValue.trim()) {
+        outputElement.textContent = ''
+        this.updatePreviewFrames('', '')
         return
       }
 
-      const result = transformHtmlDom(input, this.config)
+      const transformedHtml = transformHtmlDom(inputValue, this.generatorConfig)
 
-      outputEl.textContent = result
+      outputElement.textContent = transformedHtml
 
-      const lightHtml = new DOMParser().parseFromString(input, 'text/html').body.innerHTML
-      this.updatePreviews(lightHtml, result)
+      const lightHtml = new DOMParser().parseFromString(inputValue, 'text/html').body.innerHTML
+      this.updatePreviewFrames(lightHtml, transformedHtml)
     }
 
-    private updatePreviews(lightHtml: string, darkHtml: string) {
-      const lightFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
-      const darkFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
+    private updatePreviewFrames(lightHtml: string, darkHtml: string) {
+      const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
+      const darkPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
 
-      if (lightFrame) {
-        lightFrame.srcdoc = this.buildPreviewDoc(lightHtml, false)
+      if (lightPreviewFrame) {
+        lightPreviewFrame.srcdoc = buildPreviewDocument(lightHtml, false)
       }
-      if (darkFrame) {
-        darkFrame.srcdoc = this.buildPreviewDoc(darkHtml, true)
+      if (darkPreviewFrame) {
+        darkPreviewFrame.srcdoc = buildPreviewDocument(darkHtml, true)
       }
     }
 
-    private buildPreviewDoc(html: string, isDark: boolean): string {
-      const bg = isDark ? '#111827' : '#ffffff'
-      const openTag = [
-        '<',
-        'script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">',
-      ].join('')
-      const closeTag = ['</', 'script>'].join('')
-
-      return [
-        '<!doctype html>',
-        `<html lang="en"${isDark ? ' class="dark"' : ''}>`,
-        '<head>',
-        '<meta charset="utf-8" />',
-        '<meta name="viewport" content="width=device-width,initial-scale=1" />',
-        openTag + closeTag,
-        '<style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>',
-        `<style>body{padding:1rem;background:${bg};}</style>`,
-        '</head>',
-        `<body>${html}</body>`,
-        '</html>',
-      ].join('\n')
-    }
-
-    private setPreviewMode(mode: PreviewMode) {
-      this.currentMode = mode
+    private applyPreviewMode(previewMode: PreviewMode) {
+      this.currentPreviewMode = previewMode
 
       const previewContainer = this.querySelector<HTMLElement>('[data-preview-container]')
       const codeContainer = this.querySelector<HTMLElement>('[data-code-container]')
-      const lightFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
-      const darkFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
+      const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
+      const darkPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
 
-      if (!previewContainer || !codeContainer || !lightFrame || !darkFrame) {
+      if (!previewContainer || !codeContainer || !lightPreviewFrame || !darkPreviewFrame) {
         return
       }
 
-      if (mode === 'code') {
+      if (previewMode === 'code') {
         previewContainer.classList.add('hidden')
         codeContainer.classList.remove('hidden')
         return
@@ -966,23 +534,23 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
       previewContainer.classList.remove('hidden')
       codeContainer.classList.add('hidden')
 
-      if (mode === 'light') {
+      if (previewMode === 'light') {
         previewContainer.classList.remove('grid-cols-2')
-        lightFrame.classList.remove('hidden')
-        darkFrame.classList.add('hidden')
-      } else if (mode === 'dark') {
+        lightPreviewFrame.classList.remove('hidden')
+        darkPreviewFrame.classList.add('hidden')
+      } else if (previewMode === 'dark') {
         previewContainer.classList.remove('grid-cols-2')
-        lightFrame.classList.add('hidden')
-        darkFrame.classList.remove('hidden')
+        lightPreviewFrame.classList.add('hidden')
+        darkPreviewFrame.classList.remove('hidden')
       } else {
         previewContainer.classList.add('grid-cols-2')
-        lightFrame.classList.remove('hidden')
-        darkFrame.classList.remove('hidden')
+        lightPreviewFrame.classList.remove('hidden')
+        darkPreviewFrame.classList.remove('hidden')
       }
     }
 
-    private save() {
-      saveConfig(this.config)
+    private saveConfiguration() {
+      saveConfig(this.generatorConfig)
     }
   }
 
