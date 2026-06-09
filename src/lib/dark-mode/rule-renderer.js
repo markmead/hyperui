@@ -1,54 +1,20 @@
 import { FORM_INPUT_CLASS, NUMBER_INPUT_CLASS } from './element-constants.js'
 
-export function updateRuleSummaryText(ruleListItem, ruleData) {
-  const summaryElement = ruleListItem.querySelector('.rule-summary')
-
-  if (!summaryElement) {
-    return
-  }
-
-  const matchParts = []
-
-  if (ruleData.utilities && ruleData.utilities.length > 0) {
-    matchParts.push(ruleData.utilities.join('/'))
-  }
-
-  if (ruleData.shade !== null) {
-    matchParts.push(`shade-${ruleData.shade}`)
-  }
-
-  const matchString = matchParts.length > 0 ? matchParts.join(' ') : 'All classes'
-  const darkModeString = ruleData.darkShade !== null ? `→ ${ruleData.darkShade}` : '→ shade map'
-
-  const skipParts = []
-
-  if (ruleData.excludeElements.length > 0) {
-    skipParts.push(ruleData.excludeElements.join(', '))
-  }
-
-  if (ruleData.excludeColors.length > 0) {
-    skipParts.push(`${ruleData.excludeColors.join(', ')} colors`)
-  }
-
-  const skipString = skipParts.length > 0 ? ` (skip: ${skipParts.join('; ')})` : ''
-
-  summaryElement.textContent = `${matchString} ${darkModeString}${skipString}`
-}
-
-export function buildRuleElement(ruleData, { onDelete, onChange }) {
+export function buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }) {
   const ruleListItem = document.createElement('li')
 
   ruleListItem.innerHTML = `
-    <details class="group overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <details class="overflow-hidden rounded-lg border border-gray-200 bg-white">
       <summary class="flex cursor-pointer items-center justify-between gap-2 p-4 transition-colors hover:bg-gray-50 [&::-webkit-details-marker]:hidden">
         <div class="flex min-w-0 items-center gap-2">
           <input type="checkbox" class="rule-enabled size-5 shrink-0 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1" aria-label="Enable rule" />
-          <span class="rule-summary truncate text-xs text-gray-600"></span>
+          <span class="rule-name-display min-w-0 flex-1 cursor-text truncate text-sm font-medium text-gray-700"></span>
+          <input type="text" class="rule-name-input hidden min-w-0 flex-1 rounded border border-gray-200 bg-white px-2 py-0.5 text-sm font-medium text-gray-700 focus:border-gray-400 focus:outline-none" />
         </div>
         <div class="flex shrink-0 items-center gap-1">
-          <svg class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          <button type="button" class="rule-delete rounded p-0.5 text-gray-400 transition-colors hover:text-red-500" aria-label="Delete rule">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5" aria-hidden="true"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <svg data-rule-chevron class="size-4 shrink-0 text-gray-600 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          <button type="button" class="rule-delete rounded p-0.5 text-gray-600 transition-colors hover:text-red-600" aria-label="Delete rule">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </button>
         </div>
       </summary>
@@ -97,15 +63,66 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
     </details>
   `
 
+  const ruleDetailsEl = ruleListItem.querySelector('details')
+  const ruleChevronEl = ruleListItem.querySelector('[data-rule-chevron]')
+
+  ruleDetailsEl?.addEventListener('toggle', () => {
+    ruleChevronEl?.classList.toggle('rotate-180', ruleDetailsEl.open)
+  })
+
   const enabledCheckbox = ruleListItem.querySelector('.rule-enabled')
   enabledCheckbox.checked = ruleData.enabled
+  enabledCheckbox.addEventListener('click', (clickEvent) => {
+    clickEvent.stopPropagation()
+  })
+
+  const defaultRuleName = `Rule ${ruleIndex + 1}`
+  const ruleNameDisplay = ruleListItem.querySelector('.rule-name-display')
+  const ruleNameInput = ruleListItem.querySelector('.rule-name-input')
+
+  ruleNameDisplay.textContent = ruleData.name || defaultRuleName
+
+  ruleNameDisplay.addEventListener('click', (clickEvent) => {
+    clickEvent.stopPropagation()
+    ruleNameInput.value = ruleData.name || ''
+    ruleNameInput.placeholder = defaultRuleName
+    ruleNameDisplay.classList.add('hidden')
+    ruleNameInput.classList.remove('hidden')
+    ruleNameInput.focus()
+    ruleNameInput.select()
+  })
+
+  ruleNameInput.addEventListener('click', (clickEvent) => {
+    clickEvent.stopPropagation()
+  })
+
+  ruleNameInput.addEventListener('keydown', (keyEvent) => {
+    keyEvent.stopPropagation()
+    if (keyEvent.key === 'Enter') {
+      keyEvent.preventDefault()
+      ruleNameInput.blur()
+    }
+    if (keyEvent.key === 'Escape') {
+      ruleNameInput.value = ruleData.name || ''
+      ruleNameInput.blur()
+    }
+  })
+
+  ruleNameInput.addEventListener('blur', () => {
+    const updatedName = ruleNameInput.value.trim()
+    ruleData.name = updatedName
+    ruleNameDisplay.textContent = updatedName || defaultRuleName
+    ruleNameInput.classList.add('hidden')
+    ruleNameDisplay.classList.remove('hidden')
+    onChange()
+  })
 
   const utilitiesInput = ruleListItem.querySelector('.rule-utilities')
   utilitiesInput.value = (ruleData.utilities ?? []).join(', ')
 
-  const shadeInputEl = ruleListItem.querySelector('.rule-shade')
+  const shadeInput = ruleListItem.querySelector('.rule-shade')
   if (ruleData.shade !== null) {
-    shadeInputEl.value = String(ruleData.shade)
+    shadeInput.value = String(ruleData.shade)
   }
 
   const darkShadeInput = ruleListItem.querySelector('.rule-dark-shade')
@@ -122,11 +139,8 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
   const excludeColorsInput = ruleListItem.querySelector('.rule-exclude-colors')
   excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
-  updateRuleSummaryText(ruleListItem, ruleData)
-
   enabledCheckbox.addEventListener('change', () => {
     ruleData.enabled = enabledCheckbox.checked
-    updateRuleSummaryText(ruleListItem, ruleData)
     onChange()
   })
 
@@ -138,7 +152,6 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
   function bindRuleInput(inputSelector, updateCallback) {
     ruleListItem.querySelector(inputSelector)?.addEventListener('change', (changeEvent) => {
       updateCallback(changeEvent.target.value)
-      updateRuleSummaryText(ruleListItem, ruleData)
       onChange()
     })
   }

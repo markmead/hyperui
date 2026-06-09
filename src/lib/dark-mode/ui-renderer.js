@@ -97,7 +97,7 @@ export function renderRules(containerElement, configData, { onDelete, onChange }
     return
   }
 
-  for (const ruleData of configData.rules) {
-    containerElement.appendChild(buildRuleElement(ruleData, { onDelete, onChange }))
-  }
+  configData.rules.forEach((ruleData, ruleIndex) => {
+    containerElement.appendChild(buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }))
+  })
 }

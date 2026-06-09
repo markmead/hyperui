@@ -32,6 +32,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
 
   type Rule = {
     id: string
+    name: string
     enabled: boolean
     utilities: string[] | null
     shade: number | null
@@ -174,6 +175,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
         clickEvent.stopPropagation()
         const newRule: Rule = {
           id: crypto.randomUUID(),
+          name: '',
           enabled: true,
           utilities: null,
           shade: null,

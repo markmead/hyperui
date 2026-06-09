@@ -155,6 +155,7 @@ function normalizeRule(rawRule) {
 
   return {
     id: ruleRecord.id,
+    name: typeof ruleRecord.name === 'string' ? ruleRecord.name : '',
     enabled: typeof ruleRecord.enabled === 'boolean' ? ruleRecord.enabled : true,
     utilities: utilityList && utilityList.length > 0 ? utilityList : null,
     shade: typeof ruleRecord.shade === 'number' ? ruleRecord.shade : null,

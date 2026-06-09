@@ -10,8 +10,7 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       id="dark-mode-input"
       data-input
       rows="4"
-      class="mt-0.5 w-full resize-none rounded-md border-gray-200 align-bottom text-sm"
-    ></textarea>
+      class="mt-0.5 w-full resize-none rounded-md border-gray-200 align-bottom text-sm"></textarea>
   </div>
 
   <div class="flex w-full flex-col divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-50">
@@ -27,7 +26,7 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       </label>
     </div>
 
-    <details class="group" open>
+    <details class="group">
       <summary
         class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
       >
@@ -43,7 +42,7 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       </div>
     </details>
 
-    <details class="group" open>
+    <details class="group">
       <summary
         class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
       >
@@ -59,7 +58,7 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       </div>
     </details>
 
-    <details class="group flex-1" open>
+    <details class="group flex-1">
       <summary
         class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
       >
@@ -95,10 +94,11 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
         <ul data-rules class="space-y-2"></ul>
       </div>
     </details>
-
   </div>
 
-  <div class="flex items-center gap-1 rounded-md border border-gray-200 bg-white p-0.5">
+  <div
+    class="ml-auto inline-flex items-center gap-1 rounded-md border border-gray-200 bg-white p-0.5"
+  >
     <button
       type="button"
       data-reset
