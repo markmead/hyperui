@@ -3,7 +3,7 @@ export const DEBOUNCE_DELAY_MS = 250
 export const INPUT_NO_SPINNER =
   '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
 
-export const FORM_INPUT_CLASS = 'mt-0.5 text-sm w-full resize-none rounded-md border-gray-200'
+export const FORM_INPUT_CLASS = 'mt-0.5 text-sm w-full rounded-md border-gray-200'
 
 export const NUMBER_INPUT_CLASS = `${FORM_INPUT_CLASS} ${INPUT_NO_SPINNER}`
 

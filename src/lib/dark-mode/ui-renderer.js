@@ -18,7 +18,7 @@ export function renderUtilityToggles(containerElement, configData, onChangeCallb
       configData.utilities[utilityName] = toggleCheckbox.checked
       toggleCheckbox.setAttribute(
         'aria-label',
-        `${toggleCheckbox.checked ? 'Disable' : 'Enable'} ${utilityName}`
+        `${toggleCheckbox.checked ? 'Disable' : 'Enable'} ${utilityName}`,
       )
       onChangeCallback()
     })
@@ -64,7 +64,7 @@ export function renderShadeMap(containerElement, configData, onChangeCallback) {
     const shadeInput = document.createElement('input')
     shadeInput.type = 'number'
     shadeInput.id = inputId
-    shadeInput.className = `w-16 rounded-md border border-gray-200 bg-white px-2 py-1 text-sm focus:border-gray-400 focus:outline-none ${INPUT_NO_SPINNER}`
+    shadeInput.className = `w-16 rounded-md border-gray-200 align-bottom text-sm ${INPUT_NO_SPINNER}`
     shadeInput.value = String(darkShadeValue)
     shadeInput.min = '50'
     shadeInput.max = '950'
@@ -91,7 +91,7 @@ export function renderRules(containerElement, configData, { onDelete, onChange }
 
   if (configData.rules.length === 0) {
     const emptyMessage = document.createElement('p')
-    emptyMessage.className = 'text-xs text-gray-400'
+    emptyMessage.className = 'text-sm text-gray-600'
     emptyMessage.textContent = 'No rules. Add one to override shade map defaults.'
     containerElement.appendChild(emptyMessage)
     return
