@@ -2,14 +2,17 @@ import { FORM_INPUT_CLASS, NUMBER_INPUT_CLASS } from './element-constants.js'
 
 export function updateRuleSummaryText(ruleListItem, ruleData) {
   const summaryElement = ruleListItem.querySelector('.rule-summary')
+
   if (!summaryElement) {
     return
   }
 
   const matchParts = []
+
   if (ruleData.utilities && ruleData.utilities.length > 0) {
     matchParts.push(ruleData.utilities.join('/'))
   }
+
   if (ruleData.shade !== null) {
     matchParts.push(`shade-${ruleData.shade}`)
   }
@@ -18,9 +21,11 @@ export function updateRuleSummaryText(ruleListItem, ruleData) {
   const darkModeString = ruleData.darkShade !== null ? `→ ${ruleData.darkShade}` : '→ shade map'
 
   const skipParts = []
+
   if (ruleData.excludeElements.length > 0) {
     skipParts.push(ruleData.excludeElements.join(', '))
   }
+
   if (ruleData.excludeColors.length > 0) {
     skipParts.push(`${ruleData.excludeColors.join(', ')} colors`)
   }

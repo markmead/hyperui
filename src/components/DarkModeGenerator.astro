@@ -4,7 +4,7 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
 ---
 
 <dark-mode-generator class="block">
-  <div class="flex flex-col gap-4 lg:flex-row">
+  <div class="flex flex-col gap-6 lg:flex-row">
     <aside class="flex shrink-0 flex-col gap-4 lg:w-72 lg:self-start xl:w-80">
       <div>
         <label for="dmg-input" class="text-sm font-medium text-gray-700"> Paste HTML </label>
@@ -13,7 +13,8 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
           id="dmg-input"
           data-input
           rows="4"
-          class="mt-0.5 w-full resize-none rounded-md border-gray-200 align-bottom"></textarea>
+          class="mt-0.5 w-full resize-none rounded-md border-gray-200 align-bottom text-sm"
+        ></textarea>
       </div>
 
       <div
@@ -127,7 +128,7 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
       </div>
     </aside>
 
-    <div class="flex flex-1 flex-col p-4">
+    <div class="flex flex-1 flex-col">
       <div class="flex items-center justify-end gap-2">
         <button
           type="button"
@@ -182,7 +183,7 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
 
       <div data-code-container class="mt-4 hidden flex-1">
         <div class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none">
-          <pre data-output class="h-150 overflow-auto text-sm whitespace-pre-wrap"></pre>
+          <pre data-output class="h-112 overflow-auto text-sm whitespace-pre-wrap"></pre>
         </div>
       </div>
 
@@ -191,13 +192,13 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
           data-preview="light"
           title="Light mode preview"
           sandbox="allow-scripts"
-          class="h-150 w-full rounded-lg bg-white ring ring-gray-200"></iframe>
+          class="h-112 w-full rounded-lg bg-white ring ring-gray-200"></iframe>
 
         <iframe
           data-preview="dark"
           title="Dark mode preview"
           sandbox="allow-scripts"
-          class="h-150 w-full rounded-lg bg-gray-900 ring ring-gray-800"></iframe>
+          class="h-112 w-full rounded-lg bg-gray-900 ring ring-gray-800"></iframe>
       </div>
     </div>
   </div>
@@ -300,7 +301,7 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
       renderRules(rulesContainer, this.generatorConfig, {
         onDelete: (deletedRuleId: string) => {
           this.generatorConfig.rules = this.generatorConfig.rules.filter(
-            (existingRule) => existingRule.id !== deletedRuleId
+            (existingRule) => existingRule.id !== deletedRuleId,
           )
           this.refreshRules()
           this.saveConfiguration()
@@ -404,29 +405,32 @@ import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
         URL.revokeObjectURL(downloadUrl)
       })
 
-      this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener('change', (changeEvent) => {
-        const importedFile = (changeEvent.target as HTMLInputElement).files?.[0]
-        if (!importedFile) {
-          return
-        }
-
-        const fileReader = new FileReader()
-        fileReader.onload = () => {
-          const importResult = importConfig(String(fileReader.result))
-          if (!importResult.ok) {
-            alert(`Import failed: ${importResult.error}`)
+      this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener(
+        'change',
+        (changeEvent) => {
+          const importedFile = (changeEvent.target as HTMLInputElement).files?.[0]
+          if (!importedFile) {
             return
           }
-          this.generatorConfig = importResult.config as Config
-          this.refreshUtilityToggles()
-          this.refreshShadeMap()
-          this.refreshRules()
-          this.syncOverwriteExisting()
-          this.saveConfiguration()
-          this.transformAndRender()
-        }
-        fileReader.readAsText(importedFile)
-      })
+
+          const fileReader = new FileReader()
+          fileReader.onload = () => {
+            const importResult = importConfig(String(fileReader.result))
+            if (!importResult.ok) {
+              alert(`Import failed: ${importResult.error}`)
+              return
+            }
+            this.generatorConfig = importResult.config as Config
+            this.refreshUtilityToggles()
+            this.refreshShadeMap()
+            this.refreshRules()
+            this.syncOverwriteExisting()
+            this.saveConfiguration()
+            this.transformAndRender()
+          }
+          fileReader.readAsText(importedFile)
+        },
+      )
 
       const copyButton = this.querySelector<HTMLButtonElement>('[data-copy]')
       const copyButtonText = this.querySelector<HTMLElement>('[data-copy-text]')
