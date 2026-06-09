@@ -21,7 +21,7 @@ export function buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }) {
 
       <div class="space-y-4 border-t border-gray-200 p-4">
         <div>
-          <h4 class="mb-2 text-sm font-medium text-gray-700">Apply when</h4>
+          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Apply when</h4>
           <div class="space-y-3">
             <label class="block text-sm font-medium text-gray-700">
               Utilities
@@ -42,7 +42,7 @@ export function buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }) {
         </div>
 
         <div>
-          <h4 class="mb-2 text-sm font-medium text-gray-700">In dark mode</h4>
+          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">In dark mode</h4>
           <label class="block text-sm font-medium text-gray-700">
             Use shade
             <input type="number" class="rule-dark-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 300" min="50" max="950" step="50" />
@@ -51,7 +51,7 @@ export function buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }) {
         </div>
 
         <div>
-          <h4 class="mb-2 text-sm font-medium text-gray-700">Skip when</h4>
+          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Skip when</h4>
           <div class="space-y-3">
             <label class="block text-sm font-medium text-gray-700">
               Elements
