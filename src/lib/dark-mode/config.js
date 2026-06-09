@@ -49,122 +49,124 @@ export const DEFAULT_CONFIG = {
 /**
  * Merge raw (possibly partial/corrupt) data with defaults, dropping invalid fields.
  *
- * @param {unknown} raw
+ * @param {unknown} rawData
  * @returns {DarkModeConfig}
  */
-export function normalizeConfig(raw) {
-  if (!raw || typeof raw !== 'object') {
+export function normalizeConfig(rawData) {
+  if (!rawData || typeof rawData !== 'object') {
     return { ...DEFAULT_CONFIG }
   }
 
-  const r = /** @type {Record<string, unknown>} */ (raw)
+  const rawConfigRecord = /** @type {Record<string, unknown>} */ (rawData)
 
   return {
-    shadeMap: normalizeShadeMap(r.shadeMap),
-    colorMap: normalizeColorMap(r.colorMap),
-    utilities: normalizeUtilities(r.utilities),
-    rules: normalizeRules(r.rules),
+    shadeMap: normalizeShadeMap(rawConfigRecord.shadeMap),
+    colorMap: normalizeColorMap(rawConfigRecord.colorMap),
+    utilities: normalizeUtilities(rawConfigRecord.utilities),
+    rules: normalizeRules(rawConfigRecord.rules),
     overwriteExisting:
-      typeof r.overwriteExisting === 'boolean'
-        ? r.overwriteExisting
+      typeof rawConfigRecord.overwriteExisting === 'boolean'
+        ? rawConfigRecord.overwriteExisting
         : DEFAULT_CONFIG.overwriteExisting,
   }
 }
 
-/** @param {unknown} raw @returns {DarkModeConfig['shadeMap']} */
-function normalizeShadeMap(raw) {
-  if (!raw || typeof raw !== 'object') {
+/** @param {unknown} rawData @returns {DarkModeConfig['shadeMap']} */
+function normalizeShadeMap(rawData) {
+  if (!rawData || typeof rawData !== 'object') {
     return { ...DEFAULT_CONFIG.shadeMap }
   }
 
-  const out = { ...DEFAULT_CONFIG.shadeMap }
+  const normalizedShadeMap = { ...DEFAULT_CONFIG.shadeMap }
 
-  for (const [k, v] of Object.entries(raw)) {
-    const shade = parseInt(k, 10)
+  for (const [shadeKey, shadeValue] of Object.entries(rawData)) {
+    const parsedShade = parseInt(shadeKey, 10)
 
-    if (!isNaN(shade) && typeof v === 'number') {
-      out[shade] = v
+    if (!isNaN(parsedShade) && typeof shadeValue === 'number') {
+      normalizedShadeMap[parsedShade] = shadeValue
     }
   }
 
-  return out
+  return normalizedShadeMap
 }
 
-/** @param {unknown} raw @returns {DarkModeConfig['colorMap']} */
-function normalizeColorMap(raw) {
-  if (!raw || typeof raw !== 'object') {
+/** @param {unknown} rawData @returns {DarkModeConfig['colorMap']} */
+function normalizeColorMap(rawData) {
+  if (!rawData || typeof rawData !== 'object') {
     return { ...DEFAULT_CONFIG.colorMap }
   }
 
-  const out = { ...DEFAULT_CONFIG.colorMap }
+  const normalizedColorMap = { ...DEFAULT_CONFIG.colorMap }
 
-  for (const [k, v] of Object.entries(raw)) {
-    if (typeof k === 'string' && typeof v === 'string') {
-      out[k] = v
+  for (const [colorKey, colorValue] of Object.entries(rawData)) {
+    if (typeof colorKey === 'string' && typeof colorValue === 'string') {
+      normalizedColorMap[colorKey] = colorValue
     }
   }
 
-  return out
+  return normalizedColorMap
 }
 
-/** @param {unknown} raw @returns {DarkModeConfig['utilities']} */
-function normalizeUtilities(raw) {
-  if (!raw || typeof raw !== 'object') {
+/** @param {unknown} rawData @returns {DarkModeConfig['utilities']} */
+function normalizeUtilities(rawData) {
+  if (!rawData || typeof rawData !== 'object') {
     return { ...DEFAULT_CONFIG.utilities }
   }
 
-  const out = { ...DEFAULT_CONFIG.utilities }
+  const normalizedUtilities = { ...DEFAULT_CONFIG.utilities }
 
-  for (const [k, v] of Object.entries(raw)) {
-    if (typeof k === 'string' && typeof v === 'boolean') {
-      out[k] = v
+  for (const [utilityKey, utilityValue] of Object.entries(rawData)) {
+    if (typeof utilityKey === 'string' && typeof utilityValue === 'boolean') {
+      normalizedUtilities[utilityKey] = utilityValue
     }
   }
 
-  return out
+  return normalizedUtilities
 }
 
-/** @param {unknown} raw @returns {Rule[]} */
-function normalizeRules(raw) {
-  if (!Array.isArray(raw)) {
+/** @param {unknown} rawData @returns {Rule[]} */
+function normalizeRules(rawData) {
+  if (!Array.isArray(rawData)) {
     return []
   }
 
-  return raw.map(normalizeRule).filter(Boolean)
+  return rawData.map(normalizeRule).filter(Boolean)
 }
 
-/** @param {unknown} r @returns {Rule | null} */
-function normalizeRule(r) {
-  if (!r || typeof r !== 'object') {
+/** @param {unknown} rawRule @returns {Rule | null} */
+function normalizeRule(rawRule) {
+  if (!rawRule || typeof rawRule !== 'object') {
     return null
   }
 
-  const rule = /** @type {Record<string, unknown>} */ (r)
+  const ruleRecord = /** @type {Record<string, unknown>} */ (rawRule)
 
-  if (typeof rule.id !== 'string') {
+  if (typeof ruleRecord.id !== 'string') {
     return null
   }
 
   // Migrate old `utility: string` field to `utilities: string[]`
-  let utilities = null
-  if (Array.isArray(rule.utilities)) {
-    utilities = rule.utilities.filter((s) => typeof s === 'string')
-  } else if (typeof rule.utility === 'string' && rule.utility) {
-    utilities = [rule.utility]
+  let utilityList = null
+  if (Array.isArray(ruleRecord.utilities)) {
+    utilityList = ruleRecord.utilities.filter((utilityItem) => typeof utilityItem === 'string')
+  } else if (typeof ruleRecord.utility === 'string' && ruleRecord.utility) {
+    utilityList = [ruleRecord.utility]
   }
 
   return {
-    id: rule.id,
-    enabled: typeof rule.enabled === 'boolean' ? rule.enabled : true,
-    utilities: utilities && utilities.length > 0 ? utilities : null,
-    shade: typeof rule.shade === 'number' ? rule.shade : null,
-    colors: Array.isArray(rule.colors) ? rule.colors.filter((s) => typeof s === 'string') : null,
-    darkShade: typeof rule.darkShade === 'number' ? rule.darkShade : null,
-    excludeElements: Array.isArray(rule.excludeElements)
-      ? rule.excludeElements.filter((s) => typeof s === 'string')
+    id: ruleRecord.id,
+    enabled: typeof ruleRecord.enabled === 'boolean' ? ruleRecord.enabled : true,
+    utilities: utilityList && utilityList.length > 0 ? utilityList : null,
+    shade: typeof ruleRecord.shade === 'number' ? ruleRecord.shade : null,
+    colors: Array.isArray(ruleRecord.colors)
+      ? ruleRecord.colors.filter((colorItem) => typeof colorItem === 'string')
+      : null,
+    darkShade: typeof ruleRecord.darkShade === 'number' ? ruleRecord.darkShade : null,
+    excludeElements: Array.isArray(ruleRecord.excludeElements)
+      ? ruleRecord.excludeElements.filter((elementItem) => typeof elementItem === 'string')
       : [],
-    excludeColors: Array.isArray(rule.excludeColors)
-      ? rule.excludeColors.filter((s) => typeof s === 'string')
+    excludeColors: Array.isArray(ruleRecord.excludeColors)
+      ? ruleRecord.excludeColors.filter((colorItem) => typeof colorItem === 'string')
       : [],
   }
 }
@@ -178,26 +180,26 @@ export function loadConfig() {
   }
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const storedJson = localStorage.getItem(STORAGE_KEY)
 
-    if (!raw) {
+    if (!storedJson) {
       return { ...DEFAULT_CONFIG }
     }
 
-    return normalizeConfig(JSON.parse(raw))
+    return normalizeConfig(JSON.parse(storedJson))
   } catch {
     return { ...DEFAULT_CONFIG }
   }
 }
 
-/** @param {DarkModeConfig} config @returns {void} */
-export function saveConfig(config) {
+/** @param {DarkModeConfig} configData @returns {void} */
+export function saveConfig(configData) {
   if (typeof localStorage === 'undefined') {
     return
   }
 
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(config))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(configData))
   } catch {
     // quota exceeded etc. — silently ignore
   }
@@ -216,21 +218,21 @@ export function resetConfig() {
   return { ...DEFAULT_CONFIG }
 }
 
-/** @param {DarkModeConfig} config @returns {string} */
-export function exportConfig(config) {
-  return JSON.stringify(config, null, 2)
+/** @param {DarkModeConfig} configData @returns {string} */
+export function exportConfig(configData) {
+  return JSON.stringify(configData, null, 2)
 }
 
 /**
- * @param {string} json
+ * @param {string} jsonString
  * @returns {{ ok: true, config: DarkModeConfig } | { ok: false, error: string }}
  */
-export function importConfig(json) {
+export function importConfig(jsonString) {
   try {
-    const parsed = JSON.parse(json)
-    const config = normalizeConfig(parsed)
+    const parsedJson = JSON.parse(jsonString)
+    const normalizedConfig = normalizeConfig(parsedJson)
 
-    return { ok: true, config }
+    return { ok: true, config: normalizedConfig }
   } catch {
     return { ok: false, error: 'Invalid JSON' }
   }

@@ -5,14 +5,14 @@ import { transformClass } from './transform-class.js'
  * Used by the Node CLI.
  *
  * @param {string} htmlContent
- * @param {import('./config.js').DarkModeConfig} config
+ * @param {import('./config.js').DarkModeConfig} configData
  * @returns {string}
  */
-export function transformHtmlString(htmlContent, config) {
+export function transformHtmlString(htmlContent, configData) {
   return htmlContent.replace(/class="([^"]*)"/g, (_, classAttr) => {
-    const transformed = transformClassAttribute(classAttr, config, null)
+    const transformedValue = transformClassAttribute(classAttr, configData, null)
 
-    return `class="${transformed}"`
+    return `class="${transformedValue}"`
   })
 }
 
@@ -21,30 +21,34 @@ export function transformHtmlString(htmlContent, config) {
  * Browser-only — requires DOMParser global.
  *
  * @param {string} htmlContent
- * @param {import('./config.js').DarkModeConfig} config
+ * @param {import('./config.js').DarkModeConfig} configData
  * @returns {string}
  */
-export function transformHtmlDom(htmlContent, config) {
-  const parser = new DOMParser()
-  const doc = parser.parseFromString(htmlContent, 'text/html')
+export function transformHtmlDom(htmlContent, configData) {
+  const domParser = new DOMParser()
+  const parsedDocument = domParser.parseFromString(htmlContent, 'text/html')
 
-  doc.querySelectorAll('[class]').forEach((el) => {
-    const tagName = el.tagName.toLowerCase()
-    const transformed = transformClassAttribute(el.getAttribute('class') ?? '', config, tagName)
+  parsedDocument.querySelectorAll('[class]').forEach((classElement) => {
+    const tagName = classElement.tagName.toLowerCase()
+    const transformedValue = transformClassAttribute(
+      classElement.getAttribute('class') ?? '',
+      configData,
+      tagName
+    )
 
-    el.setAttribute('class', transformed)
+    classElement.setAttribute('class', transformedValue)
   })
 
-  return doc.body.innerHTML
+  return parsedDocument.body.innerHTML
 }
 
 /**
  * @param {string | null} classAttr
- * @param {import('./config.js').DarkModeConfig} config
+ * @param {import('./config.js').DarkModeConfig} configData
  * @param {string | null} tagName
  * @returns {string}
  */
-function transformClassAttribute(classAttr, config, tagName) {
+function transformClassAttribute(classAttr, configData, tagName) {
   if (!classAttr) {
     return classAttr ?? ''
   }
@@ -53,11 +57,11 @@ function transformClassAttribute(classAttr, config, tagName) {
     .split(/\s+/)
     .filter(Boolean)
     .map((className) => {
-      if (!config.overwriteExisting && className.includes('dark:')) {
+      if (!configData.overwriteExisting && className.includes('dark:')) {
         return className
       }
 
-      return transformClass(className, config, tagName)
+      return transformClass(className, configData, tagName)
     })
     .join(' ')
 }

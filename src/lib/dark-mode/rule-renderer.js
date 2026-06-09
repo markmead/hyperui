@@ -97,35 +97,35 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
     </details>
   `
 
-  const enabledEl = ruleListItem.querySelector('.rule-enabled')
-  enabledEl.checked = ruleData.enabled
+  const enabledCheckbox = ruleListItem.querySelector('.rule-enabled')
+  enabledCheckbox.checked = ruleData.enabled
 
-  const utilitiesEl = ruleListItem.querySelector('.rule-utilities')
-  utilitiesEl.value = (ruleData.utilities ?? []).join(', ')
+  const utilitiesInput = ruleListItem.querySelector('.rule-utilities')
+  utilitiesInput.value = (ruleData.utilities ?? []).join(', ')
 
   const shadeInputEl = ruleListItem.querySelector('.rule-shade')
   if (ruleData.shade !== null) {
     shadeInputEl.value = String(ruleData.shade)
   }
 
-  const darkShadeEl = ruleListItem.querySelector('.rule-dark-shade')
+  const darkShadeInput = ruleListItem.querySelector('.rule-dark-shade')
   if (ruleData.darkShade !== null) {
-    darkShadeEl.value = String(ruleData.darkShade)
+    darkShadeInput.value = String(ruleData.darkShade)
   }
 
-  const colorsInputEl = ruleListItem.querySelector('.rule-colors')
-  colorsInputEl.value = (ruleData.colors ?? []).join(', ')
+  const colorsInput = ruleListItem.querySelector('.rule-colors')
+  colorsInput.value = (ruleData.colors ?? []).join(', ')
 
-  const excludeElementsEl = ruleListItem.querySelector('.rule-exclude-elements')
-  excludeElementsEl.value = ruleData.excludeElements.join(', ')
+  const excludeElementsInput = ruleListItem.querySelector('.rule-exclude-elements')
+  excludeElementsInput.value = ruleData.excludeElements.join(', ')
 
-  const excludeColorsEl = ruleListItem.querySelector('.rule-exclude-colors')
-  excludeColorsEl.value = ruleData.excludeColors.join(', ')
+  const excludeColorsInput = ruleListItem.querySelector('.rule-exclude-colors')
+  excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
   updateRuleSummaryText(ruleListItem, ruleData)
 
-  enabledEl.addEventListener('change', () => {
-    ruleData.enabled = enabledEl.checked
+  enabledCheckbox.addEventListener('change', () => {
+    ruleData.enabled = enabledCheckbox.checked
     updateRuleSummaryText(ruleListItem, ruleData)
     onChange()
   })
@@ -135,9 +135,9 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
     onDelete(ruleData.id)
   })
 
-  function bindRuleInput(selector, updateFn) {
-    ruleListItem.querySelector(selector)?.addEventListener('change', (changeEvent) => {
-      updateFn(changeEvent.target.value)
+  function bindRuleInput(inputSelector, updateCallback) {
+    ruleListItem.querySelector(inputSelector)?.addEventListener('change', (changeEvent) => {
+      updateCallback(changeEvent.target.value)
       updateRuleSummaryText(ruleListItem, ruleData)
       onChange()
     })
@@ -146,7 +146,7 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
   bindRuleInput('.rule-utilities', (inputValue) => {
     const parsedItems = inputValue
       .split(',')
-      .map((s) => s.trim())
+      .map((rawEntry) => rawEntry.trim())
       .filter(Boolean)
     ruleData.utilities = parsedItems.length > 0 ? parsedItems : null
   })
@@ -164,7 +164,7 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
   bindRuleInput('.rule-colors', (inputValue) => {
     const parsedItems = inputValue
       .split(',')
-      .map((s) => s.trim())
+      .map((rawEntry) => rawEntry.trim())
       .filter(Boolean)
     ruleData.colors = parsedItems.length > 0 ? parsedItems : null
   })
@@ -172,14 +172,14 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
   bindRuleInput('.rule-exclude-elements', (inputValue) => {
     ruleData.excludeElements = inputValue
       .split(',')
-      .map((s) => s.trim().toLowerCase())
+      .map((rawEntry) => rawEntry.trim().toLowerCase())
       .filter(Boolean)
   })
 
   bindRuleInput('.rule-exclude-colors', (inputValue) => {
     ruleData.excludeColors = inputValue
       .split(',')
-      .map((s) => s.trim())
+      .map((rawEntry) => rawEntry.trim())
       .filter(Boolean)
   })
 
