@@ -54,7 +54,7 @@ export function renderShadeMap(containerElement, configData, onChangeCallback) {
     const iconWrapper = document.createElement('span')
     iconWrapper.innerHTML = ICON_MOVE_RIGHT
 
-    const inputId = `dmg-shade-${shadeValue}`
+    const inputId = `dark-mode-shade-${shadeValue}`
 
     const visualLabel = document.createElement('label')
     visualLabel.className = 'sr-only'
