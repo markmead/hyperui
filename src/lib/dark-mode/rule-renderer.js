@@ -23,39 +23,45 @@ export function buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }) {
         <div>
           <h4 class="mb-2 text-sm font-medium text-gray-700">Apply when</h4>
           <div class="space-y-3">
-            <label class="block text-sm text-gray-600">
-              Utilities (comma-sep, blank = any)
+            <label class="block text-sm font-medium text-gray-700">
+              Utilities
               <input type="text" class="rule-utilities ${FORM_INPUT_CLASS}" placeholder="e.g. bg, text" />
+              <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated. Leave blank to match any utility.</span>
             </label>
-            <label class="block text-sm text-gray-600">
-              Shade (blank = any)
+            <label class="block text-sm font-medium text-gray-700">
+              Shade
               <input type="number" class="rule-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 600" min="50" max="950" step="50" />
+              <span class="mt-1 block text-xs font-normal text-gray-400">Leave blank to match any shade.</span>
             </label>
-            <label class="block text-sm text-gray-600">
-              Include only colors (comma-sep, blank = any)
+            <label class="block text-sm font-medium text-gray-700">
+              Include colors
               <input type="text" class="rule-colors ${FORM_INPUT_CLASS}" placeholder="e.g. blue, indigo" />
+              <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated. Leave blank to match any color.</span>
             </label>
           </div>
         </div>
 
         <div>
           <h4 class="mb-2 text-sm font-medium text-gray-700">In dark mode</h4>
-          <label class="block text-sm text-gray-600">
-            Use shade (blank = shade map)
+          <label class="block text-sm font-medium text-gray-700">
+            Use shade
             <input type="number" class="rule-dark-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 300" min="50" max="950" step="50" />
+            <span class="mt-1 block text-xs font-normal text-gray-400">Leave blank to use the shade map.</span>
           </label>
         </div>
 
         <div>
           <h4 class="mb-2 text-sm font-medium text-gray-700">Skip when</h4>
           <div class="space-y-3">
-            <label class="block text-sm text-gray-600">
-              Elements (comma-sep)
+            <label class="block text-sm font-medium text-gray-700">
+              Elements
               <input type="text" class="rule-exclude-elements ${FORM_INPUT_CLASS}" placeholder="e.g. button, a" />
+              <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated.</span>
             </label>
-            <label class="block text-sm text-gray-600">
-              Colors (comma-sep)
+            <label class="block text-sm font-medium text-gray-700">
+              Colors
               <input type="text" class="rule-exclude-colors ${FORM_INPUT_CLASS}" placeholder="e.g. blue, indigo" />
+              <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated.</span>
             </label>
           </div>
         </div>
