@@ -48,11 +48,11 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
 
         <details class="group" open>
           <summary
-            class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+            class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
           >
-            <h3 class="text-xs font-medium tracking-wide text-gray-600 uppercase">Shade map</h3>
+            <h3 class="text-sm font-medium text-gray-700">Shade map</h3>
             <ChevronDown
-              class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+              class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
             />
           </summary>
 
@@ -63,9 +63,9 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
 
         <details class="group flex-1" open>
           <summary
-            class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+            class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
           >
-            <h3 class="text-xs font-medium tracking-wide text-gray-600 uppercase">Rules</h3>
+            <h3 class="text-sm font-medium text-gray-700">Rules</h3>
 
             <div class="flex items-center gap-2">
               <button
@@ -88,7 +88,7 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
               </button>
 
               <ChevronDown
-                class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+                class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
               />
             </div>
           </summary>
@@ -264,66 +264,84 @@ import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
         </div>
       </div>
 
-      <div class="space-y-3">
+      <div>
         <h3 class="font-medium text-gray-900">Invert heavy backgrounds, skip buttons</h3>
-        <p class="text-gray-600">
+
+        <p class="mt-2 text-gray-600">
           Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100
           in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.
         </p>
+
         <dl
-          class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
+          class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
         >
-          <dt>Utilities</dt><dd>bg</dd>
-          <dt>Shade</dt><dd>900</dd>
-          <dt>In dark mode</dt><dd>100</dd>
-          <dt>Skip elements</dt><dd>button</dd>
+          <dt>Utilities</dt>
+          <dd>bg</dd>
+          <dt>Shade</dt>
+          <dd>900</dd>
+          <dt>In dark mode</dt>
+          <dd>100</dd>
+          <dt>Skip elements</dt>
+          <dd>button</dd>
         </dl>
 
-        <div class="overflow-hidden rounded-lg border border-gray-200">
+        <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
           <div class="grid grid-cols-2 divide-x divide-gray-200">
-            <div class="bg-gray-50 p-3">
-              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">Before</p>
+            <div class="bg-gray-50 p-4">
+              <p class="text-sm font-medium text-gray-700">Before</p>
+
               <pre
-                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 p-4"&gt;Panel&lt;/div&gt;
+                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 p-4"&gt;Panel&lt;/div&gt;
 &lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
             </div>
-            <div class="bg-gray-50 p-3">
-              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">After</p>
+
+            <div class="bg-gray-50 p-4">
+              <p class="text-sm font-medium text-gray-700">After</p>
+
               <pre
-                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 <span class="text-emerald-600">dark:bg-gray-100</span> p-4"&gt;Panel&lt;/div&gt;
+                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 <span class="text-emerald-600">dark:bg-gray-100</span> p-4"&gt;Panel&lt;/div&gt;
 &lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="space-y-3">
+      <div>
         <h3 class="font-medium text-gray-900">Keep brand colours untouched</h3>
-        <p class="text-gray-600">
+
+        <p class="mt-2 text-gray-600">
           Match any utility but exclude indigo and violet so brand colours pass through without
           modification.
         </p>
+
         <dl
-          class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
+          class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
         >
-          <dt>Utilities</dt><dd>—</dd>
-          <dt>Shade</dt><dd>—</dd>
-          <dt>In dark mode</dt><dd>—</dd>
-          <dt>Skip colours</dt><dd>indigo, violet</dd>
+          <dt>Utilities</dt>
+          <dd>—</dd>
+          <dt>Shade</dt>
+          <dd>—</dd>
+          <dt>In dark mode</dt>
+          <dd>—</dd>
+          <dt>Skip colours</dt>
+          <dd>indigo, violet</dd>
         </dl>
 
-        <div class="overflow-hidden rounded-lg border border-gray-200">
+        <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
           <div class="grid grid-cols-2 divide-x divide-gray-200">
-            <div class="bg-gray-50 p-3">
-              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">Before</p>
+            <div class="bg-gray-50 p-4">
+              <p class="text-sm font-medium text-gray-700">Before</p>
+
               <pre
-                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900"&gt;Text&lt;/p&gt;
+                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900"&gt;Text&lt;/p&gt;
 &lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
             </div>
-            <div class="bg-gray-50 p-3">
-              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">After</p>
+
+            <div class="bg-gray-50 p-4">
+              <p class="text-sm font-medium text-gray-700">After</p>
+
               <pre
-                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Text&lt;/p&gt;
+                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Text&lt;/p&gt;
 &lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
             </div>
           </div>
