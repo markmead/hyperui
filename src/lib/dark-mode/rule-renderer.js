@@ -39,21 +39,21 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
   const ruleListItem = document.createElement('li')
 
   ruleListItem.innerHTML = `
-    <details class="overflow-hidden rounded-lg border border-gray-200 bg-white">
-      <summary class="flex cursor-pointer items-center justify-between gap-2 p-3 hover:bg-gray-50 list-none [&::-webkit-details-marker]:hidden">
+    <details class="group overflow-hidden rounded-lg border border-gray-200 bg-white">
+      <summary class="flex cursor-pointer items-center justify-between gap-2 p-4 transition-colors hover:bg-gray-50 [&::-webkit-details-marker]:hidden">
         <div class="flex min-w-0 items-center gap-2">
           <input type="checkbox" class="rule-enabled size-5 shrink-0 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1" aria-label="Enable rule" />
           <span class="rule-summary truncate text-xs text-gray-600"></span>
         </div>
         <div class="flex shrink-0 items-center gap-1">
-          <svg class="size-3.5 text-gray-400 transition-transform [[open]_&]:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          <svg class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           <button type="button" class="rule-delete rounded p-0.5 text-gray-400 transition-colors hover:text-red-500" aria-label="Delete rule">
             <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
           </button>
         </div>
       </summary>
 
-      <div class="space-y-4 border-t border-gray-200 p-3">
+      <div class="space-y-4 border-t border-gray-200 p-4">
         <div>
           <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Apply when</h4>
           <div class="space-y-3">
