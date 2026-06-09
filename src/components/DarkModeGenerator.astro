@@ -1,319 +1,333 @@
 ---
-import { ChevronDown, Info, X } from '@lucide/astro'
+import { Clipboard, ChevronDown, Info, Plus, X } from '@lucide/astro'
 ---
 
 <dark-mode-generator class="block">
-  <div
-    class="flex min-h-[70vh] flex-col overflow-hidden rounded-lg border border-gray-200 lg:flex-row"
-  >
-    <aside
-      class="flex w-full shrink-0 flex-col divide-y divide-gray-200 border-b border-gray-200 bg-gray-50 lg:w-72 lg:border-r lg:border-b-0 xl:w-80"
-    >
-      <div class="p-4">
-        <h3 class="mb-3 text-xs font-medium tracking-wide text-gray-500 uppercase">Options</h3>
+  <div class="flex flex-col gap-4 lg:flex-row">
+    <aside class="flex shrink-0 flex-col gap-4 lg:w-72 lg:self-start xl:w-80">
+      <div>
+        <label for="dmg-input" class="text-sm font-medium text-gray-700"> Paste HTML </label>
 
-        <label class="flex cursor-pointer items-center gap-2.5 text-sm text-gray-700">
-          <input
-            type="checkbox"
-            data-overwrite-existing
-            class="size-5 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1"
-          />
-          Overwrite existing <code class="rounded bg-gray-200 px-1 py-0.5 text-xs">dark:</code> classes
-        </label>
+        <textarea
+          id="dmg-input"
+          data-input
+          rows="4"
+          class="mt-0.5 w-full resize-none rounded-md border-gray-200 align-bottom"></textarea>
       </div>
 
-      <details class="group" open>
-        <summary
-          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
-        >
-          <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Utilities</h3>
-          <ChevronDown
-            class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
-          />
-        </summary>
+      <div
+        class="flex w-full flex-col divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-50"
+      >
+        <div class="p-4">
+          <h3 class="text-sm font-medium text-gray-700">Options</h3>
 
-        <div class="border-t border-gray-200 p-4">
-          <div data-utilities class="flex flex-wrap gap-1.5"></div>
+          <label class="mt-2 inline-flex items-center gap-3">
+            <input type="checkbox" data-overwrite-existing class="size-5 rounded border-gray-300" />
+
+            <span class="text-sm font-medium text-gray-700">
+              Overwrite existing <code class="rounded bg-gray-200 px-1 py-0.5">dark:</code> classes
+            </span>
+          </label>
         </div>
-      </details>
 
-      <details class="group" open>
-        <summary
-          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
-        >
-          <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Shade map</h3>
-          <ChevronDown
-            class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
-          />
-        </summary>
+        <details class="group" open>
+          <summary
+            class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
+          >
+            <h3 class="text-sm font-medium text-gray-700">Utilities</h3>
 
-        <div class="border-t border-gray-200 p-4">
-          <div data-shade-map class="grid grid-cols-2 gap-x-6 gap-y-3"></div>
-        </div>
-      </details>
+            <ChevronDown
+              class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
+            />
+          </summary>
 
-      <details class="group flex-1" open>
-        <summary
-          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
-        >
-          <h3 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Rules</h3>
+          <div class="border-t border-gray-200 p-4">
+            <div data-utilities class="flex flex-wrap gap-1"></div>
+          </div>
+        </details>
 
-          <div class="flex items-center gap-2">
-            <button
-              type="button"
-              data-rules-examples
-              aria-label="View rule examples"
-              class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white p-1 text-gray-400 transition-colors hover:border-gray-300 hover:text-gray-600"
-            >
-              <Info class="size-3.5" />
-            </button>
-
-            <button
-              type="button"
-              data-add-rule
-              class="inline-flex items-center gap-1 rounded-md bg-gray-900 px-2.5 py-1 text-xs font-medium text-white transition-colors hover:bg-gray-800"
-            >
-              <svg
-                class="size-3.5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14"></path>
-                <path d="M12 5v14"></path>
-              </svg>
-              Add rule
-            </button>
-
+        <details class="group" open>
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+          >
+            <h3 class="text-xs font-medium tracking-wide text-gray-600 uppercase">Shade map</h3>
             <ChevronDown
               class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
             />
+          </summary>
+
+          <div class="border-t border-gray-200 p-4">
+            <div data-shade-map class="grid grid-cols-2 gap-x-6 gap-y-3"></div>
           </div>
-        </summary>
+        </details>
 
-        <div class="border-t border-gray-200 p-4">
-          <ul data-rules class="space-y-2"></ul>
+        <details class="group flex-1" open>
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-white [&::-webkit-details-marker]:hidden"
+          >
+            <h3 class="text-xs font-medium tracking-wide text-gray-600 uppercase">Rules</h3>
+
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                data-rules-examples
+                aria-label="View rule examples"
+                class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white p-1 text-gray-400 transition-colors hover:border-gray-300 hover:text-gray-600"
+              >
+                <Info class="size-4" />
+              </button>
+
+              <button
+                type="button"
+                data-add-rule
+                class="inline-flex items-center justify-center gap-1 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+              >
+                <Plus class="size-4" />
+
+                <span>Add rule</span>
+              </button>
+
+              <ChevronDown
+                class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+              />
+            </div>
+          </summary>
+
+          <div class="border-t border-gray-200 p-4">
+            <ul data-rules class="space-y-2"></ul>
+          </div>
+        </details>
+
+        <div class="flex flex-wrap gap-2 p-4">
+          <button
+            type="button"
+            data-reset
+            title="Resets the shade map, utility toggles, and rules back to their defaults"
+            class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
+          >
+            Reset
+          </button>
+
+          <button
+            type="button"
+            data-export
+            class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
+          >
+            Export
+          </button>
+
+          <label
+            class="cursor-pointer rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
+          >
+            Import
+            <input type="file" data-import accept=".json" class="sr-only" />
+          </label>
         </div>
-      </details>
-
-      <div class="flex flex-wrap gap-2 p-4">
-        <button
-          type="button"
-          data-reset
-          title="Resets the shade map, utility toggles, and rules back to their defaults"
-          class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
-        >
-          Reset
-        </button>
-
-        <button
-          type="button"
-          data-export
-          class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
-        >
-          Export
-        </button>
-
-        <label
-          class="cursor-pointer rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50"
-        >
-          Import
-          <input type="file" data-import accept=".json" class="sr-only" />
-        </label>
       </div>
     </aside>
 
-    <div class="flex flex-1 flex-col divide-y divide-gray-200 overflow-hidden">
-      <details class="group" open>
-        <summary
-          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 hover:bg-gray-50 [&::-webkit-details-marker]:hidden"
+    <div class="flex flex-1 flex-col p-4">
+      <div class="flex items-center justify-end gap-2">
+        <button
+          type="button"
+          data-copy
+          aria-label="Copy output HTML"
+          aria-pressed="false"
+          class="inline-flex items-center justify-center gap-2 rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
         >
-          <span class="text-sm font-medium text-gray-700">Paste HTML</span>
-          <ChevronDown
-            class="size-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
-          />
-        </summary>
+          <Clipboard class="size-4" />
 
-        <div class="border-t border-gray-200 p-4">
-          <textarea
-            id="dmg-input"
-            data-input
-            rows="8"
-            aria-label="Paste HTML"
-            placeholder='<div class="bg-white text-gray-900">...</div>'
-            class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 font-mono text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-400 focus:outline-none"
-          ></textarea>
+          <span data-copy-text>Copy</span>
+        </button>
+
+        <div class="flex items-center gap-1 rounded-md border border-gray-200 bg-white p-0.5">
+          <button
+            type="button"
+            data-preview-mode="light"
+            aria-pressed="false"
+            class="rounded px-2.5 py-1 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 aria-pressed:bg-gray-900 aria-pressed:text-white"
+          >
+            Light
+          </button>
+
+          <button
+            type="button"
+            data-preview-mode="dark"
+            aria-pressed="false"
+            class="rounded px-2.5 py-1 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 aria-pressed:bg-gray-900 aria-pressed:text-white"
+          >
+            Dark
+          </button>
+
+          <button
+            type="button"
+            data-preview-mode="split"
+            aria-pressed="true"
+            class="rounded px-2.5 py-1 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 aria-pressed:bg-gray-900 aria-pressed:text-white"
+          >
+            Split
+          </button>
+
+          <button
+            type="button"
+            data-preview-mode="code"
+            aria-pressed="false"
+            class="rounded px-2.5 py-1 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 aria-pressed:bg-gray-900 aria-pressed:text-white"
+          >
+            Code
+          </button>
         </div>
-      </details>
+      </div>
 
-      <div class="flex flex-1 flex-col p-4">
-        <div class="mb-3 flex items-center justify-between gap-4">
-          <span class="text-sm font-medium text-gray-700">Preview</span>
-
-          <div class="flex shrink-0 items-center gap-2">
-            <span data-copy-polite aria-live="polite" class="sr-only"></span>
-
-            <button
-              type="button"
-              data-copy
-              aria-label="Copy output HTML"
-              aria-pressed="false"
-              class="inline-flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:pointer-events-none disabled:opacity-50"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-                ></path>
-              </svg>
-              <span data-copy-text>Copy</span>
-            </button>
-
-            <div class="flex items-center gap-1 rounded-md border border-gray-200 bg-white p-0.5">
-              <button
-                type="button"
-                data-preview-mode="light"
-                aria-pressed="false"
-                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
-              >
-                Light
-              </button>
-
-              <button
-                type="button"
-                data-preview-mode="dark"
-                aria-pressed="false"
-                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
-              >
-                Dark
-              </button>
-
-              <button
-                type="button"
-                data-preview-mode="split"
-                aria-pressed="true"
-                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
-              >
-                Split
-              </button>
-
-              <button
-                type="button"
-                data-preview-mode="code"
-                aria-pressed="false"
-                class="rounded px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors aria-pressed:bg-gray-900 aria-pressed:text-white"
-              >
-                Code
-              </button>
-            </div>
-          </div>
+      <div data-code-container class="mt-4 hidden flex-1">
+        <div class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none">
+          <pre data-output class="h-150 overflow-auto text-sm whitespace-pre-wrap"></pre>
         </div>
+      </div>
 
-        <div data-code-container class="hidden flex-1">
-          <div class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none">
-            <pre data-output class="min-h-150 overflow-auto text-sm whitespace-pre-wrap"></pre>
-          </div>
-        </div>
+      <div data-preview-container class="mt-4 grid min-h-0 flex-1 grid-cols-2 gap-4">
+        <iframe
+          data-preview="light"
+          title="Light mode preview"
+          sandbox="allow-scripts"
+          class="h-150 w-full rounded-lg bg-white ring ring-gray-200"></iframe>
 
-        <div data-preview-container class="grid min-h-0 flex-1 grid-cols-2 gap-4">
-          <iframe
-            data-preview="light"
-            title="Light mode preview"
-            sandbox="allow-scripts"
-            class="h-full min-h-150 w-full rounded-lg border border-gray-200 bg-white"></iframe>
-
-          <iframe
-            data-preview="dark"
-            title="Dark mode preview"
-            sandbox="allow-scripts"
-            class="h-full min-h-150 w-full rounded-lg border border-gray-800 bg-gray-900"></iframe>
-        </div>
+        <iframe
+          data-preview="dark"
+          title="Dark mode preview"
+          sandbox="allow-scripts"
+          class="h-150 w-full rounded-lg bg-gray-900 ring ring-gray-800"></iframe>
       </div>
     </div>
   </div>
+
   <dialog
     data-rules-dialog
-    class="m-auto w-full max-w-lg rounded-xl border border-gray-200 bg-white p-0 shadow-xl open:flex open:flex-col"
+    class="m-auto w-full max-w-4xl rounded-xl border border-gray-200 bg-white p-0 shadow-xl open:flex open:flex-col"
   >
-    <div class="flex items-center justify-between border-b border-gray-200 px-5 py-4">
-      <h2 class="text-sm font-semibold text-gray-900">Rule examples</h2>
+    <div class="flex items-center justify-between border-b border-gray-200 p-4">
+      <h2 class="text-xl font-medium text-gray-900">Rule examples</h2>
 
       <button
         type="button"
         data-rules-dialog-close
         aria-label="Close"
-        class="rounded-md p-1 text-gray-400 transition-colors hover:text-gray-600"
+        class="rounded-md p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
       >
-        <X class="size-4" />
+        <X class="size-5" />
       </button>
     </div>
 
-    <div class="space-y-5 overflow-y-auto px-5 py-4 text-sm text-gray-700">
-      <p class="text-gray-500">
+    <div class="space-y-4 overflow-y-auto p-4">
+      <p class="text-gray-600">
         Rules let you override the shade map for specific utilities, shades, or colours. The first
         matching enabled rule wins.
       </p>
 
-      <div class="space-y-3">
+      <div>
         <h3 class="font-medium text-gray-900">Make all text lighter in dark mode</h3>
-        <p class="text-gray-500">
+
+        <p class="mt-2 text-gray-600">
           Match any <code class="rounded bg-gray-100 px-1 py-0.5">text-*</code> class and force shade
           300 in dark mode, regardless of the shade map.
         </p>
+
         <dl
-          class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
+          class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-xs text-gray-700"
         >
-          <dt class="text-gray-400">Utilities</dt><dd>text</dd>
-          <dt class="text-gray-400">Shade</dt><dd class="text-gray-400">—</dd>
-          <dt class="text-gray-400">In dark mode</dt><dd>300</dd>
+          <dt>Utilities</dt>
+          <dd>text</dd>
+          <dt>Shade</dt>
+          <dd>—</dd>
+          <dt>In dark mode</dt>
+          <dd>300</dd>
         </dl>
+
+        <div class="mt-4 overflow-hidden rounded-lg border border-gray-200">
+          <div class="grid grid-cols-2 divide-x divide-gray-200">
+            <div class="bg-gray-50 p-4">
+              <p class="text-sm font-medium text-gray-700">Before</p>
+
+              <pre
+                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;h1 class="text-gray-900"&gt;Title&lt;/h1&gt;
+&lt;p class="text-gray-600"&gt;Subtitle&lt;/p&gt;</pre>
+            </div>
+
+            <div class="bg-gray-50 p-4">
+              <p class="text-sm font-medium text-gray-700">After</p>
+
+              <pre
+                class="mt-1 overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;h1 class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Title&lt;/h1&gt;
+&lt;p class="text-gray-600 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Subtitle&lt;/p&gt;</pre>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="space-y-3">
         <h3 class="font-medium text-gray-900">Invert heavy backgrounds, skip buttons</h3>
-        <p class="text-gray-500">
+        <p class="text-gray-600">
           Match <code class="rounded bg-gray-100 px-1 py-0.5">bg-*</code> at shade 900 and map it to 100
           in dark mode, but skip <code class="rounded bg-gray-100 px-1 py-0.5">&lt;button&gt;</code> elements.
         </p>
         <dl
           class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
         >
-          <dt class="text-gray-400">Utilities</dt><dd>bg</dd>
-          <dt class="text-gray-400">Shade</dt><dd>900</dd>
-          <dt class="text-gray-400">In dark mode</dt><dd>100</dd>
-          <dt class="text-gray-400">Skip elements</dt><dd>button</dd>
+          <dt>Utilities</dt><dd>bg</dd>
+          <dt>Shade</dt><dd>900</dd>
+          <dt>In dark mode</dt><dd>100</dd>
+          <dt>Skip elements</dt><dd>button</dd>
         </dl>
+
+        <div class="overflow-hidden rounded-lg border border-gray-200">
+          <div class="grid grid-cols-2 divide-x divide-gray-200">
+            <div class="bg-gray-50 p-3">
+              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">Before</p>
+              <pre
+                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 p-4"&gt;Panel&lt;/div&gt;
+&lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
+            </div>
+            <div class="bg-gray-50 p-3">
+              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">After</p>
+              <pre
+                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;div class="bg-gray-900 <span class="text-emerald-600">dark:bg-gray-100</span> p-4"&gt;Panel&lt;/div&gt;
+&lt;button class="bg-gray-900 px-4 py-2"&gt;Save&lt;/button&gt;</pre>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="space-y-3">
         <h3 class="font-medium text-gray-900">Keep brand colours untouched</h3>
-        <p class="text-gray-500">
+        <p class="text-gray-600">
           Match any utility but exclude indigo and violet so brand colours pass through without
           modification.
         </p>
         <dl
           class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs"
         >
-          <dt class="text-gray-400">Utilities</dt><dd class="text-gray-400">—</dd>
-          <dt class="text-gray-400">Shade</dt><dd class="text-gray-400">—</dd>
-          <dt class="text-gray-400">In dark mode</dt><dd class="text-gray-400">—</dd>
-          <dt class="text-gray-400">Skip colours</dt><dd>indigo, violet</dd>
+          <dt>Utilities</dt><dd>—</dd>
+          <dt>Shade</dt><dd>—</dd>
+          <dt>In dark mode</dt><dd>—</dd>
+          <dt>Skip colours</dt><dd>indigo, violet</dd>
         </dl>
+
+        <div class="overflow-hidden rounded-lg border border-gray-200">
+          <div class="grid grid-cols-2 divide-x divide-gray-200">
+            <div class="bg-gray-50 p-3">
+              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">Before</p>
+              <pre
+                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900"&gt;Text&lt;/p&gt;
+&lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
+            </div>
+            <div class="bg-gray-50 p-3">
+              <p class="mb-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">After</p>
+              <pre
+                class="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre-wrap text-gray-700">&lt;p class="text-gray-900 <span class="text-emerald-600">dark:text-gray-300</span>"&gt;Text&lt;/p&gt;
+&lt;span class="text-indigo-600"&gt;Brand&lt;/span&gt;</pre>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </dialog>
@@ -528,7 +542,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
 
           <div class="space-y-4 border-t border-gray-200 p-3">
             <div>
-              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-500 uppercase">Apply when</h4>
+              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Apply when</h4>
               <div class="space-y-3">
                 <label class="block text-sm text-gray-600">
                   Utilities (comma-sep, blank = any)
@@ -546,7 +560,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
             </div>
 
             <div>
-              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-500 uppercase">In dark mode</h4>
+              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">In dark mode</h4>
               <label class="block text-sm text-gray-600">
                 Use shade (blank = shade map)
                 <input type="number" class="rule-dark-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 300" min="50" max="950" step="50" />
@@ -554,7 +568,7 @@ import { ChevronDown, Info, X } from '@lucide/astro'
             </div>
 
             <div>
-              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-500 uppercase">Skip when</h4>
+              <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Skip when</h4>
               <div class="space-y-3">
                 <label class="block text-sm text-gray-600">
                   Elements (comma-sep)
