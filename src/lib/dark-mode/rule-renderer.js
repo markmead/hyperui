@@ -48,14 +48,14 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
         <div class="flex shrink-0 items-center gap-1">
           <svg class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           <button type="button" class="rule-delete rounded p-0.5 text-gray-400 transition-colors hover:text-red-500" aria-label="Delete rule">
-            <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5" aria-hidden="true"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </button>
         </div>
       </summary>
 
       <div class="space-y-4 border-t border-gray-200 p-4">
         <div>
-          <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Apply when</h4>
+          <h4 class="mb-2 text-sm font-medium text-gray-700">Apply when</h4>
           <div class="space-y-3">
             <label class="block text-sm text-gray-600">
               Utilities (comma-sep, blank = any)
@@ -73,7 +73,7 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
         </div>
 
         <div>
-          <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">In dark mode</h4>
+          <h4 class="mb-2 text-sm font-medium text-gray-700">In dark mode</h4>
           <label class="block text-sm text-gray-600">
             Use shade (blank = shade map)
             <input type="number" class="rule-dark-shade ${NUMBER_INPUT_CLASS}" placeholder="e.g. 300" min="50" max="950" step="50" />
@@ -81,7 +81,7 @@ export function buildRuleElement(ruleData, { onDelete, onChange }) {
         </div>
 
         <div>
-          <h4 class="mb-2 text-xs font-medium tracking-wide text-gray-600 uppercase">Skip when</h4>
+          <h4 class="mb-2 text-sm font-medium text-gray-700">Skip when</h4>
           <div class="space-y-3">
             <label class="block text-sm text-gray-600">
               Elements (comma-sep)
