@@ -1,16 +1,16 @@
 ---
-import DmgSidePanel from './DmgSidePanel.astro'
-import DmgPreviewPanel from './DmgPreviewPanel.astro'
-import DmgRulesExamplesDialog from './DmgRulesExamplesDialog.astro'
+import DarkModeSidePanel from './DarkModeSidePanel.astro'
+import DarkModePreviewPanel from './DarkModePreviewPanel.astro'
+import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
 ---
 
 <dark-mode-generator class="block">
   <div class="flex flex-col gap-6 lg:flex-row">
-    <DmgSidePanel />
-    <DmgPreviewPanel />
+    <DarkModeSidePanel />
+    <DarkModePreviewPanel />
   </div>
 
-  <DmgRulesExamplesDialog />
+  <DarkModeRulesDialog />
 </dark-mode-generator>
 
 <script>
