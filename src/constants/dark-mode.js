@@ -12,7 +12,7 @@ export const SHADE_MAP = {
 }
 
 export const COLOR_MAP = {
-  white: 'gray-900',
+  white: 'black',
   black: 'white',
 }
 

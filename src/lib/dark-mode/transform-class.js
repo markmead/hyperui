@@ -86,27 +86,6 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
 export function transformClass(className, configData, tagName = null) {
   const { variantPrefix, classWithoutVariant } = splitVariantPrefix(className)
 
-  // gray-900 ↔ white special case
-  const gray900Match = classWithoutVariant.match(/^(.*?)(gray-900)(\/\d+)?$/)
-
-  if (gray900Match) {
-    const grayPrefix = gray900Match[1] ?? ''
-    const graySuffix = gray900Match[3] ?? ''
-    const utilityName = grayPrefix.replace(/-$/, '')
-
-    if (configData.utilities[utilityName] === false) {
-      return className
-    }
-
-    const ruleResult = applyRules(utilityName, 'gray', 900, tagName, configData)
-
-    if (ruleResult?.skip) {
-      return className
-    }
-
-    return `${className} dark:${variantPrefix}${grayPrefix}white${graySuffix}`
-  }
-
   // white/black named colors
   for (const [lightColor, darkColor] of Object.entries(COLOR_MAP)) {
     if (classWithoutVariant.includes(lightColor)) {
