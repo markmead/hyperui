@@ -2,6 +2,7 @@
 import DarkModeSidePanel from './DarkModeSidePanel.astro'
 import DarkModePreviewPanel from './DarkModePreviewPanel.astro'
 import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
+import DarkModeInspector from './DarkModeInspector.astro'
 ---
 
 <dark-mode-generator class="block">
@@ -11,6 +12,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
   </div>
 
   <DarkModeRulesDialog />
+  <DarkModeInspector />
 </dark-mode-generator>
 
 <script>
@@ -28,6 +30,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
     renderShadeMap,
     renderRules,
   } from '../lib/dark-mode/ui-renderer.js'
+  import { bindInspector } from '../lib/dark-mode/rule-renderer.js'
   import { DEBOUNCE_DELAY_MS } from '../lib/dark-mode/element-constants.js'
 
   type Rule = {
@@ -57,6 +60,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
     private debounceTimer: ReturnType<typeof setTimeout> | null = null
     private clipboardCopyTimer: ReturnType<typeof setTimeout> | null = null
     private currentPreviewMode: PreviewMode = 'split'
+    private currentInspectorRuleId: string | null = null
 
     connectedCallback() {
       this.refreshUtilityToggles()
@@ -65,6 +69,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
       this.syncOverwriteExisting()
       this.bindHtmlInput()
       this.bindActionButtons()
+      this.bindInspectorDismiss()
       this.applyPreviewMode('split')
     }
 
@@ -107,10 +112,14 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
         return
       }
       renderRules(rulesContainer, this.generatorConfig, {
+        onConfigure: (ruleId: string) => {
+          this.openInspector(ruleId)
+        },
         onDelete: (deletedRuleId: string) => {
           this.generatorConfig.rules = this.generatorConfig.rules.filter(
             (existingRule) => existingRule.id !== deletedRuleId,
           )
+          this.closeInspector()
           this.refreshRules()
           this.saveConfiguration()
           this.transformAndRender()
@@ -119,6 +128,50 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
           this.saveConfiguration()
           this.transformAndRender()
         },
+      })
+    }
+
+    // ── Inspector ──────────────────────────────────────────────────
+
+    private openInspector(ruleId: string) {
+      const rule = this.generatorConfig.rules.find((r) => r.id === ruleId)
+      if (!rule) {return}
+
+      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')
+      if (!inspectorEl) {return}
+
+      this.currentInspectorRuleId = ruleId
+
+      bindInspector(inspectorEl, rule, {
+        onChange: () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+          this.refreshRules()
+        },
+      })
+
+      inspectorEl.show()
+    }
+
+    private closeInspector() {
+      this.querySelector<HTMLDialogElement>('[data-rule-inspector]')?.close()
+      this.currentInspectorRuleId = null
+    }
+
+    private bindInspectorDismiss() {
+      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')
+      if (!inspectorEl) {return}
+
+      this.querySelector('[data-inspector-close]')?.addEventListener('click', () => {
+        this.closeInspector()
+      })
+
+      document.addEventListener('pointerdown', (pointerEvent) => {
+        if (!inspectorEl.open) {return}
+        const target = pointerEvent.target as Element
+        if (!target.closest('[data-rule-inspector]') && !target.closest('[data-configure-rule]')) {
+          this.closeInspector()
+        }
       })
     }
 
@@ -185,17 +238,17 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
           excludeColors: [],
         }
         this.generatorConfig.rules.push(newRule)
+        this.closeInspector()
         this.refreshRules()
         this.saveConfiguration()
         this.querySelector<HTMLDetailsElement>('[data-rules]')
           ?.closest('details')
           ?.setAttribute('open', '')
-        const ruleDetailEls = this.querySelectorAll<HTMLDetailsElement>('[data-rules] details')
-        ruleDetailEls[ruleDetailEls.length - 1]?.setAttribute('open', '')
       })
 
       this.querySelector('[data-reset]')?.addEventListener('click', () => {
         this.generatorConfig = resetConfig() as Config
+        this.closeInspector()
         this.refreshUtilityToggles()
         this.refreshShadeMap()
         this.refreshRules()
@@ -230,6 +283,7 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
               return
             }
             this.generatorConfig = importResult.config as Config
+            this.closeInspector()
             this.refreshUtilityToggles()
             this.refreshShadeMap()
             this.refreshRules()
@@ -419,6 +473,26 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
   @starting-style {
     [data-rules-dialog][open]::backdrop {
       background: rgb(0 0 0 / 0);
+    }
+  }
+
+  [data-rule-inspector] {
+    transition:
+      transform 0.25s ease,
+      display 0.25s allow-discrete;
+  }
+
+  [data-rule-inspector][open] {
+    transform: translateY(0);
+  }
+
+  [data-rule-inspector]:not([open]) {
+    transform: translateY(100%);
+  }
+
+  @starting-style {
+    [data-rule-inspector][open] {
+      transform: translateY(100%);
     }
   }
 </style>

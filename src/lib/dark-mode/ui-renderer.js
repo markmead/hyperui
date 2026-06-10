@@ -1,5 +1,5 @@
 import { INPUT_NO_SPINNER, ICON_MOVE_RIGHT, ICON_PLUS, ICON_MINUS } from './element-constants.js'
-import { buildRuleElement } from './rule-renderer.js'
+import { buildRuleListItem } from './rule-renderer.js'
 
 export function renderUtilityToggles(containerElement, configData, onChangeCallback) {
   containerElement.innerHTML = ''
@@ -86,7 +86,7 @@ export function renderShadeMap(containerElement, configData, onChangeCallback) {
   }
 }
 
-export function renderRules(containerElement, configData, { onDelete, onChange }) {
+export function renderRules(containerElement, configData, { onDelete, onChange, onConfigure }) {
   containerElement.innerHTML = ''
 
   if (configData.rules.length === 0) {
@@ -98,6 +98,12 @@ export function renderRules(containerElement, configData, { onDelete, onChange }
   }
 
   configData.rules.forEach((ruleData, ruleIndex) => {
-    containerElement.appendChild(buildRuleElement(ruleData, ruleIndex, { onDelete, onChange }))
+    containerElement.appendChild(
+      buildRuleListItem(ruleData, ruleIndex, {
+        onConfigure,
+        onDelete,
+        onToggleEnabled: onChange,
+      }),
+    )
   })
 }
