@@ -23,12 +23,12 @@ export function splitVariantPrefix(className) {
 /**
  * @param {string} utilityName  e.g. 'bg', 'text', 'border'
  * @param {string} colorFamily  e.g. 'blue'
- * @param {number} shadeNumber  e.g. 600
+ * @param {number} shadeNumberber  e.g. 600
  * @param {string | null | undefined} tagName  e.g. 'BUTTON' (uppercased from el.tagName)
  * @param {import('./config.js').DarkModeConfig} configData
  * @returns {{ skip: boolean, darkShade: number } | null}  null = no override, use shade map
  */
-function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) {
+function applyRules(utilityName, colorFamily, shadeNumberber, tagName, configData) {
   const normalizedTag = tagName ? tagName.toLowerCase() : null
 
   for (const activeRule of configData.rules) {
@@ -43,7 +43,7 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
     ) {
       continue
     }
-    if (activeRule.shade !== null && activeRule.shade !== shadeNumber) {
+    if (activeRule.shade !== null && activeRule.shade !== shadeNumberber) {
       continue
     }
     if (
@@ -143,24 +143,24 @@ export function transformClass(className, configData, tagName = null) {
       const colorPrefix = colorMatch[1] ?? ''
       const colorShade = colorMatch[2] ?? '0'
       const colorSuffix = colorMatch[3] ?? ''
-      const shadeNum = parseInt(colorShade, 10)
+      const shadeNumber = parseInt(colorShade, 10)
       const utilityName = colorPrefix.replace(/-$/, '')
 
       if (configData.utilities[utilityName] === false) {
         return className
       }
 
-      if (!(shadeNum in configData.shadeMap)) {
+      if (!(shadeNumber in configData.shadeMap)) {
         return className
       }
 
-      const ruleResult = applyRules(utilityName, colorFamily, shadeNum, tagName, configData)
+      const ruleResult = applyRules(utilityName, colorFamily, shadeNumber, tagName, configData)
 
       if (ruleResult?.skip) {
         return className
       }
 
-      const darkShade = ruleResult?.darkShade ?? configData.shadeMap[shadeNum]
+      const darkShade = ruleResult?.darkShade ?? configData.shadeMap[shadeNumber]
       const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
 
       return `${className} dark:${variantPrefix}${darkClass}`

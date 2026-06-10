@@ -127,15 +127,15 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private openInspector(ruleId: string) {
-      const ruleIndex = this.generatorConfig.rules.findIndex((r) => r.id === ruleId)
+      const ruleIndex = this.generatorConfig.rules.findIndex((existingRule) => existingRule.id === ruleId)
       const rule = this.generatorConfig.rules[ruleIndex]
       if (!rule) {
         return
       }
 
-      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
+      const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
 
-      bindInspector(inspectorEl, rule, ruleIndex, {
+      bindInspector(inspectorElement, rule, ruleIndex, {
         onChange: () => {
           this.saveConfiguration()
           this.transformAndRender()
@@ -147,7 +147,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
         },
       })
 
-      inspectorEl.show()
+      inspectorElement.show()
     }
 
     private closeInspector() {
@@ -155,23 +155,23 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private bindInspectorDismiss() {
-      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
+      const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
 
       this.dismissAbortController = new AbortController()
-      const { signal } = this.dismissAbortController
+      const { signal: abortSignal } = this.dismissAbortController
 
       this.querySelector('[data-inspector-close]')!.addEventListener(
         'click',
         () => {
           this.closeInspector()
         },
-        { signal },
+        { signal: abortSignal },
       )
 
       document.addEventListener(
         'pointerdown',
         (pointerEvent) => {
-          if (!inspectorEl.open) {
+          if (!inspectorElement.open) {
             return
           }
           const target = pointerEvent.target as Element
@@ -182,7 +182,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
             this.closeInspector()
           }
         },
-        { signal },
+        { signal: abortSignal },
       )
     }
 

@@ -9,8 +9,8 @@ import { transformClass } from './transform-class.js'
  * @returns {string}
  */
 export function transformHtmlString(htmlContent, configData) {
-  return htmlContent.replace(/class="([^"]*)"/g, (_, classAttr) => {
-    const transformedValue = transformClassAttribute(classAttr, configData, null)
+  return htmlContent.replace(/class="([^"]*)"/g, (_fullMatchString, classAttributeibute) => {
+    const transformedValue = transformClassAttribute(classAttributeibute, configData, null)
 
     return `class="${transformedValue}"`
   })
@@ -43,17 +43,17 @@ export function transformHtmlDom(htmlContent, configData) {
 }
 
 /**
- * @param {string | null} classAttr
+ * @param {string | null} classAttribute
  * @param {import('./config.js').DarkModeConfig} configData
  * @param {string | null} tagName
  * @returns {string}
  */
-function transformClassAttribute(classAttr, configData, tagName) {
-  if (!classAttr) {
-    return classAttr ?? ''
+function transformClassAttribute(classAttribute, configData, tagName) {
+  if (!classAttribute) {
+    return classAttribute ?? ''
   }
 
-  return classAttr
+  return classAttribute
     .split(/\s+/)
     .filter(Boolean)
     .map((className) => {

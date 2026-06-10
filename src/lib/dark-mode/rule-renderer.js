@@ -48,31 +48,31 @@ export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, 
   return ruleListItem
 }
 
-export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNameChange }) {
-  const previousFlush = inspectorEl[INSPECTOR_FLUSH_KEY]
+export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange, onNameChange }) {
+  const previousFlush = inspectorElement[INSPECTOR_FLUSH_KEY]
   if (previousFlush) {
     previousFlush()
   }
 
-  if (inspectorEl[INSPECTOR_ABORT_KEY]) {
-    inspectorEl[INSPECTOR_ABORT_KEY].abort()
+  if (inspectorElement[INSPECTOR_ABORT_KEY]) {
+    inspectorElement[INSPECTOR_ABORT_KEY].abort()
   }
 
   const abortController = new AbortController()
-  inspectorEl[INSPECTOR_ABORT_KEY] = abortController
+  inspectorElement[INSPECTOR_ABORT_KEY] = abortController
   const { signal: abortSignal } = abortController
 
   const defaultRuleName = `Rule ${ruleIndex + 1}`
 
-  const nameDisplay = inspectorEl.querySelector('[data-inspector-name-display]')
-  const nameEditButton = inspectorEl.querySelector('[data-inspector-name-edit]')
-  const nameInput = inspectorEl.querySelector('[data-inspector-name]')
-  const utilitiesInput = inspectorEl.querySelector('[data-inspector-utilities]')
-  const shadeInput = inspectorEl.querySelector('[data-inspector-shade]')
-  const colorsInput = inspectorEl.querySelector('[data-inspector-colors]')
-  const darkShadeInput = inspectorEl.querySelector('[data-inspector-dark-shade]')
-  const excludeElementsInput = inspectorEl.querySelector('[data-inspector-exclude-elements]')
-  const excludeColorsInput = inspectorEl.querySelector('[data-inspector-exclude-colors]')
+  const nameDisplay = inspectorElement.querySelector('[data-inspector-name-display]')
+  const nameEditButton = inspectorElement.querySelector('[data-inspector-name-edit]')
+  const nameInput = inspectorElement.querySelector('[data-inspector-name]')
+  const utilitiesInput = inspectorElement.querySelector('[data-inspector-utilities]')
+  const shadeInput = inspectorElement.querySelector('[data-inspector-shade]')
+  const colorsInput = inspectorElement.querySelector('[data-inspector-colors]')
+  const darkShadeInput = inspectorElement.querySelector('[data-inspector-dark-shade]')
+  const excludeElementsInput = inspectorElement.querySelector('[data-inspector-exclude-elements]')
+  const excludeColorsInput = inspectorElement.querySelector('[data-inspector-exclude-colors]')
 
   nameDisplay.textContent = ruleData.name || defaultRuleName
   nameInput.value = ruleData.name || ''
@@ -88,7 +88,7 @@ export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNa
   nameDisplay.classList.remove('hidden')
   nameEditButton.classList.remove('hidden')
 
-  inspectorEl[INSPECTOR_FLUSH_KEY] = () => {
+  inspectorElement[INSPECTOR_FLUSH_KEY] = () => {
     if (!nameInput.classList.contains('hidden')) {
       const pendingName = nameInput.value.trim()
       if (pendingName !== (ruleData.name || '')) {
@@ -96,7 +96,7 @@ export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNa
         onNameChange()
       }
     }
-    inspectorEl[INSPECTOR_FLUSH_KEY] = null
+    inspectorElement[INSPECTOR_FLUSH_KEY] = null
   }
 
   nameEditButton.addEventListener(
