@@ -364,6 +364,14 @@ import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
 
     private saveConfiguration() {
       saveConfig(this.generatorConfig)
+
+      const lastSaved = this.querySelector<HTMLElement>('[data-last-saved]')
+
+      if (lastSaved) {
+        const formattedSaveTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+
+        lastSaved.textContent = `Last saved: ${formattedSaveTime}`
+      }
     }
   }
 
