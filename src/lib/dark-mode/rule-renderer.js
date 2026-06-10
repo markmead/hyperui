@@ -54,6 +54,8 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   currentInspectorAbortController = new AbortController()
   const { signal: abortSignal } = currentInspectorAbortController
 
+  const nameDisplay = inspectorEl.querySelector('[data-inspector-name-display]')
+  const nameEditButton = inspectorEl.querySelector('[data-inspector-name-edit]')
   const nameInput = inspectorEl.querySelector('[data-inspector-name]')
   const utilitiesInput = inspectorEl.querySelector('[data-inspector-utilities]')
   const shadeInput = inspectorEl.querySelector('[data-inspector-shade]')
@@ -62,7 +64,7 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   const excludeElementsInput = inspectorEl.querySelector('[data-inspector-exclude-elements]')
   const excludeColorsInput = inspectorEl.querySelector('[data-inspector-exclude-colors]')
 
-  nameInput.value = ruleData.name || ''
+  nameDisplay.textContent = ruleData.name || 'Unnamed rule'
   utilitiesInput.value = (ruleData.utilities ?? []).join(', ')
   shadeInput.value = ruleData.shade !== null ? String(ruleData.shade) : ''
   colorsInput.value = (ruleData.colors ?? []).join(', ')
@@ -70,11 +72,48 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   excludeElementsInput.value = ruleData.excludeElements.join(', ')
   excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
-  nameInput.addEventListener(
-    'change',
+  let discardingNameEdit = false
+
+  nameEditButton.addEventListener(
+    'click',
     () => {
-      ruleData.name = nameInput.value.trim()
-      onChange()
+      nameInput.value = ruleData.name || ''
+      nameDisplay.classList.add('hidden')
+      nameEditButton.classList.add('hidden')
+      nameInput.classList.remove('hidden')
+      nameInput.focus()
+      nameInput.select()
+    },
+    { signal: abortSignal },
+  )
+
+  nameInput.addEventListener(
+    'keydown',
+    (keyEvent) => {
+      if (keyEvent.key === 'Enter') {
+        keyEvent.preventDefault()
+        nameInput.blur()
+      }
+      if (keyEvent.key === 'Escape') {
+        discardingNameEdit = true
+        nameInput.blur()
+      }
+    },
+    { signal: abortSignal },
+  )
+
+  nameInput.addEventListener(
+    'blur',
+    () => {
+      if (!discardingNameEdit) {
+        ruleData.name = nameInput.value.trim()
+        nameDisplay.textContent = ruleData.name || 'Unnamed rule'
+        onChange()
+      }
+      discardingNameEdit = false
+      nameInput.classList.add('hidden')
+      nameDisplay.classList.remove('hidden')
+      nameEditButton.classList.remove('hidden')
     },
     { signal: abortSignal },
   )
