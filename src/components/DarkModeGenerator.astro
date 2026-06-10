@@ -59,14 +59,13 @@ import DarkModeInspector from './DarkModeInspector.astro'
     private generatorConfig: Config = loadConfig() as Config
     private debounceTimer: ReturnType<typeof setTimeout> | null = null
     private clipboardCopyTimer: ReturnType<typeof setTimeout> | null = null
-    private currentPreviewMode: PreviewMode = 'split'
-    private currentInspectorRuleId: string | null = null
+    private dismissAbortController: AbortController | null = null
 
     connectedCallback() {
       this.refreshUtilityToggles()
       this.refreshShadeMap()
       this.refreshRules()
-      this.syncOverwriteExisting()
+      this.bindOverwriteExisting()
       this.bindHtmlInput()
       this.bindActionButtons()
       this.bindInspectorDismiss()
@@ -80,6 +79,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
       if (this.clipboardCopyTimer) {
         clearTimeout(this.clipboardCopyTimer)
       }
+      this.dismissAbortController?.abort()
     }
 
     // ── Render helpers ──────────────────────────────────────────────
@@ -134,16 +134,23 @@ import DarkModeInspector from './DarkModeInspector.astro'
     // ── Inspector ──────────────────────────────────────────────────
 
     private openInspector(ruleId: string) {
-      const rule = this.generatorConfig.rules.find((r) => r.id === ruleId)
-      if (!rule) {return}
+      const ruleIndex = this.generatorConfig.rules.findIndex((r) => r.id === ruleId)
+      const rule = this.generatorConfig.rules[ruleIndex]
+      if (!rule) {
+        return
+      }
 
       const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')
-      if (!inspectorEl) {return}
+      if (!inspectorEl) {
+        return
+      }
 
-      this.currentInspectorRuleId = ruleId
-
-      bindInspector(inspectorEl, rule, {
+      bindInspector(inspectorEl, rule, ruleIndex, {
         onChange: () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+        onNameChange: () => {
           this.saveConfiguration()
           this.transformAndRender()
           this.refreshRules()
@@ -155,27 +162,44 @@ import DarkModeInspector from './DarkModeInspector.astro'
 
     private closeInspector() {
       this.querySelector<HTMLDialogElement>('[data-rule-inspector]')?.close()
-      this.currentInspectorRuleId = null
     }
 
     private bindInspectorDismiss() {
       const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')
-      if (!inspectorEl) {return}
+      if (!inspectorEl) {
+        return
+      }
 
-      this.querySelector('[data-inspector-close]')?.addEventListener('click', () => {
-        this.closeInspector()
-      })
+      this.dismissAbortController = new AbortController()
+      const { signal } = this.dismissAbortController
 
-      document.addEventListener('pointerdown', (pointerEvent) => {
-        if (!inspectorEl.open) {return}
-        const target = pointerEvent.target as Element
-        if (!target.closest('[data-rule-inspector]') && !target.closest('[data-configure-rule]')) {
+      this.querySelector('[data-inspector-close]')?.addEventListener(
+        'click',
+        () => {
           this.closeInspector()
-        }
-      })
+        },
+        { signal },
+      )
+
+      document.addEventListener(
+        'pointerdown',
+        (pointerEvent) => {
+          if (!inspectorEl.open) {
+            return
+          }
+          const target = pointerEvent.target as Element
+          if (
+            !target.closest('[data-rule-inspector]') &&
+            !target.closest('[data-configure-rule]')
+          ) {
+            this.closeInspector()
+          }
+        },
+        { signal },
+      )
     }
 
-    private syncOverwriteExisting() {
+    private bindOverwriteExisting() {
       const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
       if (!overwriteCheckbox) {
         return
@@ -187,6 +211,15 @@ import DarkModeInspector from './DarkModeInspector.astro'
         this.saveConfiguration()
         this.transformAndRender()
       })
+    }
+
+    private syncOverwriteExisting() {
+      const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
+      if (!overwriteCheckbox) {
+        return
+      }
+
+      overwriteCheckbox.checked = this.generatorConfig.overwriteExisting
     }
 
     // ── Binding ────────────────────────────────────────────────────
@@ -381,8 +414,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private applyPreviewMode(previewMode: PreviewMode) {
-      this.currentPreviewMode = previewMode
-
       const previewContainer = this.querySelector<HTMLElement>('[data-preview-container]')
       const codeContainer = this.querySelector<HTMLElement>('[data-code-container]')
       const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')

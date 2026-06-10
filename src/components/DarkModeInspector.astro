@@ -1,5 +1,6 @@
 ---
 import { Pencil, X } from '@lucide/astro'
+import { FORM_INPUT_CLASS, NUMBER_INPUT_CLASS } from '../lib/dark-mode/element-constants.js'
 ---
 
 <dialog
@@ -25,8 +26,7 @@ import { Pencil, X } from '@lucide/astro'
       <input
         type="text"
         data-inspector-name
-        class="hidden min-w-0 flex-1 rounded-md border-gray-200 text-sm"
-        placeholder="e.g. Invert text"
+        class={`hidden min-w-0 flex-1 ${FORM_INPUT_CLASS}`}
       />
     </div>
 
@@ -57,7 +57,7 @@ import { Pencil, X } from '@lucide/astro'
         <input
           type="text"
           data-inspector-utilities
-          class="mt-0.5 w-full rounded-md border-gray-200 text-sm"
+          class={FORM_INPUT_CLASS}
           placeholder="e.g. bg, text"
         />
         <span class="mt-1 block text-xs font-normal text-gray-400"
@@ -70,13 +70,15 @@ import { Pencil, X } from '@lucide/astro'
         <input
           type="number"
           data-inspector-shade
-          class="mt-0.5 w-full rounded-md border-gray-200 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          class={NUMBER_INPUT_CLASS}
           placeholder="e.g. 600"
           min="50"
           max="950"
           step="50"
         />
-        <span class="mt-1 block text-xs font-normal text-gray-400">Leave blank to match any shade.</span>
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Leave blank to match any shade.</span
+        >
       </label>
 
       <label class="block text-sm font-medium text-gray-700">
@@ -84,7 +86,7 @@ import { Pencil, X } from '@lucide/astro'
         <input
           type="text"
           data-inspector-colors
-          class="mt-0.5 w-full rounded-md border-gray-200 text-sm"
+          class={FORM_INPUT_CLASS}
           placeholder="e.g. blue, indigo"
         />
         <span class="mt-1 block text-xs font-normal text-gray-400"
@@ -97,13 +99,15 @@ import { Pencil, X } from '@lucide/astro'
         <input
           type="number"
           data-inspector-dark-shade
-          class="mt-0.5 w-full rounded-md border-gray-200 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          class={NUMBER_INPUT_CLASS}
           placeholder="e.g. 300"
           min="50"
           max="950"
           step="50"
         />
-        <span class="mt-1 block text-xs font-normal text-gray-400">Leave blank to use the shade map.</span>
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Leave blank to use the shade map.</span
+        >
       </label>
 
       <label class="block text-sm font-medium text-gray-700">
@@ -111,7 +115,7 @@ import { Pencil, X } from '@lucide/astro'
         <input
           type="text"
           data-inspector-exclude-elements
-          class="mt-0.5 w-full rounded-md border-gray-200 text-sm"
+          class={FORM_INPUT_CLASS}
           placeholder="e.g. button, a"
         />
         <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated.</span>
@@ -122,7 +126,7 @@ import { Pencil, X } from '@lucide/astro'
         <input
           type="text"
           data-inspector-exclude-colors
-          class="mt-0.5 w-full rounded-md border-gray-200 text-sm"
+          class={FORM_INPUT_CLASS}
           placeholder="e.g. blue, indigo"
         />
         <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated.</span>

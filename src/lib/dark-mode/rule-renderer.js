@@ -1,4 +1,5 @@
-let currentInspectorAbortController = null
+const INSPECTOR_ABORT_KEY = Symbol('inspectorAbortController')
+const INSPECTOR_FLUSH_KEY = Symbol('inspectorFlush')
 
 export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, onToggleEnabled }) {
   const ruleListItem = document.createElement('li')
@@ -47,12 +48,24 @@ export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, 
   return ruleListItem
 }
 
-export function bindInspector(inspectorEl, ruleData, { onChange }) {
-  if (currentInspectorAbortController) {
-    currentInspectorAbortController.abort()
+export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNameChange }) {
+  // Safety net: if a name edit was in progress when switching rules, commit it now.
+  // In the normal path blur fires before click and commits via the blur listener, but
+  // this guard covers any browser where that ordering doesn't hold.
+  const previousFlush = inspectorEl[INSPECTOR_FLUSH_KEY]
+  if (previousFlush) {
+    previousFlush()
   }
-  currentInspectorAbortController = new AbortController()
-  const { signal: abortSignal } = currentInspectorAbortController
+
+  if (inspectorEl[INSPECTOR_ABORT_KEY]) {
+    inspectorEl[INSPECTOR_ABORT_KEY].abort()
+  }
+
+  const abortController = new AbortController()
+  inspectorEl[INSPECTOR_ABORT_KEY] = abortController
+  const { signal: abortSignal } = abortController
+
+  const defaultRuleName = `Rule ${ruleIndex + 1}`
 
   const nameDisplay = inspectorEl.querySelector('[data-inspector-name-display]')
   const nameEditButton = inspectorEl.querySelector('[data-inspector-name-edit]')
@@ -64,7 +77,9 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   const excludeElementsInput = inspectorEl.querySelector('[data-inspector-exclude-elements]')
   const excludeColorsInput = inspectorEl.querySelector('[data-inspector-exclude-colors]')
 
-  nameDisplay.textContent = ruleData.name || 'Unnamed rule'
+  nameDisplay.textContent = ruleData.name || defaultRuleName
+  nameInput.value = ruleData.name || ''
+  nameInput.placeholder = defaultRuleName
   utilitiesInput.value = (ruleData.utilities ?? []).join(', ')
   shadeInput.value = ruleData.shade !== null ? String(ruleData.shade) : ''
   colorsInput.value = (ruleData.colors ?? []).join(', ')
@@ -72,7 +87,22 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   excludeElementsInput.value = ruleData.excludeElements.join(', ')
   excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
-  let discardingNameEdit = false
+  // Ensure display mode in case a previous binding left edit mode open
+  nameInput.classList.add('hidden')
+  nameDisplay.classList.remove('hidden')
+  nameEditButton.classList.remove('hidden')
+
+  // Stored so the next bindInspector call can flush any pending name edit
+  inspectorEl[INSPECTOR_FLUSH_KEY] = () => {
+    if (!nameInput.classList.contains('hidden')) {
+      const pendingName = nameInput.value.trim()
+      if (pendingName !== (ruleData.name || '')) {
+        ruleData.name = pendingName
+        onNameChange()
+      }
+    }
+    inspectorEl[INSPECTOR_FLUSH_KEY] = null
+  }
 
   nameEditButton.addEventListener(
     'click',
@@ -95,22 +125,26 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
         nameInput.blur()
       }
       if (keyEvent.key === 'Escape') {
-        discardingNameEdit = true
+        nameInput.value = ruleData.name || ''
         nameInput.blur()
       }
     },
     { signal: abortSignal },
   )
 
+  // Value comparison replaces the discardingNameEdit flag: Escape resets the input
+  // value before blur fires, so a changed value means a genuine commit.
   nameInput.addEventListener(
     'blur',
     () => {
-      if (!discardingNameEdit) {
-        ruleData.name = nameInput.value.trim()
-        nameDisplay.textContent = ruleData.name || 'Unnamed rule'
-        onChange()
+      const updatedName = nameInput.value.trim()
+      if (updatedName !== (ruleData.name || '')) {
+        ruleData.name = updatedName
+        nameDisplay.textContent = updatedName || defaultRuleName
+        onNameChange()
+      } else {
+        nameDisplay.textContent = ruleData.name || defaultRuleName
       }
-      discardingNameEdit = false
       nameInput.classList.add('hidden')
       nameDisplay.classList.remove('hidden')
       nameEditButton.classList.remove('hidden')
