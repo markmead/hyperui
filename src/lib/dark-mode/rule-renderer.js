@@ -54,7 +54,6 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   currentInspectorAbortController = new AbortController()
   const { signal: abortSignal } = currentInspectorAbortController
 
-  const nameHeading = inspectorEl.querySelector('[data-inspector-rule-name]')
   const nameInput = inspectorEl.querySelector('[data-inspector-name]')
   const utilitiesInput = inspectorEl.querySelector('[data-inspector-utilities]')
   const shadeInput = inspectorEl.querySelector('[data-inspector-shade]')
@@ -71,13 +70,10 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
   excludeElementsInput.value = ruleData.excludeElements.join(', ')
   excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
-  nameHeading.textContent = ruleData.name || 'Rule'
-
   nameInput.addEventListener(
     'change',
     () => {
       ruleData.name = nameInput.value.trim()
-      nameHeading.textContent = ruleData.name || 'Rule'
       onChange()
     },
     { signal: abortSignal },
