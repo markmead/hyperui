@@ -1,12 +1,12 @@
 let currentInspectorAbortController = null
 
 export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, onToggleEnabled }) {
-  const li = document.createElement('li')
-  li.className = 'flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2'
+  const ruleListItem = document.createElement('li')
+  ruleListItem.className = 'flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2'
 
   const defaultRuleName = `Rule ${ruleIndex + 1}`
 
-  li.innerHTML = `
+  ruleListItem.innerHTML = `
     <input
       type="checkbox"
       class="rule-enabled size-4 shrink-0 rounded border-gray-300 text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-1"
@@ -27,24 +27,24 @@ export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, 
     </button>
   `
 
-  const enabledCheckbox = li.querySelector('.rule-enabled')
+  const enabledCheckbox = ruleListItem.querySelector('.rule-enabled')
   enabledCheckbox.checked = ruleData.enabled
   enabledCheckbox.addEventListener('change', () => {
     ruleData.enabled = enabledCheckbox.checked
     onToggleEnabled()
   })
 
-  li.querySelector('span').textContent = ruleData.name || defaultRuleName
+  ruleListItem.querySelector('span').textContent = ruleData.name || defaultRuleName
 
-  li.querySelector('[data-configure-rule]').addEventListener('click', () => {
+  ruleListItem.querySelector('[data-configure-rule]').addEventListener('click', () => {
     onConfigure(ruleData.id)
   })
 
-  li.querySelector('.rule-delete').addEventListener('click', () => {
+  ruleListItem.querySelector('.rule-delete').addEventListener('click', () => {
     onDelete(ruleData.id)
   })
 
-  return li
+  return ruleListItem
 }
 
 export function bindInspector(inspectorEl, ruleData, { onChange }) {
@@ -52,7 +52,7 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
     currentInspectorAbortController.abort()
   }
   currentInspectorAbortController = new AbortController()
-  const { signal } = currentInspectorAbortController
+  const { signal: abortSignal } = currentInspectorAbortController
 
   const nameHeading = inspectorEl.querySelector('[data-inspector-rule-name]')
   const nameInput = inspectorEl.querySelector('[data-inspector-name]')
@@ -80,53 +80,53 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
       nameHeading.textContent = ruleData.name || 'Rule'
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 
   utilitiesInput.addEventListener(
     'change',
     () => {
-      const items = utilitiesInput.value
+      const parsedItems = utilitiesInput.value
         .split(',')
-        .map((s) => s.trim())
+        .map((rawEntry) => rawEntry.trim())
         .filter(Boolean)
-      ruleData.utilities = items.length > 0 ? items : null
+      ruleData.utilities = parsedItems.length > 0 ? parsedItems : null
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 
   shadeInput.addEventListener(
     'change',
     () => {
-      const n = parseInt(shadeInput.value, 10)
-      ruleData.shade = isNaN(n) ? null : n
+      const parsedNumber = parseInt(shadeInput.value, 10)
+      ruleData.shade = isNaN(parsedNumber) ? null : parsedNumber
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 
   colorsInput.addEventListener(
     'change',
     () => {
-      const items = colorsInput.value
+      const parsedItems = colorsInput.value
         .split(',')
-        .map((s) => s.trim())
+        .map((rawEntry) => rawEntry.trim())
         .filter(Boolean)
-      ruleData.colors = items.length > 0 ? items : null
+      ruleData.colors = parsedItems.length > 0 ? parsedItems : null
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 
   darkShadeInput.addEventListener(
     'change',
     () => {
-      const n = parseInt(darkShadeInput.value, 10)
-      ruleData.darkShade = isNaN(n) ? null : n
+      const parsedNumber = parseInt(darkShadeInput.value, 10)
+      ruleData.darkShade = isNaN(parsedNumber) ? null : parsedNumber
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 
   excludeElementsInput.addEventListener(
@@ -134,11 +134,11 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
     () => {
       ruleData.excludeElements = excludeElementsInput.value
         .split(',')
-        .map((s) => s.trim().toLowerCase())
+        .map((rawEntry) => rawEntry.trim().toLowerCase())
         .filter(Boolean)
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 
   excludeColorsInput.addEventListener(
@@ -146,10 +146,10 @@ export function bindInspector(inspectorEl, ruleData, { onChange }) {
     () => {
       ruleData.excludeColors = excludeColorsInput.value
         .split(',')
-        .map((s) => s.trim())
+        .map((rawEntry) => rawEntry.trim())
         .filter(Boolean)
       onChange()
     },
-    { signal },
+    { signal: abortSignal },
   )
 }
