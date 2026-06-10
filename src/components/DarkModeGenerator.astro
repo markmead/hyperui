@@ -82,35 +82,30 @@ import DarkModeInspector from './DarkModeInspector.astro'
       this.dismissAbortController?.abort()
     }
 
-    // ── Render helpers ──────────────────────────────────────────────
-
     private refreshUtilityToggles() {
-      const utilitiesContainer = this.querySelector<HTMLElement>('[data-utilities]')
-      if (!utilitiesContainer) {
-        return
-      }
-      renderUtilityToggles(utilitiesContainer, this.generatorConfig, () => {
-        this.saveConfiguration()
-        this.transformAndRender()
-      })
+      renderUtilityToggles(
+        this.querySelector<HTMLElement>('[data-utilities]')!,
+        this.generatorConfig,
+        () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+      )
     }
 
     private refreshShadeMap() {
-      const shadeMapContainer = this.querySelector<HTMLElement>('[data-shade-map]')
-      if (!shadeMapContainer) {
-        return
-      }
-      renderShadeMap(shadeMapContainer, this.generatorConfig, () => {
-        this.saveConfiguration()
-        this.transformAndRender()
-      })
+      renderShadeMap(
+        this.querySelector<HTMLElement>('[data-shade-map]')!,
+        this.generatorConfig,
+        () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+      )
     }
 
     private refreshRules() {
-      const rulesContainer = this.querySelector<HTMLElement>('[data-rules]')
-      if (!rulesContainer) {
-        return
-      }
+      const rulesContainer = this.querySelector<HTMLElement>('[data-rules]')!
       renderRules(rulesContainer, this.generatorConfig, {
         onConfigure: (ruleId: string) => {
           this.openInspector(ruleId)
@@ -131,8 +126,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
       })
     }
 
-    // ── Inspector ──────────────────────────────────────────────────
-
     private openInspector(ruleId: string) {
       const ruleIndex = this.generatorConfig.rules.findIndex((r) => r.id === ruleId)
       const rule = this.generatorConfig.rules[ruleIndex]
@@ -140,10 +133,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
         return
       }
 
-      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')
-      if (!inspectorEl) {
-        return
-      }
+      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
 
       bindInspector(inspectorEl, rule, ruleIndex, {
         onChange: () => {
@@ -161,19 +151,16 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private closeInspector() {
-      this.querySelector<HTMLDialogElement>('[data-rule-inspector]')?.close()
+      this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!.close()
     }
 
     private bindInspectorDismiss() {
-      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')
-      if (!inspectorEl) {
-        return
-      }
+      const inspectorEl = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
 
       this.dismissAbortController = new AbortController()
       const { signal } = this.dismissAbortController
 
-      this.querySelector('[data-inspector-close]')?.addEventListener(
+      this.querySelector('[data-inspector-close]')!.addEventListener(
         'click',
         () => {
           this.closeInspector()
@@ -200,11 +187,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private bindOverwriteExisting() {
-      const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
-      if (!overwriteCheckbox) {
-        return
-      }
-
+      const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')!
       overwriteCheckbox.checked = this.generatorConfig.overwriteExisting
       overwriteCheckbox.addEventListener('change', () => {
         this.generatorConfig.overwriteExisting = overwriteCheckbox.checked
@@ -213,24 +196,8 @@ import DarkModeInspector from './DarkModeInspector.astro'
       })
     }
 
-    private syncOverwriteExisting() {
-      const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')
-      if (!overwriteCheckbox) {
-        return
-      }
-
-      overwriteCheckbox.checked = this.generatorConfig.overwriteExisting
-    }
-
-    // ── Binding ────────────────────────────────────────────────────
-
     private bindHtmlInput() {
-      const htmlTextarea = this.querySelector<HTMLTextAreaElement>('[data-input]')
-      if (!htmlTextarea) {
-        return
-      }
-
-      htmlTextarea.addEventListener('input', () => {
+      this.querySelector<HTMLTextAreaElement>('[data-input]')!.addEventListener('input', () => {
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer)
         }
@@ -239,25 +206,25 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private bindActionButtons() {
-      const rulesDialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')
+      const rulesDialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')!
 
-      this.querySelector('[data-rules-examples]')?.addEventListener('click', (clickEvent) => {
+      this.querySelector('[data-rules-examples]')!.addEventListener('click', (clickEvent) => {
         clickEvent.stopPropagation()
-        rulesDialog?.showModal()
+        rulesDialog.showModal()
       })
 
-      this.querySelector('[data-rules-dialog-close]')?.addEventListener('click', () => {
-        rulesDialog?.close()
+      this.querySelector('[data-rules-dialog-close]')!.addEventListener('click', () => {
+        rulesDialog.close()
       })
 
-      rulesDialog?.addEventListener('click', (clickEvent) => {
+      rulesDialog.addEventListener('click', (clickEvent) => {
         if (clickEvent.target === rulesDialog) {
           rulesDialog.close()
         }
       })
 
       // stopPropagation prevents the Rules <details> from toggling closed
-      this.querySelector('[data-add-rule]')?.addEventListener('click', (clickEvent) => {
+      this.querySelector('[data-add-rule]')!.addEventListener('click', (clickEvent) => {
         clickEvent.stopPropagation()
         const newRule: Rule = {
           id: crypto.randomUUID(),
@@ -274,22 +241,23 @@ import DarkModeInspector from './DarkModeInspector.astro'
         this.closeInspector()
         this.refreshRules()
         this.saveConfiguration()
-        this.querySelector<HTMLDetailsElement>('[data-rules]')
-          ?.closest('details')
-          ?.setAttribute('open', '')
+        this.querySelector<HTMLDetailsElement>('[data-rules]')!
+          .closest('details')!
+          .setAttribute('open', '')
       })
 
-      this.querySelector('[data-reset]')?.addEventListener('click', () => {
+      this.querySelector('[data-reset]')!.addEventListener('click', () => {
         this.generatorConfig = resetConfig() as Config
         this.closeInspector()
         this.refreshUtilityToggles()
         this.refreshShadeMap()
         this.refreshRules()
-        this.syncOverwriteExisting()
+        this.querySelector<HTMLInputElement>('[data-overwrite-existing]')!.checked =
+          this.generatorConfig.overwriteExisting
         this.transformAndRender()
       })
 
-      this.querySelector('[data-export]')?.addEventListener('click', () => {
+      this.querySelector('[data-export]')!.addEventListener('click', () => {
         const exportJson = exportConfig(this.generatorConfig)
         const exportBlob = new Blob([exportJson], { type: 'application/json' })
         const downloadUrl = URL.createObjectURL(exportBlob)
@@ -300,7 +268,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
         URL.revokeObjectURL(downloadUrl)
       })
 
-      this.querySelector<HTMLInputElement>('[data-import]')?.addEventListener(
+      this.querySelector<HTMLInputElement>('[data-import]')!.addEventListener(
         'change',
         (changeEvent) => {
           const importedFile = (changeEvent.target as HTMLInputElement).files?.[0]
@@ -320,7 +288,8 @@ import DarkModeInspector from './DarkModeInspector.astro'
             this.refreshUtilityToggles()
             this.refreshShadeMap()
             this.refreshRules()
-            this.syncOverwriteExisting()
+            this.querySelector<HTMLInputElement>('[data-overwrite-existing]')!.checked =
+              this.generatorConfig.overwriteExisting
             this.saveConfiguration()
             this.transformAndRender()
           }
@@ -328,12 +297,12 @@ import DarkModeInspector from './DarkModeInspector.astro'
         },
       )
 
-      const copyButton = this.querySelector<HTMLButtonElement>('[data-copy]')
-      const copyButtonText = this.querySelector<HTMLElement>('[data-copy-text]')
-      const copyLiveRegion = this.querySelector<HTMLElement>('[data-copy-polite]')
+      const copyButton = this.querySelector<HTMLButtonElement>('[data-copy]')!
+      const copyButtonText = this.querySelector<HTMLElement>('[data-copy-text]')!
+      const copyLiveRegion = this.querySelector<HTMLElement>('[data-copy-polite]')!
 
-      copyButton?.addEventListener('click', async () => {
-        const outputText = this.querySelector<HTMLPreElement>('[data-output]')?.textContent ?? ''
+      copyButton.addEventListener('click', async () => {
+        const outputText = this.querySelector<HTMLPreElement>('[data-output]')!.textContent ?? ''
         if (!outputText.trim()) {
           return
         }
@@ -341,28 +310,20 @@ import DarkModeInspector from './DarkModeInspector.astro'
         try {
           await navigator.clipboard.writeText(outputText)
 
-          if (copyButtonText) {
-            copyButtonText.textContent = 'Copied'
-          }
-          if (copyLiveRegion) {
-            copyLiveRegion.textContent = 'Copied to clipboard.'
-          }
+          copyButtonText.textContent = 'Copied'
+          copyLiveRegion.textContent = 'Copied to clipboard.'
           copyButton.setAttribute('aria-pressed', 'true')
 
           if (this.clipboardCopyTimer) {
             clearTimeout(this.clipboardCopyTimer)
           }
           this.clipboardCopyTimer = setTimeout(() => {
-            if (copyButtonText) {
-              copyButtonText.textContent = 'Copy'
-            }
-            if (copyLiveRegion) {
-              copyLiveRegion.textContent = ''
-            }
+            copyButtonText.textContent = 'Copy'
+            copyLiveRegion.textContent = ''
             copyButton.setAttribute('aria-pressed', 'false')
           }, 1500)
         } catch {
-          // clipboard write failed silently
+          //
         }
       })
 
@@ -377,15 +338,9 @@ import DarkModeInspector from './DarkModeInspector.astro'
       })
     }
 
-    // ── Core logic ─────────────────────────────────────────────────
-
     private transformAndRender() {
-      const inputValue = this.querySelector<HTMLTextAreaElement>('[data-input]')?.value ?? ''
-      const outputElement = this.querySelector<HTMLPreElement>('[data-output]')
-
-      if (!outputElement) {
-        return
-      }
+      const inputValue = this.querySelector<HTMLTextAreaElement>('[data-input]')!.value
+      const outputElement = this.querySelector<HTMLPreElement>('[data-output]')!
 
       if (!inputValue.trim()) {
         outputElement.textContent = ''
@@ -402,26 +357,17 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private updatePreviewFrames(lightHtml: string, darkHtml: string) {
-      const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
-      const darkPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
-
-      if (lightPreviewFrame) {
-        lightPreviewFrame.srcdoc = buildPreviewDocument(lightHtml, false)
-      }
-      if (darkPreviewFrame) {
-        darkPreviewFrame.srcdoc = buildPreviewDocument(darkHtml, true)
-      }
+      this.querySelector<HTMLIFrameElement>('[data-preview="light"]')!.srcdoc =
+        buildPreviewDocument(lightHtml, false)
+      this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')!.srcdoc =
+        buildPreviewDocument(darkHtml, true)
     }
 
     private applyPreviewMode(previewMode: PreviewMode) {
-      const previewContainer = this.querySelector<HTMLElement>('[data-preview-container]')
-      const codeContainer = this.querySelector<HTMLElement>('[data-code-container]')
-      const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')
-      const darkPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')
-
-      if (!previewContainer || !codeContainer || !lightPreviewFrame || !darkPreviewFrame) {
-        return
-      }
+      const previewContainer = this.querySelector<HTMLElement>('[data-preview-container]')!
+      const codeContainer = this.querySelector<HTMLElement>('[data-code-container]')!
+      const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')!
+      const darkPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')!
 
       if (previewMode === 'code') {
         previewContainer.classList.add('hidden')
@@ -450,13 +396,12 @@ import DarkModeInspector from './DarkModeInspector.astro'
     private saveConfiguration() {
       saveConfig(this.generatorConfig)
 
-      const lastSaved = this.querySelector<HTMLElement>('[data-last-saved]')
-
-      if (lastSaved) {
-        const formattedSaveTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-
-        lastSaved.textContent = `Last saved: ${formattedSaveTime}`
-      }
+      const formattedSaveTime = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+      this.querySelector<HTMLElement>('[data-last-saved]')!.textContent =
+        `Last saved: ${formattedSaveTime}`
     }
   }
 

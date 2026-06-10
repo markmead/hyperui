@@ -49,9 +49,6 @@ export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, 
 }
 
 export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNameChange }) {
-  // Safety net: if a name edit was in progress when switching rules, commit it now.
-  // In the normal path blur fires before click and commits via the blur listener, but
-  // this guard covers any browser where that ordering doesn't hold.
   const previousFlush = inspectorEl[INSPECTOR_FLUSH_KEY]
   if (previousFlush) {
     previousFlush()
@@ -87,12 +84,10 @@ export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNa
   excludeElementsInput.value = ruleData.excludeElements.join(', ')
   excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
-  // Ensure display mode in case a previous binding left edit mode open
   nameInput.classList.add('hidden')
   nameDisplay.classList.remove('hidden')
   nameEditButton.classList.remove('hidden')
 
-  // Stored so the next bindInspector call can flush any pending name edit
   inspectorEl[INSPECTOR_FLUSH_KEY] = () => {
     if (!nameInput.classList.contains('hidden')) {
       const pendingName = nameInput.value.trim()
@@ -132,8 +127,6 @@ export function bindInspector(inspectorEl, ruleData, ruleIndex, { onChange, onNa
     { signal: abortSignal },
   )
 
-  // Value comparison replaces the discardingNameEdit flag: Escape resets the input
-  // value before blur fires, so a changed value means a genuine commit.
   nameInput.addEventListener(
     'blur',
     () => {
