@@ -9,8 +9,8 @@ import { transformClass } from './transform-class.js'
  * @returns {string}
  */
 export function transformHtmlString(htmlContent, configData) {
-  return htmlContent.replace(/class="([^"]*)"/g, (_fullMatchString, classAttributeibute) => {
-    const transformedValue = transformClassAttribute(classAttributeibute, configData, null)
+  return htmlContent.replace(/class="([^"]*)"/g, (_, classAttribute) => {
+    const transformedValue = transformClassAttribute(classAttribute, configData, null)
 
     return `class="${transformedValue}"`
   })

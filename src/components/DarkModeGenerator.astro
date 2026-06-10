@@ -158,14 +158,14 @@ import DarkModeInspector from './DarkModeInspector.astro'
       const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
 
       this.dismissAbortController = new AbortController()
-      const { signal: abortSignal } = this.dismissAbortController
+      const { signal } = this.dismissAbortController
 
       this.querySelector('[data-inspector-close]')!.addEventListener(
         'click',
         () => {
           this.closeInspector()
         },
-        { signal: abortSignal },
+        { signal },
       )
 
       document.addEventListener(
@@ -182,7 +182,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
             this.closeInspector()
           }
         },
-        { signal: abortSignal },
+        { signal },
       )
     }
 
