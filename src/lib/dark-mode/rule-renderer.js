@@ -1,12 +1,23 @@
 const INSPECTOR_ABORT_KEY = Symbol('inspectorAbortController')
 const INSPECTOR_FLUSH_KEY = Symbol('inspectorFlush')
 
+function parseCommaSeparatedList(inputValue, isLowercase = false) {
+  return inputValue
+    .split(',')
+    .map((rawEntry) => (isLowercase ? rawEntry.trim().toLowerCase() : rawEntry.trim()))
+    .filter(Boolean)
+}
+
+function formatDefaultRuleName(ruleIndex) {
+  return `Rule ${ruleIndex + 1}`
+}
+
 export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, onToggleEnabled }) {
   const ruleListItem = document.createElement('li')
   ruleListItem.className =
     'flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2'
 
-  const defaultRuleName = `Rule ${ruleIndex + 1}`
+  const defaultRuleName = formatDefaultRuleName(ruleIndex)
 
   ruleListItem.innerHTML = `
     <input
@@ -63,7 +74,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   inspectorElement[INSPECTOR_ABORT_KEY] = abortController
   const { signal: abortSignal } = abortController
 
-  const defaultRuleName = `Rule ${ruleIndex + 1}`
+  const defaultRuleName = formatDefaultRuleName(ruleIndex)
 
   const nameDisplay = inspectorElement.querySelector('[data-inspector-name-display]')
   const nameEditButton = inspectorElement.querySelector('[data-inspector-name-edit]')
@@ -151,10 +162,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   utilitiesInput.addEventListener(
     'change',
     () => {
-      const parsedItems = utilitiesInput.value
-        .split(',')
-        .map((rawEntry) => rawEntry.trim())
-        .filter(Boolean)
+      const parsedItems = parseCommaSeparatedList(utilitiesInput.value)
       ruleData.utilities = parsedItems.length > 0 ? parsedItems : null
       onChange()
     },
@@ -174,10 +182,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   colorsInput.addEventListener(
     'change',
     () => {
-      const parsedItems = colorsInput.value
-        .split(',')
-        .map((rawEntry) => rawEntry.trim())
-        .filter(Boolean)
+      const parsedItems = parseCommaSeparatedList(colorsInput.value)
       ruleData.colors = parsedItems.length > 0 ? parsedItems : null
       onChange()
     },
@@ -206,10 +211,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   excludeElementsInput.addEventListener(
     'change',
     () => {
-      ruleData.excludeElements = excludeElementsInput.value
-        .split(',')
-        .map((rawEntry) => rawEntry.trim().toLowerCase())
-        .filter(Boolean)
+      ruleData.excludeElements = parseCommaSeparatedList(excludeElementsInput.value, true)
       onChange()
     },
     { signal: abortSignal },
@@ -218,10 +220,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   excludeColorsInput.addEventListener(
     'change',
     () => {
-      ruleData.excludeColors = excludeColorsInput.value
-        .split(',')
-        .map((rawEntry) => rawEntry.trim())
-        .filter(Boolean)
+      ruleData.excludeColors = parseCommaSeparatedList(excludeColorsInput.value)
       onChange()
     },
     { signal: abortSignal },
