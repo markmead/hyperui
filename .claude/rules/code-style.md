@@ -92,7 +92,7 @@ Static lookup objects/maps defined at module level use ALL_CAPS:
 const SHADE_MAP = { 100: 900, 200: 800, ... }
 const COLOR_FAMILIES = ['red', 'orange', ...]
 const DEBOUNCE_DELAY_MS = 300
-const STORAGE_KEY = 'hyperui:dark-mode-generator:v1'
+const STORAGE_KEY = 'hyperui:dark-mode-generator'
 ```
 
 ## Destructuring: in callbacks and iterators

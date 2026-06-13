@@ -1,6 +1,4 @@
-import { SHADE_MAP, COLOR_MAP } from '../../constants/dark-mode.js'
-
-const STORAGE_KEY = 'hyperui:dark-mode-generator:v1'
+import { SHADE_MAP, COLOR_MAP, STORAGE_KEY } from '../../constants/dark-mode.js'
 
 /**
  * @typedef {Object} Rule

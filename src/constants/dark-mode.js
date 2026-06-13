@@ -1,3 +1,5 @@
+export const STORAGE_KEY = 'hyperui:dark-mode-generator'
+
 export const SHADE_MAP = {
   50: 800,
   100: 800,
