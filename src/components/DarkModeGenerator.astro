@@ -267,13 +267,14 @@ import DarkModeInspector from './DarkModeInspector.astro'
         downloadLink.href = downloadUrl
         downloadLink.download = 'dark-mode-config.json'
         downloadLink.click()
-        URL.revokeObjectURL(downloadUrl)
+        requestAnimationFrame(() => URL.revokeObjectURL(downloadUrl))
       })
 
       this.querySelector<HTMLInputElement>('[data-import]')!.addEventListener(
         'change',
         (changeEvent) => {
-          const importedFile = (changeEvent.target as HTMLInputElement).files?.[0]
+          const importFileInput = changeEvent.target as HTMLInputElement
+          const importedFile = importFileInput.files?.[0]
           if (!importedFile) {
             return
           }
@@ -281,6 +282,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
           const fileReader = new FileReader()
           fileReader.onload = () => {
             const importResult = importConfig(String(fileReader.result))
+            importFileInput.value = ''
             if (!importResult.ok) {
               alert(`Import failed: ${importResult.error}`)
               return

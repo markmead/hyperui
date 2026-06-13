@@ -3,6 +3,7 @@ import { SHADE_MAP, COLOR_MAP, STORAGE_KEY } from '../../constants/dark-mode.js'
 /**
  * @typedef {Object} Rule
  * @property {string} id
+ * @property {string} name
  * @property {boolean} enabled
  * @property {string[] | null} [utilities]    - e.g. ['bg','text'] — null means any utility
  * @property {number | null} [shade]          - e.g. 600 — null means any shade
@@ -151,9 +152,11 @@ function normalizeRule(rawRule) {
   // Migrate old `utility: string` field to `utilities: string[]`
   let utilityList = null
   if (Array.isArray(ruleRecord.utilities)) {
-    utilityList = ruleRecord.utilities.filter((utilityItem) => typeof utilityItem === 'string')
+    utilityList = ruleRecord.utilities
+      .filter((utilityItem) => typeof utilityItem === 'string')
+      .map((utilityItem) => utilityItem.trim().toLowerCase())
   } else if (typeof ruleRecord.utility === 'string' && ruleRecord.utility) {
-    utilityList = [ruleRecord.utility]
+    utilityList = [ruleRecord.utility.trim().toLowerCase()]
   }
 
   return {
@@ -163,18 +166,24 @@ function normalizeRule(rawRule) {
     utilities: utilityList && utilityList.length > 0 ? utilityList : null,
     shade: typeof ruleRecord.shade === 'number' ? ruleRecord.shade : null,
     colors: Array.isArray(ruleRecord.colors)
-      ? ruleRecord.colors.filter((colorItem) => typeof colorItem === 'string')
+      ? ruleRecord.colors
+          .filter((colorItem) => typeof colorItem === 'string')
+          .map((colorItem) => colorItem.trim().toLowerCase())
       : null,
     darkShade: typeof ruleRecord.darkShade === 'number' ? ruleRecord.darkShade : null,
     darkColor:
       typeof ruleRecord.darkColor === 'string' && ruleRecord.darkColor
-        ? ruleRecord.darkColor
+        ? ruleRecord.darkColor.trim()
         : null,
     excludeElements: Array.isArray(ruleRecord.excludeElements)
-      ? ruleRecord.excludeElements.filter((elementItem) => typeof elementItem === 'string')
+      ? ruleRecord.excludeElements
+          .filter((elementItem) => typeof elementItem === 'string')
+          .map((elementItem) => elementItem.trim().toLowerCase())
       : [],
     excludeColors: Array.isArray(ruleRecord.excludeColors)
-      ? ruleRecord.excludeColors.filter((colorItem) => typeof colorItem === 'string')
+      ? ruleRecord.excludeColors
+          .filter((colorItem) => typeof colorItem === 'string')
+          .map((colorItem) => colorItem.trim().toLowerCase())
       : [],
   }
 }
