@@ -26,12 +26,14 @@ export function renderUtilityToggles(containerElement, configData, onChangeCallb
     const disabledPill = document.createElement('span')
     disabledPill.className =
       'peer-checked:hidden inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2.5 py-0.5 text-xs font-medium text-gray-500'
-    disabledPill.innerHTML = `${ICON_PLUS}${utilityName}`
+    disabledPill.innerHTML = ICON_PLUS
+    disabledPill.appendChild(document.createTextNode(utilityName))
 
     const enabledPill = document.createElement('span')
     enabledPill.className =
       'hidden peer-checked:inline-flex items-center gap-1 rounded-full border border-gray-900 bg-gray-900 px-2.5 py-0.5 text-xs font-medium text-white'
-    enabledPill.innerHTML = `${ICON_MINUS}${utilityName}`
+    enabledPill.innerHTML = ICON_MINUS
+    enabledPill.appendChild(document.createTextNode(utilityName))
 
     toggleLabel.appendChild(toggleCheckbox)
     toggleLabel.appendChild(disabledPill)

@@ -31,6 +31,14 @@ export function transformHtmlString(htmlContent, configData) {
 export function transformHtmlDom(htmlContent, configData) {
   const domParser = new DOMParser()
   const parsedDocument = domParser.parseFromString(htmlContent, 'text/html')
+
+  parsedDocument.querySelectorAll('script').forEach((scriptElement) => scriptElement.remove())
+  parsedDocument.querySelectorAll('*').forEach((domElement) => {
+    Array.from(domElement.attributes)
+      .filter(({ name: attributeName }) => attributeName.startsWith('on'))
+      .forEach(({ name: attributeName }) => domElement.removeAttribute(attributeName))
+  })
+
   const lightHtml = parsedDocument.body.innerHTML
 
   parsedDocument.querySelectorAll('[class]').forEach((classElement) => {
