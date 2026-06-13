@@ -168,7 +168,10 @@ function normalizeRule(rawRule) {
       ? ruleRecord.colors.filter((colorItem) => typeof colorItem === 'string')
       : null,
     darkShade: typeof ruleRecord.darkShade === 'number' ? ruleRecord.darkShade : null,
-    darkColor: typeof ruleRecord.darkColor === 'string' && ruleRecord.darkColor ? ruleRecord.darkColor : null,
+    darkColor:
+      typeof ruleRecord.darkColor === 'string' && ruleRecord.darkColor
+        ? ruleRecord.darkColor
+        : null,
     excludeElements: Array.isArray(ruleRecord.excludeElements)
       ? ruleRecord.excludeElements.filter((elementItem) => typeof elementItem === 'string')
       : [],

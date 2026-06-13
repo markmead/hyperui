@@ -130,7 +130,9 @@ import DarkModeInspector from './DarkModeInspector.astro'
     }
 
     private openInspector(ruleId: string) {
-      const ruleIndex = this.generatorConfig.rules.findIndex((existingRule) => existingRule.id === ruleId)
+      const ruleIndex = this.generatorConfig.rules.findIndex(
+        (existingRule) => existingRule.id === ruleId,
+      )
       const matchedRule = this.generatorConfig.rules[ruleIndex]
       if (!matchedRule) {
         return
@@ -356,8 +358,10 @@ import DarkModeInspector from './DarkModeInspector.astro'
     private updatePreviewFrames(lightHtml: string, darkHtml: string) {
       this.querySelector<HTMLIFrameElement>('[data-preview="light"]')!.srcdoc =
         buildPreviewDocument(lightHtml, false)
-      this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')!.srcdoc =
-        buildPreviewDocument(darkHtml, true)
+      this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')!.srcdoc = buildPreviewDocument(
+        darkHtml,
+        true,
+      )
     }
 
     private applyPreviewMode(previewMode: PreviewMode) {

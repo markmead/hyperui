@@ -3,7 +3,8 @@ const INSPECTOR_FLUSH_KEY = Symbol('inspectorFlush')
 
 export function buildRuleListItem(ruleData, ruleIndex, { onConfigure, onDelete, onToggleEnabled }) {
   const ruleListItem = document.createElement('li')
-  ruleListItem.className = 'flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2'
+  ruleListItem.className =
+    'flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2'
 
   const defaultRuleName = `Rule ${ruleIndex + 1}`
 

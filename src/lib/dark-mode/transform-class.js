@@ -67,7 +67,11 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
     }
 
     if (activeRule.darkColor) {
-      return { skip: false, darkShade: activeRule.darkShade ?? null, darkColor: activeRule.darkColor }
+      return {
+        skip: false,
+        darkShade: activeRule.darkShade ?? null,
+        darkColor: activeRule.darkColor,
+      }
     }
 
     if (activeRule.darkShade !== null) {
@@ -112,7 +116,7 @@ export function transformClass(className, configData, tagName = null) {
         }
 
         const resolvedDarkColor = ruleResult?.darkColor
-          ? ruleResult.darkShade != null
+          ? ruleResult.darkShade !== null
             ? `${ruleResult.darkColor}-${ruleResult.darkShade}`
             : ruleResult.darkColor
           : darkColor
@@ -143,14 +147,20 @@ export function transformClass(className, configData, tagName = null) {
         return className
       }
 
-      const ruleResult = applyRules(utilityName, colorFamily, parsedShadeNumber, tagName, configData)
+      const ruleResult = applyRules(
+        utilityName,
+        colorFamily,
+        parsedShadeNumber,
+        tagName,
+        configData,
+      )
 
       if (ruleResult?.skip) {
         return className
       }
 
       const resolvedDarkColor = ruleResult?.darkColor
-        ? ruleResult.darkShade != null
+        ? ruleResult.darkShade !== null
           ? `${ruleResult.darkColor}-${ruleResult.darkShade}`
           : ruleResult.darkColor
         : `${colorFamily}-${ruleResult?.darkShade ?? configData.shadeMap[parsedShadeNumber]}`

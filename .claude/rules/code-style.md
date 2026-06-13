@@ -1,10 +1,10 @@
 ---
 paths:
-  - "src/**/*.astro"
-  - "src/**/*.ts"
-  - "src/**/*.js"
-  - "constants/**/*.js"
-  - "scripts/**/*.js"
+  - 'src/**/*.astro'
+  - 'src/**/*.ts'
+  - 'src/**/*.js'
+  - 'constants/**/*.js'
+  - 'scripts/**/*.js'
 ---
 
 # Code style
@@ -13,7 +13,7 @@ These rules apply to all JavaScript and Astro component scripts in this project.
 
 ## Naming: be explicit and contextual
 
-Names must be full and descriptive. Single-word names and abbreviations are not acceptable. The name must say what the value represents in *this* context, not just what type it is.
+Names must be full and descriptive. Single-word names and abbreviations are not acceptable. The name must say what the value represents in _this_ context, not just what type it is.
 
 ```js
 // Good
@@ -45,16 +45,16 @@ const isLastSeparator = index === -1
 
 Use consistent suffixes to encode the kind of value:
 
-| Suffix | Use for | Example |
-|--------|---------|---------|
-| `*Count` | numeric totals | `ruleCount`, `answeredCount` |
-| `*Index` | array positions | `ruleIndex`, `activeQuestionIndex` |
-| `*Id` | identifiers and timer handles | `ruleId`, `debounceTimerId` |
-| `*Element` | DOM elements | `inspectorElement`, `rulesContainer` |
-| `*Input` | form input elements | `nameInput`, `shadeInput` |
-| `*Display` | read-only display elements | `nameDisplay`, `rulesCountDisplay` |
-| `*Map` | lookup objects keyed by value | `shadeMap`, `colorMap` |
-| `*Number` | parsed numeric values | `parsedShadeNumber` |
+| Suffix     | Use for                       | Example                              |
+| ---------- | ----------------------------- | ------------------------------------ |
+| `*Count`   | numeric totals                | `ruleCount`, `answeredCount`         |
+| `*Index`   | array positions               | `ruleIndex`, `activeQuestionIndex`   |
+| `*Id`      | identifiers and timer handles | `ruleId`, `debounceTimerId`          |
+| `*Element` | DOM elements                  | `inspectorElement`, `rulesContainer` |
+| `*Input`   | form input elements           | `nameInput`, `shadeInput`            |
+| `*Display` | read-only display elements    | `nameDisplay`, `rulesCountDisplay`   |
+| `*Map`     | lookup objects keyed by value | `shadeMap`, `colorMap`               |
+| `*Number`  | parsed numeric values         | `parsedShadeNumber`                  |
 
 ## Naming: methods — verb + object
 
