@@ -28,3 +28,7 @@ export const SEO_TITLE_TOOLS = 'Free Tailwind CSS Tools'
 export const SEO_DESCRIPTION_DARK_MODE_GENERATOR =
   'Paste any Tailwind CSS HTML and automatically generate dark mode variants. Configurable rules with element and color exclusions, persisted to your browser.'
 export const SEO_TITLE_DARK_MODE_GENERATOR = 'Tailwind CSS Dark Mode Generator'
+
+export const SEO_DESCRIPTION_TYPOGRAPHY_MAPPER =
+  'Enter font size and line height in pixels from a Figma handoff and get the exact Tailwind CSS class, or the nearest tokens with an arbitrary value fallback.'
+export const SEO_TITLE_TYPOGRAPHY_MAPPER = 'Tailwind CSS Typography Mapper'

@@ -1,0 +1,931 @@
+---
+---
+
+<typography-mapper class="block">
+  <div class="flex flex-wrap gap-4">
+    <div class="w-36">
+      <label for="font-size-input" class="mb-1.5 block text-sm font-medium text-gray-700">
+        Font Size
+      </label>
+
+      <div class="relative">
+        <input
+          id="font-size-input"
+          type="number"
+          data-font-size-input
+          value="30"
+          min="1"
+          class="w-full rounded-lg border border-gray-200 py-2.5 pl-3 pr-10 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-300 [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+
+        <span
+          class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-gray-400"
+        >
+          px
+        </span>
+      </div>
+    </div>
+
+    <div class="w-36">
+      <label for="line-height-input" class="mb-1.5 block text-sm font-medium text-gray-700">
+        Line Height
+      </label>
+
+      <div class="relative">
+        <input
+          id="line-height-input"
+          type="number"
+          data-line-height-input
+          value="48"
+          min="1"
+          class="w-full rounded-lg border border-gray-200 py-2.5 pl-3 pr-10 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-300 [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+
+        <span
+          class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-gray-400"
+        >
+          px
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div data-skeleton-container class="mt-4 hidden space-y-4">
+    <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+      <div class="border-b border-gray-100 p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div class="min-w-0 flex-1 space-y-3">
+            <div class="h-2.5 w-20 rounded-full bg-gray-100"></div>
+            <div class="h-8 w-44 rounded-lg bg-gray-100"></div>
+            <div class="h-3 w-64 rounded-full bg-gray-100"></div>
+          </div>
+          <div class="h-9 w-16 shrink-0 rounded-lg bg-gray-100"></div>
+        </div>
+      </div>
+
+      <div class="divide-y divide-gray-100 lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <div class="space-y-3 p-6">
+          <div class="h-2.5 w-14 rounded-full bg-gray-100"></div>
+          <div class="space-y-2 pt-1">
+            <div class="h-4 w-3/4 rounded-full bg-gray-100"></div>
+            <div class="h-4 w-1/2 rounded-full bg-gray-100"></div>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <div class="mb-4 h-2.5 w-20 rounded-full bg-gray-100"></div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <div class="h-2.5 w-14 rounded-full bg-gray-100"></div>
+              <div class="h-4 w-16 rounded-full bg-gray-100"></div>
+              <div class="h-2.5 w-20 rounded-full bg-gray-100"></div>
+              <div class="mt-0.5 h-5 w-12 rounded-full bg-gray-100"></div>
+            </div>
+            <div class="space-y-2">
+              <div class="h-2.5 w-14 rounded-full bg-gray-100"></div>
+              <div class="h-4 w-20 rounded-full bg-gray-100"></div>
+              <div class="h-2.5 w-24 rounded-full bg-gray-100"></div>
+              <div class="mt-0.5 h-5 w-16 rounded-full bg-gray-100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="mb-3 h-2.5 w-20 rounded-full bg-gray-100"></div>
+      <div class="flex items-start">
+        <div class="flex min-w-[72px] flex-col items-center">
+          <div class="size-3 rounded-full bg-gray-200"></div>
+          <div class="mt-1.5 h-2.5 w-10 rounded-full bg-gray-100"></div>
+          <div class="mt-1 h-2.5 w-8 rounded-full bg-gray-100"></div>
+        </div>
+        <div class="mt-[5px] min-w-4 flex-1 border-t border-gray-200"></div>
+        <div class="flex min-w-[72px] flex-col items-center">
+          <div class="size-3 rounded-full bg-gray-200"></div>
+          <div class="mt-1.5 h-2.5 w-12 rounded-full bg-gray-100"></div>
+          <div class="mt-1 h-2.5 w-8 rounded-full bg-gray-100"></div>
+        </div>
+        <div class="mt-[5px] min-w-4 flex-1 border-t border-gray-200"></div>
+        <div class="flex min-w-[72px] flex-col items-center">
+          <div class="size-3 rounded-full bg-gray-300"></div>
+          <div class="mt-1.5 h-2.5 w-14 rounded-full bg-gray-100"></div>
+          <div class="mt-1 h-2.5 w-8 rounded-full bg-gray-100"></div>
+        </div>
+        <div class="mt-[5px] min-w-4 flex-1 border-t border-gray-200"></div>
+        <div class="flex min-w-[72px] flex-col items-center">
+          <div class="size-3 rounded-full bg-gray-200"></div>
+          <div class="mt-1.5 h-2.5 w-12 rounded-full bg-gray-100"></div>
+          <div class="mt-1 h-2.5 w-8 rounded-full bg-gray-100"></div>
+        </div>
+        <div class="mt-[5px] min-w-4 flex-1 border-t border-gray-200"></div>
+        <div class="flex min-w-[72px] flex-col items-center">
+          <div class="size-3 rounded-full bg-gray-200"></div>
+          <div class="mt-1.5 h-2.5 w-10 rounded-full bg-gray-100"></div>
+          <div class="mt-1 h-2.5 w-8 rounded-full bg-gray-100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-result-container class="mt-4 hidden space-y-4">
+    <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+      <div class="border-b border-gray-100 p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div class="min-w-0">
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">Tailwind Class</p>
+
+            <code
+              data-combined-class-display
+              class="mt-1 block break-all font-mono text-3xl font-semibold text-gray-900"
+            ></code>
+
+            <div class="mt-2 flex flex-wrap items-center gap-2">
+              <p data-match-description-display class="text-sm text-gray-600"></p>
+              <span
+                data-line-height-ratio-badge
+                class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+              ></span>
+            </div>
+          </div>
+
+          <button
+            data-copy-button
+            type="button"
+            class="shrink-0 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 active:bg-gray-100"
+          >
+            <span data-copy-button-text>Copy</span>
+            <span data-copy-live-region aria-live="polite" class="sr-only"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="divide-y divide-gray-100 lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <div class="p-6">
+          <p class="mb-4 text-xs font-medium uppercase tracking-wide text-gray-400">Preview</p>
+
+          <div class="overflow-hidden">
+            <p data-preview-text class="text-gray-900">
+              The quick brown fox<br />
+              jumps over the lazy dog.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <p class="mb-4 text-xs font-medium uppercase tracking-wide text-gray-400">Breakdown</p>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <p class="text-xs text-gray-400">Font Size</p>
+
+              <code
+                data-font-size-class-display
+                class="mt-1 block font-mono text-sm font-medium text-gray-900"
+              ></code>
+
+              <p data-font-size-rem-display class="mt-0.5 text-xs text-gray-500"></p>
+
+              <span
+                data-font-size-badge
+                class="mt-2 inline-flex rounded-full px-2 py-0.5 text-xs font-medium"
+              ></span>
+            </div>
+
+            <div>
+              <p class="text-xs text-gray-400">Line Height</p>
+
+              <code
+                data-line-height-class-display
+                class="mt-1 block font-mono text-sm font-medium text-gray-900"
+              ></code>
+
+              <p data-line-height-rem-display class="mt-0.5 text-xs text-gray-500"></p>
+
+              <span
+                data-line-height-badge
+                class="mt-2 inline-flex rounded-full px-2 py-0.5 text-xs font-medium"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="mb-3 text-sm font-medium text-gray-700">Type scale</p>
+      <div data-scale-track></div>
+    </div>
+
+    <div data-config-container class="hidden">
+      <p class="mb-2 text-sm font-medium text-gray-700">Tailwind v4 theme config</p>
+
+      <div class="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
+        <pre
+          data-config-pre
+          class="overflow-x-auto p-4 font-mono text-sm text-gray-900"
+        ></pre>
+
+        <div class="absolute right-3 top-3">
+          <button
+            data-copy-config-button
+            type="button"
+            class="rounded border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-500 transition hover:bg-gray-50"
+          >
+            <span data-copy-config-button-text>Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div data-nearest-container class="hidden">
+      <p class="mb-2 text-sm font-medium text-gray-700">Nearest Tailwind sizes</p>
+
+      <div data-nearest-grid class="grid gap-3 sm:grid-cols-2"></div>
+    </div>
+  </div>
+</typography-mapper>
+
+<script>
+  type FontSizeScaleEntry = {
+    pixelValue: number
+    remValue: string
+    tailwindClass: string
+    defaultLeadingPx: number
+  }
+
+  type LineHeightMatchType = 'default' | 'spacing' | 'arbitrary'
+
+  type LineHeightMappingResult = {
+    tailwindClass: string
+    shorthandModifier: string
+    isExact: boolean
+    matchType: LineHeightMatchType
+  }
+
+  type FontSizeMappingResult = {
+    tailwindClass: string
+    isExact: boolean
+    exactEntry: FontSizeScaleEntry | null
+    nearestBelowEntry: FontSizeScaleEntry | null
+    nearestAboveEntry: FontSizeScaleEntry | null
+  }
+
+  type TypographyMappingResult = {
+    combinedClass: string
+    fontSizeMappingResult: FontSizeMappingResult
+    lineHeightMappingResult: LineHeightMappingResult
+    isDefaultLeadingMatch: boolean
+  }
+
+  type BadgeType = 'exact' | 'arbitrary' | 'default' | 'spacing'
+
+  type ScaleTrackItem = {
+    labelText: string
+    pixelValueText: string
+    isHighlighted: boolean
+    isUserValue: boolean
+  }
+
+  const FONT_SIZE_SCALE: FontSizeScaleEntry[] = [
+    { pixelValue: 12, remValue: '0.75rem', tailwindClass: 'text-xs', defaultLeadingPx: 16 },
+    { pixelValue: 14, remValue: '0.875rem', tailwindClass: 'text-sm', defaultLeadingPx: 20 },
+    { pixelValue: 16, remValue: '1rem', tailwindClass: 'text-base', defaultLeadingPx: 24 },
+    { pixelValue: 18, remValue: '1.125rem', tailwindClass: 'text-lg', defaultLeadingPx: 28 },
+    { pixelValue: 20, remValue: '1.25rem', tailwindClass: 'text-xl', defaultLeadingPx: 28 },
+    { pixelValue: 24, remValue: '1.5rem', tailwindClass: 'text-2xl', defaultLeadingPx: 32 },
+    { pixelValue: 30, remValue: '1.875rem', tailwindClass: 'text-3xl', defaultLeadingPx: 36 },
+    { pixelValue: 36, remValue: '2.25rem', tailwindClass: 'text-4xl', defaultLeadingPx: 40 },
+    { pixelValue: 48, remValue: '3rem', tailwindClass: 'text-5xl', defaultLeadingPx: 48 },
+    { pixelValue: 60, remValue: '3.75rem', tailwindClass: 'text-6xl', defaultLeadingPx: 60 },
+    { pixelValue: 72, remValue: '4.5rem', tailwindClass: 'text-7xl', defaultLeadingPx: 72 },
+    { pixelValue: 96, remValue: '6rem', tailwindClass: 'text-8xl', defaultLeadingPx: 96 },
+    { pixelValue: 128, remValue: '8rem', tailwindClass: 'text-9xl', defaultLeadingPx: 128 },
+  ]
+
+  const BADGE_STYLE_MAP: Record<BadgeType, { labelText: string; styleClasses: string }> = {
+    exact: { labelText: 'Exact', styleClasses: 'bg-green-50 text-green-700' },
+    default: { labelText: 'Default', styleClasses: 'bg-blue-50 text-blue-700' },
+    spacing: { labelText: 'Spacing scale', styleClasses: 'bg-green-50 text-green-700' },
+    arbitrary: { labelText: 'Arbitrary', styleClasses: 'bg-amber-50 text-amber-700' },
+  }
+
+  function pxToRem(pixelValue: number): string {
+    const remValue = Math.round((pixelValue / 16) * 1000) / 1000
+    return `${remValue}rem`
+  }
+
+  function buildRemDisplay(pixelValue: number): string {
+    return `${pixelValue}px → ${pxToRem(pixelValue)}`
+  }
+
+  function applyBadgeStyle(badgeElement: HTMLElement, badgeType: BadgeType) {
+    const { labelText, styleClasses } = BADGE_STYLE_MAP[badgeType]
+    badgeElement.textContent = labelText
+    badgeElement.className = `inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${styleClasses}`
+  }
+
+  function buildLineHeightRatioDescription(lineHeightRatio: number): {
+    labelText: string
+    styleClasses: string
+  } {
+    if (lineHeightRatio < 1.2) return { labelText: 'Very tight', styleClasses: 'bg-red-50 text-red-600' }
+    if (lineHeightRatio < 1.35) return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
+    if (lineHeightRatio < 1.6) return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
+    if (lineHeightRatio < 2.0) return { labelText: 'Relaxed', styleClasses: 'bg-blue-50 text-blue-700' }
+    return { labelText: 'Loose', styleClasses: 'bg-purple-50 text-purple-700' }
+  }
+
+  function mapFontSize(fontSizePixelValue: number): FontSizeMappingResult {
+    const exactEntry =
+      FONT_SIZE_SCALE.find((scaleEntry) => scaleEntry.pixelValue === fontSizePixelValue) ?? null
+
+    if (exactEntry) {
+      return {
+        tailwindClass: exactEntry.tailwindClass,
+        isExact: true,
+        exactEntry,
+        nearestBelowEntry: null,
+        nearestAboveEntry: null,
+      }
+    }
+
+    const nearestBelowEntry =
+      FONT_SIZE_SCALE.filter((scaleEntry) => scaleEntry.pixelValue < fontSizePixelValue).at(-1) ??
+      null
+
+    const nearestAboveEntry =
+      FONT_SIZE_SCALE.find((scaleEntry) => scaleEntry.pixelValue > fontSizePixelValue) ?? null
+
+    return {
+      tailwindClass: `text-[${fontSizePixelValue}px]`,
+      isExact: false,
+      exactEntry: null,
+      nearestBelowEntry,
+      nearestAboveEntry,
+    }
+  }
+
+  function mapLineHeight(lineHeightPixelValue: number): LineHeightMappingResult {
+    if (lineHeightPixelValue % 4 === 0) {
+      const spacingUnitNumber = lineHeightPixelValue / 4
+      return {
+        tailwindClass: `leading-${spacingUnitNumber}`,
+        shorthandModifier: String(spacingUnitNumber),
+        isExact: true,
+        matchType: 'spacing',
+      }
+    }
+
+    return {
+      tailwindClass: `leading-[${lineHeightPixelValue}px]`,
+      shorthandModifier: `[${lineHeightPixelValue}px]`,
+      isExact: false,
+      matchType: 'arbitrary',
+    }
+  }
+
+  function mapTypography(
+    fontSizePixelValue: number,
+    lineHeightPixelValue: number,
+  ): TypographyMappingResult {
+    const fontSizeMappingResult = mapFontSize(fontSizePixelValue)
+    const lineHeightMappingResult = mapLineHeight(lineHeightPixelValue)
+
+    const isDefaultLeadingMatch =
+      fontSizeMappingResult.exactEntry?.defaultLeadingPx === lineHeightPixelValue
+
+    const combinedClass = isDefaultLeadingMatch
+      ? fontSizeMappingResult.tailwindClass
+      : `${fontSizeMappingResult.tailwindClass}/${lineHeightMappingResult.shorthandModifier}`
+
+    return {
+      combinedClass,
+      fontSizeMappingResult,
+      lineHeightMappingResult: {
+        ...lineHeightMappingResult,
+        matchType: isDefaultLeadingMatch ? 'default' : lineHeightMappingResult.matchType,
+      },
+      isDefaultLeadingMatch,
+    }
+  }
+
+  function buildMatchDescription(mappingResult: TypographyMappingResult): string {
+    const { fontSizeMappingResult, lineHeightMappingResult, isDefaultLeadingMatch } = mappingResult
+
+    if (fontSizeMappingResult.isExact && isDefaultLeadingMatch) {
+      return 'Exact match — font size and default line height'
+    }
+
+    if (fontSizeMappingResult.isExact && lineHeightMappingResult.isExact) {
+      return 'Exact font size — line height on spacing scale'
+    }
+
+    if (fontSizeMappingResult.isExact) {
+      return 'Exact font size — arbitrary line height'
+    }
+
+    if (lineHeightMappingResult.isExact) {
+      return 'Arbitrary font size — line height on spacing scale'
+    }
+
+    return 'Arbitrary font size and line height'
+  }
+
+  function buildScaleTrackItems(
+    fontSizePixelValue: number,
+    fontSizeMappingResult: FontSizeMappingResult,
+  ): ScaleTrackItem[] {
+    const trackItems: ScaleTrackItem[] = []
+
+    if (fontSizeMappingResult.isExact && fontSizeMappingResult.exactEntry) {
+      const exactEntryIndex = FONT_SIZE_SCALE.findIndex(
+        (scaleEntry) => scaleEntry.pixelValue === fontSizeMappingResult.exactEntry!.pixelValue,
+      )
+      const windowStartIndex = Math.max(0, exactEntryIndex - 2)
+      const windowEndIndex = Math.min(FONT_SIZE_SCALE.length - 1, exactEntryIndex + 2)
+
+      for (let scaleIndex = windowStartIndex; scaleIndex <= windowEndIndex; scaleIndex++) {
+        const scaleEntry = FONT_SIZE_SCALE[scaleIndex]
+        trackItems.push({
+          labelText: scaleEntry.tailwindClass,
+          pixelValueText: `${scaleEntry.pixelValue}px`,
+          isHighlighted: scaleIndex === exactEntryIndex,
+          isUserValue: false,
+        })
+      }
+
+      return trackItems
+    }
+
+    const { nearestBelowEntry, nearestAboveEntry } = fontSizeMappingResult
+
+    const nearestBelowIndex = nearestBelowEntry
+      ? FONT_SIZE_SCALE.findIndex(
+          (scaleEntry) => scaleEntry.pixelValue === nearestBelowEntry.pixelValue,
+        )
+      : -1
+
+    const nearestAboveIndex = nearestAboveEntry
+      ? FONT_SIZE_SCALE.findIndex(
+          (scaleEntry) => scaleEntry.pixelValue === nearestAboveEntry.pixelValue,
+        )
+      : -1
+
+    let windowStartIndex: number
+    let windowEndIndex: number
+
+    if (nearestBelowIndex >= 0 && nearestAboveIndex >= 0) {
+      windowStartIndex = Math.max(0, nearestBelowIndex - 1)
+      windowEndIndex = Math.min(FONT_SIZE_SCALE.length - 1, nearestAboveIndex + 1)
+    } else if (nearestBelowIndex >= 0) {
+      windowStartIndex = Math.max(0, nearestBelowIndex - 1)
+      windowEndIndex = nearestBelowIndex
+    } else if (nearestAboveIndex >= 0) {
+      windowStartIndex = nearestAboveIndex
+      windowEndIndex = Math.min(FONT_SIZE_SCALE.length - 1, nearestAboveIndex + 1)
+    } else {
+      return trackItems
+    }
+
+    let hasInsertedUserValue = false
+
+    for (let scaleIndex = windowStartIndex; scaleIndex <= windowEndIndex; scaleIndex++) {
+      const scaleEntry = FONT_SIZE_SCALE[scaleIndex]
+
+      if (
+        !hasInsertedUserValue &&
+        nearestAboveEntry &&
+        scaleEntry.pixelValue === nearestAboveEntry.pixelValue
+      ) {
+        trackItems.push({
+          labelText: `${fontSizePixelValue}px`,
+          pixelValueText: 'your size',
+          isHighlighted: false,
+          isUserValue: true,
+        })
+        hasInsertedUserValue = true
+      }
+
+      const isNearestEntry =
+        (nearestBelowEntry && scaleEntry.pixelValue === nearestBelowEntry.pixelValue) ||
+        (nearestAboveEntry && scaleEntry.pixelValue === nearestAboveEntry.pixelValue)
+
+      trackItems.push({
+        labelText: scaleEntry.tailwindClass,
+        pixelValueText: `${scaleEntry.pixelValue}px`,
+        isHighlighted: Boolean(isNearestEntry),
+        isUserValue: false,
+      })
+    }
+
+    if (!hasInsertedUserValue) {
+      trackItems.push({
+        labelText: `${fontSizePixelValue}px`,
+        pixelValueText: 'your size',
+        isHighlighted: false,
+        isUserValue: true,
+      })
+    }
+
+    return trackItems
+  }
+
+  function renderScaleTrackElement(trackItems: ScaleTrackItem[]): HTMLDivElement {
+    const flexContainerElement = document.createElement('div')
+    flexContainerElement.className = 'flex items-start overflow-x-auto pb-1 pt-[3px]'
+
+    for (let trackItemIndex = 0; trackItemIndex < trackItems.length; trackItemIndex++) {
+      const trackItem = trackItems[trackItemIndex]
+
+      if (trackItemIndex > 0) {
+        const connectorElement = document.createElement('div')
+        connectorElement.className = 'mt-[5px] min-w-4 flex-1 border-t border-gray-200'
+        flexContainerElement.appendChild(connectorElement)
+      }
+
+      const itemContainerElement = document.createElement('div')
+      itemContainerElement.className = 'flex min-w-[72px] flex-col items-center'
+
+      const dotElement = document.createElement('div')
+      if (trackItem.isUserValue) {
+        dotElement.className = 'size-3 rounded-full bg-blue-500 ring-[3px] ring-blue-100'
+      } else if (trackItem.isHighlighted) {
+        dotElement.className = 'size-3 rounded-full bg-gray-900 ring-[3px] ring-gray-100'
+      } else {
+        dotElement.className = 'size-3 rounded-full bg-gray-300'
+      }
+
+      const labelElement = document.createElement('span')
+      labelElement.className = [
+        'mt-1.5 text-center text-xs font-medium leading-tight',
+        trackItem.isUserValue
+          ? 'text-blue-600'
+          : trackItem.isHighlighted
+            ? 'text-gray-900'
+            : 'text-gray-400',
+      ].join(' ')
+      labelElement.textContent = trackItem.labelText
+
+      const subLabelElement = document.createElement('span')
+      subLabelElement.className = [
+        'text-center text-xs leading-tight',
+        trackItem.isUserValue ? 'text-blue-400' : 'text-gray-400',
+      ].join(' ')
+      subLabelElement.textContent = trackItem.pixelValueText
+
+      itemContainerElement.appendChild(dotElement)
+      itemContainerElement.appendChild(labelElement)
+      itemContainerElement.appendChild(subLabelElement)
+      flexContainerElement.appendChild(itemContainerElement)
+    }
+
+    return flexContainerElement
+  }
+
+  function buildNearestCard(
+    scaleEntry: FontSizeScaleEntry,
+    nearestMappingResult: TypographyMappingResult,
+    labelPrefix: string,
+    userLineHeightPx: number,
+  ): HTMLDivElement {
+    const cardElement = document.createElement('div')
+    cardElement.className = 'flex flex-col gap-2 rounded-lg border border-gray-200 bg-white p-4'
+
+    const labelElement = document.createElement('p')
+    labelElement.className = 'text-xs text-gray-400'
+    labelElement.textContent = `${labelPrefix} — ${scaleEntry.tailwindClass}`
+
+    const classRowElement = document.createElement('div')
+    classRowElement.className = 'flex items-center gap-2'
+
+    const classCodeElement = document.createElement('code')
+    classCodeElement.className = 'font-mono text-sm font-medium text-gray-900'
+    classCodeElement.textContent = nearestMappingResult.combinedClass
+
+    classRowElement.appendChild(classCodeElement)
+
+    const isLineHeightMatch = scaleEntry.defaultLeadingPx === userLineHeightPx
+    if (isLineHeightMatch) {
+      const lineHeightMatchBadgeElement = document.createElement('span')
+      lineHeightMatchBadgeElement.className =
+        'rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700'
+      lineHeightMatchBadgeElement.textContent = 'Line height matches'
+      classRowElement.appendChild(lineHeightMatchBadgeElement)
+    }
+
+    const footerRowElement = document.createElement('div')
+    footerRowElement.className = 'flex items-center justify-between gap-2'
+
+    const detailElement = document.createElement('p')
+    detailElement.className = 'text-xs text-gray-500'
+    detailElement.textContent = `${scaleEntry.pixelValue}px font · ${scaleEntry.defaultLeadingPx}px line height`
+
+    const copyButtonElement = document.createElement('button')
+    copyButtonElement.type = 'button'
+    copyButtonElement.className =
+      'shrink-0 rounded border border-gray-200 px-2 py-1 text-xs font-medium text-gray-500 transition hover:bg-gray-50'
+
+    const copyButtonTextElement = document.createElement('span')
+    copyButtonTextElement.textContent = 'Copy'
+    copyButtonElement.appendChild(copyButtonTextElement)
+
+    let nearestCopyTimerId: ReturnType<typeof setTimeout> | null = null
+
+    copyButtonElement.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(nearestMappingResult.combinedClass)
+
+        copyButtonTextElement.textContent = 'Copied'
+
+        if (nearestCopyTimerId) clearTimeout(nearestCopyTimerId)
+        nearestCopyTimerId = setTimeout(() => {
+          copyButtonTextElement.textContent = 'Copy'
+        }, 1500)
+      } catch {
+        //
+      }
+    })
+
+    footerRowElement.appendChild(detailElement)
+    footerRowElement.appendChild(copyButtonElement)
+
+    cardElement.appendChild(labelElement)
+    cardElement.appendChild(classRowElement)
+    cardElement.appendChild(footerRowElement)
+
+    return cardElement
+  }
+
+  function buildThemeConfig(fontSizePixelValue: number, lineHeightPixelValue: number): string {
+    const fontSizeRemValue = Math.round((fontSizePixelValue / 16) * 1000) / 1000
+    const lineHeightRemValue = Math.round((lineHeightPixelValue / 16) * 1000) / 1000
+    const variableName = `--text-${fontSizePixelValue}`
+
+    return [
+      '@theme {',
+      `  ${variableName}: ${fontSizeRemValue}rem; /* ${fontSizePixelValue}px */`,
+      `  ${variableName}--line-height: calc(${lineHeightRemValue} / ${fontSizeRemValue}); /* ${lineHeightPixelValue}px */`,
+      '}',
+    ].join('\n')
+  }
+
+  class TypographyMapper extends HTMLElement {
+    private clipboardCopyTimerId: ReturnType<typeof setTimeout> | null = null
+    private currentCombinedClass: string = ''
+
+    connectedCallback() {
+      this.bindInputFields()
+      this.bindCopyButton()
+      this.bindConfigCopyButton()
+      this.initializeWithDefaults()
+    }
+
+    private initializeWithDefaults() {
+      const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
+      const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
+
+      const defaultFontSizePixelValue = parseInt(fontSizeInput.value, 10)
+      const defaultLineHeightPixelValue = parseInt(lineHeightInput.value, 10)
+
+      const hasValidDefaults =
+        !Number.isNaN(defaultFontSizePixelValue) &&
+        !Number.isNaN(defaultLineHeightPixelValue) &&
+        defaultFontSizePixelValue > 0 &&
+        defaultLineHeightPixelValue > 0
+
+      if (!hasValidDefaults) {
+        this.clearResult()
+        return
+      }
+
+      this.renderResult(defaultFontSizePixelValue, defaultLineHeightPixelValue)
+    }
+
+    disconnectedCallback() {
+      if (this.clipboardCopyTimerId) {
+        clearTimeout(this.clipboardCopyTimerId)
+      }
+    }
+
+    private bindInputFields() {
+      const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
+      const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
+
+      const handleInputChange = () => {
+        const fontSizePixelValue = parseInt(fontSizeInput.value, 10)
+        const lineHeightPixelValue = parseInt(lineHeightInput.value, 10)
+
+        const hasBothValidValues =
+          !Number.isNaN(fontSizePixelValue) &&
+          !Number.isNaN(lineHeightPixelValue) &&
+          fontSizePixelValue > 0 &&
+          lineHeightPixelValue > 0
+
+        if (hasBothValidValues) {
+          this.renderResult(fontSizePixelValue, lineHeightPixelValue)
+        } else {
+          this.clearResult()
+        }
+      }
+
+      fontSizeInput.addEventListener('input', handleInputChange)
+      lineHeightInput.addEventListener('input', handleInputChange)
+    }
+
+    private bindConfigCopyButton() {
+      const configCopyButtonElement = this.querySelector<HTMLButtonElement>(
+        '[data-copy-config-button]',
+      )!
+      const configCopyButtonTextElement = this.querySelector<HTMLElement>(
+        '[data-copy-config-button-text]',
+      )!
+
+      let configCopyTimerId: ReturnType<typeof setTimeout> | null = null
+
+      configCopyButtonElement.addEventListener('click', async () => {
+        const configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
+        const configText = configPreElement.textContent ?? ''
+        if (!configText.trim()) return
+
+        try {
+          await navigator.clipboard.writeText(configText)
+
+          configCopyButtonTextElement.textContent = 'Copied'
+
+          if (configCopyTimerId) clearTimeout(configCopyTimerId)
+          configCopyTimerId = setTimeout(() => {
+            configCopyButtonTextElement.textContent = 'Copy'
+          }, 1500)
+        } catch {
+          //
+        }
+      })
+    }
+
+    private bindCopyButton() {
+      const copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-button]')!
+
+      copyButtonElement.addEventListener('click', async () => {
+        if (!this.currentCombinedClass) return
+
+        try {
+          await navigator.clipboard.writeText(this.currentCombinedClass)
+
+          const copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-button-text]')!
+          const copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
+
+          copyButtonTextElement.textContent = 'Copied'
+          copyLiveRegionElement.textContent = 'Copied to clipboard.'
+
+          if (this.clipboardCopyTimerId) {
+            clearTimeout(this.clipboardCopyTimerId)
+          }
+
+          this.clipboardCopyTimerId = setTimeout(() => {
+            copyButtonTextElement.textContent = 'Copy'
+            copyLiveRegionElement.textContent = ''
+          }, 1500)
+        } catch {
+          //
+        }
+      })
+    }
+
+    private clearResult() {
+      this.querySelector('[data-result-container]')!.classList.add('hidden')
+      this.querySelector('[data-skeleton-container]')!.classList.remove('hidden')
+      this.currentCombinedClass = ''
+    }
+
+    private renderResult(fontSizePixelValue: number, lineHeightPixelValue: number) {
+      const mappingResult = mapTypography(fontSizePixelValue, lineHeightPixelValue)
+      this.currentCombinedClass = mappingResult.combinedClass
+
+      this.querySelector('[data-result-container]')!.classList.remove('hidden')
+      this.querySelector('[data-skeleton-container]')!.classList.add('hidden')
+      this.querySelector('[data-combined-class-display]')!.textContent = mappingResult.combinedClass
+      this.querySelector('[data-match-description-display]')!.textContent =
+        buildMatchDescription(mappingResult)
+
+      const lineHeightRatio = lineHeightPixelValue / fontSizePixelValue
+      const ratioRounded = Math.round(lineHeightRatio * 100) / 100
+      const ratioDescriptionResult = buildLineHeightRatioDescription(lineHeightRatio)
+      const ratioLabelText = `${ratioRounded}× — ${ratioDescriptionResult.labelText}`
+
+      const lineHeightRatioBadgeElement = this.querySelector<HTMLElement>(
+        '[data-line-height-ratio-badge]',
+      )!
+      lineHeightRatioBadgeElement.textContent = ratioLabelText
+      lineHeightRatioBadgeElement.className = `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${ratioDescriptionResult.styleClasses}`
+
+      const previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
+      previewTextElement.style.fontSize = `${fontSizePixelValue}px`
+      previewTextElement.style.lineHeight = `${lineHeightPixelValue}px`
+
+      this.querySelector('[data-font-size-class-display]')!.textContent =
+        mappingResult.fontSizeMappingResult.tailwindClass
+      this.querySelector('[data-font-size-rem-display]')!.textContent =
+        buildRemDisplay(fontSizePixelValue)
+
+      const fontSizeBadgeElement = this.querySelector<HTMLElement>('[data-font-size-badge]')!
+      applyBadgeStyle(
+        fontSizeBadgeElement,
+        mappingResult.fontSizeMappingResult.isExact ? 'exact' : 'arbitrary',
+      )
+
+      if (mappingResult.isDefaultLeadingMatch && mappingResult.fontSizeMappingResult.exactEntry) {
+        const defaultLeadingPxValue =
+          mappingResult.fontSizeMappingResult.exactEntry.defaultLeadingPx
+        const defaultLeadingMappingResult = mapLineHeight(defaultLeadingPxValue)
+        this.querySelector('[data-line-height-class-display]')!.textContent =
+          `${defaultLeadingMappingResult.tailwindClass} (default)`
+      } else {
+        this.querySelector('[data-line-height-class-display]')!.textContent =
+          mappingResult.lineHeightMappingResult.tailwindClass
+      }
+
+      this.querySelector('[data-line-height-rem-display]')!.textContent =
+        buildRemDisplay(lineHeightPixelValue)
+
+      const lineHeightBadgeElement = this.querySelector<HTMLElement>('[data-line-height-badge]')!
+      applyBadgeStyle(lineHeightBadgeElement, mappingResult.lineHeightMappingResult.matchType)
+
+      this.renderScaleTrack(fontSizePixelValue, mappingResult.fontSizeMappingResult)
+      this.renderConfigSection(mappingResult, fontSizePixelValue, lineHeightPixelValue)
+      this.renderNearestSection(mappingResult, lineHeightPixelValue)
+    }
+
+    private renderScaleTrack(
+      fontSizePixelValue: number,
+      fontSizeMappingResult: FontSizeMappingResult,
+    ) {
+      const scaleTrackContainerElement = this.querySelector<HTMLElement>('[data-scale-track]')!
+      const trackItems = buildScaleTrackItems(fontSizePixelValue, fontSizeMappingResult)
+      scaleTrackContainerElement.replaceChildren(renderScaleTrackElement(trackItems))
+    }
+
+    private renderConfigSection(
+      mappingResult: TypographyMappingResult,
+      fontSizePixelValue: number,
+      lineHeightPixelValue: number,
+    ) {
+      const configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
+
+      if (mappingResult.fontSizeMappingResult.isExact) {
+        configContainerElement.classList.add('hidden')
+        return
+      }
+
+      configContainerElement.classList.remove('hidden')
+      this.querySelector('[data-config-pre]')!.textContent = buildThemeConfig(
+        fontSizePixelValue,
+        lineHeightPixelValue,
+      )
+    }
+
+    private renderNearestSection(
+      mappingResult: TypographyMappingResult,
+      userLineHeightPixelValue: number,
+    ) {
+      const nearestContainerElement = this.querySelector<HTMLElement>('[data-nearest-container]')!
+      const nearestGridElement = this.querySelector<HTMLElement>('[data-nearest-grid]')!
+
+      const { nearestBelowEntry, nearestAboveEntry } = mappingResult.fontSizeMappingResult
+      const hasNearestEntries =
+        !mappingResult.fontSizeMappingResult.isExact &&
+        (nearestBelowEntry !== null || nearestAboveEntry !== null)
+
+      if (!hasNearestEntries) {
+        nearestContainerElement.classList.add('hidden')
+        return
+      }
+
+      nearestContainerElement.classList.remove('hidden')
+      nearestGridElement.replaceChildren()
+
+      const nearestEntryPairs = [
+        { scaleEntry: nearestBelowEntry, labelPrefix: 'Below' },
+        { scaleEntry: nearestAboveEntry, labelPrefix: 'Above' },
+      ]
+
+      for (const { scaleEntry, labelPrefix } of nearestEntryPairs) {
+        if (!scaleEntry) continue
+
+        const nearestMappingResult = mapTypography(
+          scaleEntry.pixelValue,
+          scaleEntry.defaultLeadingPx,
+        )
+        const nearestCardElement = buildNearestCard(
+          scaleEntry,
+          nearestMappingResult,
+          labelPrefix,
+          userLineHeightPixelValue,
+        )
+        nearestGridElement.appendChild(nearestCardElement)
+      }
+    }
+  }
+
+  customElements.define('typography-mapper', TypographyMapper)
+</script>
