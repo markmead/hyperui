@@ -13,7 +13,15 @@ import DarkModeGenerator from '../../components/DarkModeGenerator.astro'
   <BaseHero
     title="Dark Mode Generator"
     description="Paste Tailwind CSS HTML below and get dark mode variants added automatically. Configure rules to control which elements and colors are transformed."
-  />
+  >
+    <span
+      slot="badge"
+      class="mb-4 inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm font-medium text-gray-600"
+    >
+      <span class="size-1.5 rounded-full bg-amber-500" aria-hidden="true"></span>
+      Beta
+    </span>
+  </BaseHero>
 
   <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
     <DarkModeGenerator />
