@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content'
 
 import rss from '@astrojs/rss'
 
-import { SITE_TITLE, SEO_DESCRIPTION_BLOG } from '../consts'
+import { SITE_TITLE, SEO_DESCRIPTION_BLOG } from '../constants/seo'
 
 export async function GET(context: APIContext) {
   const site = context.site ?? new URL('https://hyperui.dev')

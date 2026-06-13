@@ -20,3 +20,11 @@ export const SEO_TITLE_NEOBRUTALISM_COMPONENTS = 'Neobrutalism Tailwind CSS Comp
 export const SEO_DESCRIPTION_BLOG =
   'Learn Tailwind CSS best practices, web development tips, and component tutorials. Stay updated with the latest techniques to build better websites.'
 export const SEO_TITLE_BLOG = 'Tailwind CSS Tips & Tutorials'
+
+export const SEO_DESCRIPTION_TOOLS =
+  'Free browser-based Tailwind CSS tools. Transform, generate, and optimize your Tailwind CSS code without leaving the browser.'
+export const SEO_TITLE_TOOLS = 'Free Tailwind CSS Tools'
+
+export const SEO_DESCRIPTION_DARK_MODE_GENERATOR =
+  'Paste any Tailwind CSS HTML and automatically generate dark mode variants. Configurable rules with element and color exclusions, persisted to your browser.'
+export const SEO_TITLE_DARK_MODE_GENERATOR = 'Tailwind CSS Dark Mode Generator'

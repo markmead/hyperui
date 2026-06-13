@@ -1,0 +1,484 @@
+---
+import DarkModeSidePanel from './DarkModeSidePanel.astro'
+import DarkModePreviewPanel from './DarkModePreviewPanel.astro'
+import DarkModeRulesDialog from './DarkModeRulesDialog.astro'
+import DarkModeInspector from './DarkModeInspector.astro'
+---
+
+<dark-mode-generator class="block">
+  <div class="flex flex-col gap-6 lg:flex-row">
+    <DarkModeSidePanel />
+    <DarkModePreviewPanel />
+  </div>
+
+  <DarkModeRulesDialog />
+  <DarkModeInspector />
+</dark-mode-generator>
+
+<script>
+  import {
+    loadConfig,
+    saveConfig,
+    resetConfig,
+    exportConfig,
+    importConfig,
+  } from '../lib/dark-mode/config.js'
+  import { transformHtmlDom } from '../lib/dark-mode/transform-html.js'
+  import { buildPreviewDocument } from '../lib/dark-mode/preview-document.js'
+  import {
+    renderUtilityToggles,
+    renderShadeMap,
+    renderRules,
+  } from '../lib/dark-mode/ui-renderer.js'
+  import { bindInspector } from '../lib/dark-mode/rule-renderer.js'
+  import { DEBOUNCE_DELAY_MS } from '../lib/dark-mode/element-constants.js'
+
+  type Rule = {
+    id: string
+    name: string
+    enabled: boolean
+    utilities: string[] | null
+    shade: number | null
+    colors: string[] | null
+    darkShade: number | null
+    darkColor: string | null
+    excludeElements: string[]
+    excludeColors: string[]
+  }
+
+  type Config = {
+    shadeMap: Record<number, number>
+    colorMap: Record<string, string>
+    utilities: Record<string, boolean>
+    rules: Rule[]
+  }
+
+  type PreviewMode = 'light' | 'dark' | 'split' | 'code'
+
+  class DarkModeGenerator extends HTMLElement {
+    private generatorConfig: Config = loadConfig() as Config
+    private debounceTimer: ReturnType<typeof setTimeout> | null = null
+    private clipboardCopyTimer: ReturnType<typeof setTimeout> | null = null
+    private dismissAbortController: AbortController | null = null
+
+    connectedCallback() {
+      this.refreshUtilityToggles()
+      this.refreshShadeMap()
+      this.refreshRules()
+      this.bindHtmlInput()
+      this.bindActionButtons()
+      this.bindInspectorDismiss()
+      this.applyPreviewMode('split')
+    }
+
+    disconnectedCallback() {
+      if (this.debounceTimer) {
+        clearTimeout(this.debounceTimer)
+      }
+      if (this.clipboardCopyTimer) {
+        clearTimeout(this.clipboardCopyTimer)
+      }
+      this.dismissAbortController?.abort()
+    }
+
+    private refreshUtilityToggles() {
+      renderUtilityToggles(
+        this.querySelector<HTMLElement>('[data-utilities]')!,
+        this.generatorConfig,
+        () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+      )
+    }
+
+    private refreshShadeMap() {
+      renderShadeMap(
+        this.querySelector<HTMLElement>('[data-shade-map]')!,
+        this.generatorConfig,
+        () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+      )
+    }
+
+    private refreshRules() {
+      const rulesContainer = this.querySelector<HTMLElement>('[data-rules]')!
+      const rulesCountDisplay = this.querySelector<HTMLElement>('[data-rules-count]')!
+      const ruleCount = this.generatorConfig.rules.length
+      rulesCountDisplay.textContent = ruleCount > 0 ? `(${ruleCount})` : ''
+
+      renderRules(rulesContainer, this.generatorConfig, {
+        onConfigure: (ruleId: string) => {
+          this.openInspector(ruleId)
+        },
+        onDelete: (deletedRuleId: string) => {
+          this.generatorConfig.rules = this.generatorConfig.rules.filter(
+            (existingRule) => existingRule.id !== deletedRuleId,
+          )
+          this.closeInspector()
+          this.refreshRules()
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+        onChange: () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+      })
+    }
+
+    private openInspector(ruleId: string) {
+      const ruleIndex = this.generatorConfig.rules.findIndex(
+        (existingRule) => existingRule.id === ruleId,
+      )
+      const matchedRule = this.generatorConfig.rules[ruleIndex]
+      if (!matchedRule) {
+        return
+      }
+
+      const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
+
+      bindInspector(inspectorElement, matchedRule, ruleIndex, {
+        onChange: () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+        },
+        onNameChange: () => {
+          this.saveConfiguration()
+          this.transformAndRender()
+          this.refreshRules()
+        },
+      })
+
+      if (!inspectorElement.open) {
+        inspectorElement.show()
+      }
+    }
+
+    private closeInspector() {
+      const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
+      if (inspectorElement.open) {
+        inspectorElement.close()
+      }
+    }
+
+    private bindInspectorDismiss() {
+      const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
+
+      this.dismissAbortController = new AbortController()
+      const { signal } = this.dismissAbortController
+
+      this.querySelector('[data-inspector-apply]')!.addEventListener(
+        'click',
+        () => {
+          this.transformAndRender()
+        },
+        { signal },
+      )
+
+      this.querySelector('[data-inspector-close]')!.addEventListener(
+        'click',
+        () => {
+          this.closeInspector()
+        },
+        { signal },
+      )
+
+      document.addEventListener(
+        'pointerdown',
+        (pointerEvent) => {
+          if (!inspectorElement.open) {
+            return
+          }
+          const clickTarget = pointerEvent.target as Element
+          if (
+            !clickTarget.closest('[data-rule-inspector]') &&
+            !clickTarget.closest('[data-configure-rule]')
+          ) {
+            this.closeInspector()
+          }
+        },
+        { signal },
+      )
+    }
+
+    private bindHtmlInput() {
+      this.querySelector<HTMLTextAreaElement>('[data-input]')!.addEventListener('input', () => {
+        if (this.debounceTimer) {
+          clearTimeout(this.debounceTimer)
+        }
+        this.debounceTimer = setTimeout(() => this.transformAndRender(), DEBOUNCE_DELAY_MS)
+      })
+    }
+
+    private bindActionButtons() {
+      const rulesDialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')!
+
+      this.querySelector('[data-rules-examples]')!.addEventListener('click', (clickEvent) => {
+        clickEvent.stopPropagation()
+        if (!rulesDialog.open) {
+          rulesDialog.showModal()
+        }
+      })
+
+      this.querySelector('[data-rules-dialog-close]')!.addEventListener('click', () => {
+        rulesDialog.close()
+      })
+
+      rulesDialog.addEventListener('click', (clickEvent) => {
+        if (clickEvent.target === rulesDialog) {
+          rulesDialog.close()
+        }
+      })
+
+      // stopPropagation prevents the Rules <details> from toggling closed
+      this.querySelector('[data-add-rule]')!.addEventListener('click', (clickEvent) => {
+        clickEvent.stopPropagation()
+        const newRule: Rule = {
+          id: crypto.randomUUID(),
+          name: '',
+          enabled: true,
+          utilities: null,
+          shade: null,
+          colors: null,
+          darkShade: null,
+          darkColor: null,
+          excludeElements: [],
+          excludeColors: [],
+        }
+        this.generatorConfig.rules.push(newRule)
+        this.closeInspector()
+        this.refreshRules()
+        this.saveConfiguration()
+        this.querySelector<HTMLDetailsElement>('[data-rules]')!
+          .closest('details')!
+          .setAttribute('open', '')
+      })
+
+      this.querySelector('[data-reset]')!.addEventListener('click', () => {
+        this.generatorConfig = resetConfig() as Config
+        this.closeInspector()
+        this.refreshUtilityToggles()
+        this.refreshShadeMap()
+        this.refreshRules()
+        this.transformAndRender()
+      })
+
+      this.querySelector('[data-export]')!.addEventListener('click', () => {
+        const exportJson = exportConfig(this.generatorConfig)
+        const exportBlob = new Blob([exportJson], { type: 'application/json' })
+        const downloadUrl = URL.createObjectURL(exportBlob)
+        const downloadLink = document.createElement('a')
+        downloadLink.href = downloadUrl
+        downloadLink.download = 'dark-mode-config.json'
+        downloadLink.click()
+        requestAnimationFrame(() => URL.revokeObjectURL(downloadUrl))
+      })
+
+      this.querySelector<HTMLInputElement>('[data-import]')!.addEventListener(
+        'change',
+        (changeEvent) => {
+          const importFileInput = changeEvent.target as HTMLInputElement
+          const importedFile = importFileInput.files?.[0]
+          if (!importedFile) {
+            return
+          }
+
+          const fileReader = new FileReader()
+          fileReader.onload = () => {
+            const importResult = importConfig(String(fileReader.result))
+            importFileInput.value = ''
+            if (!importResult.ok) {
+              alert(`Import failed: ${importResult.error}`)
+              return
+            }
+            this.generatorConfig = importResult.config as Config
+            this.closeInspector()
+            this.refreshUtilityToggles()
+            this.refreshShadeMap()
+            this.refreshRules()
+            this.saveConfiguration()
+            this.transformAndRender()
+          }
+          fileReader.readAsText(importedFile)
+        },
+      )
+
+      const copyButton = this.querySelector<HTMLButtonElement>('[data-copy]')!
+      const copyButtonText = this.querySelector<HTMLElement>('[data-copy-text]')!
+      const copyLiveRegion = this.querySelector<HTMLElement>('[data-copy-polite]')!
+
+      copyButton.addEventListener('click', async () => {
+        const outputText = this.querySelector<HTMLPreElement>('[data-output]')!.textContent ?? ''
+        if (!outputText.trim()) {
+          return
+        }
+
+        try {
+          await navigator.clipboard.writeText(outputText)
+
+          copyButtonText.textContent = 'Copied'
+          copyLiveRegion.textContent = 'Copied to clipboard.'
+          copyButton.setAttribute('aria-pressed', 'true')
+
+          if (this.clipboardCopyTimer) {
+            clearTimeout(this.clipboardCopyTimer)
+          }
+          this.clipboardCopyTimer = setTimeout(() => {
+            copyButtonText.textContent = 'Copy'
+            copyLiveRegion.textContent = ''
+            copyButton.setAttribute('aria-pressed', 'false')
+          }, 1500)
+        } catch {
+          //
+        }
+      })
+
+      this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((modeButton) => {
+        modeButton.addEventListener('click', () => {
+          const previewMode = modeButton.dataset.previewMode as PreviewMode
+          this.applyPreviewMode(previewMode)
+          this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((otherButton) => {
+            otherButton.setAttribute('aria-pressed', otherButton === modeButton ? 'true' : 'false')
+          })
+        })
+      })
+    }
+
+    private transformAndRender() {
+      const inputValue = this.querySelector<HTMLTextAreaElement>('[data-input]')!.value
+      const outputElement = this.querySelector<HTMLPreElement>('[data-output]')!
+
+      if (!inputValue.trim()) {
+        outputElement.textContent = ''
+        this.updatePreviewFrames('', '')
+        return
+      }
+
+      const { lightHtml, darkHtml } = transformHtmlDom(inputValue, this.generatorConfig)
+
+      outputElement.textContent = darkHtml
+
+      this.updatePreviewFrames(lightHtml, darkHtml)
+    }
+
+    private updatePreviewFrames(lightHtml: string, darkHtml: string) {
+      this.querySelector<HTMLIFrameElement>('[data-preview="light"]')!.srcdoc =
+        buildPreviewDocument(lightHtml, false)
+      this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')!.srcdoc = buildPreviewDocument(
+        darkHtml,
+        true,
+      )
+    }
+
+    private applyPreviewMode(previewMode: PreviewMode) {
+      const previewContainer = this.querySelector<HTMLElement>('[data-preview-container]')!
+      const codeContainer = this.querySelector<HTMLElement>('[data-code-container]')!
+      const lightPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="light"]')!
+      const darkPreviewFrame = this.querySelector<HTMLIFrameElement>('[data-preview="dark"]')!
+
+      if (previewMode === 'code') {
+        previewContainer.classList.add('hidden')
+        codeContainer.classList.remove('hidden')
+        return
+      }
+
+      previewContainer.classList.remove('hidden')
+      codeContainer.classList.add('hidden')
+
+      if (previewMode === 'light') {
+        previewContainer.classList.remove('grid-cols-2')
+        lightPreviewFrame.classList.remove('hidden')
+        darkPreviewFrame.classList.add('hidden')
+      } else if (previewMode === 'dark') {
+        previewContainer.classList.remove('grid-cols-2')
+        lightPreviewFrame.classList.add('hidden')
+        darkPreviewFrame.classList.remove('hidden')
+      } else {
+        previewContainer.classList.add('grid-cols-2')
+        lightPreviewFrame.classList.remove('hidden')
+        darkPreviewFrame.classList.remove('hidden')
+      }
+    }
+
+    private saveConfiguration() {
+      saveConfig(this.generatorConfig)
+
+      const formattedSaveTime = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+      this.querySelector<HTMLElement>('[data-last-saved]')!.textContent =
+        `Last saved: ${formattedSaveTime}`
+    }
+  }
+
+  customElements.define('dark-mode-generator', DarkModeGenerator)
+</script>
+
+<style is:global>
+  [data-rules-dialog] {
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete;
+  }
+
+  [data-rules-dialog][open] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  [data-rules-dialog]:not([open]) {
+    opacity: 0;
+    transform: scale(0.95) translateY(-6px);
+  }
+
+  @starting-style {
+    [data-rules-dialog][open] {
+      opacity: 0;
+      transform: scale(0.95) translateY(-6px);
+    }
+  }
+
+  [data-rules-dialog]::backdrop {
+    background: rgb(0 0 0 / 0);
+    transition:
+      background 0.2s ease,
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete;
+  }
+
+  [data-rules-dialog][open]::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+
+  @starting-style {
+    [data-rules-dialog][open]::backdrop {
+      background: rgb(0 0 0 / 0);
+    }
+  }
+
+  [data-rule-inspector] {
+    transition:
+      transform 0.25s ease,
+      display 0.25s allow-discrete;
+  }
+
+  [data-rule-inspector][open] {
+    transform: translateY(0);
+  }
+
+  [data-rule-inspector]:not([open]) {
+    transform: translateY(100%);
+  }
+
+  @starting-style {
+    [data-rule-inspector][open] {
+      transform: translateY(100%);
+    }
+  }
+</style>

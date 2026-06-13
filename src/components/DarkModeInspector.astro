@@ -1,0 +1,152 @@
+---
+import { Pencil, X } from '@lucide/astro'
+import { FORM_INPUT_CLASS, NUMBER_INPUT_CLASS } from '../lib/dark-mode/element-constants.js'
+---
+
+<dialog
+  data-rule-inspector
+  class="fixed inset-x-0 top-auto bottom-0 z-50 m-0 w-full max-w-none border-t border-gray-200 bg-white p-0 shadow-xl open:flex open:flex-col"
+>
+  <div class="flex items-center gap-3 border-b border-gray-200 p-4">
+    <div class="flex min-w-0 flex-1 items-center gap-2">
+      <span data-inspector-name-display class="truncate text-sm font-medium text-gray-900"></span>
+
+      <button
+        type="button"
+        data-inspector-name-edit
+        aria-label="Edit rule name"
+        class="shrink-0 rounded p-0.5 text-gray-600 transition-colors hover:text-gray-900"
+      >
+        <Pencil class="size-3.5" />
+      </button>
+
+      <input type="text" data-inspector-name class={`hidden min-w-0 flex-1 ${FORM_INPUT_CLASS}`} />
+    </div>
+
+    <div class="flex shrink-0 items-center gap-2">
+      <button
+        type="button"
+        data-inspector-apply
+        class="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+      >
+        Apply
+      </button>
+
+      <button
+        type="button"
+        data-inspector-close
+        aria-label="Close inspector"
+        class="rounded-md p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+      >
+        <X class="size-5" />
+      </button>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <div class="grid min-w-[60rem] grid-cols-7 gap-x-6 gap-y-3 p-4">
+      <h3 class="col-span-3 text-xs font-semibold tracking-wide text-gray-400 uppercase">
+        Apply when
+      </h3>
+      <h3 class="col-span-2 text-xs font-semibold tracking-wide text-gray-400 uppercase">
+        In dark mode
+      </h3>
+      <h3 class="col-span-2 text-xs font-semibold tracking-wide text-gray-400 uppercase">
+        Skip when
+      </h3>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Utilities
+        <input
+          type="text"
+          data-inspector-utilities
+          class={FORM_INPUT_CLASS}
+          placeholder="e.g. bg, text"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Comma-separated. Leave blank to match any.</span
+        >
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Shade
+        <input
+          type="number"
+          data-inspector-shade
+          class={NUMBER_INPUT_CLASS}
+          placeholder="e.g. 600"
+          min="50"
+          max="950"
+          step="50"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Leave blank to match any shade.</span
+        >
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Include colors
+        <input
+          type="text"
+          data-inspector-colors
+          class={FORM_INPUT_CLASS}
+          placeholder="e.g. blue, indigo"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Comma-separated. Leave blank to match any.</span
+        >
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Use shade
+        <input
+          type="number"
+          data-inspector-dark-shade
+          class={NUMBER_INPUT_CLASS}
+          placeholder="e.g. 300"
+          min="50"
+          max="950"
+          step="50"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Leave blank to use the shade map.</span
+        >
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Use color
+        <input
+          type="text"
+          data-inspector-dark-color
+          class={FORM_INPUT_CLASS}
+          placeholder="e.g. gray-900"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Overrides shade. Useful for white/black.</span
+        >
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Elements
+        <input
+          type="text"
+          data-inspector-exclude-elements
+          class={FORM_INPUT_CLASS}
+          placeholder="e.g. button, a"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated.</span>
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Colors
+        <input
+          type="text"
+          data-inspector-exclude-colors
+          class={FORM_INPUT_CLASS}
+          placeholder="e.g. blue, indigo"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400">Comma-separated.</span>
+      </label>
+    </div>
+  </div>
+</dialog>

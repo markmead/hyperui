@@ -20,12 +20,20 @@ export default defineConfig([
       },
     },
   },
+
   {
     files: ['scripts/**'],
     languageOptions: {
       globals: {
         ...globals.node,
       },
+    },
+  },
+
+  {
+    rules: {
+      curly: ['error', 'all'],
+      eqeqeq: ['error', 'always'],
     },
   },
 ])
