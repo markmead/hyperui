@@ -94,7 +94,6 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
 export function transformClass(className, configData, tagName = null) {
   const { variantPrefix, classWithoutVariant } = splitVariantPrefix(className)
 
-  // named colors (white/black and any user overrides in configData.colorMap)
   for (const [lightColor, darkColor] of Object.entries(configData.colorMap)) {
     if (classWithoutVariant.includes(lightColor)) {
       const colorRegex = new RegExp(`^((?:[\\w]+-)*)(${lightColor})(\\/\\d+)?$`)
@@ -127,7 +126,6 @@ export function transformClass(className, configData, tagName = null) {
     }
   }
 
-  // color family shades (e.g. bg-blue-600)
   for (const colorFamily of COLOR_FAMILIES) {
     const colorRegex = new RegExp(`^([\\w-]*?)${colorFamily}-(\\d+)(.*?)$`)
     const colorMatch = classWithoutVariant.match(colorRegex)

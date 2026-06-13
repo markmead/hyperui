@@ -2,9 +2,9 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml",
+    "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml, skills-lock.json, wrangler.jsonc",
     "astro.config.ts": "tsconfig.json",
-    "eslint.config.ts": ".prettierrc",
-    "README.md": "CONTRIBUTING.md, LICENSE"
+    "eslint.config.ts": ".prettierrc, .prettierignore",
+    "README.md": "CONTRIBUTING.md, LICENSE, CLAUDE.md",
   }
 }
