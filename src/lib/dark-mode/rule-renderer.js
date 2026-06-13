@@ -71,6 +71,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   const shadeInput = inspectorElement.querySelector('[data-inspector-shade]')
   const colorsInput = inspectorElement.querySelector('[data-inspector-colors]')
   const darkShadeInput = inspectorElement.querySelector('[data-inspector-dark-shade]')
+  const darkColorInput = inspectorElement.querySelector('[data-inspector-dark-color]')
   const excludeElementsInput = inspectorElement.querySelector('[data-inspector-exclude-elements]')
   const excludeColorsInput = inspectorElement.querySelector('[data-inspector-exclude-colors]')
 
@@ -81,6 +82,7 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
   shadeInput.value = ruleData.shade !== null ? String(ruleData.shade) : ''
   colorsInput.value = (ruleData.colors ?? []).join(', ')
   darkShadeInput.value = ruleData.darkShade !== null ? String(ruleData.darkShade) : ''
+  darkColorInput.value = ruleData.darkColor ?? ''
   excludeElementsInput.value = ruleData.excludeElements.join(', ')
   excludeColorsInput.value = ruleData.excludeColors.join(', ')
 
@@ -186,6 +188,15 @@ export function bindInspector(inspectorElement, ruleData, ruleIndex, { onChange,
     () => {
       const parsedNumber = parseInt(darkShadeInput.value, 10)
       ruleData.darkShade = isNaN(parsedNumber) ? null : parsedNumber
+      onChange()
+    },
+    { signal: abortSignal },
+  )
+
+  darkColorInput.addEventListener(
+    'change',
+    () => {
+      ruleData.darkColor = darkColorInput.value.trim() || null
       onChange()
     },
     { signal: abortSignal },

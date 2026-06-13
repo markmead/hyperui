@@ -41,6 +41,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
     shade: number | null
     colors: string[] | null
     darkShade: number | null
+    darkColor: string | null
     excludeElements: string[]
     excludeColors: string[]
   }
@@ -50,7 +51,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
     colorMap: Record<string, string>
     utilities: Record<string, boolean>
     rules: Rule[]
-    overwriteExisting: boolean
   }
 
   type PreviewMode = 'light' | 'dark' | 'split' | 'code'
@@ -65,7 +65,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
       this.refreshUtilityToggles()
       this.refreshShadeMap()
       this.refreshRules()
-      this.bindOverwriteExisting()
       this.bindHtmlInput()
       this.bindActionButtons()
       this.bindInspectorDismiss()
@@ -106,6 +105,10 @@ import DarkModeInspector from './DarkModeInspector.astro'
 
     private refreshRules() {
       const rulesContainer = this.querySelector<HTMLElement>('[data-rules]')!
+      const rulesCountDisplay = this.querySelector<HTMLElement>('[data-rules-count]')!
+      const ruleCount = this.generatorConfig.rules.length
+      rulesCountDisplay.textContent = ruleCount > 0 ? `(${ruleCount})` : ''
+
       renderRules(rulesContainer, this.generatorConfig, {
         onConfigure: (ruleId: string) => {
           this.openInspector(ruleId)
@@ -160,6 +163,14 @@ import DarkModeInspector from './DarkModeInspector.astro'
       this.dismissAbortController = new AbortController()
       const { signal } = this.dismissAbortController
 
+      this.querySelector('[data-inspector-apply]')!.addEventListener(
+        'click',
+        () => {
+          this.transformAndRender()
+        },
+        { signal },
+      )
+
       this.querySelector('[data-inspector-close]')!.addEventListener(
         'click',
         () => {
@@ -184,16 +195,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
         },
         { signal },
       )
-    }
-
-    private bindOverwriteExisting() {
-      const overwriteCheckbox = this.querySelector<HTMLInputElement>('[data-overwrite-existing]')!
-      overwriteCheckbox.checked = this.generatorConfig.overwriteExisting
-      overwriteCheckbox.addEventListener('change', () => {
-        this.generatorConfig.overwriteExisting = overwriteCheckbox.checked
-        this.saveConfiguration()
-        this.transformAndRender()
-      })
     }
 
     private bindHtmlInput() {
@@ -234,6 +235,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
           shade: null,
           colors: null,
           darkShade: null,
+          darkColor: null,
           excludeElements: [],
           excludeColors: [],
         }
@@ -252,8 +254,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
         this.refreshUtilityToggles()
         this.refreshShadeMap()
         this.refreshRules()
-        this.querySelector<HTMLInputElement>('[data-overwrite-existing]')!.checked =
-          this.generatorConfig.overwriteExisting
         this.transformAndRender()
       })
 
@@ -288,8 +288,6 @@ import DarkModeInspector from './DarkModeInspector.astro'
             this.refreshUtilityToggles()
             this.refreshShadeMap()
             this.refreshRules()
-            this.querySelector<HTMLInputElement>('[data-overwrite-existing]')!.checked =
-              this.generatorConfig.overwriteExisting
             this.saveConfiguration()
             this.transformAndRender()
           }
@@ -348,12 +346,11 @@ import DarkModeInspector from './DarkModeInspector.astro'
         return
       }
 
-      const transformedHtml = transformHtmlDom(inputValue, this.generatorConfig)
+      const { lightHtml, darkHtml } = transformHtmlDom(inputValue, this.generatorConfig)
 
-      outputElement.textContent = transformedHtml
+      outputElement.textContent = darkHtml
 
-      const lightHtml = new DOMParser().parseFromString(inputValue, 'text/html').body.innerHTML
-      this.updatePreviewFrames(lightHtml, transformedHtml)
+      this.updatePreviewFrames(lightHtml, darkHtml)
     }
 
     private updatePreviewFrames(lightHtml: string, darkHtml: string) {

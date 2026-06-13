@@ -16,19 +16,7 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
   <div
     class="flex w-full flex-col divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 bg-gray-50"
   >
-    <div class="p-4">
-      <h3 class="text-sm font-medium text-gray-700">Options</h3>
-
-      <label class="mt-2 inline-flex items-center gap-3">
-        <input type="checkbox" data-overwrite-existing class="size-5 rounded border-gray-300" />
-
-        <span class="text-sm font-medium text-gray-700">
-          Overwrite existing <code class="rounded bg-gray-200 px-1 py-0.5">dark:</code> classes
-        </span>
-      </label>
-    </div>
-
-    <details class="group">
+    <details class="group" open>
       <summary
         class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
       >
@@ -64,7 +52,9 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       <summary
         class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
       >
-        <h3 class="text-sm font-medium text-gray-700">Rules</h3>
+        <h3 class="text-sm font-medium text-gray-700">
+          Rules <span data-rules-count class="font-normal text-gray-600"></span>
+        </h3>
 
         <div class="flex items-center gap-2">
           <button

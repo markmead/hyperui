@@ -10,6 +10,7 @@ const STORAGE_KEY = 'hyperui:dark-mode-generator:v1'
  * @property {number | null} [shade]          - e.g. 600 — null means any shade
  * @property {string[] | null} [colors]       - allow-list of color families; null means any
  * @property {number | null} [darkShade]      - override target shade; null uses shade map
+ * @property {string | null} [darkColor]      - override entire color e.g. 'gray-900'; null uses darkShade/shade map
  * @property {string[]} excludeElements       - e.g. ['button', 'a']
  * @property {string[]} excludeColors         - e.g. ['blue', 'indigo']
  */
@@ -20,7 +21,6 @@ const STORAGE_KEY = 'hyperui:dark-mode-generator:v1'
  * @property {{ [name: string]: string }} colorMap
  * @property {{ [utility: string]: boolean }} utilities
  * @property {Rule[]} rules
- * @property {boolean} overwriteExisting  - when true, re-transform classes that already have dark:
  */
 
 /** @type {DarkModeConfig} */
@@ -43,7 +43,16 @@ export const DEFAULT_CONFIG = {
     placeholder: true,
   },
   rules: [],
-  overwriteExisting: false,
+}
+
+/** @returns {DarkModeConfig} */
+function createDefaultConfig() {
+  return {
+    shadeMap: { ...DEFAULT_CONFIG.shadeMap },
+    colorMap: { ...DEFAULT_CONFIG.colorMap },
+    utilities: { ...DEFAULT_CONFIG.utilities },
+    rules: [],
+  }
 }
 
 /**
@@ -54,7 +63,7 @@ export const DEFAULT_CONFIG = {
  */
 export function normalizeConfig(rawData) {
   if (!rawData || typeof rawData !== 'object') {
-    return { ...DEFAULT_CONFIG }
+    return createDefaultConfig()
   }
 
   const rawConfigRecord = /** @type {Record<string, unknown>} */ (rawData)
@@ -64,10 +73,6 @@ export function normalizeConfig(rawData) {
     colorMap: normalizeColorMap(rawConfigRecord.colorMap),
     utilities: normalizeUtilities(rawConfigRecord.utilities),
     rules: normalizeRules(rawConfigRecord.rules),
-    overwriteExisting:
-      typeof rawConfigRecord.overwriteExisting === 'boolean'
-        ? rawConfigRecord.overwriteExisting
-        : DEFAULT_CONFIG.overwriteExisting,
   }
 }
 
@@ -163,6 +168,7 @@ function normalizeRule(rawRule) {
       ? ruleRecord.colors.filter((colorItem) => typeof colorItem === 'string')
       : null,
     darkShade: typeof ruleRecord.darkShade === 'number' ? ruleRecord.darkShade : null,
+    darkColor: typeof ruleRecord.darkColor === 'string' && ruleRecord.darkColor ? ruleRecord.darkColor : null,
     excludeElements: Array.isArray(ruleRecord.excludeElements)
       ? ruleRecord.excludeElements.filter((elementItem) => typeof elementItem === 'string')
       : [],
@@ -177,19 +183,19 @@ function normalizeRule(rawRule) {
 /** @returns {DarkModeConfig} */
 export function loadConfig() {
   if (typeof localStorage === 'undefined') {
-    return { ...DEFAULT_CONFIG }
+    return createDefaultConfig()
   }
 
   try {
     const storedJson = localStorage.getItem(STORAGE_KEY)
 
     if (!storedJson) {
-      return { ...DEFAULT_CONFIG }
+      return createDefaultConfig()
     }
 
     return normalizeConfig(JSON.parse(storedJson))
   } catch {
-    return { ...DEFAULT_CONFIG }
+    return createDefaultConfig()
   }
 }
 
@@ -216,7 +222,7 @@ export function resetConfig() {
     }
   }
 
-  return { ...DEFAULT_CONFIG }
+  return createDefaultConfig()
 }
 
 /** @param {DarkModeConfig} configData @returns {string} */

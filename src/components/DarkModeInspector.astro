@@ -30,22 +30,32 @@ import { FORM_INPUT_CLASS, NUMBER_INPUT_CLASS } from '../lib/dark-mode/element-c
       />
     </div>
 
-    <button
-      type="button"
-      data-inspector-close
-      aria-label="Close inspector"
-      class="shrink-0 rounded-md p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-    >
-      <X class="size-5" />
-    </button>
+    <div class="flex shrink-0 items-center gap-2">
+      <button
+        type="button"
+        data-inspector-apply
+        class="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+      >
+        Apply
+      </button>
+
+      <button
+        type="button"
+        data-inspector-close
+        aria-label="Close inspector"
+        class="rounded-md p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+      >
+        <X class="size-5" />
+      </button>
+    </div>
   </div>
 
   <div class="overflow-x-auto">
-    <div class="grid min-w-[52rem] grid-cols-6 gap-x-6 gap-y-3 p-4">
+    <div class="grid min-w-[60rem] grid-cols-7 gap-x-6 gap-y-3 p-4">
       <h3 class="col-span-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
         Apply when
       </h3>
-      <h3 class="col-span-1 text-xs font-semibold uppercase tracking-wide text-gray-400">
+      <h3 class="col-span-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
         In dark mode
       </h3>
       <h3 class="col-span-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
@@ -107,6 +117,19 @@ import { FORM_INPUT_CLASS, NUMBER_INPUT_CLASS } from '../lib/dark-mode/element-c
         />
         <span class="mt-1 block text-xs font-normal text-gray-400"
           >Leave blank to use the shade map.</span
+        >
+      </label>
+
+      <label class="block text-sm font-medium text-gray-700">
+        Use color
+        <input
+          type="text"
+          data-inspector-dark-color
+          class={FORM_INPUT_CLASS}
+          placeholder="e.g. gray-900"
+        />
+        <span class="mt-1 block text-xs font-normal text-gray-400"
+          >Overrides shade. Useful for white/black.</span
         >
       </label>
 
