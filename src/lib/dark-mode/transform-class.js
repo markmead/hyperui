@@ -1,4 +1,4 @@
-import { COLOR_MAP, COLOR_FAMILIES } from '../../constants/dark-mode.js'
+import { COLOR_FAMILIES } from '../../constants/dark-mode.js'
 
 /**
  * @param {string} className
@@ -26,7 +26,7 @@ export function splitVariantPrefix(className) {
  * @param {number} shadeNumber  e.g. 600
  * @param {string | null | undefined} tagName  e.g. 'BUTTON' (uppercased from el.tagName)
  * @param {import('./config.js').DarkModeConfig} configData
- * @returns {{ skip: boolean, darkShade: number } | null}  null = no override, use shade map
+ * @returns {{ skip: boolean, darkShade: number | null, darkColor: string | null } | null}  null = no override, use shade map
  */
 function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) {
   const normalizedTag = tagName ? tagName.toLowerCase() : null
@@ -59,15 +59,19 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
       normalizedTag &&
       activeRule.excludeElements.includes(normalizedTag)
     ) {
-      return { skip: true, darkShade: 0 }
+      return { skip: true, darkShade: null, darkColor: null }
     }
 
     if (activeRule.excludeColors && activeRule.excludeColors.includes(colorFamily)) {
-      return { skip: true, darkShade: 0 }
+      return { skip: true, darkShade: null, darkColor: null }
+    }
+
+    if (activeRule.darkColor) {
+      return { skip: false, darkShade: activeRule.darkShade ?? null, darkColor: activeRule.darkColor }
     }
 
     if (activeRule.darkShade !== null) {
-      return { skip: false, darkShade: activeRule.darkShade }
+      return { skip: false, darkShade: activeRule.darkShade, darkColor: null }
     }
   }
 
@@ -86,10 +90,11 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
 export function transformClass(className, configData, tagName = null) {
   const { variantPrefix, classWithoutVariant } = splitVariantPrefix(className)
 
-  // white/black named colors
-  for (const [lightColor, darkColor] of Object.entries(COLOR_MAP)) {
+  // named colors (white/black and any user overrides in configData.colorMap)
+  for (const [lightColor, darkColor] of Object.entries(configData.colorMap)) {
     if (classWithoutVariant.includes(lightColor)) {
-      const colorMatch = classWithoutVariant.match(/^((?:[\w]+-)*)(white|black)(\/\d+)?$/)
+      const colorRegex = new RegExp(`^((?:[\\w]+-)*)(${lightColor})(\\/\\d+)?$`)
+      const colorMatch = classWithoutVariant.match(colorRegex)
 
       if (colorMatch) {
         const colorPrefix = colorMatch[1] ?? ''
@@ -106,7 +111,12 @@ export function transformClass(className, configData, tagName = null) {
           return className
         }
 
-        const darkClass = `${colorPrefix}${darkColor}${colorSuffix}`
+        const resolvedDarkColor = ruleResult?.darkColor
+          ? ruleResult.darkShade != null
+            ? `${ruleResult.darkColor}-${ruleResult.darkShade}`
+            : ruleResult.darkColor
+          : darkColor
+        const darkClass = `${colorPrefix}${resolvedDarkColor}${colorSuffix}`
 
         return `${className} dark:${variantPrefix}${darkClass}`
       }
@@ -139,8 +149,12 @@ export function transformClass(className, configData, tagName = null) {
         return className
       }
 
-      const darkShade = ruleResult?.darkShade ?? configData.shadeMap[shadeNum]
-      const darkClass = `${colorPrefix}${colorFamily}-${darkShade}${colorSuffix}`
+      const resolvedDarkColor = ruleResult?.darkColor
+        ? ruleResult.darkShade != null
+          ? `${ruleResult.darkColor}-${ruleResult.darkShade}`
+          : ruleResult.darkColor
+        : `${colorFamily}-${ruleResult?.darkShade ?? configData.shadeMap[shadeNum]}`
+      const darkClass = `${colorPrefix}${resolvedDarkColor}${colorSuffix}`
 
       return `${className} dark:${variantPrefix}${darkClass}`
     }
