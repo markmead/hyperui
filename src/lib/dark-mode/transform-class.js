@@ -24,7 +24,7 @@ export function splitVariantPrefix(className) {
  * @param {string} utilityName  e.g. 'bg', 'text', 'border'
  * @param {string} colorFamily  e.g. 'blue'
  * @param {number} shadeNumber  e.g. 600
- * @param {string | null | undefined} tagName  e.g. 'BUTTON' (uppercased from el.tagName)
+ * @param {string | null | undefined} tagName  e.g. 'button' (lowercase)
  * @param {import('./config.js').DarkModeConfig} configData
  * @returns {{ skip: boolean, darkShade: number | null, darkColor: string | null } | null}  null = no override, use shade map
  */

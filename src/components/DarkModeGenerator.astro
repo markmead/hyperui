@@ -152,11 +152,16 @@ import DarkModeInspector from './DarkModeInspector.astro'
         },
       })
 
-      inspectorElement.show()
+      if (!inspectorElement.open) {
+        inspectorElement.show()
+      }
     }
 
     private closeInspector() {
-      this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!.close()
+      const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
+      if (inspectorElement.open) {
+        inspectorElement.close()
+      }
     }
 
     private bindInspectorDismiss() {
@@ -213,7 +218,9 @@ import DarkModeInspector from './DarkModeInspector.astro'
 
       this.querySelector('[data-rules-examples]')!.addEventListener('click', (clickEvent) => {
         clickEvent.stopPropagation()
-        rulesDialog.showModal()
+        if (!rulesDialog.open) {
+          rulesDialog.showModal()
+        }
       })
 
       this.querySelector('[data-rules-dialog-close]')!.addEventListener('click', () => {
