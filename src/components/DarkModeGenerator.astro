@@ -131,14 +131,14 @@ import DarkModeInspector from './DarkModeInspector.astro'
 
     private openInspector(ruleId: string) {
       const ruleIndex = this.generatorConfig.rules.findIndex((existingRule) => existingRule.id === ruleId)
-      const rule = this.generatorConfig.rules[ruleIndex]
-      if (!rule) {
+      const matchedRule = this.generatorConfig.rules[ruleIndex]
+      if (!matchedRule) {
         return
       }
 
       const inspectorElement = this.querySelector<HTMLDialogElement>('[data-rule-inspector]')!
 
-      bindInspector(inspectorElement, rule, ruleIndex, {
+      bindInspector(inspectorElement, matchedRule, ruleIndex, {
         onChange: () => {
           this.saveConfiguration()
           this.transformAndRender()
@@ -185,10 +185,10 @@ import DarkModeInspector from './DarkModeInspector.astro'
           if (!inspectorElement.open) {
             return
           }
-          const target = pointerEvent.target as Element
+          const clickTarget = pointerEvent.target as Element
           if (
-            !target.closest('[data-rule-inspector]') &&
-            !target.closest('[data-configure-rule]')
+            !clickTarget.closest('[data-rule-inspector]') &&
+            !clickTarget.closest('[data-configure-rule]')
           ) {
             this.closeInspector()
           }

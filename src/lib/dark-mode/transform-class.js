@@ -132,18 +132,18 @@ export function transformClass(className, configData, tagName = null) {
       const colorPrefix = colorMatch[1] ?? ''
       const colorShade = colorMatch[2] ?? '0'
       const colorSuffix = colorMatch[3] ?? ''
-      const shadeNum = parseInt(colorShade, 10)
+      const parsedShadeNumber = parseInt(colorShade, 10)
       const utilityName = colorPrefix.replace(/-$/, '')
 
       if (configData.utilities[utilityName] === false) {
         return className
       }
 
-      if (!(shadeNum in configData.shadeMap)) {
+      if (!(parsedShadeNumber in configData.shadeMap)) {
         return className
       }
 
-      const ruleResult = applyRules(utilityName, colorFamily, shadeNum, tagName, configData)
+      const ruleResult = applyRules(utilityName, colorFamily, parsedShadeNumber, tagName, configData)
 
       if (ruleResult?.skip) {
         return className
@@ -153,7 +153,7 @@ export function transformClass(className, configData, tagName = null) {
         ? ruleResult.darkShade != null
           ? `${ruleResult.darkColor}-${ruleResult.darkShade}`
           : ruleResult.darkColor
-        : `${colorFamily}-${ruleResult?.darkShade ?? configData.shadeMap[shadeNum]}`
+        : `${colorFamily}-${ruleResult?.darkShade ?? configData.shadeMap[parsedShadeNumber]}`
       const darkClass = `${colorPrefix}${resolvedDarkColor}${colorSuffix}`
 
       return `${className} dark:${variantPrefix}${darkClass}`
