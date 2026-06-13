@@ -1,9 +1,10 @@
 ---
 paths:
-  - "src/lib/**/*.js"
-  - "src/components/DarkMode*.astro"
-  - "src/pages/tools/**/*.astro"
+  - "src/**/*.astro"
+  - "src/**/*.ts"
+  - "src/**/*.js"
   - "constants/**/*.js"
+  - "scripts/**/*.js"
 ---
 
 # Code style
