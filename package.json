@@ -10,7 +10,6 @@
     "format": "prettier --write . --ignore-path .prettierignore",
     "css:blog": "npx @tailwindcss/cli -i ./src/styles/blog.css -o ./public/blog.css -m",
     "css:component": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
-    "generate:dark-variants": "node scripts/generate-dark-variants.js",
     "generate:git-metadata": "node scripts/generate-git-metadata.js"
   },
   "dependencies": {

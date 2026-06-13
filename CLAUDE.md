@@ -17,7 +17,6 @@ pnpm test                         # run Playwright E2E tests (requires dev serve
 pnpm lint                         # ESLint
 pnpm format                       # Prettier
 pnpm run generate:git-metadata    # regenerate src/data/git-metadata.json from git history
-pnpm run generate:dark-variants   # generate dark HTML variants from light ones
 ```
 
 ## Architecture
@@ -32,7 +31,7 @@ The three categories map to Astro content collections defined in `src/content.co
 
 The actual component markup lives in `public/examples/{category}/{slug}/{n}.html` (light) and `public/examples/{category}/{slug}/{n}-dark.html` (dark). These are standalone HTML pages loaded in iframes by the `<component-preview>` custom element.
 
-Dark variants can be auto-generated from light variants via `scripts/generate-dark-variants.js`.
+Dark variants can be generated using the browser-based dark mode generator tool at `/tools/dark-mode-generator`.
 
 ### Preview System
 
@@ -48,7 +47,7 @@ Dark variants can be auto-generated from light variants via `scripts/generate-da
 
 1. Add an entry to the `components` array in the relevant MDX file under `src/content/collection/`.
 2. Create the corresponding HTML file(s) in `public/examples/{category}/{slug}/`.
-3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file (or run `generate:dark-variants`).
+3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file.
 
 ## PR Title Format
 
