@@ -1,6 +1,31 @@
 ---
 ---
 
+<style>
+  [data-skeleton-container],
+  [data-result-container],
+  [data-config-container],
+  [data-nearest-container] {
+    transition: opacity 0.2s ease, display 0.2s allow-discrete;
+  }
+
+  [data-skeleton-container].hidden,
+  [data-result-container].hidden,
+  [data-config-container].hidden,
+  [data-nearest-container].hidden {
+    opacity: 0;
+  }
+
+  @starting-style {
+    [data-skeleton-container]:not(.hidden),
+    [data-result-container]:not(.hidden),
+    [data-config-container]:not(.hidden),
+    [data-nearest-container]:not(.hidden) {
+      opacity: 0;
+    }
+  }
+</style>
+
 <typography-mapper class="block">
   <div class="flex flex-wrap gap-4">
     <div class="w-36">
