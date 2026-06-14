@@ -94,6 +94,11 @@ import TooltipWrapper from './TooltipWrapper.astro'
                 data-line-height-ratio-badge
                 class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
               ></span>
+
+              <span
+                data-letter-spacing-label-badge
+                class="hidden inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+              ></span>
             </div>
           </div>
 
@@ -335,6 +340,19 @@ import TooltipWrapper from './TooltipWrapper.astro'
     if (lineHeightRatio < 2.0)
       return { labelText: 'Relaxed', styleClasses: 'bg-blue-50 text-blue-700' }
     return { labelText: 'Loose', styleClasses: 'bg-purple-50 text-purple-700' }
+  }
+
+  function buildLetterSpacingDescription(emValue: number): {
+    labelText: string
+    styleClasses: string
+  } {
+    if (emValue <= -0.025)
+      return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
+    if (emValue < 0.025)
+      return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
+    if (emValue < 0.075)
+      return { labelText: 'Wide', styleClasses: 'bg-blue-50 text-blue-700' }
+    return { labelText: 'Widest', styleClasses: 'bg-purple-50 text-purple-700' }
   }
 
   function mapFontSize(fontSizePixelValue: number): FontSizeMappingResult {
@@ -777,12 +795,10 @@ import TooltipWrapper from './TooltipWrapper.astro'
       const lineHeightRatio = lineHeightPixelValue / fontSizePixelValue
       const ratioRounded = Math.round(lineHeightRatio * 100) / 100
       const ratioDescriptionResult = buildLineHeightRatioDescription(lineHeightRatio)
-      const ratioLabelText = `${ratioRounded}x — ${ratioDescriptionResult.labelText}`
-
       const lineHeightRatioBadgeElement = this.querySelector<HTMLElement>(
         '[data-line-height-ratio-badge]',
       )!
-      lineHeightRatioBadgeElement.textContent = ratioLabelText
+      lineHeightRatioBadgeElement.textContent = `Line Height ${ratioRounded}x — ${ratioDescriptionResult.labelText}`
       lineHeightRatioBadgeElement.className = `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${ratioDescriptionResult.styleClasses}`
 
       const previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
@@ -824,6 +840,10 @@ import TooltipWrapper from './TooltipWrapper.astro'
         '[data-letter-spacing-breakdown]',
       )!
 
+      const letterSpacingLabelBadgeElement = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-label-badge]',
+      )!
+
       if (mappingResult.letterSpacingMappingResult) {
         letterSpacingBreakdownElement.classList.remove('hidden')
         this.querySelector('[data-letter-spacing-class-display]')!.textContent =
@@ -840,8 +860,15 @@ import TooltipWrapper from './TooltipWrapper.astro'
           letterSpacingBadgeElement,
           mappingResult.letterSpacingMappingResult.isExact ? 'exact' : 'arbitrary',
         )
+
+        const emValue = parseFloat(mappingResult.letterSpacingMappingResult.emValueString)
+        const letterSpacingDescriptionResult = buildLetterSpacingDescription(emValue)
+        letterSpacingLabelBadgeElement.textContent = `Letter Spacing ${mappingResult.letterSpacingMappingResult.emValueString} — ${letterSpacingDescriptionResult.labelText}`
+        letterSpacingLabelBadgeElement.className = `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${letterSpacingDescriptionResult.styleClasses}`
+        letterSpacingLabelBadgeElement.classList.remove('hidden')
       } else {
         letterSpacingBreakdownElement.classList.add('hidden')
+        letterSpacingLabelBadgeElement.classList.add('hidden')
       }
 
       this.renderConfigSection(mappingResult, fontSizePixelValue, lineHeightPixelValue)
