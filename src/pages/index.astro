@@ -1,11 +1,18 @@
 ---
 import { getCollection } from 'astro:content'
 
+import { ArrowRight, X } from '@lucide/astro'
+
 import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../constants/seo'
 
 import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
+import StatusBadge from '../components/StatusBadge.astro'
+import ToolCard from '../components/ToolCard.astro'
+import TooltipWrapper from '../components/TooltipWrapper.astro'
+
+import tools from '../data/tools.json'
 
 const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
   getCollection('application'),
@@ -27,6 +34,8 @@ const neobrutalism = neobrutalismRaw
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
   .slice(0, 9)
+
+const availableTools = tools.filter((tool) => tool.href)
 ---
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
@@ -52,6 +61,53 @@ const neobrutalism = neobrutalismRaw
     id="main-content"
     class="mx-auto max-w-7xl divide-y divide-gray-200 border-t border-gray-200 px-4"
   >
+    <section id="tools-banner" class="py-16">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <h2 class="text-3xl font-medium">Tools</h2>
+
+          <StatusBadge status="fresh" />
+        </div>
+
+        <TooltipWrapper text="Dismiss tools section">
+          <button
+            id="tools-banner-close"
+            type="button"
+            aria-label="Dismiss tools section"
+            class="inline-flex size-9 items-center justify-center rounded-md text-gray-400 transition-colors hover:text-gray-600"
+          >
+            <X class="size-5" />
+          </button>
+        </TooltipWrapper>
+      </div>
+
+      <p class="mt-2 text-gray-600">
+        Browser-based Tailwind CSS tools — no install, no signup required.
+      </p>
+
+      <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          availableTools.map((tool) => (
+            <li>
+              <ToolCard
+                href={tool.href}
+                title={tool.title}
+                status={tool.status}
+                badge={tool.badge}
+                description={tool.description}
+              />
+            </li>
+          ))
+        }
+      </ul>
+
+      <a href="/tools" class="group mt-8 inline-flex items-center gap-2 text-gray-700">
+        <span>View all tools</span>
+
+        <ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
+      </a>
+    </section>
+
     <CollectionFeature
       title="Application Components"
       description="Components for building application user interfaces."
@@ -74,3 +130,19 @@ const neobrutalism = neobrutalismRaw
     />
   </main>
 </BaseLayout>
+
+<script>
+  const toolsBannerEl = document.getElementById('tools-banner')
+  const closeButtonEl = document.getElementById('tools-banner-close')
+
+  const STORAGE_KEY = 'hyperui:tools-dismissed'
+
+  if (localStorage.getItem(STORAGE_KEY)) {
+    toolsBannerEl?.remove()
+  }
+
+  closeButtonEl?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY, 'true')
+    toolsBannerEl?.remove()
+  })
+</script>
