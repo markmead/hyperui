@@ -17,7 +17,7 @@ const { title, description } = Astro.props
 
     <slot name="head" />
   </head>
-  <body class="font-sans antialiased">
+  <body class="flex min-h-screen flex-col font-sans antialiased">
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:z-60 focus:-translate-x-1/2 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-gray-900 focus:shadow-lg"
@@ -38,7 +38,9 @@ const { title, description } = Astro.props
       > to show your support!
     </aside>
 
-    <slot />
+    <div class="flex flex-1 flex-col [&>main]:w-full">
+      <slot />
+    </div>
 
     <SiteFooter />
   </body>
