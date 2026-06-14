@@ -331,14 +331,18 @@ import TooltipWrapper from './TooltipWrapper.astro'
     labelText: string
     styleClasses: string
   } {
-    if (lineHeightRatio < 1.2)
+    if (lineHeightRatio < 1.2) {
       return { labelText: 'Very Tight', styleClasses: 'bg-red-50 text-red-600' }
-    if (lineHeightRatio < 1.35)
+    }
+    if (lineHeightRatio < 1.35) {
       return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
-    if (lineHeightRatio < 1.6)
+    }
+    if (lineHeightRatio < 1.6) {
       return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
-    if (lineHeightRatio < 2.0)
+    }
+    if (lineHeightRatio < 2.0) {
       return { labelText: 'Relaxed', styleClasses: 'bg-blue-50 text-blue-700' }
+    }
     return { labelText: 'Loose', styleClasses: 'bg-purple-50 text-purple-700' }
   }
 
@@ -346,12 +350,15 @@ import TooltipWrapper from './TooltipWrapper.astro'
     labelText: string
     styleClasses: string
   } {
-    if (emValue <= -0.025)
+    if (emValue <= -0.025) {
       return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
-    if (emValue < 0.025)
+    }
+    if (emValue < 0.025) {
       return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
-    if (emValue < 0.075)
+    }
+    if (emValue < 0.075) {
       return { labelText: 'Wide', styleClasses: 'bg-blue-50 text-blue-700' }
+    }
     return { labelText: 'Widest', styleClasses: 'bg-purple-50 text-purple-700' }
   }
 
@@ -644,7 +651,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
       await navigator.clipboard.writeText(textToCopy)
       buttonTextElement.textContent = 'Copied'
       liveRegionElement.textContent = 'Copied to clipboard.'
-      if (existingTimerId) clearTimeout(existingTimerId)
+      if (existingTimerId) { clearTimeout(existingTimerId) }
       return setTimeout(() => {
         buttonTextElement.textContent = 'Copy'
         liveRegionElement.textContent = ''
@@ -742,7 +749,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
       configCopyButtonElement.addEventListener('click', async () => {
         const configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
         const configText = configPreElement.textContent ?? ''
-        if (!configText.trim()) return
+        if (!configText.trim()) { return }
         configCopyTimerId = await copyTextToClipboard(
           configText,
           configCopyButtonTextElement,
@@ -758,7 +765,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
       const copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
 
       copyButtonElement.addEventListener('click', async () => {
-        if (!this.currentCombinedClass) return
+        if (!this.currentCombinedClass) { return }
         this.clipboardCopyTimerId = await copyTextToClipboard(
           this.currentCombinedClass,
           copyButtonTextElement,
@@ -932,7 +939,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
       ]
 
       for (const { scaleEntry, labelPrefix } of nearestEntryPairs) {
-        if (!scaleEntry) continue
+        if (!scaleEntry) { continue }
 
         const nearestMappingResult = mapTypography(
           scaleEntry.pixelValue,

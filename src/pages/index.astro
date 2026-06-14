@@ -12,6 +12,8 @@ import StatusBadge from '../components/StatusBadge.astro'
 import ToolCard from '../components/ToolCard.astro'
 import TooltipWrapper from '../components/TooltipWrapper.astro'
 
+import type { Status } from '../utils/status'
+
 import tools from '../data/tools.json'
 
 const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
@@ -92,7 +94,7 @@ const availableTools = tools.filter(({ href }) => href)
               <ToolCard
                 href={tool.href}
                 title={tool.title}
-                status={tool.status}
+                status={tool.status as Status}
                 description={tool.description}
               />
             </li>
