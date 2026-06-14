@@ -1,17 +1,17 @@
 ---
-import { getStatusColor, getStatusLabel } from '../utils/status'
 import type { Status } from '../utils/status'
+
+import { getStatusColor, getStatusLabel } from '../utils/status'
 
 interface Props {
   status: Status
-  label?: string
   class?: string
 }
 
-const { status, label, class: className } = Astro.props
+const { status, class: className } = Astro.props
 
 const dotColor = getStatusColor(status)
-const displayLabel = label ?? getStatusLabel(status)
+const displayLabel = getStatusLabel(status)
 ---
 
 <span
@@ -20,6 +20,7 @@ const displayLabel = label ?? getStatusLabel(status)
     className,
   ]}
 >
-  <span class={`size-1.5 rounded-full ${dotColor}`} aria-hidden="true" />
+  <span class={`size-1.5 rounded-full ${dotColor}`} aria-hidden="true"></span>
+
   {displayLabel}
 </span>

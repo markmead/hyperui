@@ -35,7 +35,7 @@ const neobrutalism = neobrutalismRaw
   .sort((a, b) => a.title.localeCompare(b.title))
   .slice(0, 9)
 
-const availableTools = tools.filter((tool) => tool.href)
+const availableTools = tools.filter(({ href }) => href)
 ---
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
@@ -93,7 +93,6 @@ const availableTools = tools.filter((tool) => tool.href)
                 href={tool.href}
                 title={tool.title}
                 status={tool.status}
-                badge={tool.badge}
                 description={tool.description}
               />
             </li>
@@ -143,6 +142,7 @@ const availableTools = tools.filter((tool) => tool.href)
 
   closeButtonEl?.addEventListener('click', () => {
     localStorage.setItem(STORAGE_KEY, 'true')
+
     toolsBannerEl?.remove()
   })
 </script>

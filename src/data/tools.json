@@ -2,26 +2,22 @@
   {
     "href": "/tools/dark-mode-generator",
     "title": "Dark Mode Generator",
-    "badge": "Beta",
     "status": "beta",
     "description": "Paste any Tailwind CSS HTML and generate dark mode variants automatically. Configure rules to control which elements and colors are transformed."
   },
   {
     "href": "/tools/typography-mapper",
     "title": "Typography Mapper",
-    "badge": "Beta",
     "status": "beta",
     "description": "Enter px values from a design handoff and get the exact Tailwind class or the nearest tokens either side with an arbitrary value fallback."
   },
   {
     "title": "Contrast Checker",
-    "badge": "Coming soon",
     "status": "coming-soon",
     "description": "Test any pair of Tailwind colors against WCAG AA and AAA contrast requirements to catch accessibility issues before they ship."
   },
   {
     "title": "Config Builder",
-    "badge": "Coming soon",
     "status": "coming-soon",
     "description": "Build your Tailwind v4 theme through a GUI — define color tokens, typography scales, and spacing — then copy the CSS variable block straight into your stylesheet."
   }
