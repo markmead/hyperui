@@ -2,9 +2,10 @@
 interface Props {
   text: string
   class?: string
+  tooltipClass?: string
 }
 
-const { text, class: className } = Astro.props
+const { text, class: className, tooltipClass } = Astro.props
 ---
 
 <span class:list={['group/tooltip relative inline-flex items-center', className]}>
@@ -12,7 +13,7 @@ const { text, class: className } = Astro.props
 
   <span
     aria-hidden="true"
-    class="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity group-focus-within/tooltip:opacity-100 group-hover/tooltip:opacity-100"
+    class:list={['pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-focus-within/tooltip:opacity-100 group-hover/tooltip:opacity-100', tooltipClass ?? 'whitespace-nowrap']}
   >
     {text}
     <span
