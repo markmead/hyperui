@@ -109,6 +109,7 @@ const availableTools = tools.filter(({ href }) => href)
                 title={tool.title}
                 status={tool.status as Status}
                 description={tool.description}
+                headingLevel="h3"
               />
             </li>
           ))
@@ -151,7 +152,7 @@ const availableTools = tools.filter(({ href }) => href)
 
   const STORAGE_KEY = 'hyperui:tools-dismissed'
 
-  if (localStorage.getItem(STORAGE_KEY)) {
+  if (document.documentElement.hasAttribute('data-tools-dismissed')) {
     toolsBannerElement?.remove()
   }
 

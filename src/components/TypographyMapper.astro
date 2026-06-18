@@ -474,11 +474,11 @@ import { MoveRight, Percent } from '@lucide/astro'
     const { fontSizeMappingResult, lineHeightMappingResult, letterSpacingMappingResult } =
       mappingResult
     const themeLines: string[] = []
+    const lineHeightRatio = Math.round((lineHeightPixelValue / fontSizePixelValue) * 1000) / 1000
 
     if (customClassName) {
       const fontSizeVariableName = `--text-${customClassName}`
       const fontSizeRemString = pxToRem(fontSizePixelValue)
-      const lineHeightRatio = Math.round((lineHeightPixelValue / fontSizePixelValue) * 1000) / 1000
 
       themeLines.push(
         `  ${fontSizeVariableName}: ${fontSizeRemString}; /* ${fontSizePixelValue}px */`,
@@ -494,7 +494,6 @@ import { MoveRight, Percent } from '@lucide/astro'
       }
     } else if (!fontSizeMappingResult.isExact) {
       const fontSizeRemString = pxToRem(fontSizePixelValue)
-      const lineHeightRatio = Math.round((lineHeightPixelValue / fontSizePixelValue) * 1000) / 1000
       const fontSizeVariableName = `--text-${fontSizePixelValue}`
 
       themeLines.push(
@@ -514,8 +513,6 @@ import { MoveRight, Percent } from '@lucide/astro'
       const fontSizeVariableName = `--text-${fontSizeTokenName}`
 
       if (!lineHeightMappingResult.isExact) {
-        const lineHeightRatio =
-          Math.round((lineHeightPixelValue / fontSizePixelValue) * 1000) / 1000
         themeLines.push(
           `  ${fontSizeVariableName}--line-height: ${lineHeightRatio}; /* ${lineHeightPixelValue}px */`,
         )
@@ -730,16 +727,8 @@ import { MoveRight, Percent } from '@lucide/astro'
         mappingResult.fontSizeMappingResult.isExact ? 'exact' : 'arbitrary',
       )
 
-      if (mappingResult.isDefaultLeadingMatch && mappingResult.fontSizeMappingResult.exactEntry) {
-        const defaultLeadingPxValue =
-          mappingResult.fontSizeMappingResult.exactEntry.defaultLeadingPx
-        const defaultLeadingMappingResult = mapLineHeight(defaultLeadingPxValue)
-        this.querySelector('[data-line-height-class-display]')!.textContent =
-          defaultLeadingMappingResult.tailwindClass
-      } else {
-        this.querySelector('[data-line-height-class-display]')!.textContent =
-          mappingResult.lineHeightMappingResult.tailwindClass
-      }
+      this.querySelector('[data-line-height-class-display]')!.textContent =
+        mappingResult.lineHeightMappingResult.tailwindClass
 
       this.querySelector('[data-line-height-px-display]')!.textContent = `${lineHeightPixelValue}px`
       this.querySelector('[data-line-height-rem-display]')!.textContent =
