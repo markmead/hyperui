@@ -211,7 +211,7 @@ import { MoveRight, Percent } from '@lucide/astro'
             <button
               data-copy-config-button
               type="button"
-              class="hidden inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+              class="hidden"
             >
               <span data-copy-config-button-text>Copy</span>
               <span data-copy-config-live-region aria-live="polite" class="sr-only"></span>
@@ -805,11 +805,9 @@ import { MoveRight, Percent } from '@lucide/astro'
       configContainerElement.classList.remove('hidden')
       this.querySelector('[data-config-pre]')!.textContent = configText
 
-      if (hasThemeContent) {
-        copyConfigButtonElement.classList.remove('hidden')
-      } else {
-        copyConfigButtonElement.classList.add('hidden')
-      }
+      copyConfigButtonElement.className = hasThemeContent
+        ? 'inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800'
+        : 'hidden'
     }
 
   }
