@@ -14,7 +14,7 @@ const STATUS_MAP: Record<Status, { color: string; label: string }> = {
     label: 'New',
   },
   stable: {
-    color: 'bg-blue-500',
+    color: 'bg-green-600',
     label: 'Stable',
   },
   updated: {

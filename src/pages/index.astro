@@ -41,6 +41,19 @@ const availableTools = tools.filter(({ href }) => href)
 ---
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
+  <Fragment slot="head">
+    <style is:global>
+      html[data-tools-dismissed] #tools-banner {
+        display: none;
+      }
+    </style>
+
+    <script is:inline>
+      if (localStorage.getItem('hyperui:tools-dismissed')) {
+        document.documentElement.setAttribute('data-tools-dismissed', '')
+      }
+    </script>
+  </Fragment>
   <section class="bg-white">
     <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-center md:py-16">
       <h1 class="text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">HyperUI</h1>
@@ -133,18 +146,18 @@ const availableTools = tools.filter(({ href }) => href)
 </BaseLayout>
 
 <script>
-  const toolsBannerEl = document.getElementById('tools-banner')
-  const closeButtonEl = document.getElementById('tools-banner-close')
+  const toolsBannerElement = document.getElementById('tools-banner')
+  const closeButtonElement = document.getElementById('tools-banner-close')
 
   const STORAGE_KEY = 'hyperui:tools-dismissed'
 
   if (localStorage.getItem(STORAGE_KEY)) {
-    toolsBannerEl?.remove()
+    toolsBannerElement?.remove()
   }
 
-  closeButtonEl?.addEventListener('click', () => {
+  closeButtonElement?.addEventListener('click', () => {
     localStorage.setItem(STORAGE_KEY, 'true')
-
-    toolsBannerEl?.remove()
+    document.documentElement.setAttribute('data-tools-dismissed', '')
+    toolsBannerElement?.remove()
   })
 </script>

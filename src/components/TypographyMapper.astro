@@ -1,7 +1,6 @@
 ---
 import { MoveRight, Percent } from '@lucide/astro'
 
-import TooltipWrapper from './TooltipWrapper.astro'
 ---
 
 <typography-mapper class="flex flex-1 flex-col">
@@ -35,7 +34,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
           id="line-height-input"
           type="number"
           data-line-height-input
-          value="48"
+          value="36"
           min="1"
           class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         />
@@ -97,7 +96,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
 
               <span
                 data-letter-spacing-label-badge
-                class="hidden inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                class="hidden"
               ></span>
             </div>
           </div>
@@ -188,20 +187,12 @@ import TooltipWrapper from './TooltipWrapper.astro'
         </div>
       </div>
 
-      <div data-config-container class="hidden">
+      <div data-config-container class="hidden space-y-4">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <p class="leading-[38px] font-medium text-gray-700">Tailwind CSS Config</p>
 
           <label for="class-name-input" class="flex flex-col gap-0.5">
-            <TooltipWrapper
-              text="Enter a name to generate a new text-{name} class. Leave empty to patch the existing Tailwind token instead."
-              tooltipClass="max-w-xs whitespace-normal"
-            >
-              <span class="text-sm font-medium text-gray-700">
-                Class Name
-                <span class="font-normal text-gray-500">(optional)</span>
-              </span>
-            </TooltipWrapper>
+            <span class="text-sm font-medium text-gray-700">Class Name</span>
 
             <input
               id="class-name-input"
@@ -213,14 +204,14 @@ import TooltipWrapper from './TooltipWrapper.astro'
           </label>
         </div>
 
-        <div class="relative mt-4 overflow-hidden rounded-lg border border-gray-200 bg-white">
+        <div class="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
           <pre data-config-pre class="overflow-x-auto p-4 font-mono text-sm text-gray-900"></pre>
 
           <div class="absolute top-3 right-3">
             <button
               data-copy-config-button
               type="button"
-              class="inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+              class="hidden inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
             >
               <span data-copy-config-button-text>Copy</span>
               <span data-copy-config-live-region aria-live="polite" class="sr-only"></span>
@@ -229,11 +220,6 @@ import TooltipWrapper from './TooltipWrapper.astro'
         </div>
       </div>
 
-      <div data-nearest-container class="hidden">
-        <p class="font-medium text-gray-700">Nearest Tailwind sizes</p>
-
-        <div data-nearest-grid class="mt-4 grid gap-4 sm:grid-cols-2"></div>
-      </div>
     </div>
   </div>
 </typography-mapper>
@@ -264,8 +250,6 @@ import TooltipWrapper from './TooltipWrapper.astro'
     tailwindClass: string
     isExact: boolean
     exactEntry: FontSizeScaleEntry | null
-    nearestBelowEntry: FontSizeScaleEntry | null
-    nearestAboveEntry: FontSizeScaleEntry | null
   }
 
   type LetterSpacingMappingResult = {
@@ -371,24 +355,13 @@ import TooltipWrapper from './TooltipWrapper.astro'
         tailwindClass: exactEntry.tailwindClass,
         isExact: true,
         exactEntry,
-        nearestBelowEntry: null,
-        nearestAboveEntry: null,
       }
     }
-
-    const nearestBelowEntry =
-      FONT_SIZE_SCALE.filter((scaleEntry) => scaleEntry.pixelValue < fontSizePixelValue).at(-1) ??
-      null
-
-    const nearestAboveEntry =
-      FONT_SIZE_SCALE.find((scaleEntry) => scaleEntry.pixelValue > fontSizePixelValue) ?? null
 
     return {
       tailwindClass: `text-[${fontSizePixelValue}px]`,
       isExact: false,
       exactEntry: null,
-      nearestBelowEntry,
-      nearestAboveEntry,
     }
   }
 
@@ -491,94 +464,13 @@ import TooltipWrapper from './TooltipWrapper.astro'
     return 'Arbitrary font size and line height'
   }
 
-  function buildNearestCard(
-    scaleEntry: FontSizeScaleEntry,
-    nearestMappingResult: TypographyMappingResult,
-    labelPrefix: string,
-    userLineHeightPx: number,
-  ): HTMLDivElement {
-    const cardElement = document.createElement('div')
-    cardElement.className = 'flex flex-col gap-2 rounded-lg border border-gray-200 bg-white p-4'
-
-    const labelElement = document.createElement('p')
-    labelElement.className = 'text-sm text-gray-700 font-medium'
-    labelElement.textContent = labelPrefix
-
-    const classRowElement = document.createElement('div')
-    classRowElement.className = 'flex items-center gap-2'
-
-    const classCodeElement = document.createElement('code')
-    classCodeElement.className = 'font-mono font-medium text-gray-900'
-    classCodeElement.textContent = nearestMappingResult.combinedClass
-
-    classRowElement.appendChild(classCodeElement)
-
-    const isLineHeightMatch = scaleEntry.defaultLeadingPx === userLineHeightPx
-    if (isLineHeightMatch) {
-      const lineHeightMatchBadgeElement = document.createElement('span')
-      lineHeightMatchBadgeElement.className =
-        'rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700'
-      lineHeightMatchBadgeElement.textContent = 'Line Height Matches'
-      classRowElement.appendChild(lineHeightMatchBadgeElement)
-    }
-
-    const footerRowElement = document.createElement('div')
-    footerRowElement.className = 'flex items-center justify-between gap-2'
-
-    const detailElement = document.createElement('p')
-    detailElement.className = 'flex items-center gap-1.5 text-sm text-gray-700'
-
-    const dotSeparatorElement = document.createElement('span')
-    dotSeparatorElement.className = 'size-1 rounded-full bg-gray-400'
-    dotSeparatorElement.setAttribute('aria-hidden', 'true')
-
-    detailElement.appendChild(document.createTextNode(`${scaleEntry.pixelValue}px font size`))
-    detailElement.appendChild(dotSeparatorElement)
-    detailElement.appendChild(
-      document.createTextNode(`${scaleEntry.defaultLeadingPx}px line height`),
-    )
-
-    const copyButtonElement = document.createElement('button')
-    copyButtonElement.type = 'button'
-    copyButtonElement.className =
-      'shrink-0 inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800'
-
-    const copyButtonTextElement = document.createElement('span')
-    copyButtonTextElement.textContent = 'Copy'
-    copyButtonElement.appendChild(copyButtonTextElement)
-
-    const copyLiveRegionElement = document.createElement('span')
-    copyLiveRegionElement.setAttribute('aria-live', 'polite')
-    copyLiveRegionElement.className = 'sr-only'
-    copyButtonElement.appendChild(copyLiveRegionElement)
-
-    let nearestCopyTimerId: ReturnType<typeof setTimeout> | null = null
-
-    copyButtonElement.addEventListener('click', async () => {
-      nearestCopyTimerId = await copyTextToClipboard(
-        nearestMappingResult.combinedClass,
-        copyButtonTextElement,
-        copyLiveRegionElement,
-        nearestCopyTimerId,
-      )
-    })
-
-    footerRowElement.appendChild(detailElement)
-    footerRowElement.appendChild(copyButtonElement)
-
-    cardElement.appendChild(labelElement)
-    cardElement.appendChild(classRowElement)
-    cardElement.appendChild(footerRowElement)
-
-    return cardElement
-  }
 
   function buildThemeConfig(
     mappingResult: TypographyMappingResult,
     fontSizePixelValue: number,
     lineHeightPixelValue: number,
     customClassName: string | null = null,
-  ): string {
+  ): { configText: string; hasThemeContent: boolean } {
     const { fontSizeMappingResult, lineHeightMappingResult, letterSpacingMappingResult } =
       mappingResult
     const themeLines: string[] = []
@@ -629,14 +521,25 @@ import TooltipWrapper from './TooltipWrapper.astro'
         )
       }
 
-      if (letterSpacingMappingResult) {
+      if (letterSpacingMappingResult && !letterSpacingMappingResult.isExact) {
         themeLines.push(
           `  ${fontSizeVariableName}--letter-spacing: ${letterSpacingMappingResult.emValueString};`,
         )
       }
     }
 
-    return ['@theme {', ...themeLines, '}'].join('\n')
+    const hasThemeContent = themeLines.length > 0
+    const configBodyLines = hasThemeContent
+      ? themeLines
+      : [
+          '  /* All values match existing Tailwind tokens. Enter a class name above',
+          '     to generate a named utility, or change values to generate overrides. */',
+        ]
+
+    return {
+      configText: ['@theme {', ...configBodyLines, '}'].join('\n'),
+      hasThemeContent,
+    }
   }
 
   const COPY_RESET_DELAY_MS = 1500
@@ -663,6 +566,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
 
   class TypographyMapper extends HTMLElement {
     private clipboardCopyTimerId: ReturnType<typeof setTimeout> | null = null
+    private configCopyTimerId: ReturnType<typeof setTimeout> | null = null
     private currentCombinedClass: string = ''
 
     connectedCallback() {
@@ -696,6 +600,9 @@ import TooltipWrapper from './TooltipWrapper.astro'
     disconnectedCallback() {
       if (this.clipboardCopyTimerId) {
         clearTimeout(this.clipboardCopyTimerId)
+      }
+      if (this.configCopyTimerId) {
+        clearTimeout(this.configCopyTimerId)
       }
     }
 
@@ -744,17 +651,15 @@ import TooltipWrapper from './TooltipWrapper.astro'
         '[data-copy-config-live-region]',
       )!
 
-      let configCopyTimerId: ReturnType<typeof setTimeout> | null = null
-
       configCopyButtonElement.addEventListener('click', async () => {
         const configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
         const configText = configPreElement.textContent ?? ''
         if (!configText.trim()) { return }
-        configCopyTimerId = await copyTextToClipboard(
+        this.configCopyTimerId = await copyTextToClipboard(
           configText,
           configCopyButtonTextElement,
           configCopyLiveRegionElement,
-          configCopyTimerId,
+          this.configCopyTimerId,
         )
       })
     }
@@ -830,7 +735,7 @@ import TooltipWrapper from './TooltipWrapper.astro'
           mappingResult.fontSizeMappingResult.exactEntry.defaultLeadingPx
         const defaultLeadingMappingResult = mapLineHeight(defaultLeadingPxValue)
         this.querySelector('[data-line-height-class-display]')!.textContent =
-          `${defaultLeadingMappingResult.tailwindClass} (default)`
+          defaultLeadingMappingResult.tailwindClass
       } else {
         this.querySelector('[data-line-height-class-display]')!.textContent =
           mappingResult.lineHeightMappingResult.tailwindClass
@@ -872,14 +777,12 @@ import TooltipWrapper from './TooltipWrapper.astro'
         const letterSpacingDescriptionResult = buildLetterSpacingDescription(emValue)
         letterSpacingLabelBadgeElement.textContent = `Letter Spacing ${mappingResult.letterSpacingMappingResult.emValueString} — ${letterSpacingDescriptionResult.labelText}`
         letterSpacingLabelBadgeElement.className = `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${letterSpacingDescriptionResult.styleClasses}`
-        letterSpacingLabelBadgeElement.classList.remove('hidden')
       } else {
         letterSpacingBreakdownElement.classList.add('hidden')
-        letterSpacingLabelBadgeElement.classList.add('hidden')
+        letterSpacingLabelBadgeElement.className = 'hidden'
       }
 
       this.renderConfigSection(mappingResult, fontSizePixelValue, lineHeightPixelValue)
-      this.renderNearestSection(mappingResult, lineHeightPixelValue)
     }
 
     private renderConfigSection(
@@ -888,72 +791,27 @@ import TooltipWrapper from './TooltipWrapper.astro'
       lineHeightPixelValue: number,
     ) {
       const configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
-      const { fontSizeMappingResult, lineHeightMappingResult, letterSpacingMappingResult } =
-        mappingResult
-
-      const hasArbitraryValue =
-        !fontSizeMappingResult.isExact ||
-        !lineHeightMappingResult.isExact ||
-        (letterSpacingMappingResult !== null && !letterSpacingMappingResult.isExact)
-
-      if (!hasArbitraryValue) {
-        configContainerElement.classList.add('hidden')
-        return
-      }
-
+      const copyConfigButtonElement = this.querySelector<HTMLElement>('[data-copy-config-button]')!
       const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
       const customClassName = classNameInputElement.value.trim() || null
 
-      configContainerElement.classList.remove('hidden')
-      this.querySelector('[data-config-pre]')!.textContent = buildThemeConfig(
+      const { configText, hasThemeContent } = buildThemeConfig(
         mappingResult,
         fontSizePixelValue,
         lineHeightPixelValue,
         customClassName,
       )
-    }
 
-    private renderNearestSection(
-      mappingResult: TypographyMappingResult,
-      userLineHeightPixelValue: number,
-    ) {
-      const nearestContainerElement = this.querySelector<HTMLElement>('[data-nearest-container]')!
-      const nearestGridElement = this.querySelector<HTMLElement>('[data-nearest-grid]')!
+      configContainerElement.classList.remove('hidden')
+      this.querySelector('[data-config-pre]')!.textContent = configText
 
-      const { nearestBelowEntry, nearestAboveEntry } = mappingResult.fontSizeMappingResult
-      const hasNearestEntries =
-        !mappingResult.fontSizeMappingResult.isExact &&
-        (nearestBelowEntry !== null || nearestAboveEntry !== null)
-
-      if (!hasNearestEntries) {
-        nearestContainerElement.classList.add('hidden')
-        return
-      }
-
-      nearestContainerElement.classList.remove('hidden')
-      nearestGridElement.replaceChildren()
-
-      const nearestEntryPairs = [
-        { scaleEntry: nearestBelowEntry, labelPrefix: 'Below' },
-        { scaleEntry: nearestAboveEntry, labelPrefix: 'Above' },
-      ]
-
-      for (const { scaleEntry, labelPrefix } of nearestEntryPairs) {
-        if (!scaleEntry) { continue }
-
-        const nearestMappingResult = mapTypography(
-          scaleEntry.pixelValue,
-          scaleEntry.defaultLeadingPx,
-        )
-        const nearestCardElement = buildNearestCard(
-          scaleEntry,
-          nearestMappingResult,
-          labelPrefix,
-          userLineHeightPixelValue,
-        )
-        nearestGridElement.appendChild(nearestCardElement)
+      if (hasThemeContent) {
+        copyConfigButtonElement.classList.remove('hidden')
+      } else {
+        copyConfigButtonElement.classList.add('hidden')
       }
     }
+
   }
 
   customElements.define('typography-mapper', TypographyMapper)
@@ -961,23 +819,20 @@ import TooltipWrapper from './TooltipWrapper.astro'
 
 <style>
   [data-result-container],
-  [data-config-container],
-  [data-nearest-container] {
+  [data-config-container] {
     transition:
       opacity 0.2s ease,
       display 0.2s allow-discrete;
   }
 
   [data-result-container].hidden,
-  [data-config-container].hidden,
-  [data-nearest-container].hidden {
+  [data-config-container].hidden {
     opacity: 0;
   }
 
   @starting-style {
     [data-result-container]:not(.hidden),
-    [data-config-container]:not(.hidden),
-    [data-nearest-container]:not(.hidden) {
+    [data-config-container]:not(.hidden) {
       opacity: 0;
     }
   }

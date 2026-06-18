@@ -47,10 +47,6 @@ const isRecentlyUpdated = updated?.date
       />
     </div>
 
-    {
-      isRecentlyUpdated && (
-        <StatusBadge status="updated" class="absolute top-3 right-3" />
-      )
-    }
+    {isRecentlyUpdated && <StatusBadge status="updated" class="absolute top-3 right-3" />}
   </a>
 </li>

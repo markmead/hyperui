@@ -141,9 +141,9 @@ test.describe('Dark Mode Generator', () => {
       await excludeElementsInput.fill('button')
       await excludeElementsInput.dispatchEvent('change')
 
-      await page.locator('[data-input]').fill(
-        '<div class="bg-blue-600"><button class="bg-blue-600">text</button></div>',
-      )
+      await page
+        .locator('[data-input]')
+        .fill('<div class="bg-blue-600"><button class="bg-blue-600">text</button></div>')
       await page.waitForTimeout(DEBOUNCE_WAIT_MS)
 
       const outputText = await page.locator('[data-output]').textContent()

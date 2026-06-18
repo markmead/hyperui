@@ -97,7 +97,9 @@ export function transformClass(className, configData, tagName = null) {
   for (const [lightColor, darkColor] of Object.entries(configData.colorMap)) {
     if (classWithoutVariant.includes(lightColor)) {
       const escapedLightColor = lightColor.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-      const colorRegex = new RegExp(`^((?:[\\w]+-)*)(${escapedLightColor})(\\/(?:\\[[^\\]]+\\]|\\d+))?$`)
+      const colorRegex = new RegExp(
+        `^((?:[\\w]+-)*)(${escapedLightColor})(\\/(?:\\[[^\\]]+\\]|\\d+))?$`,
+      )
       const colorMatch = classWithoutVariant.match(colorRegex)
 
       if (colorMatch) {
