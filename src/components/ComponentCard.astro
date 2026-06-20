@@ -3,6 +3,8 @@ import type { CollectionEntry } from 'astro:content'
 
 import { ArrowRight } from '@lucide/astro'
 
+import StatusBadge from './StatusBadge.astro'
+
 interface Props {
   component:
     | CollectionEntry<'application'>['data']
@@ -45,13 +47,6 @@ const isRecentlyUpdated = updated?.date
       />
     </div>
 
-    {
-      isRecentlyUpdated && (
-        <span class="absolute top-3 right-3 inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs font-medium text-gray-600">
-          <span class="size-1 rounded-full bg-green-600" aria-hidden="true" />
-          Updated
-        </span>
-      )
-    }
+    {isRecentlyUpdated && <StatusBadge status="updated" class="absolute top-3 right-3" />}
   </a>
 </li>

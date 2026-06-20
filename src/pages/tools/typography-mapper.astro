@@ -1,0 +1,23 @@
+---
+import { SEO_TITLE_TYPOGRAPHY_MAPPER, SEO_DESCRIPTION_TYPOGRAPHY_MAPPER } from '../../constants/seo'
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BaseHero from '../../components/BaseHero.astro'
+import TypographyMapper from '../../components/TypographyMapper.astro'
+import StatusBadge from '../../components/StatusBadge.astro'
+import BackLink from '../../components/BackLink.astro'
+---
+
+<BaseLayout title={SEO_TITLE_TYPOGRAPHY_MAPPER} description={SEO_DESCRIPTION_TYPOGRAPHY_MAPPER}>
+  <BaseHero
+    title="Typography Mapper"
+    description="Enter font size and line height in pixels from a design handoff and get the exact Tailwind CSS class or the nearest tokens with an arbitrary value fallback."
+  >
+    <BackLink slot="back" href="/tools" label="Back to tools" />
+    <StatusBadge slot="badge" status="beta" />
+  </BaseHero>
+
+  <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
+    <TypographyMapper />
+  </main>
+</BaseLayout>

@@ -16,5 +16,12 @@ components:
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
 
-<BaseHero title={frontmatter.title} description={frontmatter.description} />
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>

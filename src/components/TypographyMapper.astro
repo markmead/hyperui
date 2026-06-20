@@ -1,0 +1,832 @@
+---
+import { MoveRight, Percent } from '@lucide/astro'
+
+---
+
+<typography-mapper class="flex flex-1 flex-col">
+  <div class="flex flex-wrap gap-4">
+    <label for="font-size-input" class="flex flex-col gap-0.5">
+      <span class="text-sm font-medium text-gray-700"> Font Size </span>
+
+      <div class="relative">
+        <input
+          id="font-size-input"
+          type="number"
+          data-font-size-input
+          value="30"
+          min="1"
+          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+
+        <span
+          class="pointer-events-none absolute top-px right-0 inline-flex size-9 items-center justify-center font-mono text-sm/none text-gray-400"
+        >
+          px
+        </span>
+      </div>
+    </label>
+
+    <label for="line-height-input" class="flex flex-col gap-0.5">
+      <span class="text-sm font-medium text-gray-700"> Line Height </span>
+
+      <div class="relative">
+        <input
+          id="line-height-input"
+          type="number"
+          data-line-height-input
+          value="36"
+          min="1"
+          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+
+        <span
+          class="pointer-events-none absolute top-px right-0 inline-flex size-9 items-center justify-center font-mono text-sm/none text-gray-400"
+        >
+          px
+        </span>
+      </div>
+    </label>
+
+    <label for="letter-spacing-input" class="flex flex-col gap-0.5">
+      <span class="text-sm font-medium text-gray-700"> Letter Spacing </span>
+
+      <div class="relative">
+        <input
+          id="letter-spacing-input"
+          type="number"
+          data-letter-spacing-input
+          step="0.1"
+          placeholder="0"
+          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+
+        <span
+          class="pointer-events-none absolute top-px right-0 inline-flex size-9 items-center justify-center font-mono text-sm/none text-gray-400"
+        >
+          <Percent class="size-3.5" />
+        </span>
+      </div>
+    </label>
+  </div>
+
+  <div class="mt-4 flex flex-1 flex-col">
+    <p data-empty-container class="hidden text-sm text-gray-500">
+      Enter a font size and line height to see the Tailwind CSS mapping.
+    </p>
+
+    <div data-result-container class="hidden space-y-4">
+      <div
+        class="divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200 bg-white"
+      >
+        <div class="flex items-start justify-between gap-4 p-6">
+          <div class="flex-1">
+            <p class="font-medium text-gray-700">Tailwind Class</p>
+
+            <code
+              data-combined-class-display
+              class="mt-1 block font-mono text-3xl font-semibold break-all text-gray-900"></code>
+
+            <div class="mt-2 flex flex-wrap items-center gap-2">
+              <p data-match-description-display class="text-sm text-gray-600"></p>
+
+              <span
+                data-line-height-ratio-badge
+                class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+              ></span>
+
+              <span
+                data-letter-spacing-label-badge
+                class="hidden"
+              ></span>
+            </div>
+          </div>
+
+          <button
+            data-copy-button
+            type="button"
+            class="inline-flex shrink-0 items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+          >
+            <span data-copy-button-text>Copy</span>
+            <span data-copy-live-region aria-live="polite" class="sr-only"></span>
+          </button>
+        </div>
+
+        <div class="divide-y divide-gray-100 lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+          <div class="p-6">
+            <p class="font-medium text-gray-700">Preview</p>
+
+            <p data-preview-text class="mt-4 text-gray-900">
+              The quick brown fox <br />
+              jumps over the lazy dog.
+            </p>
+          </div>
+
+          <div class="p-6">
+            <p class="font-medium text-gray-700">Breakdown</p>
+
+            <div class="mt-4 grid grid-cols-2 gap-6">
+              <div>
+                <p class="text-sm font-medium text-gray-600">Font Size</p>
+
+                <div class="mt-1 flex flex-wrap items-center gap-2">
+                  <code data-font-size-class-display class="font-mono font-medium text-gray-900"
+                  ></code>
+
+                  <p class="flex items-center gap-1 text-xs text-gray-600">
+                    <span data-font-size-px-display></span>
+                    <MoveRight class="size-3 shrink-0" />
+                    <span data-font-size-rem-display></span>
+                  </p>
+                </div>
+
+                <span
+                  data-font-size-badge
+                  class="mt-2 inline-flex rounded-full px-2 py-0.5 text-xs font-medium"></span>
+              </div>
+
+              <div>
+                <p class="text-sm font-medium text-gray-600">Line Height</p>
+
+                <div class="mt-1 flex flex-wrap items-center gap-2">
+                  <code data-line-height-class-display class="font-mono font-medium text-gray-900"
+                  ></code>
+
+                  <p class="flex items-center gap-1 text-xs text-gray-600">
+                    <span data-line-height-px-display></span>
+                    <MoveRight class="size-3 shrink-0" />
+                    <span data-line-height-rem-display></span>
+                  </p>
+                </div>
+
+                <span
+                  data-line-height-badge
+                  class="mt-2 inline-flex rounded-full px-2 py-0.5 text-xs font-medium"></span>
+              </div>
+
+              <div data-letter-spacing-breakdown class="hidden">
+                <p class="text-sm font-medium text-gray-600">Letter Spacing</p>
+
+                <div class="mt-1 flex flex-wrap items-center gap-2">
+                  <code
+                    data-letter-spacing-class-display
+                    class="font-mono font-medium text-gray-900"></code>
+
+                  <p class="flex items-center gap-1 text-xs text-gray-600">
+                    <span data-letter-spacing-percent-display></span>
+                    <MoveRight class="size-3 shrink-0" />
+                    <span data-letter-spacing-em-display></span>
+                  </p>
+                </div>
+
+                <span
+                  data-letter-spacing-badge
+                  class="mt-2 inline-flex rounded-full px-2 py-0.5 text-xs font-medium"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-config-container class="hidden space-y-4">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <p class="leading-[38px] font-medium text-gray-700">Tailwind CSS Config</p>
+
+          <label for="class-name-input" class="flex flex-col gap-0.5">
+            <span class="text-sm font-medium text-gray-700">Class Name</span>
+
+            <input
+              id="class-name-input"
+              type="text"
+              data-class-name-input
+              placeholder="heading-sm"
+              class="rounded-md border-gray-200 bg-white text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-72"
+            />
+          </label>
+        </div>
+
+        <div class="relative overflow-hidden rounded-lg border border-gray-200 bg-white">
+          <pre data-config-pre class="overflow-x-auto p-4 font-mono text-sm text-gray-900"></pre>
+
+          <div class="absolute top-3 right-3">
+            <button
+              data-copy-config-button
+              type="button"
+              class="hidden"
+            >
+              <span data-copy-config-button-text>Copy</span>
+              <span data-copy-config-live-region aria-live="polite" class="sr-only"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</typography-mapper>
+
+<script>
+  type FontSizeScaleEntry = {
+    pixelValue: number
+    remValue: string
+    tailwindClass: string
+    defaultLeadingPx: number
+  }
+
+  type LetterSpacingScaleEntry = {
+    emValue: number
+    tailwindClass: string
+  }
+
+  type LineHeightMatchType = 'default' | 'spacing' | 'arbitrary'
+
+  type LineHeightMappingResult = {
+    tailwindClass: string
+    shorthandModifier: string
+    isExact: boolean
+    matchType: LineHeightMatchType
+  }
+
+  type FontSizeMappingResult = {
+    tailwindClass: string
+    isExact: boolean
+    exactEntry: FontSizeScaleEntry | null
+  }
+
+  type LetterSpacingMappingResult = {
+    tailwindClass: string
+    emValueString: string
+    isExact: boolean
+  }
+
+  type TypographyMappingResult = {
+    combinedClass: string
+    fontSizeMappingResult: FontSizeMappingResult
+    lineHeightMappingResult: LineHeightMappingResult
+    isDefaultLeadingMatch: boolean
+    letterSpacingMappingResult: LetterSpacingMappingResult | null
+  }
+
+  type BadgeType = 'exact' | 'arbitrary' | 'default' | 'spacing'
+
+  const FONT_SIZE_SCALE: FontSizeScaleEntry[] = [
+    { pixelValue: 12, remValue: '0.75rem', tailwindClass: 'text-xs', defaultLeadingPx: 16 },
+    { pixelValue: 14, remValue: '0.875rem', tailwindClass: 'text-sm', defaultLeadingPx: 20 },
+    { pixelValue: 16, remValue: '1rem', tailwindClass: 'text-base', defaultLeadingPx: 24 },
+    { pixelValue: 18, remValue: '1.125rem', tailwindClass: 'text-lg', defaultLeadingPx: 28 },
+    { pixelValue: 20, remValue: '1.25rem', tailwindClass: 'text-xl', defaultLeadingPx: 28 },
+    { pixelValue: 24, remValue: '1.5rem', tailwindClass: 'text-2xl', defaultLeadingPx: 32 },
+    { pixelValue: 30, remValue: '1.875rem', tailwindClass: 'text-3xl', defaultLeadingPx: 36 },
+    { pixelValue: 36, remValue: '2.25rem', tailwindClass: 'text-4xl', defaultLeadingPx: 40 },
+    { pixelValue: 48, remValue: '3rem', tailwindClass: 'text-5xl', defaultLeadingPx: 48 },
+    { pixelValue: 60, remValue: '3.75rem', tailwindClass: 'text-6xl', defaultLeadingPx: 60 },
+    { pixelValue: 72, remValue: '4.5rem', tailwindClass: 'text-7xl', defaultLeadingPx: 72 },
+    { pixelValue: 96, remValue: '6rem', tailwindClass: 'text-8xl', defaultLeadingPx: 96 },
+    { pixelValue: 128, remValue: '8rem', tailwindClass: 'text-9xl', defaultLeadingPx: 128 },
+  ]
+
+  const LETTER_SPACING_SCALE: LetterSpacingScaleEntry[] = [
+    { emValue: -0.05, tailwindClass: 'tracking-tighter' },
+    { emValue: -0.025, tailwindClass: 'tracking-tight' },
+    { emValue: 0, tailwindClass: 'tracking-normal' },
+    { emValue: 0.025, tailwindClass: 'tracking-wide' },
+    { emValue: 0.05, tailwindClass: 'tracking-wider' },
+    { emValue: 0.1, tailwindClass: 'tracking-widest' },
+  ]
+
+  const BADGE_STYLE_MAP: Record<BadgeType, { labelText: string; styleClasses: string }> = {
+    exact: { labelText: 'Exact', styleClasses: 'bg-green-50 text-green-700' },
+    default: { labelText: 'Default', styleClasses: 'bg-blue-50 text-blue-700' },
+    spacing: { labelText: 'Spacing Scale', styleClasses: 'bg-green-50 text-green-700' },
+    arbitrary: { labelText: 'Arbitrary', styleClasses: 'bg-amber-50 text-amber-700' },
+  }
+
+  const BADGE_BASE_CLASSES = 'inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium'
+
+  const MAX_SPACING_LEADING_UNIT = 32
+
+  function pxToRem(pixelValue: number): string {
+    const remValue = Math.round((pixelValue / 16) * 1000) / 1000
+    return `${remValue}rem`
+  }
+
+  function applyBadgeStyle(badgeElement: HTMLElement, badgeType: BadgeType) {
+    const { labelText, styleClasses } = BADGE_STYLE_MAP[badgeType]
+    badgeElement.textContent = labelText
+    badgeElement.className = `${BADGE_BASE_CLASSES} ${styleClasses}`
+  }
+
+  function buildLineHeightRatioDescription(lineHeightRatio: number): {
+    labelText: string
+    styleClasses: string
+  } {
+    if (lineHeightRatio < 1.2) {
+      return { labelText: 'Very Tight', styleClasses: 'bg-red-50 text-red-600' }
+    }
+    if (lineHeightRatio < 1.35) {
+      return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
+    }
+    if (lineHeightRatio < 1.6) {
+      return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
+    }
+    if (lineHeightRatio < 2.0) {
+      return { labelText: 'Relaxed', styleClasses: 'bg-blue-50 text-blue-700' }
+    }
+    return { labelText: 'Loose', styleClasses: 'bg-purple-50 text-purple-700' }
+  }
+
+  function buildLetterSpacingDescription(emValue: number): {
+    labelText: string
+    styleClasses: string
+  } {
+    if (emValue <= -0.025) {
+      return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
+    }
+    if (emValue < 0.025) {
+      return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
+    }
+    if (emValue < 0.075) {
+      return { labelText: 'Wide', styleClasses: 'bg-blue-50 text-blue-700' }
+    }
+    return { labelText: 'Widest', styleClasses: 'bg-purple-50 text-purple-700' }
+  }
+
+  function mapFontSize(fontSizePixelValue: number): FontSizeMappingResult {
+    const exactEntry =
+      FONT_SIZE_SCALE.find((scaleEntry) => scaleEntry.pixelValue === fontSizePixelValue) ?? null
+
+    if (exactEntry) {
+      return {
+        tailwindClass: exactEntry.tailwindClass,
+        isExact: true,
+        exactEntry,
+      }
+    }
+
+    return {
+      tailwindClass: `text-[${fontSizePixelValue}px]`,
+      isExact: false,
+      exactEntry: null,
+    }
+  }
+
+  function mapLineHeight(lineHeightPixelValue: number): LineHeightMappingResult {
+    if (lineHeightPixelValue % 4 === 0) {
+      const spacingUnitNumber = lineHeightPixelValue / 4
+      if (spacingUnitNumber <= MAX_SPACING_LEADING_UNIT) {
+        return {
+          tailwindClass: `leading-${spacingUnitNumber}`,
+          shorthandModifier: String(spacingUnitNumber),
+          isExact: true,
+          matchType: 'spacing',
+        }
+      }
+    }
+
+    return {
+      tailwindClass: `leading-[${lineHeightPixelValue}px]`,
+      shorthandModifier: `[${lineHeightPixelValue}px]`,
+      isExact: false,
+      matchType: 'arbitrary',
+    }
+  }
+
+  function mapLetterSpacing(letterSpacingPercentValue: number): LetterSpacingMappingResult {
+    const emValue = Math.round((letterSpacingPercentValue / 100) * 10000) / 10000
+
+    const exactEntry =
+      LETTER_SPACING_SCALE.find((scaleEntry) => Math.abs(scaleEntry.emValue - emValue) < 0.0001) ??
+      null
+
+    if (exactEntry) {
+      return {
+        tailwindClass: exactEntry.tailwindClass,
+        emValueString: `${emValue}em`,
+        isExact: true,
+      }
+    }
+
+    return {
+      tailwindClass: `tracking-[${emValue}em]`,
+      emValueString: `${emValue}em`,
+      isExact: false,
+    }
+  }
+
+  function mapTypography(
+    fontSizePixelValue: number,
+    lineHeightPixelValue: number,
+    letterSpacingPercentValue: number | null = null,
+  ): TypographyMappingResult {
+    const fontSizeMappingResult = mapFontSize(fontSizePixelValue)
+    const lineHeightMappingResult = mapLineHeight(lineHeightPixelValue)
+    const letterSpacingMappingResult =
+      letterSpacingPercentValue !== null ? mapLetterSpacing(letterSpacingPercentValue) : null
+
+    const isDefaultLeadingMatch =
+      fontSizeMappingResult.exactEntry?.defaultLeadingPx === lineHeightPixelValue
+
+    const baseClass = isDefaultLeadingMatch
+      ? fontSizeMappingResult.tailwindClass
+      : `${fontSizeMappingResult.tailwindClass}/${lineHeightMappingResult.shorthandModifier}`
+
+    const trackingClass =
+      letterSpacingMappingResult && letterSpacingMappingResult.tailwindClass !== 'tracking-normal'
+        ? ` ${letterSpacingMappingResult.tailwindClass}`
+        : ''
+
+    const combinedClass = `${baseClass}${trackingClass}`
+
+    return {
+      combinedClass,
+      fontSizeMappingResult,
+      lineHeightMappingResult: {
+        ...lineHeightMappingResult,
+        matchType: isDefaultLeadingMatch ? 'default' : lineHeightMappingResult.matchType,
+      },
+      isDefaultLeadingMatch,
+      letterSpacingMappingResult,
+    }
+  }
+
+  function buildMatchDescription(mappingResult: TypographyMappingResult): string {
+    const { fontSizeMappingResult, lineHeightMappingResult, isDefaultLeadingMatch } = mappingResult
+
+    if (fontSizeMappingResult.isExact && isDefaultLeadingMatch) {
+      return 'Exact match — font size and default line height'
+    }
+
+    if (fontSizeMappingResult.isExact && lineHeightMappingResult.isExact) {
+      return 'Exact font size — line height on spacing scale'
+    }
+
+    if (fontSizeMappingResult.isExact) {
+      return 'Exact font size — arbitrary line height'
+    }
+
+    if (lineHeightMappingResult.isExact) {
+      return 'Arbitrary font size — line height on spacing scale'
+    }
+
+    return 'Arbitrary font size and line height'
+  }
+
+
+  function buildThemeConfig(
+    mappingResult: TypographyMappingResult,
+    fontSizePixelValue: number,
+    lineHeightPixelValue: number,
+    customClassName: string | null = null,
+  ): { configText: string; hasThemeContent: boolean } {
+    const { fontSizeMappingResult, lineHeightMappingResult, letterSpacingMappingResult } =
+      mappingResult
+    const themeLines: string[] = []
+    const lineHeightRatio = Math.round((lineHeightPixelValue / fontSizePixelValue) * 1000) / 1000
+
+    if (customClassName) {
+      const fontSizeVariableName = `--text-${customClassName}`
+      const fontSizeRemString = pxToRem(fontSizePixelValue)
+
+      themeLines.push(
+        `  ${fontSizeVariableName}: ${fontSizeRemString}; /* ${fontSizePixelValue}px */`,
+      )
+      themeLines.push(
+        `  ${fontSizeVariableName}--line-height: ${lineHeightRatio}; /* ${lineHeightPixelValue}px */`,
+      )
+
+      if (letterSpacingMappingResult) {
+        themeLines.push(
+          `  ${fontSizeVariableName}--letter-spacing: ${letterSpacingMappingResult.emValueString};`,
+        )
+      }
+    } else if (!fontSizeMappingResult.isExact) {
+      const fontSizeRemString = pxToRem(fontSizePixelValue)
+      const fontSizeVariableName = `--text-${fontSizePixelValue}`
+
+      themeLines.push(
+        `  ${fontSizeVariableName}: ${fontSizeRemString}; /* ${fontSizePixelValue}px */`,
+      )
+      themeLines.push(
+        `  ${fontSizeVariableName}--line-height: ${lineHeightRatio}; /* ${lineHeightPixelValue}px */`,
+      )
+
+      if (letterSpacingMappingResult) {
+        themeLines.push(
+          `  ${fontSizeVariableName}--letter-spacing: ${letterSpacingMappingResult.emValueString};`,
+        )
+      }
+    } else {
+      const fontSizeTokenName = fontSizeMappingResult.exactEntry!.tailwindClass.replace('text-', '')
+      const fontSizeVariableName = `--text-${fontSizeTokenName}`
+
+      if (!lineHeightMappingResult.isExact) {
+        themeLines.push(
+          `  ${fontSizeVariableName}--line-height: ${lineHeightRatio}; /* ${lineHeightPixelValue}px */`,
+        )
+      }
+
+      if (letterSpacingMappingResult && !letterSpacingMappingResult.isExact) {
+        themeLines.push(
+          `  ${fontSizeVariableName}--letter-spacing: ${letterSpacingMappingResult.emValueString};`,
+        )
+      }
+    }
+
+    const hasThemeContent = themeLines.length > 0
+    const configBodyLines = hasThemeContent
+      ? themeLines
+      : [
+          '  /* All values match existing Tailwind tokens. Enter a class name above',
+          '     to generate a named utility, or change values to generate overrides. */',
+        ]
+
+    return {
+      configText: ['@theme {', ...configBodyLines, '}'].join('\n'),
+      hasThemeContent,
+    }
+  }
+
+  const COPY_RESET_DELAY_MS = 1500
+
+  async function copyTextToClipboard(
+    textToCopy: string,
+    buttonTextElement: HTMLElement,
+    liveRegionElement: HTMLElement,
+    existingTimerId: ReturnType<typeof setTimeout> | null,
+  ): Promise<ReturnType<typeof setTimeout> | null> {
+    try {
+      await navigator.clipboard.writeText(textToCopy)
+      buttonTextElement.textContent = 'Copied'
+      liveRegionElement.textContent = 'Copied to clipboard.'
+      if (existingTimerId) { clearTimeout(existingTimerId) }
+      return setTimeout(() => {
+        buttonTextElement.textContent = 'Copy'
+        liveRegionElement.textContent = ''
+      }, COPY_RESET_DELAY_MS)
+    } catch {
+      return existingTimerId
+    }
+  }
+
+  class TypographyMapper extends HTMLElement {
+    private clipboardCopyTimerId: ReturnType<typeof setTimeout> | null = null
+    private configCopyTimerId: ReturnType<typeof setTimeout> | null = null
+    private currentCombinedClass: string = ''
+
+    connectedCallback() {
+      this.bindInputFields()
+      this.bindCopyButton()
+      this.bindConfigCopyButton()
+      this.initializeWithDefaults()
+    }
+
+    private initializeWithDefaults() {
+      const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
+      const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
+
+      const defaultFontSizePixelValue = parseInt(fontSizeInput.value, 10)
+      const defaultLineHeightPixelValue = parseInt(lineHeightInput.value, 10)
+
+      const hasValidDefaults =
+        !Number.isNaN(defaultFontSizePixelValue) &&
+        !Number.isNaN(defaultLineHeightPixelValue) &&
+        defaultFontSizePixelValue > 0 &&
+        defaultLineHeightPixelValue > 0
+
+      if (!hasValidDefaults) {
+        this.clearResult()
+        return
+      }
+
+      this.renderResult(defaultFontSizePixelValue, defaultLineHeightPixelValue, null)
+    }
+
+    disconnectedCallback() {
+      if (this.clipboardCopyTimerId) {
+        clearTimeout(this.clipboardCopyTimerId)
+      }
+      if (this.configCopyTimerId) {
+        clearTimeout(this.configCopyTimerId)
+      }
+    }
+
+    private bindInputFields() {
+      const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
+      const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
+      const letterSpacingInput = this.querySelector<HTMLInputElement>(
+        '[data-letter-spacing-input]',
+      )!
+
+      const handleInputChange = () => {
+        const fontSizePixelValue = parseInt(fontSizeInput.value, 10)
+        const lineHeightPixelValue = parseInt(lineHeightInput.value, 10)
+        const letterSpacingPercentValue =
+          letterSpacingInput.value !== '' ? parseFloat(letterSpacingInput.value) : null
+
+        const hasBothValidValues =
+          !Number.isNaN(fontSizePixelValue) &&
+          !Number.isNaN(lineHeightPixelValue) &&
+          fontSizePixelValue > 0 &&
+          lineHeightPixelValue > 0
+
+        if (hasBothValidValues) {
+          this.renderResult(fontSizePixelValue, lineHeightPixelValue, letterSpacingPercentValue)
+        } else {
+          this.clearResult()
+        }
+      }
+
+      const classNameInput = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
+
+      fontSizeInput.addEventListener('input', handleInputChange)
+      lineHeightInput.addEventListener('input', handleInputChange)
+      letterSpacingInput.addEventListener('input', handleInputChange)
+      classNameInput.addEventListener('input', handleInputChange)
+    }
+
+    private bindConfigCopyButton() {
+      const configCopyButtonElement = this.querySelector<HTMLButtonElement>(
+        '[data-copy-config-button]',
+      )!
+      const configCopyButtonTextElement = this.querySelector<HTMLElement>(
+        '[data-copy-config-button-text]',
+      )!
+      const configCopyLiveRegionElement = this.querySelector<HTMLElement>(
+        '[data-copy-config-live-region]',
+      )!
+
+      configCopyButtonElement.addEventListener('click', async () => {
+        const configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
+        const configText = configPreElement.textContent ?? ''
+        if (!configText.trim()) { return }
+        this.configCopyTimerId = await copyTextToClipboard(
+          configText,
+          configCopyButtonTextElement,
+          configCopyLiveRegionElement,
+          this.configCopyTimerId,
+        )
+      })
+    }
+
+    private bindCopyButton() {
+      const copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-button]')!
+      const copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-button-text]')!
+      const copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
+
+      copyButtonElement.addEventListener('click', async () => {
+        if (!this.currentCombinedClass) { return }
+        this.clipboardCopyTimerId = await copyTextToClipboard(
+          this.currentCombinedClass,
+          copyButtonTextElement,
+          copyLiveRegionElement,
+          this.clipboardCopyTimerId,
+        )
+      })
+    }
+
+    private clearResult() {
+      this.querySelector('[data-result-container]')!.classList.add('hidden')
+      this.querySelector('[data-empty-container]')!.classList.remove('hidden')
+      this.currentCombinedClass = ''
+    }
+
+    private renderResult(
+      fontSizePixelValue: number,
+      lineHeightPixelValue: number,
+      letterSpacingPercentValue: number | null,
+    ) {
+      const mappingResult = mapTypography(
+        fontSizePixelValue,
+        lineHeightPixelValue,
+        letterSpacingPercentValue,
+      )
+      this.currentCombinedClass = mappingResult.combinedClass
+
+      this.querySelector('[data-result-container]')!.classList.remove('hidden')
+      this.querySelector('[data-empty-container]')!.classList.add('hidden')
+      this.querySelector('[data-combined-class-display]')!.textContent = mappingResult.combinedClass
+      this.querySelector('[data-match-description-display]')!.textContent =
+        buildMatchDescription(mappingResult)
+
+      const lineHeightRatio = lineHeightPixelValue / fontSizePixelValue
+      const ratioRounded = Math.round(lineHeightRatio * 100) / 100
+      const ratioDescriptionResult = buildLineHeightRatioDescription(lineHeightRatio)
+      const lineHeightRatioBadgeElement = this.querySelector<HTMLElement>(
+        '[data-line-height-ratio-badge]',
+      )!
+      lineHeightRatioBadgeElement.textContent = `Line Height ${ratioRounded}x — ${ratioDescriptionResult.labelText}`
+      lineHeightRatioBadgeElement.className = `${BADGE_BASE_CLASSES} ${ratioDescriptionResult.styleClasses}`
+
+      const previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
+      previewTextElement.style.fontSize = `${fontSizePixelValue}px`
+      previewTextElement.style.lineHeight = `${lineHeightPixelValue}px`
+      previewTextElement.style.letterSpacing =
+        mappingResult.letterSpacingMappingResult?.emValueString ?? ''
+
+      this.querySelector('[data-font-size-class-display]')!.textContent =
+        mappingResult.fontSizeMappingResult.tailwindClass
+      this.querySelector('[data-font-size-px-display]')!.textContent = `${fontSizePixelValue}px`
+      this.querySelector('[data-font-size-rem-display]')!.textContent = pxToRem(fontSizePixelValue)
+
+      const fontSizeBadgeElement = this.querySelector<HTMLElement>('[data-font-size-badge]')!
+      applyBadgeStyle(
+        fontSizeBadgeElement,
+        mappingResult.fontSizeMappingResult.isExact ? 'exact' : 'arbitrary',
+      )
+
+      this.querySelector('[data-line-height-class-display]')!.textContent =
+        mappingResult.lineHeightMappingResult.tailwindClass
+
+      this.querySelector('[data-line-height-px-display]')!.textContent = `${lineHeightPixelValue}px`
+      this.querySelector('[data-line-height-rem-display]')!.textContent =
+        pxToRem(lineHeightPixelValue)
+
+      const lineHeightBadgeElement = this.querySelector<HTMLElement>('[data-line-height-badge]')!
+      applyBadgeStyle(lineHeightBadgeElement, mappingResult.lineHeightMappingResult.matchType)
+
+      const letterSpacingBreakdownElement = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-breakdown]',
+      )!
+
+      const letterSpacingLabelBadgeElement = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-label-badge]',
+      )!
+
+      if (mappingResult.letterSpacingMappingResult) {
+        letterSpacingBreakdownElement.classList.remove('hidden')
+        this.querySelector('[data-letter-spacing-class-display]')!.textContent =
+          mappingResult.letterSpacingMappingResult.tailwindClass
+        this.querySelector('[data-letter-spacing-percent-display]')!.textContent =
+          `${letterSpacingPercentValue}%`
+        this.querySelector('[data-letter-spacing-em-display]')!.textContent =
+          mappingResult.letterSpacingMappingResult.emValueString
+
+        const letterSpacingBadgeElement = this.querySelector<HTMLElement>(
+          '[data-letter-spacing-badge]',
+        )!
+        applyBadgeStyle(
+          letterSpacingBadgeElement,
+          mappingResult.letterSpacingMappingResult.isExact ? 'exact' : 'arbitrary',
+        )
+
+        const emValue = parseFloat(mappingResult.letterSpacingMappingResult.emValueString)
+        const letterSpacingDescriptionResult = buildLetterSpacingDescription(emValue)
+        letterSpacingLabelBadgeElement.textContent = `Letter Spacing ${mappingResult.letterSpacingMappingResult.emValueString} — ${letterSpacingDescriptionResult.labelText}`
+        letterSpacingLabelBadgeElement.className = `${BADGE_BASE_CLASSES} ${letterSpacingDescriptionResult.styleClasses}`
+      } else {
+        letterSpacingBreakdownElement.classList.add('hidden')
+        letterSpacingLabelBadgeElement.className = 'hidden'
+      }
+
+      this.renderConfigSection(mappingResult, fontSizePixelValue, lineHeightPixelValue)
+    }
+
+    private renderConfigSection(
+      mappingResult: TypographyMappingResult,
+      fontSizePixelValue: number,
+      lineHeightPixelValue: number,
+    ) {
+      const configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
+      const copyConfigButtonElement = this.querySelector<HTMLElement>('[data-copy-config-button]')!
+      const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
+      const customClassName = classNameInputElement.value.trim() || null
+
+      const { configText, hasThemeContent } = buildThemeConfig(
+        mappingResult,
+        fontSizePixelValue,
+        lineHeightPixelValue,
+        customClassName,
+      )
+
+      configContainerElement.classList.remove('hidden')
+      this.querySelector('[data-config-pre]')!.textContent = configText
+
+      copyConfigButtonElement.className = hasThemeContent
+        ? 'inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800'
+        : 'hidden'
+    }
+
+  }
+
+  customElements.define('typography-mapper', TypographyMapper)
+</script>
+
+<style>
+  [data-result-container],
+  [data-config-container] {
+    transition:
+      opacity 0.2s ease,
+      display 0.2s allow-discrete;
+  }
+
+  [data-result-container].hidden,
+  [data-config-container].hidden {
+    opacity: 0;
+  }
+
+  @starting-style {
+    [data-result-container]:not(.hidden),
+    [data-config-container]:not(.hidden) {
+      opacity: 0;
+    }
+  }
+</style>

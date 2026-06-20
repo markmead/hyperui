@@ -1,0 +1,25 @@
+---
+import type { Status } from '../utils/status'
+
+import { getStatus } from '../utils/status'
+
+interface Props {
+  status: Status
+  class?: string
+}
+
+const { status, class: className } = Astro.props
+
+const { color, label } = getStatus(status)
+---
+
+<span
+  class:list={[
+    'inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-600',
+    className,
+  ]}
+>
+  <span class={`size-1.5 rounded-full ${color}`} aria-hidden="true"></span>
+
+  {label}
+</span>
