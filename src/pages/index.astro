@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 
-import { ArrowRight, X } from '@lucide/astro'
+import { ArrowRight } from '@lucide/astro'
 
 import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../constants/seo'
 
@@ -10,13 +10,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
 import StatusBadge from '../components/StatusBadge.astro'
 import ToolCard from '../components/ToolCard.astro'
-import TooltipWrapper from '../components/TooltipWrapper.astro'
 
 import type { Status } from '../utils/status'
 
-import tools from '../data/tools.json'
-
-const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
+const [applicationRaw, marketingRaw, neobrutalismRaw, toolsRaw] = await Promise.all([
+  getCollection('tools'),
   getCollection('application'),
   getCollection('marketing'),
   getCollection('neobrutalism'),
@@ -37,23 +35,10 @@ const neobrutalism = neobrutalismRaw
   .sort((a, b) => a.title.localeCompare(b.title))
   .slice(0, 9)
 
-const availableTools = tools.filter(({ href }) => href)
+const tools = toolsRaw.map(({ data }) => data).filter(({ href }) => href)
 ---
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
-  <Fragment slot="head">
-    <style is:global>
-      html[data-tools-dismissed] #tools-banner {
-        display: none;
-      }
-    </style>
-
-    <script is:inline>
-      if (localStorage.getItem('hyperui:tools-dismissed')) {
-        document.documentElement.setAttribute('data-tools-dismissed', '')
-      }
-    </script>
-  </Fragment>
   <section class="bg-white">
     <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-center md:py-16">
       <h1 class="text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">HyperUI</h1>
@@ -76,24 +61,11 @@ const availableTools = tools.filter(({ href }) => href)
     id="main-content"
     class="mx-auto max-w-7xl divide-y divide-gray-200 border-t border-gray-200 px-4"
   >
-    <section id="tools-banner" class="py-16">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <h2 class="text-3xl font-medium">Tools</h2>
+    <section class="py-16">
+      <div class="flex items-center gap-4">
+        <h2 class="text-3xl font-medium">Tools</h2>
 
-          <StatusBadge status="fresh" />
-        </div>
-
-        <TooltipWrapper text="Dismiss tools section">
-          <button
-            id="tools-banner-close"
-            type="button"
-            aria-label="Dismiss tools section"
-            class="inline-flex size-9 items-center justify-center rounded-md text-gray-400 transition-colors hover:text-gray-600"
-          >
-            <X class="size-5" />
-          </button>
-        </TooltipWrapper>
+        <StatusBadge status="fresh" />
       </div>
 
       <p class="mt-2 text-gray-600">
@@ -102,15 +74,9 @@ const availableTools = tools.filter(({ href }) => href)
 
       <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {
-          availableTools.map((tool) => (
+          tools.map((tool) => (
             <li>
-              <ToolCard
-                href={tool.href}
-                title={tool.title}
-                status={tool.status as Status}
-                description={tool.description}
-                headingLevel="h3"
-              />
+              <ToolCard {tool} headingLevel="h3" />
             </li>
           ))
         }
@@ -145,20 +111,3 @@ const availableTools = tools.filter(({ href }) => href)
     />
   </main>
 </BaseLayout>
-
-<script>
-  const toolsBannerElement = document.getElementById('tools-banner')
-  const closeButtonElement = document.getElementById('tools-banner-close')
-
-  const STORAGE_KEY = 'hyperui:tools-dismissed'
-
-  if (document.documentElement.hasAttribute('data-tools-dismissed')) {
-    toolsBannerElement?.remove()
-  }
-
-  closeButtonElement?.addEventListener('click', () => {
-    localStorage.setItem(STORAGE_KEY, 'true')
-    document.documentElement.setAttribute('data-tools-dismissed', '')
-    toolsBannerElement?.remove()
-  })
-</script>

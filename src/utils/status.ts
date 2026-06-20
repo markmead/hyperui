@@ -23,14 +23,12 @@ const STATUS_MAP: Record<Status, { color: string; label: string }> = {
   },
 }
 
-export const getStatusColor = (status: Status): string => {
+export const getStatus = (status: Status): { color: string; label: string } => {
   const statusEntry = STATUS_MAP[status]
-  if (!statusEntry) { throw new Error(`Unknown status: "${status}"`) }
-  return statusEntry.color
-}
 
-export const getStatusLabel = (status: Status): string => {
-  const statusEntry = STATUS_MAP[status]
-  if (!statusEntry) { throw new Error(`Unknown status: "${status}"`) }
-  return statusEntry.label
+  if (!statusEntry) {
+    throw new Error(`Unknown status: "${status}"`)
+  }
+
+  return statusEntry
 }

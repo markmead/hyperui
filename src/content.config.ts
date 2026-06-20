@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content'
-import { glob } from 'astro/loaders'
+import { file, glob } from 'astro/loaders'
 import { z } from 'astro/zod'
 import { fileURLToPath } from 'node:url'
 
@@ -58,6 +58,17 @@ const blog = defineCollection({
     }),
 })
 
+const tools = defineCollection({
+  loader: file('./src/data/tools.json'),
+  schema: () =>
+    z.object({
+      href: z.string(),
+      title: z.string(),
+      status: z.enum(['beta', 'coming-soon', 'fresh', 'stable', 'updated']),
+      description: z.string(),
+    }),
+})
+
 const collection = z.object({
   description: z.string(),
   slug: z.string(),
@@ -108,4 +119,4 @@ const application = createCollection('application', './src/content/collection/ap
 const marketing = createCollection('marketing', './src/content/collection/marketing')
 const neobrutalism = createCollection('neobrutalism', './src/content/collection/neobrutalism')
 
-export const collections = { blog, application, marketing, neobrutalism }
+export const collections = { blog, application, marketing, neobrutalism, tools }

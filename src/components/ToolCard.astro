@@ -21,7 +21,7 @@ const linkClasses = 'group hover:border-gray-300 hover:bg-gray-50'
 {
   href ? (
     <a href={href} class={`${cardClasses} ${linkClasses}`}>
-      <div class="mb-2 flex items-start justify-between gap-4">
+      <div class="flex items-start justify-between gap-4">
         {headingLevel === 'h2' ? (
           <h2 class="text-lg font-medium text-gray-900 group-hover:text-gray-700">{title}</h2>
         ) : (
@@ -31,11 +31,11 @@ const linkClasses = 'group hover:border-gray-300 hover:bg-gray-50'
         <StatusBadge {status} />
       </div>
 
-      <p class="text-sm text-gray-600">{description}</p>
+      <p class="mt-2 text-sm text-gray-600">{description}</p>
     </a>
   ) : (
     <div class={cardClasses}>
-      <div class="mb-2 flex items-start justify-between gap-4">
+      <div class="flex items-start justify-between gap-4">
         {headingLevel === 'h2' ? (
           <h2 class="text-lg font-medium text-gray-900">{title}</h2>
         ) : (
@@ -45,7 +45,7 @@ const linkClasses = 'group hover:border-gray-300 hover:bg-gray-50'
         <StatusBadge {status} />
       </div>
 
-      <p class="text-sm text-gray-600">{description}</p>
+      <p class="mt-2 text-sm text-gray-600">{description}</p>
     </div>
   )
 }
