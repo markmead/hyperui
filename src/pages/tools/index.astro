@@ -8,6 +8,13 @@ import BaseHero from '../../components/BaseHero.astro'
 import ToolCard from '../../components/ToolCard.astro'
 
 const toolEntries = await getCollection('tools')
+
+const sortedToolEntries = [...toolEntries].sort((firstEntry, secondEntry) => {
+  const firstSortKey = firstEntry.data.href ?? firstEntry.data.title
+  const secondSortKey = secondEntry.data.href ?? secondEntry.data.title
+
+  return firstSortKey.localeCompare(secondSortKey)
+})
 ---
 
 <BaseLayout title={SEO_TITLE_TOOLS} description={SEO_DESCRIPTION_TOOLS}>
@@ -19,7 +26,7 @@ const toolEntries = await getCollection('tools')
   <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
     <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
-        toolEntries.map(({ data: toolData }) => (
+        sortedToolEntries.map(({ data: toolData }) => (
           <li>
             <ToolCard
               href={toolData.href}
