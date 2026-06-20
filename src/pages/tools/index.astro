@@ -26,13 +26,13 @@ const sortedToolEntries = [...toolEntries].sort((firstEntry, secondEntry) => {
   <main id="main-content" class="mx-auto max-w-7xl px-4 py-8">
     <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
-        sortedToolEntries.map(({ data: toolData }) => (
+        sortedToolEntries.map(({ data }) => (
           <li>
             <ToolCard
-              href={toolData.href}
-              title={toolData.title}
-              status={toolData.status}
-              description={toolData.description}
+              href={data.href}
+              title={data.title}
+              status={data.status}
+              description={data.description}
             />
           </li>
         ))
