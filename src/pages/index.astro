@@ -8,13 +8,8 @@ import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../constants/seo'
 import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
-import StatusBadge from '../components/StatusBadge.astro'
-import ToolCard from '../components/ToolCard.astro'
 
-import type { Status } from '../utils/status'
-
-const [applicationRaw, marketingRaw, neobrutalismRaw, toolsRaw] = await Promise.all([
-  getCollection('tools'),
+const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
   getCollection('application'),
   getCollection('marketing'),
   getCollection('neobrutalism'),
@@ -34,8 +29,6 @@ const neobrutalism = neobrutalismRaw
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
   .slice(0, 9)
-
-const tools = toolsRaw.map(({ data }) => data).filter(({ href }) => href)
 ---
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
@@ -57,36 +50,24 @@ const tools = toolsRaw.map(({ data }) => data).filter(({ href }) => href)
     </div>
   </section>
 
-  <main
-    id="main-content"
-    class="mx-auto max-w-7xl divide-y divide-gray-200 border-t border-gray-200 px-4"
-  >
+  <main id="main-content" class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
     <section class="py-16">
-      <div class="flex items-center gap-4">
-        <h2 class="text-3xl font-medium">Tools</h2>
+      <div class="flex items-center justify-between gap-8 rounded-lg border border-gray-200 bg-gray-50 p-8">
+        <div>
+          <h2 class="text-2xl font-medium">HyperUI Tools</h2>
 
-        <StatusBadge status="fresh" />
+          <p class="mt-2 text-gray-600">
+            Generate dark mode variants and map typography scales — all in the browser.
+          </p>
+        </div>
+
+        <a
+          href="/tools"
+          class="shrink-0 inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-gray-800 hover:bg-gray-800"
+        >
+          Browse tools
+        </a>
       </div>
-
-      <p class="mt-2 text-gray-600">
-        Browser-based Tailwind CSS tools — no install, no signup required.
-      </p>
-
-      <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {
-          tools.map((tool) => (
-            <li>
-              <ToolCard {tool} headingLevel="h3" />
-            </li>
-          ))
-        }
-      </ul>
-
-      <a href="/tools" class="group mt-8 inline-flex items-center gap-2 text-gray-700">
-        <span>View all tools</span>
-
-        <ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
-      </a>
     </section>
 
     <CollectionFeature

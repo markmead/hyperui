@@ -62,7 +62,7 @@ const tools = defineCollection({
   loader: file('./src/data/tools.json'),
   schema: () =>
     z.object({
-      href: z.string(),
+      href: z.string().optional(),
       title: z.string(),
       status: z.enum(['beta', 'coming-soon', 'fresh', 'stable', 'updated']),
       description: z.string(),

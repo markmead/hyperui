@@ -18,28 +18,28 @@
     "@astrojs/mdx": "5.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "3.7.2",
-    "@lucide/astro": "^1.17.0",
+    "@lucide/astro": "^1.21.0",
     "astro": "6.3.1",
-    "wrangler": "^4.100.0"
+    "wrangler": "^4.103.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@playwright/test": "^1.60.0",
-    "@tailwindcss/cli": "^4.3.0",
+    "@playwright/test": "^1.61.0",
+    "@tailwindcss/cli": "^4.3.1",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.20",
-    "@tailwindcss/vite": "^4.3.0",
-    "@types/node": "^25.9.3",
-    "eslint": "^10.4.1",
+    "@tailwindcss/vite": "^4.3.1",
+    "@types/node": "^25.9.4",
+    "eslint": "^10.5.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.4",
     "rehype-external-links": "^3.0.0",
-    "tailwindcss": "^4.3.0",
+    "tailwindcss": "^4.3.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.0"
+    "typescript-eslint": "^8.61.1"
   },
   "overrides": {
     "vite": "^7"
