@@ -300,6 +300,10 @@ import { MoveRight, Percent } from '@lucide/astro'
     arbitrary: { labelText: 'Arbitrary', styleClasses: 'bg-amber-50 text-amber-700' },
   }
 
+  const BADGE_BASE_CLASSES = 'inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium'
+
+  const MAX_SPACING_LEADING_UNIT = 32
+
   function pxToRem(pixelValue: number): string {
     const remValue = Math.round((pixelValue / 16) * 1000) / 1000
     return `${remValue}rem`
@@ -308,7 +312,7 @@ import { MoveRight, Percent } from '@lucide/astro'
   function applyBadgeStyle(badgeElement: HTMLElement, badgeType: BadgeType) {
     const { labelText, styleClasses } = BADGE_STYLE_MAP[badgeType]
     badgeElement.textContent = labelText
-    badgeElement.className = `inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${styleClasses}`
+    badgeElement.className = `${BADGE_BASE_CLASSES} ${styleClasses}`
   }
 
   function buildLineHeightRatioDescription(lineHeightRatio: number): {
@@ -368,11 +372,13 @@ import { MoveRight, Percent } from '@lucide/astro'
   function mapLineHeight(lineHeightPixelValue: number): LineHeightMappingResult {
     if (lineHeightPixelValue % 4 === 0) {
       const spacingUnitNumber = lineHeightPixelValue / 4
-      return {
-        tailwindClass: `leading-${spacingUnitNumber}`,
-        shorthandModifier: String(spacingUnitNumber),
-        isExact: true,
-        matchType: 'spacing',
+      if (spacingUnitNumber <= MAX_SPACING_LEADING_UNIT) {
+        return {
+          tailwindClass: `leading-${spacingUnitNumber}`,
+          shorthandModifier: String(spacingUnitNumber),
+          isExact: true,
+          matchType: 'spacing',
+        }
       }
     }
 
@@ -708,7 +714,7 @@ import { MoveRight, Percent } from '@lucide/astro'
         '[data-line-height-ratio-badge]',
       )!
       lineHeightRatioBadgeElement.textContent = `Line Height ${ratioRounded}x — ${ratioDescriptionResult.labelText}`
-      lineHeightRatioBadgeElement.className = `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${ratioDescriptionResult.styleClasses}`
+      lineHeightRatioBadgeElement.className = `${BADGE_BASE_CLASSES} ${ratioDescriptionResult.styleClasses}`
 
       const previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
       previewTextElement.style.fontSize = `${fontSizePixelValue}px`
@@ -765,7 +771,7 @@ import { MoveRight, Percent } from '@lucide/astro'
         const emValue = parseFloat(mappingResult.letterSpacingMappingResult.emValueString)
         const letterSpacingDescriptionResult = buildLetterSpacingDescription(emValue)
         letterSpacingLabelBadgeElement.textContent = `Letter Spacing ${mappingResult.letterSpacingMappingResult.emValueString} — ${letterSpacingDescriptionResult.labelText}`
-        letterSpacingLabelBadgeElement.className = `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${letterSpacingDescriptionResult.styleClasses}`
+        letterSpacingLabelBadgeElement.className = `${BADGE_BASE_CLASSES} ${letterSpacingDescriptionResult.styleClasses}`
       } else {
         letterSpacingBreakdownElement.classList.add('hidden')
         letterSpacingLabelBadgeElement.className = 'hidden'
