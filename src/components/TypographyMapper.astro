@@ -15,7 +15,7 @@ import { MoveRight, Percent } from '@lucide/astro'
           data-font-size-input
           value="30"
           min="1"
-          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-36 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         />
 
         <span
@@ -36,7 +36,7 @@ import { MoveRight, Percent } from '@lucide/astro'
           data-line-height-input
           value="36"
           min="1"
-          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-36 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         />
 
         <span
@@ -57,7 +57,7 @@ import { MoveRight, Percent } from '@lucide/astro'
           data-letter-spacing-input
           step="0.1"
           placeholder="0"
-          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-32 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+          class="w-full [appearance:textfield] rounded-md border-gray-200 bg-white pr-9 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-36 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         />
 
         <span
@@ -67,6 +67,27 @@ import { MoveRight, Percent } from '@lucide/astro'
         </span>
       </div>
     </label>
+
+    <label for="font-weight-select" class="flex flex-col gap-0.5">
+      <span class="text-sm font-medium text-gray-700"> Font Weight </span>
+
+      <select
+        id="font-weight-select"
+        data-font-weight-select
+        class="rounded-md border-gray-200 bg-white text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 md:w-44"
+      >
+        <option value="100">Thin (100)</option>
+        <option value="200">Extralight (200)</option>
+        <option value="300">Light (300)</option>
+        <option value="400" selected>Normal (400)</option>
+        <option value="500">Medium (500)</option>
+        <option value="600">Semibold (600)</option>
+        <option value="700">Bold (700)</option>
+        <option value="800">Extrabold (800)</option>
+        <option value="900">Black (900)</option>
+      </select>
+    </label>
+
   </div>
 
   <div class="mt-4 flex flex-1 flex-col">
@@ -113,7 +134,24 @@ import { MoveRight, Percent } from '@lucide/astro'
 
         <div class="divide-y divide-gray-100 lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
           <div class="p-6">
-            <p class="font-medium text-gray-700">Preview</p>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <p class="font-medium text-gray-700">Preview</p>
+
+              <label for="text-transform-select" class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-700">Text Transform</span>
+
+                <select
+                  id="text-transform-select"
+                  data-text-transform-select
+                  class="rounded-md border-gray-200 bg-white text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50"
+                >
+                  <option value="none" selected>Normal</option>
+                  <option value="uppercase">Uppercase</option>
+                  <option value="lowercase">Lowercase</option>
+                  <option value="capitalize">Capitalize</option>
+                </select>
+              </label>
+            </div>
 
             <p data-preview-text class="mt-4 text-gray-900">
               The quick brown fox <br />
@@ -237,7 +275,7 @@ import { MoveRight, Percent } from '@lucide/astro'
     tailwindClass: string
   }
 
-  type LineHeightMatchType = 'default' | 'spacing' | 'arbitrary'
+  type LineHeightMatchType = 'default' | 'spacing' | 'arbitrary' | 'exact'
 
   type LineHeightMappingResult = {
     tailwindClass: string
@@ -304,6 +342,18 @@ import { MoveRight, Percent } from '@lucide/astro'
 
   const MAX_SPACING_LEADING_UNIT = 32
 
+  const FONT_WEIGHT_UTILITY_MAP: Record<string, string> = {
+    '100': 'font-thin',
+    '200': 'font-extralight',
+    '300': 'font-light',
+    '400': 'font-normal',
+    '500': 'font-medium',
+    '600': 'font-semibold',
+    '700': 'font-bold',
+    '800': 'font-extrabold',
+    '900': 'font-black',
+  }
+
   function pxToRem(pixelValue: number): string {
     const remValue = Math.round((pixelValue / 16) * 1000) / 1000
     return `${remValue}rem`
@@ -338,16 +388,19 @@ import { MoveRight, Percent } from '@lucide/astro'
     labelText: string
     styleClasses: string
   } {
+    if (emValue <= -0.05) {
+      return { labelText: 'Very Tight', styleClasses: 'bg-red-50 text-red-600' }
+    }
     if (emValue <= -0.025) {
       return { labelText: 'Tight', styleClasses: 'bg-amber-50 text-amber-600' }
     }
     if (emValue < 0.025) {
       return { labelText: 'Normal', styleClasses: 'bg-green-50 text-green-700' }
     }
-    if (emValue < 0.075) {
+    if (emValue < 0.05) {
       return { labelText: 'Wide', styleClasses: 'bg-blue-50 text-blue-700' }
     }
-    return { labelText: 'Widest', styleClasses: 'bg-purple-50 text-purple-700' }
+    return { labelText: 'Very Wide', styleClasses: 'bg-purple-50 text-purple-700' }
   }
 
   function mapFontSize(fontSizePixelValue: number): FontSizeMappingResult {
@@ -369,7 +422,19 @@ import { MoveRight, Percent } from '@lucide/astro'
     }
   }
 
-  function mapLineHeight(lineHeightPixelValue: number): LineHeightMappingResult {
+  function mapLineHeight(
+    lineHeightPixelValue: number,
+    fontSizePixelValue: number,
+  ): LineHeightMappingResult {
+    if (lineHeightPixelValue === fontSizePixelValue) {
+      return {
+        tailwindClass: 'leading-none',
+        shorthandModifier: 'none',
+        isExact: true,
+        matchType: 'exact',
+      }
+    }
+
     if (lineHeightPixelValue % 4 === 0) {
       const spacingUnitNumber = lineHeightPixelValue / 4
       if (spacingUnitNumber <= MAX_SPACING_LEADING_UNIT) {
@@ -418,7 +483,7 @@ import { MoveRight, Percent } from '@lucide/astro'
     letterSpacingPercentValue: number | null = null,
   ): TypographyMappingResult {
     const fontSizeMappingResult = mapFontSize(fontSizePixelValue)
-    const lineHeightMappingResult = mapLineHeight(lineHeightPixelValue)
+    const lineHeightMappingResult = mapLineHeight(lineHeightPixelValue, fontSizePixelValue)
     const letterSpacingMappingResult =
       letterSpacingPercentValue !== null ? mapLetterSpacing(letterSpacingPercentValue) : null
 
@@ -450,9 +515,14 @@ import { MoveRight, Percent } from '@lucide/astro'
 
   function buildMatchDescription(mappingResult: TypographyMappingResult): string {
     const { fontSizeMappingResult, lineHeightMappingResult, isDefaultLeadingMatch } = mappingResult
+    const isLeadingNone = lineHeightMappingResult.tailwindClass === 'leading-none'
 
     if (fontSizeMappingResult.isExact && isDefaultLeadingMatch) {
       return 'Exact match — font size and default line height'
+    }
+
+    if (fontSizeMappingResult.isExact && isLeadingNone) {
+      return 'Exact font size — line height 1 (leading-none)'
     }
 
     if (fontSizeMappingResult.isExact && lineHeightMappingResult.isExact) {
@@ -461,6 +531,10 @@ import { MoveRight, Percent } from '@lucide/astro'
 
     if (fontSizeMappingResult.isExact) {
       return 'Exact font size — arbitrary line height'
+    }
+
+    if (isLeadingNone) {
+      return 'Arbitrary font size — line height 1 (leading-none)'
     }
 
     if (lineHeightMappingResult.isExact) {
@@ -476,6 +550,7 @@ import { MoveRight, Percent } from '@lucide/astro'
     fontSizePixelValue: number,
     lineHeightPixelValue: number,
     customClassName: string | null = null,
+    fontWeightValue: string = '400',
   ): { configText: string; hasThemeContent: boolean } {
     const { fontSizeMappingResult, lineHeightMappingResult, letterSpacingMappingResult } =
       mappingResult
@@ -497,6 +572,10 @@ import { MoveRight, Percent } from '@lucide/astro'
         themeLines.push(
           `  ${fontSizeVariableName}--letter-spacing: ${letterSpacingMappingResult.emValueString};`,
         )
+      }
+
+      if (fontWeightValue !== '400') {
+        themeLines.push(`  ${fontSizeVariableName}--font-weight: ${fontWeightValue};`)
       }
     } else if (!fontSizeMappingResult.isExact) {
       const fontSizeRemString = pxToRem(fontSizePixelValue)
@@ -582,6 +661,10 @@ import { MoveRight, Percent } from '@lucide/astro'
     private initializeWithDefaults() {
       const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
       const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
+      const fontWeightSelect = this.querySelector<HTMLSelectElement>('[data-font-weight-select]')!
+      const textTransformSelect = this.querySelector<HTMLSelectElement>(
+        '[data-text-transform-select]',
+      )!
 
       const defaultFontSizePixelValue = parseInt(fontSizeInput.value, 10)
       const defaultLineHeightPixelValue = parseInt(lineHeightInput.value, 10)
@@ -597,7 +680,13 @@ import { MoveRight, Percent } from '@lucide/astro'
         return
       }
 
-      this.renderResult(defaultFontSizePixelValue, defaultLineHeightPixelValue, null)
+      this.renderResult(
+        defaultFontSizePixelValue,
+        defaultLineHeightPixelValue,
+        null,
+        fontWeightSelect.value,
+        textTransformSelect.value,
+      )
     }
 
     disconnectedCallback() {
@@ -615,6 +704,10 @@ import { MoveRight, Percent } from '@lucide/astro'
       const letterSpacingInput = this.querySelector<HTMLInputElement>(
         '[data-letter-spacing-input]',
       )!
+      const fontWeightSelect = this.querySelector<HTMLSelectElement>('[data-font-weight-select]')!
+      const textTransformSelect = this.querySelector<HTMLSelectElement>(
+        '[data-text-transform-select]',
+      )!
 
       const handleInputChange = () => {
         const fontSizePixelValue = parseInt(fontSizeInput.value, 10)
@@ -629,7 +722,13 @@ import { MoveRight, Percent } from '@lucide/astro'
           lineHeightPixelValue > 0
 
         if (hasBothValidValues) {
-          this.renderResult(fontSizePixelValue, lineHeightPixelValue, letterSpacingPercentValue)
+          this.renderResult(
+            fontSizePixelValue,
+            lineHeightPixelValue,
+            letterSpacingPercentValue,
+            fontWeightSelect.value,
+            textTransformSelect.value,
+          )
         } else {
           this.clearResult()
         }
@@ -640,6 +739,8 @@ import { MoveRight, Percent } from '@lucide/astro'
       fontSizeInput.addEventListener('input', handleInputChange)
       lineHeightInput.addEventListener('input', handleInputChange)
       letterSpacingInput.addEventListener('input', handleInputChange)
+      fontWeightSelect.addEventListener('change', handleInputChange)
+      textTransformSelect.addEventListener('change', handleInputChange)
       classNameInput.addEventListener('input', handleInputChange)
     }
 
@@ -693,17 +794,29 @@ import { MoveRight, Percent } from '@lucide/astro'
       fontSizePixelValue: number,
       lineHeightPixelValue: number,
       letterSpacingPercentValue: number | null,
+      fontWeightValue: string,
+      textTransformValue: string,
     ) {
       const mappingResult = mapTypography(
         fontSizePixelValue,
         lineHeightPixelValue,
         letterSpacingPercentValue,
       )
-      this.currentCombinedClass = mappingResult.combinedClass
+
+      const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
+      const customClassName = classNameInputElement.value.trim() || null
+
+      const fontWeightUtilityClass =
+        !customClassName && fontWeightValue !== '400' ? FONT_WEIGHT_UTILITY_MAP[fontWeightValue] : ''
+      const combinedClassWithWeight = fontWeightUtilityClass
+        ? `${mappingResult.combinedClass} ${fontWeightUtilityClass}`
+        : mappingResult.combinedClass
+
+      this.currentCombinedClass = combinedClassWithWeight
 
       this.querySelector('[data-result-container]')!.classList.remove('hidden')
       this.querySelector('[data-empty-container]')!.classList.add('hidden')
-      this.querySelector('[data-combined-class-display]')!.textContent = mappingResult.combinedClass
+      this.querySelector('[data-combined-class-display]')!.textContent = combinedClassWithWeight
       this.querySelector('[data-match-description-display]')!.textContent =
         buildMatchDescription(mappingResult)
 
@@ -721,6 +834,8 @@ import { MoveRight, Percent } from '@lucide/astro'
       previewTextElement.style.lineHeight = `${lineHeightPixelValue}px`
       previewTextElement.style.letterSpacing =
         mappingResult.letterSpacingMappingResult?.emValueString ?? ''
+      previewTextElement.style.fontWeight = fontWeightValue
+      previewTextElement.style.textTransform = textTransformValue
 
       this.querySelector('[data-font-size-class-display]')!.textContent =
         mappingResult.fontSizeMappingResult.tailwindClass
@@ -777,24 +892,31 @@ import { MoveRight, Percent } from '@lucide/astro'
         letterSpacingLabelBadgeElement.className = 'hidden'
       }
 
-      this.renderConfigSection(mappingResult, fontSizePixelValue, lineHeightPixelValue)
+      this.renderConfigSection(
+        mappingResult,
+        fontSizePixelValue,
+        lineHeightPixelValue,
+        customClassName,
+        fontWeightValue,
+      )
     }
 
     private renderConfigSection(
       mappingResult: TypographyMappingResult,
       fontSizePixelValue: number,
       lineHeightPixelValue: number,
+      customClassName: string | null,
+      fontWeightValue: string,
     ) {
       const configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
       const copyConfigButtonElement = this.querySelector<HTMLElement>('[data-copy-config-button]')!
-      const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
-      const customClassName = classNameInputElement.value.trim() || null
 
       const { configText, hasThemeContent } = buildThemeConfig(
         mappingResult,
         fontSizePixelValue,
         lineHeightPixelValue,
         customClassName,
+        fontWeightValue,
       )
 
       configContainerElement.classList.remove('hidden')
