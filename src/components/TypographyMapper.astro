@@ -342,6 +342,18 @@ import { MoveRight, Percent } from '@lucide/astro'
 
   const MAX_SPACING_LEADING_UNIT = 32
 
+  const FONT_WEIGHT_UTILITY_MAP: Record<string, string> = {
+    '100': 'font-thin',
+    '200': 'font-extralight',
+    '300': 'font-light',
+    '400': 'font-normal',
+    '500': 'font-medium',
+    '600': 'font-semibold',
+    '700': 'font-bold',
+    '800': 'font-extrabold',
+    '900': 'font-black',
+  }
+
   function pxToRem(pixelValue: number): string {
     const remValue = Math.round((pixelValue / 16) * 1000) / 1000
     return `${remValue}rem`
@@ -562,7 +574,9 @@ import { MoveRight, Percent } from '@lucide/astro'
         )
       }
 
-      themeLines.push(`  ${fontSizeVariableName}--font-weight: ${fontWeightValue};`)
+      if (fontWeightValue !== '400') {
+        themeLines.push(`  ${fontSizeVariableName}--font-weight: ${fontWeightValue};`)
+      }
     } else if (!fontSizeMappingResult.isExact) {
       const fontSizeRemString = pxToRem(fontSizePixelValue)
       const fontSizeVariableName = `--text-${fontSizePixelValue}`
@@ -788,11 +802,21 @@ import { MoveRight, Percent } from '@lucide/astro'
         lineHeightPixelValue,
         letterSpacingPercentValue,
       )
-      this.currentCombinedClass = mappingResult.combinedClass
+
+      const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
+      const customClassName = classNameInputElement.value.trim() || null
+
+      const fontWeightUtilityClass =
+        !customClassName && fontWeightValue !== '400' ? FONT_WEIGHT_UTILITY_MAP[fontWeightValue] : ''
+      const combinedClassWithWeight = fontWeightUtilityClass
+        ? `${mappingResult.combinedClass} ${fontWeightUtilityClass}`
+        : mappingResult.combinedClass
+
+      this.currentCombinedClass = combinedClassWithWeight
 
       this.querySelector('[data-result-container]')!.classList.remove('hidden')
       this.querySelector('[data-empty-container]')!.classList.add('hidden')
-      this.querySelector('[data-combined-class-display]')!.textContent = mappingResult.combinedClass
+      this.querySelector('[data-combined-class-display]')!.textContent = combinedClassWithWeight
       this.querySelector('[data-match-description-display]')!.textContent =
         buildMatchDescription(mappingResult)
 
@@ -872,6 +896,7 @@ import { MoveRight, Percent } from '@lucide/astro'
         mappingResult,
         fontSizePixelValue,
         lineHeightPixelValue,
+        customClassName,
         fontWeightValue,
       )
     }
@@ -880,12 +905,11 @@ import { MoveRight, Percent } from '@lucide/astro'
       mappingResult: TypographyMappingResult,
       fontSizePixelValue: number,
       lineHeightPixelValue: number,
+      customClassName: string | null,
       fontWeightValue: string,
     ) {
       const configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
       const copyConfigButtonElement = this.querySelector<HTMLElement>('[data-copy-config-button]')!
-      const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
-      const customClassName = classNameInputElement.value.trim() || null
 
       const { configText, hasThemeContent } = buildThemeConfig(
         mappingResult,
