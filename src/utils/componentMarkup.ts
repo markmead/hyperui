@@ -27,7 +27,7 @@ export function readComponentMarkup(componentSrc: string): string {
     return ''
   }
 
-  return bodyContentMatch[1]
+  return (bodyContentMatch[1] ?? '')
     .split('\n')
     .map((markupLine) => markupLine.replace(/^\s{4}/, ''))
     .join('\n')
