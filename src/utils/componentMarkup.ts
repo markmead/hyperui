@@ -1,21 +1,21 @@
 const BODY_CONTENT_PATTERN = /<body[^>]*>([\s\S]*?)<\/body>/i
 
-const rawComponentFiles = import.meta.glob('../../public/examples/**/*.html', {
+const rawComponentFileMap = import.meta.glob('../../public/examples/**/*.html', {
   query: '?raw',
   import: 'default',
   eager: true,
 }) as Record<string, string>
 
-const componentMarkupBySrc: Record<string, string> = {}
+const componentMarkupMap: Record<string, string> = {}
 
-for (const [filePath, fileContent] of Object.entries(rawComponentFiles)) {
+for (const [filePath, fileContent] of Object.entries(rawComponentFileMap)) {
   const normalizedSrc = filePath.replace(/^.*\/public/, '')
 
-  componentMarkupBySrc[normalizedSrc] = fileContent
+  componentMarkupMap[normalizedSrc] = fileContent
 }
 
 export function readComponentMarkup(componentSrc: string): string {
-  const rawFileContent = componentMarkupBySrc[componentSrc]
+  const rawFileContent = componentMarkupMap[componentSrc]
 
   if (!rawFileContent) {
     return ''
