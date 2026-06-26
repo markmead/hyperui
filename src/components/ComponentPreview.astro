@@ -1,4 +1,6 @@
 ---
+import { readComponentMarkup } from '../utils/componentMarkup'
+
 interface Props {
   src: string
   title: string
@@ -8,6 +10,8 @@ interface Props {
 }
 
 const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
+
+const sourceHtml = readComponentMarkup(src)
 ---
 
 <component-preview data-src={src} class="block">
@@ -27,7 +31,7 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
     data-preview="true"
     class="prose prose-pre:m-0 prose-pre:rounded-none max-w-none data-[preview=true]:hidden"
   >
-    <pre data-html></pre>
+    <pre data-html set:text={sourceHtml} />
   </div>
 </component-preview>
 
@@ -98,16 +102,10 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
       this.viewHandler = (viewEvent) => {
         const isPreviewing = viewEvent.detail.previewing
 
-        const previewEls = this.querySelectorAll('[data-preview]')
+        const previewToggleElements = this.querySelectorAll('[data-preview]')
 
-        const contentHtml = this.getContent()
-
-        if (contentHtml && this.previewEl) {
-          this.previewEl.textContent = contentHtml
-        }
-
-        previewEls.forEach((previewEl) => {
-          previewEl.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
+        previewToggleElements.forEach((previewToggleElement) => {
+          previewToggleElement.setAttribute('data-preview', isPreviewing ? 'true' : 'false')
         })
       }
 
@@ -125,23 +123,13 @@ const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
         return this.contentHtml
       }
 
-      if (this.iframeEl?.contentDocument) {
-        const docClone = this.iframeEl.contentDocument.cloneNode(true) as Document
-
-        this.contentHtml = this.sanitizeContent(docClone.body.innerHTML)
+      if (this.previewEl) {
+        this.contentHtml = this.previewEl.textContent?.trim() || null
 
         return this.contentHtml
       }
 
       return null
-    }
-
-    private sanitizeContent(contentHtml: string): string {
-      return contentHtml
-        .split('\n')
-        .map((htmlLine) => htmlLine.replace(/^\s{4}/, ''))
-        .join('\n')
-        .trim()
     }
   }
 
