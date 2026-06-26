@@ -1,6 +1,5 @@
 ---
 import { MoveRight, Percent } from '@lucide/astro'
-
 ---
 
 <typography-mapper class="flex flex-1 flex-col">
@@ -87,7 +86,6 @@ import { MoveRight, Percent } from '@lucide/astro'
         <option value="900">Black (900)</option>
       </select>
     </label>
-
   </div>
 
   <div class="mt-4 flex flex-1 flex-col">
@@ -115,10 +113,7 @@ import { MoveRight, Percent } from '@lucide/astro'
                 class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
               ></span>
 
-              <span
-                data-letter-spacing-label-badge
-                class="hidden"
-              ></span>
+              <span data-letter-spacing-label-badge class="hidden"></span>
             </div>
           </div>
 
@@ -246,18 +241,13 @@ import { MoveRight, Percent } from '@lucide/astro'
           <pre data-config-pre class="overflow-x-auto p-4 font-mono text-sm text-gray-900"></pre>
 
           <div class="absolute top-3 right-3">
-            <button
-              data-copy-config-button
-              type="button"
-              class="hidden"
-            >
+            <button data-copy-config-button type="button" class="hidden">
               <span data-copy-config-button-text>Copy</span>
               <span data-copy-config-live-region aria-live="polite" class="sr-only"></span>
             </button>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </typography-mapper>
@@ -544,7 +534,6 @@ import { MoveRight, Percent } from '@lucide/astro'
     return 'Arbitrary font size and line height'
   }
 
-
   function buildThemeConfig(
     mappingResult: TypographyMappingResult,
     fontSizePixelValue: number,
@@ -636,7 +625,9 @@ import { MoveRight, Percent } from '@lucide/astro'
       await navigator.clipboard.writeText(textToCopy)
       buttonTextElement.textContent = 'Copied'
       liveRegionElement.textContent = 'Copied to clipboard.'
-      if (existingTimerId) { clearTimeout(existingTimerId) }
+      if (existingTimerId) {
+        clearTimeout(existingTimerId)
+      }
       return setTimeout(() => {
         buttonTextElement.textContent = 'Copy'
         liveRegionElement.textContent = ''
@@ -758,7 +749,9 @@ import { MoveRight, Percent } from '@lucide/astro'
       configCopyButtonElement.addEventListener('click', async () => {
         const configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
         const configText = configPreElement.textContent ?? ''
-        if (!configText.trim()) { return }
+        if (!configText.trim()) {
+          return
+        }
         this.configCopyTimerId = await copyTextToClipboard(
           configText,
           configCopyButtonTextElement,
@@ -774,7 +767,9 @@ import { MoveRight, Percent } from '@lucide/astro'
       const copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
 
       copyButtonElement.addEventListener('click', async () => {
-        if (!this.currentCombinedClass) { return }
+        if (!this.currentCombinedClass) {
+          return
+        }
         this.clipboardCopyTimerId = await copyTextToClipboard(
           this.currentCombinedClass,
           copyButtonTextElement,
@@ -807,7 +802,9 @@ import { MoveRight, Percent } from '@lucide/astro'
       const customClassName = classNameInputElement.value.trim() || null
 
       const fontWeightUtilityClass =
-        !customClassName && fontWeightValue !== '400' ? FONT_WEIGHT_UTILITY_MAP[fontWeightValue] : ''
+        !customClassName && fontWeightValue !== '400'
+          ? FONT_WEIGHT_UTILITY_MAP[fontWeightValue]
+          : ''
       const combinedClassWithWeight = fontWeightUtilityClass
         ? `${mappingResult.combinedClass} ${fontWeightUtilityClass}`
         : mappingResult.combinedClass
@@ -926,7 +923,6 @@ import { MoveRight, Percent } from '@lucide/astro'
         ? 'inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800'
         : 'hidden'
     }
-
   }
 
   customElements.define('typography-mapper', TypographyMapper)
