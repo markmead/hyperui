@@ -641,8 +641,12 @@ import { MoveRight, Percent } from '@lucide/astro'
     private clipboardCopyTimerId: ReturnType<typeof setTimeout> | null = null
     private configCopyTimerId: ReturnType<typeof setTimeout> | null = null
     private currentCombinedClass: string = ''
+    private fontWeightSelectElement!: HTMLSelectElement
+    private textTransformSelectElement!: HTMLSelectElement
 
     connectedCallback() {
+      this.fontWeightSelectElement = this.querySelector('[data-font-weight-select]') as unknown as HTMLSelectElement
+      this.textTransformSelectElement = this.querySelector('[data-text-transform-select]') as unknown as HTMLSelectElement
       this.bindInputFields()
       this.bindCopyButton()
       this.bindConfigCopyButton()
@@ -652,10 +656,6 @@ import { MoveRight, Percent } from '@lucide/astro'
     private initializeWithDefaults() {
       const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
       const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
-      const fontWeightSelect = this.querySelector<HTMLSelectElement>('[data-font-weight-select]')!
-      const textTransformSelect = this.querySelector<HTMLSelectElement>(
-        '[data-text-transform-select]',
-      )!
 
       const defaultFontSizePixelValue = parseInt(fontSizeInput.value, 10)
       const defaultLineHeightPixelValue = parseInt(lineHeightInput.value, 10)
@@ -675,8 +675,8 @@ import { MoveRight, Percent } from '@lucide/astro'
         defaultFontSizePixelValue,
         defaultLineHeightPixelValue,
         null,
-        fontWeightSelect.value,
-        textTransformSelect.value,
+        this.fontWeightSelectElement.value,
+        this.textTransformSelectElement.value,
       )
     }
 
@@ -695,11 +695,6 @@ import { MoveRight, Percent } from '@lucide/astro'
       const letterSpacingInput = this.querySelector<HTMLInputElement>(
         '[data-letter-spacing-input]',
       )!
-      const fontWeightSelect = this.querySelector<HTMLSelectElement>('[data-font-weight-select]')!
-      const textTransformSelect = this.querySelector<HTMLSelectElement>(
-        '[data-text-transform-select]',
-      )!
-
       const handleInputChange = () => {
         const fontSizePixelValue = parseInt(fontSizeInput.value, 10)
         const lineHeightPixelValue = parseInt(lineHeightInput.value, 10)
@@ -717,8 +712,8 @@ import { MoveRight, Percent } from '@lucide/astro'
             fontSizePixelValue,
             lineHeightPixelValue,
             letterSpacingPercentValue,
-            fontWeightSelect.value,
-            textTransformSelect.value,
+            this.fontWeightSelectElement.value,
+            this.textTransformSelectElement.value,
           )
         } else {
           this.clearResult()
@@ -730,8 +725,8 @@ import { MoveRight, Percent } from '@lucide/astro'
       fontSizeInput.addEventListener('input', handleInputChange)
       lineHeightInput.addEventListener('input', handleInputChange)
       letterSpacingInput.addEventListener('input', handleInputChange)
-      fontWeightSelect.addEventListener('change', handleInputChange)
-      textTransformSelect.addEventListener('change', handleInputChange)
+      this.fontWeightSelectElement.addEventListener('change', handleInputChange)
+      this.textTransformSelectElement.addEventListener('change', handleInputChange)
       classNameInput.addEventListener('input', handleInputChange)
     }
 

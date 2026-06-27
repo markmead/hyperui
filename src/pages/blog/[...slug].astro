@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content'
 
 import BlogPost from '../../layouts/BlogPost.astro'
+import ExternalLink from '../../components/ExternalLink.astro'
 
 export async function getStaticPaths() {
   return (await getCollection('blog')).map((post) => ({
@@ -18,5 +19,5 @@ const { Content } = await render(post)
 ---
 
 <BlogPost {...post}>
-  <Content />
+  <Content components={{ a: ExternalLink }} />
 </BlogPost>

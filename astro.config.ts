@@ -3,7 +3,6 @@ import { defineConfig, fontProviders } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 
-import rehypeExternalLinks from 'rehype-external-links'
 import tailwindcss from '@tailwindcss/vite'
 
 import cloudflare from '@astrojs/cloudflare'
@@ -12,9 +11,7 @@ export default defineConfig({
   site: 'https://hyperui.dev',
 
   integrations: [
-    mdx({
-      optimize: true,
-    }),
+    mdx(),
     sitemap(),
   ],
 
@@ -23,15 +20,6 @@ export default defineConfig({
   },
 
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          rel: ['noreferrer'],
-          target: '_blank',
-        },
-      ],
-    ],
     syntaxHighlight: false,
   },
 
