@@ -641,12 +641,76 @@ import { MoveRight, Percent } from '@lucide/astro'
     private clipboardCopyTimerId: ReturnType<typeof setTimeout> | null = null
     private configCopyTimerId: ReturnType<typeof setTimeout> | null = null
     private currentCombinedClass: string = ''
+    private fontSizeInputElement!: HTMLInputElement
+    private lineHeightInputElement!: HTMLInputElement
+    private letterSpacingInputElement!: HTMLInputElement
+    private classNameInputElement!: HTMLInputElement
     private fontWeightSelectElement!: HTMLSelectElement
     private textTransformSelectElement!: HTMLSelectElement
+    private copyButtonElement!: HTMLButtonElement
+    private copyButtonTextElement!: HTMLElement
+    private copyLiveRegionElement!: HTMLElement
+    private copyConfigButtonElement!: HTMLButtonElement
+    private copyConfigButtonTextElement!: HTMLElement
+    private copyConfigLiveRegionElement!: HTMLElement
+    private resultContainerElement!: HTMLElement
+    private emptyContainerElement!: HTMLElement
+    private combinedClassDisplay!: HTMLElement
+    private matchDescriptionDisplay!: HTMLElement
+    private lineHeightRatioBadgeElement!: HTMLElement
+    private previewTextElement!: HTMLElement
+    private fontSizeClassDisplay!: HTMLElement
+    private fontSizePxDisplay!: HTMLElement
+    private fontSizeRemDisplay!: HTMLElement
+    private fontSizeBadgeElement!: HTMLElement
+    private lineHeightClassDisplay!: HTMLElement
+    private lineHeightPxDisplay!: HTMLElement
+    private lineHeightRemDisplay!: HTMLElement
+    private lineHeightBadgeElement!: HTMLElement
+    private letterSpacingBreakdownElement!: HTMLElement
+    private letterSpacingLabelBadgeElement!: HTMLElement
+    private letterSpacingClassDisplay!: HTMLElement
+    private letterSpacingPercentDisplay!: HTMLElement
+    private letterSpacingEmDisplay!: HTMLElement
+    private letterSpacingBadgeElement!: HTMLElement
+    private configContainerElement!: HTMLElement
+    private configPreElement!: HTMLPreElement
 
     connectedCallback() {
-      this.fontWeightSelectElement = this.querySelector('[data-font-weight-select]') as unknown as HTMLSelectElement
-      this.textTransformSelectElement = this.querySelector('[data-text-transform-select]') as unknown as HTMLSelectElement
+      this.fontSizeInputElement = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
+      this.lineHeightInputElement = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
+      this.letterSpacingInputElement = this.querySelector<HTMLInputElement>('[data-letter-spacing-input]')!
+      this.classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
+      this.fontWeightSelectElement = this.querySelector<HTMLSelectElement>('[data-font-weight-select]')!
+      this.textTransformSelectElement = this.querySelector<HTMLSelectElement>('[data-text-transform-select]')!
+      this.copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-button]')!
+      this.copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-button-text]')!
+      this.copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
+      this.copyConfigButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-config-button]')!
+      this.copyConfigButtonTextElement = this.querySelector<HTMLElement>('[data-copy-config-button-text]')!
+      this.copyConfigLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-config-live-region]')!
+      this.resultContainerElement = this.querySelector<HTMLElement>('[data-result-container]')!
+      this.emptyContainerElement = this.querySelector<HTMLElement>('[data-empty-container]')!
+      this.combinedClassDisplay = this.querySelector<HTMLElement>('[data-combined-class-display]')!
+      this.matchDescriptionDisplay = this.querySelector<HTMLElement>('[data-match-description-display]')!
+      this.lineHeightRatioBadgeElement = this.querySelector<HTMLElement>('[data-line-height-ratio-badge]')!
+      this.previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
+      this.fontSizeClassDisplay = this.querySelector<HTMLElement>('[data-font-size-class-display]')!
+      this.fontSizePxDisplay = this.querySelector<HTMLElement>('[data-font-size-px-display]')!
+      this.fontSizeRemDisplay = this.querySelector<HTMLElement>('[data-font-size-rem-display]')!
+      this.fontSizeBadgeElement = this.querySelector<HTMLElement>('[data-font-size-badge]')!
+      this.lineHeightClassDisplay = this.querySelector<HTMLElement>('[data-line-height-class-display]')!
+      this.lineHeightPxDisplay = this.querySelector<HTMLElement>('[data-line-height-px-display]')!
+      this.lineHeightRemDisplay = this.querySelector<HTMLElement>('[data-line-height-rem-display]')!
+      this.lineHeightBadgeElement = this.querySelector<HTMLElement>('[data-line-height-badge]')!
+      this.letterSpacingBreakdownElement = this.querySelector<HTMLElement>('[data-letter-spacing-breakdown]')!
+      this.letterSpacingLabelBadgeElement = this.querySelector<HTMLElement>('[data-letter-spacing-label-badge]')!
+      this.letterSpacingClassDisplay = this.querySelector<HTMLElement>('[data-letter-spacing-class-display]')!
+      this.letterSpacingPercentDisplay = this.querySelector<HTMLElement>('[data-letter-spacing-percent-display]')!
+      this.letterSpacingEmDisplay = this.querySelector<HTMLElement>('[data-letter-spacing-em-display]')!
+      this.letterSpacingBadgeElement = this.querySelector<HTMLElement>('[data-letter-spacing-badge]')!
+      this.configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
+      this.configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
       this.bindInputFields()
       this.bindCopyButton()
       this.bindConfigCopyButton()
@@ -654,11 +718,8 @@ import { MoveRight, Percent } from '@lucide/astro'
     }
 
     private initializeWithDefaults() {
-      const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
-      const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
-
-      const defaultFontSizePixelValue = parseInt(fontSizeInput.value, 10)
-      const defaultLineHeightPixelValue = parseInt(lineHeightInput.value, 10)
+      const defaultFontSizePixelValue = parseInt(this.fontSizeInputElement.value, 10)
+      const defaultLineHeightPixelValue = parseInt(this.lineHeightInputElement.value, 10)
 
       const hasValidDefaults =
         !Number.isNaN(defaultFontSizePixelValue) &&
@@ -690,16 +751,13 @@ import { MoveRight, Percent } from '@lucide/astro'
     }
 
     private bindInputFields() {
-      const fontSizeInput = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
-      const lineHeightInput = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
-      const letterSpacingInput = this.querySelector<HTMLInputElement>(
-        '[data-letter-spacing-input]',
-      )!
       const handleInputChange = () => {
-        const fontSizePixelValue = parseInt(fontSizeInput.value, 10)
-        const lineHeightPixelValue = parseInt(lineHeightInput.value, 10)
+        const fontSizePixelValue = parseInt(this.fontSizeInputElement.value, 10)
+        const lineHeightPixelValue = parseInt(this.lineHeightInputElement.value, 10)
         const letterSpacingPercentValue =
-          letterSpacingInput.value !== '' ? parseFloat(letterSpacingInput.value) : null
+          this.letterSpacingInputElement.value !== ''
+            ? parseFloat(this.letterSpacingInputElement.value)
+            : null
 
         const hasBothValidValues =
           !Number.isNaN(fontSizePixelValue) &&
@@ -720,63 +778,46 @@ import { MoveRight, Percent } from '@lucide/astro'
         }
       }
 
-      const classNameInput = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
-
-      fontSizeInput.addEventListener('input', handleInputChange)
-      lineHeightInput.addEventListener('input', handleInputChange)
-      letterSpacingInput.addEventListener('input', handleInputChange)
+      this.fontSizeInputElement.addEventListener('input', handleInputChange)
+      this.lineHeightInputElement.addEventListener('input', handleInputChange)
+      this.letterSpacingInputElement.addEventListener('input', handleInputChange)
       this.fontWeightSelectElement.addEventListener('change', handleInputChange)
       this.textTransformSelectElement.addEventListener('change', handleInputChange)
-      classNameInput.addEventListener('input', handleInputChange)
+      this.classNameInputElement.addEventListener('input', handleInputChange)
     }
 
     private bindConfigCopyButton() {
-      const configCopyButtonElement = this.querySelector<HTMLButtonElement>(
-        '[data-copy-config-button]',
-      )!
-      const configCopyButtonTextElement = this.querySelector<HTMLElement>(
-        '[data-copy-config-button-text]',
-      )!
-      const configCopyLiveRegionElement = this.querySelector<HTMLElement>(
-        '[data-copy-config-live-region]',
-      )!
-
-      configCopyButtonElement.addEventListener('click', async () => {
-        const configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
-        const configText = configPreElement.textContent ?? ''
+      this.copyConfigButtonElement.addEventListener('click', async () => {
+        const configText = this.configPreElement.textContent ?? ''
         if (!configText.trim()) {
           return
         }
         this.configCopyTimerId = await copyTextToClipboard(
           configText,
-          configCopyButtonTextElement,
-          configCopyLiveRegionElement,
+          this.copyConfigButtonTextElement,
+          this.copyConfigLiveRegionElement,
           this.configCopyTimerId,
         )
       })
     }
 
     private bindCopyButton() {
-      const copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-button]')!
-      const copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-button-text]')!
-      const copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
-
-      copyButtonElement.addEventListener('click', async () => {
+      this.copyButtonElement.addEventListener('click', async () => {
         if (!this.currentCombinedClass) {
           return
         }
         this.clipboardCopyTimerId = await copyTextToClipboard(
           this.currentCombinedClass,
-          copyButtonTextElement,
-          copyLiveRegionElement,
+          this.copyButtonTextElement,
+          this.copyLiveRegionElement,
           this.clipboardCopyTimerId,
         )
       })
     }
 
     private clearResult() {
-      this.querySelector('[data-result-container]')!.classList.add('hidden')
-      this.querySelector('[data-empty-container]')!.classList.remove('hidden')
+      this.resultContainerElement.classList.add('hidden')
+      this.emptyContainerElement.classList.remove('hidden')
       this.currentCombinedClass = ''
     }
 
@@ -793,8 +834,7 @@ import { MoveRight, Percent } from '@lucide/astro'
         letterSpacingPercentValue,
       )
 
-      const classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
-      const customClassName = classNameInputElement.value.trim() || null
+      const customClassName = this.classNameInputElement.value.trim() || null
 
       const fontWeightUtilityClass =
         !customClassName && fontWeightValue !== '400'
@@ -806,82 +846,56 @@ import { MoveRight, Percent } from '@lucide/astro'
 
       this.currentCombinedClass = combinedClassWithWeight
 
-      this.querySelector('[data-result-container]')!.classList.remove('hidden')
-      this.querySelector('[data-empty-container]')!.classList.add('hidden')
-      this.querySelector('[data-combined-class-display]')!.textContent = combinedClassWithWeight
-      this.querySelector('[data-match-description-display]')!.textContent =
-        buildMatchDescription(mappingResult)
+      this.resultContainerElement.classList.remove('hidden')
+      this.emptyContainerElement.classList.add('hidden')
+      this.combinedClassDisplay.textContent = combinedClassWithWeight
+      this.matchDescriptionDisplay.textContent = buildMatchDescription(mappingResult)
 
       const lineHeightRatio = lineHeightPixelValue / fontSizePixelValue
       const ratioRounded = Math.round(lineHeightRatio * 100) / 100
       const ratioDescriptionResult = buildLineHeightRatioDescription(lineHeightRatio)
-      const lineHeightRatioBadgeElement = this.querySelector<HTMLElement>(
-        '[data-line-height-ratio-badge]',
-      )!
-      lineHeightRatioBadgeElement.textContent = `Line Height ${ratioRounded}x — ${ratioDescriptionResult.labelText}`
-      lineHeightRatioBadgeElement.className = `${BADGE_BASE_CLASSES} ${ratioDescriptionResult.styleClasses}`
+      this.lineHeightRatioBadgeElement.textContent = `Line Height ${ratioRounded}x — ${ratioDescriptionResult.labelText}`
+      this.lineHeightRatioBadgeElement.className = `${BADGE_BASE_CLASSES} ${ratioDescriptionResult.styleClasses}`
 
-      const previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
-      previewTextElement.style.fontSize = `${fontSizePixelValue}px`
-      previewTextElement.style.lineHeight = `${lineHeightPixelValue}px`
-      previewTextElement.style.letterSpacing =
+      this.previewTextElement.style.fontSize = `${fontSizePixelValue}px`
+      this.previewTextElement.style.lineHeight = `${lineHeightPixelValue}px`
+      this.previewTextElement.style.letterSpacing =
         mappingResult.letterSpacingMappingResult?.emValueString ?? ''
-      previewTextElement.style.fontWeight = fontWeightValue
-      previewTextElement.style.textTransform = textTransformValue
+      this.previewTextElement.style.fontWeight = fontWeightValue
+      this.previewTextElement.style.textTransform = textTransformValue
 
-      this.querySelector('[data-font-size-class-display]')!.textContent =
-        mappingResult.fontSizeMappingResult.tailwindClass
-      this.querySelector('[data-font-size-px-display]')!.textContent = `${fontSizePixelValue}px`
-      this.querySelector('[data-font-size-rem-display]')!.textContent = pxToRem(fontSizePixelValue)
-
-      const fontSizeBadgeElement = this.querySelector<HTMLElement>('[data-font-size-badge]')!
+      this.fontSizeClassDisplay.textContent = mappingResult.fontSizeMappingResult.tailwindClass
+      this.fontSizePxDisplay.textContent = `${fontSizePixelValue}px`
+      this.fontSizeRemDisplay.textContent = pxToRem(fontSizePixelValue)
       applyBadgeStyle(
-        fontSizeBadgeElement,
+        this.fontSizeBadgeElement,
         mappingResult.fontSizeMappingResult.isExact ? 'exact' : 'arbitrary',
       )
 
-      this.querySelector('[data-line-height-class-display]')!.textContent =
-        mappingResult.lineHeightMappingResult.tailwindClass
-
-      this.querySelector('[data-line-height-px-display]')!.textContent = `${lineHeightPixelValue}px`
-      this.querySelector('[data-line-height-rem-display]')!.textContent =
-        pxToRem(lineHeightPixelValue)
-
-      const lineHeightBadgeElement = this.querySelector<HTMLElement>('[data-line-height-badge]')!
-      applyBadgeStyle(lineHeightBadgeElement, mappingResult.lineHeightMappingResult.matchType)
-
-      const letterSpacingBreakdownElement = this.querySelector<HTMLElement>(
-        '[data-letter-spacing-breakdown]',
-      )!
-
-      const letterSpacingLabelBadgeElement = this.querySelector<HTMLElement>(
-        '[data-letter-spacing-label-badge]',
-      )!
+      this.lineHeightClassDisplay.textContent = mappingResult.lineHeightMappingResult.tailwindClass
+      this.lineHeightPxDisplay.textContent = `${lineHeightPixelValue}px`
+      this.lineHeightRemDisplay.textContent = pxToRem(lineHeightPixelValue)
+      applyBadgeStyle(this.lineHeightBadgeElement, mappingResult.lineHeightMappingResult.matchType)
 
       if (mappingResult.letterSpacingMappingResult) {
-        letterSpacingBreakdownElement.classList.remove('hidden')
-        this.querySelector('[data-letter-spacing-class-display]')!.textContent =
+        this.letterSpacingBreakdownElement.classList.remove('hidden')
+        this.letterSpacingClassDisplay.textContent =
           mappingResult.letterSpacingMappingResult.tailwindClass
-        this.querySelector('[data-letter-spacing-percent-display]')!.textContent =
-          `${letterSpacingPercentValue}%`
-        this.querySelector('[data-letter-spacing-em-display]')!.textContent =
+        this.letterSpacingPercentDisplay.textContent = `${letterSpacingPercentValue}%`
+        this.letterSpacingEmDisplay.textContent =
           mappingResult.letterSpacingMappingResult.emValueString
-
-        const letterSpacingBadgeElement = this.querySelector<HTMLElement>(
-          '[data-letter-spacing-badge]',
-        )!
         applyBadgeStyle(
-          letterSpacingBadgeElement,
+          this.letterSpacingBadgeElement,
           mappingResult.letterSpacingMappingResult.isExact ? 'exact' : 'arbitrary',
         )
 
         const emValue = parseFloat(mappingResult.letterSpacingMappingResult.emValueString)
         const letterSpacingDescriptionResult = buildLetterSpacingDescription(emValue)
-        letterSpacingLabelBadgeElement.textContent = `Letter Spacing ${mappingResult.letterSpacingMappingResult.emValueString} — ${letterSpacingDescriptionResult.labelText}`
-        letterSpacingLabelBadgeElement.className = `${BADGE_BASE_CLASSES} ${letterSpacingDescriptionResult.styleClasses}`
+        this.letterSpacingLabelBadgeElement.textContent = `Letter Spacing ${mappingResult.letterSpacingMappingResult.emValueString} — ${letterSpacingDescriptionResult.labelText}`
+        this.letterSpacingLabelBadgeElement.className = `${BADGE_BASE_CLASSES} ${letterSpacingDescriptionResult.styleClasses}`
       } else {
-        letterSpacingBreakdownElement.classList.add('hidden')
-        letterSpacingLabelBadgeElement.className = 'hidden'
+        this.letterSpacingBreakdownElement.classList.add('hidden')
+        this.letterSpacingLabelBadgeElement.className = 'hidden'
       }
 
       this.renderConfigSection(
@@ -900,9 +914,6 @@ import { MoveRight, Percent } from '@lucide/astro'
       customClassName: string | null,
       fontWeightValue: string,
     ) {
-      const configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
-      const copyConfigButtonElement = this.querySelector<HTMLElement>('[data-copy-config-button]')!
-
       const { configText, hasThemeContent } = buildThemeConfig(
         mappingResult,
         fontSizePixelValue,
@@ -911,10 +922,10 @@ import { MoveRight, Percent } from '@lucide/astro'
         fontWeightValue,
       )
 
-      configContainerElement.classList.remove('hidden')
-      this.querySelector('[data-config-pre]')!.textContent = configText
+      this.configContainerElement.classList.remove('hidden')
+      this.configPreElement.textContent = configText
 
-      copyConfigButtonElement.className = hasThemeContent
+      this.copyConfigButtonElement.className = hasThemeContent
         ? 'inline-flex items-center justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800'
         : 'hidden'
     }
