@@ -24,6 +24,8 @@ const { src } = Astro.props
 </preview-copy>
 
 <script>
+  import { applyCopiedButtonState } from '../lib/clipboard.js'
+
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
     private contentSrc: string | null = null
@@ -58,31 +60,21 @@ const { src } = Astro.props
 
         this.isProcessing = true
 
-        if (this.timeoutId !== null) {
-          clearTimeout(this.timeoutId)
-        }
-
         document.dispatchEvent(
           new CustomEvent(`preview:copy:${this.contentSrc}`, {
             bubbles: true,
           }),
         )
 
-        buttonText.textContent = 'Copied'
-        politeEl.textContent = 'Copied to clipboard.'
-
-        buttonEl.setAttribute('aria-pressed', 'true')
-
-        this.timeoutId = globalThis.setTimeout(() => {
-          if (this.isConnected) {
-            buttonText.textContent = 'Copy'
-            politeEl.textContent = ''
-
-            buttonEl.setAttribute('aria-pressed', 'false')
-          }
-
-          this.isProcessing = false
-        }, 1500)
+        this.timeoutId = applyCopiedButtonState({
+          buttonTextElement: buttonText as HTMLElement,
+          liveRegionElement: politeEl as HTMLElement,
+          buttonElement: buttonEl,
+          existingTimerId: this.timeoutId,
+          onReset: () => {
+            this.isProcessing = false
+          },
+        })
       }
 
       buttonEl.addEventListener('click', this.clickHandler)
