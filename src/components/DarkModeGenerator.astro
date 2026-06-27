@@ -23,6 +23,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
     exportConfig,
     importConfig,
   } from '../lib/dark-mode/config.js'
+  import { copyTextToClipboard } from '../lib/clipboard.js'
   import { transformHtmlDom } from '../lib/dark-mode/transform-html.js'
   import { buildPreviewDocument } from '../lib/dark-mode/preview-document.js'
   import {
@@ -306,34 +307,21 @@ import DarkModeInspector from './DarkModeInspector.astro'
         },
       )
 
-      const copyButton = this.querySelector<HTMLButtonElement>('[data-copy]')!
-      const copyButtonText = this.querySelector<HTMLElement>('[data-copy-text]')!
-      const copyLiveRegion = this.querySelector<HTMLElement>('[data-copy-polite]')!
+      const copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy]')!
+      const copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-text]')!
+      const copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-polite]')!
 
-      copyButton.addEventListener('click', async () => {
+      copyButtonElement.addEventListener('click', async () => {
         const outputText = this.querySelector<HTMLPreElement>('[data-output]')!.textContent ?? ''
         if (!outputText.trim()) {
           return
         }
-
-        try {
-          await navigator.clipboard.writeText(outputText)
-
-          copyButtonText.textContent = 'Copied'
-          copyLiveRegion.textContent = 'Copied to clipboard.'
-          copyButton.setAttribute('aria-pressed', 'true')
-
-          if (this.clipboardCopyTimer) {
-            clearTimeout(this.clipboardCopyTimer)
-          }
-          this.clipboardCopyTimer = setTimeout(() => {
-            copyButtonText.textContent = 'Copy'
-            copyLiveRegion.textContent = ''
-            copyButton.setAttribute('aria-pressed', 'false')
-          }, 1500)
-        } catch {
-          //
-        }
+        this.clipboardCopyTimer = await copyTextToClipboard(outputText, {
+          buttonTextElement: copyButtonTextElement,
+          liveRegionElement: copyLiveRegionElement,
+          buttonElement: copyButtonElement,
+          existingTimerId: this.clipboardCopyTimer,
+        })
       })
 
       this.querySelectorAll<HTMLButtonElement>('[data-preview-mode]').forEach((modeButton) => {

@@ -253,6 +253,8 @@ import { MoveRight, Percent } from '@lucide/astro'
 </typography-mapper>
 
 <script>
+  import { copyTextToClipboard } from '../lib/clipboard.js'
+
   type FontSizeScaleEntry = {
     pixelValue: number
     remValue: string
@@ -613,30 +615,6 @@ import { MoveRight, Percent } from '@lucide/astro'
     }
   }
 
-  const COPY_RESET_DELAY_MS = 1500
-
-  async function copyTextToClipboard(
-    textToCopy: string,
-    buttonTextElement: HTMLElement,
-    liveRegionElement: HTMLElement,
-    existingTimerId: ReturnType<typeof setTimeout> | null,
-  ): Promise<ReturnType<typeof setTimeout> | null> {
-    try {
-      await navigator.clipboard.writeText(textToCopy)
-      buttonTextElement.textContent = 'Copied'
-      liveRegionElement.textContent = 'Copied to clipboard.'
-      if (existingTimerId) {
-        clearTimeout(existingTimerId)
-      }
-      return setTimeout(() => {
-        buttonTextElement.textContent = 'Copy'
-        liveRegionElement.textContent = ''
-      }, COPY_RESET_DELAY_MS)
-    } catch {
-      return existingTimerId
-    }
-  }
-
   class TypographyMapper extends HTMLElement {
     private clipboardCopyTimerId: ReturnType<typeof setTimeout> | null = null
     private configCopyTimerId: ReturnType<typeof setTimeout> | null = null
@@ -792,12 +770,11 @@ import { MoveRight, Percent } from '@lucide/astro'
         if (!configText.trim()) {
           return
         }
-        this.configCopyTimerId = await copyTextToClipboard(
-          configText,
-          this.copyConfigButtonTextElement,
-          this.copyConfigLiveRegionElement,
-          this.configCopyTimerId,
-        )
+        this.configCopyTimerId = await copyTextToClipboard(configText, {
+          buttonTextElement: this.copyConfigButtonTextElement,
+          liveRegionElement: this.copyConfigLiveRegionElement,
+          existingTimerId: this.configCopyTimerId,
+        })
       })
     }
 
@@ -806,12 +783,11 @@ import { MoveRight, Percent } from '@lucide/astro'
         if (!this.currentCombinedClass) {
           return
         }
-        this.clipboardCopyTimerId = await copyTextToClipboard(
-          this.currentCombinedClass,
-          this.copyButtonTextElement,
-          this.copyLiveRegionElement,
-          this.clipboardCopyTimerId,
-        )
+        this.clipboardCopyTimerId = await copyTextToClipboard(this.currentCombinedClass, {
+          buttonTextElement: this.copyButtonTextElement,
+          liveRegionElement: this.copyLiveRegionElement,
+          existingTimerId: this.clipboardCopyTimerId,
+        })
       })
     }
 
