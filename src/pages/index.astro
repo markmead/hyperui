@@ -30,65 +30,67 @@ const neobrutalism = neobrutalismRaw
 ---
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
-  <section class="bg-white">
-    <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-center md:py-16">
-      <h1 class="text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">HyperUI</h1>
+  <main id="main-content">
+    <section class="bg-white">
+      <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-center md:py-16">
+        <h1 class="text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">HyperUI</h1>
 
-      <h2 class="text-xl text-gray-600 md:text-2xl">Free Open Source Tailwind CSS Components</h2>
+        <h2 class="text-xl text-gray-600 md:text-2xl">Free Open Source Tailwind CSS Components</h2>
 
-      <p class="mx-auto max-w-2xl text-gray-600">
-        HyperUI is a collection of free Tailwind CSS components that can be used in your next
-        project. With a range of components, you can build your next marketing website, admin
-        dashboard, eCommerce store and much more.
-      </p>
+        <p class="mx-auto max-w-2xl text-gray-600">
+          HyperUI is a collection of free Tailwind CSS components that can be used in your next
+          project. With a range of components, you can build your next marketing website, admin
+          dashboard, eCommerce store and much more.
+        </p>
 
-      <div class="*:mx-auto">
-        <BaseAd />
-      </div>
-    </div>
-  </section>
-
-  <main id="main-content" class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
-    <section class="py-16">
-      <div
-        class="flex items-center justify-between gap-8 rounded-lg border border-gray-200 bg-gray-50 p-8"
-      >
-        <div>
-          <h2 class="text-2xl font-medium">HyperUI Tools</h2>
-
-          <p class="mt-2 text-gray-600">
-            Generate dark mode variants and map typography scales — all in the browser.
-          </p>
+        <div class="*:mx-auto">
+          <BaseAd />
         </div>
-
-        <a
-          href="/tools"
-          class="inline-flex shrink-0 items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-gray-800 hover:bg-gray-800"
-        >
-          Browse tools
-        </a>
       </div>
     </section>
 
-    <CollectionFeature
-      title="Application Components"
-      description="Components for building application user interfaces."
-      slug="application"
-      components={application}
-    />
+    <div class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
+      <section class="py-16">
+        <div
+          class="flex flex-col items-start gap-x-8 gap-y-4 rounded-lg border border-gray-200 bg-gray-50 p-8 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-medium">HyperUI Tools</h2>
 
-    <CollectionFeature
-      title="Marketing Components"
-      description="Components for building marketing websites and landing pages."
-      slug="marketing"
-      components={marketing}
-    />
+            <p class="mt-2 text-gray-600">
+              Generate dark mode variants and map typography scales — all in the browser.
+            </p>
+          </div>
 
-    <CollectionFeature
-      title="Neobrutalism Components"
-      description="Components for building neobrutalist designs."
-      slug="neobrutalism"
-      components={neobrutalism}
-    />
+          <a
+            href="/tools"
+            class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-gray-800 hover:bg-gray-800"
+          >
+            Browse tools
+          </a>
+        </div>
+      </section>
+
+      <CollectionFeature
+        title="Application Components"
+        description="Components for building application user interfaces."
+        slug="application"
+        components={application}
+      />
+
+      <CollectionFeature
+        title="Marketing Components"
+        description="Components for building marketing websites and landing pages."
+        slug="marketing"
+        components={marketing}
+      />
+
+      <CollectionFeature
+        title="Neobrutalism Components"
+        description="Components for building neobrutalist designs."
+        slug="neobrutalism"
+        components={neobrutalism}
+      />
+    </div>
   </main>
 </BaseLayout>
