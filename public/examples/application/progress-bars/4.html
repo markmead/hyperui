@@ -14,8 +14,9 @@
         aria-valuenow="25"
         aria-valuemin="0"
         aria-valuemax="100"
+        aria-labelledby="LoadingCircleLabel"
       >
-        <svg class="size-full" viewBox="0 0 100 100">
+        <svg class="size-full" viewBox="0 0 100 100" aria-hidden="true">
           <circle
             cx="50"
             cy="50"
@@ -45,7 +46,7 @@
         </div>
       </div>
 
-      <p class="mt-2 text-sm text-gray-700">Loading</p>
+      <p id="LoadingCircleLabel" class="mt-2 text-sm text-gray-700">Loading</p>
     </div>
 
     <div class="text-center">
@@ -55,8 +56,9 @@
         aria-valuenow="75"
         aria-valuemin="0"
         aria-valuemax="100"
+        aria-labelledby="NearlyDoneCircleLabel"
       >
-        <svg class="size-full" viewBox="0 0 100 100">
+        <svg class="size-full" viewBox="0 0 100 100" aria-hidden="true">
           <circle
             cx="50"
             cy="50"
@@ -86,7 +88,7 @@
         </div>
       </div>
 
-      <p class="mt-2 text-sm text-gray-700">Nearly done</p>
+      <p id="NearlyDoneCircleLabel" class="mt-2 text-sm text-gray-700">Nearly done</p>
     </div>
   </body>
 </html>

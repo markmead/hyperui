@@ -7,8 +7,16 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-md space-y-6 p-6">
-    <div role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-      <p class="text-xs font-medium tracking-wide text-gray-700 uppercase">Download</p>
+    <div
+      role="progressbar"
+      aria-valuenow="25"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-labelledby="DownloadLabel"
+    >
+      <p id="DownloadLabel" class="text-xs font-medium tracking-wide text-gray-700 uppercase">
+        Download
+      </p>
 
       <div class="mt-2 h-1 w-full bg-gray-200">
         <div class="h-full bg-blue-600" style="width: 25%"></div>
@@ -17,8 +25,16 @@
       <p class="mt-2 text-xs text-gray-700">1.2 of 3.8 MB</p>
     </div>
 
-    <div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-      <p class="text-xs font-medium tracking-wide text-gray-700 uppercase">File Conversion</p>
+    <div
+      role="progressbar"
+      aria-valuenow="75"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-labelledby="FileConversionLabel"
+    >
+      <p id="FileConversionLabel" class="text-xs font-medium tracking-wide text-gray-700 uppercase">
+        File Conversion
+      </p>
 
       <div class="mt-2 h-1 w-full bg-gray-200">
         <div class="h-full bg-blue-600" style="width: 75%"></div>
@@ -27,8 +43,16 @@
       <p class="mt-2 text-xs text-gray-700">3/4 files done</p>
     </div>
 
-    <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-      <p class="text-xs font-medium tracking-wide text-gray-700 uppercase">File Sync</p>
+    <div
+      role="progressbar"
+      aria-valuenow="100"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-labelledby="FileSyncLabel"
+    >
+      <p id="FileSyncLabel" class="text-xs font-medium tracking-wide text-gray-700 uppercase">
+        File Sync
+      </p>
 
       <div class="mt-2 h-1 w-full bg-gray-200">
         <div class="h-full bg-green-600" style="width: 100%"></div>
