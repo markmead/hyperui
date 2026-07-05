@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <div
+      class="flex items-center justify-between gap-4 rounded-lg border border-gray-800 bg-gray-900 p-6"
+    >
+      <div>
+        <strong class="block text-sm font-medium text-gray-400">Monthly revenue</strong>
+
+        <p class="text-2xl font-medium text-white">$48,204</p>
+      </div>
+
+      <div class="h-12 w-24 shrink-0">
+        <canvas
+          id="revenue-sparkline-chart"
+          role="img"
+          aria-label="Sparkline showing monthly revenue trending upward"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueSparklineChartCanvas = document.getElementById('revenue-sparkline-chart')
+
+      new Chart(revenueSparklineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              data: [28000, 34000, 31000, 39000, 42000, 48000],
+              borderColor: '#4ade80',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.35,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+          },
+          scales: {
+            x: { display: false },
+            y: { display: false },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

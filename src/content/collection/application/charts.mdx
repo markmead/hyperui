@@ -1,0 +1,29 @@
+---
+title: Charts
+description: Chart components for visualizing trends, comparisons, and breakdowns in dashboards and analytics pages, built with Chart.js.
+category: application
+slug: charts
+wrapper: h-[500px]
+terms:
+  - chart
+  - graph
+  - analytics
+  - dashboard
+  - data visualization
+components:
+  - { title: 'Line chart with filled area', dark: true, plugins: ['chart.js'] }
+  - { title: 'Bar chart with tooltip', dark: true, plugins: ['chart.js'] }
+  - { title: 'Donut chart with legend', dark: true, plugins: ['chart.js'] }
+  - { title: 'Sparkline for stat cards', dark: true, plugins: ['chart.js'] }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Orders this week</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="weekly-orders-bar-chart"
+          role="img"
+          aria-label="Bar chart showing orders per day this week, peaking at 32 orders on Saturday"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const weeklyOrdersBarChartCanvas = document.getElementById('weekly-orders-bar-chart')
+
+      new Chart(weeklyOrdersBarChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [
+            {
+              label: 'Orders',
+              data: [12, 19, 14, 22, 27, 32, 18],
+              backgroundColor: '#111827',
+              borderRadius: 4,
+              maxBarThickness: 32,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.formattedValue} orders`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: { color: '#4b5563' },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
