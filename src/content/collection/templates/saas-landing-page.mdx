@@ -1,0 +1,32 @@
+---
+title: SaaS Landing Page
+description: A full marketing landing page example built with Tailwind CSS, combining a header, hero, stats, features, pricing, and footer into a single page.
+category: templates
+slug: saas-landing-page
+wrapper: h-[900px]
+terms:
+  - landing page
+  - full page
+  - saas
+  - marketing
+usedComponents:
+  - { category: 'marketing', slug: 'headers', label: 'Header' }
+  - { category: 'marketing', slug: 'sections', label: 'Hero' }
+  - { category: 'marketing', slug: 'feature-grids', label: 'Features' }
+  - { category: 'marketing', slug: 'pricing', label: 'Pricing' }
+  - { category: 'marketing', slug: 'newsletter-signup', label: 'Newsletter' }
+  - { category: 'marketing', slug: 'footers', label: 'Footer' }
+components:
+  - { title: 'SaaS landing page' }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
