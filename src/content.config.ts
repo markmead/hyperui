@@ -82,6 +82,7 @@ const collection = z.object({
         category: z.enum(['application', 'marketing', 'neobrutalism', 'templates']),
         slug: z.string(),
         label: z.string(),
+        componentIndex: z.number(),
       }),
     )
     .optional(),
