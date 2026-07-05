@@ -76,6 +76,15 @@ const collection = z.object({
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
   pattern: z.url().optional(),
+  usedComponents: z
+    .array(
+      z.object({
+        category: z.enum(['application', 'marketing', 'neobrutalism', 'templates']),
+        slug: z.string(),
+        label: z.string(),
+      }),
+    )
+    .optional(),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),
@@ -95,7 +104,7 @@ const collection = z.object({
 })
 
 function createCollection(
-  collectionCategory: 'application' | 'marketing' | 'neobrutalism',
+  collectionCategory: 'application' | 'marketing' | 'neobrutalism' | 'templates',
   sourceBasePath: string,
 ) {
   return defineCollection({
@@ -118,5 +127,6 @@ function createCollection(
 const application = createCollection('application', './src/content/collection/application')
 const marketing = createCollection('marketing', './src/content/collection/marketing')
 const neobrutalism = createCollection('neobrutalism', './src/content/collection/neobrutalism')
+const templates = createCollection('templates', './src/content/collection/templates')
 
-export const collections = { blog, application, marketing, neobrutalism, tools }
+export const collections = { blog, application, marketing, neobrutalism, templates, tools }

@@ -142,7 +142,7 @@ function generateMetadata() {
   )
 
   const collectionsDir = path.join(repositoryRootPath, 'src/content/collection')
-  const collectionCategories = ['application', 'marketing', 'neobrutalism']
+  const collectionCategories = ['application', 'marketing', 'neobrutalism', 'templates']
 
   const fileMetadata = {}
 
