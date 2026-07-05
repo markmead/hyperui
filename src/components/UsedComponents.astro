@@ -9,6 +9,7 @@ type UsedComponentReference = {
   category: UsedComponentCategory
   slug: string
   label: string
+  componentIndex: number
 }
 
 type Props = {
@@ -23,7 +24,7 @@ const collectionEntriesByCategory = new Map<
 >()
 
 async function resolveUsedComponent(usedComponentReference: UsedComponentReference) {
-  const { category, slug, label } = usedComponentReference
+  const { category, slug, label, componentIndex } = usedComponentReference
 
   if (!collectionEntriesByCategory.has(category)) {
     collectionEntriesByCategory.set(category, await getCollection(category))
@@ -31,12 +32,17 @@ async function resolveUsedComponent(usedComponentReference: UsedComponentReferen
 
   const categoryEntries = collectionEntriesByCategory.get(category)!
   const matchedEntry = categoryEntries.find((entry) => entry.data.slug === slug)
+  const matchedComponent = matchedEntry?.data.components[componentIndex - 1]
 
-  if (!matchedEntry) {
+  if (!matchedEntry || !matchedComponent) {
     return undefined
   }
 
-  return { label, title: matchedEntry.data.title, href: `/components/${category}/${slug}` }
+  return {
+    label,
+    title: matchedComponent.title,
+    href: `/components/${category}/${slug}#component-${componentIndex}`,
+  }
 }
 
 const resolvedComponents = (
