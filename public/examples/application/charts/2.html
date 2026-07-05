@@ -31,7 +31,8 @@
             {
               label: 'Orders',
               data: [12, 19, 14, 22, 27, 32, 18],
-              backgroundColor: '#111827',
+              backgroundColor: '#6366f1',
+              hoverBackgroundColor: '#4338ca',
               borderRadius: 4,
               maxBarThickness: 32,
             },
@@ -40,6 +41,10 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
           plugins: {
             legend: { display: false },
             tooltip: {
