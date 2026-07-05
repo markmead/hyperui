@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import { getCollection } from 'astro:content'
+
+type UsedComponentCategory = 'application' | 'marketing' | 'neobrutalism' | 'templates'
+
+type UsedComponentReference = {
+  category: UsedComponentCategory
+  slug: string
+  label: string
+}
+
+type Props = {
+  usedComponents: UsedComponentReference[]
+}
+
+const { usedComponents } = Astro.props
+
+const collectionEntriesByCategory = new Map<
+  UsedComponentCategory,
+  CollectionEntry<UsedComponentCategory>[]
+>()
+
+async function resolveUsedComponent(usedComponentReference: UsedComponentReference) {
+  const { category, slug, label } = usedComponentReference
+
+  if (!collectionEntriesByCategory.has(category)) {
+    collectionEntriesByCategory.set(category, await getCollection(category))
+  }
+
+  const categoryEntries = collectionEntriesByCategory.get(category)!
+  const matchedEntry = categoryEntries.find((entry) => entry.data.slug === slug)
+
+  if (!matchedEntry) {
+    return undefined
+  }
+
+  return { label, title: matchedEntry.data.title, href: `/components/${category}/${slug}` }
+}
+
+const resolvedComponents = (
+  await Promise.all(usedComponents.map(resolveUsedComponent))
+).filter((resolvedComponent) => resolvedComponent !== undefined)
+---
+
+{
+  resolvedComponents.length > 0 && (
+    <div>
+      <h2 class="text-2xl font-medium">Components used</h2>
+
+      <ul class="mt-4 space-y-2 text-gray-700">
+        {resolvedComponents.map((resolvedComponent) => (
+          <li>
+            {resolvedComponent.label}:{' '}
+            <a href={resolvedComponent.href} class="font-medium text-gray-900 underline underline-offset-2 hover:text-gray-600">
+              {resolvedComponent.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
