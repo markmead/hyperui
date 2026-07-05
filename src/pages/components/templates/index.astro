@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content'
+
+import {
+  SEO_TITLE_TEMPLATES_COMPONENTS,
+  SEO_DESCRIPTION_TEMPLATES_COMPONENTS,
+} from '../../../constants/seo'
+
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import ComponentCard from '../../../components/ComponentCard.astro'
+import BaseHero from '../../../components/BaseHero.astro'
+
+const components = (await getCollection('templates'))
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
+---
+
+<BaseLayout
+  title={SEO_TITLE_TEMPLATES_COMPONENTS}
+  description={SEO_DESCRIPTION_TEMPLATES_COMPONENTS}
+>
+  <BaseHero
+    title="Templates"
+    description="Free full-page Tailwind CSS templates built from HyperUI components."
+  />
+
+  <main id="main-content" class="mx-auto max-w-7xl px-4">
+    <h2 class="sr-only">Template Components</h2>
+
+    <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {components.map((component) => <ComponentCard {component} />)}
+    </ul>
+  </main>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+
+import ComponentPost from '../../../layouts/ComponentPost.astro'
+import ExternalLink from '../../../components/ExternalLink.astro'
+
+export async function getStaticPaths() {
+  return (await getCollection('templates')).map((component) => ({
+    params: { slug: component.data.slug },
+    props: component,
+  }))
+}
+
+type Props = CollectionEntry<'templates'>
+
+const collection = Astro.props
+
+const { Content } = await render(collection)
+---
+
+<ComponentPost {...collection.data}>
+  <Content components={{ a: ExternalLink }} />
+</ComponentPost>
