@@ -162,6 +162,14 @@
                 <span class="text-xs text-gray-600">from $42,910</span>
               </p>
             </div>
+
+            <div class="h-10">
+              <canvas
+                id="revenue-trend-sparkline"
+                role="img"
+                aria-label="Sparkline showing monthly revenue trending upward over the last six months"
+              ></canvas>
+            </div>
           </article>
 
           <article class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6">
@@ -233,6 +241,32 @@
           </article>
         </div>
 
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div class="rounded-lg border border-gray-200 bg-white p-6 lg:col-span-2">
+            <h2 class="text-sm font-medium text-gray-900">Revenue trend</h2>
+
+            <div class="mt-4 h-64">
+              <canvas
+                id="revenue-trend-line-chart"
+                role="img"
+                aria-label="Line chart showing monthly revenue rising from $28,000 in January to $48,000 in June"
+              ></canvas>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-gray-200 bg-white p-6">
+            <h2 class="text-sm font-medium text-gray-900">Orders by status</h2>
+
+            <div class="mt-4 h-64">
+              <canvas
+                id="order-status-donut-chart"
+                role="img"
+                aria-label="Donut chart showing 68% of orders paid, 22% pending, and 10% refunded"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+
         <div class="rounded-lg border border-gray-200 bg-white p-6">
           <h2 class="text-sm font-medium text-gray-900">Recent orders</h2>
 
@@ -297,5 +331,120 @@
         </div>
       </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueTrendSparklineCanvas = document.getElementById('revenue-trend-sparkline')
+      const revenueTrendLineChartCanvas = document.getElementById('revenue-trend-line-chart')
+      const orderStatusDonutChartCanvas = document.getElementById('order-status-donut-chart')
+
+      const monthlyRevenueLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+      const monthlyRevenueValues = [28000, 34000, 31000, 39000, 42000, 48000]
+
+      new Chart(revenueTrendSparklineCanvas, {
+        type: 'line',
+        data: {
+          labels: monthlyRevenueLabels,
+          datasets: [
+            {
+              data: monthlyRevenueValues,
+              borderColor: '#16a34a',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.35,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+          },
+          scales: {
+            x: { display: false },
+            y: { display: false },
+          },
+        },
+      })
+
+      new Chart(revenueTrendLineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: monthlyRevenueLabels,
+          datasets: [
+            {
+              label: 'Revenue',
+              data: monthlyRevenueValues,
+              borderColor: '#111827',
+              backgroundColor: 'rgba(17, 24, 39, 0.08)',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.35,
+              fill: true,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `$${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: {
+                color: '#4b5563',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
+            },
+          },
+        },
+      })
+
+      new Chart(orderStatusDonutChartCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Paid', 'Pending', 'Refunded'],
+          datasets: [
+            {
+              data: [68, 22, 10],
+              backgroundColor: ['#16a34a', '#f59e0b', '#dc2626'],
+              borderColor: '#ffffff',
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.formattedValue}%`,
+              },
+            },
+          },
+        },
+      })
+    </script>
   </body>
 </html>
