@@ -13,14 +13,15 @@ interface Result {
   title: string
 }
 
-const [application, marketing, neobrutalism, blog] = await Promise.all([
+const [application, marketing, neobrutalism, templates, blog] = await Promise.all([
   getCollection('application'),
   getCollection('marketing'),
   getCollection('neobrutalism'),
+  getCollection('templates'),
   getCollection('blog'),
 ])
 
-const allCollections = [...application, ...marketing, ...neobrutalism]
+const allCollections = [...application, ...marketing, ...neobrutalism, ...templates]
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 
