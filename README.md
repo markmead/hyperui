@@ -22,6 +22,19 @@ pnpm run css:component --watch
 
 To preview the blog styles, execute: `pnpm run css:blog`.
 
+## ‍Components Categories
+| Categories Name     | Components Quantity     |
+|---------------------|-------------------------|
+| Accordions          | 10                      |
+| Badges              | 10                      |
+| Bread Crumbs        | 10                      |
+| Button Group        | 10                      |
+| Checkbox            | 06                      |
+| Divider             | 12                      |
+| Dropdowns           | 06                      |
+| Empty States        | 06                      |
+
+
 ## Contributing
 
 Please open an issue first before starting work.
