@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <h2 class="text-sm font-medium text-white">Revenue vs target</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="revenue-target-combo-chart"
+          role="img"
+          aria-label="Combo chart showing monthly revenue bars against a quarterly target line, with revenue exceeding target from April onward"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueTargetComboChartCanvas = document.getElementById('revenue-target-combo-chart')
+
+      new Chart(revenueTargetComboChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Revenue',
+              data: [28000, 34000, 31000, 39000, 42000, 48000],
+              backgroundColor: '#818cf8',
+              hoverBackgroundColor: '#a5b4fc',
+              borderRadius: 4,
+              maxBarThickness: 32,
+              order: 2,
+            },
+            {
+              type: 'line',
+              label: 'Target',
+              data: [32000, 32000, 32000, 40000, 40000, 40000],
+              borderColor: '#fbbf24',
+              backgroundColor: '#fbbf24',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#fbbf24',
+              pointHoverBorderColor: '#111827',
+              pointHoverBorderWidth: 2,
+              tension: 0,
+              fill: false,
+              order: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#9ca3af' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#9ca3af' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: {
+                color: '#9ca3af',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

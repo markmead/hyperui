@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Traffic by channel</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="channel-traffic-stacked-bar-chart"
+          role="img"
+          aria-label="Stacked bar chart showing website traffic by channel across the week, with organic traffic the largest share each day"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const channelTrafficStackedBarChartCanvas = document.getElementById(
+        'channel-traffic-stacked-bar-chart',
+      )
+
+      new Chart(channelTrafficStackedBarChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [
+            {
+              label: 'Organic',
+              data: [120, 132, 101, 134, 90, 230, 210],
+              backgroundColor: '#4f46e5',
+              hoverBackgroundColor: '#4338ca',
+              borderColor: '#ffffff',
+              borderWidth: 2,
+              maxBarThickness: 32,
+            },
+            {
+              label: 'Paid',
+              data: [80, 95, 70, 110, 60, 120, 95],
+              backgroundColor: '#10b981',
+              hoverBackgroundColor: '#059669',
+              borderColor: '#ffffff',
+              borderWidth: 2,
+              maxBarThickness: 32,
+            },
+            {
+              label: 'Referral',
+              data: [40, 35, 45, 38, 42, 55, 48],
+              backgroundColor: '#f59e0b',
+              hoverBackgroundColor: '#d97706',
+              borderColor: '#ffffff',
+              borderWidth: 2,
+              maxBarThickness: 32,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: { color: '#4b5563' },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

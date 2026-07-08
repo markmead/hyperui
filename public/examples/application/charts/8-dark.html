@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <div class="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <h2 class="text-sm font-medium text-white">Team performance</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="team-performance-radar-chart"
+          role="img"
+          aria-label="Radar chart comparing Team A and Team B across five performance metrics, with Team A stronger in speed and quality and Team B stronger in collaboration and innovation"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const teamPerformanceRadarChartCanvas = document.getElementById(
+        'team-performance-radar-chart',
+      )
+
+      new Chart(teamPerformanceRadarChartCanvas, {
+        type: 'radar',
+        data: {
+          labels: ['Speed', 'Quality', 'Collaboration', 'Innovation', 'Reliability'],
+          datasets: [
+            {
+              label: 'Team A',
+              data: [80, 90, 70, 60, 85],
+              borderColor: '#818cf8',
+              backgroundColor: 'rgba(129, 140, 248, 0.25)',
+              pointBackgroundColor: '#818cf8',
+              pointBorderColor: '#111827',
+              pointHoverRadius: 5,
+              borderWidth: 2,
+            },
+            {
+              label: 'Team B',
+              data: [65, 75, 88, 92, 70],
+              borderColor: '#34d399',
+              backgroundColor: 'rgba(52, 211, 153, 0.25)',
+              pointBackgroundColor: '#34d399',
+              pointBorderColor: '#111827',
+              pointHoverRadius: 5,
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#9ca3af' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              pointLabels: { color: '#9ca3af', font: { size: 11 } },
+              ticks: { display: false },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

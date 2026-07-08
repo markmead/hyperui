@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Revenue: this year vs last year</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="yearly-revenue-comparison-line-chart"
+          role="img"
+          aria-label="Line chart comparing monthly revenue this year to last year, with this year consistently higher across all six months"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const yearlyRevenueComparisonLineChartCanvas = document.getElementById(
+        'yearly-revenue-comparison-line-chart',
+      )
+
+      new Chart(yearlyRevenueComparisonLineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              label: 'This year',
+              data: [28000, 34000, 31000, 39000, 42000, 48000],
+              borderColor: '#4f46e5',
+              backgroundColor: 'transparent',
+              borderWidth: 2,
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#4f46e5',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2,
+              tension: 0.35,
+              fill: false,
+            },
+            {
+              label: 'Last year',
+              data: [22000, 25000, 24000, 29000, 31000, 35000],
+              borderColor: '#9ca3af',
+              backgroundColor: 'transparent',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#9ca3af',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2,
+              tension: 0.35,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: {
+                color: '#4b5563',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <h2 class="text-sm font-medium text-white">Ad spend vs conversions</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="ad-spend-conversions-scatter-chart"
+          role="img"
+          aria-label="Scatter chart showing a positive correlation between ad spend and conversions across recent campaigns"
+        ></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const adSpendConversionsScatterChartCanvas = document.getElementById(
+        'ad-spend-conversions-scatter-chart',
+      )
+
+      new Chart(adSpendConversionsScatterChartCanvas, {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Campaigns',
+              data: [
+                { x: 90, y: 8 },
+                { x: 120, y: 12 },
+                { x: 140, y: 14 },
+                { x: 150, y: 15 },
+                { x: 180, y: 18 },
+                { x: 200, y: 22 },
+                { x: 220, y: 25 },
+                { x: 260, y: 30 },
+              ],
+              backgroundColor: '#818cf8',
+              hoverBackgroundColor: '#a5b4fc',
+              pointRadius: 5,
+              pointHoverRadius: 7,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `$${tooltipItem.raw.x} spend → ${tooltipItem.raw.y} conversions`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Spend ($)', color: '#9ca3af' },
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: { color: '#9ca3af' },
+            },
+            y: {
+              title: { display: true, text: 'Conversions', color: '#9ca3af' },
+              beginAtZero: true,
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: { color: '#9ca3af' },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
