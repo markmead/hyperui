@@ -76,16 +76,6 @@ const collection = z.object({
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
   pattern: z.url().optional(),
-  usedComponents: z
-    .array(
-      z.object({
-        category: z.enum(['application', 'marketing', 'neobrutalism', 'templates']),
-        slug: z.string(),
-        label: z.string(),
-        componentIndex: z.number(),
-      }),
-    )
-    .optional(),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),

@@ -10,15 +10,12 @@ terms:
   - application
   - admin
   - chart
-usedComponents:
-  - { category: 'application', slug: 'side-menu', label: 'Sidebar navigation', componentIndex: 1 }
-  - { category: 'application', slug: 'stats', label: 'Stat cards', componentIndex: 1 }
-  - { category: 'application', slug: 'charts', label: 'Revenue trend chart', componentIndex: 1 }
-  - { category: 'application', slug: 'charts', label: 'Orders by status chart', componentIndex: 3 }
-  - { category: 'application', slug: 'charts', label: 'Revenue sparkline', componentIndex: 4 }
-  - { category: 'application', slug: 'tables', label: 'Orders table', componentIndex: 1 }
 components:
-  - { title: 'Analytics dashboard', plugins: ['chart.js'] }
+  - { title: 'Overview', plugins: ['chart.js'] }
+  - { title: 'Customers', plugins: ['chart.js'] }
+  - { title: 'Orders', plugins: ['chart.js'] }
+  - { title: 'Billing' }
+  - { title: 'Settings' }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'
