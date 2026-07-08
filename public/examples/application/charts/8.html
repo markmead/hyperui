@@ -14,9 +14,49 @@
         <canvas
           id="team-performance-radar-chart"
           role="img"
-          aria-label="Radar chart comparing Team A and Team B across five performance metrics, with Team A stronger in speed and quality and Team B stronger in collaboration and innovation"
+          aria-label="Team performance, radar chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Team performance by metric
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Team A</th>
+            <th scope="col">Team B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Speed</th>
+            <td>80</td>
+            <td>65</td>
+          </tr>
+          <tr>
+            <th scope="row">Quality</th>
+            <td>90</td>
+            <td>75</td>
+          </tr>
+          <tr>
+            <th scope="row">Collaboration</th>
+            <td>70</td>
+            <td>88</td>
+          </tr>
+          <tr>
+            <th scope="row">Innovation</th>
+            <td>60</td>
+            <td>92</td>
+          </tr>
+          <tr>
+            <th scope="row">Reliability</th>
+            <td>85</td>
+            <td>70</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
@@ -62,7 +102,8 @@
             },
             tooltip: {
               callbacks: {
-                label: (tooltipItem) => `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
               },
             },
           },

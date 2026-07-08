@@ -7,7 +7,9 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-sm p-6">
-    <div class="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white p-6">
+    <div
+      class="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white p-6"
+    >
       <div>
         <strong class="block text-sm font-medium text-gray-600">Monthly revenue</strong>
 
@@ -18,9 +20,47 @@
         <canvas
           id="revenue-sparkline-chart"
           role="img"
-          aria-label="Sparkline showing monthly revenue trending upward"
+          aria-label="Monthly revenue trend, sparkline chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Monthly revenue by month
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jan</th>
+            <td>$28,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Feb</th>
+            <td>$34,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Mar</th>
+            <td>$31,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Apr</th>
+            <td>$39,000</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>$42,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun</th>
+            <td>$48,000</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>

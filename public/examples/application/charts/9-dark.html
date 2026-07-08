@@ -14,9 +14,39 @@
         <canvas
           id="traffic-sources-polar-area-chart"
           role="img"
-          aria-label="Polar area chart showing traffic sources, with organic traffic the largest segment at 45 percent"
+          aria-label="Traffic sources, polar area chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Traffic by source
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Organic</th>
+            <td>45%</td>
+          </tr>
+          <tr>
+            <th scope="row">Paid</th>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <th scope="row">Referral</th>
+            <td>18%</td>
+          </tr>
+          <tr>
+            <th scope="row">Direct</th>
+            <td>12%</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>

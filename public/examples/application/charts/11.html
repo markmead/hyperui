@@ -14,9 +14,55 @@
         <canvas
           id="campaign-performance-bubble-chart"
           role="img"
-          aria-label="Bubble chart comparing spend, conversions, and reach across five ad campaigns, with Search driving the highest spend and conversions"
+          aria-label="Campaign performance, bubble chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Campaign spend, conversions, and reach
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Campaign</th>
+            <th scope="col">Spend ($)</th>
+            <th scope="col">Conversions</th>
+            <th scope="col">Reach index</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Search</th>
+            <td>3,200</td>
+            <td>18,000</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <th scope="row">Social</th>
+            <td>2,400</td>
+            <td>9,500</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <th scope="row">Display</th>
+            <td>1,800</td>
+            <td>5,200</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>900</td>
+            <td>7,800</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <th scope="row">Video</th>
+            <td>2,600</td>
+            <td>6,100</td>
+            <td>18</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>

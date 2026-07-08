@@ -14,9 +14,51 @@
         <canvas
           id="weekly-orders-bar-chart"
           role="img"
-          aria-label="Bar chart showing orders per day this week, peaking at 32 orders on Saturday"
+          aria-label="Orders this week, bar chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Orders per day this week
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Orders</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Mon</th>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th scope="row">Tue</th>
+            <td>19</td>
+          </tr>
+          <tr>
+            <th scope="row">Wed</th>
+            <td>14</td>
+          </tr>
+          <tr>
+            <th scope="row">Thu</th>
+            <td>22</td>
+          </tr>
+          <tr>
+            <th scope="row">Fri</th>
+            <td>27</td>
+          </tr>
+          <tr>
+            <th scope="row">Sat</th>
+            <td>32</td>
+          </tr>
+          <tr>
+            <th scope="row">Sun</th>
+            <td>18</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>

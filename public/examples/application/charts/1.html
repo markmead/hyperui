@@ -36,14 +36,28 @@
         <canvas
           id="revenue-line-chart"
           role="img"
-          aria-label="Line chart showing monthly revenue rising from $28,000 in January to $48,000 in June"
+          aria-label="Monthly revenue, line chart"
         ></canvas>
       </div>
+
+      <table id="revenue-line-chart-table" class="sr-only">
+        <caption>
+          Monthly revenue by month
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Revenue</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script>
       const revenueLineChartCanvas = document.getElementById('revenue-line-chart')
+      const revenueLineChartTableBody = document.querySelector('#revenue-line-chart-table tbody')
       const revenueRangeButtons = document.querySelectorAll('[data-revenue-range]')
 
       const revenueRangesByPeriod = {
@@ -52,7 +66,20 @@
           values: [28000, 34000, 31000, 39000, 42000, 48000],
         },
         '12m': {
-          labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          labels: [
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+          ],
           values: [
             19000, 21500, 20000, 23500, 25000, 27000, 28000, 34000, 31000, 39000, 42000, 48000,
           ],
@@ -118,6 +145,23 @@
         },
       })
 
+      function renderRevenueTableRows(selectedRange) {
+        const { labels, values } = revenueRangesByPeriod[selectedRange]
+
+        revenueLineChartTableBody.innerHTML = labels
+          .map(
+            (monthLabel, monthIndex) => `
+              <tr>
+                <th scope="row">${monthLabel}</th>
+                <td>$${values[monthIndex].toLocaleString()}</td>
+              </tr>
+            `,
+          )
+          .join('')
+      }
+
+      renderRevenueTableRows('6m')
+
       revenueRangeButtons.forEach((revenueRangeButton) => {
         revenueRangeButton.addEventListener('click', () => {
           const selectedRange = revenueRangeButton.dataset.revenueRange
@@ -134,6 +178,8 @@
           revenueLineChart.data.labels = revenueRangesByPeriod[selectedRange].labels
           revenueLineChart.data.datasets[0].data = revenueRangesByPeriod[selectedRange].values
           revenueLineChart.update()
+
+          renderRevenueTableRows(selectedRange)
         })
       })
     </script>

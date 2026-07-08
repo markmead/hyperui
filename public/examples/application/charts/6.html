@@ -14,9 +14,54 @@
         <canvas
           id="revenue-target-combo-chart"
           role="img"
-          aria-label="Combo chart showing monthly revenue bars against a quarterly target line, with revenue exceeding target from April onward"
+          aria-label="Revenue vs target, combo chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Monthly revenue against quarterly target
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Revenue</th>
+            <th scope="col">Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jan</th>
+            <td>$28,000</td>
+            <td>$32,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Feb</th>
+            <td>$34,000</td>
+            <td>$32,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Mar</th>
+            <td>$31,000</td>
+            <td>$32,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Apr</th>
+            <td>$39,000</td>
+            <td>$40,000</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>$42,000</td>
+            <td>$40,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun</th>
+            <td>$48,000</td>
+            <td>$40,000</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
@@ -71,7 +116,8 @@
             },
             tooltip: {
               callbacks: {
-                label: (tooltipItem) => `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
               },
             },
           },

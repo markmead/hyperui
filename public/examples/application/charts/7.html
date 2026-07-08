@@ -14,9 +14,54 @@
         <canvas
           id="yearly-revenue-comparison-line-chart"
           role="img"
-          aria-label="Line chart comparing monthly revenue this year to last year, with this year consistently higher across all six months"
+          aria-label="Revenue this year vs last year, line chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Monthly revenue, this year vs last year
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">This year</th>
+            <th scope="col">Last year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jan</th>
+            <td>$28,000</td>
+            <td>$22,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Feb</th>
+            <td>$34,000</td>
+            <td>$25,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Mar</th>
+            <td>$31,000</td>
+            <td>$24,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Apr</th>
+            <td>$39,000</td>
+            <td>$29,000</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>$42,000</td>
+            <td>$31,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun</th>
+            <td>$48,000</td>
+            <td>$35,000</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
@@ -75,7 +120,8 @@
             },
             tooltip: {
               callbacks: {
-                label: (tooltipItem) => `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
               },
             },
           },

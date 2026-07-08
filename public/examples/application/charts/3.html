@@ -14,9 +14,35 @@
         <canvas
           id="order-status-donut-chart"
           role="img"
-          aria-label="Donut chart showing 68% of orders paid, 22% pending, and 10% refunded"
+          aria-label="Orders by status, donut chart"
         ></canvas>
       </div>
+
+      <table class="sr-only">
+        <caption>
+          Orders by status
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Paid</th>
+            <td>68%</td>
+          </tr>
+          <tr>
+            <th scope="row">Pending</th>
+            <td>22%</td>
+          </tr>
+          <tr>
+            <th scope="row">Refunded</th>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
