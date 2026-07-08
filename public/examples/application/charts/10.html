@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Ad spend vs conversions</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="ad-spend-conversions-scatter-chart"
+          role="img"
+          aria-label="Ad spend vs conversions, scatter chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Ad spend and conversions per campaign
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Spend ($)</th>
+            <th scope="col">Conversions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">90</th>
+            <td>8</td>
+          </tr>
+          <tr>
+            <th scope="row">120</th>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th scope="row">140</th>
+            <td>14</td>
+          </tr>
+          <tr>
+            <th scope="row">150</th>
+            <td>15</td>
+          </tr>
+          <tr>
+            <th scope="row">180</th>
+            <td>18</td>
+          </tr>
+          <tr>
+            <th scope="row">200</th>
+            <td>22</td>
+          </tr>
+          <tr>
+            <th scope="row">220</th>
+            <td>25</td>
+          </tr>
+          <tr>
+            <th scope="row">260</th>
+            <td>30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const adSpendConversionsScatterChartCanvas = document.getElementById(
+        'ad-spend-conversions-scatter-chart',
+      )
+
+      new Chart(adSpendConversionsScatterChartCanvas, {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Campaigns',
+              data: [
+                { x: 90, y: 8 },
+                { x: 120, y: 12 },
+                { x: 140, y: 14 },
+                { x: 150, y: 15 },
+                { x: 180, y: 18 },
+                { x: 200, y: 22 },
+                { x: 220, y: 25 },
+                { x: 260, y: 30 },
+              ],
+              backgroundColor: '#4f46e5',
+              hoverBackgroundColor: '#4338ca',
+              pointRadius: 5,
+              pointHoverRadius: 7,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `$${tooltipItem.raw.x} spend → ${tooltipItem.raw.y} conversions`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Spend ($)', color: '#4b5563' },
+              grid: { color: '#e5e7eb' },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              title: { display: true, text: 'Conversions', color: '#4b5563' },
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: { color: '#4b5563' },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-medium text-white">Monthly revenue</h2>
+
+        <div class="inline-flex rounded-md border border-gray-700 p-0.5 text-xs font-medium">
+          <button
+            type="button"
+            data-revenue-range="6m"
+            aria-pressed="true"
+            class="rounded-sm bg-gray-800 px-2 py-1 text-white"
+          >
+            6M
+          </button>
+
+          <button
+            type="button"
+            data-revenue-range="12m"
+            aria-pressed="false"
+            class="rounded-sm px-2 py-1 text-gray-400"
+          >
+            12M
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="revenue-line-chart"
+          role="img"
+          aria-label="Monthly revenue, line chart"
+        ></canvas>
+      </div>
+
+      <table id="revenue-line-chart-table" class="sr-only" aria-live="polite">
+        <caption>
+          Monthly revenue by month
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Revenue</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueLineChartCanvas = document.getElementById('revenue-line-chart')
+      const revenueLineChartTableBody = document.querySelector('#revenue-line-chart-table tbody')
+      const revenueRangeButtons = document.querySelectorAll('[data-revenue-range]')
+
+      const revenueRangesByPeriod = {
+        '6m': {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          values: [28000, 34000, 31000, 39000, 42000, 48000],
+        },
+        '12m': {
+          labels: [
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+          ],
+          values: [
+            19000, 21500, 20000, 23500, 25000, 27000, 28000, 34000, 31000, 39000, 42000, 48000,
+          ],
+        },
+      }
+
+      const chartCanvasContext = revenueLineChartCanvas.getContext('2d')
+      const revenueFillGradient = chartCanvasContext.createLinearGradient(0, 0, 0, 256)
+
+      revenueFillGradient.addColorStop(0, 'rgba(129, 140, 248, 0.3)')
+      revenueFillGradient.addColorStop(1, 'rgba(129, 140, 248, 0)')
+
+      const revenueLineChart = new Chart(revenueLineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: revenueRangesByPeriod['6m'].labels,
+          datasets: [
+            {
+              label: 'Revenue',
+              data: revenueRangesByPeriod['6m'].values,
+              borderColor: '#818cf8',
+              backgroundColor: revenueFillGradient,
+              borderWidth: 2,
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#818cf8',
+              pointHoverBorderColor: '#111827',
+              pointHoverBorderWidth: 2,
+              tension: 0.35,
+              fill: true,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `$${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#9ca3af' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: {
+                color: '#9ca3af',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
+            },
+          },
+        },
+      })
+
+      revenueRangeButtons.forEach((revenueRangeButton) => {
+        revenueRangeButton.addEventListener('click', () => {
+          const selectedRange = revenueRangeButton.dataset.revenueRange
+
+          revenueRangeButtons.forEach((otherRangeButton) => {
+            const isSelectedButton = otherRangeButton === revenueRangeButton
+
+            otherRangeButton.setAttribute('aria-pressed', String(isSelectedButton))
+            otherRangeButton.classList.toggle('bg-gray-800', isSelectedButton)
+            otherRangeButton.classList.toggle('text-white', isSelectedButton)
+            otherRangeButton.classList.toggle('text-gray-400', !isSelectedButton)
+          })
+
+          revenueLineChart.data.labels = revenueRangesByPeriod[selectedRange].labels
+          revenueLineChart.data.datasets[0].data = revenueRangesByPeriod[selectedRange].values
+          revenueLineChart.update()
+        })
+      })
+    </script>
+  </body>
+</html>

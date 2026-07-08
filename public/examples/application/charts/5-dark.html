@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <h2 class="text-sm font-medium text-white">Traffic by channel</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="channel-traffic-stacked-bar-chart"
+          role="img"
+          aria-label="Traffic by channel, stacked bar chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Website traffic by channel, per day
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Organic</th>
+            <th scope="col">Paid</th>
+            <th scope="col">Referral</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Mon</th>
+            <td>120</td>
+            <td>80</td>
+            <td>40</td>
+          </tr>
+          <tr>
+            <th scope="row">Tue</th>
+            <td>132</td>
+            <td>95</td>
+            <td>35</td>
+          </tr>
+          <tr>
+            <th scope="row">Wed</th>
+            <td>101</td>
+            <td>70</td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <th scope="row">Thu</th>
+            <td>134</td>
+            <td>110</td>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th scope="row">Fri</th>
+            <td>90</td>
+            <td>60</td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <th scope="row">Sat</th>
+            <td>230</td>
+            <td>120</td>
+            <td>55</td>
+          </tr>
+          <tr>
+            <th scope="row">Sun</th>
+            <td>210</td>
+            <td>95</td>
+            <td>48</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const channelTrafficStackedBarChartCanvas = document.getElementById(
+        'channel-traffic-stacked-bar-chart',
+      )
+
+      new Chart(channelTrafficStackedBarChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [
+            {
+              label: 'Organic',
+              data: [120, 132, 101, 134, 90, 230, 210],
+              backgroundColor: '#818cf8',
+              hoverBackgroundColor: '#a5b4fc',
+              borderColor: '#111827',
+              borderWidth: 2,
+              maxBarThickness: 32,
+            },
+            {
+              label: 'Paid',
+              data: [80, 95, 70, 110, 60, 120, 95],
+              backgroundColor: '#34d399',
+              hoverBackgroundColor: '#6ee7b7',
+              borderColor: '#111827',
+              borderWidth: 2,
+              maxBarThickness: 32,
+            },
+            {
+              label: 'Referral',
+              data: [40, 35, 45, 38, 42, 55, 48],
+              backgroundColor: '#fbbf24',
+              hoverBackgroundColor: '#fcd34d',
+              borderColor: '#111827',
+              borderWidth: 2,
+              maxBarThickness: 32,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#9ca3af' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: '#9ca3af' },
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: { color: '#9ca3af' },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

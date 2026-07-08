@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Orders by status</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="order-status-donut-chart"
+          role="img"
+          aria-label="Orders by status, donut chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Orders by status
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Paid</th>
+            <td>68%</td>
+          </tr>
+          <tr>
+            <th scope="row">Pending</th>
+            <td>22%</td>
+          </tr>
+          <tr>
+            <th scope="row">Refunded</th>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const orderStatusDonutChartCanvas = document.getElementById('order-status-donut-chart')
+
+      new Chart(orderStatusDonutChartCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Paid', 'Pending', 'Refunded'],
+          datasets: [
+            {
+              data: [68, 22, 10],
+              backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+              hoverBackgroundColor: ['#059669', '#d97706', '#e11d48'],
+              borderColor: '#ffffff',
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.formattedValue}%`,
+              },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

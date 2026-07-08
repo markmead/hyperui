@@ -1,20 +1,24 @@
 ---
 title: Analytics Dashboard
-description: A full application dashboard example built with Tailwind CSS, combining a sidebar, topbar, stat cards, and a data table into a single page.
+description: A full application dashboard example built with Tailwind CSS, combining a sidebar, topbar, stat cards, revenue and order charts, and a data table into a single page.
 category: templates
 slug: analytics-dashboard
-wrapper: h-[900px]
+wrapper: h-[1400px]
 terms:
   - dashboard
   - full page
   - application
   - admin
+  - chart
 usedComponents:
   - { category: 'application', slug: 'side-menu', label: 'Sidebar navigation', componentIndex: 1 }
   - { category: 'application', slug: 'stats', label: 'Stat cards', componentIndex: 1 }
+  - { category: 'application', slug: 'charts', label: 'Revenue trend chart', componentIndex: 1 }
+  - { category: 'application', slug: 'charts', label: 'Orders by status chart', componentIndex: 3 }
+  - { category: 'application', slug: 'charts', label: 'Revenue sparkline', componentIndex: 4 }
   - { category: 'application', slug: 'tables', label: 'Orders table', componentIndex: 1 }
 components:
-  - { title: 'Analytics dashboard' }
+  - { title: 'Analytics dashboard', plugins: ['chart.js'] }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'
