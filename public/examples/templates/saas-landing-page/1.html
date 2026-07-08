@@ -7,7 +7,7 @@
     <script src="/component.js" defer></script>
   </head>
   <body>
-    <input type="checkbox" id="nav-toggle" class="peer hidden" />
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
 
     <header class="bg-white">
       <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -75,7 +75,10 @@
 
             <label
               for="nav-toggle"
-              class="block cursor-pointer rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+              id="nav-toggle-label"
+              aria-expanded="false"
+              aria-controls="mobile-nav"
+              class="block cursor-pointer rounded-sm bg-gray-100 p-2.5 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-600 peer-focus-visible:ring-offset-2 hover:text-gray-600/75 md:hidden"
             >
               <span class="sr-only">Toggle menu</span>
               <svg
@@ -96,6 +99,7 @@
     </header>
 
     <nav
+      id="mobile-nav"
       aria-label="Global Mobile"
       class="hidden border-b border-gray-100 bg-white peer-checked:block md:hidden"
     >
@@ -326,7 +330,7 @@
               </h3>
 
               <p class="mt-2 sm:mt-4">
-                <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> 30$ </strong>
+                <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> $30 </strong>
 
                 <span class="text-sm font-medium text-gray-700">/month</span>
               </p>
@@ -446,7 +450,7 @@
               </h3>
 
               <p class="mt-2 sm:mt-4">
-                <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> 12$ </strong>
+                <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> $12 </strong>
 
                 <span class="text-sm font-medium text-gray-700">/month</span>
               </p>
@@ -804,5 +808,14 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const navToggleCheckbox = document.getElementById('nav-toggle')
+      const navToggleLabel = document.getElementById('nav-toggle-label')
+
+      navToggleCheckbox.addEventListener('change', () => {
+        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      })
+    </script>
   </body>
 </html>

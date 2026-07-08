@@ -7,7 +7,7 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="flex h-screen overflow-hidden bg-gray-50">
-    <input type="checkbox" id="sidebar-toggle" class="peer hidden" />
+    <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
 
     <label
       for="sidebar-toggle"
@@ -16,6 +16,7 @@
     ></label>
 
     <div
+      id="dashboard-sidebar"
       class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:shrink-0 lg:translate-x-0"
     >
       <div class="p-4">
@@ -100,7 +101,10 @@
         <div class="flex items-center gap-4">
           <label
             for="sidebar-toggle"
-            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 lg:hidden"
+            id="sidebar-toggle-label"
+            aria-expanded="false"
+            aria-controls="dashboard-sidebar"
+            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-900 peer-focus-visible:ring-offset-2 hover:bg-gray-100 lg:hidden"
           >
             <span class="sr-only">Toggle menu</span>
 
@@ -249,5 +253,14 @@
         </div>
       </main>
     </div>
+
+    <script>
+      const sidebarToggleCheckbox = document.getElementById('sidebar-toggle')
+      const sidebarToggleLabel = document.getElementById('sidebar-toggle-label')
+
+      sidebarToggleCheckbox.addEventListener('change', () => {
+        sidebarToggleLabel.setAttribute('aria-expanded', String(sidebarToggleCheckbox.checked))
+      })
+    </script>
   </body>
 </html>
