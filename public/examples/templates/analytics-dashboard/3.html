@@ -142,7 +142,80 @@
         </div>
 
         <div class="rounded-lg border border-gray-200 bg-white p-6">
-          <h2 class="text-sm font-medium text-gray-900">All orders</h2>
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h2 class="text-sm font-medium text-gray-900">All orders</h2>
+
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <label for="order-search-input" class="sr-only">Search orders</label>
+
+              <div class="relative">
+                <input
+                  type="text"
+                  id="order-search-input"
+                  placeholder="Search orders"
+                  class="w-full rounded-md border-gray-200 py-1.5 text-sm text-gray-900 shadow-xs ltr:pr-9 rtl:pl-9 sm:w-56"
+                />
+
+                <span
+                  class="pointer-events-none absolute inset-y-0 grid w-8 place-content-center text-gray-400 ltr:right-0 rtl:left-0"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                </span>
+              </div>
+
+              <div class="inline-flex rounded-md border border-gray-200 p-0.5 text-xs font-medium">
+                <button
+                  type="button"
+                  data-order-status-filter="all"
+                  aria-pressed="true"
+                  class="rounded-sm bg-gray-100 px-2 py-1 text-gray-900"
+                >
+                  All
+                </button>
+
+                <button
+                  type="button"
+                  data-order-status-filter="paid"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  Paid
+                </button>
+
+                <button
+                  type="button"
+                  data-order-status-filter="pending"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  Pending
+                </button>
+
+                <button
+                  type="button"
+                  data-order-status-filter="refunded"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  Refunded
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div class="mt-4 overflow-x-auto">
             <table class="min-w-full divide-y-2 divide-gray-200">
@@ -157,7 +230,7 @@
               </thead>
 
               <tbody class="divide-y divide-gray-200">
-                <tr class="*:text-gray-900 *:first:font-medium">
+                <tr data-order-row data-order-status="paid" class="*:text-gray-900 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">#3921</td>
                   <td class="px-3 py-2 whitespace-nowrap">Nandor the Relentless</td>
                   <td class="px-3 py-2 whitespace-nowrap">Jun 12, 2025</td>
@@ -169,7 +242,11 @@
                   <td class="px-3 py-2 whitespace-nowrap">$412.00</td>
                 </tr>
 
-                <tr class="*:text-gray-900 *:first:font-medium">
+                <tr
+                  data-order-row
+                  data-order-status="pending"
+                  class="*:text-gray-900 *:first:font-medium"
+                >
                   <td class="px-3 py-2 whitespace-nowrap">#3920</td>
                   <td class="px-3 py-2 whitespace-nowrap">Laszlo Cravensworth</td>
                   <td class="px-3 py-2 whitespace-nowrap">Jun 11, 2025</td>
@@ -181,7 +258,7 @@
                   <td class="px-3 py-2 whitespace-nowrap">$128.50</td>
                 </tr>
 
-                <tr class="*:text-gray-900 *:first:font-medium">
+                <tr data-order-row data-order-status="paid" class="*:text-gray-900 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">#3919</td>
                   <td class="px-3 py-2 whitespace-nowrap">Nadja</td>
                   <td class="px-3 py-2 whitespace-nowrap">Jun 10, 2025</td>
@@ -193,7 +270,11 @@
                   <td class="px-3 py-2 whitespace-nowrap">$894.20</td>
                 </tr>
 
-                <tr class="*:text-gray-900 *:first:font-medium">
+                <tr
+                  data-order-row
+                  data-order-status="refunded"
+                  class="*:text-gray-900 *:first:font-medium"
+                >
                   <td class="px-3 py-2 whitespace-nowrap">#3918</td>
                   <td class="px-3 py-2 whitespace-nowrap">Guillermo de la Cruz</td>
                   <td class="px-3 py-2 whitespace-nowrap">Jun 9, 2025</td>
@@ -205,7 +286,7 @@
                   <td class="px-3 py-2 whitespace-nowrap">$56.00</td>
                 </tr>
 
-                <tr class="*:text-gray-900 *:first:font-medium">
+                <tr data-order-row data-order-status="paid" class="*:text-gray-900 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">#3917</td>
                   <td class="px-3 py-2 whitespace-nowrap">Colin Robinson</td>
                   <td class="px-3 py-2 whitespace-nowrap">Jun 8, 2025</td>
@@ -217,7 +298,11 @@
                   <td class="px-3 py-2 whitespace-nowrap">$219.75</td>
                 </tr>
 
-                <tr class="*:text-gray-900 *:first:font-medium">
+                <tr
+                  data-order-row
+                  data-order-status="pending"
+                  class="*:text-gray-900 *:first:font-medium"
+                >
                   <td class="px-3 py-2 whitespace-nowrap">#3916</td>
                   <td class="px-3 py-2 whitespace-nowrap">The Guide</td>
                   <td class="px-3 py-2 whitespace-nowrap">Jun 7, 2025</td>
@@ -227,6 +312,12 @@
                     </span>
                   </td>
                   <td class="px-3 py-2 whitespace-nowrap">$63.40</td>
+                </tr>
+
+                <tr id="orders-empty-row" class="hidden">
+                  <td class="px-3 py-6 text-center text-gray-600" colspan="5">
+                    No orders match your search.
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -303,6 +394,54 @@
             },
           },
         },
+      })
+
+      const orderSearchInput = document.getElementById('order-search-input')
+      const orderStatusFilterButtons = document.querySelectorAll('[data-order-status-filter]')
+      const orderRows = document.querySelectorAll('[data-order-row]')
+      const ordersEmptyRow = document.getElementById('orders-empty-row')
+
+      let selectedOrderStatusFilter = 'all'
+
+      function refreshOrderRows() {
+        const searchTerm = orderSearchInput.value.trim().toLowerCase()
+
+        let visibleRowCount = 0
+
+        orderRows.forEach((orderRow) => {
+          const matchesSearch = orderRow.textContent.toLowerCase().includes(searchTerm)
+          const matchesStatus =
+            selectedOrderStatusFilter === 'all' ||
+            orderRow.dataset.orderStatus === selectedOrderStatusFilter
+          const isRowVisible = matchesSearch && matchesStatus
+
+          orderRow.classList.toggle('hidden', !isRowVisible)
+
+          if (isRowVisible) {
+            visibleRowCount += 1
+          }
+        })
+
+        ordersEmptyRow.classList.toggle('hidden', visibleRowCount > 0)
+      }
+
+      orderSearchInput.addEventListener('input', refreshOrderRows)
+
+      orderStatusFilterButtons.forEach((orderStatusFilterButton) => {
+        orderStatusFilterButton.addEventListener('click', () => {
+          selectedOrderStatusFilter = orderStatusFilterButton.dataset.orderStatusFilter
+
+          orderStatusFilterButtons.forEach((otherFilterButton) => {
+            const isSelectedButton = otherFilterButton === orderStatusFilterButton
+
+            otherFilterButton.setAttribute('aria-pressed', String(isSelectedButton))
+            otherFilterButton.classList.toggle('bg-gray-100', isSelectedButton)
+            otherFilterButton.classList.toggle('text-gray-900', isSelectedButton)
+            otherFilterButton.classList.toggle('text-gray-600', !isSelectedButton)
+          })
+
+          refreshOrderRows()
+        })
       })
     </script>
   </body>
