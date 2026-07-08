@@ -15,6 +15,10 @@
     "commit": "47a41dec4b1821d2be447606b23511160b89ea9b",
     "date": "2026-07-04T19:16:57+01:00"
   },
+  "application/charts": {
+    "commit": "684040aec126615ba4b9e1e655a969013f7dbab9",
+    "date": "2026-07-08T09:21:48+01:00"
+  },
   "application/dividers": {
     "commit": "353ed370d7c3c242ed3ea4474c13e0c110285bd0",
     "date": "2025-11-04T10:39:59Z"
@@ -214,5 +218,13 @@
   "neobrutalism/textareas": {
     "commit": "9f9df088bd44a637d8806e0735abbe0428d4bcc0",
     "date": "2026-05-21T15:48:22+01:00"
+  },
+  "templates/analytics-dashboard": {
+    "commit": "e2a672161807ad8ddcb287f66f810826a9343866",
+    "date": "2026-07-08T10:15:36+01:00"
+  },
+  "templates/saas-landing-page": {
+    "commit": "9230e9b5143cbe0bcaf420cf04d4783e5d4abbbc",
+    "date": "2026-07-05T10:16:35+01:00"
   }
 }
