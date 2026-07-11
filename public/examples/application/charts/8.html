@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Team performance</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="team-performance-radar-chart"
+          role="img"
+          aria-label="Team performance, radar chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Team performance by metric
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Team A</th>
+            <th scope="col">Team B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Speed</th>
+            <td>80</td>
+            <td>65</td>
+          </tr>
+          <tr>
+            <th scope="row">Quality</th>
+            <td>90</td>
+            <td>75</td>
+          </tr>
+          <tr>
+            <th scope="row">Collaboration</th>
+            <td>70</td>
+            <td>88</td>
+          </tr>
+          <tr>
+            <th scope="row">Innovation</th>
+            <td>60</td>
+            <td>92</td>
+          </tr>
+          <tr>
+            <th scope="row">Reliability</th>
+            <td>85</td>
+            <td>70</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const teamPerformanceRadarChartCanvas = document.getElementById(
+        'team-performance-radar-chart',
+      )
+
+      new Chart(teamPerformanceRadarChartCanvas, {
+        type: 'radar',
+        data: {
+          labels: ['Speed', 'Quality', 'Collaboration', 'Innovation', 'Reliability'],
+          datasets: [
+            {
+              label: 'Team A',
+              data: [80, 90, 70, 60, 85],
+              borderColor: '#4f46e5',
+              backgroundColor: 'rgba(79, 70, 229, 0.2)',
+              pointBackgroundColor: '#4f46e5',
+              pointBorderColor: '#ffffff',
+              pointHoverRadius: 5,
+              borderWidth: 2,
+            },
+            {
+              label: 'Team B',
+              data: [65, 75, 88, 92, 70],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.2)',
+              pointBackgroundColor: '#10b981',
+              pointBorderColor: '#ffffff',
+              pointHoverRadius: 5,
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              angleLines: { color: '#e5e7eb' },
+              grid: { color: '#e5e7eb' },
+              pointLabels: { color: '#4b5563', font: { size: 11 } },
+              ticks: { display: false },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

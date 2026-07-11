@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex h-screen overflow-hidden bg-gray-50">
+    <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
+
+    <label
+      for="sidebar-toggle"
+      aria-hidden="true"
+      class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
+    ></label>
+
+    <div
+      id="dashboard-sidebar"
+      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:translate-x-0 lg:shrink-0"
+    >
+      <div class="p-4">
+        <span
+          class="grid h-12 w-32 place-content-center rounded-lg bg-gray-100 text-sm text-gray-600"
+        >
+          Logo
+        </span>
+
+        <nav aria-label="Dashboard" class="mt-4">
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900"
+              >
+                Overview
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Customers
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Orders
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Billing
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Settings
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sticky inset-x-0 bottom-0 border-t border-gray-200">
+        <a
+          href="#"
+          class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50 hover:transition-colors"
+        >
+          <img
+            alt=""
+            src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=1160"
+            class="size-10 rounded-full object-cover"
+          />
+
+          <p class="text-xs text-gray-900">
+            <strong class="block font-medium">Priya Natarajan</strong>
+
+            <span>priya@orbitly.com</span>
+          </p>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-1 flex-col overflow-y-auto">
+      <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
+        <div class="flex items-center gap-4">
+          <label
+            for="sidebar-toggle"
+            id="sidebar-toggle-label"
+            aria-expanded="false"
+            aria-controls="dashboard-sidebar"
+            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-900 peer-focus-visible:ring-offset-2 hover:bg-gray-100 lg:hidden"
+          >
+            <span class="sr-only">Toggle menu</span>
+
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+
+          <h1 class="text-lg font-semibold text-gray-900">Overview</h1>
+        </div>
+
+        <a
+          href="#"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
+        >
+          New report
+        </a>
+      </header>
+
+      <main class="flex-1 space-y-6 p-6">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <article class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6">
+            <div class="inline-flex gap-2 self-end rounded-sm bg-green-100 p-1 text-green-600">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+
+              <span class="sr-only">Increase: </span>
+
+              <span class="text-xs font-medium">12.4%</span>
+            </div>
+
+            <div>
+              <strong class="block text-sm font-medium text-gray-600">Monthly revenue</strong>
+
+              <p>
+                <span class="text-2xl font-medium text-gray-900">$48,204</span>
+
+                <span class="text-xs text-gray-600">from $42,910</span>
+              </p>
+            </div>
+
+            <div class="h-10">
+              <canvas
+                id="revenue-trend-sparkline"
+                role="img"
+                aria-label="Sparkline showing monthly revenue trending upward over the last six months"
+              ></canvas>
+            </div>
+          </article>
+
+          <article class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6">
+            <div class="inline-flex gap-2 self-end rounded-sm bg-green-100 p-1 text-green-600">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+
+              <span class="sr-only">Increase: </span>
+
+              <span class="text-xs font-medium">4.1%</span>
+            </div>
+
+            <div>
+              <strong class="block text-sm font-medium text-gray-600">Active customers</strong>
+
+              <p>
+                <span class="text-2xl font-medium text-gray-900">2,318</span>
+
+                <span class="text-xs text-gray-600">from 2,227</span>
+              </p>
+            </div>
+          </article>
+
+          <article class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6">
+            <div class="inline-flex gap-2 self-end rounded-sm bg-red-100 p-1 text-red-600">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                />
+              </svg>
+
+              <span class="sr-only">Decrease: </span>
+
+              <span class="text-xs font-medium">2.6%</span>
+            </div>
+
+            <div>
+              <strong class="block text-sm font-medium text-gray-600">Churn rate</strong>
+
+              <p>
+                <span class="text-2xl font-medium text-gray-900">1.8%</span>
+
+                <span class="text-xs text-gray-600">from 2.1%</span>
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div class="rounded-lg border border-gray-200 bg-white p-6 lg:col-span-2">
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-medium text-gray-900">Revenue trend</h2>
+
+              <div class="inline-flex rounded-md border border-gray-200 p-0.5 text-xs font-medium">
+                <button
+                  type="button"
+                  data-revenue-range="6m"
+                  aria-pressed="true"
+                  class="rounded-sm bg-gray-100 px-2 py-1 text-gray-900"
+                >
+                  6M
+                </button>
+
+                <button
+                  type="button"
+                  data-revenue-range="12m"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  12M
+                </button>
+              </div>
+            </div>
+
+            <div class="mt-4 h-64">
+              <canvas
+                id="revenue-trend-line-chart"
+                role="img"
+                aria-label="Line chart showing monthly revenue rising from $28,000 in January to $48,000 in June"
+              ></canvas>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-gray-200 bg-white p-6">
+            <h2 class="text-sm font-medium text-gray-900">Orders by status</h2>
+
+            <div class="mt-4 h-64">
+              <canvas
+                id="order-status-donut-chart"
+                role="img"
+                aria-label="Donut chart showing 68% of orders paid, 22% pending, and 10% refunded"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6">
+          <h2 class="text-sm font-medium text-gray-900">Recent orders</h2>
+
+          <div class="mt-4 overflow-x-auto">
+            <table class="min-w-full divide-y-2 divide-gray-200">
+              <thead class="ltr:text-left rtl:text-right">
+                <tr class="*:font-medium *:text-gray-900">
+                  <th class="px-3 py-2 whitespace-nowrap">Customer</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Order</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Status</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Amount</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+                <tr class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">Nandor the Relentless</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3921</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
+                      Paid
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$412.00</td>
+                </tr>
+
+                <tr class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">Laszlo Cravensworth</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3920</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs text-yellow-700">
+                      Pending
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$128.50</td>
+                </tr>
+
+                <tr class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">Nadja</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3919</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
+                      Paid
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$894.20</td>
+                </tr>
+
+                <tr class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">Guillermo de la Cruz</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3918</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs text-red-700">
+                      Refunded
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$56.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueTrendSparklineCanvas = document.getElementById('revenue-trend-sparkline')
+      const revenueTrendLineChartCanvas = document.getElementById('revenue-trend-line-chart')
+      const orderStatusDonutChartCanvas = document.getElementById('order-status-donut-chart')
+      const revenueRangeButtons = document.querySelectorAll('[data-revenue-range]')
+
+      const revenueRangesByPeriod = {
+        '6m': {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          values: [28000, 34000, 31000, 39000, 42000, 48000],
+        },
+        '12m': {
+          labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          values: [
+            19000, 21500, 20000, 23500, 25000, 27000, 28000, 34000, 31000, 39000, 42000, 48000,
+          ],
+        },
+      }
+
+      new Chart(revenueTrendSparklineCanvas, {
+        type: 'line',
+        data: {
+          labels: revenueRangesByPeriod['6m'].labels,
+          datasets: [
+            {
+              data: revenueRangesByPeriod['6m'].values,
+              borderColor: '#10b981',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.35,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+          },
+          scales: {
+            x: { display: false },
+            y: { display: false },
+          },
+        },
+      })
+
+      const revenueTrendChartContext = revenueTrendLineChartCanvas.getContext('2d')
+      const revenueTrendFillGradient = revenueTrendChartContext.createLinearGradient(0, 0, 0, 256)
+
+      revenueTrendFillGradient.addColorStop(0, 'rgba(79, 70, 229, 0.25)')
+      revenueTrendFillGradient.addColorStop(1, 'rgba(79, 70, 229, 0)')
+
+      const revenueTrendLineChart = new Chart(revenueTrendLineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: revenueRangesByPeriod['6m'].labels,
+          datasets: [
+            {
+              label: 'Revenue',
+              data: revenueRangesByPeriod['6m'].values,
+              borderColor: '#4f46e5',
+              backgroundColor: revenueTrendFillGradient,
+              borderWidth: 2,
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#4f46e5',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2,
+              tension: 0.35,
+              fill: true,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `$${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: {
+                color: '#4b5563',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
+            },
+          },
+        },
+      })
+
+      revenueRangeButtons.forEach((revenueRangeButton) => {
+        revenueRangeButton.addEventListener('click', () => {
+          const selectedRange = revenueRangeButton.dataset.revenueRange
+
+          revenueRangeButtons.forEach((otherRangeButton) => {
+            const isSelectedButton = otherRangeButton === revenueRangeButton
+
+            otherRangeButton.setAttribute('aria-pressed', String(isSelectedButton))
+            otherRangeButton.classList.toggle('bg-gray-100', isSelectedButton)
+            otherRangeButton.classList.toggle('text-gray-900', isSelectedButton)
+            otherRangeButton.classList.toggle('text-gray-600', !isSelectedButton)
+          })
+
+          revenueTrendLineChart.data.labels = revenueRangesByPeriod[selectedRange].labels
+          revenueTrendLineChart.data.datasets[0].data = revenueRangesByPeriod[selectedRange].values
+          revenueTrendLineChart.update()
+        })
+      })
+
+      new Chart(orderStatusDonutChartCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Paid', 'Pending', 'Refunded'],
+          datasets: [
+            {
+              data: [68, 22, 10],
+              backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+              hoverBackgroundColor: ['#059669', '#d97706', '#e11d48'],
+              borderColor: '#ffffff',
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.formattedValue}%`,
+              },
+            },
+          },
+        },
+      })
+    </script>
+
+    <script>
+      const sidebarToggleCheckbox = document.getElementById('sidebar-toggle')
+      const sidebarToggleLabel = document.getElementById('sidebar-toggle-label')
+
+      sidebarToggleCheckbox.addEventListener('change', () => {
+        sidebarToggleLabel.setAttribute('aria-expanded', String(sidebarToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>

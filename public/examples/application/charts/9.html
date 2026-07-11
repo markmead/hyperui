@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Traffic sources</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="traffic-sources-polar-area-chart"
+          role="img"
+          aria-label="Traffic sources, polar area chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Traffic by source
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Organic</th>
+            <td>45%</td>
+          </tr>
+          <tr>
+            <th scope="row">Paid</th>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <th scope="row">Referral</th>
+            <td>18%</td>
+          </tr>
+          <tr>
+            <th scope="row">Direct</th>
+            <td>12%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const trafficSourcesPolarAreaChartCanvas = document.getElementById(
+        'traffic-sources-polar-area-chart',
+      )
+
+      new Chart(trafficSourcesPolarAreaChartCanvas, {
+        type: 'polarArea',
+        data: {
+          labels: ['Organic', 'Paid', 'Referral', 'Direct'],
+          datasets: [
+            {
+              data: [45, 25, 18, 12],
+              backgroundColor: [
+                'rgba(79, 70, 229, 0.7)',
+                'rgba(16, 185, 129, 0.7)',
+                'rgba(245, 158, 11, 0.7)',
+                'rgba(244, 63, 94, 0.7)',
+              ],
+              hoverBackgroundColor: ['#4f46e5', '#10b981', '#f59e0b', '#f43f5e'],
+              borderColor: '#ffffff',
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.formattedValue}%`,
+              },
+            },
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              angleLines: { color: '#e5e7eb' },
+              grid: { color: '#e5e7eb' },
+              ticks: { display: false },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

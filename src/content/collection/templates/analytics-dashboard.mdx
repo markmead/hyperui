@@ -1,0 +1,33 @@
+---
+title: Analytics Dashboard
+description: A starting-point application dashboard example built with Tailwind CSS, combining a sidebar, topbar, stat cards, revenue and order charts, and a data table into a single page. Not a production-ready template.
+category: templates
+slug: analytics-dashboard
+wrapper: h-[800px]
+terms:
+  - dashboard
+  - full page
+  - application
+  - admin
+  - chart
+components:
+  - { title: 'Overview', plugins: ['chart.js'] }
+  - { title: 'Customers', plugins: ['chart.js'] }
+  - { title: 'Orders', plugins: ['chart.js'] }
+  - { title: 'Billing' }
+  - { title: 'Settings' }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
+
+<TemplateDisclaimer />

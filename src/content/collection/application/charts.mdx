@@ -1,0 +1,36 @@
+---
+title: Charts
+description: Chart components for visualizing trends, comparisons, and breakdowns in dashboards and analytics pages, built with Chart.js.
+category: application
+slug: charts
+wrapper: h-[500px]
+terms:
+  - chart
+  - graph
+  - analytics
+  - dashboard
+  - data visualization
+components:
+  - { title: 'Line chart with filled area and range toggle', dark: true, plugins: ['chart.js'] }
+  - { title: 'Bar chart with tooltip', dark: true, plugins: ['chart.js'] }
+  - { title: 'Donut chart with legend', dark: true, plugins: ['chart.js'] }
+  - { title: 'Sparkline for stat cards', dark: true, plugins: ['chart.js'] }
+  - { title: 'Stacked bar chart by category', dark: true, plugins: ['chart.js'] }
+  - { title: 'Combo chart with bars and a target line', dark: true, plugins: ['chart.js'] }
+  - { title: 'Line chart comparing two periods', dark: true, plugins: ['chart.js'] }
+  - { title: 'Radar chart comparing two series', dark: true, plugins: ['chart.js'] }
+  - { title: 'Polar area chart with legend', dark: true, plugins: ['chart.js'] }
+  - { title: 'Scatter chart with axis titles', dark: true, plugins: ['chart.js'] }
+  - { title: 'Bubble chart with sized data points', dark: true, plugins: ['chart.js'] }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>

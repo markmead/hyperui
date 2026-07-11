@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex h-screen overflow-hidden bg-gray-50">
+    <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
+
+    <label
+      for="sidebar-toggle"
+      aria-hidden="true"
+      class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
+    ></label>
+
+    <div
+      id="dashboard-sidebar"
+      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:translate-x-0 lg:shrink-0"
+    >
+      <div class="p-4">
+        <span
+          class="grid h-12 w-32 place-content-center rounded-lg bg-gray-100 text-sm text-gray-600"
+        >
+          Logo
+        </span>
+
+        <nav aria-label="Dashboard" class="mt-4">
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Overview
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Customers
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900"
+              >
+                Orders
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Billing
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              >
+                Settings
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sticky inset-x-0 bottom-0 border-t border-gray-200">
+        <a
+          href="#"
+          class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50 hover:transition-colors"
+        >
+          <img
+            alt=""
+            src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=1160"
+            class="size-10 rounded-full object-cover"
+          />
+
+          <p class="text-xs text-gray-900">
+            <strong class="block font-medium">Priya Natarajan</strong>
+
+            <span>priya@orbitly.com</span>
+          </p>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-1 flex-col overflow-y-auto">
+      <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
+        <div class="flex items-center gap-4">
+          <label
+            for="sidebar-toggle"
+            id="sidebar-toggle-label"
+            aria-expanded="false"
+            aria-controls="dashboard-sidebar"
+            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-900 peer-focus-visible:ring-offset-2 hover:bg-gray-100 lg:hidden"
+          >
+            <span class="sr-only">Toggle menu</span>
+
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+
+          <h1 class="text-lg font-semibold text-gray-900">Orders</h1>
+        </div>
+
+        <a
+          href="#"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
+        >
+          Export orders
+        </a>
+      </header>
+
+      <main class="flex-1 space-y-6 p-6">
+        <div class="rounded-lg border border-gray-200 bg-white p-6">
+          <h2 class="text-sm font-medium text-gray-900">Orders vs monthly target</h2>
+
+          <div class="mt-4 h-64">
+            <canvas
+              id="orders-target-combo-chart"
+              role="img"
+              aria-label="Combo chart showing monthly orders against a target, with orders passing the target from April onward"
+            ></canvas>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h2 class="text-sm font-medium text-gray-900">All orders</h2>
+
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <label for="order-search-input" class="sr-only">Search orders</label>
+
+              <div class="relative">
+                <input
+                  type="text"
+                  id="order-search-input"
+                  placeholder="Search orders"
+                  class="w-full rounded-md border-gray-200 py-1.5 text-sm text-gray-900 shadow-xs ltr:pr-9 rtl:pl-9 sm:w-56"
+                />
+
+                <span
+                  class="pointer-events-none absolute inset-y-0 grid w-8 place-content-center text-gray-400 ltr:right-0 rtl:left-0"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                </span>
+              </div>
+
+              <div class="inline-flex rounded-md border border-gray-200 p-0.5 text-xs font-medium">
+                <button
+                  type="button"
+                  data-order-status-filter="all"
+                  aria-pressed="true"
+                  class="rounded-sm bg-gray-100 px-2 py-1 text-gray-900"
+                >
+                  All
+                </button>
+
+                <button
+                  type="button"
+                  data-order-status-filter="paid"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  Paid
+                </button>
+
+                <button
+                  type="button"
+                  data-order-status-filter="pending"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  Pending
+                </button>
+
+                <button
+                  type="button"
+                  data-order-status-filter="refunded"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-600"
+                >
+                  Refunded
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 overflow-x-auto">
+            <table class="min-w-full divide-y-2 divide-gray-200">
+              <thead class="ltr:text-left rtl:text-right">
+                <tr class="*:font-medium *:text-gray-900">
+                  <th class="px-3 py-2 whitespace-nowrap">Order</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Customer</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Date</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Status</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Amount</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+                <tr data-order-row data-order-status="paid" class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">#3921</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Nandor the Relentless</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Jun 12, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
+                      Paid
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$412.00</td>
+                </tr>
+
+                <tr
+                  data-order-row
+                  data-order-status="pending"
+                  class="*:text-gray-900 *:first:font-medium"
+                >
+                  <td class="px-3 py-2 whitespace-nowrap">#3920</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Laszlo Cravensworth</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Jun 11, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs text-yellow-700">
+                      Pending
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$128.50</td>
+                </tr>
+
+                <tr data-order-row data-order-status="paid" class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">#3919</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Nadja</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Jun 10, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
+                      Paid
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$894.20</td>
+                </tr>
+
+                <tr
+                  data-order-row
+                  data-order-status="refunded"
+                  class="*:text-gray-900 *:first:font-medium"
+                >
+                  <td class="px-3 py-2 whitespace-nowrap">#3918</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Guillermo de la Cruz</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Jun 9, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs text-red-700">
+                      Refunded
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$56.00</td>
+                </tr>
+
+                <tr data-order-row data-order-status="paid" class="*:text-gray-900 *:first:font-medium">
+                  <td class="px-3 py-2 whitespace-nowrap">#3917</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Colin Robinson</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Jun 8, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
+                      Paid
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$219.75</td>
+                </tr>
+
+                <tr
+                  data-order-row
+                  data-order-status="pending"
+                  class="*:text-gray-900 *:first:font-medium"
+                >
+                  <td class="px-3 py-2 whitespace-nowrap">#3916</td>
+                  <td class="px-3 py-2 whitespace-nowrap">The Guide</td>
+                  <td class="px-3 py-2 whitespace-nowrap">Jun 7, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">
+                    <span class="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs text-yellow-700">
+                      Pending
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$63.40</td>
+                </tr>
+
+                <tr id="orders-empty-row" class="hidden">
+                  <td class="px-3 py-6 text-center text-gray-600" colspan="5">
+                    No orders match your search.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const ordersTargetComboChartCanvas = document.getElementById('orders-target-combo-chart')
+
+      new Chart(ordersTargetComboChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Orders',
+              data: [210, 245, 228, 268, 289, 312],
+              backgroundColor: '#4f46e5',
+              hoverBackgroundColor: '#4338ca',
+              borderRadius: 4,
+              maxBarThickness: 32,
+              order: 2,
+            },
+            {
+              type: 'line',
+              label: 'Target',
+              data: [230, 230, 230, 260, 260, 260],
+              borderColor: '#f59e0b',
+              backgroundColor: '#f59e0b',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#f59e0b',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2,
+              tension: 0,
+              fill: false,
+              order: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: { color: '#4b5563' },
+            },
+          },
+        },
+      })
+
+      const orderSearchInput = document.getElementById('order-search-input')
+      const orderStatusFilterButtons = document.querySelectorAll('[data-order-status-filter]')
+      const orderRows = document.querySelectorAll('[data-order-row]')
+      const ordersEmptyRow = document.getElementById('orders-empty-row')
+
+      let selectedOrderStatusFilter = 'all'
+
+      function refreshOrderRows() {
+        const searchTerm = orderSearchInput.value.trim().toLowerCase()
+
+        let visibleRowCount = 0
+
+        orderRows.forEach((orderRow) => {
+          const matchesSearch = orderRow.textContent.toLowerCase().includes(searchTerm)
+          const matchesStatus =
+            selectedOrderStatusFilter === 'all' ||
+            orderRow.dataset.orderStatus === selectedOrderStatusFilter
+          const isRowVisible = matchesSearch && matchesStatus
+
+          orderRow.classList.toggle('hidden', !isRowVisible)
+
+          if (isRowVisible) {
+            visibleRowCount += 1
+          }
+        })
+
+        ordersEmptyRow.classList.toggle('hidden', visibleRowCount > 0)
+      }
+
+      orderSearchInput.addEventListener('input', refreshOrderRows)
+
+      orderStatusFilterButtons.forEach((orderStatusFilterButton) => {
+        orderStatusFilterButton.addEventListener('click', () => {
+          selectedOrderStatusFilter = orderStatusFilterButton.dataset.orderStatusFilter
+
+          orderStatusFilterButtons.forEach((otherFilterButton) => {
+            const isSelectedButton = otherFilterButton === orderStatusFilterButton
+
+            otherFilterButton.setAttribute('aria-pressed', String(isSelectedButton))
+            otherFilterButton.classList.toggle('bg-gray-100', isSelectedButton)
+            otherFilterButton.classList.toggle('text-gray-900', isSelectedButton)
+            otherFilterButton.classList.toggle('text-gray-600', !isSelectedButton)
+          })
+
+          refreshOrderRows()
+        })
+      })
+    </script>
+
+    <script>
+      const sidebarToggleCheckbox = document.getElementById('sidebar-toggle')
+      const sidebarToggleLabel = document.getElementById('sidebar-toggle-label')
+
+      sidebarToggleCheckbox.addEventListener('change', () => {
+        sidebarToggleLabel.setAttribute('aria-expanded', String(sidebarToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>

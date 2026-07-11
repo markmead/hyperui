@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <div
+      class="flex items-center justify-between gap-4 rounded-lg border border-gray-800 bg-gray-900 p-6"
+    >
+      <div>
+        <strong class="block text-sm font-medium text-gray-400">Monthly revenue</strong>
+
+        <p class="text-2xl font-medium text-white">$48,204</p>
+      </div>
+
+      <div class="h-12 w-24 shrink-0">
+        <canvas
+          id="revenue-sparkline-chart"
+          role="img"
+          aria-label="Monthly revenue trend, sparkline chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Monthly revenue by month
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jan</th>
+            <td>$28,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Feb</th>
+            <td>$34,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Mar</th>
+            <td>$31,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Apr</th>
+            <td>$39,000</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>$42,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun</th>
+            <td>$48,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueSparklineChartCanvas = document.getElementById('revenue-sparkline-chart')
+
+      new Chart(revenueSparklineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              data: [28000, 34000, 31000, 39000, 42000, 48000],
+              borderColor: '#34d399',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.35,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+          },
+          scales: {
+            x: { display: false },
+            y: { display: false },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

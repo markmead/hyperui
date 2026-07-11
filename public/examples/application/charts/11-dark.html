@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <h2 class="text-sm font-medium text-white">Campaign performance</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="campaign-performance-bubble-chart"
+          role="img"
+          aria-label="Campaign performance, bubble chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Campaign spend, conversions, and reach
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Campaign</th>
+            <th scope="col">Spend ($)</th>
+            <th scope="col">Conversions</th>
+            <th scope="col">Reach index</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Search</th>
+            <td>3,200</td>
+            <td>18,000</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <th scope="row">Social</th>
+            <td>2,400</td>
+            <td>9,500</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <th scope="row">Display</th>
+            <td>1,800</td>
+            <td>5,200</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>900</td>
+            <td>7,800</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <th scope="row">Video</th>
+            <td>2,600</td>
+            <td>6,100</td>
+            <td>18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const campaignPerformanceBubbleChartCanvas = document.getElementById(
+        'campaign-performance-bubble-chart',
+      )
+
+      new Chart(campaignPerformanceBubbleChartCanvas, {
+        type: 'bubble',
+        data: {
+          datasets: [
+            {
+              label: 'Search',
+              data: [{ x: 3200, y: 18000, r: 22 }],
+              backgroundColor: 'rgba(129, 140, 248, 0.7)',
+              hoverBackgroundColor: '#818cf8',
+            },
+            {
+              label: 'Social',
+              data: [{ x: 2400, y: 9500, r: 16 }],
+              backgroundColor: 'rgba(52, 211, 153, 0.7)',
+              hoverBackgroundColor: '#34d399',
+            },
+            {
+              label: 'Display',
+              data: [{ x: 1800, y: 5200, r: 12 }],
+              backgroundColor: 'rgba(251, 191, 36, 0.7)',
+              hoverBackgroundColor: '#fbbf24',
+            },
+            {
+              label: 'Email',
+              data: [{ x: 900, y: 7800, r: 14 }],
+              backgroundColor: 'rgba(251, 113, 133, 0.7)',
+              hoverBackgroundColor: '#fb7185',
+            },
+            {
+              label: 'Video',
+              data: [{ x: 2600, y: 6100, r: 18 }],
+              backgroundColor: 'rgba(56, 189, 248, 0.7)',
+              hoverBackgroundColor: '#38bdf8',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#9ca3af' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: $${tooltipItem.raw.x} spend, ${tooltipItem.raw.y} conversions`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Spend ($)', color: '#9ca3af' },
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: { color: '#9ca3af' },
+            },
+            y: {
+              title: { display: true, text: 'Conversions', color: '#9ca3af' },
+              beginAtZero: true,
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              ticks: { color: '#9ca3af' },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

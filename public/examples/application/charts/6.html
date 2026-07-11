@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-lg p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
+      <h2 class="text-sm font-medium text-gray-900">Revenue vs target</h2>
+
+      <div class="mt-4 h-64">
+        <canvas
+          id="revenue-target-combo-chart"
+          role="img"
+          aria-label="Revenue vs target, combo chart"
+        ></canvas>
+      </div>
+
+      <table class="sr-only">
+        <caption>
+          Monthly revenue against quarterly target
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Revenue</th>
+            <th scope="col">Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jan</th>
+            <td>$28,000</td>
+            <td>$32,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Feb</th>
+            <td>$34,000</td>
+            <td>$32,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Mar</th>
+            <td>$31,000</td>
+            <td>$32,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Apr</th>
+            <td>$39,000</td>
+            <td>$40,000</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>$42,000</td>
+            <td>$40,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun</th>
+            <td>$48,000</td>
+            <td>$40,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const revenueTargetComboChartCanvas = document.getElementById('revenue-target-combo-chart')
+
+      new Chart(revenueTargetComboChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Revenue',
+              data: [28000, 34000, 31000, 39000, 42000, 48000],
+              backgroundColor: '#4f46e5',
+              hoverBackgroundColor: '#4338ca',
+              borderRadius: 4,
+              maxBarThickness: 32,
+              order: 2,
+            },
+            {
+              type: 'line',
+              label: 'Target',
+              data: [32000, 32000, 32000, 40000, 40000, 40000],
+              borderColor: '#f59e0b',
+              backgroundColor: '#f59e0b',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#f59e0b',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2,
+              tension: 0,
+              fill: false,
+              order: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#4b5563' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) =>
+                  `${tooltipItem.dataset.label}: $${tooltipItem.formattedValue}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#4b5563' },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#e5e7eb' },
+              ticks: {
+                color: '#4b5563',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
