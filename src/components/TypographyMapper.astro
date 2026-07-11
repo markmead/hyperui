@@ -659,8 +659,10 @@ import { MoveRight, Percent } from '@lucide/astro'
       this.lineHeightInputElement = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
       this.letterSpacingInputElement = this.querySelector<HTMLInputElement>('[data-letter-spacing-input]')!
       this.classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
-      this.fontWeightSelectElement = this.querySelector<HTMLSelectElement>('[data-font-weight-select]')!
-      this.textTransformSelectElement = this.querySelector<HTMLSelectElement>('[data-text-transform-select]')!
+      // wrangler types augments the global Element interface with an incompatible
+      // remove() signature, so HTMLSelectElement fails querySelector's generic constraint
+      this.fontWeightSelectElement = this.querySelector('[data-font-weight-select]') as unknown as HTMLSelectElement
+      this.textTransformSelectElement = this.querySelector('[data-text-transform-select]') as unknown as HTMLSelectElement
       this.copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-button]')!
       this.copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-button-text]')!
       this.copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
