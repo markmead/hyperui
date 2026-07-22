@@ -9,6 +9,10 @@ const { href, ...additionalAnchorProps } = Astro.props
 const isExternalLink = href?.startsWith('http')
 ---
 
-<a href={href} {...(isExternalLink ? { target: '_blank', rel: 'noreferrer' } : {})} {...additionalAnchorProps}>
+<a
+  href={href}
+  {...isExternalLink ? { target: '_blank', rel: 'noreferrer' } : {}}
+  {...additionalAnchorProps}
+>
   <slot />
 </a>

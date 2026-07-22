@@ -10,10 +10,7 @@ import cloudflare from '@astrojs/cloudflare'
 export default defineConfig({
   site: 'https://hyperui.dev',
 
-  integrations: [
-    mdx(),
-    sitemap(),
-  ],
+  integrations: [mdx(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],

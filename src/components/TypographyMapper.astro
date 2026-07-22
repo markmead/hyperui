@@ -656,39 +656,71 @@ import { MoveRight, Percent } from '@lucide/astro'
 
     connectedCallback() {
       this.fontSizeInputElement = this.querySelector<HTMLInputElement>('[data-font-size-input]')!
-      this.lineHeightInputElement = this.querySelector<HTMLInputElement>('[data-line-height-input]')!
-      this.letterSpacingInputElement = this.querySelector<HTMLInputElement>('[data-letter-spacing-input]')!
+      this.lineHeightInputElement = this.querySelector<HTMLInputElement>(
+        '[data-line-height-input]',
+      )!
+      this.letterSpacingInputElement = this.querySelector<HTMLInputElement>(
+        '[data-letter-spacing-input]',
+      )!
       this.classNameInputElement = this.querySelector<HTMLInputElement>('[data-class-name-input]')!
       // wrangler types augments the global Element interface with an incompatible
       // remove() signature, so HTMLSelectElement fails querySelector's generic constraint
-      this.fontWeightSelectElement = this.querySelector('[data-font-weight-select]') as unknown as HTMLSelectElement
-      this.textTransformSelectElement = this.querySelector('[data-text-transform-select]') as unknown as HTMLSelectElement
+      this.fontWeightSelectElement = this.querySelector(
+        '[data-font-weight-select]',
+      ) as unknown as HTMLSelectElement
+      this.textTransformSelectElement = this.querySelector(
+        '[data-text-transform-select]',
+      ) as unknown as HTMLSelectElement
       this.copyButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-button]')!
       this.copyButtonTextElement = this.querySelector<HTMLElement>('[data-copy-button-text]')!
       this.copyLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-live-region]')!
-      this.copyConfigButtonElement = this.querySelector<HTMLButtonElement>('[data-copy-config-button]')!
-      this.copyConfigButtonTextElement = this.querySelector<HTMLElement>('[data-copy-config-button-text]')!
-      this.copyConfigLiveRegionElement = this.querySelector<HTMLElement>('[data-copy-config-live-region]')!
+      this.copyConfigButtonElement = this.querySelector<HTMLButtonElement>(
+        '[data-copy-config-button]',
+      )!
+      this.copyConfigButtonTextElement = this.querySelector<HTMLElement>(
+        '[data-copy-config-button-text]',
+      )!
+      this.copyConfigLiveRegionElement = this.querySelector<HTMLElement>(
+        '[data-copy-config-live-region]',
+      )!
       this.resultContainerElement = this.querySelector<HTMLElement>('[data-result-container]')!
       this.emptyContainerElement = this.querySelector<HTMLElement>('[data-empty-container]')!
       this.combinedClassDisplay = this.querySelector<HTMLElement>('[data-combined-class-display]')!
-      this.matchDescriptionDisplay = this.querySelector<HTMLElement>('[data-match-description-display]')!
-      this.lineHeightRatioBadgeElement = this.querySelector<HTMLElement>('[data-line-height-ratio-badge]')!
+      this.matchDescriptionDisplay = this.querySelector<HTMLElement>(
+        '[data-match-description-display]',
+      )!
+      this.lineHeightRatioBadgeElement = this.querySelector<HTMLElement>(
+        '[data-line-height-ratio-badge]',
+      )!
       this.previewTextElement = this.querySelector<HTMLElement>('[data-preview-text]')!
       this.fontSizeClassDisplay = this.querySelector<HTMLElement>('[data-font-size-class-display]')!
       this.fontSizePxDisplay = this.querySelector<HTMLElement>('[data-font-size-px-display]')!
       this.fontSizeRemDisplay = this.querySelector<HTMLElement>('[data-font-size-rem-display]')!
       this.fontSizeBadgeElement = this.querySelector<HTMLElement>('[data-font-size-badge]')!
-      this.lineHeightClassDisplay = this.querySelector<HTMLElement>('[data-line-height-class-display]')!
+      this.lineHeightClassDisplay = this.querySelector<HTMLElement>(
+        '[data-line-height-class-display]',
+      )!
       this.lineHeightPxDisplay = this.querySelector<HTMLElement>('[data-line-height-px-display]')!
       this.lineHeightRemDisplay = this.querySelector<HTMLElement>('[data-line-height-rem-display]')!
       this.lineHeightBadgeElement = this.querySelector<HTMLElement>('[data-line-height-badge]')!
-      this.letterSpacingBreakdownElement = this.querySelector<HTMLElement>('[data-letter-spacing-breakdown]')!
-      this.letterSpacingLabelBadgeElement = this.querySelector<HTMLElement>('[data-letter-spacing-label-badge]')!
-      this.letterSpacingClassDisplay = this.querySelector<HTMLElement>('[data-letter-spacing-class-display]')!
-      this.letterSpacingPercentDisplay = this.querySelector<HTMLElement>('[data-letter-spacing-percent-display]')!
-      this.letterSpacingEmDisplay = this.querySelector<HTMLElement>('[data-letter-spacing-em-display]')!
-      this.letterSpacingBadgeElement = this.querySelector<HTMLElement>('[data-letter-spacing-badge]')!
+      this.letterSpacingBreakdownElement = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-breakdown]',
+      )!
+      this.letterSpacingLabelBadgeElement = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-label-badge]',
+      )!
+      this.letterSpacingClassDisplay = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-class-display]',
+      )!
+      this.letterSpacingPercentDisplay = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-percent-display]',
+      )!
+      this.letterSpacingEmDisplay = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-em-display]',
+      )!
+      this.letterSpacingBadgeElement = this.querySelector<HTMLElement>(
+        '[data-letter-spacing-badge]',
+      )!
       this.configContainerElement = this.querySelector<HTMLElement>('[data-config-container]')!
       this.configPreElement = this.querySelector<HTMLPreElement>('[data-config-pre]')!
       this.bindInputFields()
