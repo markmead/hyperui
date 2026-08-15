@@ -6,22 +6,22 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex h-screen overflow-hidden bg-gray-50">
+  <body class="flex h-screen overflow-hidden bg-gray-950">
     <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
 
     <label
       for="sidebar-toggle"
       aria-hidden="true"
-      class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
+      class="fixed inset-0 z-30 hidden bg-gray-950/70 peer-checked:block lg:hidden"
     ></label>
 
     <div
       id="dashboard-sidebar"
-      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:shrink-0 lg:translate-x-0"
+      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-700 bg-gray-900 transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:shrink-0 lg:translate-x-0"
     >
       <div class="p-4">
         <span
-          class="grid h-12 w-32 place-content-center rounded-lg bg-gray-100 text-sm text-gray-600"
+          class="grid h-12 w-32 place-content-center rounded-lg bg-gray-800 text-sm text-gray-400"
         >
           Logo
         </span>
@@ -31,7 +31,7 @@
             <li>
               <a
                 href="#"
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                class="block rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-gray-100"
               >
                 Overview
               </a>
@@ -40,7 +40,7 @@
             <li>
               <a
                 href="#"
-                class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-100"
               >
                 Customers
               </a>
@@ -49,7 +49,7 @@
             <li>
               <a
                 href="#"
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-100"
               >
                 Orders
               </a>
@@ -58,7 +58,7 @@
             <li>
               <a
                 href="#"
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-100"
               >
                 Billing
               </a>
@@ -67,7 +67,7 @@
             <li>
               <a
                 href="#"
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-100"
               >
                 Settings
               </a>
@@ -76,10 +76,10 @@
         </nav>
       </div>
 
-      <div class="sticky inset-x-0 bottom-0 border-t border-gray-200">
+      <div class="sticky inset-x-0 bottom-0 border-t border-gray-700">
         <a
           href="#"
-          class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50 hover:transition-colors"
+          class="flex items-center gap-2 bg-gray-900 p-4 hover:bg-gray-950 hover:transition-colors"
         >
           <img
             alt=""
@@ -87,7 +87,7 @@
             class="size-10 rounded-full object-cover"
           />
 
-          <p class="text-xs text-gray-900">
+          <p class="text-xs text-gray-100">
             <strong class="block font-medium">Priya Natarajan</strong>
 
             <span>priya@orbitly.com</span>
@@ -97,14 +97,16 @@
     </div>
 
     <div class="flex flex-1 flex-col overflow-y-auto">
-      <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
+      <header
+        class="flex items-center justify-between border-b border-gray-700 bg-gray-900 px-6 py-4"
+      >
         <div class="flex items-center gap-4">
           <label
             for="sidebar-toggle"
             id="sidebar-toggle-label"
             aria-expanded="false"
             aria-controls="dashboard-sidebar"
-            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-900 peer-focus-visible:ring-offset-2 hover:bg-gray-100 lg:hidden"
+            class="cursor-pointer rounded-md p-2 text-gray-400 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-300 peer-focus-visible:ring-offset-gray-900 hover:bg-gray-800 lg:hidden"
           >
             <span class="sr-only">Toggle menu</span>
 
@@ -121,218 +123,235 @@
             </svg>
           </label>
 
-          <h1 class="text-lg font-semibold text-gray-900">Customers</h1>
+          <h1 class="text-lg font-semibold text-gray-100">Overview</h1>
         </div>
 
         <a
           href="#"
-          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
+          class="rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-900 transition hover:bg-gray-400"
         >
-          Add customer
+          New report
         </a>
       </header>
 
       <main class="flex-1 space-y-6 p-6">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <article class="flex flex-col gap-4 rounded-lg border border-gray-700 bg-gray-900 p-6">
+            <div class="inline-flex gap-2 self-end rounded-sm bg-green-950 p-1 text-green-400">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+
+              <span class="sr-only">Increase: </span>
+
+              <span class="text-xs font-medium">12.4%</span>
+            </div>
+
+            <div>
+              <strong class="block text-sm font-medium text-gray-400">Monthly revenue</strong>
+
+              <p>
+                <span class="text-2xl font-medium text-gray-100">$48,204</span>
+
+                <span class="text-xs text-gray-400">from $42,910</span>
+              </p>
+            </div>
+
+            <div class="h-10">
+              <canvas
+                id="revenue-trend-sparkline"
+                role="img"
+                aria-label="Sparkline showing monthly revenue trending upward over the last six months"
+              ></canvas>
+            </div>
+          </article>
+
+          <article class="flex flex-col gap-4 rounded-lg border border-gray-700 bg-gray-900 p-6">
+            <div class="inline-flex gap-2 self-end rounded-sm bg-green-950 p-1 text-green-400">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+
+              <span class="sr-only">Increase: </span>
+
+              <span class="text-xs font-medium">4.1%</span>
+            </div>
+
+            <div>
+              <strong class="block text-sm font-medium text-gray-400">Active customers</strong>
+
+              <p>
+                <span class="text-2xl font-medium text-gray-100">2,318</span>
+
+                <span class="text-xs text-gray-400">from 2,227</span>
+              </p>
+            </div>
+          </article>
+
+          <article class="flex flex-col gap-4 rounded-lg border border-gray-700 bg-gray-900 p-6">
+            <div class="inline-flex gap-2 self-end rounded-sm bg-red-950 p-1 text-red-400">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                />
+              </svg>
+
+              <span class="sr-only">Decrease: </span>
+
+              <span class="text-xs font-medium">2.6%</span>
+            </div>
+
+            <div>
+              <strong class="block text-sm font-medium text-gray-400">Churn rate</strong>
+
+              <p>
+                <span class="text-2xl font-medium text-gray-100">1.8%</span>
+
+                <span class="text-xs text-gray-400">from 2.1%</span>
+              </p>
+            </div>
+          </article>
+        </div>
+
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div class="rounded-lg border border-gray-200 bg-white p-6 lg:col-span-2">
-            <h2 class="text-sm font-medium text-gray-900">New customers</h2>
+          <div class="rounded-lg border border-gray-700 bg-gray-900 p-6 lg:col-span-2">
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-medium text-gray-100">Revenue trend</h2>
+
+              <div class="inline-flex rounded-md border border-gray-700 p-0.5 text-xs font-medium">
+                <button
+                  type="button"
+                  data-revenue-range="6m"
+                  aria-pressed="true"
+                  class="rounded-sm bg-gray-800 px-2 py-1 text-gray-100"
+                >
+                  6M
+                </button>
+
+                <button
+                  type="button"
+                  data-revenue-range="12m"
+                  aria-pressed="false"
+                  class="rounded-sm px-2 py-1 text-gray-400"
+                >
+                  12M
+                </button>
+              </div>
+            </div>
 
             <div class="mt-4 h-64">
               <canvas
-                id="new-customers-bar-chart"
+                id="revenue-trend-line-chart"
                 role="img"
-                aria-label="Bar chart showing new customers per month rising from 82 in January to 128 in June"
+                aria-label="Line chart showing monthly revenue rising from $28,000 in January to $48,000 in June"
               ></canvas>
             </div>
           </div>
 
-          <div class="rounded-lg border border-gray-200 bg-white p-6">
-            <h2 class="text-sm font-medium text-gray-900">Customers by plan</h2>
+          <div class="rounded-lg border border-gray-700 bg-gray-900 p-6">
+            <h2 class="text-sm font-medium text-gray-100">Orders by status</h2>
 
-            <ul class="mt-4 space-y-4">
-              <li>
-                <div class="flex items-center justify-between text-sm">
-                  <span class="font-medium text-gray-900">Team</span>
-                  <span class="text-gray-600">1,406</span>
-                </div>
-
-                <div class="mt-1.5 h-1.5 rounded-full bg-gray-100">
-                  <div class="h-1.5 rounded-full bg-indigo-600" style="width: 61%"></div>
-                </div>
-              </li>
-
-              <li>
-                <div class="flex items-center justify-between text-sm">
-                  <span class="font-medium text-gray-900">Starter</span>
-                  <span class="text-gray-600">742</span>
-                </div>
-
-                <div class="mt-1.5 h-1.5 rounded-full bg-gray-100">
-                  <div class="h-1.5 rounded-full bg-indigo-600" style="width: 32%"></div>
-                </div>
-              </li>
-
-              <li>
-                <div class="flex items-center justify-between text-sm">
-                  <span class="font-medium text-gray-900">Enterprise</span>
-                  <span class="text-gray-600">170</span>
-                </div>
-
-                <div class="mt-1.5 h-1.5 rounded-full bg-gray-100">
-                  <div class="h-1.5 rounded-full bg-indigo-600" style="width: 7%"></div>
-                </div>
-              </li>
-            </ul>
+            <div class="mt-4 h-64">
+              <canvas
+                id="order-status-donut-chart"
+                role="img"
+                aria-label="Donut chart showing 68% of orders paid, 22% pending, and 10% refunded"
+              ></canvas>
+            </div>
           </div>
         </div>
 
-        <div class="rounded-lg border border-gray-200 bg-white p-6">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h2 class="text-sm font-medium text-gray-900">All customers</h2>
-
-            <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-              <label for="customer-search-input" class="sr-only">Search customers</label>
-
-              <div class="relative">
-                <input
-                  type="text"
-                  id="customer-search-input"
-                  placeholder="Search customers"
-                  class="w-full rounded-md border-gray-200 py-1.5 text-sm text-gray-900 shadow-xs sm:w-56 ltr:pr-9 rtl:pl-9"
-                />
-
-                <span
-                  class="pointer-events-none absolute inset-y-0 grid w-8 place-content-center text-gray-400 ltr:right-0 rtl:left-0"
-                >
-                  <svg
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-4"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                    />
-                  </svg>
-                </span>
-              </div>
-
-              <label for="customer-status-filter" class="sr-only">Filter by status</label>
-
-              <select
-                id="customer-status-filter"
-                class="rounded-md border-gray-200 py-1.5 text-sm text-gray-900 shadow-xs"
-              >
-                <option value="all">All statuses</option>
-                <option value="active">Active</option>
-                <option value="trial">Trial</option>
-                <option value="past-due">Past due</option>
-              </select>
-            </div>
-          </div>
+        <div class="rounded-lg border border-gray-700 bg-gray-900 p-6">
+          <h2 class="text-sm font-medium text-gray-100">Recent orders</h2>
 
           <div class="mt-4 overflow-x-auto">
-            <table class="min-w-full divide-y-2 divide-gray-200">
+            <table class="min-w-full divide-y-2 divide-gray-700">
               <thead class="ltr:text-left rtl:text-right">
-                <tr class="*:font-medium *:text-gray-900">
+                <tr class="*:font-medium *:text-gray-100">
                   <th class="px-3 py-2 whitespace-nowrap">Customer</th>
-                  <th class="px-3 py-2 whitespace-nowrap">Email</th>
-                  <th class="px-3 py-2 whitespace-nowrap">Plan</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Order</th>
                   <th class="px-3 py-2 whitespace-nowrap">Status</th>
-                  <th class="px-3 py-2 whitespace-nowrap">Joined</th>
+                  <th class="px-3 py-2 whitespace-nowrap">Amount</th>
                 </tr>
               </thead>
 
-              <tbody class="divide-y divide-gray-200">
-                <tr
-                  data-customer-row
-                  data-customer-status="active"
-                  class="*:text-gray-900 *:first:font-medium"
-                >
+              <tbody class="divide-y divide-gray-700">
+                <tr class="*:text-gray-100 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">Nandor the Relentless</td>
-                  <td class="px-3 py-2 whitespace-nowrap">nandor@orbitly.com</td>
-                  <td class="px-3 py-2 whitespace-nowrap">Team</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3921</td>
                   <td class="px-3 py-2 whitespace-nowrap">
-                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
-                      Active
+                    <span class="rounded-full bg-green-950 px-2.5 py-0.5 text-xs text-green-300">
+                      Paid
                     </span>
                   </td>
-                  <td class="px-3 py-2 whitespace-nowrap">Feb 3, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">$412.00</td>
                 </tr>
 
-                <tr
-                  data-customer-row
-                  data-customer-status="active"
-                  class="*:text-gray-900 *:first:font-medium"
-                >
+                <tr class="*:text-gray-100 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">Laszlo Cravensworth</td>
-                  <td class="px-3 py-2 whitespace-nowrap">laszlo@orbitly.com</td>
-                  <td class="px-3 py-2 whitespace-nowrap">Enterprise</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3920</td>
                   <td class="px-3 py-2 whitespace-nowrap">
-                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
-                      Active
+                    <span class="rounded-full bg-yellow-950 px-2.5 py-0.5 text-xs text-yellow-300">
+                      Pending
                     </span>
                   </td>
-                  <td class="px-3 py-2 whitespace-nowrap">Nov 18, 2024</td>
+                  <td class="px-3 py-2 whitespace-nowrap">$128.50</td>
                 </tr>
 
-                <tr
-                  data-customer-row
-                  data-customer-status="trial"
-                  class="*:text-gray-900 *:first:font-medium"
-                >
+                <tr class="*:text-gray-100 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">Nadja</td>
-                  <td class="px-3 py-2 whitespace-nowrap">nadja@orbitly.com</td>
-                  <td class="px-3 py-2 whitespace-nowrap">Team</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3919</td>
                   <td class="px-3 py-2 whitespace-nowrap">
-                    <span class="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs text-yellow-700">
-                      Trial
+                    <span class="rounded-full bg-green-950 px-2.5 py-0.5 text-xs text-green-300">
+                      Paid
                     </span>
                   </td>
-                  <td class="px-3 py-2 whitespace-nowrap">Jun 9, 2025</td>
+                  <td class="px-3 py-2 whitespace-nowrap">$894.20</td>
                 </tr>
 
-                <tr
-                  data-customer-row
-                  data-customer-status="past-due"
-                  class="*:text-gray-900 *:first:font-medium"
-                >
+                <tr class="*:text-gray-100 *:first:font-medium">
                   <td class="px-3 py-2 whitespace-nowrap">Guillermo de la Cruz</td>
-                  <td class="px-3 py-2 whitespace-nowrap">guillermo@orbitly.com</td>
-                  <td class="px-3 py-2 whitespace-nowrap">Starter</td>
+                  <td class="px-3 py-2 whitespace-nowrap">#3918</td>
                   <td class="px-3 py-2 whitespace-nowrap">
-                    <span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs text-red-700">
-                      Past due
+                    <span class="rounded-full bg-red-950 px-2.5 py-0.5 text-xs text-red-300">
+                      Refunded
                     </span>
                   </td>
-                  <td class="px-3 py-2 whitespace-nowrap">Aug 22, 2024</td>
-                </tr>
-
-                <tr
-                  data-customer-row
-                  data-customer-status="active"
-                  class="*:text-gray-900 *:first:font-medium"
-                >
-                  <td class="px-3 py-2 whitespace-nowrap">Colin Robinson</td>
-                  <td class="px-3 py-2 whitespace-nowrap">colin@orbitly.com</td>
-                  <td class="px-3 py-2 whitespace-nowrap">Starter</td>
-                  <td class="px-3 py-2 whitespace-nowrap">
-                    <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-green-700">
-                      Active
-                    </span>
-                  </td>
-                  <td class="px-3 py-2 whitespace-nowrap">Jan 30, 2025</td>
-                </tr>
-
-                <tr id="customers-empty-row" class="hidden">
-                  <td class="px-3 py-6 text-center text-gray-600" colspan="5">
-                    No customers match your search.
-                  </td>
+                  <td class="px-3 py-2 whitespace-nowrap">$56.00</td>
                 </tr>
               </tbody>
             </table>
@@ -343,20 +362,90 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script>
-      const newCustomersBarChartCanvas = document.getElementById('new-customers-bar-chart')
+      const revenueTrendSparklineCanvas = document.getElementById('revenue-trend-sparkline')
+      const revenueTrendLineChartCanvas = document.getElementById('revenue-trend-line-chart')
+      const orderStatusDonutChartCanvas = document.getElementById('order-status-donut-chart')
+      const revenueRangeButtons = document.querySelectorAll('[data-revenue-range]')
 
-      new Chart(newCustomersBarChartCanvas, {
-        type: 'bar',
-        data: {
+      const revenueRangesByPeriod = {
+        '6m': {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          values: [28000, 34000, 31000, 39000, 42000, 48000],
+        },
+        '12m': {
+          labels: [
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+          ],
+          values: [
+            19000, 21500, 20000, 23500, 25000, 27000, 28000, 34000, 31000, 39000, 42000, 48000,
+          ],
+        },
+      }
+
+      new Chart(revenueTrendSparklineCanvas, {
+        type: 'line',
+        data: {
+          labels: revenueRangesByPeriod['6m'].labels,
           datasets: [
             {
-              label: 'New customers',
-              data: [82, 95, 88, 110, 104, 128],
-              backgroundColor: '#4f46e5',
-              hoverBackgroundColor: '#4338ca',
-              borderRadius: 4,
-              maxBarThickness: 32,
+              data: revenueRangesByPeriod['6m'].values,
+              borderColor: '#10b981',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.35,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+          },
+          scales: {
+            x: { display: false },
+            y: { display: false },
+          },
+        },
+      })
+
+      const revenueTrendChartContext = revenueTrendLineChartCanvas.getContext('2d')
+      const revenueTrendFillGradient = revenueTrendChartContext.createLinearGradient(0, 0, 0, 256)
+
+      revenueTrendFillGradient.addColorStop(0, 'rgba(79, 70, 229, 0.25)')
+      revenueTrendFillGradient.addColorStop(1, 'rgba(79, 70, 229, 0)')
+
+      const revenueTrendLineChart = new Chart(revenueTrendLineChartCanvas, {
+        type: 'line',
+        data: {
+          labels: revenueRangesByPeriod['6m'].labels,
+          datasets: [
+            {
+              label: 'Revenue',
+              data: revenueRangesByPeriod['6m'].values,
+              borderColor: '#4f46e5',
+              backgroundColor: revenueTrendFillGradient,
+              borderWidth: 2,
+              pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#4f46e5',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2,
+              tension: 0.35,
+              fill: true,
             },
           ],
         },
@@ -371,7 +460,7 @@
             legend: { display: false },
             tooltip: {
               callbacks: {
-                label: (tooltipItem) => `${tooltipItem.formattedValue} customers`,
+                label: (tooltipItem) => `$${tooltipItem.formattedValue}`,
               },
             },
           },
@@ -383,41 +472,65 @@
             y: {
               beginAtZero: true,
               grid: { color: '#e5e7eb' },
-              ticks: { color: '#4b5563' },
+              ticks: {
+                color: '#4b5563',
+                callback: (tickValue) => `$${Number(tickValue) / 1000}k`,
+              },
             },
           },
         },
       })
 
-      const customerSearchInput = document.getElementById('customer-search-input')
-      const customerStatusFilter = document.getElementById('customer-status-filter')
-      const customerRows = document.querySelectorAll('[data-customer-row]')
-      const customersEmptyRow = document.getElementById('customers-empty-row')
+      revenueRangeButtons.forEach((revenueRangeButton) => {
+        revenueRangeButton.addEventListener('click', () => {
+          const selectedRange = revenueRangeButton.dataset.revenueRange
 
-      function refreshCustomerRows() {
-        const searchTerm = customerSearchInput.value.trim().toLowerCase()
-        const selectedStatus = customerStatusFilter.value
+          revenueRangeButtons.forEach((otherRangeButton) => {
+            const isSelectedButton = otherRangeButton === revenueRangeButton
 
-        let visibleRowCount = 0
+            otherRangeButton.setAttribute('aria-pressed', String(isSelectedButton))
+            otherRangeButton.classList.toggle('bg-gray-100', isSelectedButton)
+            otherRangeButton.classList.toggle('text-gray-900', isSelectedButton)
+            otherRangeButton.classList.toggle('text-gray-600', !isSelectedButton)
+          })
 
-        customerRows.forEach((customerRow) => {
-          const matchesSearch = customerRow.textContent.toLowerCase().includes(searchTerm)
-          const matchesStatus =
-            selectedStatus === 'all' || customerRow.dataset.customerStatus === selectedStatus
-          const isRowVisible = matchesSearch && matchesStatus
-
-          customerRow.classList.toggle('hidden', !isRowVisible)
-
-          if (isRowVisible) {
-            visibleRowCount += 1
-          }
+          revenueTrendLineChart.data.labels = revenueRangesByPeriod[selectedRange].labels
+          revenueTrendLineChart.data.datasets[0].data = revenueRangesByPeriod[selectedRange].values
+          revenueTrendLineChart.update()
         })
+      })
 
-        customersEmptyRow.classList.toggle('hidden', visibleRowCount > 0)
-      }
-
-      customerSearchInput.addEventListener('input', refreshCustomerRows)
-      customerStatusFilter.addEventListener('change', refreshCustomerRows)
+      new Chart(orderStatusDonutChartCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Paid', 'Pending', 'Refunded'],
+          datasets: [
+            {
+              data: [68, 22, 10],
+              backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+              hoverBackgroundColor: ['#059669', '#d97706', '#e11d48'],
+              borderColor: '#101727',
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#ffffff' },
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.formattedValue}%`,
+              },
+            },
+          },
+        },
+      })
     </script>
 
     <script>
