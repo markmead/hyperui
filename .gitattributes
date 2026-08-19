@@ -1,0 +1,6 @@
+public/*.css linguist-generated=true
+public/examples/**/*.html linguist-generated=true
+pnpm-lock.yaml linguist-generated=true
+skills-lock.json linguist-generated=true
+src/data/git-metadata.json linguist-generated=true
+worker-configuration.d.ts linguist-generated=true
