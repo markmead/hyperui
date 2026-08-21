@@ -24,6 +24,7 @@ const {
   wrapper,
   pattern,
   updated,
+  dark: darkModeSupported,
 } = Astro.props
 
 const darkCount = components.filter(({ dark }) => !!dark).length
@@ -104,23 +105,27 @@ const componentPageSchema = {
 
     <div class="mx-auto max-w-7xl space-y-8 px-4">
       <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
-        <span>
-          {darkCount}/{totalCount} Dark Mode{' '}
-          {
-            darkCount !== totalCount && (
-              <a
-                href="https://github.com/markmead/hyperui/issues/new"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-500 transition-colors hover:text-gray-700"
-              >
-                (Request)
-              </a>
-            )
-          }
-        </span>
+        {
+          darkModeSupported && (
+            <>
+              <span>
+                {darkCount}/{totalCount} Dark Mode{' '}
+                {darkCount !== totalCount && (
+                  <a
+                    href="https://github.com/markmead/hyperui/issues/new"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-gray-500 transition-colors hover:text-gray-700"
+                  >
+                    (Request)
+                  </a>
+                )}
+              </span>
 
-        <span class="size-1 rounded-full bg-gray-400" aria-hidden="true"></span>
+              <span class="size-1 rounded-full bg-gray-400" aria-hidden="true" />
+            </>
+          )
+        }
 
         {
           pattern && (

@@ -76,6 +76,7 @@ const collection = z.object({
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
   pattern: z.url().optional(),
+  dark: z.boolean().default(true),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),

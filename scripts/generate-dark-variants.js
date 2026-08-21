@@ -45,6 +45,28 @@ function findMissingDarkVariantsInFolder(categoryName, componentSlug, componentF
     })
 }
 
+function isDarkModeSupportedForCollection(categoryName, componentSlug) {
+  const mdxFilePath = path.join(
+    repositoryRootPath,
+    'src/content/collection',
+    categoryName,
+    `${componentSlug}.mdx`,
+  )
+
+  if (!fs.existsSync(mdxFilePath)) {
+    return true
+  }
+
+  const mdxFileContent = fs.readFileSync(mdxFilePath, 'utf8')
+  const frontmatterMatch = mdxFileContent.match(/^---\n([\s\S]*?)\n---/)
+
+  if (!frontmatterMatch) {
+    return true
+  }
+
+  return !/^dark:\s*false\s*$/m.test(frontmatterMatch[1])
+}
+
 function findMissingDarkVariants() {
   const missingDarkVariants = []
 
@@ -56,6 +78,10 @@ function findMissingDarkVariants() {
     }
 
     for (const componentSlug of findComponentSlugFolders(categoryPath)) {
+      if (!isDarkModeSupportedForCollection(categoryName, componentSlug)) {
+        continue
+      }
+
       const componentFolderPath = path.join(categoryPath, componentSlug)
 
       missingDarkVariants.push(
