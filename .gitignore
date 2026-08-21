@@ -29,7 +29,3 @@ node_modules/
 .dev.vars*
 !.dev.vars.example
 !.env.example
-
-# agent tooling
-/.agents
-/.claude
