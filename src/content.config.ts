@@ -76,20 +76,13 @@ const collection = z.object({
   title: z.string(),
   wrapper: z.string().default('h-[600px]'),
   pattern: z.url().optional(),
-  dark: z.boolean().default(true),
+  dark: z.boolean().default(false),
   components: z.array(
     z.object({
       contributors: z.array(z.string()).default(['markmead']),
       description: z.string().optional(),
       title: z.string(),
-      dark: z
-        .union([
-          z.boolean(),
-          z.object({
-            contributors: z.array(z.string()).default(['markmead']),
-          }),
-        ])
-        .optional(),
+      darkContributors: z.array(z.string()).optional(),
       plugins: z.array(z.string()).optional(),
     }),
   ),

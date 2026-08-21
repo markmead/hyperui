@@ -41,7 +41,44 @@ export const DEFAULT_CONFIG = {
     decoration: true,
     placeholder: true,
   },
-  rules: [],
+  rules: [
+    {
+      id: 'house-style-action-fill',
+      name: 'Action fill (indigo-600 → indigo-500)',
+      enabled: true,
+      utilities: ['bg'],
+      shade: 600,
+      colors: ['indigo'],
+      darkShade: 500,
+      darkColor: null,
+      excludeElements: [],
+      excludeColors: [],
+    },
+    {
+      id: 'house-style-action-fill-hover',
+      name: 'Action fill hover (indigo-700 → indigo-400)',
+      enabled: true,
+      utilities: ['bg'],
+      shade: 700,
+      colors: ['indigo'],
+      darkShade: 400,
+      darkColor: null,
+      excludeElements: [],
+      excludeColors: [],
+    },
+    {
+      id: 'house-style-destructive-fill',
+      name: 'Destructive fill (red-600 → red-500)',
+      enabled: true,
+      utilities: ['bg'],
+      shade: 600,
+      colors: ['red'],
+      darkShade: 500,
+      darkColor: null,
+      excludeElements: [],
+      excludeColors: [],
+    },
+  ],
 }
 
 /** @returns {DarkModeConfig} */
@@ -50,7 +87,7 @@ function createDefaultConfig() {
     shadeMap: { ...DEFAULT_CONFIG.shadeMap },
     colorMap: { ...DEFAULT_CONFIG.colorMap },
     utilities: { ...DEFAULT_CONFIG.utilities },
-    rules: [],
+    rules: DEFAULT_CONFIG.rules.map((ruleData) => ({ ...ruleData })),
   }
 }
 

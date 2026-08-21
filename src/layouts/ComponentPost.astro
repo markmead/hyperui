@@ -27,14 +27,11 @@ const {
   dark: darkModeSupported,
 } = Astro.props
 
-const darkCount = components.filter(({ dark }) => !!dark).length
-const totalCount = components.length
-
 const pageTitle = `Free Tailwind CSS ${title}`
 
 const formattedComponents: ComponentPreview[] = components
   .map((component, index) => {
-    const { dark, ...rest } = component
+    const { darkContributors, ...rest } = component
 
     const baseComponent = {
       ...rest,
@@ -43,21 +40,15 @@ const formattedComponents: ComponentPreview[] = components
       index: index + 1,
     }
 
-    if (!dark) {
+    if (!darkModeSupported) {
       return [baseComponent]
     }
-
-    const contributors =
-      Object.prototype.toString.call(dark) === '[object Object]'
-        ? // @ts-expect-error We know dark is an object at this point.
-          dark.contributors
-        : component.contributors
 
     return [
       baseComponent,
       {
         ...rest,
-        contributors,
+        contributors: darkContributors ?? component.contributors,
         dark: true,
         id: `component-${index + 1}-dark`,
         index: index + 1,
@@ -108,19 +99,7 @@ const componentPageSchema = {
         {
           darkModeSupported && (
             <>
-              <span>
-                {darkCount}/{totalCount} Dark Mode{' '}
-                {darkCount !== totalCount && (
-                  <a
-                    href="https://github.com/markmead/hyperui/issues/new"
-                    target="_blank"
-                    rel="noreferrer"
-                    class="text-gray-500 transition-colors hover:text-gray-700"
-                  >
-                    (Request)
-                  </a>
-                )}
-              </span>
+              <span>Dark Mode</span>
 
               <span class="size-1 rounded-full bg-gray-400" aria-hidden="true" />
             </>
