@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="bg-white">
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
+
+    <header class="border-b border-gray-100">
+      <div class="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
+        <a href="#" class="flex items-center gap-2 text-emerald-700">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.75"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 20l7-15 4 9 3-6 4 12H3Z" />
+          </svg>
+          <span class="text-sm font-semibold tracking-tight text-gray-900">Fernweg Supply</span>
+        </a>
+
+        <nav aria-label="Global" class="hidden md:block">
+          <ul class="flex items-center gap-6 text-sm text-gray-600">
+            <li><a href="#" class="font-medium text-gray-900">Shop</a></li>
+            <li><a href="#" class="transition hover:text-gray-900">Guides</a></li>
+            <li><a href="#" class="transition hover:text-gray-900">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="ml-auto flex items-center gap-1">
+          <button
+            type="button"
+            class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          >
+            <span class="sr-only">Search</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.2-5.2m0 0a7.2 7.2 0 1 0-10.18 0 7.2 7.2 0 0 0 10.18 0Z"
+              />
+            </svg>
+          </button>
+
+          <a
+            href="#"
+            class="relative rounded-md p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          >
+            <span class="sr-only">Cart, 2 items</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 1.977-4.744 2.517-7.288a.75.75 0 0 0-.734-.912H5.106M7.5 14.25 5.106 5.25M7.5 14.25 5.106 5.25"
+              />
+            </svg>
+            <span
+              class="absolute top-0.5 right-0.5 flex size-4 items-center justify-center rounded-full bg-emerald-700 text-[10px] font-medium text-white"
+            >
+              2
+            </span>
+          </a>
+
+          <label
+            for="nav-toggle"
+            id="nav-toggle-label"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            class="cursor-pointer rounded-md p-2 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-700 peer-focus-visible:ring-offset-2 hover:bg-gray-100 md:hidden"
+          >
+            <span class="sr-only">Toggle menu</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+        </div>
+      </div>
+
+      <nav
+        id="mobile-nav"
+        aria-label="Global Mobile"
+        class="hidden border-t border-gray-100 peer-checked:block md:hidden"
+      >
+        <ul class="space-y-1 px-4 py-4 text-sm">
+          <li>
+            <a href="#" class="block rounded-lg bg-gray-100 px-3 py-2 font-medium text-gray-900"
+              >Shop</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50">Guides</a>
+          </li>
+          <li>
+            <a href="#" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50">About</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex items-center gap-1 text-xs text-gray-500">
+          <li><a href="#" class="hover:text-gray-800">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-gray-800">Tents &amp; shelters</li>
+        </ol>
+      </nav>
+
+      <div class="mt-4 sm:flex sm:items-end sm:justify-between">
+        <div class="max-w-lg">
+          <h1 class="text-2xl font-semibold text-gray-900 sm:text-3xl">Tents &amp; shelters</h1>
+          <p class="mt-2 text-sm text-gray-600">
+            Four-season and three-season shelters, tested above the treeline before they reach the
+            shop floor.
+          </p>
+        </div>
+
+        <p class="mt-4 text-sm text-gray-500 sm:mt-0">18 results</p>
+      </div>
+
+      <div class="mt-6 block lg:hidden">
+        <button
+          type="button"
+          class="flex cursor-pointer items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m9 12h3.75M13.5 18a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-6.75 0H10.5M3.75 12h9.75m0 0a1.5 1.5 0 1 0 3 0m-3 0a1.5 1.5 0 1 1 3 0m3 0h3.75"
+            />
+          </svg>
+          Filters &amp; sorting
+        </button>
+      </div>
+
+      <div class="mt-6 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
+        <div class="hidden space-y-6 lg:block">
+          <div>
+            <label for="SortBy" class="block text-xs font-medium text-gray-700">Sort by</label>
+            <select
+              id="SortBy"
+              class="mt-1 w-full rounded-md border-gray-300 text-sm focus:border-emerald-600 focus:ring-emerald-600"
+            >
+              <option>Most popular</option>
+              <option>Price, low to high</option>
+              <option>Price, high to low</option>
+              <option>Newest</option>
+            </select>
+          </div>
+
+          <fieldset class="border-t border-gray-200 pt-6">
+            <legend class="text-xs font-medium text-gray-700">Season rating</legend>
+            <div class="mt-3 space-y-2">
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  class="size-4 rounded-sm border-gray-300 text-emerald-700 focus:ring-emerald-600"
+                />
+                <span class="text-sm text-gray-700">3-season (11)</span>
+              </label>
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  class="size-4 rounded-sm border-gray-300 text-emerald-700 focus:ring-emerald-600"
+                />
+                <span class="text-sm text-gray-700">4-season (7)</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="border-t border-gray-200 pt-6">
+            <legend class="text-xs font-medium text-gray-700">Capacity</legend>
+            <div class="mt-3 space-y-2">
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  class="size-4 rounded-sm border-gray-300 text-emerald-700 focus:ring-emerald-600"
+                />
+                <span class="text-sm text-gray-700">1 person (4)</span>
+              </label>
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  class="size-4 rounded-sm border-gray-300 text-emerald-700 focus:ring-emerald-600"
+                />
+                <span class="text-sm text-gray-700">2 person (9)</span>
+              </label>
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  class="size-4 rounded-sm border-gray-300 text-emerald-700 focus:ring-emerald-600"
+                />
+                <span class="text-sm text-gray-700">3+ person (5)</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="border-t border-gray-200 pt-6">
+            <legend class="text-xs font-medium text-gray-700">Price</legend>
+            <div class="mt-3 flex items-center gap-3">
+              <label class="flex items-center gap-1">
+                <span class="text-sm text-gray-500">$</span>
+                <input
+                  type="number"
+                  placeholder="Min"
+                  class="w-full rounded-md border-gray-300 text-sm focus:border-emerald-600 focus:ring-emerald-600"
+                />
+              </label>
+              <span class="text-gray-400">&ndash;</span>
+              <label class="flex items-center gap-1">
+                <span class="text-sm text-gray-500">$</span>
+                <input
+                  type="number"
+                  placeholder="Max"
+                  class="w-full rounded-md border-gray-300 text-sm focus:border-emerald-600 focus:ring-emerald-600"
+                />
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="mt-6 lg:col-span-3 lg:mt-0">
+          <ul class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3">
+            <li>
+              <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-lg bg-gray-100">
+                  <span
+                    class="absolute top-2 left-2 z-10 rounded-full bg-white px-2 py-1 text-[10px] font-medium text-gray-900"
+                  >
+                    New
+                  </span>
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=800"
+                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <h3 class="mt-3 text-sm font-medium text-gray-900">Kestrel 2P Ultralight</h3>
+                <p class="mt-1 text-xs text-gray-500">3-season &middot; 1.4kg</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">$389</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&q=80&w=800"
+                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <h3 class="mt-3 text-sm font-medium text-gray-900">Cairn 1P Solo</h3>
+                <p class="mt-1 text-xs text-gray-500">3-season &middot; 0.9kg</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">$329</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-lg bg-gray-100">
+                  <span
+                    class="absolute top-2 left-2 z-10 rounded-full bg-amber-400 px-2 py-1 text-[10px] font-medium text-gray-900"
+                  >
+                    3 left
+                  </span>
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=800"
+                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <h3 class="mt-3 text-sm font-medium text-gray-900">Basecamp 4P Expedition</h3>
+                <p class="mt-1 text-xs text-gray-500">4-season &middot; 4.1kg</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">$649</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&q=80&w=800"
+                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <h3 class="mt-3 text-sm font-medium text-gray-900">Ridgeline 3P Family</h3>
+                <p class="mt-1 text-xs text-gray-500">3-season &middot; 2.6kg</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">$419</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1445308394109-4ec2920981b1?auto=format&fit=crop&q=80&w=800"
+                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <h3 class="mt-3 text-sm font-medium text-gray-900">Summit 2P Storm</h3>
+                <p class="mt-1 text-xs text-gray-500">4-season &middot; 2.2kg</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">$589</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&fit=crop&q=80&w=800"
+                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <h3 class="mt-3 text-sm font-medium text-gray-900">Hollow 1P Bivy</h3>
+                <p class="mt-1 text-xs text-gray-500">3-season &middot; 0.6kg</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">$219</p>
+              </a>
+            </li>
+          </ul>
+
+          <nav aria-label="Pagination" class="mt-10 flex items-center justify-center gap-1">
+            <a
+              href="#"
+              class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-500 rtl:rotate-180"
+            >
+              <span class="sr-only">Previous</span>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+
+            <a
+              href="#"
+              class="inline-flex size-8 items-center justify-center rounded-md bg-emerald-700 text-sm font-medium text-white"
+            >
+              1
+            </a>
+            <a
+              href="#"
+              class="inline-flex size-8 items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
+            >
+              2
+            </a>
+            <a
+              href="#"
+              class="inline-flex size-8 items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
+            >
+              3
+            </a>
+
+            <a
+              href="#"
+              class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-500 rtl:rotate-180"
+            >
+              <span class="sr-only">Next</span>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-gray-100 bg-gray-50">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div class="col-span-2 sm:col-span-1">
+            <p class="text-sm font-semibold text-gray-900">Fernweg Supply</p>
+            <p class="mt-2 text-sm text-gray-500">
+              Gear tested in the field it's sold for, not just the lab.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-sm font-medium text-gray-900">Shop</p>
+            <ul class="mt-4 space-y-2 text-sm text-gray-500">
+              <li><a href="#" class="hover:text-gray-900">Tents &amp; shelters</a></li>
+              <li><a href="#" class="hover:text-gray-900">Sleep systems</a></li>
+              <li><a href="#" class="hover:text-gray-900">Packs</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-sm font-medium text-gray-900">Support</p>
+            <ul class="mt-4 space-y-2 text-sm text-gray-500">
+              <li><a href="#" class="hover:text-gray-900">Shipping</a></li>
+              <li><a href="#" class="hover:text-gray-900">Returns</a></li>
+              <li><a href="#" class="hover:text-gray-900">Size guide</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-sm font-medium text-gray-900">Company</p>
+            <ul class="mt-4 space-y-2 text-sm text-gray-500">
+              <li><a href="#" class="hover:text-gray-900">About</a></li>
+              <li><a href="#" class="hover:text-gray-900">Field guides</a></li>
+              <li><a href="#" class="hover:text-gray-900">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="mt-10 flex flex-col gap-4 border-t border-gray-200 pt-8 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <p class="text-xs text-gray-500">&copy; 2026 Fernweg Supply. All rights reserved.</p>
+
+          <ul class="flex gap-4 text-xs text-gray-500">
+            <li><a href="#" class="hover:text-gray-900">Privacy</a></li>
+            <li><a href="#" class="hover:text-gray-900">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navToggleCheckbox = document.getElementById('nav-toggle')
+      const navToggleLabel = document.getElementById('nav-toggle-label')
+
+      navToggleCheckbox.addEventListener('change', () => {
+        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>

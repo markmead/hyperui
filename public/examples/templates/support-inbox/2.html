@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex h-screen flex-col overflow-hidden bg-gray-50">
+    <input type="checkbox" id="rail-toggle" class="peer sr-only" />
+    <input type="checkbox" id="details-toggle" class="peer/details sr-only" />
+
+    <header
+      class="flex h-14 shrink-0 items-center gap-4 border-b border-gray-200 bg-white px-4 sm:px-6"
+    >
+      <label
+        for="rail-toggle"
+        id="rail-toggle-label"
+        aria-expanded="false"
+        aria-controls="queue-rail"
+        class="cursor-pointer rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+      >
+        <span class="sr-only">Toggle queues</span>
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+
+      <a href="#" class="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900">
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-4 rtl:rotate-180"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+        My tickets
+      </a>
+
+      <div class="ml-auto flex items-center gap-3">
+        <label
+          for="details-toggle"
+          id="details-toggle-label"
+          aria-expanded="false"
+          aria-controls="ticket-details"
+          class="cursor-pointer rounded-md p-2 text-gray-600 transition hover:bg-gray-100 xl:hidden"
+        >
+          <span class="sr-only">Toggle ticket details</span>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </label>
+
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=200"
+          class="size-8 rounded-full object-cover"
+        />
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <label
+        for="rail-toggle"
+        aria-hidden="true"
+        class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
+      ></label>
+
+      <nav
+        id="queue-rail"
+        aria-label="Queues"
+        class="fixed inset-y-14 start-0 z-40 w-56 -translate-x-full overflow-y-auto border-e border-gray-200 bg-white p-3 transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:translate-x-0"
+      >
+        <ul class="space-y-1">
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700"
+            >
+              My tickets
+              <span class="rounded-full bg-white px-2 py-0.5 text-xs text-indigo-700">4</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              Unassigned
+              <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">11</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              All open
+              <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">37</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              Closed
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <main class="flex flex-1 flex-col overflow-y-auto">
+        <div class="border-b border-gray-200 bg-white px-4 py-4 sm:px-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-gray-500">Ticket #4819</p>
+              <h1 class="mt-0.5 text-lg font-semibold text-gray-900">
+                Team seats not syncing after upgrade
+              </h1>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs text-blue-700">
+                Open
+              </span>
+              <span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs text-red-700">
+                High priority
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-1 space-y-6 p-4 sm:p-6">
+          <ol
+            class="relative space-y-6 before:absolute before:-ms-px before:h-full before:w-0.5 before:rounded-full before:bg-gray-200"
+          >
+            <li class="relative -ms-1.5 flex items-start gap-4">
+              <span class="size-3 shrink-0 rounded-full bg-gray-400"></span>
+
+              <div class="-mt-2 w-full">
+                <div class="flex items-center gap-2">
+                  <p class="text-sm font-medium text-gray-900">Priya Natarajan</p>
+                  <time class="text-xs text-gray-500">Today at 09:12</time>
+                </div>
+
+                <div class="mt-1.5 rounded-lg rounded-tl-none border border-gray-200 bg-white p-4">
+                  <p class="text-sm text-gray-700">
+                    We upgraded to the Team plan yesterday but two of the five seats we paid for
+                    still show as pending. Tried removing and re-inviting one person, still stuck.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="relative -ms-1.5 flex items-start gap-4">
+              <span class="size-3 shrink-0 rounded-full bg-indigo-600"></span>
+
+              <div class="-mt-2 w-full">
+                <div class="flex items-center gap-2">
+                  <p class="text-sm font-medium text-gray-900">You</p>
+                  <time class="text-xs text-gray-500">Today at 09:41</time>
+                </div>
+
+                <div
+                  class="mt-1.5 rounded-lg rounded-tl-none border border-indigo-100 bg-indigo-50 p-4"
+                >
+                  <p class="text-sm text-gray-700">
+                    Thanks for flagging &mdash; looks like the seat sync job is stuck on your
+                    account specifically. I'm re-running it manually now and will confirm once both
+                    seats show as active.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="relative -ms-1.5 flex items-start gap-4">
+              <span class="size-3 shrink-0 rounded-full bg-gray-300"></span>
+
+              <div class="-mt-2">
+                <p class="text-xs text-gray-500">
+                  <time>Today at 09:42</time> &middot; Internal note added by you
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="border-t border-gray-200 bg-white p-4 sm:p-6">
+          <div role="tablist" class="flex gap-1">
+            <button
+              role="tab"
+              aria-selected="true"
+              class="rounded-t-md border border-b-0 border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-900"
+            >
+              Reply
+            </button>
+            <button
+              role="tab"
+              aria-selected="false"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-gray-700"
+            >
+              Internal note
+            </button>
+          </div>
+
+          <label for="ReplyMessage" class="sr-only">Reply to Priya</label>
+          <textarea
+            id="ReplyMessage"
+            rows="3"
+            placeholder="Type your reply&hellip;"
+            class="w-full resize-none rounded-tr-md rounded-b-md border-gray-200 text-sm shadow-xs focus:border-indigo-600 focus:ring-indigo-600"
+          ></textarea>
+
+          <div class="mt-3 flex items-center justify-between">
+            <p class="text-xs text-gray-500">Priya will see this by email.</p>
+
+            <button
+              type="button"
+              class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-700"
+            >
+              Send reply
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <label
+        for="details-toggle"
+        aria-hidden="true"
+        class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked/details:block xl:hidden"
+      ></label>
+
+      <aside
+        id="ticket-details"
+        class="fixed inset-y-14 end-0 z-40 w-72 translate-x-full space-y-6 overflow-y-auto border-s border-gray-200 bg-white p-4 transition-transform duration-300 peer-checked/details:translate-x-0 xl:static xl:translate-x-0"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            alt=""
+            src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?auto=format&fit=crop&q=80&w=200"
+            class="size-10 rounded-full object-cover"
+          />
+
+          <div>
+            <p class="text-sm font-medium text-gray-900">Priya Natarajan</p>
+            <p class="text-xs text-gray-500">priya@orbitly.com</p>
+          </div>
+        </div>
+
+        <dl class="space-y-3 border-t border-gray-200 pt-4 text-sm">
+          <div class="flex items-center justify-between">
+            <dt class="text-gray-500">Plan</dt>
+            <dd class="font-medium text-gray-900">Team, 5 seats</dd>
+          </div>
+          <div class="flex items-center justify-between">
+            <dt class="text-gray-500">Customer since</dt>
+            <dd class="font-medium text-gray-900">Feb 2024</dd>
+          </div>
+          <div class="flex items-center justify-between">
+            <dt class="text-gray-500">Open tickets</dt>
+            <dd class="font-medium text-gray-900">1</dd>
+          </div>
+        </dl>
+
+        <div class="space-y-3 border-t border-gray-200 pt-4">
+          <label for="TicketStatus" class="block text-xs font-medium text-gray-700">Status</label>
+          <select
+            id="TicketStatus"
+            class="w-full rounded-md border-gray-200 text-sm shadow-xs focus:border-indigo-600 focus:ring-indigo-600"
+          >
+            <option>Open</option>
+            <option>Pending</option>
+            <option>Closed</option>
+          </select>
+
+          <label for="TicketPriority" class="block text-xs font-medium text-gray-700">
+            Priority
+          </label>
+          <select
+            id="TicketPriority"
+            class="w-full rounded-md border-gray-200 text-sm shadow-xs focus:border-indigo-600 focus:ring-indigo-600"
+          >
+            <option>Low</option>
+            <option selected>High</option>
+            <option>Urgent</option>
+          </select>
+
+          <label for="TicketAssignee" class="block text-xs font-medium text-gray-700">
+            Assignee
+          </label>
+          <select
+            id="TicketAssignee"
+            class="w-full rounded-md border-gray-200 text-sm shadow-xs focus:border-indigo-600 focus:ring-indigo-600"
+          >
+            <option>You</option>
+            <option>Marcus Boyle</option>
+            <option>Unassigned</option>
+          </select>
+        </div>
+
+        <div class="border-t border-gray-200 pt-4">
+          <p class="text-xs font-medium text-gray-700">Tags</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs text-amber-700">
+              Bug
+            </span>
+            <span class="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600">
+              Billing
+            </span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      const railToggleCheckbox = document.getElementById('rail-toggle')
+      const railToggleLabel = document.getElementById('rail-toggle-label')
+
+      railToggleCheckbox.addEventListener('change', () => {
+        railToggleLabel.setAttribute('aria-expanded', String(railToggleCheckbox.checked))
+      })
+
+      const detailsToggleCheckbox = document.getElementById('details-toggle')
+      const detailsToggleLabel = document.getElementById('details-toggle-label')
+
+      detailsToggleCheckbox.addEventListener('change', () => {
+        detailsToggleLabel.setAttribute('aria-expanded', String(detailsToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>

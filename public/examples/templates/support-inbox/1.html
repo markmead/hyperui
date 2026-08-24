@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="flex h-screen flex-col overflow-hidden bg-gray-50">
+    <input type="checkbox" id="rail-toggle" class="peer sr-only" />
+
+    <header
+      class="flex h-14 shrink-0 items-center gap-4 border-b border-gray-200 bg-white px-4 sm:px-6"
+    >
+      <label
+        for="rail-toggle"
+        id="rail-toggle-label"
+        aria-expanded="false"
+        aria-controls="queue-rail"
+        class="cursor-pointer rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+      >
+        <span class="sr-only">Toggle queues</span>
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+
+      <p class="text-sm font-semibold text-gray-900">
+        Orbitly <span class="font-normal text-gray-400">/ Support</span>
+      </p>
+
+      <label for="TicketSearch" class="ml-4 hidden max-w-sm flex-1 sm:block">
+        <span class="sr-only">Search tickets</span>
+        <div class="relative">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-gray-400"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.2-5.2m0 0a7.2 7.2 0 1 0-10.18 0 7.2 7.2 0 0 0 10.18 0Z"
+            />
+          </svg>
+          <input
+            type="search"
+            id="TicketSearch"
+            placeholder="Search tickets"
+            class="w-full rounded-md border-gray-200 pl-9 text-sm shadow-xs focus:border-indigo-600 focus:ring-indigo-600"
+          />
+        </div>
+      </label>
+
+      <div class="ml-auto flex items-center gap-3">
+        <button
+          type="button"
+          class="hidden rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-indigo-700 sm:block"
+        >
+          New ticket
+        </button>
+
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=200"
+          class="size-8 rounded-full object-cover"
+        />
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <label
+        for="rail-toggle"
+        aria-hidden="true"
+        class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
+      ></label>
+
+      <nav
+        id="queue-rail"
+        aria-label="Queues"
+        class="fixed inset-y-14 start-0 z-40 w-56 -translate-x-full overflow-y-auto border-e border-gray-200 bg-white p-3 transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:translate-x-0"
+      >
+        <ul class="space-y-1">
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700"
+            >
+              My tickets
+              <span class="rounded-full bg-white px-2 py-0.5 text-xs text-indigo-700">4</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              Unassigned
+              <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">11</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              All open
+              <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">37</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              Closed
+            </a>
+          </li>
+        </ul>
+
+        <p class="mt-6 px-3 text-xs font-medium tracking-wide text-gray-400 uppercase">Tags</p>
+        <ul class="mt-2 space-y-1">
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+            >
+              <span class="size-2 rounded-full bg-rose-500"></span>
+              Billing
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+            >
+              <span class="size-2 rounded-full bg-amber-500"></span>
+              Bug
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+            >
+              <span class="size-2 rounded-full bg-emerald-500"></span>
+              Onboarding
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <main class="flex-1 overflow-y-auto">
+        <div class="border-b border-gray-200 bg-white px-4 py-4 sm:px-6">
+          <h1 class="text-lg font-semibold text-gray-900">My tickets</h1>
+
+          <div role="tablist" class="mt-3 flex gap-1">
+            <button
+              role="tab"
+              aria-selected="true"
+              class="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white"
+            >
+              All
+            </button>
+            <button
+              role="tab"
+              aria-selected="false"
+              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
+            >
+              Open
+            </button>
+            <button
+              role="tab"
+              aria-selected="false"
+              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
+            >
+              Pending
+            </button>
+            <button
+              role="tab"
+              aria-selected="false"
+              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
+            >
+              Closed
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-6">
+          <div class="overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr class="*:px-4 *:py-3 *:text-left *:text-xs *:font-medium *:text-gray-500">
+                  <th scope="col">Ticket</th>
+                  <th scope="col" class="hidden sm:table-cell">Requester</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="hidden md:table-cell">Priority</th>
+                  <th scope="col" class="hidden md:table-cell">Updated</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+                <tr class="cursor-pointer hover:bg-gray-50">
+                  <td class="px-4 py-3">
+                    <p class="text-sm font-medium text-gray-900">Can't export invoices as CSV</p>
+                    <p class="text-xs text-gray-500">#4821</p>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-600 sm:table-cell">Marcus Boyle</td>
+                  <td class="px-4 py-3">
+                    <span class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs text-blue-700">
+                      Open
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 md:table-cell">
+                    <span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs text-red-700">
+                      High
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-500 md:table-cell">
+                    12 minutes ago
+                  </td>
+                </tr>
+
+                <tr class="cursor-pointer bg-indigo-50/60 hover:bg-indigo-50">
+                  <td class="px-4 py-3">
+                    <p class="text-sm font-medium text-gray-900">
+                      Team seats not syncing after upgrade
+                    </p>
+                    <p class="text-xs text-gray-500">#4819</p>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-600 sm:table-cell">
+                    Priya Natarajan
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs text-blue-700">
+                      Open
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 md:table-cell">
+                    <span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs text-red-700">
+                      High
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-500 md:table-cell">
+                    41 minutes ago
+                  </td>
+                </tr>
+
+                <tr class="cursor-pointer hover:bg-gray-50">
+                  <td class="px-4 py-3">
+                    <p class="text-sm font-medium text-gray-900">
+                      Question about annual billing discount
+                    </p>
+                    <p class="text-xs text-gray-500">#4812</p>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-600 sm:table-cell">
+                    Owen Baptiste
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs text-amber-700">
+                      Pending
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 md:table-cell">
+                    <span class="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600">
+                      Low
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-500 md:table-cell">3 hours ago</td>
+                </tr>
+
+                <tr class="cursor-pointer hover:bg-gray-50">
+                  <td class="px-4 py-3">
+                    <p class="text-sm font-medium text-gray-900">
+                      Feature request: dark mode for reports
+                    </p>
+                    <p class="text-xs text-gray-500">#4790</p>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-600 sm:table-cell">
+                    Freya Lindqvist
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs text-amber-700">
+                      Pending
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 md:table-cell">
+                    <span class="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600">
+                      Low
+                    </span>
+                  </td>
+                  <td class="hidden px-4 py-3 text-sm text-gray-500 md:table-cell">1 day ago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <nav aria-label="Pagination" class="mt-4 flex items-center justify-between">
+            <p class="text-xs text-gray-500">Showing 4 of 37 open tickets</p>
+
+            <div class="flex gap-1">
+              <a
+                href="#"
+                class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-400"
+              >
+                <span class="sr-only">Previous</span>
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-3 rtl:rotate-180"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-600"
+              >
+                <span class="sr-only">Next</span>
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-3 rtl:rotate-180"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const railToggleCheckbox = document.getElementById('rail-toggle')
+      const railToggleLabel = document.getElementById('rail-toggle-label')
+
+      railToggleCheckbox.addEventListener('change', () => {
+        railToggleLabel.setAttribute('aria-expanded', String(railToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>

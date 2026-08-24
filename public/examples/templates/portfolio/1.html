@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body>
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
+
+    <header class="sticky top-0 z-40 border-b border-gray-100 bg-white/90 backdrop-blur">
+      <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+        <a href="#" class="text-sm font-semibold tracking-tight text-gray-900"> Adah Solari </a>
+
+        <nav aria-label="Global" class="hidden md:block">
+          <ul class="flex items-center gap-8 text-sm text-gray-600">
+            <li><a href="#work" class="transition hover:text-gray-900">Work</a></li>
+            <li><a href="#about" class="transition hover:text-gray-900">About</a></li>
+            <li><a href="#contact" class="transition hover:text-gray-900">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="#contact"
+            class="hidden rounded-md bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-700 sm:block"
+          >
+            Book a call
+          </a>
+
+          <label
+            for="nav-toggle"
+            id="nav-toggle-label"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            class="cursor-pointer rounded-md p-2 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-violet-600 peer-focus-visible:ring-offset-2 hover:bg-gray-100 md:hidden"
+          >
+            <span class="sr-only">Toggle menu</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+        </div>
+      </div>
+
+      <nav
+        id="mobile-nav"
+        aria-label="Global Mobile"
+        class="hidden border-t border-gray-100 bg-white peer-checked:block md:hidden"
+      >
+        <ul class="space-y-1 px-4 py-4 text-sm">
+          <li>
+            <a href="#work" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+              >Work</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="mx-auto max-w-5xl px-4 pt-16 pb-20 sm:px-6 sm:pt-20">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-gray-200 py-1 pr-3 pl-2 text-xs font-medium text-gray-600"
+        >
+          <span class="relative flex size-2">
+            <span
+              class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75"
+            ></span>
+            <span class="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
+          </span>
+          Available for one new project in Q3
+        </span>
+
+        <h1 class="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          I help funded product teams ship decisions they can still defend a year later.
+        </h1>
+
+        <p class="mt-5 max-w-xl text-lg text-pretty text-gray-600">
+          Contract product designer working end-to-end &mdash; research, flows, UI, and the handoff
+          that keeps engineering from guessing. Based in Lisbon, working with teams everywhere.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href="#contact"
+            class="rounded-md bg-violet-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-violet-700"
+          >
+            Start a project
+          </a>
+
+          <a
+            href="#work"
+            class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 transition hover:text-gray-900"
+          >
+            See the work
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-4 rtl:rotate-180"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <section id="work" class="border-t border-gray-100 bg-gray-50">
+        <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+          <div class="max-w-lg">
+            <p class="text-sm font-medium text-violet-600">Selected work</p>
+            <h2 class="mt-2 text-2xl font-semibold text-gray-900 sm:text-3xl">
+              Three projects, three different kinds of hard problem.
+            </h2>
+          </div>
+
+          <div class="mt-12 space-y-16">
+            <article class="grid items-center gap-8 sm:grid-cols-2 sm:gap-12">
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1160"
+                class="aspect-4/3 w-full rounded-lg object-cover"
+              />
+
+              <div>
+                <p class="text-xs font-medium tracking-wide text-gray-500 uppercase">
+                  Fieldnote &middot; Product design &middot; 2025
+                </p>
+
+                <h3 class="mt-2 text-xl font-semibold text-gray-900">
+                  Redesigning the editor that field engineers actually trust
+                </h3>
+
+                <p class="mt-3 text-gray-600">
+                  Cut average report time from 11 minutes to 4 by rebuilding the note editor around
+                  offline-first sync, not adding features on top of it.
+                </p>
+
+                <a
+                  href="#"
+                  class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-violet-600 transition hover:text-violet-700"
+                >
+                  View case study
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4 rtl:rotate-180"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="grid items-center gap-8 sm:grid-cols-2 sm:gap-12">
+              <div class="sm:order-last">
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1160"
+                  class="aspect-4/3 w-full rounded-lg object-cover"
+                />
+              </div>
+
+              <div>
+                <p class="text-xs font-medium tracking-wide text-gray-500 uppercase">
+                  Orbitly &middot; 0&rarr;1 &middot; 2024
+                </p>
+
+                <h3 class="mt-2 text-xl font-semibold text-gray-900">
+                  Taking a team dashboard from spreadsheet to shippable
+                </h3>
+
+                <p class="mt-3 text-gray-600">
+                  Designed the first version of Orbitly's workspace, from onboarding through
+                  billing, and stayed on through their seed round launch.
+                </p>
+
+                <a
+                  href="#"
+                  class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-violet-600 transition hover:text-violet-700"
+                >
+                  View case study
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4 rtl:rotate-180"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="grid items-center gap-8 sm:grid-cols-2 sm:gap-12">
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?auto=format&fit=crop&q=80&w=1160"
+                class="aspect-4/3 w-full rounded-lg object-cover"
+              />
+
+              <div>
+                <p class="text-xs font-medium tracking-wide text-gray-500 uppercase">
+                  Northwind Studio &middot; Design system &middot; 2023
+                </p>
+
+                <h3 class="mt-2 text-xl font-semibold text-gray-900">
+                  A component library three teams could actually share
+                </h3>
+
+                <p class="mt-3 text-gray-600">
+                  Unified four inconsistent product surfaces into one Figma and code library,
+                  reducing new-screen build time by roughly a third.
+                </p>
+
+                <a
+                  href="#"
+                  class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-violet-600 transition hover:text-violet-700"
+                >
+                  View case study
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4 rtl:rotate-180"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+        <div class="grid gap-12 sm:grid-cols-5 sm:items-start">
+          <div class="sm:col-span-2">
+            <img
+              alt=""
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800"
+              class="aspect-square w-full rounded-lg object-cover"
+            />
+          </div>
+
+          <div class="sm:col-span-3">
+            <p class="text-sm font-medium text-violet-600">About</p>
+
+            <h2 class="mt-2 text-2xl font-semibold text-gray-900 sm:text-3xl">
+              Seven years in, still happiest in the messy middle of a project.
+            </h2>
+
+            <p class="mt-4 text-gray-600">
+              I spent four years as an in-house designer at two Series A startups before going
+              independent in 2021. Now I work with two or three teams a year, usually stepping in
+              right after a fundraise or right before one, when product decisions carry the most
+              weight.
+            </p>
+
+            <dl class="mt-8 grid grid-cols-3 gap-4 border-t border-gray-200 pt-8">
+              <div>
+                <dt class="text-xs text-gray-500">Years independent</dt>
+                <dd class="mt-1 text-2xl font-semibold text-gray-900">4</dd>
+              </div>
+
+              <div>
+                <dt class="text-xs text-gray-500">Products shipped</dt>
+                <dd class="mt-1 text-2xl font-semibold text-gray-900">23</dd>
+              </div>
+
+              <div>
+                <dt class="text-xs text-gray-500">Repeat clients</dt>
+                <dd class="mt-1 text-2xl font-semibold text-gray-900">9</dd>
+              </div>
+            </dl>
+
+            <ul class="mt-8 flex flex-wrap gap-2">
+              <li class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                Product strategy
+              </li>
+              <li class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                Design systems
+              </li>
+              <li class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                User research
+              </li>
+              <li class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                Figma &amp; code
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-gray-100 bg-gray-50">
+        <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+          <figure class="text-center">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="mx-auto size-8 text-violet-600"
+            >
+              <path
+                d="M7.17 6.17A5.5 5.5 0 0 0 3 11.5V18a1 1 0 0 0 1 1h6.5a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H6.06a3.5 3.5 0 0 1 2.35-2.79 1 1 0 1 0-.62-1.9Zm10 0A5.5 5.5 0 0 0 13 11.5V18a1 1 0 0 0 1 1h6.5a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1h-4.44a3.5 3.5 0 0 1 2.35-2.79 1 1 0 1 0-.62-1.9Z"
+              />
+            </svg>
+
+            <blockquote class="mt-4">
+              <p class="text-xl font-medium text-pretty text-gray-900 sm:text-2xl">
+                Adah asked harder questions in the first week than our last three hires combined.
+                The dashboard we shipped is still the one we point new hires to as &ldquo;how we
+                build here.&rdquo;
+              </p>
+            </blockquote>
+
+            <figcaption class="mt-6 flex items-center justify-center gap-3">
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200"
+                class="size-10 rounded-full object-cover"
+              />
+
+              <div class="text-left">
+                <p class="text-sm font-medium text-gray-900">Priya Natarajan</p>
+                <p class="text-sm text-gray-500">Ops Lead, Orbitly</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="contact" class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+        <div class="rounded-2xl bg-gray-900 px-6 py-12 text-center sm:px-12 sm:py-16">
+          <h2 class="text-2xl font-semibold text-white sm:text-3xl">
+            Have a project taking shape?
+          </h2>
+
+          <p class="mx-auto mt-3 max-w-md text-gray-400">
+            I take on one new engagement at a time, usually starting four to six weeks out. Tell me
+            what you're building and I'll reply within two days.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="mailto:hello@adahsolari.com"
+              class="rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 transition hover:bg-gray-100"
+            >
+              hello@adahsolari.com
+            </a>
+
+            <a
+              href="#"
+              class="rounded-md border border-gray-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-gray-800"
+            >
+              Book a 20-minute call
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-gray-100">
+      <div
+        class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-8 sm:flex-row sm:justify-between sm:px-6"
+      >
+        <p class="text-sm text-gray-500">&copy; 2026 Adah Solari. Lisbon, Portugal.</p>
+
+        <ul class="flex items-center gap-5">
+          <li>
+            <a href="#" class="text-sm text-gray-500 transition hover:text-gray-900">Dribbble</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-gray-500 transition hover:text-gray-900">LinkedIn</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-gray-500 transition hover:text-gray-900">Read.cv</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script>
+      const navToggleCheckbox = document.getElementById('nav-toggle')
+      const navToggleLabel = document.getElementById('nav-toggle-label')
+
+      navToggleCheckbox.addEventListener('change', () => {
+        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>
