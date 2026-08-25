@@ -360,22 +360,31 @@
         <div class="border-b border-gray-200">
           <div role="tablist" class="-mb-px flex gap-6">
             <button
+              type="button"
+              id="tab-description"
               role="tab"
               aria-selected="true"
+              aria-controls="description"
               class="border-b-2 border-emerald-700 py-3 text-sm font-medium text-emerald-700"
             >
               Description
             </button>
             <button
+              type="button"
+              id="tab-shipping"
               role="tab"
               aria-selected="false"
+              aria-controls="shipping"
               class="border-b-2 border-transparent py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
             >
               Shipping &amp; returns
             </button>
             <button
+              type="button"
+              id="tab-reviews"
               role="tab"
               aria-selected="false"
+              aria-controls="reviews"
               class="border-b-2 border-transparent py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
             >
               Reviews (126)
@@ -383,7 +392,12 @@
           </div>
         </div>
 
-        <div role="tabpanel" class="mt-6 max-w-2xl text-gray-600">
+        <div
+          id="description"
+          role="tabpanel"
+          aria-labelledby="tab-description"
+          class="mt-6 max-w-2xl text-gray-600"
+        >
           <p>
             The Kestrel uses a single-hub aluminium pole set that pitches in under four minutes,
             even with cold hands. Colour-coded clips and a symmetrical fly mean there's only one way
@@ -397,29 +411,130 @@
             <li><span class="text-gray-500">Season rating</span> &middot; 3-season</li>
           </ul>
         </div>
-      </div>
 
-      <div id="reviews" class="mt-16 max-w-2xl scroll-mt-20">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold text-gray-900">Reviews</h2>
-          <span class="text-sm text-gray-500">4.6 average from 126 reviews</span>
+        <div
+          id="shipping"
+          role="tabpanel"
+          aria-labelledby="tab-shipping"
+          hidden
+          class="mt-6 max-w-2xl text-gray-600"
+        >
+          <p>
+            Ships within 2 business days from our EU and US warehouses. Free returns within 30 days
+            if it hasn't been pitched outside &mdash; unused, tags on, original packaging.
+          </p>
+
+          <ul class="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+            <li><span class="text-gray-500">Delivery</span> &middot; 2&ndash;4 business days</li>
+            <li><span class="text-gray-500">Returns window</span> &middot; 30 days</li>
+            <li><span class="text-gray-500">Warranty</span> &middot; 2 years</li>
+            <li><span class="text-gray-500">Repair kit</span> &middot; Included</li>
+          </ul>
         </div>
 
-        <ul class="mt-6 space-y-4">
-          <li class="rounded-lg border border-gray-200 p-6">
-            <div class="flex items-center justify-between gap-4">
+        <div
+          id="reviews"
+          role="tabpanel"
+          aria-labelledby="tab-reviews"
+          hidden
+          class="mt-6 max-w-2xl scroll-mt-20"
+        >
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-gray-900">Reviews</h2>
+            <span class="text-sm text-gray-500">4.6 average from 126 reviews</span>
+          </div>
+
+          <ul class="mt-6 space-y-4">
+            <li class="rounded-lg border border-gray-200 p-6">
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-0.5 text-amber-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-4 text-gray-200"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
+                    />
+                  </svg>
+                </div>
+
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Verified purchase
+                </span>
+              </div>
+
+              <p class="mt-3 text-sm font-medium text-gray-900">
+                Kept us dry through a week of rain
+              </p>
+              <p class="mt-1 text-sm text-gray-600">
+                Pitched this in a downpour at 6,000ft and stayed dry all night. Poles are
+                colour-coded so it went up in under four minutes even in the wind.
+              </p>
+              <p class="mt-3 text-xs text-gray-500">Freya Lindqvist &middot; 3 weeks ago</p>
+            </li>
+
+            <li class="rounded-lg border border-gray-200 p-6">
               <div class="flex items-center gap-0.5 text-amber-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  class="size-4"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
-                  />
-                </svg>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -464,101 +579,28 @@
                     d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
                   />
                 </svg>
-              </div>
-
-              <span class="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  class="size-3.5"
+                  class="size-4 text-gray-200"
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                    clip-rule="evenodd"
+                    d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
                   />
                 </svg>
-                Verified purchase
-              </span>
-            </div>
+              </div>
 
-            <p class="mt-3 text-sm font-medium text-gray-900">Kept us dry through a week of rain</p>
-            <p class="mt-1 text-sm text-gray-600">
-              Pitched this in a downpour at 6,000ft and stayed dry all night. Poles are colour-coded
-              so it went up in under four minutes even in the wind.
-            </p>
-            <p class="mt-3 text-xs text-gray-500">Freya Lindqvist &middot; 3 weeks ago</p>
-          </li>
-
-          <li class="rounded-lg border border-gray-200 p-6">
-            <div class="flex items-center gap-0.5 text-amber-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="size-4"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="size-4"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="size-4"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="size-4 text-gray-200"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="size-4 text-gray-200"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.62.99-5.8-4.21-4.1 5.82-.85z"
-                />
-              </svg>
-            </div>
-
-            <p class="mt-3 text-sm font-medium text-gray-900">Good pack, straps run narrow</p>
-            <p class="mt-1 text-sm text-gray-600">
-              Compression straps and the hip belt are excellent, but the shoulder straps dug in on
-              longer days. Sizing up helped.
-            </p>
-            <p class="mt-3 text-xs text-gray-500">Owen Baptiste &middot; 2 months ago</p>
-          </li>
-        </ul>
+              <p class="mt-3 text-sm font-medium text-gray-900">Good pack, straps run narrow</p>
+              <p class="mt-1 text-sm text-gray-600">
+                Compression straps and the hip belt are excellent, but the shoulder straps dug in on
+                longer days. Sizing up helped.
+              </p>
+              <p class="mt-3 text-xs text-gray-500">Owen Baptiste &middot; 2 months ago</p>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="mt-16">
@@ -681,6 +723,29 @@
 
       navToggleCheckbox.addEventListener('change', () => {
         navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      })
+
+      const tabs = document.querySelectorAll('[role="tab"]')
+
+      const activateTab = (tab) => {
+        tabs.forEach((otherTab) => {
+          const isSelected = otherTab === tab
+
+          otherTab.setAttribute('aria-selected', String(isSelected))
+          otherTab.classList.toggle('border-emerald-700', isSelected)
+          otherTab.classList.toggle('text-emerald-700', isSelected)
+          otherTab.classList.toggle('border-transparent', !isSelected)
+          otherTab.classList.toggle('text-gray-500', !isSelected)
+          otherTab.classList.toggle('hover:text-gray-700', !isSelected)
+
+          document.getElementById(otherTab.getAttribute('aria-controls')).hidden = !isSelected
+        })
+      }
+
+      tabs.forEach((tab) => tab.addEventListener('click', () => activateTab(tab)))
+
+      document.querySelector('a[href="#reviews"]').addEventListener('click', () => {
+        activateTab(document.getElementById('tab-reviews'))
       })
     </script>
   </body>
