@@ -226,8 +226,7 @@
               id="tab-reply"
               aria-pressed="true"
               aria-controls="TicketComposer"
-              data-mode="reply"
-              class="rounded-t-md px-3 py-1.5 text-xs font-medium data-[mode=note]:text-gray-500 data-[mode=note]:hover:text-gray-700 data-[mode=reply]:border data-[mode=reply]:border-b-0 data-[mode=reply]:border-gray-200 data-[mode=reply]:bg-white data-[mode=reply]:text-gray-900"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium aria-pressed:border aria-pressed:border-b-0 aria-pressed:border-gray-200 aria-pressed:bg-white aria-pressed:text-gray-900 aria-[pressed=false]:text-gray-500 aria-[pressed=false]:hover:text-gray-700"
             >
               Reply
             </button>
@@ -236,8 +235,7 @@
               id="tab-internal-note"
               aria-pressed="false"
               aria-controls="TicketComposer"
-              data-mode="reply"
-              class="rounded-t-md px-3 py-1.5 text-xs font-medium data-[mode=note]:border data-[mode=note]:border-b-0 data-[mode=note]:border-gray-200 data-[mode=note]:bg-white data-[mode=note]:text-gray-900 data-[mode=reply]:text-gray-500 data-[mode=reply]:hover:text-gray-700"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium aria-pressed:border aria-pressed:border-b-0 aria-pressed:border-gray-200 aria-pressed:bg-white aria-pressed:text-gray-900 aria-[pressed=false]:text-gray-500 aria-[pressed=false]:hover:text-gray-700"
             >
               Internal note
             </button>
@@ -373,9 +371,6 @@
       })
 
       const composerTabs = document.querySelectorAll('#tab-reply, #tab-internal-note')
-      const composerModeElements = document.querySelectorAll(
-        '#tab-reply, #tab-internal-note, #ReplyMessage, #ComposerSubmit',
-      )
       const composerLabel = document.getElementById('ComposerLabel')
       const composerTextarea = document.getElementById('ReplyMessage')
       const composerHint = document.getElementById('ComposerHint')
@@ -388,7 +383,8 @@
         composerTabs.forEach((otherTab) =>
           otherTab.setAttribute('aria-pressed', String(otherTab === tab)),
         )
-        composerModeElements.forEach((element) => (element.dataset.mode = mode))
+        composerTextarea.dataset.mode = mode
+        composerSubmit.dataset.mode = mode
 
         composerTextarea.placeholder = isInternalNote ? 'Add an internal note…' : 'Type your reply…'
         composerLabel.textContent = isInternalNote ? 'Internal note' : 'Reply to Priya'

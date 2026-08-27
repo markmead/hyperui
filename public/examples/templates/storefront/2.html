@@ -392,8 +392,7 @@
               role="tab"
               aria-selected="true"
               aria-controls="description"
-              data-selected="true"
-              class="border-b-2 py-3 text-sm font-medium data-[selected=false]:border-transparent data-[selected=false]:text-gray-500 data-[selected=false]:hover:text-gray-700 data-[selected=true]:border-emerald-700 data-[selected=true]:text-emerald-700"
+              class="border-b-2 py-3 text-sm font-medium aria-selected:border-emerald-700 aria-selected:text-emerald-700 aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-500 aria-[selected=false]:hover:text-gray-700"
             >
               Description
             </button>
@@ -403,9 +402,8 @@
               role="tab"
               aria-selected="false"
               aria-controls="shipping"
-              data-selected="false"
               tabindex="-1"
-              class="border-b-2 py-3 text-sm font-medium data-[selected=false]:border-transparent data-[selected=false]:text-gray-500 data-[selected=false]:hover:text-gray-700 data-[selected=true]:border-emerald-700 data-[selected=true]:text-emerald-700"
+              class="border-b-2 py-3 text-sm font-medium aria-selected:border-emerald-700 aria-selected:text-emerald-700 aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-500 aria-[selected=false]:hover:text-gray-700"
             >
               Shipping &amp; returns
             </button>
@@ -415,9 +413,8 @@
               role="tab"
               aria-selected="false"
               aria-controls="reviews"
-              data-selected="false"
               tabindex="-1"
-              class="border-b-2 py-3 text-sm font-medium data-[selected=false]:border-transparent data-[selected=false]:text-gray-500 data-[selected=false]:hover:text-gray-700 data-[selected=true]:border-emerald-700 data-[selected=true]:text-emerald-700"
+              class="border-b-2 py-3 text-sm font-medium aria-selected:border-emerald-700 aria-selected:text-emerald-700 aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-500 aria-[selected=false]:hover:text-gray-700"
             >
               Reviews (126)
             </button>
@@ -764,7 +761,6 @@
           const isSelected = otherTab === tab
 
           otherTab.setAttribute('aria-selected', String(isSelected))
-          otherTab.dataset.selected = String(isSelected)
           otherTab.tabIndex = isSelected ? 0 : -1
 
           document.getElementById(otherTab.getAttribute('aria-controls')).hidden = !isSelected
