@@ -220,36 +220,37 @@
         </div>
 
         <div class="border-t border-gray-200 bg-white p-4 sm:p-6">
-          <div role="tablist" class="flex gap-1">
+          <div class="flex gap-1">
             <button
               type="button"
               id="tab-reply"
-              role="tab"
-              aria-selected="true"
+              aria-pressed="true"
               aria-controls="TicketComposer"
-              class="rounded-t-md border border-b-0 border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-900"
+              data-mode="reply"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium data-[mode=note]:text-gray-500 data-[mode=note]:hover:text-gray-700 data-[mode=reply]:border data-[mode=reply]:border-b-0 data-[mode=reply]:border-gray-200 data-[mode=reply]:bg-white data-[mode=reply]:text-gray-900"
             >
               Reply
             </button>
             <button
               type="button"
               id="tab-internal-note"
-              role="tab"
-              aria-selected="false"
+              aria-pressed="false"
               aria-controls="TicketComposer"
-              class="rounded-t-md px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-gray-700"
+              data-mode="reply"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium data-[mode=note]:border data-[mode=note]:border-b-0 data-[mode=note]:border-gray-200 data-[mode=note]:bg-white data-[mode=note]:text-gray-900 data-[mode=reply]:text-gray-500 data-[mode=reply]:hover:text-gray-700"
             >
               Internal note
             </button>
           </div>
 
           <div id="TicketComposer">
-            <label for="ReplyMessage" class="sr-only">Reply to Priya</label>
+            <label for="ReplyMessage" id="ComposerLabel" class="sr-only">Reply to Priya</label>
             <textarea
               id="ReplyMessage"
               rows="3"
               placeholder="Type your reply&hellip;"
-              class="w-full resize-none rounded-tr-md rounded-b-md border-gray-200 text-sm shadow-xs focus:border-indigo-600 focus:ring-indigo-600"
+              data-mode="reply"
+              class="w-full resize-none rounded-tr-md rounded-b-md text-sm shadow-xs data-[mode=note]:border-amber-200 data-[mode=note]:bg-amber-50 data-[mode=note]:focus:border-amber-500 data-[mode=note]:focus:ring-amber-500 data-[mode=reply]:border-gray-200 data-[mode=reply]:focus:border-indigo-600 data-[mode=reply]:focus:ring-indigo-600"
             ></textarea>
 
             <div class="mt-3 flex items-center justify-end gap-3">
@@ -258,7 +259,8 @@
               <button
                 type="button"
                 id="ComposerSubmit"
-                class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-700"
+                data-mode="reply"
+                class="rounded-md px-4 py-2 text-sm font-medium text-white transition data-[mode=note]:bg-amber-600 data-[mode=note]:hover:bg-amber-700 data-[mode=reply]:bg-indigo-600 data-[mode=reply]:hover:bg-indigo-700"
               >
                 Send reply
               </button>
@@ -371,44 +373,31 @@
       })
 
       const composerTabs = document.querySelectorAll('#tab-reply, #tab-internal-note')
+      const composerModeElements = document.querySelectorAll(
+        '#tab-reply, #tab-internal-note, #ReplyMessage, #ComposerSubmit',
+      )
+      const composerLabel = document.getElementById('ComposerLabel')
       const composerTextarea = document.getElementById('ReplyMessage')
       const composerHint = document.getElementById('ComposerHint')
       const composerSubmit = document.getElementById('ComposerSubmit')
 
       const activateComposerTab = (tab) => {
-        const isInternalNote = tab.id === 'tab-internal-note'
+        const mode = tab.id === 'tab-internal-note' ? 'note' : 'reply'
+        const isInternalNote = mode === 'note'
 
-        composerTabs.forEach((otherTab) => {
-          const isSelected = otherTab === tab
-
-          otherTab.setAttribute('aria-selected', String(isSelected))
-          otherTab.classList.toggle('border', isSelected)
-          otherTab.classList.toggle('border-b-0', isSelected)
-          otherTab.classList.toggle('border-gray-200', isSelected)
-          otherTab.classList.toggle('bg-white', isSelected)
-          otherTab.classList.toggle('text-gray-900', isSelected)
-          otherTab.classList.toggle('text-gray-500', !isSelected)
-          otherTab.classList.toggle('hover:text-gray-700', !isSelected)
-        })
+        composerTabs.forEach((otherTab) =>
+          otherTab.setAttribute('aria-pressed', String(otherTab === tab)),
+        )
+        composerModeElements.forEach((element) => (element.dataset.mode = mode))
 
         composerTextarea.placeholder = isInternalNote ? 'Add an internal note…' : 'Type your reply…'
-        composerTextarea.classList.toggle('bg-amber-50', isInternalNote)
-        composerTextarea.classList.toggle('border-amber-200', isInternalNote)
-        composerTextarea.classList.toggle('focus:border-amber-500', isInternalNote)
-        composerTextarea.classList.toggle('focus:ring-amber-500', isInternalNote)
-        composerTextarea.classList.toggle('border-gray-200', !isInternalNote)
-        composerTextarea.classList.toggle('focus:border-indigo-600', !isInternalNote)
-        composerTextarea.classList.toggle('focus:ring-indigo-600', !isInternalNote)
+        composerLabel.textContent = isInternalNote ? 'Internal note' : 'Reply to Priya'
 
         composerHint.textContent = isInternalNote
           ? 'Only visible to your team, not sent to Priya.'
           : 'Priya will see this by email.'
 
         composerSubmit.textContent = isInternalNote ? 'Add note' : 'Send reply'
-        composerSubmit.classList.toggle('bg-amber-600', isInternalNote)
-        composerSubmit.classList.toggle('hover:bg-amber-700', isInternalNote)
-        composerSubmit.classList.toggle('bg-indigo-600', !isInternalNote)
-        composerSubmit.classList.toggle('hover:bg-indigo-700', !isInternalNote)
       }
 
       composerTabs.forEach((tab) => tab.addEventListener('click', () => activateComposerTab(tab)))

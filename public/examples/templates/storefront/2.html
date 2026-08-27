@@ -392,7 +392,8 @@
               role="tab"
               aria-selected="true"
               aria-controls="description"
-              class="border-b-2 border-emerald-700 py-3 text-sm font-medium text-emerald-700"
+              data-selected="true"
+              class="border-b-2 py-3 text-sm font-medium data-[selected=false]:border-transparent data-[selected=false]:text-gray-500 data-[selected=false]:hover:text-gray-700 data-[selected=true]:border-emerald-700 data-[selected=true]:text-emerald-700"
             >
               Description
             </button>
@@ -402,7 +403,9 @@
               role="tab"
               aria-selected="false"
               aria-controls="shipping"
-              class="border-b-2 border-transparent py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
+              data-selected="false"
+              tabindex="-1"
+              class="border-b-2 py-3 text-sm font-medium data-[selected=false]:border-transparent data-[selected=false]:text-gray-500 data-[selected=false]:hover:text-gray-700 data-[selected=true]:border-emerald-700 data-[selected=true]:text-emerald-700"
             >
               Shipping &amp; returns
             </button>
@@ -412,7 +415,9 @@
               role="tab"
               aria-selected="false"
               aria-controls="reviews"
-              class="border-b-2 border-transparent py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
+              data-selected="false"
+              tabindex="-1"
+              class="border-b-2 py-3 text-sm font-medium data-[selected=false]:border-transparent data-[selected=false]:text-gray-500 data-[selected=false]:hover:text-gray-700 data-[selected=true]:border-emerald-700 data-[selected=true]:text-emerald-700"
             >
               Reviews (126)
             </button>
@@ -759,17 +764,34 @@
           const isSelected = otherTab === tab
 
           otherTab.setAttribute('aria-selected', String(isSelected))
-          otherTab.classList.toggle('border-emerald-700', isSelected)
-          otherTab.classList.toggle('text-emerald-700', isSelected)
-          otherTab.classList.toggle('border-transparent', !isSelected)
-          otherTab.classList.toggle('text-gray-500', !isSelected)
-          otherTab.classList.toggle('hover:text-gray-700', !isSelected)
+          otherTab.dataset.selected = String(isSelected)
+          otherTab.tabIndex = isSelected ? 0 : -1
 
           document.getElementById(otherTab.getAttribute('aria-controls')).hidden = !isSelected
         })
       }
 
-      tabs.forEach((tab) => tab.addEventListener('click', () => activateTab(tab)))
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          activateTab(tab)
+          tab.focus()
+        })
+
+        tab.addEventListener('keydown', (event) => {
+          const targetIndex = {
+            ArrowLeft: (index - 1 + tabs.length) % tabs.length,
+            ArrowRight: (index + 1) % tabs.length,
+            Home: 0,
+            End: tabs.length - 1,
+          }[event.key]
+
+          if (targetIndex === undefined) return
+
+          event.preventDefault()
+          activateTab(tabs[targetIndex])
+          tabs[targetIndex].focus()
+        })
+      })
 
       document.querySelector('a[href="#reviews"]').addEventListener('click', () => {
         activateTab(document.getElementById('tab-reviews'))
