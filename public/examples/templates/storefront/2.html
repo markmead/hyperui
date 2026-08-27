@@ -161,7 +161,7 @@
                 aria-pressed="true"
                 data-gallery-image="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1200"
                 data-gallery-alt="Kestrel 2P Ultralight tent pitched on a ridgeline at dawn"
-                class="overflow-hidden rounded-md ring-2 ring-emerald-700 ring-offset-2"
+                class="overflow-hidden rounded-md aria-pressed:ring-2 aria-pressed:ring-emerald-700 aria-pressed:ring-offset-2"
               >
                 <span class="sr-only">Show ridgeline photo</span>
                 <img
@@ -177,7 +177,7 @@
                 aria-pressed="false"
                 data-gallery-image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=1200"
                 data-gallery-alt="Kestrel 2P Ultralight interior showing double-wall construction"
-                class="overflow-hidden rounded-md"
+                class="overflow-hidden rounded-md aria-pressed:ring-2 aria-pressed:ring-emerald-700 aria-pressed:ring-offset-2"
               >
                 <span class="sr-only">Show interior photo</span>
                 <img
@@ -193,7 +193,7 @@
                 aria-pressed="false"
                 data-gallery-image="https://images.unsplash.com/photo-1445308394109-4ec2920981b1?auto=format&fit=crop&q=80&w=1200"
                 data-gallery-alt="Kestrel 2P Ultralight packed down into its stuff sack"
-                class="overflow-hidden rounded-md"
+                class="overflow-hidden rounded-md aria-pressed:ring-2 aria-pressed:ring-emerald-700 aria-pressed:ring-offset-2"
               >
                 <span class="sr-only">Show packed photo</span>
                 <img
@@ -209,7 +209,7 @@
                 aria-pressed="false"
                 data-gallery-image="https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&fit=crop&q=80&w=1200"
                 data-gallery-alt="Kestrel 2P Ultralight with the storm fly pitched in wind"
-                class="overflow-hidden rounded-md"
+                class="overflow-hidden rounded-md aria-pressed:ring-2 aria-pressed:ring-emerald-700 aria-pressed:ring-offset-2"
               >
                 <span class="sr-only">Show storm-fly photo</span>
                 <img
@@ -799,12 +799,7 @@
       galleryButtons.forEach((button) => {
         button.addEventListener('click', () => {
           galleryButtons.forEach((otherButton) => {
-            const isSelected = otherButton === button
-
-            otherButton.setAttribute('aria-pressed', String(isSelected))
-            otherButton.classList.toggle('ring-2', isSelected)
-            otherButton.classList.toggle('ring-emerald-700', isSelected)
-            otherButton.classList.toggle('ring-offset-2', isSelected)
+            otherButton.setAttribute('aria-pressed', String(otherButton === button))
           })
 
           galleryImage.src = button.dataset.galleryImage
