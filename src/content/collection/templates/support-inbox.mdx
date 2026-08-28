@@ -1,0 +1,30 @@
+---
+title: Support Inbox
+description: A starting-point support helpdesk example built with Tailwind CSS, combining a ticket queue with filters and a ticket detail view with a conversation timeline and customer panel. Not a production-ready template.
+category: templates
+slug: support-inbox
+wrapper: h-[800px]
+terms:
+  - helpdesk
+  - support
+  - tickets
+  - full page
+  - application
+components:
+  - { title: 'Inbox' }
+  - { title: 'Ticket' }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
+
+<TemplateDisclaimer />
