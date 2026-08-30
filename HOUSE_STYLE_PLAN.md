@@ -5,18 +5,30 @@ every collection has been migrated and there's nothing left to resume.
 
 ## Status — paused here, resume by continuing Phase 2
 
-Branch: `feature/house-style-dark-mode-reset`, 2 commits pushed to origin:
+Branch: `feature/house-style-dark-mode-reset`, merged up to date with `main`,
+plus:
 
 - `854b51c5` — house-style dark-mode rules + single-flag schema/layout rewiring + `badges` pilot
 - `54f55c4d` — explanatory note on the browser tool's pre-loaded rules
+- `breadcrumbs` migrated through Phase 2 → Phase 3 (see below)
 
-Done: Phase 1, the schema/layout rewiring, and `badges` as the fully-migrated
-pilot collection (see sections below for exactly what that entailed).
+Done: Phase 1, the schema/layout rewiring, and `badges` and `breadcrumbs` as
+fully-migrated collections (see sections below for exactly what that
+entailed).
+
+`breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
+`border-gray-300` for the group wrapper, but grouped interactive elements
+elsewhere (`button-groups`, `pagination`) use `border-gray-200` — changed to
+match. Everything else already conformed. Regenerating dark variants via
+`pnpm run generate:dark-variants` also surfaces gaps in *other*,
+not-yet-migrated collections (it scans every category) — those drafts were
+discarded each time, not committed; only the collection being actively
+migrated gets its dark variants generated and kept.
 
 Next action: pick the next `application` collection (alphabetical after
-`badges` is fine) and run it through Phase 2 → Phase 3 the same way `badges`
-was done. No open design questions remain — the house style table below and
-the collection-exemption list are settled.
+`breadcrumbs` is fine) and run it through Phase 2 → Phase 3 the same way
+`badges` and `breadcrumbs` were done. No open design questions remain — the
+house style table below and the collection-exemption list are settled.
 
 **Collection exemptions are final:** only `grids` and `media` skip dark mode
 (`dark: false`), because they have no real themeable surface — `grids` is
