@@ -27,7 +27,8 @@ const {
   dark: darkModeSupported,
 } = Astro.props
 
-const pageTitle = `Free Tailwind CSS ${title}`
+const pageTitle =
+  category === 'templates' ? `Free Tailwind CSS ${title} Template` : `Free Tailwind CSS ${title}`
 
 const formattedComponents: ComponentPreview[] = components
   .map((component, index) => {
@@ -159,7 +160,7 @@ const componentPageSchema = {
         ))
       }
 
-      <RelatedComponents {slug} {terms} {category} />
+      {category !== 'templates' && <RelatedComponents {slug} {terms} {category} />}
     </div>
   </main>
 </BaseLayout>

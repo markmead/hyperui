@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body>
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
+
+    <header class="sticky top-0 z-40 border-b border-gray-100 bg-white/90 backdrop-blur">
+      <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+        <a href="#" class="text-sm font-semibold tracking-tight text-gray-900">
+          Guillermo de la Cruz
+        </a>
+
+        <nav aria-label="Global" class="hidden md:block">
+          <ul class="flex items-center gap-8 text-sm text-gray-600">
+            <li><a href="#work" class="transition hover:text-gray-900">Work</a></li>
+            <li><a href="#about" class="transition hover:text-gray-900">About</a></li>
+            <li><a href="#contact" class="transition hover:text-gray-900">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="#contact"
+            class="hidden rounded-md bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-700 sm:block"
+          >
+            Book a call
+          </a>
+
+          <label
+            for="nav-toggle"
+            id="nav-toggle-label"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            class="cursor-pointer rounded-md p-2 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-violet-600 peer-focus-visible:ring-offset-2 hover:bg-gray-100 md:hidden"
+          >
+            <span class="sr-only">Toggle menu</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </label>
+        </div>
+      </div>
+
+      <nav
+        id="mobile-nav"
+        aria-label="Global Mobile"
+        class="hidden border-t border-gray-100 bg-white peer-checked:block md:hidden"
+      >
+        <ul class="space-y-1 px-4 py-4 text-sm">
+          <li>
+            <a href="#work" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+              >Work</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <article class="mx-auto max-w-3xl px-4 pt-12 pb-20 sm:px-6 sm:pt-16">
+        <a
+          href="#"
+          class="inline-flex items-center gap-1 text-sm font-medium text-gray-600 transition hover:text-gray-900"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 rtl:rotate-180"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+            />
+          </svg>
+          Back to work
+        </a>
+
+        <p class="mt-6 text-xs font-medium tracking-wide text-violet-600 uppercase">
+          Fieldnote &middot; Product design &middot; 2025
+        </p>
+
+        <h1 class="mt-3 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+          Redesigning the editor that field engineers actually trust
+        </h1>
+
+        <p class="mt-4 text-lg text-pretty text-gray-600">
+          Cut average report time from 11 minutes to 4 by rebuilding the note editor around
+          offline-first sync, not adding features on top of it.
+        </p>
+
+        <dl class="mt-8 flex flex-wrap gap-x-8 gap-y-4 border-y border-gray-200 py-6 text-sm">
+          <div>
+            <dt class="text-gray-500">Role</dt>
+            <dd class="mt-1 font-medium text-gray-900">Lead product designer</dd>
+          </div>
+
+          <div>
+            <dt class="text-gray-500">Timeline</dt>
+            <dd class="mt-1 font-medium text-gray-900">14 weeks</dd>
+          </div>
+
+          <div>
+            <dt class="text-gray-500">Team</dt>
+            <dd class="mt-1 font-medium text-gray-900">2 engineers, 1 PM</dd>
+          </div>
+
+          <div>
+            <dt class="text-gray-500">Reading time</dt>
+            <dd class="mt-1 font-medium text-gray-900">6 min</dd>
+          </div>
+        </dl>
+
+        <img
+          alt="Field engineer using a tablet on site to file a report"
+          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1400"
+          class="mt-10 aspect-video w-full rounded-lg object-cover"
+        />
+
+        <div class="mt-10 space-y-6 text-gray-600">
+          <h2 class="text-xl font-semibold text-gray-900">The problem</h2>
+
+          <p>
+            Fieldnote's engineers file inspection reports from sites with patchy signal &mdash; the
+            bottom of a wind turbine, a basement plant room, a truck cab between stops. The existing
+            editor synced on every keystroke, so a dropped connection didn't just pause saving, it
+            silently discarded it. Support tickets about "where did my report go" outnumbered every
+            other category combined.
+          </p>
+
+          <h2 class="text-xl font-semibold text-gray-900">What we tried first</h2>
+
+          <p>
+            The obvious fix was a longer retry queue and a "saving&hellip;" indicator that stayed
+            honest about connection state. It shipped in a week and made the problem worse:
+            engineers now watched a spinner that never resolved, then closed the tab anyway. The
+            editor needed to stop treating the network as a dependency, not get better at
+            apologising for it.
+          </p>
+
+          <h2 class="text-xl font-semibold text-gray-900">The rebuild</h2>
+
+          <p>
+            Every report now writes to local storage first and syncs in the background whenever a
+            connection exists, with the UI never blocking on it. Conflicts &mdash; two engineers
+            editing the same report after a signal gap &mdash; resolve with a field-level merge and
+            a manual review only when the same field changed on both sides, which turned out to be
+            rare enough to not need solving upfront.
+          </p>
+        </div>
+
+        <figure class="mt-10 border-l-2 border-violet-600 py-1 pl-6">
+          <blockquote>
+            <p class="text-lg font-medium text-pretty text-gray-900">
+              Nobody on the team thinks about the editor anymore, which is exactly the point. It
+              just works, even out of signal.
+            </p>
+          </blockquote>
+
+          <figcaption class="mt-3 text-sm text-gray-500">
+            Marcus Boyle, Engineering Lead at Fieldnote
+          </figcaption>
+        </figure>
+
+        <div class="mt-10 space-y-6 text-gray-600">
+          <h2 class="text-xl font-semibold text-gray-900">The result</h2>
+
+          <p>
+            Three months after launch, average report time had dropped from 11 minutes to 4, and
+            adoption in the field crews that had quietly gone back to paper recovered fully. No
+            report has been lost to a dropped connection since.
+          </p>
+        </div>
+
+        <dl
+          class="mt-10 grid grid-cols-1 gap-6 rounded-lg bg-gray-50 p-8 text-center sm:grid-cols-3"
+        >
+          <div>
+            <dd class="text-3xl font-semibold text-gray-900">4 min</dd>
+            <dt class="mt-1 text-sm text-gray-500">Average report time, down from 11</dt>
+          </div>
+
+          <div>
+            <dd class="text-3xl font-semibold text-gray-900">92%</dd>
+            <dt class="mt-1 text-sm text-gray-500">Field adoption within a quarter</dt>
+          </div>
+
+          <div>
+            <dd class="text-3xl font-semibold text-gray-900">0</dd>
+            <dt class="mt-1 text-sm text-gray-500">
+              Reports lost to dropped connections since launch
+            </dt>
+          </div>
+        </dl>
+
+        <div class="mt-16 border-t border-gray-200 pt-10">
+          <p class="text-sm font-medium text-violet-600">Next up</p>
+
+          <a href="#" class="group mt-2 flex items-center justify-between gap-4">
+            <h2 class="text-xl font-semibold text-gray-900 group-hover:text-violet-600">
+              Taking a team dashboard from spreadsheet to shippable
+            </h2>
+
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5 shrink-0 text-gray-400 transition group-hover:translate-x-1 group-hover:text-violet-600 rtl:rotate-180 rtl:group-hover:-translate-x-1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="border-t border-gray-100">
+      <div
+        class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-8 sm:flex-row sm:justify-between sm:px-6"
+      >
+        <p class="text-sm text-gray-500">&copy; 2026 Guillermo de la Cruz. Lisbon, Portugal.</p>
+
+        <ul class="flex items-center gap-5">
+          <li>
+            <a href="#" class="text-sm text-gray-500 transition hover:text-gray-900">Dribbble</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-gray-500 transition hover:text-gray-900">LinkedIn</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-gray-500 transition hover:text-gray-900">Read.cv</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script>
+      const navToggleCheckbox = document.getElementById('nav-toggle')
+      const navToggleLabel = document.getElementById('nav-toggle-label')
+
+      navToggleCheckbox.addEventListener('change', () => {
+        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      })
+    </script>
+  </body>
+</html>

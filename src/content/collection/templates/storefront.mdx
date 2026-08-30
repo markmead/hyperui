@@ -1,0 +1,29 @@
+---
+title: Storefront
+description: A starting-point eCommerce example built with Tailwind CSS, combining a shop listing with filters and a product detail page with gallery, variants, and reviews. Not a production-ready template.
+category: templates
+slug: storefront
+wrapper: h-[800px]
+terms:
+  - ecommerce
+  - shop
+  - full page
+  - product
+components:
+  - { title: 'Collection' }
+  - { title: 'Product' }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
+
+<TemplateDisclaimer />
