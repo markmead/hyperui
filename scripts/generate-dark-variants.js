@@ -14,6 +14,11 @@ const examplesRootPath = path.join(repositoryRootPath, 'public/examples')
 
 const componentCategories = ['application', 'marketing', 'neobrutalism', 'templates']
 
+const cliCategoryFilter = process.argv
+  .find((argValue) => argValue.startsWith('--category='))
+  ?.split('=')[1]
+const cliSlugFilter = process.argv.find((argValue) => argValue.startsWith('--slug='))?.split('=')[1]
+
 function findComponentSlugFolders(categoryPath) {
   return fs
     .readdirSync(categoryPath)
@@ -71,6 +76,10 @@ function findMissingDarkVariants() {
   const missingDarkVariants = []
 
   for (const categoryName of componentCategories) {
+    if (cliCategoryFilter && categoryName !== cliCategoryFilter) {
+      continue
+    }
+
     const categoryPath = path.join(examplesRootPath, categoryName)
 
     if (!fs.existsSync(categoryPath)) {
@@ -78,6 +87,10 @@ function findMissingDarkVariants() {
     }
 
     for (const componentSlug of findComponentSlugFolders(categoryPath)) {
+      if (cliSlugFilter && componentSlug !== cliSlugFilter) {
+        continue
+      }
+
       if (!isDarkModeSupportedForCollection(categoryName, componentSlug)) {
         continue
       }
