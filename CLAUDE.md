@@ -32,7 +32,7 @@ The three categories map to Astro content collections defined in `src/content.co
 
 The actual component markup lives in `public/examples/{category}/{slug}/{n}.html` (light) and `public/examples/{category}/{slug}/{n}-dark.html` (dark). These are standalone HTML pages loaded in iframes by the `<component-preview>` custom element.
 
-Dark variants can be generated with `pnpm run generate:dark-variants`, which bulk-generates draft `-dark.html` files (using default shade/color mappings) for every component missing one — review each result and add `dark: true` to its MDX entry by hand. For a single component that needs hand-tuning, use the browser-based dark mode generator tool at `/tools/dark-mode-generator` instead.
+Dark variants can be generated with `pnpm run generate:dark-variants`, which bulk-generates draft `-dark.html` files (using default shade/color mappings) for every component missing one — review each result and add `dark: true` to its MDX entry by hand. Pass `--category=<name>` and/or `--slug=<name>` to scope a run to one collection instead of scanning every category (e.g. `pnpm run generate:dark-variants --category=application --slug=badges`). For a single component that needs hand-tuning, use the browser-based dark mode generator tool at `/tools/dark-mode-generator` instead.
 
 ### Preview System
 
