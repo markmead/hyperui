@@ -83,6 +83,25 @@ gradient `to-gray-300`) for the divider line, but the house style table
 lists dividers under `border-gray-200` (default), not `-300`
 (inputs/interactive outlines only) — changed to `bg-gray-200`/`to-gray-200`.
 
+**Another Phase 3 gotcha, found after the fact on `breadcrumbs`'s "Grouped
+with chevron divider" variant:** the engine's generic `bg-white →
+dark:bg-black` mapping is the theoretically-consistent shade inversion, but
+it's a poor *practical* choice for any component with its own `bg-white`
+card/panel surface (as opposed to a plain text/link component like the
+other `breadcrumbs` variants) — `black` and the preview iframe's own
+`bg-gray-900` wrapper are perceptually almost indistinguishable, so the
+card nearly disappears against the page it's previewed on. Manually check
+the regenerated dark output for any component that has its own `bg-white`
+container: prefer `dark:bg-gray-800` for the card (visibly *lighter* than
+the `gray-900` page, an "elevated" card) and, if the component nests a
+highlighted/recessed sub-region inside that card (e.g. a "current page"
+tab), give that sub-region `dark:bg-gray-900` instead of matching the
+engine's shade-mapped output — one step *darker* than the card, preserving
+the same light-mode relationship (`bg-gray-100` inside `bg-white`) just
+inverted, rather than the flat engine output which used the same
+`dark:bg-gray-800` for both card and sub-region and lost that distinction
+entirely.
+
 Next action: pick the next `application` collection (alphabetical after
 `dividers`, skipping `charts` — `dropdown` is next) and run it through
 Phase 2 → Phase 3 the same way the collections above were done,
