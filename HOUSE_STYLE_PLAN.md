@@ -14,10 +14,12 @@ plus:
 - `button-groups` migrated through Phase 2 → Phase 3 (see below)
 - `checkboxes` migrated through Phase 2 → Phase 3 (see below)
 - `details-list` migrated through Phase 2 → Phase 3 (see below)
+- `dividers` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
-`button-groups`, `checkboxes`, and `details-list` as fully-migrated
-collections (see sections below for exactly what that entailed).
+`button-groups`, `checkboxes`, `details-list`, and `dividers` as
+fully-migrated collections (see sections below for exactly what that
+entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -74,8 +76,13 @@ dark-mode gotcha — its only regeneration change was tightening
 `dark:text-white` to `dark:text-gray-50` (the engine's standard shade-map
 inversion for `text-gray-900`), consistent with the other migrations.
 
+`dividers` needed one Phase 2 fix: all six variants used `bg-gray-300` (and
+gradient `to-gray-300`) for the divider line, but the house style table
+lists dividers under `border-gray-200` (default), not `-300`
+(inputs/interactive outlines only) — changed to `bg-gray-200`/`to-gray-200`.
+
 Next action: pick the next `application` collection (alphabetical after
-`details-list`, skipping `charts` — `dividers` is next) and run it through
+`dividers`, skipping `charts` — `dropdown` is next) and run it through
 Phase 2 → Phase 3 the same way the collections above were done,
 remembering the forms-plugin gotcha above for any remaining form-control
 collections. No open design questions remain for the normal pipeline — the
