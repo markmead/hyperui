@@ -11,24 +11,48 @@ plus:
 - `854b51c5` — house-style dark-mode rules + single-flag schema/layout rewiring + `badges` pilot
 - `54f55c4d` — explanatory note on the browser tool's pre-loaded rules
 - `breadcrumbs` migrated through Phase 2 → Phase 3 (see below)
+- `button-groups` migrated through Phase 2 → Phase 3 (see below)
 
-Done: Phase 1, the schema/layout rewiring, and `badges` and `breadcrumbs` as
-fully-migrated collections (see sections below for exactly what that
-entailed).
+Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`, and
+`button-groups` as fully-migrated collections (see sections below for
+exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
 elsewhere (`button-groups`, `pagination`) use `border-gray-200` — changed to
-match. Everything else already conformed. Regenerating dark variants via
-`pnpm run generate:dark-variants` also surfaces gaps in *other*,
-not-yet-migrated collections (it scans every category) — those drafts were
-discarded each time, not committed; only the collection being actively
-migrated gets its dark variants generated and kept.
+match. Everything else already conformed.
+
+`button-groups` needed one Phase 2 fix: all five variants used
+`focus:ring-blue-500`, a shade found nowhere else in the codebase (not the
+Action color, not the documented non-action-control ring color) — changed
+to `focus:ring-gray-900` per the house style table.
+
+Regenerating dark variants via `pnpm run generate:dark-variants` also
+surfaces gaps in *other*, not-yet-migrated collections (it scans every
+category) — those drafts were discarded each time, not committed; only the
+collection being actively migrated gets its dark variants generated and
+kept.
+
+**`charts` — skipped, needs a dedicated pass, do not run the normal Phase
+2 → Phase 3 process on it.** Its dark variants pair Tailwind classes with
+hand-picked hex colors inside inline Chart.js `<script>` blocks (line
+color, gridlines, tick colors) that the shared dark-mode engine cannot
+touch — it only transforms HTML `class` attributes. The 11 existing dark
+variants are already hand-tuned and working, just on an older convention
+(`dark:bg-gray-900` cards, `dark:text-white` headings) that predates the
+engine's current defaults (`dark:bg-black`, `dark:text-gray-50`). Deleting
+and regenerating them the normal way would silently break every chart in
+dark mode (same light-mode hex colors copied straight into the dark file,
+illegible against a dark background) — the fix has to be by hand, chart
+by chart, decided in its own session. Skip past it in the alphabetical
+order for now.
 
 Next action: pick the next `application` collection (alphabetical after
-`breadcrumbs` is fine) and run it through Phase 2 → Phase 3 the same way
-`badges` and `breadcrumbs` were done. No open design questions remain — the
-house style table below and the collection-exemption list are settled.
+`charts`, skipping `charts` itself — `checkboxes` is next) and run it
+through Phase 2 → Phase 3 the same way `badges`, `breadcrumbs`, and
+`button-groups` were done. No open design questions remain for the normal
+pipeline — the house style table below and the collection-exemption list
+are settled.
 
 **Collection exemptions are final:** only `grids` and `media` skip dark mode
 (`dark: false`), because they have no real themeable surface — `grids` is
