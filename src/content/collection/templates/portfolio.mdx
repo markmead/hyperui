@@ -1,0 +1,32 @@
+---
+title: Portfolio
+description: A starting-point portfolio page example built with Tailwind CSS, combining a header, hero, case-study rows, about section, testimonial, and contact CTA, plus an individual case-study page for writing up one project in full. Not a production-ready template.
+category: templates
+slug: portfolio
+wrapper: h-[800px]
+terms:
+  - portfolio
+  - full page
+  - personal
+  - freelance
+  - case study
+  - blog
+  - article
+components:
+  - { title: 'Home' }
+  - { title: 'Case study' }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
+
+<TemplateDisclaimer />

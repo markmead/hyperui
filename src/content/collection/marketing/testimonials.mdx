@@ -1,0 +1,26 @@
+---
+title: Testimonials
+description: Testimonial and customer review components built with Tailwind CSS. Pull quotes, quote grids, and star-rated reviews for landing pages, about pages, and product pages.
+category: marketing
+slug: testimonials
+terms:
+  - quote
+  - review
+  - rating
+  - social proof
+components:
+  - { title: 'Single quote, centered' }
+  - { title: 'Grid of quotes, 3-up' }
+  - { title: 'Reviews with star rating' }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>

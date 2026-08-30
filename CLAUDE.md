@@ -55,3 +55,7 @@ Dark variants can be generated with `pnpm run generate:dark-variants`, which bul
 ```
 <Feature|Bugfix|Update|Epic> - Description in sentence case
 ```
+
+## Git Workflow
+
+When on a branch other than `main`, always push to the current branch (`git push origin HEAD:<current-branch-name>` or equivalent), unless a new branch is explicitly requested. Do not `git checkout -b <name>` a local branch whose name differs from the remote branch it's meant to track (e.g. dropping a `claude/` prefix) — a plain `git push -u origin <name>` in that situation creates a new, unrelated remote branch instead of updating the intended one.

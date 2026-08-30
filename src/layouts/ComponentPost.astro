@@ -30,7 +30,8 @@ const {
 const darkCount = components.filter(({ dark }) => !!dark).length
 const totalCount = components.length
 
-const pageTitle = `Free Tailwind CSS ${title}`
+const pageTitle =
+  category === 'templates' ? `Free Tailwind CSS ${title} Template` : `Free Tailwind CSS ${title}`
 
 const formattedComponents: ComponentPreview[] = components
   .map((component, index) => {
@@ -180,7 +181,7 @@ const componentPageSchema = {
         ))
       }
 
-      <RelatedComponents {slug} {terms} {category} />
+      {category !== 'templates' && <RelatedComponents {slug} {terms} {category} />}
     </div>
   </main>
 </BaseLayout>
