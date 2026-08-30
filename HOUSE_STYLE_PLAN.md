@@ -13,10 +13,11 @@ plus:
 - `breadcrumbs` migrated through Phase 2 → Phase 3 (see below)
 - `button-groups` migrated through Phase 2 → Phase 3 (see below)
 - `checkboxes` migrated through Phase 2 → Phase 3 (see below)
+- `details-list` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
-`button-groups`, and `checkboxes` as fully-migrated collections (see
-sections below for exactly what that entailed).
+`button-groups`, `checkboxes`, and `details-list` as fully-migrated
+collections (see sections below for exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -68,9 +69,14 @@ control chrome; keep using that pairing rather than inventing a new one,
 since these controls aren't cards/pages the `bg-white → dark:bg-black`
 house-style surface rule was written for.
 
+`details-list` needed no Phase 2 fix (already conformed) and no manual
+dark-mode gotcha — its only regeneration change was tightening
+`dark:text-white` to `dark:text-gray-50` (the engine's standard shade-map
+inversion for `text-gray-900`), consistent with the other migrations.
+
 Next action: pick the next `application` collection (alphabetical after
-`checkboxes`, skipping `charts` — `details-list` is next) and run it
-through Phase 2 → Phase 3 the same way the collections above were done,
+`details-list`, skipping `charts` — `dividers` is next) and run it through
+Phase 2 → Phase 3 the same way the collections above were done,
 remembering the forms-plugin gotcha above for any remaining form-control
 collections. No open design questions remain for the normal pipeline — the
 house style table below and the collection-exemption list
