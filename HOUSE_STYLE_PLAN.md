@@ -12,10 +12,11 @@ plus:
 - `54f55c4d` — explanatory note on the browser tool's pre-loaded rules
 - `breadcrumbs` migrated through Phase 2 → Phase 3 (see below)
 - `button-groups` migrated through Phase 2 → Phase 3 (see below)
+- `checkboxes` migrated through Phase 2 → Phase 3 (see below)
 
-Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`, and
-`button-groups` as fully-migrated collections (see sections below for
-exactly what that entailed).
+Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
+`button-groups`, and `checkboxes` as fully-migrated collections (see
+sections below for exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -47,11 +48,32 @@ illegible against a dark background) — the fix has to be by hand, chart
 by chart, decided in its own session. Skip past it in the alphabetical
 order for now.
 
+`checkboxes` needed no Phase 2 fix (already conformed) but exposed a real
+gap in Phase 3's regenerate step, applicable to every `@tailwindcss/forms`
+control (checkboxes, radio-groups, inputs, range-inputs, selects,
+quantity-inputs, textareas, toggles): the plugin bakes
+`background-color: #fff` and `--tw-ring-offset-color: #fff` into its own
+base CSS for `[type=checkbox]`/`[type=radio]` etc., so light-mode HTML
+never states a `bg-white` or `ring-offset-white` *class* for these
+controls. The dark-mode engine only transforms classes present in the
+light file, so it silently drops the dark background/ring-offset entirely
+— regenerating leaves the control's own fill/ring-offset plugin-default
+white even on a dark page. **After regenerating dark variants for any
+`@tailwindcss/forms` collection, manually check whether the previous
+hand-tuned dark file had a `dark:bg-*`/`dark:ring-offset-*` on the control
+itself with no light-mode counterpart, and restore it by hand if so** —
+the sitewide convention already in use (`inputs`, `radio-groups`, still
+unmigrated) is `dark:bg-gray-900` / `dark:ring-offset-gray-900` for form
+control chrome; keep using that pairing rather than inventing a new one,
+since these controls aren't cards/pages the `bg-white → dark:bg-black`
+house-style surface rule was written for.
+
 Next action: pick the next `application` collection (alphabetical after
-`charts`, skipping `charts` itself — `checkboxes` is next) and run it
-through Phase 2 → Phase 3 the same way `badges`, `breadcrumbs`, and
-`button-groups` were done. No open design questions remain for the normal
-pipeline — the house style table below and the collection-exemption list
+`checkboxes`, skipping `charts` — `details-list` is next) and run it
+through Phase 2 → Phase 3 the same way the collections above were done,
+remembering the forms-plugin gotcha above for any remaining form-control
+collections. No open design questions remain for the normal pipeline — the
+house style table below and the collection-exemption list
 are settled.
 
 **Collection exemptions are final:** only `grids` and `media` skip dark mode
