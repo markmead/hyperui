@@ -31,11 +31,13 @@ match. Everything else already conformed.
 Action color, not the documented non-action-control ring color) — changed
 to `focus:ring-gray-900` per the house style table.
 
-Regenerating dark variants via `pnpm run generate:dark-variants` also
-surfaces gaps in *other*, not-yet-migrated collections (it scans every
-category) — those drafts were discarded each time, not committed; only the
-collection being actively migrated gets its dark variants generated and
-kept.
+Regenerating dark variants via `pnpm run generate:dark-variants` used to
+also surface gaps in *other*, not-yet-migrated collections (it scanned
+every category) — those drafts had to be discarded each run, not
+committed. This is now fixed: pass `--category=<name> --slug=<name>` to
+scope a run to just the collection being migrated, e.g.
+`pnpm run generate:dark-variants --category=application --slug=dropdown`.
+Use the scoped form for every collection from here on.
 
 **`charts` — skipped, needs a dedicated pass, do not run the normal Phase
 2 → Phase 3 process on it.** Its dark variants pair Tailwind classes with
@@ -215,12 +217,14 @@ then `neobrutalism`.
 ## Phase 3 — Delete a collection's existing dark variants, then regenerate
 
 Per collection, once its light components are standardized: delete its
-`public/examples/**/*-dark.html` files, run
-`pnpm run generate:dark-variants` (note: it scans *all* categories for any
-missing dark file, not just the one being worked — a run during the badges
-pilot also surfaced ~51 pre-existing gaps in unrelated collections, see
-"Known follow-up" below), review the rendered output, then set that
-collection's `dark: true` once in its MDX frontmatter.
+`public/examples/{category}/{slug}/*-dark.html` files, run
+`pnpm run generate:dark-variants --category=<category> --slug=<slug>` to
+regenerate just that collection (the badges pilot predates the
+`--category`/`--slug` flags — an unscoped run back then scanned *all*
+categories and also surfaced ~51 pre-existing gaps in unrelated
+collections, see "Known follow-up" below; scoping avoids that now), review
+the rendered output, then set that collection's `dark: true` once in its
+MDX frontmatter.
 
 ## Verification
 
