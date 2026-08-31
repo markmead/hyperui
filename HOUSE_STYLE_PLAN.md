@@ -129,13 +129,21 @@ direction (a hover state should lift off the card, not recess into it).
 Check for this same collision on any future component with hoverable
 items inside its own `bg-white` card.
 
-Also: `scripts/generate-dark-variants.js` doesn't add the `dark:bg-*`
+**Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
-predates the script's authoring and nothing wires them together. Every
-regenerated file still needs it added by hand (matching the `dark:bg-gray-900`
-convention used everywhere else) until the generator itself is updated to
-do this automatically — worth fixing in the script rather than by hand
-forever, but out of scope for a single collection's migration.
+predates the script's authoring and nothing wired them together, so every
+regenerated file needed it added by hand. The script now does this itself:
+`ensureBodyDarkBackground()` post-processes each generated file's `<body>`
+tag directly (adding `dark:bg-gray-900` to its existing `class`, or adding
+the attribute if `<body>` has none), independent of the class-shade
+engine — `<body>` never carries a `bg-*` class in light mode, so there was
+never anything for the engine to invert in the first place; this is a
+fixed convention, not a color-shade mapping. Only touches the Node CLI
+path (`transformHtmlString`); the browser tool's DOM-aware path
+(`transformHtmlDom`) only ever returns `body.innerHTML` for iframe
+embedding and never touches the `<body>` tag itself, so it was never
+affected by this gap. No more by-hand patching needed for future
+collections.
 
 Next action: pick the next `application` collection (alphabetical after
 `dropdown`, skipping `charts` — `empty-states` is next) and run it through
