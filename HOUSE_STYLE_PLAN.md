@@ -21,6 +21,30 @@ Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
 fully-migrated collections (see sections below for exactly what that
 entailed).
 
+**Merged `main` into this branch (picks up #754):** every `-dark.html`
+under `public/examples/**` now gets an explicit `dark:bg-*` on `<body>`
+instead of relying entirely on the `ComponentPreview.astro` iframe's own
+`bg-gray-900` wrapper. This branch predated that fix, so its migrated
+collections (including `breadcrumbs`) were still missing it — reported as
+"breadcrumbs link text becomes invisible on hover" when viewed standalone.
+Root cause: without the body background, a standalone dark file renders on
+the browser's default white page background; `dark:hover:text-gray-50`
+correctly wins the cascade (verified: same specificity as the light-mode
+`hover:text-gray-900`, `dark:hover:` is generated later in the compiled
+stylesheet so it wins the tie — confirmed both in Tailwind Play and by
+reading the compiled `component.css` rule order directly), but a
+near-white hover color against an unthemed white page is what actually
+read as "invisible" — the *base* `dark:text-gray-200` state is merely
+low-contrast on white, so it's the hover state specifically that vanishes.
+No change to the hover classes themselves was needed; merging `main`
+(and rebuilding `public/component.css`) resolves it. Note for testing in
+this sandbox specifically: its headless Chromium reports
+`(hover: hover)` as `false` (a device-emulation quirk, not overridable via
+CDP `Emulation.setEmulatedMedia` in this build) and Tailwind v4 wraps the
+`hover:` variant in that media query — so hover states never visibly
+trigger here at all, real bug or not. Verify hover states in a real
+browser (or Tailwind Play) instead of trusting this sandbox's headless run.
+
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
 elsewhere (`button-groups`, `pagination`) use `border-gray-200` — changed to
