@@ -15,10 +15,11 @@ plus:
 - `checkboxes` migrated through Phase 2 → Phase 3 (see below)
 - `details-list` migrated through Phase 2 → Phase 3 (see below)
 - `dividers` migrated through Phase 2 → Phase 3 (see below)
+- `dropdown` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
-`button-groups`, `checkboxes`, `details-list`, and `dividers` as
-fully-migrated collections (see sections below for exactly what that
+`button-groups`, `checkboxes`, `details-list`, `dividers`, and `dropdown`
+as fully-migrated collections (see sections below for exactly what that
 entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
@@ -102,13 +103,51 @@ inverted, rather than the flat engine output which used the same
 `dark:bg-gray-800` for both card and sub-region and lost that distinction
 entirely.
 
+`dropdown` needed one Phase 2 fix: both wrapper elements (the split-button
+trigger and the flyout menu panel) used `border-gray-300`/`divide-gray-300`,
+but neither is a form input — one's a grouped interactive control (matching
+`button-groups`' `border-gray-200` precedent) and the other's a floating
+card/panel (default `border-gray-200`) — changed both, plus the internal
+`divide-x` on the trigger to match. Also caught a real drift on the
+"Delete" menu item: `text-red-700` where the house style table calls for
+`red-600` on plain destructive text (as opposed to the `bg-*-100
+text-*-700` status-tint recipe, which is a different, exempt case) —
+changed to `text-red-600`.
+
+`dropdown` also hit the `bg-white`-card gotcha above (both wrapper
+elements have their own `bg-white` surface), fixed the same way
+(`dark:bg-gray-800`) — but this component's cards have hoverable items
+*inside* them (`hover:bg-gray-50` menu items/trigger buttons), which the
+breadcrumbs case didn't. The engine had paired `hover:bg-gray-50` with
+`dark:hover:bg-gray-800` on the assumption the card itself was
+`dark:bg-black`; once the card becomes `dark:bg-gray-800` to fix its own
+visibility, that hover shade collides with the card and the highlight
+stops reading as a highlist. Fixed by bumping the item hover one step
+*lighter* than the (now `gray-800`) card, to `dark:hover:bg-gray-700` —
+same principle as the recessed-sub-region fix above, just in the opposite
+direction (a hover state should lift off the card, not recess into it).
+Check for this same collision on any future component with hoverable
+items inside its own `bg-white` card.
+
+Also: `scripts/generate-dark-variants.js` doesn't add the `dark:bg-*`
+background from #754 to a freshly-generated file's `<body>` — that fix
+predates the script's authoring and nothing wires them together. Every
+regenerated file still needs it added by hand (matching the `dark:bg-gray-900`
+convention used everywhere else) until the generator itself is updated to
+do this automatically — worth fixing in the script rather than by hand
+forever, but out of scope for a single collection's migration.
+
 Next action: pick the next `application` collection (alphabetical after
-`dividers`, skipping `charts` — `dropdown` is next) and run it through
+`dropdown`, skipping `charts` — `empty-states` is next) and run it through
 Phase 2 → Phase 3 the same way the collections above were done,
 remembering the forms-plugin gotcha above for any remaining form-control
-collections. No open design questions remain for the normal pipeline — the
-house style table below and the collection-exemption list
-are settled.
+collections and the hover/card-shade collision above for any component
+with hoverable items inside its own `bg-white` card. No open design
+questions remain for the normal pipeline — the house style table below and
+the collection-exemption list are settled. Note: `accordions` sorts
+alphabetically before `badges` (the original pilot) and was never picked
+up by this effort — it isn't on the exemption list, so it's presumably
+just an oversight in the ordering and still needs a pass at some point.
 
 **Collection exemptions are final:** only `grids` and `media` skip dark mode
 (`dark: false`), because they have no real themeable surface — `grids` is
