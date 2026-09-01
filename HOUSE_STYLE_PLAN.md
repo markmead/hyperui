@@ -18,11 +18,12 @@ plus:
 - `dropdown` migrated through Phase 2 → Phase 3 (see below)
 - `empty-states` migrated through Phase 2 → Phase 3 (see below)
 - `file-uploaders` migrated through Phase 2 → Phase 3 (see below)
+- `filters` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
 `button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`,
-`empty-states`, and `file-uploaders` as fully-migrated collections (see
-sections below for exactly what that entailed).
+`empty-states`, `file-uploaders`, and `filters` as fully-migrated
+collections (see sections below for exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -190,6 +191,31 @@ hover** — it's a different trigger than the dropdown case (that was a
 card recoloring collision; this is a shade-map coincidence) but the same
 fix.
 
+`filters` needed one Phase 2 fix, on both its "Dropdown" and "Accordion"
+variants: their filter panels/cards used `border-gray-300`/`divide-gray-300`
+for what is either a floating flyout panel (variant 1, exactly the
+`dropdown` flyout-panel case) or a self-contained accordion card (variant
+2's outer `<details>`, matching the `details-list`/`accordions`
+card-wrapper convention) — both changed to the default `border-gray-200`/
+`divide-gray-200`. Left alone: variant 1's `<summary>` toggle's own
+`border-b border-gray-300` — a single standalone trigger (not grouped with
+adjacent buttons like `dropdown`'s split-button), so it stays under the
+table's "interactive outline" `-300` case rather than the "grouped
+control"/"floating panel" `-200` case. Also left alone: the checkboxes'
+plugin-default blue checked-state fill (no `checked:` override anywhere in
+the light source) — matches the `checkboxes` collection precedent of never
+touching that state.
+
+Both variants' filter panels also have their own `bg-white` card surface
+(hit the `bg-white`-card gotcha, fixed to `dark:bg-gray-800` by hand) and
+contain both checkbox and `type="number"` inputs (hit the
+`@tailwindcss/forms` gotcha, restored `dark:bg-gray-900
+dark:ring-offset-gray-900` on the checkboxes and `dark:bg-gray-900
+dark:text-gray-50 dark:ring-offset-gray-900` on the number inputs, by
+hand) — both gotchas already covered above, no new discoveries, just
+confirming they recur together whenever a form-control collection also has
+its own card surface.
+
 **Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
 predates the script's authoring and nothing wired them together, so every
@@ -207,19 +233,23 @@ affected by this gap. No more by-hand patching needed for future
 collections.
 
 Next action: pick the next `application` collection (alphabetical after
-`file-uploaders`, skipping `charts` — `filters` is next) and run it
-through Phase 2 → Phase 3 the same way the collections above were done,
-remembering: the forms-plugin gotcha above for any remaining form-control
-collections (confirmed to also cover plain text `<input>`s, not just
-checkboxes/radios); the hover/card-shade collision above for any component
-with hoverable items inside its own `bg-white` card; and the `50`/`100`
+`filters`, skipping `charts` and the exempt `grids` — `inputs` is next)
+and run it through Phase 2 → Phase 3 the same way the collections above
+were done, remembering: the forms-plugin gotcha above for any remaining
+form-control collections (confirmed to cover plain text/number
+`<input>`s too, not just checkboxes/radios — `inputs` itself is exactly
+this case); the hover/card-shade collision above for any component with
+hoverable items inside its own `bg-white` card; the `50`/`100`
 resting/hover shade-map collision above for any light tinted chip/pill
-that darkens on hover. No open design questions remain for the normal
-pipeline — the house style table below and the collection-exemption list
-are settled. Note: `accordions` sorts alphabetically before `badges` (the
-original pilot) and was never picked up by this effort — it isn't on the
-exemption list, so it's presumably just an oversight in the ordering and
-still needs a pass at some point.
+that darkens on hover; and the floating-panel-vs-standalone-trigger
+border distinction from `filters` (grouped controls and floating
+panels/cards → `-200`, a single standalone toggle/outline/input → `-300`)
+for any component combining both. No open design questions remain for the
+normal pipeline — the house style table below and the collection-exemption
+list are settled. Note: `accordions` sorts alphabetically before `badges`
+(the original pilot) and was never picked up by this effort — it isn't on
+the exemption list, so it's presumably just an oversight in the ordering
+and still needs a pass at some point.
 
 Also flagged, not yet resolved: the house style table's Action recipe
 includes `focus:ring-2 focus:ring-indigo-600` on solid buttons, but no
