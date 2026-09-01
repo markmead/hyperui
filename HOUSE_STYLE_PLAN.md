@@ -17,11 +17,12 @@ plus:
 - `dividers` migrated through Phase 2 → Phase 3 (see below)
 - `dropdown` migrated through Phase 2 → Phase 3 (see below)
 - `empty-states` migrated through Phase 2 → Phase 3 (see below)
+- `file-uploaders` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
-`button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`, and
-`empty-states` as fully-migrated collections (see sections below for
-exactly what that entailed).
+`button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`,
+`empty-states`, and `file-uploaders` as fully-migrated collections (see
+sections below for exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -166,6 +167,29 @@ dark, standalone iframe and the full collection page) that the input's
 dark background/text/focus all render correctly instead of showing a
 stray white box.
 
+`file-uploaders` needed no Phase 2 fix (already conformed — both variants
+are bordered, non-card `<label>` dropzones, matching the `empty-states`
+upload-dropzone precedent for `border-gray-300` on a standalone
+interactive outline). Its "Base with button" variant's "Browse files"
+chip (`bg-gray-50 hover:bg-gray-100`, a resting/hover pair one step apart
+in the `50`/`100` range) exposed a new, systemic gap in the shared
+`SHADE_MAP` (`src/constants/dark-mode.js`): both `50` and `100` invert to
+the same target shade, `800` — so any component using this exact
+resting/hover pair loses its hover feedback entirely in dark mode (regen
+produced `dark:bg-gray-800 dark:hover:bg-gray-800`, identical). Not
+something to fix in the shared map itself (that shade collision is
+probably intentional/harmless for most `50`/`100` uses that aren't a
+resting/hover pair on the same element, and changing it site-wide is out
+of scope for a single collection's migration) — fixed by hand per the same
+principle as the `dropdown` hover/card-shade collision above: bumped the
+*hover* shade one step lighter than the mapped resting shade,
+`dark:hover:bg-gray-700`, so the chip visibly lifts on hover instead of
+staying flat. **Watch for this same `50`/`100` resting/hover collision on
+any future component with a light tinted chip/pill that darkens on
+hover** — it's a different trigger than the dropdown case (that was a
+card recoloring collision; this is a shade-map coincidence) but the same
+fix.
+
 **Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
 predates the script's authoring and nothing wired them together, so every
@@ -183,18 +207,19 @@ affected by this gap. No more by-hand patching needed for future
 collections.
 
 Next action: pick the next `application` collection (alphabetical after
-`empty-states`, skipping `charts` — `file-uploaders` is next) and run it
+`file-uploaders`, skipping `charts` — `filters` is next) and run it
 through Phase 2 → Phase 3 the same way the collections above were done,
-remembering the forms-plugin gotcha above for any remaining form-control
-collections (now confirmed to also cover plain text `<input>`s, not just
-checkboxes/radios) and the hover/card-shade collision above for any
-component with hoverable items inside its own `bg-white` card. No open
-design questions remain for the normal pipeline — the house style table
-below and the collection-exemption list are settled. Note: `accordions`
-sorts alphabetically before `badges` (the original pilot) and was never
-picked up by this effort — it isn't on the exemption list, so it's
-presumably just an oversight in the ordering and still needs a pass at
-some point.
+remembering: the forms-plugin gotcha above for any remaining form-control
+collections (confirmed to also cover plain text `<input>`s, not just
+checkboxes/radios); the hover/card-shade collision above for any component
+with hoverable items inside its own `bg-white` card; and the `50`/`100`
+resting/hover shade-map collision above for any light tinted chip/pill
+that darkens on hover. No open design questions remain for the normal
+pipeline — the house style table below and the collection-exemption list
+are settled. Note: `accordions` sorts alphabetically before `badges` (the
+original pilot) and was never picked up by this effort — it isn't on the
+exemption list, so it's presumably just an oversight in the ordering and
+still needs a pass at some point.
 
 Also flagged, not yet resolved: the house style table's Action recipe
 includes `focus:ring-2 focus:ring-indigo-600` on solid buttons, but no
