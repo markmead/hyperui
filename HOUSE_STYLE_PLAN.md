@@ -19,10 +19,11 @@ plus:
 - `empty-states` migrated through Phase 2 → Phase 3 (see below)
 - `file-uploaders` migrated through Phase 2 → Phase 3 (see below)
 - `filters` migrated through Phase 2 → Phase 3 (see below)
+- `inputs` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
 `button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`,
-`empty-states`, `file-uploaders`, and `filters` as fully-migrated
+`empty-states`, `file-uploaders`, `filters`, and `inputs` as fully-migrated
 collections (see sections below for exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
@@ -216,6 +217,29 @@ hand) — both gotchas already covered above, no new discoveries, just
 confirming they recur together whenever a form-control collection also has
 its own card surface.
 
+`inputs` needed no Phase 2 fix (already conformed — the collection this
+effort's `@tailwindcss/forms` gotcha is named after). All four variants
+(`email`/`text` inputs, icon and button decorations) hit that gotcha on
+regeneration exactly as expected — restored `dark:bg-gray-900
+dark:text-gray-50 dark:ring-offset-gray-900` on each `<input>` by hand.
+
+Its "Floating label" variant surfaced a new, narrower case of the
+`bg-white`-card gotcha: the floating `<span>` that visually "cuts" the
+input's top border isn't a card at all, just a small opaque patch masking
+the border line behind the label text — it needs to exactly match
+whatever sits *behind* it (the page), not become a visually distinct
+elevated surface. The engine's generic `bg-white → dark:bg-black` mapping
+is *closer* to correct here than the card case (`black` and the page's
+`dark:bg-gray-900` are close in luminance), but still technically off —
+changed to `dark:bg-gray-900` to exactly match the page background it's
+masking against (confirmed against the previous hand-tuned dark file,
+which had independently arrived at the same value). **Distinguish this
+from the `bg-white`-card gotcha going forward: a `bg-white` masking
+patch behind inline text (crossing a border line, sitting over another
+element) wants `dark:bg-gray-900` to disappear into the page; a `bg-white`
+card/panel surface wants `dark:bg-gray-800` to stay visible against it —
+opposite goals, same starting class.**
+
 **Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
 predates the script's authoring and nothing wired them together, so every
@@ -233,23 +257,25 @@ affected by this gap. No more by-hand patching needed for future
 collections.
 
 Next action: pick the next `application` collection (alphabetical after
-`filters`, skipping `charts` and the exempt `grids` — `inputs` is next)
-and run it through Phase 2 → Phase 3 the same way the collections above
-were done, remembering: the forms-plugin gotcha above for any remaining
-form-control collections (confirmed to cover plain text/number
-`<input>`s too, not just checkboxes/radios — `inputs` itself is exactly
-this case); the hover/card-shade collision above for any component with
-hoverable items inside its own `bg-white` card; the `50`/`100`
-resting/hover shade-map collision above for any light tinted chip/pill
-that darkens on hover; and the floating-panel-vs-standalone-trigger
-border distinction from `filters` (grouped controls and floating
-panels/cards → `-200`, a single standalone toggle/outline/input → `-300`)
-for any component combining both. No open design questions remain for the
-normal pipeline — the house style table below and the collection-exemption
-list are settled. Note: `accordions` sorts alphabetically before `badges`
-(the original pilot) and was never picked up by this effort — it isn't on
-the exemption list, so it's presumably just an oversight in the ordering
-and still needs a pass at some point.
+`inputs`, skipping `charts` and the exempt `grids` — `loaders` is next,
+then the exempt `media`) and run it through Phase 2 → Phase 3 the same way
+the collections above were done, remembering: the forms-plugin gotcha
+above for any remaining form-control collections; the hover/card-shade
+collision above for any component with hoverable items inside its own
+`bg-white` card; the `50`/`100` resting/hover shade-map collision above
+for any light tinted chip/pill that darkens on hover; the
+floating-panel-vs-standalone-trigger border distinction from `filters`
+(grouped controls and floating panels/cards → `-200`, a single standalone
+toggle/outline/input → `-300`) for any component combining both; and the
+`bg-white`-masking-patch-vs-`bg-white`-card distinction from `inputs`
+(`dark:bg-gray-900` to disappear into the page vs `dark:bg-gray-800` to
+stay visible against it) for any small opaque patch sitting over other
+content rather than acting as its own surface. No open design questions
+remain for the normal pipeline — the house style table below and the
+collection-exemption list are settled. Note: `accordions` sorts
+alphabetically before `badges` (the original pilot) and was never picked
+up by this effort — it isn't on the exemption list, so it's presumably
+just an oversight in the ordering and still needs a pass at some point.
 
 Also flagged, not yet resolved: the house style table's Action recipe
 includes `focus:ring-2 focus:ring-indigo-600` on solid buttons, but no
