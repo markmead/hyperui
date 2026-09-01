@@ -16,11 +16,12 @@ plus:
 - `details-list` migrated through Phase 2 → Phase 3 (see below)
 - `dividers` migrated through Phase 2 → Phase 3 (see below)
 - `dropdown` migrated through Phase 2 → Phase 3 (see below)
+- `empty-states` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
-`button-groups`, `checkboxes`, `details-list`, `dividers`, and `dropdown`
-as fully-migrated collections (see sections below for exactly what that
-entailed).
+`button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`, and
+`empty-states` as fully-migrated collections (see sections below for
+exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -129,6 +130,42 @@ direction (a hover state should lift off the card, not recess into it).
 Check for this same collision on any future component with hoverable
 items inside its own `bg-white` card.
 
+`empty-states` needed one Phase 2 fix: its "No results found" search
+`<input>` used `focus:border-indigo-500` (the Action color, borrowed onto a
+non-action control) — changed to `focus:border-gray-900` per the house
+style table's non-action-control focus-ring row, keeping the existing
+border-based focus mechanism rather than switching it to a ring. Its
+solid `bg-indigo-600` buttons and `border-gray-300` outline
+buttons/dropzone/input already conformed — `border-gray-300` is correct
+here (not the grouped-control `border-gray-200` case) because these are
+standalone "interactive outlines"/inputs, the exact case the table
+reserves `-300` for. Its large decorative `text-gray-400` icons
+(`aria-hidden="true"`, purely illustrative, not body copy) were left
+alone — sitewide convention, identical in the not-yet-migrated
+`marketing/empty-content` sibling collection, and outside what the
+Text-role table governs. Also confirmed the missing `focus:ring-2
+focus:ring-indigo-600` on its Action buttons — present in the house
+style table's Action recipe, but not actually implemented on *any*
+`bg-indigo-600` button anywhere in the codebase today (verified via
+grep), and the dedicated a11y-fixes commit (`47a41de`) touched these
+exact files but deliberately didn't add it — so treated as a separate,
+not-yet-started convention rather than Phase 2 drift, and left untouched.
+
+`empty-states` also hit the `@tailwindcss/forms` gotcha from `checkboxes`
+above, extended to a plain text input (verified in
+`@tailwindcss/forms`'s own source: `[type='text']` etc. get the same
+baked-in `background-color: #fff` and, on `:focus`,
+`--tw-ring-offset-color: #fff`, not just `[type=checkbox]`/`[type=radio]`)
+— the previous hand-tuned dark file had `dark:bg-gray-900 dark:text-white`
+on the search input with no light-mode counterpart, which the regenerate
+step silently dropped. Restored by hand as `dark:bg-gray-900
+dark:text-gray-50 dark:ring-offset-gray-900` (text shade tightened to
+match the engine's current `text-gray-50` convention, ring-offset added
+to match the `checkboxes` pairing). Verified in the dev server (light +
+dark, standalone iframe and the full collection page) that the input's
+dark background/text/focus all render correctly instead of showing a
+stray white box.
+
 **Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
 predates the script's authoring and nothing wired them together, so every
@@ -146,16 +183,26 @@ affected by this gap. No more by-hand patching needed for future
 collections.
 
 Next action: pick the next `application` collection (alphabetical after
-`dropdown`, skipping `charts` — `empty-states` is next) and run it through
-Phase 2 → Phase 3 the same way the collections above were done,
+`empty-states`, skipping `charts` — `file-uploaders` is next) and run it
+through Phase 2 → Phase 3 the same way the collections above were done,
 remembering the forms-plugin gotcha above for any remaining form-control
-collections and the hover/card-shade collision above for any component
-with hoverable items inside its own `bg-white` card. No open design
-questions remain for the normal pipeline — the house style table below and
-the collection-exemption list are settled. Note: `accordions` sorts
-alphabetically before `badges` (the original pilot) and was never picked
-up by this effort — it isn't on the exemption list, so it's presumably
-just an oversight in the ordering and still needs a pass at some point.
+collections (now confirmed to also cover plain text `<input>`s, not just
+checkboxes/radios) and the hover/card-shade collision above for any
+component with hoverable items inside its own `bg-white` card. No open
+design questions remain for the normal pipeline — the house style table
+below and the collection-exemption list are settled. Note: `accordions`
+sorts alphabetically before `badges` (the original pilot) and was never
+picked up by this effort — it isn't on the exemption list, so it's
+presumably just an oversight in the ordering and still needs a pass at
+some point.
+
+Also flagged, not yet resolved: the house style table's Action recipe
+includes `focus:ring-2 focus:ring-indigo-600` on solid buttons, but no
+`bg-indigo-600` button anywhere in the codebase actually has it today, and
+the dedicated a11y-fixes pass deliberately skipped adding it. Worth a
+decision in its own session (add it everywhere as part of Phase 2, or
+drop it from the table as aspirational/out-of-scope) rather than having
+each collection guess — `empty-states` left it alone pending that call.
 
 **Collection exemptions are final:** only `grids` and `media` skip dark mode
 (`dark: false`), because they have no real themeable surface — `grids` is
