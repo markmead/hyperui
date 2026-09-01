@@ -21,12 +21,13 @@ plus:
 - `filters` migrated through Phase 2 → Phase 3 (see below)
 - `inputs` migrated through Phase 2 → Phase 3 (see below)
 - `loaders` migrated through Phase 2 → Phase 3 (see below)
+- `modals` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
 `button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`,
-`empty-states`, `file-uploaders`, `filters`, `inputs`, and `loaders` as
-fully-migrated collections (see sections below for exactly what that
-entailed).
+`empty-states`, `file-uploaders`, `filters`, `inputs`, `loaders`, and
+`modals` as fully-migrated collections (see sections below for exactly
+what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -257,6 +258,93 @@ fine for a thin stroke (unlike a solid fill, a lighter stroke still reads
 clearly against the dark page), so left as-is. No `bg-white` card, no
 form controls, no other gotchas — the simplest migration so far.
 
+`modals` needed two Phase 2 fixes and settled one open design question:
+
+- All four variants with an "Actions" row had a `bg-blue-600
+  hover:bg-blue-700` "Done" button — the exact blue-vs-indigo Action drift
+  the whole effort's Context section opens with — changed to
+  `bg-indigo-600 hover:bg-indigo-700`.
+- The "Input with close" variant's `Confirm` input was missing the
+  `focus:ring-2 focus:ring-indigo-600` its otherwise-identical sibling
+  ("Input" variant) has — a copy-paste omission, not a color choice —
+  added to match.
+
+**Settled: the `focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2
+focus:ring-offset-white focus:outline-none focus-visible:ring-2
+focus-visible:ring-indigo-600 focus-visible:ring-offset-2
+focus-visible:ring-offset-white focus-visible:outline-none` recipe
+flagged as unresolved after `empty-states` is out of this effort's scope,
+full stop.** `modals` has it on *every* interactive control (Close icon
+button, Cancel, Done, and the Confirm input) — not just the primary
+action, contradicting the house style table's "Action-only" framing — and
+it's confirmed present in several other untouched collections (`pricing`,
+`support-inbox`, `saas-landing-page`) too. It was added by the dedicated
+a11y-fixes commits (`47a41de` / `b227536` / `a24d52e`), which also touched
+`empty-states` (adding `aria-hidden` to its icons) but deliberately did
+*not* add this recipe there. Conclusion: this is a pre-existing, actively
+maintained accessibility convention that predates and is orthogonal to
+the color-focused house-style effort — rolling it out to collections the
+a11y sweep didn't reach (or ripping it out of collections that have it) is
+that sweep's unfinished business, not Phase 2's. Going forward: preserve
+whatever focus-ring treatment a component's light source already has
+(fix its *colors* if they're wrong, per the two fixes above) and don't add
+or remove the recipe wholesale. The house style table's "Focus ring —
+non-action controls: `ring-gray-900`" row stands as-is for controls with
+no pre-existing recipe (its origin — `checkboxes`/`empty-states` — is
+unaffected), but don't apply it retroactively to controls that already
+carry the indigo recipe.
+
+The `<dialog>` element is the most literal case yet of the `bg-white`-card
+gotcha (an actual popover card over a `backdrop:bg-black/50` scrim) —
+fixed to `dark:bg-gray-800` as usual. Three new things fell out of having
+a real elevated card with several different kinds of nested content,
+generalizing the card-adjacent fixes from earlier collections:
+
+1. **The dark-mode engine transforms `backdrop:` pseudo-element classes
+   too, and got the modal backdrop backwards.** `backdrop:bg-black/50`
+   (the dimming scrim behind the modal) became `dark:backdrop:bg-white/50`
+   — inverting a dimming overlay into a *lightening* one, which would
+   wash out the page behind the modal in dark mode instead of dimming it.
+   A backdrop scrim should stay the same color in both themes (it's
+   dimming whatever's behind it, not itself a themed surface) — removed
+   the generated `dark:backdrop:*` override entirely, leaving the plain
+   `backdrop:bg-black/50` to apply in both themes. **Check for this same
+   backwards inversion on any future component using `backdrop:*`
+   classes** (modals, dialogs, popovers) — the generic engine has no
+   concept of "this class shouldn't get inverted at all."
+2. **`ring-offset` should match the nearest enclosing surface, not
+   always default to the page.** Every earlier `ring-offset-white` /
+   plugin-baked-ring-offset fix (`checkboxes`, `inputs`, `filters`) used
+   `dark:ring-offset-gray-900` because those controls sat directly on the
+   plain page (`dark:bg-gray-900`). `modals`' Close/Cancel/Done buttons
+   and the Confirm input all sit *inside* the `bg-white`-turned-card —
+   using `dark:ring-offset-gray-900` there would mismatch the
+   `dark:bg-gray-800` card around them (a visible halo where the ring's
+   offset gap doesn't match its background). Used `dark:ring-offset-gray-800`
+   throughout instead — general rule now: **ring-offset color = the dark
+   background of whatever surface the control's ring-offset gap will
+   actually show against**, page gray-900 or card gray-800 (or deeper
+   nesting, if it ever comes up) as appropriate, never assumed.
+3. **The "recessed sub-region inside a card" fix from `breadcrumbs`
+   applies to interactive buttons too, not just passive display
+   elements.** The Cancel button's `bg-gray-100` (subtly muted against the
+   dialog's `bg-white`, by design — the quiet secondary action next to
+   the solid indigo "Done") mapped via the generic engine to
+   `dark:bg-gray-800` — identical to the now-corrected card background,
+   making the button's resting state completely flush/invisible against
+   its own card (worse than the light-mode relationship, which still has
+   a faint but real white/gray-100 distinction). Overrode to
+   `dark:bg-gray-900` — one step *darker* than the `gray-800` card,
+   preserving the light-mode "quieter than the card" relationship instead
+   of erasing it, exactly the same principle as breadcrumbs' recessed
+   "current page" indicator, just applied to a button. Its own hover
+   (`dark:hover:bg-gray-700`, fixed per the hover-collision gotcha below)
+   now provides a bigger, clearer resting→hover jump than the engine's
+   flat output would have. The Close icon button's `hover:bg-gray-50`
+   hit the familiar dropdown-style hover/card-shade collision (engine gave
+   it `dark:hover:bg-gray-800`, identical to the card) — fixed to
+   `dark:hover:bg-gray-700` the same way as before.
+
 **Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
 predates the script's authoring and nothing wired them together, so every
@@ -274,31 +362,29 @@ affected by this gap. No more by-hand patching needed for future
 collections.
 
 Next action: pick the next `application` collection (alphabetical after
-`loaders`, skipping the exempt `media` — `modals` is next) and run it
-through Phase 2 → Phase 3 the same way the collections above were done,
-remembering: the forms-plugin gotcha above for any remaining form-control
-collections; the hover/card-shade collision above for any component with
-hoverable items inside its own `bg-white` card; the `50`/`100`
-resting/hover shade-map collision above for any light tinted chip/pill
-that darkens on hover; the floating-panel-vs-standalone-trigger border
+`modals` — `pagination` is next) and run it through Phase 2 → Phase 3 the
+same way the collections above were done, remembering: the forms-plugin
+gotcha for any remaining form-control collections; the `50`/`100`
+resting/hover shade-map collision for any light tinted chip/pill that
+darkens on hover; the floating-panel-vs-standalone-trigger border
 distinction from `filters` (grouped controls and floating panels/cards →
-`-200`, a single standalone toggle/outline/input → `-300`) for any
-component combining both; the `bg-white`-masking-patch-vs-`bg-white`-card
-distinction from `inputs` (`dark:bg-gray-900` to disappear into the page
-vs `dark:bg-gray-800` to stay visible against it) for any small opaque
-patch sitting over other content rather than acting as its own surface;
-and that Phase 1's solid-fill dark rule (`bg-indigo-600 →
-dark:bg-indigo-500`, confirmed working correctly on `loaders`' dots/
-progress-fill) only covers the `bg` utility, so a stroke/text use of the
-same color (`text-indigo-600`, e.g. spinners) still rides the generic
-`600→300` map — verified by eye that's fine for strokes, but worth
-double-checking on any new solid-*text*-color usage that isn't a thin
-stroke. `modals` also has known `focus:ring-indigo-600` action buttons —
-this is the collection to finally make the call on the unresolved Action
-recipe question flagged after `empty-states` (add the focus ring
-everywhere per the house style table, or drop it from the table), since
-`modals` already has real examples of it in the light source to look at
-rather than reasoning about it in the abstract. No other open design
+`-200`, a single standalone toggle/outline/input → `-300`); the
+`bg-white`-masking-patch-vs-`bg-white`-card distinction from `inputs`
+(`dark:bg-gray-900` to disappear into the page vs `dark:bg-gray-800` to
+stay visible against it); that Phase 1's solid-fill dark rule only covers
+the `bg` utility, so a stroke/text use of the same color still rides the
+generic `600→300` map (fine for thin strokes, per `loaders`); the settled
+focus-ring scope decision from `modals` (preserve what's there, fix
+colors only, don't add/remove the recipe); and — the big one, from
+`modals` — **ring-offset and any "recessed sub-region" color must match
+the nearest enclosing surface, not always the page**: once a component
+has its own `bg-white`-turned-`dark:bg-gray-800` card, everything nested
+inside it (ring-offsets, muted sub-fills, hover collisions) needs to
+reason relative to that card's shade, not reflexively reuse the
+page-level `gray-900`/`gray-800` pairing from earlier page-level-only
+collections. Also watch for the `backdrop:` inversion bug on any other
+component using a `backdrop:*` class (the engine inverts it like any
+other class, which is wrong for a dimming scrim). No open design
 questions remain for the normal pipeline — the house style table below
 and the collection-exemption list are settled. Note: `accordions` sorts
 alphabetically before `badges` (the original pilot) and was never picked
@@ -372,7 +458,7 @@ someone hand-authored just the dark variant and deserves separate credit.
 | Status (badges/alerts/toasts) | success `emerald-600`, warning `amber-600`, error `red-600` | exempt from the Action rule |
 | Status tint recipe (pill/badge) | `bg-*-100 text-*-700`, outline variant `border-*-500` | shade recipe, any semantic family — validated in the `badges` pilot, dark output falls out of the generic shade map for free (`100→800`, `700→200`, `500→400`) |
 | Trend (chart/stat deltas) | positive `green-600`, negative `red-600` | kept distinct from Status — direction, not state; already the dominant convention in `charts`/`stats` |
-| Focus ring — non-action controls | `ring-gray-900` | checkboxes, inputs |
+| Focus ring — non-action controls | `ring-gray-900` | checkboxes, inputs — only when the component has no pre-existing focus-ring recipe already (see `modals` write-up below: don't retrofit this onto controls that already carry the a11y-sweep's `focus:ring-indigo-600` recipe) |
 
 ## Phase 1 — Encode dark-mode rules for solid-fill buttons ✅ done
 
