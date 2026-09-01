@@ -20,11 +20,13 @@ plus:
 - `file-uploaders` migrated through Phase 2 → Phase 3 (see below)
 - `filters` migrated through Phase 2 → Phase 3 (see below)
 - `inputs` migrated through Phase 2 → Phase 3 (see below)
+- `loaders` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
 `button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`,
-`empty-states`, `file-uploaders`, `filters`, and `inputs` as fully-migrated
-collections (see sections below for exactly what that entailed).
+`empty-states`, `file-uploaders`, `filters`, `inputs`, and `loaders` as
+fully-migrated collections (see sections below for exactly what that
+entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -240,6 +242,21 @@ element) wants `dark:bg-gray-900` to disappear into the page; a `bg-white`
 card/panel surface wants `dark:bg-gray-800` to stay visible against it —
 opposite goals, same starting class.**
 
+`loaders` needed no Phase 2 fix (already conformed — all 7 variants
+already used `text-indigo-600`/`bg-indigo-600` for spinners, dots, and the
+progress fill, and `text-gray-700` for the "Loading..." caption). Its
+regeneration is the first real payoff of Phase 1's solid-fill rule outside
+a button: the old hand-tuned dark files for the pulse/ping/bounce dots and
+the progress-bar fill all had the exact `dark:bg-indigo-300` pastel-fill
+bug the whole effort's Context section opens with — regenerating from the
+current (unchanged) light source now correctly produces solid
+`dark:bg-indigo-500` for all of them. The spinners' `text-indigo-600`
+stroke color is untouched by that rule (scoped to `bg` only) and still
+maps to the generic `dark:text-indigo-300` — confirmed by eye this is
+fine for a thin stroke (unlike a solid fill, a lighter stroke still reads
+clearly against the dark page), so left as-is. No `bg-white` card, no
+form controls, no other gotchas — the simplest migration so far.
+
 **Fixed:** `scripts/generate-dark-variants.js` didn't add the `dark:bg-*`
 background from #754 to a freshly-generated file's `<body>` — that fix
 predates the script's authoring and nothing wired them together, so every
@@ -257,22 +274,33 @@ affected by this gap. No more by-hand patching needed for future
 collections.
 
 Next action: pick the next `application` collection (alphabetical after
-`inputs`, skipping `charts` and the exempt `grids` — `loaders` is next,
-then the exempt `media`) and run it through Phase 2 → Phase 3 the same way
-the collections above were done, remembering: the forms-plugin gotcha
-above for any remaining form-control collections; the hover/card-shade
-collision above for any component with hoverable items inside its own
-`bg-white` card; the `50`/`100` resting/hover shade-map collision above
-for any light tinted chip/pill that darkens on hover; the
-floating-panel-vs-standalone-trigger border distinction from `filters`
-(grouped controls and floating panels/cards → `-200`, a single standalone
-toggle/outline/input → `-300`) for any component combining both; and the
-`bg-white`-masking-patch-vs-`bg-white`-card distinction from `inputs`
-(`dark:bg-gray-900` to disappear into the page vs `dark:bg-gray-800` to
-stay visible against it) for any small opaque patch sitting over other
-content rather than acting as its own surface. No open design questions
-remain for the normal pipeline — the house style table below and the
-collection-exemption list are settled. Note: `accordions` sorts
+`loaders`, skipping the exempt `media` — `modals` is next) and run it
+through Phase 2 → Phase 3 the same way the collections above were done,
+remembering: the forms-plugin gotcha above for any remaining form-control
+collections; the hover/card-shade collision above for any component with
+hoverable items inside its own `bg-white` card; the `50`/`100`
+resting/hover shade-map collision above for any light tinted chip/pill
+that darkens on hover; the floating-panel-vs-standalone-trigger border
+distinction from `filters` (grouped controls and floating panels/cards →
+`-200`, a single standalone toggle/outline/input → `-300`) for any
+component combining both; the `bg-white`-masking-patch-vs-`bg-white`-card
+distinction from `inputs` (`dark:bg-gray-900` to disappear into the page
+vs `dark:bg-gray-800` to stay visible against it) for any small opaque
+patch sitting over other content rather than acting as its own surface;
+and that Phase 1's solid-fill dark rule (`bg-indigo-600 →
+dark:bg-indigo-500`, confirmed working correctly on `loaders`' dots/
+progress-fill) only covers the `bg` utility, so a stroke/text use of the
+same color (`text-indigo-600`, e.g. spinners) still rides the generic
+`600→300` map — verified by eye that's fine for strokes, but worth
+double-checking on any new solid-*text*-color usage that isn't a thin
+stroke. `modals` also has known `focus:ring-indigo-600` action buttons —
+this is the collection to finally make the call on the unresolved Action
+recipe question flagged after `empty-states` (add the focus ring
+everywhere per the house style table, or drop it from the table), since
+`modals` already has real examples of it in the light source to look at
+rather than reasoning about it in the abstract. No other open design
+questions remain for the normal pipeline — the house style table below
+and the collection-exemption list are settled. Note: `accordions` sorts
 alphabetically before `badges` (the original pilot) and was never picked
 up by this effort — it isn't on the exemption list, so it's presumably
 just an oversight in the ordering and still needs a pass at some point.
