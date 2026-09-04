@@ -12,6 +12,9 @@ import { SHADE_MAP, COLOR_MAP, STORAGE_KEY } from '../../constants/dark-mode.js'
  * @property {string | null} [darkColor]      - override entire color e.g. 'gray-900'; null uses darkShade/shade map
  * @property {string[]} excludeElements       - e.g. ['button', 'a']
  * @property {string[]} excludeColors         - e.g. ['blue', 'indigo']
+ * @property {string[] | null} [requireClasses] - only match when the same element also carries
+ *   one of these light-mode classes, e.g. ['bg-indigo-600', 'bg-red-600'] — null/empty means
+ *   no sibling-class gate (matches purely on utility/shade/color/element as before)
  */
 
 /**
@@ -77,6 +80,19 @@ export const DEFAULT_CONFIG = {
       darkColor: null,
       excludeElements: [],
       excludeColors: [],
+    },
+    {
+      id: 'house-style-action-fill-text-preserve',
+      name: 'text-white on its own bg-indigo-600/bg-red-600 fill stays white',
+      enabled: true,
+      utilities: ['text'],
+      shade: null,
+      colors: ['white'],
+      darkShade: null,
+      darkColor: null,
+      excludeElements: [],
+      excludeColors: ['white'],
+      requireClasses: ['bg-indigo-600', 'bg-red-600'],
     },
   ],
 }
@@ -222,6 +238,12 @@ function normalizeRule(rawRule) {
           .filter((colorItem) => typeof colorItem === 'string')
           .map((colorItem) => colorItem.trim().toLowerCase())
       : [],
+    requireClasses: Array.isArray(ruleRecord.requireClasses)
+      ? ruleRecord.requireClasses
+          .filter((classItem) => typeof classItem === 'string')
+          .map((classItem) => classItem.trim())
+          .filter(Boolean)
+      : null,
   }
 }
 

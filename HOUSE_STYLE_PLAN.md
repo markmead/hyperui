@@ -405,16 +405,50 @@ unnoticed since `neobrutalism` hasn't been migrated yet — nothing would
 have caught it until someone actually ran the generator against it.
 **The real distinction isn't the utility (`text` vs `bg`) or the color —
 it's whether the paired surface/fill itself inverts to its opposite
-neutral in dark mode**, and that's sibling-class information the engine
-genuinely doesn't have per-class. No safe automatic fix exists with the
-current architecture. Reverted the rule entirely; back to hand-fixing each
-occurrence at Phase 3 review, per collection, same as before — the
-`text-white → dark:text-black` flip on a solid Action/Destructive fill
-**is still something to check by hand on every regeneration**, and now so
-is its mirror image once `neobrutalism` (or anything else pairing
-`text-black`/`text-white` with a surface that inverts) comes up: check
-whether the surface the text sits on inverts, and if so, whether the text
-needs to invert with it.
+neutral in dark mode.** That's sibling-class information, and it turns out
+the engine already had what it needed to know it — `transformClassAttribute`
+(`src/lib/dark-mode/transform-html.js`) processes one element's full
+`class=""` attribute at a time, splitting it into tokens *before* mapping
+each token through `transformClass`; it just never threaded that token
+list any further down. Extended the `Rule` schema with
+`requireClasses: string[] | null` — an additional match gate, alongside
+the existing `utilities`/`shade`/`colors`/`excludeElements` gates, that
+only fires when the *same element* also carries one of the listed
+light-mode classes — and threaded a `siblingClasses` param through
+`applyRules`/`transformClass`/`transformClassAttribute` so the gate has
+something to check against. Re-added the fill-text rule, now scoped
+correctly: `house-style-action-fill-text-preserve` matches `text-white`
+only when `requireClasses: ['bg-indigo-600', 'bg-red-600']` is also present
+on the element — i.e., only the exact case that's actually broken.
+`neobrutalism`'s `text-black`/`text-white` pair with `bg-white`/`bg-{color}-100`/
+`bg-black`, never `bg-indigo-600`/`bg-red-600`, so the rule never fires
+there and the plain `colorMap` swap (already correct) still runs
+unmodified. Verified both directions before shipping this time, not just
+one: regenerated `empty-states`/`pagination`/one `modals` file and diffed
+byte-for-byte against the hand-fixed committed versions (both diffs came
+back containing only the *other*, unrelated, already-documented manual
+gotchas — `modals`' card/backdrop/ring-offset fixes, `pagination`'s
+border-shade mismatch — with the text-color handling itself identical in
+both); separately ran the transform against `neobrutalism/badges/1.html`
+(`text-black` on tinted `bg-*-100` cards), `badges/3.html` (`bg-white
+text-black` *and*, on the same file, `bg-black text-white` — the exact
+inverse pairing, both correctly inverting in both directions), and
+`tabs/1.html`'s `hover:bg-black hover:text-white` state, confirming all of
+them still invert normally. Re-ran the pre-existing `dark-mode-generator`
+Playwright suite — identical 8 passed / 6 pre-existing-and-unrelated
+failures as the reverted baseline, no new regressions. This is `text-white`/
+`text-black`'s *only* documented failure mode found so far, so nothing is
+left on the manual watch-list for it — but the underlying lesson holds for
+anything discovered later: verify a fix against the case that's known
+broken *and* against the cases that already work, before it goes in
+`DEFAULT_CONFIG` where every future collection inherits it silently.
+
+Prompted by this, audited every already-migrated (`badges` through
+`pagination`) collection for the same bug shape before trusting the "done"
+list: grepped for every `text-white` occurrence (all 8 already-hand-fixed
+instances, all still clean, all a `bg-indigo-600` pairing — nothing missed)
+and for any `text-black` at all (none — `application`'s house style never
+uses it). Nothing in the done list needed rework.
 
 `pagination` needed no Phase 2 fix (already conformed) — its individual
 page-link buttons' `border-gray-200` is the "grouped interactive elements"
@@ -450,14 +484,13 @@ Next action: pick the next `application` collection (alphabetical after
 `pagination` — `progress-bars` is next) and run it through Phase 2 → Phase 3
 the same way the collections above were done, remembering: the
 self-matching `border-X bg-X` shade-mismatch gotcha above for any other
-solid-fill element with a same-color border; the `text-white →
-dark:text-black` flip on any solid Action/Destructive fill (an engine-level
-fix was tried and reverted — see above — still a manual check on every
-regeneration); its mirror image, `text-black`/`text-white` paired with a
-*neutral surface* that itself inverts (relevant once `neobrutalism` or
-anything like it comes up — the fix there runs the opposite direction,
-inverting the text to match its surface, not preserving it); the
-forms-plugin gotcha for any remaining form-control collections; the `50`/`100`
+solid-fill element with a same-color border (the `text-white ↔ black`
+counterpart of this is now fixed at the engine level via the sibling-aware
+`requireClasses` rule, see above — no longer a manual check for the
+`bg-indigo-600`/`bg-red-600` case specifically; still watch for any *other*
+solid Phase-1-covered fill color this effort adds later, which would need
+its own `requireClasses` entry); the forms-plugin gotcha for any remaining
+form-control collections; the `50`/`100`
 resting/hover shade-map collision for any light tinted chip/pill that
 darkens on hover; the floating-panel-vs-standalone-trigger border
 distinction from `filters` (grouped controls and floating panels/cards →
