@@ -14,6 +14,32 @@ const examplesRootPath = path.join(repositoryRootPath, 'public/examples')
 
 const componentCategories = ['application', 'marketing', 'neobrutalism', 'templates']
 
+// Standalone dark files aren't embedded in ComponentPreview.astro's iframe (which supplies its
+// own bg-gray-900) when opened directly, so <body> needs an explicit dark background — see #753.
+// <body> never carries a bg-* class in light mode (nothing for the shade-map engine to invert),
+// so this is a fixed convention applied here rather than a rule in the color-transform engine.
+const bodyDarkBackgroundClass = 'dark:bg-gray-900'
+
+function ensureBodyDarkBackground(htmlContent) {
+  return htmlContent.replace(/<body([^>]*)>/, (fullMatch, attributesString) => {
+    const classAttributeMatch = attributesString.match(/class="([^"]*)"/)
+
+    if (!classAttributeMatch) {
+      return `<body class="${bodyDarkBackgroundClass}"${attributesString}>`
+    }
+
+    const [classAttribute, classValue] = classAttributeMatch
+
+    if (classValue.includes('dark:bg-')) {
+      return fullMatch
+    }
+
+    const updatedClassAttribute = `class="${classValue} ${bodyDarkBackgroundClass}"`
+
+    return `<body${attributesString.replace(classAttribute, updatedClassAttribute)}>`
+  })
+}
+
 const cliCategoryFilter = process.argv
   .find((argValue) => argValue.startsWith('--category='))
   ?.split('=')[1]
@@ -127,7 +153,9 @@ function generateDarkVariants() {
 
   for (const missingVariant of missingDarkVariants) {
     const lightHtmlContent = fs.readFileSync(missingVariant.lightFilePath, 'utf8')
-    const darkHtmlContent = transformHtmlString(lightHtmlContent, DEFAULT_CONFIG)
+    const darkHtmlContent = ensureBodyDarkBackground(
+      transformHtmlString(lightHtmlContent, DEFAULT_CONFIG),
+    )
 
     fs.writeFileSync(missingVariant.darkFilePath, darkHtmlContent, 'utf8')
 

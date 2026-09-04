@@ -25,10 +25,11 @@ export function splitVariantPrefix(className) {
  * @param {string} colorFamily  e.g. 'blue'
  * @param {number} shadeNumber  e.g. 600
  * @param {string | null | undefined} tagName  e.g. 'button' (lowercase)
+ * @param {string[]} siblingClasses  every light-mode class on the same element, this one included
  * @param {import('./config.js').DarkModeConfig} configData
  * @returns {{ skip: boolean, darkShade: number | null, darkColor: string | null } | null}  null = no override, use shade map
  */
-function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) {
+function applyRules(utilityName, colorFamily, shadeNumber, tagName, siblingClasses, configData) {
   const normalizedTag = tagName ? tagName.toLowerCase() : null
 
   for (const activeRule of configData.rules) {
@@ -50,6 +51,13 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
       activeRule.colors &&
       activeRule.colors.length > 0 &&
       !activeRule.colors.includes(colorFamily)
+    ) {
+      continue
+    }
+    if (
+      activeRule.requireClasses &&
+      activeRule.requireClasses.length > 0 &&
+      !activeRule.requireClasses.some((requiredClass) => siblingClasses.includes(requiredClass))
     ) {
       continue
     }
@@ -89,9 +97,11 @@ function applyRules(utilityName, colorFamily, shadeNumber, tagName, configData) 
  * @param {string} className
  * @param {import('./config.js').DarkModeConfig} configData
  * @param {string | null} [tagName]  lowercase element tag e.g. 'button' (browser only)
+ * @param {string[]} [siblingClasses]  every light-mode class on the same element (defaults to
+ *   just this one, when called without the wider element context, e.g. legacy/direct callers)
  * @returns {string}
  */
-export function transformClass(className, configData, tagName = null) {
+export function transformClass(className, configData, tagName = null, siblingClasses = [className]) {
   const { variantPrefix, classWithoutVariant } = splitVariantPrefix(className)
 
   for (const [lightColor, darkColor] of Object.entries(configData.colorMap)) {
@@ -111,7 +121,14 @@ export function transformClass(className, configData, tagName = null) {
           return className
         }
 
-        const ruleResult = applyRules(utilityName, lightColor, 0, tagName, configData)
+        const ruleResult = applyRules(
+          utilityName,
+          lightColor,
+          0,
+          tagName,
+          siblingClasses,
+          configData,
+        )
 
         if (ruleResult?.skip) {
           return className
@@ -153,6 +170,7 @@ export function transformClass(className, configData, tagName = null) {
         colorFamily,
         parsedShadeNumber,
         tagName,
+        siblingClasses,
         configData,
       )
 

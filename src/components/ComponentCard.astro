@@ -15,9 +15,9 @@ interface Props {
 
 const { component } = Astro.props
 
-const { category, components, slug, title, updated } = component
+const { category, components, dark: darkModeSupported, slug, title, updated } = component
 
-const componentCount = components.length + components.filter(({ dark }) => !!dark).length
+const componentCount = components.length + (darkModeSupported ? components.length : 0)
 
 const recentUpdateThresholdDate = new Date()
 

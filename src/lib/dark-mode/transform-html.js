@@ -66,15 +66,15 @@ function transformClassAttribute(classAttribute, configData, tagName) {
     return classAttribute ?? ''
   }
 
-  return classAttribute
-    .split(/\s+/)
-    .filter(Boolean)
+  const classTokens = classAttribute.split(/\s+/).filter(Boolean)
+
+  return classTokens
     .map((className) => {
       if (className.includes('dark:')) {
         return className
       }
 
-      return transformClass(className, configData, tagName)
+      return transformClass(className, configData, tagName, classTokens)
     })
     .join(' ')
 }
