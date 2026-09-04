@@ -381,25 +381,40 @@ buttons/badges across `1-dark.html`/`2-dark.html`/`4-dark.html`; `modals`:
 the "Done" button across `3-dark.html`–`6-dark.html`; `pagination`: the
 current-page indicator in `1-dark.html`).
 
-**Root-caused and fixed properly, not just patched:** relying on each
-migration session to notice and hand-fix this had already failed twice
-(missed on both `empty-states`'s and `modals`'s own migrations, only
-caught afterward) — a checklist item in this doc isn't a real fix, it's a
-bet that every future session reads and remembers it. Added a rule to
-`DEFAULT_CONFIG.rules` in `src/lib/dark-mode/config.js`
-(`house-style-foreground-text-no-invert`: `utilities: ['text'],
-excludeColors: ['white', 'black']`) so the engine's `colorMap` swap simply
-never fires on `text-white`/`text-black` — those classes now pass through
-regeneration completely unchanged, in both `scripts/generate-dark-variants.js`
-and the browser tool (both read the same `DEFAULT_CONFIG.rules`; verified
-no `text-black` exists anywhere in light-mode source, so excluding both
-directions is safe with no legitimate case lost). Verified by regenerating
-`empty-states` from scratch after the fix — byte-for-byte identical to the
-hand-fixed file, confirming the class of bug can no longer occur. **No
-longer something to watch for by hand on future collections** — the
-`border-X bg-X` shade-mismatch case below is a different, still-manual
-gotcha (border/bg shade independently from the *numeric* shade map, not
-the white/black colorMap), not fixed by this change.
+**Tried an engine-level fix, reverted it — it was wrong, not just
+incomplete.** Relying on each migration session to notice and hand-fix
+this had already failed twice, so a rule was added to
+`DEFAULT_CONFIG.rules` (`house-style-foreground-text-no-invert`) that made
+the engine's `colorMap` swap never fire on the `text` utility at all —
+`text-white`/`text-black` would pass through every regeneration unchanged.
+Verified against the 11 known occurrences (byte-for-byte identical
+regeneration of `empty-states`) and shipped as "root-caused." That
+verification was the mistake: all 11 known cases happen to be `application`
+buttons/badges where white text sits on a *colored* Phase-1-overridden
+fill (indigo/red) that stays colored in dark mode, so the text correctly
+never needs to invert — but that's not the only shape this pattern takes.
+`neobrutalism` is an entire design system built the other way: `text-black`
+paired with a *neutral* surface (`bg-white`, `bg-blue-100`, etc, 32+
+occurrences across `accordions`/`badges`/`buttons`/`cards`/`checkboxes`/
+`inputs`/`selects`/`tabs`/`textareas`) that itself flips via the existing
+`bg-white → dark:bg-black` rule — there, the text *must* invert with its
+surface (`dark:text-white`) or it goes invisible against its own now-black
+card. A global "never invert `text` white/black" rule fixes the first
+shape and silently breaks the second, and would have shipped completely
+unnoticed since `neobrutalism` hasn't been migrated yet — nothing would
+have caught it until someone actually ran the generator against it.
+**The real distinction isn't the utility (`text` vs `bg`) or the color —
+it's whether the paired surface/fill itself inverts to its opposite
+neutral in dark mode**, and that's sibling-class information the engine
+genuinely doesn't have per-class. No safe automatic fix exists with the
+current architecture. Reverted the rule entirely; back to hand-fixing each
+occurrence at Phase 3 review, per collection, same as before — the
+`text-white → dark:text-black` flip on a solid Action/Destructive fill
+**is still something to check by hand on every regeneration**, and now so
+is its mirror image once `neobrutalism` (or anything else pairing
+`text-black`/`text-white` with a surface that inverts) comes up: check
+whether the surface the text sits on inverts, and if so, whether the text
+needs to invert with it.
 
 `pagination` needed no Phase 2 fix (already conformed) — its individual
 page-link buttons' `border-gray-200` is the "grouped interactive elements"
@@ -435,10 +450,14 @@ Next action: pick the next `application` collection (alphabetical after
 `pagination` — `progress-bars` is next) and run it through Phase 2 → Phase 3
 the same way the collections above were done, remembering: the
 self-matching `border-X bg-X` shade-mismatch gotcha above for any other
-solid-fill element with a same-color border (the `text-white →
-dark:text-black` counterpart of this is now fixed at the engine level, see
-above — no longer something to check by hand); the forms-plugin
-gotcha for any remaining form-control collections; the `50`/`100`
+solid-fill element with a same-color border; the `text-white →
+dark:text-black` flip on any solid Action/Destructive fill (an engine-level
+fix was tried and reverted — see above — still a manual check on every
+regeneration); its mirror image, `text-black`/`text-white` paired with a
+*neutral surface* that itself inverts (relevant once `neobrutalism` or
+anything like it comes up — the fix there runs the opposite direction,
+inverting the text to match its surface, not preserving it); the
+forms-plugin gotcha for any remaining form-control collections; the `50`/`100`
 resting/hover shade-map collision for any light tinted chip/pill that
 darkens on hover; the floating-panel-vs-standalone-trigger border
 distinction from `filters` (grouped controls and floating panels/cards →
