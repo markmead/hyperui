@@ -78,6 +78,18 @@ export const DEFAULT_CONFIG = {
       excludeElements: [],
       excludeColors: [],
     },
+    {
+      id: 'house-style-foreground-text-no-invert',
+      name: 'text-white/text-black stay put (foreground-on-fill, not a surface)',
+      enabled: true,
+      utilities: ['text'],
+      shade: null,
+      colors: null,
+      darkShade: null,
+      darkColor: null,
+      excludeElements: [],
+      excludeColors: ['white', 'black'],
+    },
   ],
 }
 

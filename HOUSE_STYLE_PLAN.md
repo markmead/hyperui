@@ -376,16 +376,30 @@ against a colored fill. `white`/`black` swapping is correct for a page/card
 colored sibling fill — the engine has no notion of "this text sits on that
 fill" so it can't be ruled out automatically. Went unnoticed through both
 collections' own migrations and the later a11y-fixes/`modals` sessions;
-found and fixed by hand afterward — deleted the erroneous `dark:text-black`
-everywhere it appeared (`empty-states`: 3 buttons/badges across
-`1-dark.html`/`2-dark.html`/`4-dark.html`; `modals`: the "Done" button
-across `3-dark.html`–`6-dark.html`), leaving plain `text-white` to carry
-through unchanged in dark mode. **Check every regenerated component for
-this same `text-white`/`text-black` flip on solid Action- or
-Destructive-colored fills** (buttons, step badges, solid-fill status
-chips) — it will keep recurring until the engine gains sibling-class
-awareness, and it's easy to miss since it doesn't break anything visibly
-obvious in a class-level diff review.
+found and fixed by hand in the affected files first (`empty-states`: 3
+buttons/badges across `1-dark.html`/`2-dark.html`/`4-dark.html`; `modals`:
+the "Done" button across `3-dark.html`–`6-dark.html`; `pagination`: the
+current-page indicator in `1-dark.html`).
+
+**Root-caused and fixed properly, not just patched:** relying on each
+migration session to notice and hand-fix this had already failed twice
+(missed on both `empty-states`'s and `modals`'s own migrations, only
+caught afterward) — a checklist item in this doc isn't a real fix, it's a
+bet that every future session reads and remembers it. Added a rule to
+`DEFAULT_CONFIG.rules` in `src/lib/dark-mode/config.js`
+(`house-style-foreground-text-no-invert`: `utilities: ['text'],
+excludeColors: ['white', 'black']`) so the engine's `colorMap` swap simply
+never fires on `text-white`/`text-black` — those classes now pass through
+regeneration completely unchanged, in both `scripts/generate-dark-variants.js`
+and the browser tool (both read the same `DEFAULT_CONFIG.rules`; verified
+no `text-black` exists anywhere in light-mode source, so excluding both
+directions is safe with no legitimate case lost). Verified by regenerating
+`empty-states` from scratch after the fix — byte-for-byte identical to the
+hand-fixed file, confirming the class of bug can no longer occur. **No
+longer something to watch for by hand on future collections** — the
+`border-X bg-X` shade-mismatch case below is a different, still-manual
+gotcha (border/bg shade independently from the *numeric* shade map, not
+the white/black colorMap), not fixed by this change.
 
 `pagination` needed no Phase 2 fix (already conformed) — its individual
 page-link buttons' `border-gray-200` is the "grouped interactive elements"
@@ -421,10 +435,9 @@ Next action: pick the next `application` collection (alphabetical after
 `pagination` — `progress-bars` is next) and run it through Phase 2 → Phase 3
 the same way the collections above were done, remembering: the
 self-matching `border-X bg-X` shade-mismatch gotcha above for any other
-solid-fill element with a same-color border; the
-`text-white → dark:text-black` flip on any solid Action/Destructive fill
-(found after the fact on `empty-states`/`modals`, see above — check this
-explicitly on every regeneration, it's easy to miss); the forms-plugin
+solid-fill element with a same-color border (the `text-white →
+dark:text-black` counterpart of this is now fixed at the engine level, see
+above — no longer something to check by hand); the forms-plugin
 gotcha for any remaining form-control collections; the `50`/`100`
 resting/hover shade-map collision for any light tinted chip/pill that
 darkens on hover; the floating-panel-vs-standalone-trigger border
