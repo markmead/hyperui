@@ -361,9 +361,37 @@ embedding and never touches the `<body>` tag itself, so it was never
 affected by this gap. No more by-hand patching needed for future
 collections.
 
+**Found after the fact, fixed on `empty-states` and `modals`:** the
+engine's blanket `white ↔ black` `colorMap` swap fires on *any* utility,
+not just `bg` surfaces — so `text-white` labels sitting on a solid Action
+fill (`bg-indigo-600 → dark:bg-indigo-500`) were being rewritten to
+`dark:text-black` on regeneration. That undoes the entire point of Phase
+1's fill-shade override (chosen specifically so a light label stays
+legible on the fill): contrast-checked, white-on-`indigo-500` is ~4.47:1
+(their light-mode pairing, white-on-`indigo-600`, is 6.29:1); black text
+technically edges past AA at ~4.70:1 but is visibly the wrong design
+against a colored fill. `white`/`black` swapping is correct for a page/card
+*surface* (`bg-white → dark:bg-black`) but wrong for foreground text on a
+colored sibling fill — the engine has no notion of "this text sits on that
+fill" so it can't be ruled out automatically. Went unnoticed through both
+collections' own migrations and the later a11y-fixes/`modals` sessions;
+found and fixed by hand afterward — deleted the erroneous `dark:text-black`
+everywhere it appeared (`empty-states`: 3 buttons/badges across
+`1-dark.html`/`2-dark.html`/`4-dark.html`; `modals`: the "Done" button
+across `3-dark.html`–`6-dark.html`), leaving plain `text-white` to carry
+through unchanged in dark mode. **Check every regenerated component for
+this same `text-white`/`text-black` flip on solid Action- or
+Destructive-colored fills** (buttons, step badges, solid-fill status
+chips) — it will keep recurring until the engine gains sibling-class
+awareness, and it's easy to miss since it doesn't break anything visibly
+obvious in a class-level diff review.
+
 Next action: pick the next `application` collection (alphabetical after
 `modals` — `pagination` is next) and run it through Phase 2 → Phase 3 the
-same way the collections above were done, remembering: the forms-plugin
+same way the collections above were done, remembering: the
+`text-white → dark:text-black` flip on any solid Action/Destructive fill
+(found after the fact on `empty-states`/`modals`, see above — check this
+explicitly on every regeneration, it's easy to miss); the forms-plugin
 gotcha for any remaining form-control collections; the `50`/`100`
 resting/hover shade-map collision for any light tinted chip/pill that
 darkens on hover; the floating-panel-vs-standalone-trigger border
