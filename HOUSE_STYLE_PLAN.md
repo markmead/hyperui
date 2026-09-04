@@ -22,12 +22,13 @@ plus:
 - `inputs` migrated through Phase 2 → Phase 3 (see below)
 - `loaders` migrated through Phase 2 → Phase 3 (see below)
 - `modals` migrated through Phase 2 → Phase 3 (see below)
+- `pagination` migrated through Phase 2 → Phase 3 (see below)
 
 Done: Phase 1, the schema/layout rewiring, and `badges`, `breadcrumbs`,
 `button-groups`, `checkboxes`, `details-list`, `dividers`, `dropdown`,
-`empty-states`, `file-uploaders`, `filters`, `inputs`, `loaders`, and
-`modals` as fully-migrated collections (see sections below for exactly
-what that entailed).
+`empty-states`, `file-uploaders`, `filters`, `inputs`, `loaders`,
+`modals`, and `pagination` as fully-migrated collections (see sections
+below for exactly what that entailed).
 
 `breadcrumbs` needed one Phase 2 fix: its grouped/bordered variant used
 `border-gray-300` for the group wrapper, but grouped interactive elements
@@ -386,9 +387,41 @@ chips) — it will keep recurring until the engine gains sibling-class
 awareness, and it's easy to miss since it doesn't break anything visibly
 obvious in a class-level diff review.
 
+`pagination` needed no Phase 2 fix (already conformed) — its individual
+page-link buttons' `border-gray-200` is the "grouped interactive elements"
+case named explicitly back in the `breadcrumbs` write-up above (pagination
+was cited there as the existing precedent for that reading, even before
+this collection itself was migrated), and its number-input variant's
+`border-gray-300` is the plain "inputs" case. Regenerating hit two gotchas:
+
+- The current-page indicator (`border-indigo-600 bg-indigo-600 ... text-white`,
+  a non-interactive `<li aria-current="page">`, not a link) hit the
+  `text-white → dark:text-black` flip documented above — fixed the same
+  way. It also surfaced a *new* variant of that same underlying problem:
+  its `border-indigo-600` exists purely to match its own `bg-indigo-600`
+  fill (a seamless solid box, no visible border) — regenerating shade-maps
+  `border` and `bg` independently (`border` has no Phase 1 rule so rides
+  the generic `600→300` map, `bg` uses the Phase 1 override to `500`),
+  producing a mismatched `dark:border-indigo-300` ring around a
+  `dark:bg-indigo-500` fill where light mode had none. Fixed by hand to
+  `dark:border-indigo-500`, matching the fill instead of the generic map.
+  **Any self-matching `border-X bg-X` pair on a solid fill needs its
+  border shade fixed to follow the fill's Phase-1-overridden shade, not
+  the generic map** — same sibling-awareness gap as the text-color flip,
+  different utility.
+- The number-input variant hit the `@tailwindcss/forms` gotcha (declares
+  `plugins: ['@tailwindcss/forms']`) — restored `dark:bg-gray-900
+  dark:text-gray-50 dark:ring-offset-gray-900` by hand, matching the
+  `inputs`/`filters` convention (added the ring-offset even though this
+  particular input has no visible `focus:` state in its light source,
+  for consistency with how every other forms-plugin restoration in this
+  effort has included it regardless).
+
 Next action: pick the next `application` collection (alphabetical after
-`modals` — `pagination` is next) and run it through Phase 2 → Phase 3 the
-same way the collections above were done, remembering: the
+`pagination` — `progress-bars` is next) and run it through Phase 2 → Phase 3
+the same way the collections above were done, remembering: the
+self-matching `border-X bg-X` shade-mismatch gotcha above for any other
+solid-fill element with a same-color border; the
 `text-white → dark:text-black` flip on any solid Action/Destructive fill
 (found after the fact on `empty-states`/`modals`, see above — check this
 explicitly on every regeneration, it's easy to miss); the forms-plugin
