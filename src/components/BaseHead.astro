@@ -46,6 +46,8 @@ const webpageSchema = {
 <meta name="generator" content={Astro.generator} />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+<link rel="preconnect" href="https://media.ethicalads.io" />
+
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="alternate" type="application/rss+xml" title="HyperUI RSS" href="/rss.xml" />
@@ -69,6 +71,8 @@ const webpageSchema = {
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
 <Font cssVariable="--font-google-sans-flex" preload />
+
+<script is:inline defer src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
 
 <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
 <script type="application/ld+json" is:inline set:html={JSON.stringify(webpageSchema)} />
