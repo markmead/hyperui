@@ -39,5 +39,10 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@tailwindcss/typography>postcss-selector-parser": "7.1.7"
+    }
   }
 }
