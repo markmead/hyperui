@@ -5,4 +5,8 @@ Disallow: /examples/
 
 Allow: /
 
+# For agents: https://hyperui.dev/llms.txt lists every page's Markdown
+# version (e.g. /components/application/accordions.md), and
+# https://hyperui.dev/llms-full.txt has them all in one file.
+
 Sitemap: https://hyperui.dev/sitemap-index.xml
