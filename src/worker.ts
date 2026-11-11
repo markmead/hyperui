@@ -60,7 +60,9 @@ export function prefersMarkdown(acceptHeader: string | null): boolean {
 }
 
 export function markdownPathFor(pathname: string): string | null {
-  const trimmed = pathname.replace(/\/+$/, '')
+  // Collapse repeated slashes so a path like `//evil.com` can never become a
+  // protocol-relative `//evil.com.md` in the Link or Content-Location headers.
+  const trimmed = pathname.replace(/\/{2,}/g, '/').replace(/\/+$/, '')
 
   if (trimmed === '' || trimmed === '/index.html') {
     return '/index.md'
@@ -109,7 +111,10 @@ async function serveMarkdown(request: Request, env: Env): Promise<Response | nul
     return null
   }
 
-  const assetResponse = await env.ASSETS.fetch(new URL(markdownPath, url.origin))
+  const assetUrl = new URL(url.origin)
+  assetUrl.pathname = markdownPath
+
+  const assetResponse = await env.ASSETS.fetch(assetUrl)
 
   if (!assetResponse.ok) {
     return null
