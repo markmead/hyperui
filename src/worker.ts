@@ -78,7 +78,11 @@ function estimateTokens(text: string): number {
   return Math.ceil(text.length / 4)
 }
 
-function withVaryAccept(response: Response): Response {
+/**
+ * HTML responses vary on `Accept`, and successful ones advertise their
+ * Markdown twin with an RFC 8288 `Link: <...>; rel="alternate"` header.
+ */
+function withHtmlHeaders(request: Request, response: Response): Response {
   const contentType = response.headers.get('Content-Type') ?? ''
 
   if (!contentType.includes('text/html')) {
@@ -87,6 +91,12 @@ function withVaryAccept(response: Response): Response {
 
   const patched = new Response(response.body, response)
   patched.headers.append('Vary', 'Accept')
+
+  const markdownPath = markdownPathFor(new URL(request.url).pathname)
+
+  if (response.status === 200 && markdownPath) {
+    patched.headers.append('Link', `<${markdownPath}>; rel="alternate"; type="text/markdown"`)
+  }
 
   return patched
 }
@@ -135,6 +145,6 @@ export default {
       }
     }
 
-    return withVaryAccept(await handle(request, env, ctx))
+    return withHtmlHeaders(request, await handle(request, env, ctx))
   },
 } satisfies ExportedHandler<Env>

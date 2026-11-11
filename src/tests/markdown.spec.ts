@@ -42,8 +42,21 @@ test.describe('Markdown for Agents', () => {
 
       expect(response.status()).toBe(200)
       expect(response.headers()['content-type']).toContain('text/html')
+
+      const markdownPath = path === '/' ? '/index.md' : `${path}.md`
+
+      expect(response.headers()['link']).toContain(
+        `<${markdownPath}>; rel="alternate"; type="text/markdown"`,
+      )
     })
   }
+
+  test('does not advertise markdown on a 404', async ({ request }) => {
+    const response = await request.get('/does-not-exist')
+
+    expect(response.status()).toBe(404)
+    expect(response.headers()['link'] ?? '').not.toContain('text/markdown')
+  })
 
   test('prefers html when markdown has a lower quality', async ({ request }) => {
     const response = await request.get('/blog', {
