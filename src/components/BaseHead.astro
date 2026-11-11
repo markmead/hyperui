@@ -6,6 +6,7 @@ import { Font } from 'astro:assets'
 import OgImage from '../assets/og.jpg'
 
 import { SITE_TITLE } from '../constants/seo'
+import { markdownPathFor } from '../utils/markdownPath'
 
 import type { ImageMetadata } from 'astro'
 
@@ -13,11 +14,13 @@ interface Props {
   description: string
   title: string
   image?: ImageMetadata
+  // Every page has a prerendered Markdown version except the error page.
+  markdown?: boolean
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { description, title, image = OgImage } = Astro.props
+const { description, title, image = OgImage, markdown = true } = Astro.props
 
 const pageTitle = `${title} | ${SITE_TITLE}`
 
@@ -51,6 +54,11 @@ const webpageSchema = {
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="alternate" type="application/rss+xml" title="HyperUI RSS" href="/rss.xml" />
+{
+  markdown && (
+    <link rel="alternate" type="text/markdown" href={markdownPathFor(Astro.url.pathname)} />
+  )
+}
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
 <title>{pageTitle}</title>

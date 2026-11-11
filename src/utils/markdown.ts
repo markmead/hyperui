@@ -306,3 +306,134 @@ export function renderToolMarkdown(tool: CollectionEntry<'tools'>): string {
     `This is an interactive, browser-based tool. Open ${SITE_URL}${href} in a browser to use it.`,
   ])
 }
+
+export type MarkdownPage = {
+  /** Page path without a leading slash, e.g. `components/application/accordions`. */
+  path: string
+  title: string
+  description: string
+  section: 'Home' | 'Components' | 'Blog' | 'Tools'
+  markdown: string
+}
+
+/**
+ * Every page that has a Markdown version, in a stable order. Used for the
+ * `{path}.md` files, `llms.txt` and `llms-full.txt`.
+ */
+export async function getMarkdownPages(): Promise<MarkdownPage[]> {
+  const pages: MarkdownPage[] = [
+    {
+      path: 'index',
+      title: SEO_TITLE_SITE,
+      description: SEO_DESCRIPTION_SITE,
+      section: 'Home',
+      markdown: await renderHomeMarkdown(),
+    },
+  ]
+
+  for (const category of COMPONENT_CATEGORIES) {
+    pages.push({
+      path: `components/${category}`,
+      ...CATEGORY_META[category],
+      section: 'Components',
+      markdown: await renderCategoryMarkdown(category),
+    })
+
+    for (const entry of await getCategory(category)) {
+      pages.push({
+        path: `components/${category}/${entry.data.slug}`,
+        title: `Tailwind CSS ${entry.data.title}`,
+        description: entry.data.description,
+        section: 'Components',
+        markdown: renderComponentMarkdown(entry),
+      })
+    }
+  }
+
+  pages.push({
+    path: 'blog',
+    title: SEO_TITLE_BLOG,
+    description: SEO_DESCRIPTION_BLOG,
+    section: 'Blog',
+    markdown: await renderBlogIndexMarkdown(),
+  })
+
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf(),
+  )
+
+  for (const post of posts) {
+    pages.push({
+      path: `blog/${post.data.slug}`,
+      title: post.data.title,
+      description: post.data.description,
+      section: 'Blog',
+      markdown: renderBlogPostMarkdown(post),
+    })
+  }
+
+  pages.push({
+    path: 'tools',
+    title: SEO_TITLE_TOOLS,
+    description: SEO_DESCRIPTION_TOOLS,
+    section: 'Tools',
+    markdown: await renderToolsMarkdown(),
+  })
+
+  for (const tool of await getCollection('tools')) {
+    if (!tool.data.href) {
+      continue
+    }
+
+    pages.push({
+      path: tool.data.href.replace(/^\//, ''),
+      title: tool.data.title,
+      description: tool.data.description,
+      section: 'Tools',
+      markdown: renderToolMarkdown(tool),
+    })
+  }
+
+  return pages
+}
+
+const LLMS_SECTIONS: MarkdownPage['section'][] = ['Components', 'Blog', 'Tools']
+
+/** https://llmstxt.org index: a short summary plus links to every `.md` page. */
+export async function renderLlmsTxt(): Promise<string> {
+  const pages = await getMarkdownPages()
+
+  const sections = LLMS_SECTIONS.map((section) => {
+    const links = pages
+      .filter((page) => page.section === section)
+      .map((page) => `- [${page.title}](${SITE_URL}/${page.path}.md): ${page.description}`)
+
+    return [`## ${section}`, links.join('\n')].join('\n\n')
+  })
+
+  return (
+    [
+      '# HyperUI',
+      `> ${SEO_DESCRIPTION_SITE}`,
+      [
+        'HyperUI is a collection of free, open source Tailwind CSS v4 components. Each component is plain HTML with Tailwind classes: copy it into your project, there is nothing to install. Many components have a dark mode variant.',
+        `Every page on ${SITE_URL} has a Markdown version at the same path with \`.md\` appended (the home page is ${SITE_URL}/index.md). Component pages include the full HTML for every variant. ${SITE_URL}/llms-full.txt contains all of them in one file.`,
+      ].join('\n\n'),
+      ...sections,
+      ['## Optional', `- [Home](${SITE_URL}/index.md): ${SEO_DESCRIPTION_SITE}`].join('\n\n'),
+    ].join('\n\n') + '\n'
+  )
+}
+
+/** Every Markdown page in one file, separated by horizontal rules. */
+export async function renderLlmsFullTxt(): Promise<string> {
+  const pages = await getMarkdownPages()
+
+  const intro = [
+    '# HyperUI',
+    `> ${SEO_DESCRIPTION_SITE}`,
+    `Every Markdown page from ${SITE_URL} in one file. See ${SITE_URL}/llms.txt for an index.`,
+  ].join('\n\n')
+
+  return [intro, ...pages.map((page) => page.markdown.trim())].join('\n\n---\n\n') + '\n'
+}

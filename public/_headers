@@ -1,4 +1,7 @@
-# Markdown versions of pages are for agents, not search results. The worker
-# adds the same header when it serves them via `Accept: text/markdown`.
+# Markdown versions of pages and llms-full.txt repeat the HTML pages' content.
+# They are for agents, not search results.
 /*.md
+  X-Robots-Tag: noindex
+
+/llms-full.txt
   X-Robots-Tag: noindex
