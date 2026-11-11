@@ -1,0 +1,4 @@
+# Markdown versions of pages are for agents, not search results. The worker
+# adds the same header when it serves them via `Accept: text/markdown`.
+/*.md
+  X-Robots-Tag: noindex

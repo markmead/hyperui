@@ -126,6 +126,8 @@ async function serveMarkdown(request: Request, env: Env): Promise<Response | nul
     'Content-Type': 'text/markdown; charset=utf-8',
     'Content-Location': markdownPath,
     Vary: 'Accept',
+    // Agents can read it; search engines should index the HTML page instead.
+    'X-Robots-Tag': 'noindex',
     'X-Markdown-Tokens': String(estimateTokens(markdown)),
   })
 

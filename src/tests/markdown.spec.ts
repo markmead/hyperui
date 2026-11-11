@@ -27,6 +27,7 @@ test.describe('Markdown for Agents', () => {
       expect(response.status()).toBe(200)
       expect(response.headers()['content-type']).toContain('text/markdown')
       expect(response.headers()['vary']).toContain('Accept')
+      expect(response.headers()['x-robots-tag']).toBe('noindex')
 
       const body = await response.text()
 
@@ -50,6 +51,19 @@ test.describe('Markdown for Agents', () => {
       )
     })
   }
+
+  test('marks direct .md requests as noindex', async ({ request }) => {
+    const response = await request.get('/components/application/accordions.md')
+
+    expect(response.status()).toBe(200)
+    expect(response.headers()['x-robots-tag']).toBe('noindex')
+  })
+
+  test('does not mark html pages as noindex', async ({ request }) => {
+    const response = await request.get('/components/application/accordions')
+
+    expect(response.headers()['x-robots-tag']).toBeUndefined()
+  })
 
   test('does not advertise markdown on a 404', async ({ request }) => {
     const response = await request.get('/does-not-exist')
