@@ -190,36 +190,71 @@ export function renderComponentMarkdown(entry: ComponentEntry): string {
   )
 }
 
+const COMPONENT_PREVIEW_PATTERN =
+  /(?:<div\b[^>]*>\s*)?<ComponentPreview\b([^>]*?)\/>(?:\s*<\/div>)?/g
+
+const JSX_SELF_CLOSING_PATTERN = /<[A-Z][\w.]*\b[^>]*\/>/g
+
+const MDX_COMMENT_PATTERN = /\{\/\*[\s\S]*?\*\/\}/g
+
 /**
- * Blog posts are MDX. Drop the ESM imports and standalone JSX component tags
- * (e.g. `<BaseAd />`) so only the prose and code remain.
+ * Turn the MDX outside code fences into plain Markdown: drop ESM imports and
+ * exports, replace `<ComponentPreview src="..." />` demos (and their wrapping
+ * `<div>`) with the demo's HTML, and drop other JSX components and
+ * `{/* *\/}` comments. Tags may span several lines.
+ */
+function cleanMdxProse(prose: string): string {
+  return prose
+    .replace(/^(?:import|export)\s.*$/gm, '')
+    .replace(MDX_COMMENT_PATTERN, '')
+    .replace(COMPONENT_PREVIEW_PATTERN, (_match, attributes: string) => {
+      const src = attributes.match(/\bsrc=["']([^"']+)["']/)?.[1]
+      const markup = src ? readComponentMarkup(src) : ''
+
+      return markup ? codeFence(markup) : ''
+    })
+    .replace(JSX_SELF_CLOSING_PATTERN, '')
+}
+
+/**
+ * Blog posts are MDX. Clean the prose between code fences and leave fenced
+ * code untouched.
  */
 function cleanMdxBody(body: string): string {
   const lines = body.split('\n')
-  const output: string[] = []
+  const segments: { fenced: boolean; text: string[] }[] = []
   let inFence = false
 
   for (const line of lines) {
-    if (/^\s*(```|~~~)/.test(line)) {
-      inFence = !inFence
-      output.push(line)
+    const isFenceLine = /^\s*(```|~~~)/.test(line)
+
+    if (isFenceLine && !inFence) {
+      inFence = true
+      segments.push({ fenced: true, text: [line] })
       continue
     }
 
-    if (!inFence) {
-      if (/^import\s.+from\s.+$/.test(line) || /^export\s/.test(line)) {
-        continue
+    const current = segments.at(-1)
+
+    if (inFence && current) {
+      current.text.push(line)
+
+      if (isFenceLine) {
+        inFence = false
       }
 
-      if (/^\s*<[A-Z][\w.]*(\s[^>]*)?\/>\s*$/.test(line)) {
-        continue
-      }
+      continue
     }
 
-    output.push(line)
+    if (current && !current.fenced) {
+      current.text.push(line)
+    } else {
+      segments.push({ fenced: false, text: [line] })
+    }
   }
 
-  return output
+  return segments
+    .map(({ fenced, text }) => (fenced ? text.join('\n') : cleanMdxProse(text.join('\n'))))
     .join('\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim()
