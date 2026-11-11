@@ -5,4 +5,7 @@ Disallow: /examples/
 
 Allow: /
 
+# Markdown versions of every page: send "Accept: text/markdown",
+# or fetch e.g. /components/application/accordions.md
+
 Sitemap: https://hyperui.dev/sitemap-index.xml
