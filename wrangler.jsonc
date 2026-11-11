@@ -2,10 +2,25 @@
   "compatibility_date": "2026-04-07",
   "compatibility_flags": ["global_fetch_strictly_public"],
   "name": "hyperui",
-  "main": "@astrojs/cloudflare/entrypoints/server",
+  "main": "./src/worker.ts",
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Run the worker before static assets for page routes so it can serve
+    // Markdown for `Accept: text/markdown` (see src/worker.ts). Static files
+    // are excluded so they keep being served straight from the asset store.
+    "run_worker_first": [
+      "/*",
+      "!/_astro/*",
+      "!/examples/*",
+      "!/*.css",
+      "!/*.js",
+      "!/*.ico",
+      "!/*.jpg",
+      "!/*.md",
+      "!/*.txt",
+      "!/*.xml"
+    ]
   },
   "observability": {
     "enabled": false
