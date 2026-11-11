@@ -29,5 +29,10 @@ export default defineConfig({
     },
   ],
 
+  // Fully static site with no Astro.session usage. Without this, the
+  // Cloudflare adapter injects a SESSION KV binding with no namespace id,
+  // which `wrangler preview` (non-production branch deploys) rejects.
+  session: false,
+
   adapter: cloudflare(),
 })
