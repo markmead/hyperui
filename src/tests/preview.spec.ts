@@ -1,4 +1,4 @@
-import { test, expect, type Locator } from '@playwright/test'
+import { test, expect, type Locator, type Page } from '@playwright/test'
 
 const PAGE_URL = '/components/application/accordions'
 const FIRST_IFRAME = '[src="/examples/application/accordions/1.html"]'
@@ -243,5 +243,57 @@ test.describe('Component preview copy to clipboard', () => {
 
     await expect(copyButton).toHaveText('Copied')
     await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
+  })
+})
+
+test.describe('Component preview copy for AI', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(PAGE_URL)
+  })
+
+  const copyForAiButton = (page: Page, selector = FIRST_PREVIEW): Locator =>
+    page
+      .locator('preview-copy-ai')
+      .and(page.locator(selector))
+      .getByRole('button', { name: 'Copy HTML with context for an AI assistant' })
+
+  test('copies HTML with context', async ({ page, browserName }) => {
+    test.skip(
+      browserName !== 'chromium',
+      'Only Chromium grants clipboard-read in this config to verify the contents',
+    )
+
+    const copyButton = copyForAiButton(page)
+
+    await expect(copyButton).toHaveText('Copy for AI')
+
+    await copyButton.click()
+
+    await expect(copyButton).toHaveText('Copied')
+    await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
+
+    const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
+
+    expect(clipboardText).toMatch(/^# Accordions: /)
+    expect(clipboardText).toContain('https://hyperui.dev/components/application/accordions#')
+    expect(clipboardText).toContain('Tailwind CSS v4')
+    expect(clipboardText).toContain('```html\n<div')
+    expect(clipboardText).toContain('<details')
+
+    await expect(copyButton).toHaveText('Copy for AI')
+  })
+
+  test('explains dark mode setup for dark variants', async ({ page, browserName }) => {
+    test.skip(
+      browserName !== 'chromium',
+      'Only Chromium grants clipboard-read in this config to verify the contents',
+    )
+
+    await copyForAiButton(page, LAST_PREVIEW).click()
+
+    const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
+
+    expect(clipboardText).toContain('(Dark)')
+    expect(clipboardText).toContain('@custom-variant dark')
   })
 })
