@@ -25,7 +25,9 @@ const { src, aiHeader } = Astro.props
       button is always as wide as the longer label and doesn't shift when it
       changes. Being CSS content, it stays out of the button's text.
     -->
-    <span class="grid after:invisible after:col-start-1 after:row-start-1 after:content-['Copied']">
+    <span
+      class="grid text-left after:invisible after:col-start-1 after:row-start-1 after:content-['Copied']"
+    >
       <span data-text class="col-start-1 row-start-1">Copy</span>
     </span>
   </button>
