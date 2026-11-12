@@ -1,24 +1,84 @@
 ---
-import { Clipboard } from '@lucide/astro'
+import { ChevronDown, Clipboard, Code, Sparkles } from '@lucide/astro'
 
 interface Props {
   src: string
+  /** Markdown context placed above the HTML by "Copy for AI". */
+  aiHeader: string
 }
 
-const { src } = Astro.props
+const { src, aiHeader } = Astro.props
 ---
 
-<preview-copy data-src={src}>
+<preview-copy data-src={src} data-ai-header={aiHeader} class="relative flex">
   <button
     type="button"
     aria-label="Copy HTML"
     aria-pressed="false"
-    class="inline-flex items-center justify-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:pointer-events-none disabled:opacity-50"
+    data-copy="html"
+    class="inline-flex items-center justify-center gap-2 rounded-l-md bg-black px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:relative focus-visible:z-10 disabled:pointer-events-none disabled:opacity-50"
   >
     <Clipboard class="size-4" />
 
-    <span data-text>Copy</span>
+    <!--
+      An invisible "Copied" pseudo-element shares the label's grid cell, so the
+      button is always as wide as the longer label and doesn't shift when it
+      changes. Being CSS content, it stays out of the button's text.
+    -->
+    <span
+      class="grid text-left after:invisible after:col-start-1 after:row-start-1 after:content-['Copied']"
+    >
+      <span data-text class="col-start-1 row-start-1">Copy</span>
+    </span>
   </button>
+
+  <button
+    type="button"
+    aria-label="More copy options"
+    aria-haspopup="menu"
+    aria-expanded="false"
+    data-menu-toggle
+    class="inline-flex items-center justify-center rounded-r-md border-l border-gray-700 bg-black px-2 py-1.5 text-white transition-colors hover:bg-gray-800 focus-visible:relative focus-visible:z-10 aria-expanded:bg-gray-800"
+  >
+    <ChevronDown class="size-4" />
+  </button>
+
+  <div
+    role="menu"
+    aria-label="Copy options"
+    hidden
+    class="absolute top-full right-0 z-20 mt-1 w-56 rounded-md border border-gray-200 bg-white p-1 shadow-lg"
+  >
+    <button
+      type="button"
+      role="menuitem"
+      tabindex="-1"
+      data-copy="html"
+      class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm font-medium text-gray-900 hover:bg-gray-100 focus:bg-gray-100"
+    >
+      <Code class="size-4" />
+
+      <span>
+        Copy HTML
+        <span class="block text-xs font-normal text-gray-500">Just the markup</span>
+      </span>
+    </button>
+
+    <button
+      type="button"
+      role="menuitem"
+      tabindex="-1"
+      data-copy="ai"
+      class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm font-medium text-gray-900 hover:bg-gray-100 focus:bg-gray-100"
+    >
+      <Sparkles class="size-4" />
+
+      <span>
+        Copy for AI
+        <span class="block text-xs font-normal text-gray-500">Markup with setup context</span>
+      </span>
+    </button>
+  </div>
 
   <span data-polite aria-live="polite" class="sr-only"> </span>
 </preview-copy>
@@ -26,73 +86,221 @@ const { src } = Astro.props
 <script>
   import { applyCopiedButtonState } from '../lib/clipboard.js'
 
+  function codeFence(code: string): string {
+    const longestRun = Math.max(2, ...(code.match(/`+/g) ?? []).map((run) => run.length))
+    const fence = '`'.repeat(longestRun + 1)
+
+    return `${fence}html\n${code}\n${fence}`
+  }
+
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
     private contentSrc: string | null = null
     private timeoutId: ReturnType<typeof setTimeout> | null = null
 
-    private clickHandler: (() => void) | null = null
+    private mainButton: HTMLButtonElement | null = null
+    private toggleButton: HTMLButtonElement | null = null
+    private menuEl: HTMLElement | null = null
+    private buttonText: HTMLElement | null = null
+    private politeEl: HTMLElement | null = null
+
+    private abortController: AbortController | null = null
 
     connectedCallback() {
       this.contentSrc = this.dataset.src || null
 
-      if (!this.contentSrc) {
+      this.mainButton = this.querySelector<HTMLButtonElement>(':scope > button[data-copy]')
+      this.toggleButton = this.querySelector<HTMLButtonElement>('button[data-menu-toggle]')
+      this.menuEl = this.querySelector<HTMLElement>('[role="menu"]')
+      this.buttonText = this.mainButton?.querySelector<HTMLElement>('span[data-text]') ?? null
+      this.politeEl = this.querySelector<HTMLElement>('span[data-polite]')
+
+      if (
+        !this.contentSrc ||
+        !this.mainButton ||
+        !this.toggleButton ||
+        !this.menuEl ||
+        !this.buttonText ||
+        !this.politeEl
+      ) {
         return
       }
 
-      const buttonEl = this.querySelector('button')
-      const politeEl = this.querySelector('span[data-polite]')
+      this.abortController = new AbortController()
+      const { signal } = this.abortController
 
-      if (!buttonEl || !politeEl) {
-        return
-      }
+      this.mainButton.addEventListener('click', () => this.copy('html'), { signal })
 
-      const buttonText = buttonEl.querySelector('span[data-text]')
+      this.toggleButton.addEventListener(
+        'click',
+        () => (this.isMenuOpen() ? this.closeMenu() : this.openMenu()),
+        { signal },
+      )
 
-      if (!buttonText) {
-        return
-      }
+      this.toggleButton.addEventListener(
+        'keydown',
+        (keyboardEvent) => {
+          if (keyboardEvent.key === 'ArrowDown' || keyboardEvent.key === 'ArrowUp') {
+            keyboardEvent.preventDefault()
+            this.openMenu(keyboardEvent.key === 'ArrowUp' ? -1 : 0)
+          }
+        },
+        { signal },
+      )
 
-      this.clickHandler = () => {
-        if (this.isProcessing) {
-          return
-        }
+      this.menuEl.addEventListener(
+        'click',
+        (clickEvent) => {
+          const itemEl = (clickEvent.target as HTMLElement).closest<HTMLElement>('[data-copy]')
 
-        this.isProcessing = true
+          if (itemEl) {
+            this.closeMenu()
+            this.copy(itemEl.dataset.copy === 'ai' ? 'ai' : 'html')
+          }
+        },
+        { signal },
+      )
 
-        document.dispatchEvent(
-          new CustomEvent(`preview:copy:${this.contentSrc}`, {
-            bubbles: true,
-          }),
-        )
+      this.menuEl.addEventListener(
+        'keydown',
+        (keyboardEvent) => this.onMenuKeydown(keyboardEvent),
+        {
+          signal,
+        },
+      )
 
-        this.timeoutId = applyCopiedButtonState({
-          buttonTextElement: buttonText as HTMLElement,
-          liveRegionElement: politeEl as HTMLElement,
-          buttonElement: buttonEl,
-          existingTimerId: this.timeoutId,
-          onReset: () => {
-            this.isProcessing = false
-          },
-        })
-      }
-
-      buttonEl.addEventListener('click', this.clickHandler)
+      document.addEventListener(
+        'click',
+        (clickEvent) => {
+          if (this.isMenuOpen() && !this.contains(clickEvent.target as Node)) {
+            this.closeMenu(false)
+          }
+        },
+        { signal },
+      )
     }
 
     disconnectedCallback() {
-      const buttonEl = this.querySelector('button')
-
-      if (buttonEl && this.clickHandler) {
-        buttonEl.removeEventListener('click', this.clickHandler)
-
-        this.clickHandler = null
-      }
+      this.abortController?.abort()
+      this.abortController = null
 
       if (this.timeoutId !== null) {
         clearTimeout(this.timeoutId)
 
         this.timeoutId = null
+      }
+    }
+
+    private menuItems(): HTMLElement[] {
+      return [...(this.menuEl?.querySelectorAll<HTMLElement>('[role="menuitem"]') ?? [])]
+    }
+
+    private isMenuOpen(): boolean {
+      return this.menuEl ? !this.menuEl.hidden : false
+    }
+
+    private openMenu(focusIndex = 0) {
+      if (!this.menuEl || !this.toggleButton) {
+        return
+      }
+
+      this.menuEl.hidden = false
+      this.toggleButton.setAttribute('aria-expanded', 'true')
+
+      this.menuItems().at(focusIndex)?.focus()
+    }
+
+    private closeMenu(returnFocus = true) {
+      if (!this.menuEl || !this.toggleButton) {
+        return
+      }
+
+      this.menuEl.hidden = true
+      this.toggleButton.setAttribute('aria-expanded', 'false')
+
+      if (returnFocus) {
+        this.toggleButton.focus()
+      }
+    }
+
+    private onMenuKeydown(keyboardEvent: KeyboardEvent) {
+      const items = this.menuItems()
+      const currentIndex = items.indexOf(document.activeElement as HTMLElement)
+
+      switch (keyboardEvent.key) {
+        case 'ArrowDown':
+          keyboardEvent.preventDefault()
+          items[(currentIndex + 1) % items.length]?.focus()
+          break
+        case 'ArrowUp':
+          keyboardEvent.preventDefault()
+          items.at((currentIndex - 1) % items.length)?.focus()
+          break
+        case 'Home':
+          keyboardEvent.preventDefault()
+          items[0]?.focus()
+          break
+        case 'End':
+          keyboardEvent.preventDefault()
+          items.at(-1)?.focus()
+          break
+        case 'Escape':
+          keyboardEvent.preventDefault()
+          this.closeMenu()
+          break
+        case 'Tab':
+          this.closeMenu(false)
+          break
+      }
+    }
+
+    private async copy(kind: 'html' | 'ai') {
+      if (this.isProcessing || !this.contentSrc || !this.buttonText || !this.politeEl) {
+        return
+      }
+
+      this.isProcessing = true
+
+      if (kind === 'html') {
+        // <component-preview> owns the plain copy, as before.
+        document.dispatchEvent(
+          new CustomEvent(`preview:copy:${this.contentSrc}`, {
+            bubbles: true,
+          }),
+        )
+      } else {
+        // Reuse the HTML <component-preview> already renders for the code view.
+        const html = document
+          .querySelector(`component-preview[data-src="${CSS.escape(this.contentSrc)}"] [data-html]`)
+          ?.textContent?.trim()
+
+        try {
+          if (!html) {
+            throw new Error('No component markup found')
+          }
+
+          const header = this.dataset.aiHeader ?? ''
+
+          await navigator.clipboard.writeText(`${header}\n\n${codeFence(html)}\n`)
+        } catch {
+          this.isProcessing = false
+
+          return
+        }
+      }
+
+      this.timeoutId = applyCopiedButtonState({
+        buttonTextElement: this.buttonText,
+        liveRegionElement: this.politeEl,
+        ...(this.mainButton && { buttonElement: this.mainButton }),
+        existingTimerId: this.timeoutId,
+        onReset: () => {
+          this.isProcessing = false
+        },
+      })
+
+      if (kind === 'ai') {
+        this.politeEl.textContent = 'Copied for AI to clipboard.'
       }
     }
   }

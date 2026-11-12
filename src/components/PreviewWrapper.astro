@@ -6,7 +6,6 @@ import { buildCopyForAiHeader } from '../utils/copyForAi'
 import ComponentPreview from './ComponentPreview.astro'
 import PreviewBreakpoints from './PreviewBreakpoints.astro'
 import PreviewCopy from './PreviewCopy.astro'
-import PreviewCopyAi from './PreviewCopyAi.astro'
 import PreviewDetails from './PreviewDetails.astro'
 import PreviewDirection from './PreviewDirection.astro'
 import PreviewRefs from './PreviewRefs.astro'
@@ -67,8 +66,7 @@ const copyForAiHeader = buildCopyForAiHeader({
         <PreviewBreakpoints {src} {breakpoints} />
         <PreviewDirection {src} />
         <PreviewView {src} />
-        <PreviewCopyAi {src} header={copyForAiHeader} />
-        <PreviewCopy {src} />
+        <PreviewCopy {src} aiHeader={copyForAiHeader} />
       </div>
     </div>
   </div>

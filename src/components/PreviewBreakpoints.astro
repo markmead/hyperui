@@ -12,14 +12,19 @@ interface Props {
 const { breakpoints, src } = Astro.props
 ---
 
-<preview-breakpoints data-src={src} class="flex gap-1">
+<preview-breakpoints
+  data-src={src}
+  role="group"
+  aria-label="Preview width"
+  class="flex divide-x divide-gray-200 rounded-md border border-gray-200 bg-white"
+>
   {
     breakpoints.map(({ name, width }) => (
       <button
         data-breakpoint={width}
         aria-pressed={width === '100%' ? 'true' : 'false'}
         type="button"
-        class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 aria-pressed:bg-black aria-pressed:text-white"
+        class="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-900 transition-colors first:rounded-l-[5px] last:rounded-r-[5px] hover:bg-gray-50 focus-visible:relative focus-visible:z-10 disabled:pointer-events-none disabled:opacity-50 aria-pressed:bg-black aria-pressed:text-white"
       >
         {name}
       </button>

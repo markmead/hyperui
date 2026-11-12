@@ -246,31 +246,69 @@ test.describe('Component preview copy to clipboard', () => {
   })
 })
 
-test.describe('Component preview copy for AI', () => {
+test.describe('Component preview copy menu', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(PAGE_URL)
   })
 
-  const copyForAiButton = (page: Page, selector = FIRST_PREVIEW): Locator =>
-    page
-      .locator('preview-copy-ai')
-      .and(page.locator(selector))
-      .getByRole('button', { name: 'Copy HTML with context for an AI assistant' })
+  const copyEl = (page: Page, selector = FIRST_PREVIEW): Locator =>
+    page.locator('preview-copy').and(page.locator(selector))
 
-  test('copies HTML with context', async ({ page, browserName }) => {
+  const menuToggle = (page: Page, selector = FIRST_PREVIEW): Locator =>
+    copyEl(page, selector).getByRole('button', { name: 'More copy options' })
+
+  test('opens and closes the menu', async ({ page }) => {
+    const toggle = menuToggle(page)
+    const menu = copyEl(page).getByRole('menu', { name: 'Copy options' })
+
+    await expect(menu).toBeHidden()
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+
+    await toggle.click()
+
+    await expect(menu).toBeVisible()
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    await expect(menu.getByRole('menuitem')).toHaveCount(2)
+
+    await page.locator('h1').first().click()
+
+    await expect(menu).toBeHidden()
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  test('supports the keyboard', async ({ page }) => {
+    const toggle = menuToggle(page)
+    const menu = copyEl(page).getByRole('menu', { name: 'Copy options' })
+
+    await toggle.focus()
+    await page.keyboard.press('ArrowDown')
+
+    await expect(menu).toBeVisible()
+    await expect(menu.getByRole('menuitem', { name: /Copy HTML/ })).toBeFocused()
+
+    await page.keyboard.press('ArrowDown')
+
+    await expect(menu.getByRole('menuitem', { name: /Copy for AI/ })).toBeFocused()
+
+    await page.keyboard.press('Escape')
+
+    await expect(menu).toBeHidden()
+    await expect(toggle).toBeFocused()
+  })
+
+  test('copies HTML with context for AI', async ({ page, browserName }) => {
     test.skip(
       browserName !== 'chromium',
       'Only Chromium grants clipboard-read in this config to verify the contents',
     )
 
-    const copyButton = copyForAiButton(page)
+    await menuToggle(page).click()
+    await copyEl(page)
+      .getByRole('menuitem', { name: /Copy for AI/ })
+      .click()
 
-    await expect(copyButton).toHaveText('Copy for AI')
-
-    await copyButton.click()
-
-    await expect(copyButton).toHaveText('Copied')
-    await expect(copyButton).toHaveAttribute('aria-pressed', 'true')
+    await expect(copyEl(page).getByRole('menu')).toBeHidden()
+    await expect(copyEl(page).getByRole('button', { name: 'Copy HTML' })).toHaveText('Copied')
 
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
 
@@ -279,8 +317,25 @@ test.describe('Component preview copy for AI', () => {
     expect(clipboardText).toContain('Tailwind CSS v4')
     expect(clipboardText).toContain('```html\n<div')
     expect(clipboardText).toContain('<details')
+  })
 
-    await expect(copyButton).toHaveText('Copy for AI')
+  test('copies plain HTML from the menu', async ({ page, browserName }) => {
+    test.skip(
+      browserName !== 'chromium',
+      'Only Chromium grants clipboard-read in this config to verify the contents',
+    )
+
+    await menuToggle(page).click()
+    await copyEl(page)
+      .getByRole('menuitem', { name: /Copy HTML/ })
+      .click()
+
+    await expect(copyEl(page).getByRole('button', { name: 'Copy HTML' })).toHaveText('Copied')
+
+    const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
+
+    expect(clipboardText).toMatch(/^<div/)
+    expect(clipboardText).not.toContain('# Accordions')
   })
 
   test('explains dark mode setup for dark variants', async ({ page, browserName }) => {
@@ -289,11 +344,26 @@ test.describe('Component preview copy for AI', () => {
       'Only Chromium grants clipboard-read in this config to verify the contents',
     )
 
-    await copyForAiButton(page, LAST_PREVIEW).click()
+    await menuToggle(page, LAST_PREVIEW).click()
+    await copyEl(page, LAST_PREVIEW)
+      .getByRole('menuitem', { name: /Copy for AI/ })
+      .click()
 
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
 
     expect(clipboardText).toContain('(Dark)')
     expect(clipboardText).toContain('@custom-variant dark')
   })
+})
+
+test('groups breakpoint buttons', async ({ page }) => {
+  await page.goto(PAGE_URL)
+
+  const group = page
+    .locator('preview-breakpoints')
+    .and(page.locator(FIRST_PREVIEW))
+    .and(page.getByRole('group', { name: 'Preview width' }))
+
+  await expect(group).toBeVisible()
+  await expect(group.getByRole('button')).toHaveCount(5)
 })
