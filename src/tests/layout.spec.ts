@@ -27,3 +27,26 @@ test.describe('Skip to content link', () => {
     await expect(skipToContentLink).not.toBeInViewport()
   })
 })
+
+test.describe('Footer', () => {
+  test('links to the FAQs', async ({ page }) => {
+    await page.goto('')
+
+    const faqsLink = page
+      .getByRole('navigation', { name: 'Footer' })
+      .getByRole('link', { name: 'FAQs' })
+
+    // Check the target rather than clicking: in dev, Astro's toolbar covers the footer.
+    await expect(faqsLink).toHaveAttribute('href', '/faqs')
+
+    await page.goto('/faqs')
+
+    await expect(page).toHaveTitle('FAQs | HyperUI')
+  })
+
+  test('keeps the FAQs out of the header', async ({ page }) => {
+    await page.goto('')
+
+    await expect(page.locator('header').getByRole('link', { name: 'FAQs' })).toHaveCount(0)
+  })
+})
