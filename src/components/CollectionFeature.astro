@@ -13,10 +13,13 @@ interface Props {
     | CollectionEntry<'application'>['data']
     | CollectionEntry<'marketing'>['data']
     | CollectionEntry<'neobrutalism'>['data']
+    | CollectionEntry<'templates'>['data']
   )[]
+  /** Link text for the category page. Defaults to "View all {slug} components". */
+  linkLabel?: string
 }
 
-const { title, description, slug, components } = Astro.props
+const { title, description, slug, components, linkLabel } = Astro.props
 ---
 
 <section class="py-16">
@@ -29,7 +32,7 @@ const { title, description, slug, components } = Astro.props
   </ul>
 
   <a href={`/components/${slug}`} class="group mt-8 inline-flex items-center gap-2 text-gray-700">
-    <span>View all {slug} components</span>
+    <span>{linkLabel ?? `View all ${slug} components`}</span>
 
     <ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
   </a>

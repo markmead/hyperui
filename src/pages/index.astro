@@ -7,11 +7,16 @@ import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
 
-const [applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
+const [templatesRaw, applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
+  getCollection('templates'),
   getCollection('application'),
   getCollection('marketing'),
   getCollection('neobrutalism'),
 ])
+
+const templates = templatesRaw
+  .map(({ data }) => data)
+  .sort((a, b) => a.title.localeCompare(b.title))
 
 const application = applicationRaw
   .map(({ data }) => data)
@@ -50,6 +55,14 @@ const neobrutalism = neobrutalismRaw
     </section>
 
     <div class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
+      <CollectionFeature
+        title="Templates"
+        description="Full pages built from HyperUI components, with dark mode. Starting points to build on."
+        slug="templates"
+        components={templates}
+        linkLabel="View all templates"
+      />
+
       <CollectionFeature
         title="Application Components"
         description="Components for building application user interfaces."

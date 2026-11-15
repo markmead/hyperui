@@ -32,4 +32,28 @@ test.describe('Component category sections', () => {
         .and(page.locator('[data-src="/examples/application/accordions/1.html"]')),
     ).toBeVisible()
   })
+
+  test('lists every template first, in title order', async ({ page }) => {
+    const firstSection: Locator = page.locator('#main-content section').nth(1)
+
+    await expect(firstSection.getByRole('heading', { level: 2 })).toHaveText('Templates')
+    await expect(firstSection.getByRole('heading', { level: 3 })).toHaveText([
+      'Analytics Dashboard',
+      'Portfolio',
+      'SaaS Landing Page',
+      'Storefront',
+      'Support Inbox',
+    ])
+  })
+
+  test('can navigate to templates', async ({ page }) => {
+    const viewAllLink: Locator = page.getByRole('link', { name: 'View all templates' })
+
+    await expect(viewAllLink).toBeVisible()
+
+    await viewAllLink.click()
+
+    await expect(page).toHaveURL('/components/templates')
+    await expect(page).toHaveTitle('Tailwind CSS Full Page Templates | HyperUI')
+  })
 })
