@@ -41,9 +41,9 @@ function getCollectionUpdated(
   return undefined
 }
 
-const blog = defineCollection({
+const pages = defineCollection({
   loader: glob({
-    base: './src/content/blog',
+    base: './src/content/pages',
     pattern: '**/*.mdx',
     retainBody: true,
   }),
@@ -120,4 +120,4 @@ const marketing = createCollection('marketing', './src/content/collection/market
 const neobrutalism = createCollection('neobrutalism', './src/content/collection/neobrutalism')
 const templates = createCollection('templates', './src/content/collection/templates')
 
-export const collections = { blog, application, marketing, neobrutalism, templates, tools }
+export const collections = { pages, application, marketing, neobrutalism, templates, tools }

@@ -2,14 +2,12 @@ import { getCollection, type CollectionEntry } from 'astro:content'
 
 import {
   SEO_DESCRIPTION_APPLICATION_COMPONENTS,
-  SEO_DESCRIPTION_BLOG,
   SEO_DESCRIPTION_MARKETING_COMPONENTS,
   SEO_DESCRIPTION_NEOBRUTALISM_COMPONENTS,
   SEO_DESCRIPTION_SITE,
   SEO_DESCRIPTION_TEMPLATES_COMPONENTS,
   SEO_DESCRIPTION_TOOLS,
   SEO_TITLE_APPLICATION_COMPONENTS,
-  SEO_TITLE_BLOG,
   SEO_TITLE_MARKETING_COMPONENTS,
   SEO_TITLE_NEOBRUTALISM_COMPONENTS,
   SEO_TITLE_SITE,
@@ -115,7 +113,7 @@ export async function renderHomeMarkdown(): Promise<string> {
     ...sections,
     `## More`,
     [
-      `- [Blog](${SITE_URL}/blog): ${SEO_DESCRIPTION_BLOG}`,
+      `- [FAQs](${SITE_URL}/faqs): Quick answers to common HyperUI and Tailwind CSS questions.`,
       `- [Tools](${SITE_URL}/tools): ${SEO_DESCRIPTION_TOOLS}`,
     ].join('\n'),
   ])
@@ -217,7 +215,7 @@ function cleanMdxProse(prose: string): string {
 }
 
 /**
- * Blog posts are MDX. Clean the prose between code fences and leave fenced
+ * Pages are MDX. Clean the prose between code fences and leave fenced
  * code untouched.
  */
 function cleanMdxBody(body: string): string {
@@ -260,27 +258,12 @@ function cleanMdxBody(body: string): string {
     .trim()
 }
 
-export async function renderBlogIndexMarkdown(): Promise<string> {
-  const posts = (await getCollection('blog')).sort(
-    (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf(),
-  )
+export function renderPageMarkdown(page: CollectionEntry<'pages'>): string {
+  const { title, description, slug, updatedDate } = page.data
 
-  return document({ title: SEO_TITLE_BLOG, description: SEO_DESCRIPTION_BLOG, path: '/blog' }, [
-    posts
-      .map(
-        ({ data }) =>
-          `- [${data.title}](${SITE_URL}/blog/${data.slug}) (${data.updatedDate.toISOString().slice(0, 10)}): ${data.description}`,
-      )
-      .join('\n'),
-  ])
-}
-
-export function renderBlogPostMarkdown(post: CollectionEntry<'blog'>): string {
-  const { title, description, slug, pubDate, updatedDate } = post.data
-
-  return document({ title, description, path: `/blog/${slug}` }, [
-    `Published ${pubDate.toISOString().slice(0, 10)}, updated ${updatedDate.toISOString().slice(0, 10)}.`,
-    cleanMdxBody(post.body ?? ''),
+  return document({ title, description, path: `/${slug}` }, [
+    `Updated ${updatedDate.toISOString().slice(0, 10)}.`,
+    cleanMdxBody(page.body ?? ''),
   ])
 }
 
@@ -312,7 +295,7 @@ export type MarkdownPage = {
   path: string
   title: string
   description: string
-  section: 'Home' | 'Components' | 'Blog' | 'Tools'
+  section: 'Home' | 'Components' | 'Pages' | 'Tools'
   markdown: string
 }
 
@@ -350,25 +333,13 @@ export async function getMarkdownPages(): Promise<MarkdownPage[]> {
     }
   }
 
-  pages.push({
-    path: 'blog',
-    title: SEO_TITLE_BLOG,
-    description: SEO_DESCRIPTION_BLOG,
-    section: 'Blog',
-    markdown: await renderBlogIndexMarkdown(),
-  })
-
-  const posts = (await getCollection('blog')).sort(
-    (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf(),
-  )
-
-  for (const post of posts) {
+  for (const page of await getCollection('pages')) {
     pages.push({
-      path: `blog/${post.data.slug}`,
-      title: post.data.title,
-      description: post.data.description,
-      section: 'Blog',
-      markdown: renderBlogPostMarkdown(post),
+      path: page.data.slug,
+      title: page.data.title,
+      description: page.data.description,
+      section: 'Pages',
+      markdown: renderPageMarkdown(page),
     })
   }
 
@@ -397,7 +368,7 @@ export async function getMarkdownPages(): Promise<MarkdownPage[]> {
   return pages
 }
 
-const LLMS_SECTIONS: MarkdownPage['section'][] = ['Components', 'Blog', 'Tools']
+const LLMS_SECTIONS: MarkdownPage['section'][] = ['Components', 'Pages', 'Tools']
 
 /** https://llmstxt.org index: a short summary plus links to every `.md` page. */
 export async function renderLlmsTxt(): Promise<string> {

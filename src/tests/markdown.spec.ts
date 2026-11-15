@@ -12,8 +12,7 @@ const pages = [
     markdownPath: '/components/application/accordions.md',
     heading: '# Tailwind CSS Accordions',
   },
-  { path: '/blog', markdownPath: '/blog.md', heading: '# Tailwind CSS Tips & Tutorials' },
-  { path: '/blog/faqs', markdownPath: '/blog/faqs.md', heading: '# ' },
+  { path: '/faqs', markdownPath: '/faqs.md', heading: '# FAQs' },
   { path: '/tools', markdownPath: '/tools.md', heading: '# Free Tailwind CSS Tools' },
 ]
 
@@ -54,13 +53,13 @@ test.describe('Markdown for agents', () => {
     expect(await response.text()).toContain('```html\n<div')
   })
 
-  test('strips MDX components from blog posts', async ({ request }) => {
-    const response = await request.get('/blog/remove-number-input-spinners-with-tailwindcss.md')
+  test('strips MDX imports and components from pages', async ({ request }) => {
+    const response = await request.get('/faqs.md')
     const body = await response.text()
 
-    expect(body).not.toContain('<ComponentPreview')
-    expect(body).not.toContain('{/*')
-    expect(body).toContain('```html')
+    expect(body).not.toContain('import BaseAd')
+    expect(body).not.toContain('<BaseAd')
+    expect(body).toContain('## What is HyperUI?')
   })
 
   test('serves llms.txt with links to markdown pages', async ({ request }) => {
@@ -80,7 +79,7 @@ test.describe('Markdown for agents', () => {
 
     expect(response.status()).toBe(200)
     expect(body).toContain('# Tailwind CSS Accordions')
-    expect(body).toContain('# Tailwind CSS Tips & Tutorials')
+    expect(body).toContain('# FAQs')
   })
 })
 

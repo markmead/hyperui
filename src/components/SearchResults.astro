@@ -146,7 +146,7 @@ const { collections, posts } = Astro.props
       }
 
       if (posts.length > 0) {
-        fragment.appendChild(this.createResultSection('Blog Posts', posts))
+        fragment.appendChild(this.createResultSection('Pages', posts))
       }
 
       resultsEl.replaceChildren(fragment)

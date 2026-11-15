@@ -20,14 +20,11 @@ pnpm dev
 pnpm run css:component --watch
 ```
 
-To preview the blog styles, execute: `pnpm run css:blog`.
-
 ## Contributing
 
 Please open an issue first before starting work.
 
 - Contributing guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
-- Full walkthrough: [How to contribute](https://www.hyperui.dev/blog/how-to-contribute)
 
 ## License
 

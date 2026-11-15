@@ -8,7 +8,6 @@
     "test": "playwright test",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "css:blog": "npx @tailwindcss/cli -i ./src/styles/blog.css -o ./public/blog.css -m",
     "css:component": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
     "generate:git-metadata": "node scripts/generate-git-metadata.js"
   },
@@ -16,7 +15,6 @@
     "@astrojs/check": "^0.9.12",
     "@astrojs/cloudflare": "^14.4.6",
     "@astrojs/mdx": "8.0.2",
-    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "3.7.4",
     "@lucide/astro": "^1.71.0",
     "astro": "7.4.8",

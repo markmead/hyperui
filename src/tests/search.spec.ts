@@ -68,7 +68,7 @@ test.describe('Site search', () => {
     await expect(resultsContainer).toHaveAttribute('data-container', 'false')
   })
 
-  test('shows both component and blog results', async ({ page }) => {
+  test('shows both component and page results', async ({ page }) => {
     const searchInput: Locator = page.locator('search-input input')
 
     await searchInput.fill('faqs')
@@ -78,7 +78,7 @@ test.describe('Site search', () => {
     ).toBeVisible()
 
     await expect(
-      page.locator('search-results [data-list] strong', { hasText: 'Blog Posts' }),
+      page.locator('search-results [data-list] strong', { hasText: 'Pages' }),
     ).toBeVisible()
   })
 
@@ -100,18 +100,17 @@ test.describe('Site search', () => {
     expect(componentPreviews).toBeGreaterThan(0)
   })
 
-  test('can navigate to a blog result', async ({ page }) => {
+  test('can navigate to a page result', async ({ page }) => {
     const searchInput: Locator = page.locator('search-input input')
 
-    await searchInput.fill('project acknowledgements')
+    await searchInput.fill('faqs')
 
-    const blogLink: Locator = page.locator('search-results [role="listbox"] a').first()
-    const blogHref: string | null = await blogLink.getAttribute('href')
+    const pageLink: Locator = page.locator('search-results [role="listbox"] a[href="/faqs"]')
 
-    await blogLink.click()
+    await pageLink.click()
 
-    await expect(page).toHaveURL(blogHref || '')
-    await expect(page).toHaveTitle('Project Acknowledgements | HyperUI')
+    await expect(page).toHaveURL(/\/faqs\/?$/)
+    await expect(page).toHaveTitle('FAQs | HyperUI')
 
     await expect(page.locator('article')).toBeVisible()
   })
