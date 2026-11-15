@@ -93,6 +93,15 @@ const { src, aiHeader } = Astro.props
     return `${fence}html\n${code}\n${fence}`
   }
 
+  /** Counts the copy (see `src/pages/api/copy.ts`). Fire and forget. */
+  function trackCopy(src: string, kind: 'html' | 'ai') {
+    try {
+      navigator.sendBeacon('/api/copy', JSON.stringify({ src, kind }))
+    } catch {
+      // Counting must never get in the way of copying.
+    }
+  }
+
   class PreviewCopy extends HTMLElement {
     private isProcessing = false
     private contentSrc: string | null = null
@@ -288,6 +297,8 @@ const { src, aiHeader } = Astro.props
           return
         }
       }
+
+      trackCopy(this.contentSrc, kind)
 
       this.timeoutId = applyCopiedButtonState({
         buttonTextElement: this.buttonText,

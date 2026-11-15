@@ -7,6 +7,12 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  "analytics_engine_datasets": [
+    {
+      "binding": "COPY_EVENTS",
+      "dataset": "hyperui_copies"
+    }
+  ],
   "observability": {
     "enabled": false
   }
