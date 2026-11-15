@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Icon on the left, links and call to actions on the right (dark) - Header - HyperUI
+    </title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
@@ -90,7 +93,7 @@
             <div class="flex items-center gap-4">
               <div class="sm:flex sm:gap-4">
                 <a
-                  class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500"
+                  class="rounded-md bg-teal-700 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-800"
                   href="#"
                 >
                   Login
@@ -98,7 +101,7 @@
 
                 <div class="hidden sm:flex">
                   <a
-                    class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
+                    class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-700 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
                     href="#"
                   >
                     Register
@@ -108,6 +111,10 @@
 
               <div class="block md:hidden">
                 <button
+                  type="button"
+                  popovertarget="mobile-menu"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
                   class="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
                 >
                   <span class="sr-only">Toggle menu</span>
@@ -133,6 +140,76 @@
           </div>
         </div>
       </div>
+      <nav
+        id="mobile-menu"
+        popover
+        aria-label="Mobile"
+        class="inset-x-0 top-16 bottom-auto m-0 h-auto w-full border-0 border-b border-gray-200 bg-white p-4 shadow-sm md:hidden dark:border-gray-800 dark:bg-gray-900"
+      >
+        <ul class="space-y-1">
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              href="#"
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              href="#"
+            >
+              Careers
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              href="#"
+            >
+              History
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              href="#"
+            >
+              Services
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              href="#"
+            >
+              Projects
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              href="#"
+            >
+              Blog
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
+    <script>
+      const mobileMenu = document.getElementById('mobile-menu')
+      const mobileMenuToggle = document.querySelector('[popovertarget="mobile-menu"]')
+
+      mobileMenu.addEventListener('toggle', (toggleEvent) => {
+        mobileMenuToggle.setAttribute('aria-expanded', String(toggleEvent.newState === 'open'))
+      })
+    </script>
   </body>
 </html>

@@ -28,7 +28,7 @@ All pull requests are reviewed before merging. If feedback from the first review
 
 For example, to add a footer to the marketing category:
 
-1. Add the HTML file to `public/examples/marketing/footers/`. Files are numbered in order (`12.html`, then `13.html`), with a matching `13-dark.html` if it has a dark mode version.
+1. Add the HTML file to `public/examples/marketing/footers/`, with a `<title>` such as `Large with newsletter form - Footers - HyperUI`. Files are numbered in order (`12.html`, then `13.html`), with a matching `13-dark.html` if it has a dark mode version.
 2. Add an entry to the `components` array in `src/content/collection/marketing/footers.mdx`, with `dark: true` if you added a dark file.
 
 Component guidelines:

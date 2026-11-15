@@ -49,7 +49,7 @@ Dark variants can be generated using the browser-based dark mode generator tool 
 ### Adding a New Component
 
 1. Add an entry to the `components` array in the relevant MDX file under `src/content/collection/`.
-2. Create the corresponding HTML file(s) in `public/examples/{category}/{slug}/`.
+2. Create the corresponding HTML file(s) in `public/examples/{category}/{slug}/`. Give each a `<title>` in the form `{component title} - {collection title} - HyperUI`, adding ` (dark)` after the component title for dark files.
 3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file.
 
 ## PR Title Format
