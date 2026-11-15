@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import { Calendar } from '@lucide/astro'
+
+import BaseLayout from './BaseLayout.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+
+type Props = CollectionEntry<'pages'>
+
+const { data } = Astro.props
+
+const { title, description, updatedDate } = data
+---
+
+<BaseLayout {title} {description}>
+  <main id="main-content" class="mx-auto max-w-3xl px-4 py-8 md:py-16">
+    <article>
+      <header class="space-y-4">
+        <div class="flex items-center gap-1.5 text-sm text-gray-600">
+          <Calendar class="size-4" />
+
+          <FormattedDate date={updatedDate} />
+        </div>
+
+        <h1 class="text-4xl font-medium md:text-5xl">{title}</h1>
+
+        <p class="text-xl text-gray-600">
+          {description}
+        </p>
+      </header>
+
+      <div class="prose prose-headings:font-medium mt-8 max-w-none border-t border-gray-200 pt-8">
+        <slot />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

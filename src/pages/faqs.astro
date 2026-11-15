@@ -1,0 +1,18 @@
+---
+import { getEntry, render } from 'astro:content'
+
+import PageLayout from '../layouts/PageLayout.astro'
+import ExternalLink from '../components/ExternalLink.astro'
+
+const page = await getEntry('pages', 'faqs')
+
+if (!page) {
+  throw new Error('Missing src/content/pages/faqs.mdx')
+}
+
+const { Content } = await render(page)
+---
+
+<PageLayout {...page}>
+  <Content components={{ a: ExternalLink }} />
+</PageLayout>

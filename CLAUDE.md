@@ -11,7 +11,6 @@ Tailwind CSS v4, Astro 6, Cloudflare Pages (via Wrangler), Playwright (E2E tests
 ```bash
 pnpm dev                          # start dev server (also runs wrangler types first)
 pnpm run css:component --watch    # compile component preview CSS (run alongside dev)
-pnpm run css:blog                 # compile blog CSS (one-off)
 pnpm build                        # production build
 pnpm test                         # run Playwright E2E tests (requires dev server running)
 pnpm lint                         # ESLint
@@ -45,7 +44,7 @@ Dark variants can be generated using the browser-based dark mode generator tool 
 
 - `/components/{category}` → `src/pages/components/{category}/index.astro`
 - `/components/{category}/{slug}` → `src/pages/components/{category}/[...slug].astro` → `ComponentPost.astro` layout
-- `/blog/{slug}` → MDX content from `src/content/blog/`
+- `/faqs` → `src/pages/faqs.astro`, rendering `src/content/pages/faqs.mdx`
 
 ### Adding a New Component
 

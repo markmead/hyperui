@@ -21,10 +21,6 @@ export const SEO_DESCRIPTION_TEMPLATES_COMPONENTS =
   'Free full-page Tailwind CSS templates. Complete marketing and application page examples built from HyperUI components.'
 export const SEO_TITLE_TEMPLATES_COMPONENTS = 'Tailwind CSS Full Page Templates'
 
-export const SEO_DESCRIPTION_BLOG =
-  'Learn Tailwind CSS best practices, web development tips, and component tutorials. Stay updated with the latest techniques to build better websites.'
-export const SEO_TITLE_BLOG = 'Tailwind CSS Tips & Tutorials'
-
 export const SEO_DESCRIPTION_TOOLS =
   'Free browser-based Tailwind CSS tools. Transform, generate, and optimize your Tailwind CSS code without leaving the browser.'
 export const SEO_TITLE_TOOLS = 'Free Tailwind CSS Tools'

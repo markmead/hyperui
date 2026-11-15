@@ -1,15 +1,38 @@
 # Agents guess at the URLs of the Markdown versions of pages (see
-# src/pages/[...path].md.ts and /llms.txt). These send the guesses seen in
-# request logs to the real files instead of a 404.
+# src/pages/[...path].md.ts and /llms.txt), and some pages have moved or
+# been removed. Static rules come first, then rules with placeholders,
+# as Cloudflare evaluates static rules faster.
+#
+# Removed: the blog (FAQs moved to /faqs; each post goes to its nearest
+# component page, or the homepage where there isn't one), the RSS feed and
+# the Typography Mapper.
 
 /docs/llms.txt /llms.txt 301
 /docs/llms-full.txt /llms-full.txt 301
 /index.html.md /index.md 301
 /readme.md /index.md 301
 /README.md /index.md 301
+/blog / 301
+/blog/ / 301
+/blog.md /index.md 301
+/blog/faqs /faqs 301
+/blog/faqs.md /faqs.md 301
+/blog/animated-border-gradient-with-tailwindcss /components/marketing/buttons 301
+/blog/animation-duration-delay-with-tailwindcss /components/application/loaders 301
+/blog/highlight-hover-effect-with-tailwindcss /components/marketing/cards 301
+/blog/how-to-write-better-containers-in-tailwindcss /components/marketing/sections 301
+/blog/remove-number-input-spinners-with-tailwindcss /components/application/quantity-inputs 301
+/blog/how-to-write-better-tailwindcss / 301
+/blog/move-to-tailwindcss-without-breaking-changes / 301
+/blog/acknowledgements / 301
+/blog/how-to-contribute https://github.com/markmead/hyperui/blob/main/CONTRIBUTING.md 301
+/rss.xml / 301
 
 /components/:category/index.html.md /components/:category.md 301
 /components/:category/:slug/index.html.md /components/:category/:slug.md 301
 /components/:category/:slug/llms.txt /components/:category/:slug.md 301
 /components/:category/:slug/llms.md /components/:category/:slug.md 301
 /examples/:category/:slug/:file.md /components/:category/:slug.md 301
+# Old post links usually end in a slash: drop it so the rules above match.
+/blog/:post/ /blog/:post 301
+/blog/* / 301
