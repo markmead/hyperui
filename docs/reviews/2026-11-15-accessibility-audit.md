@@ -12,6 +12,10 @@
 - `templates/analytics-dashboard`
 - `marketing/headers`
 
+These are the seven most-visited component pages in the pageview export for 2026-10-16 to 2026-11-15. Category index pages are left out. Together they got 18,770 views, 11% of the site total.
+
+**Not in scope:** the site itself. That means the homepage (29.5% of views), the category index pages (16.3%) and the preview toolbar on every component page. The only site-level check was the `title` on the preview iframes. See "Next".
+
 ## Method
 
 1. **Automated scan.** axe-core 4.10.3 in Playwright Chromium at 1280×900, with the WCAG 2.0/2.1 A and AA rule tags, run against `public/examples/**` served locally with the committed `public/component.css`.
@@ -108,4 +112,23 @@ We haven't tested with a real screen reader (VoiceOver or NVDA), so read the scr
 ## Next
 
 - **Make the scan repeatable.** Add `@axe-core/playwright` to the Playwright suite and run it against every `public/examples/**/*.html`. Use `/accessibility-review` for what the scan can't catch: behaviour, labels and ARIA patterns. Findings #1, #6, #7 and #8 came from that manual pass.
-- **Audit the next components:** button groups, announcements, marketing buttons, breadcrumbs, blog cards, and the portfolio, SaaS landing page, storefront and support inbox templates.
+- **Audit the site itself.** Start with the homepage, the four category index pages and the preview toolbar (breakpoints, copy, view toggle, direction). Together that's about 46% of all views, more than all the component pages in this audit combined.
+- **Audit the next components, in traffic order:**
+
+  | Component | Views |
+  | --- | --- |
+  | `application/button-groups` | 2,000 |
+  | `marketing/announcements` | 1,990 |
+  | `marketing/buttons` | 1,930 |
+  | `application/breadcrumbs` | 1,850 |
+  | `templates/portfolio` | 1,820 |
+  | `marketing/blog-cards` | 1,810 |
+  | `templates/saas-landing-page` | 1,770 |
+  | `application/details-list` | 1,640 |
+  | `neobrutalism/accordions` | 1,610 |
+  | `application/dropdown` | 1,610 |
+  | `neobrutalism/cards` | 1,560 |
+  | `templates/storefront` | 1,020 |
+  | `templates/support-inbox` | 530 |
+
+  Neobrutalism hasn't been covered at all yet, even though its accordions and cards outrank most marketing pages.

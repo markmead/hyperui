@@ -2,13 +2,30 @@
 
 **Date:** 2026-11-15
 **Format:** a deliberately harsh review of the product and codebase, focused on getting more users in an AI-first development world.
-**Basis:** the repository only. No traffic or analytics data was used, so the traffic claims below are educated guesses. Check them against real pageview data before cutting anything.
+**Basis:** the repository, plus the top-paths pageview export for 2026-10-16 to 2026-11-15 (170,800 views). That export comes from browser-side analytics, so it counts people browsing the site. It does not count agents fetching `llms.txt` or the `.md` pages (see "Measure the AI traffic" below).
 
 **The short version:** HyperUI is a well-maintained 2021 product. It is competing on the one thing AI has made free, which is producing plausible Tailwind markup. The site is built for a human who browses, copies and pastes, and that person is disappearing. The recent work on llms.txt, `.md` pages and "Copy for AI" (#767, #768) points the right way, but it's table stakes. Nobody visits a site because it has an llms.txt.
 
+## Where the traffic goes
+
+| Area | Views | Share | Pages | Variants |
+| --- | --- | --- | --- | --- |
+| Homepage `/` | 50,420 | 29.5% | 1 | – |
+| Application (index + pages) | 48,110 | 28.2% | 34 | 163 |
+| Marketing (index + pages) | 33,820 | 19.8% | 22 | 103 |
+| Neobrutalism (index + pages) | 14,120 | 8.3% | 11 | 37 |
+| Templates (index + pages) | 13,790 | 8.1% | 5 | 12 |
+| Blog | 4,500 | 2.6% | – | – |
+| Tools | 3,730 | 2.2% | 3 | – |
+| `/cdn-cgi/content` | 2,310 | 1.4% | – | – |
+
+`/cdn-cgi/content` is Cloudflare-internal noise. Filter it out of future exports.
+
+Two numbers stand out. The homepage takes almost a third of all views, so it's the page most worth changing. And templates get about **1,150 views per variant**, against about 290 for the site as a whole.
+
 ## 1. The core problem: what can you get here that a prompt can't give you?
 
-Today the answer is nothing. "Free Tailwind components, copy and paste" describes what ChatGPT, Claude, v0 and Cursor do in about four seconds, and they were probably trained partly on HyperUI. The homepage headline, "Free Open Source Tailwind CSS Components", and its paragraph would read the same in 2021.
+Today the answer is nothing. "Free Tailwind components, copy and paste" describes what ChatGPT, Claude, v0 and Cursor do in about four seconds, and they were probably trained partly on HyperUI. The homepage headline, "Free Open Source Tailwind CSS Components", and its paragraph would read the same in 2021. That copy is the first thing 29.5% of visitors see.
 
 AI is still bad at the things HyperUI has already been fixing:
 
@@ -29,51 +46,72 @@ Today the AI support is passive: we publish Markdown and hope an agent finds it.
 4. **Change what "Copy for AI" copies.** Right now it copies markup with a header. It should copy markup plus the rules: "keep these aria attributes, use logical properties, don't remove the dark: classes." That is where the know-how lives.
 5. **Reconsider `Disallow: /examples/` in `robots.txt`.** It made sense for search engines. But agents that follow robots.txt can't fetch the raw HTML, and the canonical source of the product is on the blocked path.
 
+### Measure the AI traffic
+
+The pageview export can't see any of this. Agents don't run the analytics beacon, and `.md`, `llms.txt` and `llms-full.txt` responses aren't HTML pages anyway. Before we invest further in AI features, log those requests server-side (Cloudflare request logs, or a counter in a Worker), split by user agent. Without it, the AI strategy can't be measured.
+
 ## 3. Are the tools pointless? Mostly, yes
 
-| Tool | Verdict |
-| --- | --- |
-| **Dark Mode Generator** (≈1,000 lines across 5 components) | A rule engine that does what "add dark mode to this" does in any LLM. It's also the internal tool used to make `-dark.html` files. Keep it as a dev script, remove it from the marketing. |
-| **Typography Mapper** (966 lines) | Maps px values to Tailwind classes. Figma Dev Mode, Tailwind IntelliSense and every LLM already do this. It's the most code for the least value on the site. Kill it. |
-| **Contrast Checker / Config Builder** | Both are listed as "coming soon" in `src/data/tools.json`, yet the `/tools` hero copy says "contrast checking… theme building, and more" as if they exist. That's a credibility leak. Remove them today. |
+| Tool | Views (30 days) | Verdict |
+| --- | --- | --- |
+| **Dark Mode Generator** (≈1,000 lines across 5 components) | 570 | A rule engine that does what "add dark mode to this" does in any LLM. It's also the internal tool used to make `-dark.html` files. Keep it as a dev script, remove it from the marketing. |
+| **Typography Mapper** (966 lines) | 370 | Maps px values to Tailwind classes. Figma Dev Mode, Tailwind IntelliSense and every LLM already do this. It's the most code for the least value on the site. Kill it. |
+| **Contrast Checker / Config Builder** | – | Both are listed as "coming soon" in `src/data/tools.json`, yet the `/tools` hero copy says "contrast checking… theme building, and more" as if they exist. That's a credibility leak. Remove them today. |
 
-The bigger issue is placement: the homepage puts **Tools above every component collection**. That puts the weakest asset in the best slot.
+The bigger issue is placement: the homepage puts **Tools above every component collection**. The traffic shows the cost. The `/tools/` index gets 2,790 views, but the two real tools get only 940 between them. People click the section in the best slot on the homepage, find nothing they want and leave.
 
 The one tool worth building is an **"audit my Tailwind" checker**: paste AI-generated markup and get our a11y, RTL and dark-mode rules applied as a diff. It's the dark-mode generator's rule engine pointed at the verification angle above, and it's something people would bookmark.
 
 ## 4. Which components aren't needed?
 
-**Cut or merge. These are filler that inflate the count and that AI makes trivially:**
+Judge each component on two numbers: its views, and its views per variant. The site averages about 290 views per variant. A page with lots of variants and few views is where effort is being wasted.
 
-- **Grids (10).** Grey boxes in `grid-cols-*`. That's the Tailwind docs, not a component.
-- **Media (8).** "Left align top / center / bottom / stretch", then the same on the right. That's one flexbox component with an `items-*` toggle, not eight.
-- **Dividers (6).** Variations on `<hr>`.
-- **Loaders (7).** Spinners.
-- **Skip links (3).** One line of HTML. Turn it into a pattern inside a "page shell" component.
-- **Empty content (marketing, 5) vs Empty states (application, 5).** Duplicates in two categories. Merge them.
-- **Stats** exists in both marketing and application. Merge them.
-- **Polls (3).** Niche, low search intent.
-- **Charts (11).** This showcases Chart.js configuration, not Tailwind. It breaks the "nothing to install" promise, and LLMs are excellent at writing Chart.js configs. Keep 2–3 dashboard-ready ones.
+**Cut or merge. Low traffic, and trivial for AI to produce:**
 
-**Neobrutalism (11 pages)** is a 2023–24 trend that duplicates the application basics. Don't keep it as a separate collection. Either freeze it, or turn it into the start of **styles**: the same component in several visual languages. "Give me this in neobrutalism" is a real AI-era feature. A separate silo is not.
+| Component | Views | Variants | Per variant | Action |
+| --- | --- | --- | --- | --- |
+| Media | 600 | 8 | 75 | The lowest on the site. "Left align top / center / bottom / stretch", then the same on the right. Merge into one flexbox component |
+| Grids | 850 | 10 | 85 | Grey boxes in `grid-cols-*`. Cut to 2–3 |
+| Polls | 390 | 3 | 130 | Niche, low search intent. Cut |
+| Skip links | 440 | 3 | 147 | One line of HTML. Turn it into a pattern inside a "page shell" component |
+| Empty content (marketing) / Empty states (application) | 780 / 660 | 5 / 5 | 156 / 132 | Duplicates in two categories. Merge them |
+| Textareas (application / neobrutalism) | 320 / 300 | 3 / 3 | 107 / 100 | The lowest-traffic form controls. Fold into inputs |
 
-**We've under-invested where search traffic and buying intent are highest:**
+**Trim. The traffic is real, but there are too many variants for it:**
 
-- **Pricing: 2 variants. Testimonials: 3.** These are among the most-searched marketing blocks, and we have the fewest of them.
-- **Footers: 12.** Nobody searches for footer number twelve.
-- **Missing dark variants** on cards, product cards, media, grids, logo clouds, sections, product collections, pricing, testimonials, progress bars, range inputs, skip links and **every template**. The flagship pages are the incomplete ones.
-- **Templates (5)** are the right bet for the AI era: agents want whole pages, not fragments. But SaaS landing has 1 file, and none of the templates has dark mode. Templates are what we should be expanding.
+| Component | Views | Variants | Per variant | Action |
+| --- | --- | --- | --- | --- |
+| Footers | 1,300 | 12 | 108 | Keep the page, cut to about 5 variants |
+| Vertical menu | 1,120 | 8 | 140 | Cut to about 4 |
+| Loaders | 970 | 7 | 139 | Mid-table, so keep the page, cut to 3–4 |
+| Modals / Toasts | 740 / 720 | 6 / 6 | 123 / 120 | Cut to about 4 each |
+
+That comes to roughly 40–50 variants. Put that effort into the areas below.
+
+**Keep. These looked like filler but the traffic says otherwise:**
+
+- **Charts (2,580 views)** are the 4th most-visited component page. They do lean on Chart.js and stretch the "nothing to install" promise, but people clearly want them. Keep all 11 and add data alternatives (see the accessibility audit, finding #1).
+- **Dividers (1,270)** rank around 30th, ahead of tables, inputs and pricing.
+- **Neobrutalism (8.3% of traffic).** Its index (4,160) beats `/tools/`, and its accordions (1,610) and cards (1,560) outrank most marketing pages. Don't freeze it. If anything, build on it as the start of **styles**: the same component in several visual languages. "Give me this in neobrutalism" is a real AI-era feature.
+
+**Invest. Highest return per variant:**
+
+- **Templates (5 pages, 12 variants, 13,790 views).** This is the strongest signal in the data. The SaaS landing page has **1 file and 1,770 views**, the best ratio on the site. Portfolio (910 per variant) and storefront (510) follow. Agents want whole pages, not fragments, and visitors already do. **None of the templates has dark mode.** Expand templates first.
+- **Small pages that do well.** Banners (833 per variant), accordions (818), side menu (570), dropdown (537) and headers (528) all have 2–5 variants. More variants here would probably get used.
+- **Pricing (900 views, 2 variants, 450 per variant).** Not a top page, but the ratio is well above average, so more variants are a reasonable bet. Testimonials (600 views, 200 per variant) are average. Don't prioritise them over templates.
+- **Missing dark variants** on cards, product cards, media, grids, logo clouds, sections, product collections, pricing, testimonials, progress bars, range inputs, skip links and **every template**. Marketing cards (2,510 views, 9 variants, no dark) are the biggest gap after templates.
 
 ## 5. Smaller hits
 
-- **The ads went off and came back on within five weeks:** removed Sep 6, re-added Oct 10, and now in the homepage hero. Ads in the hero of a site that's trying to grow tell visitors we're harvesting traffic, not earning it. Pick a lane.
-- **The blog has 10 posts**, mostly from the Tailwind v3 era, plus an FAQ that's really a page. It isn't driving search traffic. Either write "AI + Tailwind" pieces (for example "Why your AI-generated modal fails WCAG") or drop the blog.
+- **The ads went off and came back on within five weeks:** removed Sep 6, re-added Oct 10, and now in the homepage hero. The homepage gets 29.5% of all views, so the hero is the most valuable space on the site. Ads there tell visitors we're harvesting traffic, not earning it. Pick a lane.
+- **The blog has 10 posts**, mostly from the Tailwind v3 era, plus an FAQ that's really a page. All of it together gets 2.6% of views, and individual posts get 170–470. Either write "AI + Tailwind" pieces (for example "Why your AI-generated modal fails WCAG") or drop the blog.
 - **There's no reason to come back.** No "new this week", no changelog front and centre. `git-metadata.json` holds update dates but the homepage doesn't use them.
 
 ## What to do, in order
 
 1. Remove the coming-soon tools and the false copy, and move Tools below the components (an hour).
-2. Reposition the homepage around "verified for accessibility, RTL and dark mode, built for your AI".
-3. Ship the MCP server and a published skill.
-4. Prune about 50 filler variants and put that effort into pricing, testimonials, templates and dark coverage.
-5. Rebuild the dark-mode generator as the "audit my markup" tool, and kill the typography mapper.
+2. Reposition the homepage around "verified for accessibility, RTL and dark mode, built for your AI". It's 29.5% of views, and that includes the decision about the hero ad.
+3. Expand templates: dark mode for all five, then more landing-page variants like the SaaS one.
+4. Start logging agent requests to `.md`, `llms.txt` and `llms-full.txt`, then ship the MCP server and a published skill.
+5. Cut and trim the components listed above (roughly 40–50 variants). Put that effort into templates, dark coverage, pricing, and the small pages that do well.
+6. Rebuild the dark-mode generator as the "audit my markup" tool, and kill the typography mapper.
