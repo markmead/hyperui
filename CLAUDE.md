@@ -37,6 +37,10 @@ Dark variants can be generated using the browser-based dark mode generator tool 
 
 `ComponentPreview.astro` defines a `<component-preview>` custom element. Preview controls (breakpoints, copy, view toggle, direction) are separate custom elements that communicate with `<component-preview>` via namespaced `CustomEvent`s on `document`, keyed by the component's src path (e.g., `preview:copy:/examples/application/accordions/1.html`).
 
+### Copy Counts
+
+`PreviewCopy.astro` sends a beacon to `/api/copy` (`src/pages/api/copy.ts`, the only server-rendered route) after each copy. It writes the category, slug, variant, theme and copy kind to the `hyperui_copies` Workers Analytics Engine dataset (`COPY_EVENTS` binding in `wrangler.jsonc`).
+
 ### Page Routing
 
 - `/components/{category}` → `src/pages/components/{category}/index.astro`
