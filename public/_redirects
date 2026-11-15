@@ -18,14 +18,23 @@
 /blog/faqs /faqs 301
 /blog/faqs.md /faqs.md 301
 /blog/animated-border-gradient-with-tailwindcss /components/marketing/buttons 301
+/blog/animated-border-gradient-with-tailwindcss.md /components/marketing/buttons.md 301
 /blog/animation-duration-delay-with-tailwindcss /components/application/loaders 301
+/blog/animation-duration-delay-with-tailwindcss.md /components/application/loaders.md 301
 /blog/highlight-hover-effect-with-tailwindcss /components/marketing/cards 301
+/blog/highlight-hover-effect-with-tailwindcss.md /components/marketing/cards.md 301
 /blog/how-to-write-better-containers-in-tailwindcss /components/marketing/sections 301
+/blog/how-to-write-better-containers-in-tailwindcss.md /components/marketing/sections.md 301
 /blog/remove-number-input-spinners-with-tailwindcss /components/application/quantity-inputs 301
+/blog/remove-number-input-spinners-with-tailwindcss.md /components/application/quantity-inputs.md 301
 /blog/how-to-write-better-tailwindcss / 301
+/blog/how-to-write-better-tailwindcss.md /index.md 301
 /blog/move-to-tailwindcss-without-breaking-changes / 301
+/blog/move-to-tailwindcss-without-breaking-changes.md /index.md 301
 /blog/acknowledgements / 301
+/blog/acknowledgements.md /index.md 301
 /blog/how-to-contribute https://github.com/markmead/hyperui/blob/main/CONTRIBUTING.md 301
+/blog/how-to-contribute.md https://github.com/markmead/hyperui/blob/main/CONTRIBUTING.md 301
 /rss.xml / 301
 
 /components/:category/index.html.md /components/:category.md 301
