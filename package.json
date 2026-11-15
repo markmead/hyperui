@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
     "css:component": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
+    "dark": "node scripts/generate-dark.js",
     "generate:git-metadata": "node scripts/generate-git-metadata.js"
   },
   "dependencies": {

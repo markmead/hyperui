@@ -1,0 +1,32 @@
+{
+  "colorMap": {
+    "white": "gray-900",
+    "black": "white"
+  },
+  "rules": [
+    {
+      "id": "gray-900-text-to-white",
+      "name": "Gray 900 text becomes white",
+      "enabled": true,
+      "utilities": ["text"],
+      "shade": 900,
+      "colors": ["gray"],
+      "darkShade": null,
+      "darkColor": "white",
+      "excludeElements": [],
+      "excludeColors": []
+    },
+    {
+      "id": "gray-400-text-stays-400",
+      "name": "Gray 400 text keeps its shade (gray-500 fails contrast on gray-900)",
+      "enabled": true,
+      "utilities": ["text"],
+      "shade": 400,
+      "colors": ["gray"],
+      "darkShade": 400,
+      "darkColor": null,
+      "excludeElements": [],
+      "excludeColors": []
+    }
+  ]
+}
