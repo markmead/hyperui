@@ -1,0 +1,15 @@
+# Agents guess at the URLs of the Markdown versions of pages (see
+# src/pages/[...path].md.ts and /llms.txt). These send the guesses seen in
+# request logs to the real files instead of a 404.
+
+/docs/llms.txt /llms.txt 301
+/docs/llms-full.txt /llms-full.txt 301
+/index.html.md /index.md 301
+/readme.md /index.md 301
+/README.md /index.md 301
+
+/components/:category/index.html.md /components/:category.md 301
+/components/:category/:slug/index.html.md /components/:category/:slug.md 301
+/components/:category/:slug/llms.txt /components/:category/:slug.md 301
+/components/:category/:slug/llms.md /components/:category/:slug.md 301
+/examples/:category/:slug/:file.md /components/:category/:slug.md 301
