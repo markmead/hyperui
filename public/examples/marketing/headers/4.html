@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icon on the left, links and user dropdown on the right - Header - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
@@ -133,6 +134,10 @@
 
             <div class="block md:hidden">
               <button
+                type="button"
+                popovertarget="mobile-menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
                 class="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
               >
                 <span class="sr-only">Toggle menu</span>
@@ -157,6 +162,76 @@
           </div>
         </div>
       </div>
+      <nav
+        id="mobile-menu"
+        popover
+        aria-label="Mobile"
+        class="inset-x-0 top-16 bottom-auto m-0 h-auto w-full border-0 border-b border-gray-200 bg-white p-4 shadow-sm md:hidden"
+      >
+        <ul class="space-y-1">
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100"
+              href="#"
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100"
+              href="#"
+            >
+              Careers
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100"
+              href="#"
+            >
+              History
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100"
+              href="#"
+            >
+              Services
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100"
+              href="#"
+            >
+              Projects
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="block rounded-md px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-100"
+              href="#"
+            >
+              Blog
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
+    <script>
+      const mobileMenu = document.getElementById('mobile-menu')
+      const mobileMenuToggle = document.querySelector('[popovertarget="mobile-menu"]')
+
+      mobileMenu.addEventListener('toggle', (toggleEvent) => {
+        mobileMenuToggle.setAttribute('aria-expanded', String(toggleEvent.newState === 'open'))
+      })
+    </script>
   </body>
 </html>

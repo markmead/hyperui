@@ -3,21 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview (dark) - Analytics Dashboard - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-950">
-    <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
-
-    <label
-      for="sidebar-toggle"
+  <body
+    data-sidebar="closed"
+    class="group flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-950"
+  >
+    <div
+      data-sidebar-overlay
       aria-hidden="true"
-      class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden dark:bg-black/60"
-    ></label>
+      class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[sidebar=open]:block lg:hidden dark:bg-black/60"
+    ></div>
 
     <div
       id="dashboard-sidebar"
-      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full dark:border-gray-700 dark:bg-gray-900"
+      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-[transform,visibility] duration-300 group-data-[sidebar=open]:translate-x-0 max-lg:invisible max-lg:group-data-[sidebar=open]:visible lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full max-lg:rtl:group-data-[sidebar=open]:translate-x-0 dark:border-gray-700 dark:bg-gray-900"
     >
       <div class="p-4">
         <span
@@ -101,12 +103,12 @@
         class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-900"
       >
         <div class="flex items-center gap-4">
-          <label
-            for="sidebar-toggle"
-            id="sidebar-toggle-label"
+          <button
+            type="button"
+            id="sidebar-toggle"
             aria-expanded="false"
             aria-controls="dashboard-sidebar"
-            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-900 peer-focus-visible:ring-offset-2 hover:bg-gray-100 lg:hidden dark:text-gray-300 dark:peer-focus-visible:ring-gray-50 dark:hover:bg-gray-800"
+            class="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 lg:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:focus-visible:ring-gray-50"
           >
             <span class="sr-only">Toggle menu</span>
 
@@ -121,7 +123,7 @@
             >
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-          </label>
+          </button>
 
           <h1 class="text-lg font-semibold text-gray-900 dark:text-white">Overview</h1>
         </div>
@@ -140,7 +142,7 @@
             class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
           >
             <div
-              class="inline-flex gap-2 self-end rounded-sm bg-green-100 p-1 text-green-600 dark:bg-green-800 dark:text-green-300"
+              class="inline-flex gap-2 self-end rounded-sm bg-green-100 p-1 text-green-800 dark:bg-green-800 dark:text-green-100"
             >
               <svg
                 aria-hidden="true"
@@ -188,7 +190,7 @@
             class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
           >
             <div
-              class="inline-flex gap-2 self-end rounded-sm bg-green-100 p-1 text-green-600 dark:bg-green-800 dark:text-green-300"
+              class="inline-flex gap-2 self-end rounded-sm bg-green-100 p-1 text-green-800 dark:bg-green-800 dark:text-green-100"
             >
               <svg
                 aria-hidden="true"
@@ -228,7 +230,7 @@
             class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
           >
             <div
-              class="inline-flex gap-2 self-end rounded-sm bg-red-100 p-1 text-red-600 dark:bg-red-800 dark:text-red-300"
+              class="inline-flex gap-2 self-end rounded-sm bg-red-100 p-1 text-red-700 dark:bg-red-800 dark:text-red-200"
             >
               <svg
                 aria-hidden="true"
@@ -299,9 +301,21 @@
               <canvas
                 id="revenue-trend-line-chart"
                 role="img"
-                aria-label="Line chart showing monthly revenue rising from $28,000 in January to $48,000 in June"
+                aria-label="Line chart of monthly revenue"
               ></canvas>
             </div>
+            <table id="revenue-trend-table" class="sr-only" aria-live="polite">
+              <caption>
+                Monthly revenue by month
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">Revenue</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
 
           <div
@@ -316,6 +330,31 @@
                 aria-label="Donut chart showing 68% of orders paid, 22% pending, and 10% refunded"
               ></canvas>
             </div>
+            <table id="order-status-table" class="sr-only">
+              <caption>
+                Orders by status
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Status</th>
+                  <th scope="col">Share of orders</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Paid</th>
+                  <td>68%</td>
+                </tr>
+                <tr>
+                  <th scope="row">Pending</th>
+                  <td>22%</td>
+                </tr>
+                <tr>
+                  <th scope="row">Refunded</th>
+                  <td>10%</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -515,6 +554,25 @@
         },
       })
 
+      const revenueTrendTableBody = document.querySelector('#revenue-trend-table tbody')
+
+      function renderRevenueTableRows(selectedRange) {
+        const { labels, values } = revenueRangesByPeriod[selectedRange]
+
+        revenueTrendTableBody.innerHTML = labels
+          .map(
+            (monthLabel, monthIndex) => `
+              <tr>
+                <th scope="row">${monthLabel}</th>
+                <td>$${values[monthIndex].toLocaleString()}</td>
+              </tr>
+            `,
+          )
+          .join('')
+      }
+
+      renderRevenueTableRows('6m')
+
       revenueRangeButtons.forEach((revenueRangeButton) => {
         revenueRangeButton.addEventListener('click', () => {
           const selectedRange = revenueRangeButton.dataset.revenueRange
@@ -534,6 +592,8 @@
           revenueTrendLineChart.data.labels = revenueRangesByPeriod[selectedRange].labels
           revenueTrendLineChart.data.datasets[0].data = revenueRangesByPeriod[selectedRange].values
           revenueTrendLineChart.update()
+
+          renderRevenueTableRows(selectedRange)
         })
       })
 
@@ -571,11 +631,25 @@
     </script>
 
     <script>
-      const sidebarToggleCheckbox = document.getElementById('sidebar-toggle')
-      const sidebarToggleLabel = document.getElementById('sidebar-toggle-label')
+      const sidebarToggle = document.getElementById('sidebar-toggle')
+      const sidebarOverlay = document.querySelector('[data-sidebar-overlay]')
 
-      sidebarToggleCheckbox.addEventListener('change', () => {
-        sidebarToggleLabel.setAttribute('aria-expanded', String(sidebarToggleCheckbox.checked))
+      function setSidebarOpen(isOpen) {
+        document.body.dataset.sidebar = isOpen ? 'open' : 'closed'
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen))
+      }
+
+      sidebarToggle.addEventListener('click', () => {
+        setSidebarOpen(sidebarToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      sidebarOverlay.addEventListener('click', () => setSidebarOpen(false))
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && document.body.dataset.sidebar === 'open') {
+          setSidebarOpen(false)
+          sidebarToggle.focus()
+        }
       })
     </script>
   </body>

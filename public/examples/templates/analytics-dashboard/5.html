@@ -3,21 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - Analytics Dashboard - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex h-screen overflow-hidden bg-gray-50">
-    <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
-
-    <label
-      for="sidebar-toggle"
+  <body data-sidebar="closed" class="group flex h-screen overflow-hidden bg-gray-50">
+    <div
+      data-sidebar-overlay
       aria-hidden="true"
-      class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
-    ></label>
+      class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[sidebar=open]:block lg:hidden"
+    ></div>
 
     <div
       id="dashboard-sidebar"
-      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full"
+      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-[transform,visibility] duration-300 group-data-[sidebar=open]:translate-x-0 max-lg:invisible max-lg:group-data-[sidebar=open]:visible lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full max-lg:rtl:group-data-[sidebar=open]:translate-x-0"
     >
       <div class="p-4">
         <span
@@ -99,12 +98,12 @@
     <div class="flex flex-1 flex-col overflow-y-auto">
       <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
         <div class="flex items-center gap-4">
-          <label
-            for="sidebar-toggle"
-            id="sidebar-toggle-label"
+          <button
+            type="button"
+            id="sidebar-toggle"
             aria-expanded="false"
             aria-controls="dashboard-sidebar"
-            class="cursor-pointer rounded-md p-2 text-gray-600 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-gray-900 peer-focus-visible:ring-offset-2 hover:bg-gray-100 lg:hidden"
+            class="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 lg:hidden"
           >
             <span class="sr-only">Toggle menu</span>
 
@@ -119,7 +118,7 @@
             >
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-          </label>
+          </button>
 
           <h1 class="text-lg font-semibold text-gray-900">Settings</h1>
         </div>
@@ -185,8 +184,12 @@
           <ul class="mt-4 divide-y divide-gray-200">
             <li class="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
               <div>
-                <p class="text-sm font-medium text-gray-900">Email notifications</p>
-                <p class="text-xs text-gray-600">Get notified when a customer places an order.</p>
+                <p id="email-notifications-label" class="text-sm font-medium text-gray-900">
+                  Email notifications
+                </p>
+                <p id="email-notifications-description" class="text-xs text-gray-600">
+                  Get notified when a customer places an order.
+                </p>
               </div>
 
               <label
@@ -196,6 +199,9 @@
                 <input
                   type="checkbox"
                   id="email-notifications-toggle"
+                  aria-labelledby="email-notifications-label"
+                  aria-describedby="email-notifications-description"
+                  role="switch"
                   checked
                   class="peer sr-only"
                 />
@@ -208,15 +214,26 @@
 
             <li class="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
               <div>
-                <p class="text-sm font-medium text-gray-900">Product updates</p>
-                <p class="text-xs text-gray-600">Occasional emails about new features.</p>
+                <p id="product-updates-label" class="text-sm font-medium text-gray-900">
+                  Product updates
+                </p>
+                <p id="product-updates-description" class="text-xs text-gray-600">
+                  Occasional emails about new features.
+                </p>
               </div>
 
               <label
                 for="product-updates-toggle"
                 class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600"
               >
-                <input type="checkbox" id="product-updates-toggle" class="peer sr-only" />
+                <input
+                  type="checkbox"
+                  id="product-updates-toggle"
+                  aria-labelledby="product-updates-label"
+                  aria-describedby="product-updates-description"
+                  role="switch"
+                  class="peer sr-only"
+                />
 
                 <span
                   class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6"
@@ -226,15 +243,27 @@
 
             <li class="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
               <div>
-                <p class="text-sm font-medium text-gray-900">Weekly summary</p>
-                <p class="text-xs text-gray-600">A digest of revenue and orders every Monday.</p>
+                <p id="weekly-summary-label" class="text-sm font-medium text-gray-900">
+                  Weekly summary
+                </p>
+                <p id="weekly-summary-description" class="text-xs text-gray-600">
+                  A digest of revenue and orders every Monday.
+                </p>
               </div>
 
               <label
                 for="weekly-summary-toggle"
                 class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600"
               >
-                <input type="checkbox" id="weekly-summary-toggle" checked class="peer sr-only" />
+                <input
+                  type="checkbox"
+                  id="weekly-summary-toggle"
+                  aria-labelledby="weekly-summary-label"
+                  aria-describedby="weekly-summary-description"
+                  role="switch"
+                  checked
+                  class="peer sr-only"
+                />
 
                 <span
                   class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6"
@@ -263,11 +292,25 @@
     </div>
 
     <script>
-      const sidebarToggleCheckbox = document.getElementById('sidebar-toggle')
-      const sidebarToggleLabel = document.getElementById('sidebar-toggle-label')
+      const sidebarToggle = document.getElementById('sidebar-toggle')
+      const sidebarOverlay = document.querySelector('[data-sidebar-overlay]')
 
-      sidebarToggleCheckbox.addEventListener('change', () => {
-        sidebarToggleLabel.setAttribute('aria-expanded', String(sidebarToggleCheckbox.checked))
+      function setSidebarOpen(isOpen) {
+        document.body.dataset.sidebar = isOpen ? 'open' : 'closed'
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen))
+      }
+
+      sidebarToggle.addEventListener('click', () => {
+        setSidebarOpen(sidebarToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      sidebarOverlay.addEventListener('click', () => setSidebarOpen(false))
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && document.body.dataset.sidebar === 'open') {
+          setSidebarOpen(false)
+          sidebarToggle.focus()
+        }
       })
     </script>
   </body>
