@@ -132,3 +132,20 @@ We haven't tested with a real screen reader (VoiceOver or NVDA), so read the scr
   | `templates/support-inbox` | 530 |
 
   Neobrutalism hasn't been covered at all yet, even though its accordions and cards outrank most marketing pages.
+
+- **Prioritise what agents copy.** Whatever an agent fetches ends up in someone's app, accessibility problems included. These are the component pages agents request most (`.md` requests, 2026-10-16 to 2026-11-15):
+
+  | Component | Agent requests | In this audit? |
+  | --- | --- | --- |
+  | `marketing/footers` | 40 | No |
+  | `marketing/faqs` | 30 | No |
+  | `application/file-uploaders` | 30 | No |
+  | `marketing/banners` | 30 | Yes |
+  | `marketing/ctas` | 20 | No |
+  | `marketing/contact-forms` | 20 | No |
+  | `marketing/cards`, `marketing/headers` | 20 each | Yes |
+  | `templates/saas-landing-page` | 20 | No (listed above) |
+  | `application/modals`, `application/dropdown`, `application/progress-bars` | 20 each | No (only dropdown is listed above) |
+  | `neobrutalism/cards`, `neobrutalism/alerts` | 20 each | No (only cards is listed above) |
+
+  The values are rounded to tens, so treat them as a rough order. Add footers, FAQs, file uploaders, CTAs, contact forms and modals to the next round. Contact forms and file uploaders are forms, so labels and error handling matter most there.

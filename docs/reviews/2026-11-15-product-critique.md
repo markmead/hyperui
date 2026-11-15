@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-15
 **Format:** a deliberately harsh review of the product and codebase, focused on getting more users in an AI-first development world.
-**Basis:** the repository, plus the top-paths pageview export for 2026-10-16 to 2026-11-15 (170,800 views). That export comes from browser-side analytics, so it counts people browsing the site. It does not count agents fetching `llms.txt` or the `.md` pages (see "Measure the AI traffic" below).
+**Basis:** the repository, plus the top-paths pageview export for 2026-10-16 to 2026-11-15 (170,800 views). That export comes from browser-side analytics, so it counts people browsing the site. It does not count agents fetching `llms.txt` or the `.md` pages. Those requests come from a separate export for the same window (1,050 requests), covered in "What agents are already doing" below.
 
 **The short version:** HyperUI is a well-maintained 2021 product. It is competing on the one thing AI has made free, which is producing plausible Tailwind markup. The site is built for a human who browses, copies and pastes, and that person is disappearing. The recent work on llms.txt, `.md` pages and "Copy for AI" (#767, #768) points the right way, but it's table stakes. Nobody visits a site because it has an llms.txt.
 
@@ -46,9 +46,34 @@ Today the AI support is passive: we publish Markdown and hope an agent finds it.
 4. **Change what "Copy for AI" copies.** Right now it copies markup with a header. It should copy markup plus the rules: "keep these aria attributes, use logical properties, don't remove the dark: classes." That is where the know-how lives.
 5. **Reconsider `Disallow: /examples/` in `robots.txt`.** It made sense for search engines. But agents that follow robots.txt can't fetch the raw HTML, and the canonical source of the product is on the blocked path.
 
-### Measure the AI traffic
+### What agents are already doing
 
-The pageview export can't see any of this. Agents don't run the analytics beacon, and `.md`, `llms.txt` and `llms-full.txt` responses aren't HTML pages anyway. Before we invest further in AI features, log those requests server-side (Cloudflare request logs, or a counter in a Worker), split by user agent. Without it, the AI strategy can't be measured.
+A second export covers requests to `.md` and `.txt` paths over the same 30 days: **1,050 requests**. That's 0.6% of the 170,800 human page views. But the Markdown pages only shipped on Nov 11 (#767), so most of these requests probably came in the last four days. At that rate it's about 260 a day against about 5,700 human views a day, roughly 4–5%. That's early, and it's growing from zero.
+
+The values are rounded to tens, so any single row of 10–40 is noise. The patterns are what matter.
+
+| What | Requests | Share |
+| --- | --- | --- |
+| Entry points: `/llms.txt` (160), `/index.md` (60), `/llms-full.txt` (50) | 270 | 26% |
+| Component pages (`/components/{category}/{slug}.md`) | 550 | 52% |
+| Category and blog `.md` pages, `/tools/typography-mapper.md` | 110 | 10% |
+| **Guessed URLs that don't exist** | **120** | **11%** |
+
+What this tells us:
+
+1. **Agents find the site through `llms.txt`.** It's the most-requested path by a wide margin. Keep it short, current and ordered by what's most useful. It's the new homepage for this audience.
+2. **Agents want landing-page sections.** The top component pages are footers (40), FAQs, file uploaders and banners (30 each), then CTAs, contact forms, cards, headers and the SaaS landing page (20 each). Those are the parts of a landing page. Agents are assembling whole pages from fragments, which backs up the case for templates. Accordions, the top page for humans (4,090 views), got only 10 agent requests.
+3. **About one request in nine is a guess that fails.** These include:
+   - `/components/application/index.html.md`, plus four more `…/index.html.md` paths
+   - `/docs/llms-full.txt` (20)
+   - `/components/application/filters/llms.txt` and `/components/application/empty-states/llms.md`
+   - `/examples/marketing/pricing/1.md`
+   - `/readme.md` and `/.github/issue_template.md`
+
+   Most of these can be caught with a few redirects in `public/_redirects`. For example, `/*/index.html.md` would go to `/:splat.md`, `/docs/llms-full.txt` to `/llms-full.txt`, and `/components/*/llms.txt` to `/llms.txt`. That's an hour's work, and it recovers roughly 11% of agent requests.
+4. **Agents go looking for the raw examples.** One agent asked for `/examples/marketing/pricing/1.md`, which confirms point 5 above about `robots.txt`.
+
+The export doesn't split requests by user agent and doesn't include `/examples/*.html`. Add both to the next export, so we can tell which assistants are using the site and whether they copy the raw markup.
 
 ## 3. Are the tools pointless? Mostly, yes
 
@@ -81,7 +106,7 @@ Judge each component on two numbers: its views, and its views per variant. The s
 
 | Component | Views | Variants | Per variant | Action |
 | --- | --- | --- | --- | --- |
-| Footers | 1,300 | 12 | 108 | Keep the page, cut to about 5 variants |
+| Footers | 1,300 | 12 | 108 | Keep the page, cut to about 5 variants. It's the top component page for agents (40 requests), so keep the strongest ones |
 | Vertical menu | 1,120 | 8 | 140 | Cut to about 4 |
 | Loaders | 970 | 7 | 139 | Mid-table, so keep the page, cut to 3–4 |
 | Modals / Toasts | 740 / 720 | 6 / 6 | 123 / 120 | Cut to about 4 each |
@@ -112,6 +137,6 @@ That comes to roughly 40–50 variants. Put that effort into the areas below.
 1. Remove the coming-soon tools and the false copy, and move Tools below the components (an hour).
 2. Reposition the homepage around "verified for accessibility, RTL and dark mode, built for your AI". It's 29.5% of views, and that includes the decision about the hero ad.
 3. Expand templates: dark mode for all five, then more landing-page variants like the SaaS one.
-4. Start logging agent requests to `.md`, `llms.txt` and `llms-full.txt`, then ship the MCP server and a published skill.
+4. Add redirects for the URLs agents guess (about 11% of their requests currently fail). Split the agent export by user agent and include `/examples/*`. Then ship the MCP server and a published skill.
 5. Cut and trim the components listed above (roughly 40–50 variants). Put that effort into templates, dark coverage, pricing, and the small pages that do well.
 6. Rebuild the dark-mode generator as the "audit my markup" tool, and kill the typography mapper.
