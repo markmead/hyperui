@@ -13,3 +13,7 @@
 /components/:category/:slug/llms.txt /components/:category/:slug.md 301
 /components/:category/:slug/llms.md /components/:category/:slug.md 301
 /examples/:category/:slug/:file.md /components/:category/:slug.md 301
+
+# Removed tools
+/tools/typography-mapper /tools 301
+/tools/typography-mapper.md /tools.md 301
