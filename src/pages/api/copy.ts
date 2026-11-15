@@ -51,6 +51,16 @@ function getPublishedExamples(): Promise<Set<string>> {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  // Browsers send Sec-Fetch-Site on every request, and the preview toolbar's
+  // beacon is always same-origin. Rejecting anything else stops other sites
+  // from sending counts from their visitors' browsers. Clients that don't
+  // send the header at all are left to the Cloudflare rate-limiting rule.
+  const fetchSite = request.headers.get('Sec-Fetch-Site')
+
+  if (fetchSite !== null && fetchSite !== 'same-origin') {
+    return new Response(null, { status: 403 })
+  }
+
   let payload: unknown
 
   try {

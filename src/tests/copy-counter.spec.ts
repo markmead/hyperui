@@ -9,6 +9,24 @@ test.describe('Copy counter', () => {
     expect(response.status()).toBe(204)
   })
 
+  test('rejects a copy sent from another site', async ({ request }) => {
+    const response = await request.post('/api/copy', {
+      data: JSON.stringify({ src: '/examples/marketing/footers/1.html', kind: 'html' }),
+      headers: { 'Sec-Fetch-Site': 'cross-site' },
+    })
+
+    expect(response.status()).toBe(403)
+  })
+
+  test('accepts a same-origin copy', async ({ request }) => {
+    const response = await request.post('/api/copy', {
+      data: JSON.stringify({ src: '/examples/marketing/footers/1.html', kind: 'html' }),
+      headers: { 'Sec-Fetch-Site': 'same-origin' },
+    })
+
+    expect(response.status()).toBe(204)
+  })
+
   for (const [name, body] of [
     ['an unknown path', JSON.stringify({ src: '/etc/passwd', kind: 'html' })],
     ['an unknown kind', JSON.stringify({ src: '/examples/marketing/footers/3.html', kind: 'x' })],
