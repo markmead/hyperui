@@ -93,8 +93,10 @@ const sourceHtml = readComponentMarkup(src)
 
         // Hand the write back to the dispatcher (PreviewCopy), so it only
         // shows "Copied" and counts the copy once the write has succeeded.
+        // Wrapped so a synchronous throw (e.g. no clipboard API) also
+        // becomes a rejected promise the dispatcher can handle.
         const done = contentHtml
-          ? navigator.clipboard.writeText(contentHtml)
+          ? Promise.resolve().then(() => navigator.clipboard.writeText(contentHtml))
           : Promise.reject(new Error('No component markup found'))
 
         done.catch(() => {})

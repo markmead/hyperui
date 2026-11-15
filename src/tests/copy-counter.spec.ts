@@ -71,4 +71,48 @@ test.describe('Copy counter', () => {
     expect(beacons).toHaveLength(0)
     await expect(copyButton).not.toContainText('Copied')
   })
+
+  test('a copy with no clipboard API is not counted and can be retried', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName !== 'chromium', 'Clipboard permissions are only granted in Chromium')
+
+    await page.goto('/components/marketing/footers')
+
+    await page.evaluate(() => {
+      Object.defineProperty(navigator.clipboard, 'writeText', {
+        configurable: true,
+        value: () => {
+          throw new TypeError('Clipboard unavailable')
+        },
+      })
+    })
+
+    const beacons: string[] = []
+
+    page.on('request', (request) => {
+      if (request.url().endsWith('/api/copy')) {
+        beacons.push(request.url())
+      }
+    })
+
+    const copyButton = page.locator('preview-copy').first().locator(':scope > button[data-copy]')
+
+    await copyButton.click()
+    await page.waitForTimeout(300)
+
+    expect(beacons).toHaveLength(0)
+    await expect(copyButton).not.toContainText('Copied')
+
+    // The control isn't left busy: once the clipboard works, the next click copies.
+    await page.evaluate(() => {
+      Reflect.deleteProperty(navigator.clipboard, 'writeText')
+    })
+
+    await copyButton.click()
+
+    await expect(copyButton).toContainText('Copied')
+    expect(beacons).toHaveLength(1)
+  })
 })
