@@ -36,6 +36,8 @@
 /blog/how-to-contribute https://github.com/markmead/hyperui/blob/main/CONTRIBUTING.md 301
 /blog/how-to-contribute.md https://github.com/markmead/hyperui/blob/main/CONTRIBUTING.md 301
 /rss.xml / 301
+/tools/typography-mapper /tools 301
+/tools/typography-mapper.md /tools.md 301
 
 /components/:category/index.html.md /components/:category.md 301
 /components/:category/:slug/index.html.md /components/:category/:slug.md 301
