@@ -524,8 +524,11 @@
 
             otherRangeButton.setAttribute('aria-pressed', String(isSelectedButton))
             otherRangeButton.classList.toggle('bg-gray-100', isSelectedButton)
+            otherRangeButton.classList.toggle('dark:bg-gray-800', isSelectedButton)
             otherRangeButton.classList.toggle('text-gray-900', isSelectedButton)
+            otherRangeButton.classList.toggle('dark:text-white', isSelectedButton)
             otherRangeButton.classList.toggle('text-gray-600', !isSelectedButton)
+            otherRangeButton.classList.toggle('dark:text-gray-300', !isSelectedButton)
           })
 
           revenueTrendLineChart.data.labels = revenueRangesByPeriod[selectedRange].labels

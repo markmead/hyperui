@@ -475,8 +475,11 @@
 
             otherFilterButton.setAttribute('aria-pressed', String(isSelectedButton))
             otherFilterButton.classList.toggle('bg-gray-100', isSelectedButton)
+            otherFilterButton.classList.toggle('dark:bg-gray-800', isSelectedButton)
             otherFilterButton.classList.toggle('text-gray-900', isSelectedButton)
+            otherFilterButton.classList.toggle('dark:text-white', isSelectedButton)
             otherFilterButton.classList.toggle('text-gray-600', !isSelectedButton)
+            otherFilterButton.classList.toggle('dark:text-gray-300', !isSelectedButton)
           })
 
           refreshOrderRows()
