@@ -62,6 +62,23 @@ test.describe('Copy counter', () => {
     })
   })
 
+  test('Copy for AI sends a beacon with kind ai', async ({ page, browserName }) => {
+    test.skip(browserName !== 'chromium', 'Clipboard permissions are only granted in Chromium')
+
+    await page.goto('/components/marketing/footers')
+
+    const previewCopy = page.locator('preview-copy').first()
+    const beacon = page.waitForRequest((request) => request.url().endsWith('/api/copy'))
+
+    await previewCopy.locator('button[data-menu-toggle]').click()
+    await previewCopy.locator('[role="menu"] [data-copy="ai"]').click()
+
+    expect(JSON.parse((await beacon).postData() ?? '')).toEqual({
+      src: '/examples/marketing/footers/1.html',
+      kind: 'ai',
+    })
+  })
+
   test('a failed copy is not counted', async ({ page, browserName }) => {
     test.skip(browserName !== 'chromium', 'Clipboard permissions are only granted in Chromium')
 
