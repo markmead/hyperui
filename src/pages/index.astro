@@ -50,27 +50,6 @@ const neobrutalism = neobrutalismRaw
     </section>
 
     <div class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
-      <section class="py-16">
-        <div
-          class="flex flex-col items-start gap-x-8 gap-y-4 rounded-lg border border-gray-200 bg-gray-50 p-8 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div>
-            <h2 class="text-2xl font-medium">HyperUI Tools</h2>
-
-            <p class="mt-2 text-gray-600">
-              Generate dark mode variants and map typography scales — all in the browser.
-            </p>
-          </div>
-
-          <a
-            href="/tools"
-            class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-gray-800 hover:bg-gray-800"
-          >
-            Browse tools
-          </a>
-        </div>
-      </section>
-
       <CollectionFeature
         title="Application Components"
         description="Components for building application user interfaces."
@@ -91,6 +70,27 @@ const neobrutalism = neobrutalismRaw
         slug="neobrutalism"
         components={neobrutalism}
       />
+
+      <section class="py-16">
+        <div
+          class="flex flex-col items-start gap-x-8 gap-y-4 rounded-lg border border-gray-200 bg-gray-50 p-8 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-medium">HyperUI Tools</h2>
+
+            <p class="mt-2 text-gray-600">
+              Paste any Tailwind markup and generate dark mode variants, all in the browser.
+            </p>
+          </div>
+
+          <a
+            href="/tools"
+            class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-gray-800 hover:bg-gray-800"
+          >
+            Browse tools
+          </a>
+        </div>
+      </section>
     </div>
   </main>
 </BaseLayout>
