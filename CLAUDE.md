@@ -39,7 +39,7 @@ Dark variants can be generated using the browser-based dark mode generator tool 
 
 ### Copy Counts
 
-`PreviewCopy.astro` sends a beacon to `/api/copy` (`src/pages/api/copy.ts`, the only server-rendered route) after each copy. It writes the category, slug, variant, theme and copy kind to the `hyperui_copies` Workers Analytics Engine dataset (`COPY_EVENTS` binding in `wrangler.jsonc`). See `docs/copy-counts.md` for querying.
+`PreviewCopy.astro` sends a beacon to `/api/copy` (`src/pages/api/copy.ts`, the only server-rendered route) after each copy. It writes the category, slug, variant, theme and copy kind to the `hyperui_copies` Workers Analytics Engine dataset (`COPY_EVENTS` binding in `wrangler.jsonc`).
 
 ### Page Routing
 

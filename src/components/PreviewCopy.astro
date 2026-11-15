@@ -271,12 +271,28 @@ const { src, aiHeader } = Astro.props
       this.isProcessing = true
 
       if (kind === 'html') {
-        // <component-preview> owns the plain copy, as before.
+        // <component-preview> owns the plain copy, as before, and hands back
+        // the clipboard write so a failed copy isn't shown or counted.
+        const detail: { done?: Promise<void> } = {}
+
         document.dispatchEvent(
           new CustomEvent(`preview:copy:${this.contentSrc}`, {
             bubbles: true,
+            detail,
           }),
         )
+
+        try {
+          if (!detail.done) {
+            throw new Error('No component preview handled the copy')
+          }
+
+          await detail.done
+        } catch {
+          this.isProcessing = false
+
+          return
+        }
       } else {
         // Reuse the HTML <component-preview> already renders for the code view.
         const html = document

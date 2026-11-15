@@ -44,7 +44,7 @@ const sourceHtml = readComponentMarkup(src)
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
-    private copyHandler: (() => void) | null = null
+    private copyHandler: ((event: CustomEvent<{ done?: Promise<void> }>) => void) | null = null
     private viewHandler: ((event: CustomEvent<{ previewing: boolean }>) => void) | null = null
 
     connectedCallback() {
@@ -68,6 +68,7 @@ const sourceHtml = readComponentMarkup(src)
       if (this.contentSrc && this.breakpointHandler && this.copyHandler && this.viewHandler) {
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)
@@ -87,15 +88,19 @@ const sourceHtml = readComponentMarkup(src)
         }
       }
 
-      this.copyHandler = () => {
+      this.copyHandler = (copyEvent) => {
         const contentHtml = this.getContent()
 
-        try {
-          if (contentHtml) {
-            navigator.clipboard.writeText(contentHtml)
-          }
-        } catch {
-          // We do nothing
+        // Hand the write back to the dispatcher (PreviewCopy), so it only
+        // shows "Copied" and counts the copy once the write has succeeded.
+        const done = contentHtml
+          ? navigator.clipboard.writeText(contentHtml)
+          : Promise.reject(new Error('No component markup found'))
+
+        done.catch(() => {})
+
+        if (copyEvent.detail) {
+          copyEvent.detail.done = done
         }
       }
 
@@ -112,6 +117,7 @@ const sourceHtml = readComponentMarkup(src)
       if (this.contentSrc) {
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
+        // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`preview:copy:${this.contentSrc}`, this.copyHandler)
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.addEventListener(`preview:view:${this.contentSrc}`, this.viewHandler)

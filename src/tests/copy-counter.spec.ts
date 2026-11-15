@@ -13,6 +13,14 @@ test.describe('Copy counter', () => {
     ['an unknown path', JSON.stringify({ src: '/etc/passwd', kind: 'html' })],
     ['an unknown kind', JSON.stringify({ src: '/examples/marketing/footers/3.html', kind: 'x' })],
     ['a body that is not JSON', 'nope'],
+    [
+      'an example that does not exist',
+      JSON.stringify({ src: '/examples/marketing/does-not-exist/999.html', kind: 'html' }),
+    ],
+    [
+      'a dark variant that does not exist',
+      JSON.stringify({ src: '/examples/application/grids/1-dark.html', kind: 'html' }),
+    ],
   ]) {
     test(`rejects ${name}`, async ({ request }) => {
       const response = await request.post('/api/copy', { data: body })
@@ -34,5 +42,33 @@ test.describe('Copy counter', () => {
       src: '/examples/marketing/footers/1.html',
       kind: 'html',
     })
+  })
+
+  test('a failed copy is not counted', async ({ page, browserName }) => {
+    test.skip(browserName !== 'chromium', 'Clipboard permissions are only granted in Chromium')
+
+    await page.goto('/components/marketing/footers')
+
+    await page.evaluate(() => {
+      Object.defineProperty(navigator.clipboard, 'writeText', {
+        value: () => Promise.reject(new Error('Clipboard blocked')),
+      })
+    })
+
+    const beacons: string[] = []
+
+    page.on('request', (request) => {
+      if (request.url().endsWith('/api/copy')) {
+        beacons.push(request.url())
+      }
+    })
+
+    const copyButton = page.locator('preview-copy').first().locator(':scope > button[data-copy]')
+
+    await copyButton.click()
+    await page.waitForTimeout(500)
+
+    expect(beacons).toHaveLength(0)
+    await expect(copyButton).not.toContainText('Copied')
   })
 })

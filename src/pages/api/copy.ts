@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro'
+import { getCollection } from 'astro:content'
 import { env } from 'cloudflare:workers'
 
 /**
@@ -15,6 +16,39 @@ const SRC_PATTERN =
   /^\/examples\/(application|marketing|neobrutalism|templates)\/([a-z0-9-]+)\/(\d{1,3})(-dark)?\.html$/
 
 const COPY_KINDS = new Set(['html', 'ai'])
+
+const CATEGORIES = ['application', 'marketing', 'neobrutalism', 'templates'] as const
+
+let publishedExamples: Promise<Set<string>> | null = null
+
+/**
+ * Every example the site publishes, as `{category}/{slug}/{n}` and
+ * `{category}/{slug}/{n}-dark`, from the same collections the pages use.
+ * Built once per Worker instance.
+ */
+function getPublishedExamples(): Promise<Set<string>> {
+  publishedExamples ??= Promise.all(CATEGORIES.map((category) => getCollection(category))).then(
+    (collections) => {
+      const examples = new Set<string>()
+
+      for (const entry of collections.flat()) {
+        entry.data.components.forEach((component, index) => {
+          const path = `${entry.data.category}/${entry.data.slug}/${index + 1}`
+
+          examples.add(path)
+
+          if (component.dark) {
+            examples.add(`${path}-dark`)
+          }
+        })
+      }
+
+      return examples
+    },
+  )
+
+  return publishedExamples
+}
 
 export const POST: APIRoute = async ({ request }) => {
   let payload: unknown
@@ -34,6 +68,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   // The pattern guarantees the first three groups.
   const [, category = '', slug = '', variant = '', dark] = match
+
+  if (!(await getPublishedExamples()).has(`${category}/${slug}/${variant}${dark ?? ''}`)) {
+    return new Response(null, { status: 400 })
+  }
 
   // The binding is missing under `astro dev`, so counting is skipped there.
   env.COPY_EVENTS?.writeDataPoint({
