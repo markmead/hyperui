@@ -127,9 +127,8 @@ test.describe('pnpm dark', () => {
       const generated = scriptColours(generateDarkHtml(lightHtml, config))
       const expected = scriptColours(darkHtml)
 
-      for (const colour of generated) {
-        expect(expected, `charts/${variant}: ${colour}`).toContain(colour)
-      }
+      // Compare whole sets, so a swap that stops working fails too.
+      expect([...generated].sort(), `charts/${variant}`).toEqual([...expected].sort())
     }
   })
 
