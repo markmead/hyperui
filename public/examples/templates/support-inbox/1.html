@@ -355,7 +355,7 @@
     </div>
 
     <script>
-      // Each panel's state lives on <body> as data-{panel}="open" or "closed".
+      // Each panel's state lives on the body element as data-{panel}="open" or "closed".
       const panelToggles = Object.fromEntries(
         ['rail'].map((panel) => [panel, document.getElementById(`${panel}-toggle`)]),
       )
