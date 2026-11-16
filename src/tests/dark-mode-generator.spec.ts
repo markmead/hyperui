@@ -56,7 +56,8 @@ test.describe('Dark Mode Generator', () => {
     await page.locator('[data-add-rule]').click()
 
     await expect(page.locator('[data-rules-count]')).toHaveText('(1)')
-    await expect(page.locator('details:has([data-rules])')).toHaveAttribute('open', '')
+    await expect(page.locator('[data-rules-toggle]')).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.locator('[data-rules-panel]')).toBeVisible()
   })
 
   test('config persists rules across page reload', async ({ page }) => {

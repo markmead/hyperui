@@ -49,29 +49,27 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
     </details>
 
     <!--
-      The rule buttons sit next to the <summary>, not inside it: buttons nested
-      in a summary aren't reliably reachable or announced by assistive tech.
+      Rules is a disclosure button, not <details>, so its actions can sit
+      between the toggle and the list: buttons inside a <summary> aren't
+      reliably announced, and the tab order matches the visual order.
     -->
     <div class="relative flex-1">
-      <details class="group">
-        <summary
-          class="flex min-h-15 cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
+      <h3>
+        <button
+          type="button"
+          data-rules-toggle
+          aria-expanded="false"
+          aria-controls="dark-mode-rules"
+          class="group flex min-h-15 w-full cursor-pointer items-center justify-between p-4 text-sm font-medium text-gray-700 transition-colors hover:bg-white ltr:text-left rtl:text-right"
         >
-          <h3 class="text-sm font-medium text-gray-700">
-            Rules <span data-rules-count class="font-normal text-gray-600"></span>
-          </h3>
+          <span>Rules <span data-rules-count class="font-normal text-gray-600"></span></span>
 
           <ChevronDown
-            class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
+            class="size-4 shrink-0 text-gray-600 transition-transform group-aria-expanded:rotate-180"
           />
-        </summary>
+        </button>
+      </h3>
 
-        <div class="border-t border-gray-200 p-4">
-          <ul data-rules class="space-y-2"></ul>
-        </div>
-      </details>
-
-      <!-- After <details> so the Rules summary, which sits to their left, is focused first. -->
       <div class="absolute end-10 top-0 z-10 flex h-15 items-center gap-2">
         <button
           type="button"
@@ -91,6 +89,10 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
 
           <span>Add rule</span>
         </button>
+      </div>
+
+      <div id="dark-mode-rules" data-rules-panel hidden class="border-t border-gray-200 p-4">
+        <ul data-rules class="space-y-2"></ul>
       </div>
     </div>
   </div>
