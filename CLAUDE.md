@@ -13,7 +13,8 @@ pnpm dev                          # start dev server (also runs wrangler types f
 pnpm run css:component --watch    # compile component preview CSS (run alongside dev)
 pnpm build                        # production build
 pnpm test                         # run Playwright E2E tests (requires dev server running)
-pnpm test:a11y                    # axe (WCAG 2.1 AA) on every example and site page; `pnpm test` only checks what changed against main
+pnpm test:a11y                    # axe (WCAG 2.1 AA) on every example and site page
+pnpm test:a11y:diff               # axe on the examples changed against main (also part of `pnpm test`)
 pnpm lint                         # ESLint
 pnpm format                       # Prettier
 pnpm run generate:git-metadata    # regenerate src/data/git-metadata.json from git history
