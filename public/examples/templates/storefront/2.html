@@ -8,8 +8,6 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="bg-white">
-    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
-
     <header class="border-b border-gray-100">
       <div class="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
         <a href="#" class="flex items-center gap-2 text-emerald-700">
@@ -85,12 +83,12 @@
             </span>
           </a>
 
-          <label
-            for="nav-toggle"
-            id="nav-toggle-label"
+          <button
+            type="button"
+            id="nav-toggle"
             aria-expanded="false"
             aria-controls="mobile-nav"
-            class="cursor-pointer rounded-md p-2 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-700 peer-focus-visible:ring-offset-2 hover:bg-gray-100 md:hidden"
+            class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 md:hidden"
           >
             <span class="sr-only">Toggle menu</span>
             <svg
@@ -108,14 +106,15 @@
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-          </label>
+          </button>
         </div>
       </div>
 
       <nav
         id="mobile-nav"
+        hidden
         aria-label="Global Mobile"
-        class="hidden border-t border-gray-100 peer-checked:block md:hidden"
+        class="border-t border-gray-100 md:hidden"
       >
         <ul class="space-y-1 px-4 py-4 text-sm">
           <li>
@@ -296,28 +295,36 @@
             sacrificing the 1.4kg trail weight.
           </p>
 
-          <div class="mt-6">
-            <p class="text-sm font-medium text-gray-900">
-              Colour: <span class="font-normal text-gray-600">Moss green</span>
-            </p>
+          <fieldset class="mt-6">
+            <legend class="text-sm font-medium text-gray-900">
+              Colour<span aria-hidden="true">:</span>
+              <span data-colour-name aria-hidden="true" class="font-normal text-gray-600"
+                >Moss green</span
+              >
+            </legend>
             <div class="mt-2 flex items-center gap-2">
-              <button
-                type="button"
-                aria-label="Moss green"
-                class="size-8 rounded-full bg-emerald-700 ring-2 ring-emerald-700 ring-offset-2"
-              ></button>
-              <button
-                type="button"
-                aria-label="Slate grey"
-                class="size-8 rounded-full bg-gray-500 ring-2 ring-transparent ring-offset-2 hover:ring-gray-300"
-              ></button>
-              <button
-                type="button"
-                aria-label="Burnt orange"
-                class="size-8 rounded-full bg-orange-600 ring-2 ring-transparent ring-offset-2 hover:ring-gray-300"
-              ></button>
+              <label
+                class="size-8 cursor-pointer rounded-full bg-emerald-700 ring-2 ring-transparent ring-offset-2 not-has-checked:hover:ring-gray-300 has-checked:ring-emerald-700 has-focus-visible:outline-2 has-focus-visible:outline-offset-4 has-focus-visible:outline-gray-900"
+              >
+                <input type="radio" name="colour" value="Moss green" class="sr-only" checked />
+                <span class="sr-only">Moss green</span>
+              </label>
+
+              <label
+                class="size-8 cursor-pointer rounded-full bg-gray-500 ring-2 ring-transparent ring-offset-2 not-has-checked:hover:ring-gray-300 has-checked:ring-emerald-700 has-focus-visible:outline-2 has-focus-visible:outline-offset-4 has-focus-visible:outline-gray-900"
+              >
+                <input type="radio" name="colour" value="Slate grey" class="sr-only" />
+                <span class="sr-only">Slate grey</span>
+              </label>
+
+              <label
+                class="size-8 cursor-pointer rounded-full bg-orange-600 ring-2 ring-transparent ring-offset-2 not-has-checked:hover:ring-gray-300 has-checked:ring-emerald-700 has-focus-visible:outline-2 has-focus-visible:outline-offset-4 has-focus-visible:outline-gray-900"
+              >
+                <input type="radio" name="colour" value="Burnt orange" class="sr-only" />
+                <span class="sr-only">Burnt orange</span>
+              </label>
             </div>
-          </div>
+          </fieldset>
 
           <div class="mt-6 flex flex-wrap items-end gap-4">
             <div>
@@ -751,11 +758,31 @@
     </footer>
 
     <script>
-      const navToggleCheckbox = document.getElementById('nav-toggle')
-      const navToggleLabel = document.getElementById('nav-toggle-label')
+      const navToggle = document.getElementById('nav-toggle')
+      const mobileNav = document.getElementById('mobile-nav')
 
-      navToggleCheckbox.addEventListener('change', () => {
-        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      function setNavOpen(isOpen) {
+        navToggle.setAttribute('aria-expanded', String(isOpen))
+        mobileNav.hidden = !isOpen
+      }
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && !mobileNav.hidden) {
+          setNavOpen(false)
+          navToggle.focus()
+        }
+      })
+
+      const colourName = document.querySelector('[data-colour-name]')
+
+      document.querySelectorAll('input[name="colour"]').forEach((colourInput) => {
+        colourInput.addEventListener('change', () => {
+          colourName.textContent = colourInput.value
+        })
       })
 
       const tabs = document.querySelectorAll('[role="tab"]')

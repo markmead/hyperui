@@ -7,19 +7,20 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex h-screen flex-col overflow-hidden bg-gray-50">
-    <input type="checkbox" id="rail-toggle" class="peer sr-only" />
-    <input type="checkbox" id="details-toggle" class="peer/details sr-only" />
-
+  <body
+    data-rail="closed"
+    data-details="closed"
+    class="group flex h-screen flex-col overflow-hidden bg-gray-50"
+  >
     <header
       class="flex h-14 shrink-0 items-center gap-4 border-b border-gray-200 bg-white px-4 sm:px-6"
     >
-      <label
-        for="rail-toggle"
-        id="rail-toggle-label"
+      <button
+        type="button"
+        id="rail-toggle"
         aria-expanded="false"
         aria-controls="queue-rail"
-        class="cursor-pointer rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+        class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
       >
         <span class="sr-only">Toggle queues</span>
         <svg
@@ -37,7 +38,7 @@
             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
           />
         </svg>
-      </label>
+      </button>
 
       <a href="#" class="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900">
         <svg
@@ -59,13 +60,13 @@
       </a>
 
       <div class="ml-auto flex items-center gap-3">
-        <label
-          for="details-toggle"
-          id="details-toggle-label"
+        <button
+          type="button"
+          id="details-toggle"
           title="Toggle ticket details"
           aria-expanded="false"
           aria-controls="ticket-details"
-          class="cursor-pointer rounded-md p-2 text-gray-600 transition hover:bg-gray-100 xl:hidden"
+          class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 xl:hidden"
         >
           <span class="sr-only">Toggle ticket details</span>
           <svg
@@ -83,7 +84,7 @@
               d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125Z"
             />
           </svg>
-        </label>
+        </button>
 
         <img
           alt=""
@@ -94,16 +95,16 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-      <label
-        for="rail-toggle"
+      <div
+        data-rail-overlay
         aria-hidden="true"
-        class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
-      ></label>
+        class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[rail=open]:block lg:hidden"
+      ></div>
 
       <nav
         id="queue-rail"
         aria-label="Queues"
-        class="fixed inset-y-14 start-0 z-40 w-56 -translate-x-full overflow-y-auto border-e border-gray-200 bg-white p-3 transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:translate-x-0"
+        class="fixed inset-y-14 start-0 z-40 w-56 overflow-y-auto border-e border-gray-200 bg-white p-3 transition-[transform,visibility] duration-300 max-lg:invisible max-lg:-translate-x-full max-lg:group-data-[rail=open]:visible max-lg:group-data-[rail=open]:translate-x-0 lg:static max-lg:rtl:translate-x-full max-lg:rtl:group-data-[rail=open]:translate-x-0"
       >
         <ul class="space-y-1">
           <li>
@@ -268,15 +269,15 @@
         </div>
       </main>
 
-      <label
-        for="details-toggle"
+      <div
+        data-details-overlay
         aria-hidden="true"
-        class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked/details:block xl:hidden"
-      ></label>
+        class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[details=open]:block xl:hidden"
+      ></div>
 
       <aside
         id="ticket-details"
-        class="fixed inset-y-14 end-0 z-40 w-72 translate-x-full space-y-6 overflow-y-auto border-s border-gray-200 bg-white p-4 transition-transform duration-300 peer-checked/details:translate-x-0 xl:static xl:translate-x-0"
+        class="fixed inset-y-14 end-0 z-40 w-72 space-y-6 overflow-y-auto border-s border-gray-200 bg-white p-4 transition-[transform,visibility] duration-300 max-xl:invisible max-xl:translate-x-full max-xl:group-data-[details=open]:visible max-xl:group-data-[details=open]:translate-x-0 xl:static max-xl:rtl:-translate-x-full max-xl:rtl:group-data-[details=open]:translate-x-0"
       >
         <div class="flex items-center gap-3">
           <img
@@ -357,18 +358,37 @@
     </div>
 
     <script>
-      const railToggleCheckbox = document.getElementById('rail-toggle')
-      const railToggleLabel = document.getElementById('rail-toggle-label')
+      // Each panel's state lives on the body element as data-{panel}="open" or "closed".
+      const panelToggles = Object.fromEntries(
+        ['rail', 'details'].map((panel) => [panel, document.getElementById(`${panel}-toggle`)]),
+      )
 
-      railToggleCheckbox.addEventListener('change', () => {
-        railToggleLabel.setAttribute('aria-expanded', String(railToggleCheckbox.checked))
+      function setPanelOpen(panel, isOpen) {
+        document.body.dataset[panel] = isOpen ? 'open' : 'closed'
+        panelToggles[panel].setAttribute('aria-expanded', String(isOpen))
+      }
+
+      Object.entries(panelToggles).forEach(([panel, toggle]) => {
+        toggle.addEventListener('click', () => {
+          setPanelOpen(panel, document.body.dataset[panel] !== 'open')
+        })
+
+        document
+          .querySelector(`[data-${panel}-overlay]`)
+          .addEventListener('click', () => setPanelOpen(panel, false))
       })
 
-      const detailsToggleCheckbox = document.getElementById('details-toggle')
-      const detailsToggleLabel = document.getElementById('details-toggle-label')
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key !== 'Escape') {
+          return
+        }
 
-      detailsToggleCheckbox.addEventListener('change', () => {
-        detailsToggleLabel.setAttribute('aria-expanded', String(detailsToggleCheckbox.checked))
+        Object.entries(panelToggles).forEach(([panel, toggle]) => {
+          if (document.body.dataset[panel] === 'open') {
+            setPanelOpen(panel, false)
+            toggle.focus()
+          }
+        })
       })
 
       const composerTabs = document.querySelectorAll('#tab-reply, #tab-internal-note')
