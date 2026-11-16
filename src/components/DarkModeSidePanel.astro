@@ -53,25 +53,8 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       in a summary aren't reliably reachable or announced by assistive tech.
     -->
     <div class="relative flex-1">
-      <details class="group">
-        <summary
-          class="flex min-h-15 cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
-        >
-          <h3 class="text-sm font-medium text-gray-700">
-            Rules <span data-rules-count class="font-normal text-gray-600"></span>
-          </h3>
-
-          <ChevronDown
-            class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
-          />
-        </summary>
-
-        <div class="border-t border-gray-200 p-4">
-          <ul data-rules class="space-y-2"></ul>
-        </div>
-      </details>
-
-      <div class="absolute end-10 top-0 flex h-15 items-center gap-2">
+      <!-- Before <details> so the tab order matches the visual order. -->
+      <div class="absolute end-10 top-0 z-10 flex h-15 items-center gap-2">
         <button
           type="button"
           data-rules-examples
@@ -91,6 +74,24 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
           <span>Add rule</span>
         </button>
       </div>
+
+      <details class="group">
+        <summary
+          class="flex min-h-15 cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
+        >
+          <h3 class="text-sm font-medium text-gray-700">
+            Rules <span data-rules-count class="font-normal text-gray-600"></span>
+          </h3>
+
+          <ChevronDown
+            class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
+          />
+        </summary>
+
+        <div class="border-t border-gray-200 p-4">
+          <ul data-rules class="space-y-2"></ul>
+        </div>
+      </details>
     </div>
   </div>
 
