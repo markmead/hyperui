@@ -48,44 +48,50 @@ import { ChevronDown, Info, Plus } from '@lucide/astro'
       </div>
     </details>
 
-    <details class="group flex-1">
-      <summary
-        class="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
-      >
-        <h3 class="text-sm font-medium text-gray-700">
-          Rules <span data-rules-count class="font-normal text-gray-600"></span>
-        </h3>
-
-        <div class="flex items-center gap-2">
-          <button
-            type="button"
-            data-rules-examples
-            aria-label="View rule examples"
-            class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white p-1 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
-          >
-            <Info class="size-4" />
-          </button>
-
-          <button
-            type="button"
-            data-add-rule
-            class="inline-flex items-center justify-center gap-1 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-800"
-          >
-            <Plus class="size-4" />
-
-            <span>Add rule</span>
-          </button>
+    <!--
+      The rule buttons sit next to the <summary>, not inside it: buttons nested
+      in a summary aren't reliably reachable or announced by assistive tech.
+    -->
+    <div class="relative flex-1">
+      <details class="group">
+        <summary
+          class="flex min-h-15 cursor-pointer items-center justify-between p-4 transition-colors hover:bg-white [&::-webkit-details-marker]:hidden"
+        >
+          <h3 class="text-sm font-medium text-gray-700">
+            Rules <span data-rules-count class="font-normal text-gray-600"></span>
+          </h3>
 
           <ChevronDown
             class="size-4 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
           />
-        </div>
-      </summary>
+        </summary>
 
-      <div class="border-t border-gray-200 p-4">
-        <ul data-rules class="space-y-2"></ul>
+        <div class="border-t border-gray-200 p-4">
+          <ul data-rules class="space-y-2"></ul>
+        </div>
+      </details>
+
+      <div class="absolute end-10 top-0 flex h-15 items-center gap-2">
+        <button
+          type="button"
+          data-rules-examples
+          aria-label="View rule examples"
+          class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white p-1 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+        >
+          <Info class="size-4" />
+        </button>
+
+        <button
+          type="button"
+          data-add-rule
+          class="inline-flex items-center justify-center gap-1 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+        >
+          <Plus class="size-4" />
+
+          <span>Add rule</span>
+        </button>
       </div>
-    </details>
+    </div>
   </div>
 
   <div class="flex items-center justify-between gap-4">

@@ -8,8 +8,6 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="dark:bg-gray-900">
-    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
-
     <header
       class="sticky top-0 z-40 border-b border-gray-100 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90"
     >
@@ -44,12 +42,12 @@
             Book a call
           </a>
 
-          <label
-            for="nav-toggle"
-            id="nav-toggle-label"
+          <button
+            type="button"
+            id="nav-toggle"
             aria-expanded="false"
             aria-controls="mobile-nav"
-            class="cursor-pointer rounded-md p-2 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-violet-600 peer-focus-visible:ring-offset-2 hover:bg-gray-100 md:hidden dark:text-gray-300 dark:peer-focus-visible:ring-violet-300 dark:hover:bg-gray-800"
+            class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 md:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:focus-visible:ring-violet-300"
           >
             <span class="sr-only">Toggle menu</span>
             <svg
@@ -67,14 +65,15 @@
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-          </label>
+          </button>
         </div>
       </div>
 
       <nav
         id="mobile-nav"
+        hidden
         aria-label="Global Mobile"
-        class="hidden border-t border-gray-100 bg-white peer-checked:block md:hidden dark:border-gray-800 dark:bg-gray-900"
+        class="border-t border-gray-100 bg-white md:hidden dark:border-gray-800 dark:bg-gray-900"
       >
         <ul class="space-y-1 px-4 py-4 text-sm">
           <li>
@@ -497,11 +496,23 @@
     </footer>
 
     <script>
-      const navToggleCheckbox = document.getElementById('nav-toggle')
-      const navToggleLabel = document.getElementById('nav-toggle-label')
+      const navToggle = document.getElementById('nav-toggle')
+      const mobileNav = document.getElementById('mobile-nav')
 
-      navToggleCheckbox.addEventListener('change', () => {
-        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      function setNavOpen(isOpen) {
+        navToggle.setAttribute('aria-expanded', String(isOpen))
+        mobileNav.hidden = !isOpen
+      }
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && !mobileNav.hidden) {
+          setNavOpen(false)
+          navToggle.focus()
+        }
       })
     </script>
   </body>

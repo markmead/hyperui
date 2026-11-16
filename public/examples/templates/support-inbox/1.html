@@ -7,18 +7,16 @@
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="flex h-screen flex-col overflow-hidden bg-gray-50">
-    <input type="checkbox" id="rail-toggle" class="peer sr-only" />
-
+  <body data-rail="closed" class="group flex h-screen flex-col overflow-hidden bg-gray-50">
     <header
       class="flex h-14 shrink-0 items-center gap-4 border-b border-gray-200 bg-white px-4 sm:px-6"
     >
-      <label
-        for="rail-toggle"
-        id="rail-toggle-label"
+      <button
+        type="button"
+        id="rail-toggle"
         aria-expanded="false"
         aria-controls="queue-rail"
-        class="cursor-pointer rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+        class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
       >
         <span class="sr-only">Toggle queues</span>
         <svg
@@ -36,10 +34,10 @@
             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
           />
         </svg>
-      </label>
+      </button>
 
       <p class="text-sm font-semibold text-gray-900">
-        Orbitly <span class="font-normal text-gray-400">/ Support</span>
+        Orbitly <span class="font-normal text-gray-500">/ Support</span>
       </p>
 
       <label for="TicketSearch" class="ml-4 hidden max-w-sm flex-1 sm:block">
@@ -86,16 +84,16 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-      <label
-        for="rail-toggle"
+      <div
+        data-rail-overlay
         aria-hidden="true"
-        class="fixed inset-0 z-30 hidden bg-gray-900/50 peer-checked:block lg:hidden"
-      ></label>
+        class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[rail=open]:block lg:hidden"
+      ></div>
 
       <nav
         id="queue-rail"
         aria-label="Queues"
-        class="fixed inset-y-14 start-0 z-40 w-56 -translate-x-full overflow-y-auto border-e border-gray-200 bg-white p-3 transition-transform duration-300 peer-checked:translate-x-0 lg:static lg:translate-x-0"
+        class="fixed inset-y-14 start-0 z-40 w-56 overflow-y-auto border-e border-gray-200 bg-white p-3 transition-[transform,visibility] duration-300 max-lg:invisible max-lg:-translate-x-full max-lg:group-data-[rail=open]:visible max-lg:group-data-[rail=open]:translate-x-0 lg:static max-lg:rtl:translate-x-full"
       >
         <ul class="space-y-1">
           <li>
@@ -135,7 +133,7 @@
           </li>
         </ul>
 
-        <p class="mt-6 px-3 text-xs font-medium tracking-wide text-gray-400 uppercase">Tags</p>
+        <p class="mt-6 px-3 text-xs font-medium tracking-wide text-gray-500 uppercase">Tags</p>
         <ul class="mt-2 space-y-1">
           <li>
             <a
@@ -357,11 +355,37 @@
     </div>
 
     <script>
-      const railToggleCheckbox = document.getElementById('rail-toggle')
-      const railToggleLabel = document.getElementById('rail-toggle-label')
+      // Each panel's state lives on <body> as data-{panel}="open" or "closed".
+      const panelToggles = Object.fromEntries(
+        ['rail'].map((panel) => [panel, document.getElementById(`${panel}-toggle`)]),
+      )
 
-      railToggleCheckbox.addEventListener('change', () => {
-        railToggleLabel.setAttribute('aria-expanded', String(railToggleCheckbox.checked))
+      function setPanelOpen(panel, isOpen) {
+        document.body.dataset[panel] = isOpen ? 'open' : 'closed'
+        panelToggles[panel].setAttribute('aria-expanded', String(isOpen))
+      }
+
+      Object.entries(panelToggles).forEach(([panel, toggle]) => {
+        toggle.addEventListener('click', () => {
+          setPanelOpen(panel, document.body.dataset[panel] !== 'open')
+        })
+
+        document
+          .querySelector(`[data-${panel}-overlay]`)
+          .addEventListener('click', () => setPanelOpen(panel, false))
+      })
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key !== 'Escape') {
+          return
+        }
+
+        Object.entries(panelToggles).forEach(([panel, toggle]) => {
+          if (document.body.dataset[panel] === 'open') {
+            setPanelOpen(panel, false)
+            toggle.focus()
+          }
+        })
       })
     </script>
   </body>

@@ -8,8 +8,6 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="dark:bg-gray-900">
-    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
-
     <header class="bg-white dark:bg-gray-900">
       <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
         <a class="block text-indigo-600 dark:text-indigo-300" href="#">
@@ -104,12 +102,12 @@
               </a>
             </div>
 
-            <label
-              for="nav-toggle"
-              id="nav-toggle-label"
+            <button
+              type="button"
+              id="nav-toggle"
               aria-expanded="false"
               aria-controls="mobile-nav"
-              class="block cursor-pointer rounded-sm bg-gray-100 p-2.5 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-600 peer-focus-visible:ring-offset-2 hover:text-gray-600/75 md:hidden dark:bg-gray-800 dark:text-gray-300 dark:peer-focus-visible:ring-indigo-300 dark:hover:text-gray-300/75"
+              class="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 md:hidden dark:bg-gray-800 dark:text-gray-300 dark:hover:text-gray-300/75 dark:focus-visible:ring-indigo-300"
             >
               <span class="sr-only">Toggle menu</span>
               <svg
@@ -123,7 +121,7 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
-            </label>
+            </button>
           </div>
         </div>
       </div>
@@ -131,8 +129,9 @@
 
     <nav
       id="mobile-nav"
+      hidden
       aria-label="Global Mobile"
-      class="hidden border-b border-gray-100 bg-white peer-checked:block md:hidden dark:border-gray-800 dark:bg-gray-900"
+      class="border-b border-gray-100 bg-white md:hidden dark:border-gray-800 dark:bg-gray-900"
     >
       <ul class="space-y-1 px-4 py-4 text-sm">
         <li>
@@ -671,6 +670,7 @@
                 >
                   <input
                     type="email"
+                    autocomplete="email"
                     id="UserEmail"
                     placeholder="jane@orbitly.com"
                     class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm dark:bg-gray-900 dark:text-white"
@@ -945,11 +945,23 @@
     </footer>
 
     <script>
-      const navToggleCheckbox = document.getElementById('nav-toggle')
-      const navToggleLabel = document.getElementById('nav-toggle-label')
+      const navToggle = document.getElementById('nav-toggle')
+      const mobileNav = document.getElementById('mobile-nav')
 
-      navToggleCheckbox.addEventListener('change', () => {
-        navToggleLabel.setAttribute('aria-expanded', String(navToggleCheckbox.checked))
+      function setNavOpen(isOpen) {
+        navToggle.setAttribute('aria-expanded', String(isOpen))
+        mobileNav.hidden = !isOpen
+      }
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && !mobileNav.hidden) {
+          setNavOpen(false)
+          navToggle.focus()
+        }
       })
     </script>
   </body>
