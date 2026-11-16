@@ -56,6 +56,29 @@ test.describe('pnpm dark', () => {
     expect(grayPage).toContain('<body data-sidebar="closed" class="bg-gray-50 dark:bg-gray-950">')
   })
 
+  test('handles bodies without a class, and gray-500 pages', () => {
+    const noClass = generateDarkHtml(page('', '  <body data-sidebar="closed">\n  </body>'), config)
+    const gray500 = generateDarkHtml(page('', '  <body class="bg-gray-500">\n  </body>'), config)
+
+    expect(noClass).toContain('<body data-sidebar="closed" class="dark:bg-gray-900">')
+    expect(gray500).toContain('dark:bg-gray-900"')
+    expect(gray500).not.toContain('dark:bg-gray-950')
+  })
+
+  test('gives form controls without a class a dark field', () => {
+    const html = generateDarkHtml(
+      page(
+        '',
+        '  <body>\n    <input type="text" />\n    <textarea></textarea>\n    <input type="hidden" />\n  </body>',
+      ),
+      config,
+    )
+
+    expect(html).toContain('<input type="text" class="dark:bg-gray-900 dark:text-white" />')
+    expect(html).toContain('<textarea class="dark:bg-gray-900 dark:text-white"></textarea>')
+    expect(html).toContain('<input type="hidden" />')
+  })
+
   test('keeps backdrops dark and gives bare inputs a dark field', () => {
     const html = generateDarkHtml(
       page(

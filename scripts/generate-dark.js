@@ -81,15 +81,24 @@ export function generateDarkHtml(lightHtml, darkModeConfig) {
 
   // 3. Dark files give <body> an explicit dark background: gray-950 under a
   //    gray-50 page, otherwise gray-900.
-  darkHtml = darkHtml.replace(/<body([^>]*?) class="([^"]*)"/, (_, attributes, classAttribute) => {
-    const withoutDarkBackground = classAttribute.replace(/\s*dark:bg-\S+/g, '')
-    const darkBackground = withoutDarkBackground.includes('bg-gray-50')
+  darkHtml = darkHtml.replace(/<body\b([^>]*)>/, (bodyTag, attributes) => {
+    const classMatch = attributes.match(/(\s)class="([^"]*)"/)
+
+    if (!classMatch) {
+      return `<body${attributes} class="dark:bg-gray-900">`
+    }
+
+    const classNames = classMatch[2].split(/\s+/).filter(Boolean)
+    const keptClassNames = classNames.filter((className) => !className.startsWith('dark:bg-'))
+    const darkBackground = keptClassNames.includes('bg-gray-50')
       ? 'dark:bg-gray-950'
       : 'dark:bg-gray-900'
 
-    return `<body${attributes} class="${withoutDarkBackground} ${darkBackground}"`
+    return bodyTag.replace(
+      classMatch[0],
+      `${classMatch[1]}class="${[...keptClassNames, darkBackground].join(' ')}"`,
+    )
   })
-  darkHtml = darkHtml.replace('<body>', '<body class="dark:bg-gray-900">')
 
   // 4. Backdrops (bg-gray-900/50) stay dark instead of turning light.
   darkHtml = darkHtml.replaceAll('dark:bg-gray-50/50', 'dark:bg-black/60')
@@ -97,15 +106,30 @@ export function generateDarkHtml(lightHtml, darkModeConfig) {
   // 5. Form controls without a background class render white, so give them a
   //    dark background and light text.
   darkHtml = darkHtml.replace(
-    /<(input|textarea|select)\b([^>]*?)class="([^"]*)"/g,
-    (match, tagName, betweenAttributes, classAttribute) => {
+    /<(input|textarea|select)\b([^>]*?)(\s*\/?)>/g,
+    (controlTag, tagName, attributes, ending) => {
+      if (/\stype="hidden"/.test(attributes)) {
+        return controlTag
+      }
+
+      const classMatch = attributes.match(/(\s)class="([^"]*)"/)
+
+      if (!classMatch) {
+        return `<${tagName}${attributes} class="dark:bg-gray-900 dark:text-white"${ending}>`
+      }
+
+      const classAttribute = classMatch[2]
+
       if (/(^|\s)(bg-|sr-only)/.test(classAttribute)) {
-        return match
+        return controlTag
       }
 
       const textClass = /(^|\s)dark:text-/.test(classAttribute) ? '' : ' dark:text-white'
 
-      return `<${tagName}${betweenAttributes}class="${classAttribute} dark:bg-gray-900${textClass}"`
+      return controlTag.replace(
+        classMatch[0],
+        `${classMatch[1]}class="${classAttribute} dark:bg-gray-900${textClass}"`,
+      )
     },
   )
 
