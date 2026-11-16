@@ -7,6 +7,7 @@
     "check": "astro check",
     "test": "playwright test",
     "test:a11y": "A11Y_ALL=1 playwright test accessibility --project=chromium",
+    "test:a11y:diff": "playwright test accessibility --project=chromium",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
     "css:component": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",

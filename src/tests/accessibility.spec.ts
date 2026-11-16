@@ -21,9 +21,10 @@ const SITE_PAGES = [
 ]
 
 /**
- * By default, only what changed against main is checked: committed, staged,
- * unstaged and untracked files. `pnpm test:a11y` (A11Y_ALL=1) checks
- * everything, and so does a change to the shared component CSS.
+ * `pnpm test:a11y:diff` (and `pnpm test`) only checks what changed against
+ * main: committed, staged, unstaged and untracked files. `pnpm test:a11y`
+ * (A11Y_ALL=1) checks everything, and so does a change to the shared
+ * component CSS.
  */
 function changedFiles(): string[] | null {
   const git = (...args: string[]) =>

@@ -30,7 +30,7 @@ For example, to add a footer to the marketing category:
 
 1. Add the HTML file to `public/examples/marketing/footers/`, with a `<title>` such as `Large with newsletter form - Footers - HyperUI`. Files are numbered in order (`12.html`, then `13.html`), with a matching `13-dark.html` if it has a dark mode version. Generate the dark file with `pnpm dark public/examples/marketing/footers/13.html`, then check it in the preview.
 2. Add an entry to the `components` array in `src/content/collection/marketing/footers.mdx`, with `dark: true` if you added a dark file.
-3. With `pnpm dev` running, run `pnpm test accessibility`. It checks the example files you changed with axe (WCAG 2.1 AA). `pnpm test:a11y` checks every example.
+3. With `pnpm dev` running, run `pnpm test:a11y:diff`. It checks the example files you changed with axe (WCAG 2.1 AA). `pnpm test:a11y` checks every example.
 
 Component guidelines:
 
