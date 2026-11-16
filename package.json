@@ -6,6 +6,7 @@
     "build": "wrangler types && astro build",
     "check": "astro check",
     "test": "playwright test",
+    "test:a11y": "A11Y_ALL=1 playwright test accessibility --project=chromium",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
     "css:component": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
@@ -22,6 +23,7 @@
     "wrangler": "^4.160.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.65.0",
     "@tailwindcss/cli": "^4.3.5",
