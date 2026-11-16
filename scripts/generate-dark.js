@@ -34,10 +34,16 @@ const scriptDirectory = path.dirname(fileURLToPath(import.meta.url))
 const configPath = path.join(scriptDirectory, 'dark-mode.config.json')
 
 // Chart.js colours live in <script>, which the generator doesn't touch.
-// These are the same light-to-dark swaps as application/charts/*-dark.html.
+// These match the colours used in application/charts/*-dark.html.
 const CHART_COLOUR_SWAPS = [
   [/rgba\(79, 70, 229, /g, 'rgba(129, 140, 248, '],
   [/'#4f46e5'/g, "'#818cf8'"],
+  [/'#6366f1'/g, "'#818cf8'"],
+  [/'#0ea5e9'/g, "'#38bdf8'"],
+  [/rgba\(14, 165, 233, /g, 'rgba(56, 189, 248, '],
+  [/rgba\(16, 185, 129, /g, 'rgba(52, 211, 153, '],
+  [/rgba\(244, 63, 94, /g, 'rgba(251, 113, 133, '],
+  [/rgba\(245, 158, 11, /g, 'rgba(251, 191, 36, '],
   [/'#4338ca'/g, "'#a5b4fc'"],
   [/'#10b981'/g, "'#34d399'"],
   [/'#059669'/g, "'#6ee7b7'"],

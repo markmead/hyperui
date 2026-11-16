@@ -105,6 +105,34 @@ test.describe('pnpm dark', () => {
     expect(html).toContain("'#818cf8'")
   })
 
+  test('uses the same chart colours as the hand-made chart dark files', () => {
+    const colourPattern = /'#[0-9a-fA-F]{6}'|rgba\(\d+, \d+, \d+, /g
+
+    for (const variant of ['2', '8', '9', '11']) {
+      const lightHtml = fs.readFileSync(
+        `public/examples/application/charts/${variant}.html`,
+        'utf8',
+      )
+      const darkHtml = fs.readFileSync(
+        `public/examples/application/charts/${variant}-dark.html`,
+        'utf8',
+      )
+      const scriptColours = (html: string) =>
+        new Set(
+          [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].flatMap(
+            ([, body]) => body?.match(colourPattern) ?? [],
+          ),
+        )
+
+      const generated = scriptColours(generateDarkHtml(lightHtml, config))
+      const expected = scriptColours(darkHtml)
+
+      for (const colour of generated) {
+        expect(expected, `charts/${variant}: ${colour}`).toContain(colour)
+      }
+    }
+  })
+
   test('writes dark files and --check reports differences', () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'hyperui-dark-'))
     const lightFile = path.join(directory, '1.html')
