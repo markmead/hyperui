@@ -1,0 +1,117 @@
+import { execFileSync } from 'node:child_process'
+
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+
+import { test, expect } from '@playwright/test'
+
+import { normalizeConfig } from '../lib/dark-mode/config.js'
+
+import { generateDarkHtml } from '../../scripts/generate-dark.js'
+
+const config = normalizeConfig(
+  JSON.parse(fs.readFileSync(path.resolve('scripts/dark-mode.config.json'), 'utf8')),
+)
+
+function page(head: string, body: string): string {
+  return `<!doctype html>\n<html lang="en" class="dark">\n  <head>\n${head}\n  </head>\n${body}\n</html>\n`
+}
+
+// These run in Node, so one browser project is enough.
+test.describe('pnpm dark', () => {
+  test.beforeEach(({ browserName }) => {
+    test.skip(browserName !== 'chromium', 'Node-only tests')
+  })
+
+  test('applies the config rules', () => {
+    const html = generateDarkHtml(
+      page('', '  <body>\n    <p class="bg-white text-gray-900 text-gray-400">Hi</p>\n  </body>'),
+      config,
+    )
+
+    expect(html).toContain('dark:bg-gray-900')
+    expect(html).toContain('dark:text-white')
+    // gray-400 text keeps its shade, so no dark pair is added for it.
+    expect(html).not.toContain('dark:text-gray-500')
+  })
+
+  test('marks the title as dark', () => {
+    const html = generateDarkHtml(
+      page('    <title>Collection - Storefront - HyperUI</title>', '  <body></body>'),
+      config,
+    )
+
+    expect(html).toContain('<title>Collection (dark) - Storefront - HyperUI</title>')
+  })
+
+  test('gives the body a dark page background', () => {
+    const plain = generateDarkHtml(page('', '  <body>\n  </body>'), config)
+    const grayPage = generateDarkHtml(
+      page('', '  <body data-sidebar="closed" class="bg-gray-50">\n  </body>'),
+      config,
+    )
+
+    expect(plain).toContain('<body class="dark:bg-gray-900">')
+    expect(grayPage).toContain('<body data-sidebar="closed" class="bg-gray-50 dark:bg-gray-950">')
+  })
+
+  test('keeps backdrops dark and gives bare inputs a dark field', () => {
+    const html = generateDarkHtml(
+      page(
+        '',
+        '  <body>\n    <div class="bg-gray-900/50"></div>\n    <input type="email" class="rounded-md border-gray-200" />\n  </body>',
+      ),
+      config,
+    )
+
+    expect(html).toContain('dark:bg-black/60')
+    expect(html).toContain('dark:bg-gray-900 dark:text-white')
+  })
+
+  test('pairs class toggles and swaps chart colours in scripts', () => {
+    const html = generateDarkHtml(
+      page(
+        '',
+        "  <body>\n    <script>\n      button.classList.toggle('bg-gray-100', isSelected)\n      const colour = '#4f46e5'\n    </script>\n  </body>",
+      ),
+      config,
+    )
+
+    expect(html).toContain("button.classList.toggle('dark:bg-gray-800', isSelected)")
+    expect(html).toContain("'#818cf8'")
+  })
+
+  test('writes dark files and --check reports differences', () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'hyperui-dark-'))
+    const lightFile = path.join(directory, '1.html')
+    const darkFile = path.join(directory, '1-dark.html')
+    const script = path.resolve('scripts/generate-dark.js')
+
+    fs.writeFileSync(
+      lightFile,
+      page('', '  <body>\n    <p class="text-gray-900">Hi</p>\n  </body>'),
+    )
+
+    execFileSync('node', [script, lightFile])
+    expect(fs.readFileSync(darkFile, 'utf8')).toContain('dark:text-white')
+
+    // A freshly written file matches.
+    execFileSync('node', [script, lightFile, '--check'])
+
+    // A hand edit is reported and exits non-zero.
+    fs.appendFileSync(darkFile, '<!-- edited -->\n')
+    let checkError: { status?: number; stdout?: string } | undefined
+
+    try {
+      execFileSync('node', [script, lightFile, '--check'], { encoding: 'utf8', stdio: 'pipe' })
+    } catch (error) {
+      checkError = error as { status?: number; stdout?: string }
+    }
+
+    expect(checkError?.status).toBe(1)
+    expect(checkError?.stdout).toContain(`differs: ${darkFile}`)
+
+    fs.rmSync(directory, { recursive: true, force: true })
+  })
+})
