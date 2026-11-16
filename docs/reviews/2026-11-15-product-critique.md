@@ -8,16 +8,16 @@
 
 ## Where the traffic goes
 
-| Area | Views | Share | Pages | Variants |
-| --- | --- | --- | --- | --- |
-| Homepage `/` | 50,420 | 29.5% | 1 | – |
-| Application (index + pages) | 48,110 | 28.2% | 34 | 163 |
-| Marketing (index + pages) | 33,820 | 19.8% | 22 | 103 |
-| Neobrutalism (index + pages) | 14,120 | 8.3% | 11 | 37 |
-| Templates (index + pages) | 13,790 | 8.1% | 5 | 12 |
-| Blog | 4,500 | 2.6% | – | – |
-| Tools | 3,730 | 2.2% | 3 | – |
-| `/cdn-cgi/content` | 2,310 | 1.4% | – | – |
+| Area                         | Views  | Share | Pages | Variants |
+| ---------------------------- | ------ | ----- | ----- | -------- |
+| Homepage `/`                 | 50,420 | 29.5% | 1     | –        |
+| Application (index + pages)  | 48,110 | 28.2% | 34    | 163      |
+| Marketing (index + pages)    | 33,820 | 19.8% | 22    | 103      |
+| Neobrutalism (index + pages) | 14,120 | 8.3%  | 11    | 37       |
+| Templates (index + pages)    | 13,790 | 8.1%  | 5     | 12       |
+| Blog                         | 4,500  | 2.6%  | –     | –        |
+| Tools                        | 3,730  | 2.2%  | 3     | –        |
+| `/cdn-cgi/content`           | 2,310  | 1.4%  | –     | –        |
 
 `/cdn-cgi/content` is Cloudflare-internal noise. Filter it out of future exports.
 
@@ -52,12 +52,12 @@ A second export covers requests to `.md` and `.txt` paths over the same 30 days:
 
 The values are rounded to tens, so any single row of 10–40 is noise. The patterns are what matter.
 
-| What | Requests | Share |
-| --- | --- | --- |
-| Entry points: `/llms.txt` (160), `/index.md` (60), `/llms-full.txt` (50) | 270 | 26% |
-| Component pages (`/components/{category}/{slug}.md`) | 550 | 52% |
-| Category and blog `.md` pages, `/tools/typography-mapper.md` | 110 | 10% |
-| **Guessed URLs that don't exist** | **120** | **11%** |
+| What                                                                     | Requests | Share   |
+| ------------------------------------------------------------------------ | -------- | ------- |
+| Entry points: `/llms.txt` (160), `/index.md` (60), `/llms-full.txt` (50) | 270      | 26%     |
+| Component pages (`/components/{category}/{slug}.md`)                     | 550      | 52%     |
+| Category and blog `.md` pages, `/tools/typography-mapper.md`             | 110      | 10%     |
+| **Guessed URLs that don't exist**                                        | **120**  | **11%** |
 
 What this tells us:
 
@@ -71,17 +71,18 @@ What this tells us:
    - `/readme.md` and `/.github/issue_template.md`
 
    Most of these can be caught with a few redirects in `public/_redirects`. For example, `/*/index.html.md` would go to `/:splat.md`, `/docs/llms-full.txt` to `/llms-full.txt`, and `/components/*/llms.txt` to `/llms.txt`. That's an hour's work, and it recovers roughly 11% of agent requests.
+
 4. **Agents go looking for the raw examples.** One agent asked for `/examples/marketing/pricing/1.md`, which confirms point 5 above about `robots.txt`.
 
 The export doesn't split requests by user agent and doesn't include `/examples/*.html`. Add both to the next export, so we can tell which assistants are using the site and whether they copy the raw markup.
 
 ## 3. Are the tools pointless? Mostly, yes
 
-| Tool | Views (30 days) | Verdict |
-| --- | --- | --- |
-| **Dark Mode Generator** (≈1,000 lines across 5 components) | 570 | A rule engine that does what "add dark mode to this" does in any LLM. It's also the internal tool used to make `-dark.html` files. Keep it as a dev script, remove it from the marketing. |
-| **Typography Mapper** (966 lines) | 370 | Maps px values to Tailwind classes. Figma Dev Mode, Tailwind IntelliSense and every LLM already do this. It's the most code for the least value on the site. Kill it. |
-| **Contrast Checker / Config Builder** | – | Both are listed as "coming soon" in `src/data/tools.json`, yet the `/tools` hero copy says "contrast checking… theme building, and more" as if they exist. That's a credibility leak. Remove them today. |
+| Tool                                                       | Views (30 days) | Verdict                                                                                                                                                                                                  |
+| ---------------------------------------------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Dark Mode Generator** (≈1,000 lines across 5 components) | 570             | A rule engine that does what "add dark mode to this" does in any LLM. It's also the internal tool used to make `-dark.html` files. Keep it as a dev script, remove it from the marketing.                |
+| **Typography Mapper** (966 lines)                          | 370             | Maps px values to Tailwind classes. Figma Dev Mode, Tailwind IntelliSense and every LLM already do this. It's the most code for the least value on the site. Kill it.                                    |
+| **Contrast Checker / Config Builder**                      | –               | Both are listed as "coming soon" in `src/data/tools.json`, yet the `/tools` hero copy says "contrast checking… theme building, and more" as if they exist. That's a credibility leak. Remove them today. |
 
 The bigger issue is placement: the homepage puts **Tools above every component collection**. The traffic shows the cost. The `/tools/` index gets 2,790 views, but the two real tools get only 940 between them. People click the section in the best slot on the homepage, find nothing they want and leave.
 
@@ -93,23 +94,23 @@ Judge each component on two numbers: its views, and its views per variant. The s
 
 **Cut or merge. Low traffic, and trivial for AI to produce:**
 
-| Component | Views | Variants | Per variant | Action |
-| --- | --- | --- | --- | --- |
-| Media | 600 | 8 | 75 | The lowest on the site. "Left align top / center / bottom / stretch", then the same on the right. Merge into one flexbox component |
-| Grids | 850 | 10 | 85 | Grey boxes in `grid-cols-*`. Cut to 2–3 |
-| Polls | 390 | 3 | 130 | Niche, low search intent. Cut |
-| Skip links | 440 | 3 | 147 | One line of HTML. Turn it into a pattern inside a "page shell" component |
-| Empty content (marketing) / Empty states (application) | 780 / 660 | 5 / 5 | 156 / 132 | Duplicates in two categories. Merge them |
-| Textareas (application / neobrutalism) | 320 / 300 | 3 / 3 | 107 / 100 | The lowest-traffic form controls. Fold into inputs |
+| Component                                              | Views     | Variants | Per variant | Action                                                                                                                             |
+| ------------------------------------------------------ | --------- | -------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Media                                                  | 600       | 8        | 75          | The lowest on the site. "Left align top / center / bottom / stretch", then the same on the right. Merge into one flexbox component |
+| Grids                                                  | 850       | 10       | 85          | Grey boxes in `grid-cols-*`. Cut to 2–3                                                                                            |
+| Polls                                                  | 390       | 3        | 130         | Niche, low search intent. Cut                                                                                                      |
+| Skip links                                             | 440       | 3        | 147         | One line of HTML. Turn it into a pattern inside a "page shell" component                                                           |
+| Empty content (marketing) / Empty states (application) | 780 / 660 | 5 / 5    | 156 / 132   | Duplicates in two categories. Merge them                                                                                           |
+| Textareas (application / neobrutalism)                 | 320 / 300 | 3 / 3    | 107 / 100   | The lowest-traffic form controls. Fold into inputs                                                                                 |
 
 **Trim. The traffic is real, but there are too many variants for it:**
 
-| Component | Views | Variants | Per variant | Action |
-| --- | --- | --- | --- | --- |
-| Footers | 1,300 | 12 | 108 | Keep the page, cut to about 5 variants. It's the top component page for agents (40 requests), so keep the strongest ones |
-| Vertical menu | 1,120 | 8 | 140 | Cut to about 4 |
-| Loaders | 970 | 7 | 139 | Mid-table, so keep the page, cut to 3–4 |
-| Modals / Toasts | 740 / 720 | 6 / 6 | 123 / 120 | Cut to about 4 each |
+| Component       | Views     | Variants | Per variant | Action                                                                                                                   |
+| --------------- | --------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Footers         | 1,300     | 12       | 108         | Keep the page, cut to about 5 variants. It's the top component page for agents (40 requests), so keep the strongest ones |
+| Vertical menu   | 1,120     | 8        | 140         | Cut to about 4                                                                                                           |
+| Loaders         | 970       | 7        | 139         | Mid-table, so keep the page, cut to 3–4                                                                                  |
+| Modals / Toasts | 740 / 720 | 6 / 6    | 123 / 120   | Cut to about 4 each                                                                                                      |
 
 That comes to roughly 40–50 variants. Put that effort into the areas below.
 
@@ -140,3 +141,40 @@ That comes to roughly 40–50 variants. Put that effort into the areas below.
 4. Add redirects for the URLs agents guess (about 11% of their requests currently fail). Split the agent export by user agent and include `/examples/*`. Then ship the MCP server and a published skill.
 5. Cut and trim the components listed above (roughly 40–50 variants). Put that effort into templates, dark coverage, pricing, and the small pages that do well.
 6. Rebuild the dark-mode generator as the "audit my markup" tool, and kill the typography mapper.
+
+## Progress (updated 2026-11-16)
+
+### Done
+
+| Plan item              | What shipped                                                                                                                                                                     |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Tools               | Tools moved below the components, and the coming-soon tools, false copy and Typography Mapper removed (#774)                                                                     |
+| 2. Homepage            | Templates come first on the homepage (#776). The template pages now say "Accessible, responsive and dark mode ready" instead of "Starting point — not a finished product" (#781) |
+| 3. Templates           | Dark mode for all five (#773). Every template has been through an accessibility audit (#777, #780)                                                                               |
+| 4. Agents              | The Markdown URLs agents guess now redirect to the real files (#771)                                                                                                             |
+| 5. Cuts                | Copies are counted per component, variant and theme (#772), so cuts can be based on data. The unused `marketing/stats` examples were deleted (#782)                              |
+| 6. Dark mode generator | Its engine is now also a script, `pnpm dark`, which generates and checks dark files (#779)                                                                                       |
+
+Also done:
+
+- **Blog:** removed. FAQs moved to `/faqs` and stay in the header (#775).
+- **Accessibility:** two audits, with every finding fixed (#777, #780). axe runs in the Playwright suite: `pnpm test:a11y:diff` checks changed examples, and `pnpm test:a11y` checks everything (#782, #783).
+
+### Decisions
+
+- **Focus:** templates come first.
+- **Cuts:** only remove pages and variants once the copy counts confirm it.
+- **Dark mode generator:** keep it, and turn it into a "Hemingway for Tailwind" checker (paste markup, get accessibility, RTL and dark mode findings with fixes) with an AI angle.
+- **FAQs:** stay in the header.
+
+### Next
+
+1. **Homepage pitch:** draft the hero copy around "verified, built for your AI" for approval, and decide on the hero ad.
+2. **More templates:** start with more landing page variants like the SaaS one.
+3. **Agents:**
+   - Split the agent export by user agent, and include `/examples/*`.
+   - Add accessibility, RTL and dark mode rules to "Copy for AI".
+   - Ship the MCP server and a published skill. The `pnpm dark` engine could back an MCP tool or CLI.
+4. **The checker:** rebuild the dark mode generator as described under Decisions.
+5. **Cuts:** once there's enough copy data, review the cut and trim lists in section 4.
+6. **Dark gaps:** add the missing dark variants listed in section 4, starting with marketing cards.
