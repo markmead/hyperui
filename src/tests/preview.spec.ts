@@ -115,11 +115,10 @@ test.describe('Component preview direction', () => {
     const ltrButton: Locator = page
       .locator('preview-direction')
       .and(page.locator(FIRST_PREVIEW))
-      .getByRole('button', { name: 'Toggle direction' })
+      .getByRole('button', { name: /^Direction:/ })
 
     await expect(ltrButton).toBeVisible()
-    await expect(ltrButton).toHaveText('LTR')
-    await expect(ltrButton).toHaveAttribute('aria-pressed', 'true')
+    await expect(ltrButton).toHaveAccessibleName('Direction: LTR')
 
     await expect(page.locator(FIRST_IFRAME)).toBeVisible()
     await expect(page.locator(FIRST_IFRAME).contentFrame().locator('html')).not.toHaveAttribute(
@@ -132,16 +131,14 @@ test.describe('Component preview direction', () => {
     const ltrButton: Locator = page
       .locator('preview-direction')
       .and(page.locator(FIRST_PREVIEW))
-      .getByRole('button', { name: 'Toggle direction' })
+      .getByRole('button', { name: /^Direction:/ })
 
     await expect(ltrButton).toBeVisible()
-    await expect(ltrButton).toHaveText('LTR')
-    await expect(ltrButton).toHaveAttribute('aria-pressed', 'true')
+    await expect(ltrButton).toHaveAccessibleName('Direction: LTR')
 
     await ltrButton.click()
 
-    await expect(ltrButton).toHaveText('RTL')
-    await expect(ltrButton).toHaveAttribute('aria-pressed', 'false')
+    await expect(ltrButton).toHaveAccessibleName('Direction: RTL')
 
     await expect(page.locator(FIRST_IFRAME)).toBeVisible()
     await expect(page.locator(FIRST_IFRAME).contentFrame().locator('html')).toHaveAttribute(

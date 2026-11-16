@@ -11,12 +11,11 @@ const { src } = Astro.props
 <preview-direction data-src={src}>
   <button
     type="button"
-    aria-label="Toggle direction"
-    aria-pressed="true"
     class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50"
   >
     <ArrowLeftRight class="size-4" />
 
+    <span class="sr-only">Direction:</span>
     <span data-text>LTR</span>
   </button>
 </preview-direction>
@@ -54,7 +53,8 @@ const { src } = Astro.props
 
         this.isProcessing = true
 
-        const isLtr = buttonEl.getAttribute('aria-pressed') === 'true'
+        // The name ("Direction: LTR") carries the state, so no aria-pressed.
+        const isLtr = buttonText.textContent === 'LTR'
         const newState = !isLtr
 
         const iframeEl = document.querySelector<HTMLIFrameElement>(
@@ -72,8 +72,6 @@ const { src } = Astro.props
             iframeOrigin,
           )
         }
-
-        buttonEl.setAttribute('aria-pressed', String(newState))
 
         buttonText.textContent = newState ? 'LTR' : 'RTL'
 
