@@ -214,6 +214,11 @@ import DarkModeInspector from './DarkModeInspector.astro'
       })
     }
 
+    private setRulesOpen(isOpen: boolean) {
+      this.querySelector('[data-rules-toggle]')!.setAttribute('aria-expanded', String(isOpen))
+      this.querySelector<HTMLElement>('[data-rules-panel]')!.hidden = !isOpen
+    }
+
     private bindActionButtons() {
       const rulesDialog = this.querySelector<HTMLDialogElement>('[data-rules-dialog]')!
 
@@ -234,9 +239,7 @@ import DarkModeInspector from './DarkModeInspector.astro'
         }
       })
 
-      // stopPropagation prevents the Rules <details> from toggling closed
-      this.querySelector('[data-add-rule]')!.addEventListener('click', (clickEvent) => {
-        clickEvent.stopPropagation()
+      this.querySelector('[data-add-rule]')!.addEventListener('click', () => {
         const newRule: Rule = {
           id: crypto.randomUUID(),
           name: '',
@@ -253,9 +256,11 @@ import DarkModeInspector from './DarkModeInspector.astro'
         this.closeInspector()
         this.refreshRules()
         this.saveConfiguration()
-        this.querySelector<HTMLDetailsElement>('[data-rules]')!
-          .closest('details')!
-          .setAttribute('open', '')
+        this.setRulesOpen(true)
+      })
+
+      this.querySelector('[data-rules-toggle]')!.addEventListener('click', () => {
+        this.setRulesOpen(this.querySelector('[data-rules-panel]')!.hasAttribute('hidden'))
       })
 
       this.querySelector('[data-reset]')!.addEventListener('click', () => {
