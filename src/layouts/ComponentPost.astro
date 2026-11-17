@@ -1,4 +1,5 @@
 ---
+import { Check } from '@lucide/astro'
 import type { CollectionEntry } from 'astro:content'
 import type { ComponentPreview } from '../types/component'
 
@@ -25,6 +26,10 @@ const {
   pattern,
   updated,
 } = Astro.props
+
+// Every template goes through axe, keyboard and right-to-left checks before it
+// ships (see the template PRs and the accessibility audits in docs/reviews).
+const templateChecks = ['WCAG 2.1 AA checked', 'Keyboard tested', 'Right-to-left ready']
 
 const darkCount = components.filter(({ dark }) => !!dark).length
 const totalCount = components.length
@@ -136,6 +141,23 @@ const componentPageSchema = {
                   HyperUX Pattern Available
                 </a>
               </TooltipWrapper>
+
+              <span class="size-1 rounded-full bg-gray-400" aria-hidden="true" />
+            </>
+          )
+        }
+
+        {
+          category === 'templates' && (
+            <>
+              <ul aria-label="Checks" class="flex flex-wrap items-center gap-2">
+                {templateChecks.map((check) => (
+                  <li class="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2.5 py-0.5 text-xs font-medium text-gray-700">
+                    <Check class="size-3.5 text-green-700" aria-hidden="true" />
+                    {check}
+                  </li>
+                ))}
+              </ul>
 
               <span class="size-1 rounded-full bg-gray-400" aria-hidden="true" />
             </>

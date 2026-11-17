@@ -36,6 +36,14 @@ export function buildCopyForAiHeader({
     )
   }
 
+  if (category === 'templates') {
+    setup.push(
+      'This is a full page. Links, buttons and forms are placeholders: connect them to your own routes, handlers and data.',
+      'Keep the accessibility behaviour when you adapt it: labels, `aria-*` attributes, focus styles, the skip link and the keyboard handling in the `<script>`.',
+      'Spacing and positioning use logical utilities (`ps-`, `me-`, `start-`) so the page works right-to-left. Keep them rather than switching to `pl-`, `mr-` or `left-`.',
+    )
+  }
+
   if (plugins.length) {
     setup.push(`Also requires: ${plugins.join(', ')}.`)
   }
