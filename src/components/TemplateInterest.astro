@@ -11,15 +11,23 @@ const { slug } = Astro.props
 
 <template-interest data-slug={slug} class="mx-auto block max-w-7xl px-4 pb-8">
   <div
-    class="flex flex-col gap-4 rounded-lg border border-gray-200 p-8 sm:flex-row sm:items-center sm:justify-between"
+    class="flex flex-col gap-6 rounded-lg bg-gray-900 p-8 text-white shadow-lg sm:flex-row sm:items-center sm:justify-between"
   >
     <div class="flex items-start gap-4">
-      <Sparkles class="mt-0.5 size-6 shrink-0 text-gray-500" />
+      <div class="shrink-0 rounded-lg bg-white/10 p-2.5">
+        <Sparkles class="size-6 text-white" />
+      </div>
 
       <div>
-        <h2 class="text-xl font-medium">A full site version</h2>
+        <span
+          class="inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-medium text-gray-100"
+        >
+          In the works
+        </span>
 
-        <p class="mt-2 text-gray-600">
+        <h2 class="mt-2 text-xl font-semibold">A full site version</h2>
+
+        <p class="mt-2 max-w-2xl text-gray-300">
           A full multi-page version is in the works: pricing, docs, changelog, sign in and a
           dashboard. Want it?
         </p>
@@ -29,7 +37,7 @@ const { slug } = Astro.props
     <button
       type="button"
       data-interest
-      class="shrink-0 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 aria-disabled:cursor-default aria-disabled:bg-gray-100 aria-disabled:text-gray-700"
+      class="shrink-0 rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white aria-disabled:cursor-default aria-disabled:bg-white/10 aria-disabled:text-white"
     >
       I'm interested
     </button>
