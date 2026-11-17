@@ -91,6 +91,9 @@ test.describe('Homepage hero', () => {
 
     await expect(frame.locator('[data-hyperui-focus-order] span').first()).toHaveText('1')
 
+    // The template's links stay out of the homepage's tab order.
+    await expect(frame.locator('a[href]').first()).toHaveAttribute('tabindex', '-1')
+
     // Turning dark mode off loads a new document. The other checks carry over.
     await dark.click()
 

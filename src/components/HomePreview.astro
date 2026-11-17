@@ -134,7 +134,27 @@ const checks = [
 
       doc.documentElement.setAttribute('dir', this.state.rtl ? 'rtl' : 'ltr')
 
+      this.removeFromTabOrder(doc)
+
       this.renderFocusOrder()
+    }
+
+    /**
+     * The preview is a demo, so keyboard users shouldn't have to tab through the
+     * whole template to get past it. Marks each tab stop first, so the focus order
+     * badges still number the template's own order.
+     */
+    private removeFromTabOrder(doc: Document) {
+      if (doc.documentElement.dataset.hyperuiPreview !== undefined) {
+        return
+      }
+
+      doc.documentElement.dataset.hyperuiPreview = ''
+
+      for (const el of doc.querySelectorAll<HTMLElement>(FOCUSABLE)) {
+        el.dataset.hyperuiStop = ''
+        el.tabIndex = -1
+      }
     }
 
     /** Overlays a numbered badge on each element the keyboard reaches, in tab order. */
@@ -159,7 +179,7 @@ const checks = [
       layer.style.cssText =
         'position:absolute;inset:0 auto auto 0;width:0;height:0;pointer-events:none;z-index:2147483647'
 
-      const stops = [...doc.querySelectorAll<HTMLElement>(FOCUSABLE)].filter((el) => {
+      const stops = [...doc.querySelectorAll<HTMLElement>('[data-hyperui-stop]')].filter((el) => {
         const style = win?.getComputedStyle(el)
 
         return (
