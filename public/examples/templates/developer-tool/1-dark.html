@@ -1,0 +1,1735 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer tool landing page (dark) - Developer Tool Landing Page - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="bg-white dark:bg-gray-900">
+    <a
+      href="#main"
+      class="sr-only rounded-md bg-teal-700 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 dark:bg-teal-200 dark:text-gray-900"
+    >
+      Skip to content
+    </a>
+
+    <header class="border-b border-gray-100 dark:border-gray-800">
+      <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a class="flex items-center gap-2 text-teal-700 dark:text-teal-200" href="#">
+          <svg
+            class="h-8 w-auto"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 20c3.5 0 3.5-3 7-3s3.5 3 7 3 3.5-3 7-3 3.5 3 7 3"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 26c3.5 0 3.5-3 7-3s3.5 3 7 3 3.5-3 7-3 3.5 3 7 3"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M16 4v9m0 0-4-4m4 4 4-4"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="text-lg font-bold text-gray-900 dark:text-white">Tidehook</span>
+        </a>
+
+        <div class="flex flex-1 items-center justify-end md:justify-between">
+          <nav aria-label="Global" class="hidden md:block">
+            <ul class="flex items-center gap-6 text-sm">
+              <li>
+                <a
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  href="#"
+                  >Docs</a
+                >
+              </li>
+
+              <li>
+                <a
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  href="#"
+                  >Pricing</a
+                >
+              </li>
+
+              <li>
+                <a
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  href="#"
+                  >Changelog</a
+                >
+              </li>
+
+              <li>
+                <a
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  href="#"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <div class="flex items-center gap-4">
+            <a
+              class="hidden text-sm font-medium text-gray-700 transition hover:text-gray-900 sm:block dark:text-gray-200 dark:hover:text-white"
+              href="#"
+            >
+              Sign in
+            </a>
+
+            <a
+              class="rounded-md bg-teal-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-800 dark:bg-teal-200 dark:text-gray-900 dark:hover:bg-teal-100"
+              href="#"
+            >
+              Get an API key
+            </a>
+
+            <button
+              type="button"
+              id="nav-toggle"
+              aria-expanded="false"
+              aria-controls="mobile-nav"
+              class="block rounded-md bg-gray-100 p-2.5 text-gray-700 transition hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 md:hidden dark:bg-gray-800 dark:text-gray-200 dark:hover:text-white dark:focus-visible:ring-teal-200"
+            >
+              <span class="sr-only">Toggle menu</span>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      id="mobile-nav"
+      hidden
+      aria-label="Global Mobile"
+      class="border-b border-gray-100 bg-white md:hidden dark:border-gray-800 dark:bg-gray-900"
+    >
+      <ul class="space-y-1 px-4 py-4 text-sm">
+        <li>
+          <a
+            href="#"
+            class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+            >Docs</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+            >Pricing</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+            >Changelog</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+            >GitHub</a
+          >
+        </li>
+      </ul>
+
+      <div class="border-t border-gray-100 px-4 py-4 sm:hidden dark:border-gray-800">
+        <a
+          href="#"
+          class="block rounded-md bg-gray-100 px-5 py-2.5 text-center text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-white"
+        >
+          Sign in
+        </a>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section class="bg-gray-50 dark:bg-gray-800">
+        <div
+          class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24"
+        >
+          <div>
+            <p class="text-sm font-semibold text-teal-700 dark:text-teal-200">
+              Webhook delivery API
+            </p>
+
+            <h1
+              class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white"
+            >
+              Webhooks that arrive. Every time.
+            </h1>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600 dark:text-gray-300">
+              Tidehook delivers your webhooks with retries, signing and a full delivery log, so you
+              can stop writing queue code.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a
+                href="#"
+                class="rounded-md bg-teal-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-teal-800 dark:bg-teal-200 dark:text-gray-900 dark:hover:bg-teal-100"
+              >
+                Get an API key
+              </a>
+
+              <a
+                href="#"
+                class="rounded-md border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-900 transition hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
+              >
+                Read the docs
+              </a>
+            </div>
+
+            <div class="mt-8 max-w-md">
+              <h2 class="sr-only">Install</h2>
+
+              <div
+                dir="ltr"
+                class="flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-950 py-2 ps-4 pe-2"
+              >
+                <pre
+                  tabindex="0"
+                  class="min-w-0 flex-1 overflow-x-auto py-1 text-start font-mono text-sm text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                ><code><span class="text-gray-400 select-none" aria-hidden="true">$ </span><span id="InstallCommandHero">npm install @tidehook/node</span></code></pre>
+
+                <button
+                  type="button"
+                  data-copy-target="InstallCommandHero"
+                  class="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+                    />
+                  </svg>
+
+                  <span data-copy-label>Copy</span>
+                  <span class="sr-only">command</span>
+                </button>
+
+                <span data-copy-status class="sr-only" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            dir="ltr"
+            class="overflow-hidden rounded-lg border border-gray-800 bg-gray-950 shadow-xl"
+          >
+            <div
+              role="tablist"
+              aria-label="Code language"
+              class="flex gap-1 border-b border-gray-800 px-2"
+            >
+              <button
+                type="button"
+                id="CodeTabNode"
+                role="tab"
+                aria-selected="true"
+                aria-controls="CodePanelNode"
+                class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset aria-selected:border-teal-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+              >
+                Node
+              </button>
+
+              <button
+                type="button"
+                id="CodeTabPython"
+                role="tab"
+                aria-selected="false"
+                aria-controls="CodePanelPython"
+                tabindex="-1"
+                class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset aria-selected:border-teal-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+              >
+                Python
+              </button>
+
+              <button
+                type="button"
+                id="CodeTabCurl"
+                role="tab"
+                aria-selected="false"
+                aria-controls="CodePanelCurl"
+                tabindex="-1"
+                class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset aria-selected:border-teal-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+              >
+                cURL
+              </button>
+            </div>
+
+            <div
+              id="CodePanelNode"
+              role="tabpanel"
+              aria-labelledby="CodeTabNode"
+              tabindex="0"
+              class="overflow-x-auto p-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset"
+            >
+              <pre
+                class="font-mono text-sm/6 text-gray-100"
+              ><code><span class="text-pink-300">import</span> { <span class="text-sky-300">Tidehook</span> } <span class="text-pink-300">from</span> <span class="text-emerald-300">'@tidehook/node'</span>
+
+<span class="text-pink-300">const</span> tidehook = <span class="text-pink-300">new</span> <span class="text-sky-300">Tidehook</span>(process.env.<span class="text-amber-200">TIDEHOOK_KEY</span>)
+
+<span class="text-pink-300">await</span> tidehook.events.<span class="text-sky-300">send</span>({
+  endpoint: <span class="text-emerald-300">'ep_orders'</span>,
+  type: <span class="text-emerald-300">'order.paid'</span>,
+  data: { id: <span class="text-emerald-300">'ord_1042'</span>, total: <span class="text-amber-200">4900</span> },
+})</code></pre>
+            </div>
+
+            <div
+              id="CodePanelPython"
+              role="tabpanel"
+              aria-labelledby="CodeTabPython"
+              tabindex="0"
+              hidden
+              class="overflow-x-auto p-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset"
+            >
+              <pre
+                class="font-mono text-sm/6 text-gray-100"
+              ><code><span class="text-pink-300">import</span> os
+<span class="text-pink-300">from</span> tidehook <span class="text-pink-300">import</span> <span class="text-sky-300">Tidehook</span>
+
+tidehook = <span class="text-sky-300">Tidehook</span>(os.environ[<span class="text-emerald-300">"TIDEHOOK_KEY"</span>])
+
+tidehook.events.<span class="text-sky-300">send</span>(
+    endpoint=<span class="text-emerald-300">"ep_orders"</span>,
+    type=<span class="text-emerald-300">"order.paid"</span>,
+    data={<span class="text-emerald-300">"id"</span>: <span class="text-emerald-300">"ord_1042"</span>, <span class="text-emerald-300">"total"</span>: <span class="text-amber-200">4900</span>},
+)</code></pre>
+            </div>
+
+            <div
+              id="CodePanelCurl"
+              role="tabpanel"
+              aria-labelledby="CodeTabCurl"
+              tabindex="0"
+              hidden
+              class="overflow-x-auto p-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset"
+            >
+              <pre
+                class="font-mono text-sm/6 text-gray-100"
+              ><code>curl https://api.tidehook.dev/v1/events \
+  -H <span class="text-emerald-300">"Authorization: Bearer $TIDEHOOK_KEY"</span> \
+  -H <span class="text-emerald-300">"Content-Type: application/json"</span> \
+  -d <span class="text-emerald-300">'{"endpoint": "ep_orders", "type": "order.paid",
+       "data": {"id": "ord_1042", "total": 4900}}'</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="used-by-title">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <h2
+            id="used-by-title"
+            class="text-center text-sm font-medium text-gray-600 dark:text-gray-300"
+          >
+            Used by engineering teams at
+          </h2>
+
+          <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            <li class="text-lg font-semibold tracking-tight text-gray-500 dark:text-gray-400">
+              Ledgerline
+            </li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500 dark:text-gray-400">
+              Parcelbird
+            </li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500 dark:text-gray-400">
+              Shiftboard
+            </li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500 dark:text-gray-400">
+              Northwind Pay
+            </li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500 dark:text-gray-400">
+              Quillstack
+            </li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500 dark:text-gray-400">
+              Brightdesk
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="how-title">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 id="how-title" class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
+              How it works
+            </h2>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600 dark:text-gray-300">
+              Three steps, and the hard part is ours.
+            </p>
+          </div>
+
+          <ol class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <li class="relative rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+              <span
+                class="inline-flex size-8 items-center justify-center rounded-full bg-teal-700 text-sm font-semibold text-white dark:bg-teal-200 dark:text-gray-900"
+                aria-hidden="true"
+              >
+                1
+              </span>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                Send an event
+              </h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Call the API or the SDK once. Tidehook stores the event and answers in milliseconds.
+              </p>
+            </li>
+
+            <li class="relative rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+              <span
+                class="inline-flex size-8 items-center justify-center rounded-full bg-teal-700 text-sm font-semibold text-white dark:bg-teal-200 dark:text-gray-900"
+                aria-hidden="true"
+              >
+                2
+              </span>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                We retry and sign it
+              </h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Tidehook signs the request and delivers it, retrying with backoff until the endpoint
+                says yes.
+              </p>
+            </li>
+
+            <li class="relative rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+              <span
+                class="inline-flex size-8 items-center justify-center rounded-full bg-teal-700 text-sm font-semibold text-white dark:bg-teal-200 dark:text-gray-900"
+                aria-hidden="true"
+              >
+                3
+              </span>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                You check the log
+              </h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Every attempt is in the delivery log, with the response, so support questions take a
+                minute.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section aria-labelledby="features-title" class="bg-gray-50 dark:bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2
+              id="features-title"
+              class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white"
+            >
+              Everything between send and received
+            </h2>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600 dark:text-gray-300">
+              The parts of webhook delivery that every team writes, gets wrong once, and then
+              maintains forever.
+            </p>
+          </div>
+
+          <div
+            class="mt-10 grid grid-cols-1 gap-6 bg-gray-50 sm:grid-cols-2 lg:grid-cols-3 dark:bg-gray-800"
+          >
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <div
+                class="inline-flex rounded-lg bg-teal-50 p-3 text-teal-700 dark:bg-teal-800 dark:text-teal-200"
+              >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                Retries with backoff
+              </h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Failed deliveries retry for up to three days, with exponential backoff and jitter so
+                a slow endpoint can recover.
+              </p>
+            </div>
+
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <div
+                class="inline-flex rounded-lg bg-teal-50 p-3 text-teal-700 dark:bg-teal-800 dark:text-teal-200"
+              >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">HMAC signing</h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Every request carries a SHA-256 signature and a timestamp, so receivers can reject
+                forged or replayed events.
+              </p>
+            </div>
+
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <div
+                class="inline-flex rounded-lg bg-teal-50 p-3 text-teal-700 dark:bg-teal-800 dark:text-teal-200"
+              >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Replay</h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Fixed a bug in your handler? Replay one event, or every event from the last hour,
+                from the dashboard or the API.
+              </p>
+            </div>
+
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <div
+                class="inline-flex rounded-lg bg-teal-50 p-3 text-teal-700 dark:bg-teal-800 dark:text-teal-200"
+              >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                Delivery logs
+              </h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                See the request, the response and the timing of every attempt, searchable for 30
+                days on every plan.
+              </p>
+            </div>
+
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <div
+                class="inline-flex rounded-lg bg-teal-50 p-3 text-teal-700 dark:bg-teal-800 dark:text-teal-200"
+              >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Fan-out</h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Send one event to many endpoints. Each endpoint gets its own retries, so one slow
+                receiver never blocks the rest.
+              </p>
+            </div>
+
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <div
+                class="inline-flex rounded-lg bg-teal-50 p-3 text-teal-700 dark:bg-teal-800 dark:text-teal-200"
+              >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Rate limits</h3>
+
+              <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+                Set a per-endpoint limit, and Tidehook queues the overflow instead of knocking your
+                customer&apos;s server over.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="verify-title">
+        <div
+          class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-5 lg:items-center lg:px-8"
+        >
+          <div class="lg:col-span-2">
+            <h2
+              id="verify-title"
+              class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white"
+            >
+              Verify a signature in 5 lines
+            </h2>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600 dark:text-gray-300">
+              Every request is signed with your endpoint&apos;s secret. The SDK checks the signature
+              and the timestamp, and returns the event, or nothing if it was forged or replayed.
+            </p>
+
+            <a
+              href="#"
+              class="mt-6 inline-block font-medium text-teal-700 hover:text-teal-800 dark:text-teal-200 dark:hover:text-teal-100"
+            >
+              Read the signing guide
+            </a>
+          </div>
+
+          <figure
+            dir="ltr"
+            class="overflow-hidden rounded-lg border border-gray-800 bg-gray-950 lg:col-span-3"
+          >
+            <figcaption
+              class="flex items-center justify-between gap-4 border-b border-gray-800 px-4 py-2.5 text-sm"
+            >
+              <span class="font-mono text-gray-100">webhooks.js</span>
+              <span class="text-gray-400">Lines 4&ndash;8 verify the request</span>
+            </figcaption>
+
+            <pre
+              tabindex="0"
+              class="overflow-x-auto py-4 text-start font-mono text-sm/6 text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-inset"
+            ><code class="block w-max min-w-full"
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">1</span><span class="text-pink-300">import</span> { <span class="text-sky-300">verify</span> } <span class="text-pink-300">from</span> <span class="text-emerald-300">'@tidehook/node'</span></span
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">2</span></span
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">3</span>app.<span class="text-sky-300">post</span>(<span class="text-emerald-300">'/webhooks'</span>, express.<span class="text-sky-300">raw</span>({ type: <span class="text-emerald-300">'*/*'</span> }), (req, res) =&gt; {</span
+                ><mark class="block border-s-2 border-teal-400 bg-teal-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">4</span>  <span class="text-pink-300">const</span> event = <span class="text-sky-300">verify</span>(req.body, {</mark
+                ><mark class="block border-s-2 border-teal-400 bg-teal-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">5</span>    signature: req.<span class="text-sky-300">get</span>(<span class="text-emerald-300">'Tidehook-Signature'</span>),</mark
+                ><mark class="block border-s-2 border-teal-400 bg-teal-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">6</span>    secret: process.env.<span class="text-amber-200">TIDEHOOK_SECRET</span>,</mark
+                ><mark class="block border-s-2 border-teal-400 bg-teal-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">7</span>  })</mark
+                ><mark class="block border-s-2 border-teal-400 bg-teal-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">8</span>  <span class="text-pink-300">if</span> (!event) <span class="text-pink-300">return</span> res.<span class="text-sky-300">sendStatus</span>(<span class="text-amber-200">400</span>)</mark
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">9</span></span
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">10</span>  <span class="text-sky-300">handle</span>(event)</span
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">11</span>  res.<span class="text-sky-300">sendStatus</span>(<span class="text-amber-200">200</span>)</span
+                ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">12</span>})</span
+            ></code></pre>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-labelledby="stats-title" class="bg-gray-50 dark:bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2
+            id="stats-title"
+            class="text-center text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white"
+          >
+            Built to be boring
+          </h2>
+
+          <dl class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div
+              class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-900"
+            >
+              <dt class="order-last mt-2 text-gray-600 dark:text-gray-300">
+                Uptime over the last 12 months
+              </dt>
+              <dd class="text-4xl font-bold text-gray-900 dark:text-white">99.99%</dd>
+            </div>
+
+            <div
+              class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-900"
+            >
+              <dt class="order-last mt-2 text-gray-600 dark:text-gray-300">
+                p99 time from send to first attempt
+              </dt>
+              <dd class="text-4xl font-bold text-gray-900 dark:text-white">180ms</dd>
+            </div>
+
+            <div
+              class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-900"
+            >
+              <dt class="order-last mt-2 text-gray-600 dark:text-gray-300">
+                Events delivered every month
+              </dt>
+              <dd class="text-4xl font-bold text-gray-900 dark:text-white">4.2bn</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section aria-labelledby="pricing-title">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2
+              id="pricing-title"
+              class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white"
+            >
+              Pay for what you send
+            </h2>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600 dark:text-gray-300">
+              Every plan includes retries, signing and replay. Retries never count as events.
+            </p>
+          </div>
+
+          <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div
+              class="flex flex-col rounded-2xl border border-gray-200 p-6 sm:p-8 dark:border-gray-700"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Free</h3>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                For side projects and trying things out.
+              </p>
+
+              <p class="mt-6">
+                <strong class="text-4xl font-bold text-gray-900 dark:text-white">$0</strong>
+                <span class="text-sm font-medium text-gray-600 dark:text-gray-300">/month</span>
+              </p>
+
+              <ul class="mt-6 flex-1 space-y-3 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">100,000 events a month</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">3 endpoints</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">7-day delivery logs</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">Community support</span>
+                </li>
+              </ul>
+
+              <a
+                href="#"
+                class="mt-8 block rounded-md border border-gray-300 px-5 py-3 text-center text-sm font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
+              >
+                Get an API key
+              </a>
+            </div>
+
+            <div
+              class="flex flex-col rounded-2xl border border-teal-700 p-6 ring-1 ring-teal-700 sm:p-8 dark:border-teal-200 dark:ring-teal-200"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Pro</h3>
+                <span
+                  class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-800 dark:bg-teal-800 dark:text-teal-100"
+                >
+                  Most popular
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                For products with real customers.
+              </p>
+
+              <p class="mt-6">
+                <strong class="text-4xl font-bold text-gray-900 dark:text-white">$49</strong>
+                <span class="text-sm font-medium text-gray-600 dark:text-gray-300">/month</span>
+              </p>
+
+              <ul class="mt-6 flex-1 space-y-3 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">2 million events included</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">$10 per extra million</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">Unlimited endpoints</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">30-day delivery logs</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">Email support</span>
+                </li>
+              </ul>
+
+              <a
+                href="#"
+                class="mt-8 block rounded-md bg-teal-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-teal-800 dark:bg-teal-200 dark:text-gray-900 dark:hover:bg-teal-100"
+              >
+                Start with Pro
+              </a>
+            </div>
+
+            <div
+              class="flex flex-col rounded-2xl border border-gray-200 p-6 sm:p-8 dark:border-gray-700"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Scale</h3>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                For platforms sending webhooks to thousands of customers.
+              </p>
+
+              <p class="mt-6">
+                <strong class="text-4xl font-bold text-gray-900 dark:text-white">$399</strong>
+                <span class="text-sm font-medium text-gray-600 dark:text-gray-300">/month</span>
+              </p>
+
+              <ul class="mt-6 flex-1 space-y-3 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">50 million events included</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">$6 per extra million</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">90-day delivery logs</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">SSO and audit logs</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-teal-700 dark:text-teal-200"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700 dark:text-gray-200">A 99.99% uptime SLA</span>
+                </li>
+              </ul>
+
+              <a
+                href="#"
+                class="mt-8 block rounded-md border border-gray-300 px-5 py-3 text-center text-sm font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
+              >
+                Talk to us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="testimonials-title" class="bg-gray-50 dark:bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2
+            id="testimonials-title"
+            class="text-center text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white"
+          >
+            Developers sleep better
+          </h2>
+
+          <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <figure
+              class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <blockquote class="flex-1 text-gray-700 dark:text-gray-200">
+                <p>
+                  &ldquo;We deleted about two thousand lines of queue and retry code the week we
+                  switched. Nobody misses it.&rdquo;
+                </p>
+              </blockquote>
+
+              <figcaption class="mt-6 text-sm">
+                <span class="block font-semibold text-gray-900 dark:text-white">Priya Raman</span>
+                <span class="block text-gray-600 dark:text-gray-300"
+                  >Staff engineer, Ledgerline</span
+                >
+              </figcaption>
+            </figure>
+
+            <figure
+              class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <blockquote class="flex-1 text-gray-700 dark:text-gray-200">
+                <p>
+                  &ldquo;The delivery log is the feature. When a customer says they never got an
+                  event, support can answer without paging anyone.&rdquo;
+                </p>
+              </blockquote>
+
+              <figcaption class="mt-6 text-sm">
+                <span class="block font-semibold text-gray-900 dark:text-white"
+                  >Tomás Ferreira</span
+                >
+                <span class="block text-gray-600 dark:text-gray-300"
+                  >Head of platform, Parcelbird</span
+                >
+              </figcaption>
+            </figure>
+
+            <figure
+              class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+            >
+              <blockquote class="flex-1 text-gray-700 dark:text-gray-200">
+                <p>
+                  &ldquo;Signature verification took five lines, and replay saved us during our
+                  first big incident.&rdquo;
+                </p>
+              </blockquote>
+
+              <figcaption class="mt-6 text-sm">
+                <span class="block font-semibold text-gray-900 dark:text-white">Hana Okafor</span>
+                <span class="block text-gray-600 dark:text-gray-300">Founder, Shiftboard</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="faqs-title">
+        <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2
+            id="faqs-title"
+            class="text-center text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white"
+          >
+            Questions
+          </h2>
+
+          <div class="mt-10 space-y-4">
+            <details
+              class="group rounded-lg border border-gray-200 p-4 dark:border-gray-700 [&_summary::-webkit-details-marker]:hidden"
+              open
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-teal-200"
+              >
+                What counts as an event?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600 dark:text-gray-300">
+                One call to send, whatever the number of endpoints it fans out to. Retries and
+                replays are free.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 dark:border-gray-700 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-teal-200"
+              >
+                How long do you keep retrying?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600 dark:text-gray-300">
+                Up to three days, with exponential backoff. After that the event is marked as
+                failed, and you can replay it at any time while it&apos;s in the log.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 dark:border-gray-700 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-teal-200"
+              >
+                Can I bring my own signing secret?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600 dark:text-gray-300">
+                Yes. Each endpoint has its own secret, and you can rotate it with a grace period
+                where both the old and new secrets are valid.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 dark:border-gray-700 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-teal-200"
+              >
+                Where is my data stored?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600 dark:text-gray-300">
+                In the EU or the US, your choice, set per project. Event payloads are encrypted at
+                rest.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 dark:border-gray-700 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-teal-200"
+              >
+                What happens if I go over my plan?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600 dark:text-gray-300">
+                Nothing breaks. On Free, events queue until the next month or until you upgrade. On
+                Pro and Scale, extra events are billed per million.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="cta-title" class="bg-gray-950">
+        <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 id="cta-title" class="text-3xl font-bold text-white sm:text-4xl">
+            Send your first webhook in five minutes
+          </h2>
+
+          <p class="mt-4 text-lg text-pretty text-gray-300">
+            Install the SDK, add your API key, and send an event. The free plan needs no card.
+          </p>
+
+          <div class="mx-auto mt-8 max-w-md">
+            <div
+              dir="ltr"
+              class="flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-950 py-2 ps-4 pe-2"
+            >
+              <pre
+                tabindex="0"
+                class="min-w-0 flex-1 overflow-x-auto py-1 text-start font-mono text-sm text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+              ><code><span class="text-gray-400 select-none" aria-hidden="true">$ </span><span id="InstallCommandCta">npm install @tidehook/node</span></code></pre>
+
+              <button
+                type="button"
+                data-copy-target="InstallCommandCta"
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-4"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+                  />
+                </svg>
+
+                <span data-copy-label>Copy</span>
+                <span class="sr-only">command</span>
+              </button>
+
+              <span data-copy-status class="sr-only" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <a
+            href="#"
+            class="mt-8 inline-block rounded-md bg-teal-400 px-6 py-3 text-sm font-medium text-gray-950 transition hover:bg-teal-300"
+          >
+            Get an API key
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-gray-100 dark:border-gray-800">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 gap-8 lg:grid-cols-6">
+          <div class="col-span-2">
+            <a class="flex items-center gap-2 text-teal-700 dark:text-teal-200" href="#">
+              <svg
+                class="h-8 w-auto"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 20c3.5 0 3.5-3 7-3s3.5 3 7 3 3.5-3 7-3 3.5 3 7 3"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M2 26c3.5 0 3.5-3 7-3s3.5 3 7 3 3.5-3 7-3 3.5 3 7 3"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M16 4v9m0 0-4-4m4 4 4-4"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="text-lg font-bold text-gray-900 dark:text-white">Tidehook</span>
+            </a>
+
+            <p class="mt-4 max-w-xs text-sm text-gray-600 dark:text-gray-300">
+              Webhook delivery with retries, signing and logs, for teams who&apos;d rather ship
+              features.
+            </p>
+
+            <a
+              href="#"
+              class="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+            >
+              <span
+                class="size-2 rounded-full bg-emerald-500 dark:bg-emerald-400"
+                aria-hidden="true"
+              ></span>
+              All systems operational
+            </a>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Product</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Features</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Pricing</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Changelog</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Status</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Developers</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Docs</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >API reference</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >SDKs</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Company</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >About</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Careers</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Legal</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Privacy</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Terms</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Data processing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 border-t border-gray-100 pt-8 dark:border-gray-800">
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            &copy; 2026 Tidehook. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.getElementById('nav-toggle')
+      const mobileNav = document.getElementById('mobile-nav')
+
+      function setNavOpen(isOpen) {
+        navToggle.setAttribute('aria-expanded', String(isOpen))
+        mobileNav.hidden = !isOpen
+      }
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && !mobileNav.hidden) {
+          setNavOpen(false)
+          navToggle.focus()
+        }
+      })
+
+      document.querySelectorAll('[data-copy-target]').forEach((button) => {
+        const label = button.querySelector('[data-copy-label]')
+        const status = button.parentElement.querySelector('[data-copy-status]')
+        let resetTimer
+
+        button.addEventListener('click', async () => {
+          const text = document.getElementById(button.dataset.copyTarget).textContent
+
+          try {
+            await navigator.clipboard.writeText(text)
+          } catch {
+            status.textContent = 'Copy failed. Select the command and copy it instead.'
+            return
+          }
+
+          label.textContent = 'Copied'
+          status.textContent = 'Copied to clipboard.'
+
+          clearTimeout(resetTimer)
+          resetTimer = setTimeout(() => {
+            label.textContent = 'Copy'
+            status.textContent = ''
+          }, 1500)
+        })
+      })
+
+      const codeTabs = document.querySelectorAll('[role="tab"]')
+
+      const activateCodeTab = (tab) => {
+        codeTabs.forEach((otherTab) => {
+          const isSelected = otherTab === tab
+
+          otherTab.setAttribute('aria-selected', String(isSelected))
+          otherTab.tabIndex = isSelected ? 0 : -1
+
+          document.getElementById(otherTab.getAttribute('aria-controls')).hidden = !isSelected
+        })
+      }
+
+      codeTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          activateCodeTab(tab)
+          tab.focus()
+        })
+
+        tab.addEventListener('keydown', (event) => {
+          const targetIndex = {
+            ArrowLeft: (index - 1 + codeTabs.length) % codeTabs.length,
+            ArrowRight: (index + 1) % codeTabs.length,
+            Home: 0,
+            End: codeTabs.length - 1,
+          }[event.key]
+
+          if (targetIndex === undefined) return
+
+          event.preventDefault()
+          activateCodeTab(codeTabs[targetIndex])
+          codeTabs[targetIndex].focus()
+        })
+      })
+    </script>
+  </body>
+</html>

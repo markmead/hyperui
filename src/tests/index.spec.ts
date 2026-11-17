@@ -39,6 +39,7 @@ test.describe('Component category sections', () => {
     await expect(firstSection.getByRole('heading', { level: 2 })).toHaveText('Templates')
     await expect(firstSection.getByRole('heading', { level: 3 })).toHaveText([
       'Analytics Dashboard',
+      'Developer Tool Landing Page',
       'Portfolio',
       'SaaS Landing Page',
       'Storefront',
@@ -110,7 +111,7 @@ test('every template card has a thumbnail', async ({ page, request }) => {
     .locator('a[href^="/components/templates/"] img')
     .evaluateAll((images) => images.map((img) => img.getAttribute('src') ?? ''))
 
-  expect(sources).toHaveLength(5)
+  expect(sources).toHaveLength(6)
 
   for (const src of sources) {
     const response = await request.get(src)
