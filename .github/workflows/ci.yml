@@ -59,7 +59,7 @@ jobs:
 
       - run: pnpm check
 
-      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright install --with-deps --only-shell chromium
 
       # Changed examples only. The weekly run checks everything.
       - run: pnpm exec playwright test --project=chromium
