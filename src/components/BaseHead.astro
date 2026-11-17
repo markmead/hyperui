@@ -81,5 +81,16 @@ const webpageSchema = {
 
 <script is:inline defer src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
 
+{
+  import.meta.env.PROD && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "17b5e13cb61a4ff88abf764213695fd7"}'
+    />
+  )
+}
+
 <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
 <script type="application/ld+json" is:inline set:html={JSON.stringify(webpageSchema)} />
