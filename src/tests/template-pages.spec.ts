@@ -69,3 +69,22 @@ test('templates use logical utilities, not left and right ones', ({ browserName 
 
   expect(findings).toEqual([])
 })
+
+// WCAG 1.4.10 Reflow: at 320px wide (400% zoom) a page must not scroll
+// sideways. Code blocks and tables scroll inside their own region instead.
+test.describe('Templates reflow at 320px', () => {
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Reflow check runs in Chromium')
+
+  const files = readdirSync(TEMPLATES_DIR).flatMap((slug) =>
+    readdirSync(join(TEMPLATES_DIR, slug)).map((file) => `${slug}/${file}`),
+  )
+
+  for (const file of files) {
+    test(file, async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 800 })
+      await page.goto(`/examples/templates/${file}`)
+
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320)
+    })
+  }
+})
