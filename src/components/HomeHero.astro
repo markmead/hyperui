@@ -2,32 +2,13 @@
 import { ArrowRight, Clipboard } from '@lucide/astro'
 
 import BaseAd from './BaseAd.astro'
+import HomePreview from './HomePreview.astro'
 
 const agentPrompt = 'Build with Tailwind components from https://hyperui.dev/llms.txt'
-
-const proofPoints = [
-  {
-    title: 'Accessible',
-    description:
-      'Every example passes axe (WCAG 2.1 AA). The templates and the most-copied components are also audited by hand.',
-  },
-  {
-    title: 'Right-to-left ready',
-    description: 'Built with logical properties. Preview any component right-to-left.',
-  },
-  {
-    title: 'Dark mode',
-    description: 'Every template and most components have a dark variant.',
-  },
-  {
-    title: 'Built for your AI',
-    description: 'Every page as Markdown, an llms.txt index, and Copy for AI on every component.',
-  },
-]
 ---
 
 <section class="bg-white">
-  <div class="mx-auto max-w-7xl space-y-12 px-4 py-8 md:py-16">
+  <div class="mx-auto max-w-7xl space-y-12 px-4 pt-8 pb-4 md:pt-16 md:pb-8">
     <div class="flex flex-col items-start justify-between gap-8 md:flex-row">
       <div class="max-w-3xl space-y-6">
         <p class="text-sm font-medium text-gray-600">HyperUI · Free and open source</p>
@@ -50,31 +31,37 @@ const proofPoints = [
             Browse templates
 
             <ArrowRight
-              class="size-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100"
+              class="size-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1"
             />
           </a>
 
-          <home-prompt
-            class="flex w-full max-w-xl items-center gap-2 rounded-md border border-gray-200 bg-gray-50 p-1.5 ps-3"
-          >
-            <p class="min-w-0 flex-1 text-sm text-gray-700">
-              <span class="sr-only">Prompt for your AI agent: </span>
-              <code data-prompt class="break-words">{agentPrompt}</code>
+          <home-prompt class="block w-full max-w-2xl">
+            <p id="home-prompt-label" class="text-sm text-gray-600">
+              Using an AI agent? Give it this:
             </p>
 
-            <button
-              type="button"
-              aria-label="Copy prompt"
-              class="inline-flex shrink-0 items-center gap-2 rounded-md bg-white px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-100"
+            <div
+              class="mt-2 flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 p-1.5 ps-3"
             >
-              <Clipboard class="size-4" />
-
-              <span
-                class="grid text-left after:invisible after:col-start-1 after:row-start-1 after:content-['Copied']"
+              <code data-prompt dir="ltr" class="min-w-0 flex-1 text-sm break-words text-gray-700"
+                >{agentPrompt}</code
               >
-                <span data-text class="col-start-1 row-start-1">Copy</span>
-              </span>
-            </button>
+
+              <button
+                type="button"
+                aria-label="Copy prompt"
+                aria-describedby="home-prompt-label"
+                class="inline-flex shrink-0 items-center gap-2 rounded-md bg-white px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-100"
+              >
+                <Clipboard class="size-4" />
+
+                <span
+                  class="grid text-start after:invisible after:col-start-1 after:row-start-1 after:content-['Copied']"
+                >
+                  <span data-text class="col-start-1 row-start-1">Copy</span>
+                </span>
+              </button>
+            </div>
 
             <span data-polite aria-live="polite" class="sr-only"></span>
           </home-prompt>
@@ -84,17 +71,7 @@ const proofPoints = [
       <BaseAd />
     </div>
 
-    <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        proofPoints.map(({ title, description }) => (
-          <div class="border-s-2 border-gray-900 ps-4">
-            <dt class="font-medium text-gray-900">{title}</dt>
-
-            <dd class="mt-1 text-sm text-gray-600">{description}</dd>
-          </div>
-        ))
-      }
-    </dl>
+    <HomePreview />
   </div>
 </section>
 
