@@ -35,7 +35,7 @@ const isRecentlyUpdated = updated?.date
 <li>
   <a
     href={`/components/${category}/${slug}`}
-    class="group relative block overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
+    class="group block overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
   >
     {
       thumbnail && (
@@ -52,9 +52,13 @@ const isRecentlyUpdated = updated?.date
     }
 
     <div class="p-6">
-      <h3 class="text-xl font-medium text-gray-900">
-        {title}
-      </h3>
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-xl font-medium text-gray-900">
+          {title}
+        </h3>
+
+        {isRecentlyUpdated && <StatusBadge status="updated" class="mt-1" />}
+      </div>
 
       <div class="mt-2 flex items-center justify-between">
         <p class="text-sm text-gray-600">
@@ -66,7 +70,5 @@ const isRecentlyUpdated = updated?.date
         />
       </div>
     </div>
-
-    {isRecentlyUpdated && <StatusBadge status="updated" class="absolute end-3 top-3" />}
   </a>
 </li>
