@@ -1,0 +1,29 @@
+---
+title: Pricing Page
+description: A pricing page template built with Tailwind CSS, with a monthly and yearly billing switch, three plans, a feature comparison table, a customer quote, billing FAQs and a trial call to action. Accessible, responsive and dark mode ready.
+category: templates
+slug: pricing-page
+wrapper: h-[800px]
+terms:
+  - pricing
+  - plans
+  - full page
+  - saas
+  - comparison
+components:
+  - { title: 'Pricing page', dark: true }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
+
+<TemplateDisclaimer />
