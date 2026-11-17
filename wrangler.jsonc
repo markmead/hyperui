@@ -11,6 +11,10 @@
     {
       "binding": "COPY_EVENTS",
       "dataset": "hyperui_copies"
+    },
+    {
+      "binding": "INTEREST_EVENTS",
+      "dataset": "hyperui_interest"
     }
   ],
   "observability": {
