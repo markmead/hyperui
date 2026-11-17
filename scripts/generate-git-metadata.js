@@ -188,7 +188,7 @@ function generateMetadata() {
 
   const outputPath = path.join(outputDir, 'git-metadata.json')
 
-  fs.writeFileSync(outputPath, JSON.stringify(fileMetadata, null, 2), 'utf8')
+  fs.writeFileSync(outputPath, `${JSON.stringify(fileMetadata, null, 2)}\n`, 'utf8')
 
   console.log(`✅ Finished! Git metadata written to: src/data/git-metadata.json`)
 }

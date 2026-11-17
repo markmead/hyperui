@@ -148,6 +148,8 @@ test.describe('Copy counter', () => {
     await copyButton.click()
 
     await expect(copyButton).toContainText('Copied')
-    expect(beacons).toHaveLength(1)
+    // Playwright reports requests asynchronously, so the beacon can arrive
+    // just after the label changes.
+    await expect.poll(() => beacons.length).toBe(1)
   })
 })
