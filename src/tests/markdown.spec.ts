@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from './fixtures'
 
 const pages = [
   { path: '/', markdownPath: '/index.md', heading: '# Free Tailwind CSS Components' },

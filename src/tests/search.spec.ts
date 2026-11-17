@@ -1,4 +1,4 @@
-import { test, expect, type Locator } from '@playwright/test'
+import { test, expect, type Locator, pageURL } from './fixtures'
 
 test.describe('Site search', () => {
   test.beforeEach(async ({ page }) => {
@@ -92,7 +92,7 @@ test.describe('Site search', () => {
 
     await componentLink.click()
 
-    await expect(page).toHaveURL(componentHref || '')
+    await expect(page).toHaveURL(pageURL(componentHref ?? ''))
     await expect(page).toHaveTitle('Free Tailwind CSS Accordions | HyperUI')
 
     const componentPreviews: number = await page.locator('component-preview').count()
@@ -109,7 +109,7 @@ test.describe('Site search', () => {
 
     await pageLink.click()
 
-    await expect(page).toHaveURL(/\/faqs\/?$/)
+    await expect(page).toHaveURL(pageURL('/faqs'))
     await expect(page).toHaveTitle('FAQs | HyperUI')
 
     await expect(page.locator('article')).toBeVisible()

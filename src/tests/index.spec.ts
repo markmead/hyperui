@@ -1,4 +1,4 @@
-import { test, expect, type Locator } from '@playwright/test'
+import { test, expect, type Locator, pageURL } from './fixtures'
 
 test.describe('Component category sections', () => {
   test.beforeEach(async ({ page }) => {
@@ -12,7 +12,7 @@ test.describe('Component category sections', () => {
 
     await viewAllLink.click()
 
-    await expect(page).toHaveURL('/components/application')
+    await expect(page).toHaveURL(pageURL('/components/application'))
     await expect(page).toHaveTitle('Tailwind CSS Application UI Components | HyperUI')
   })
 
@@ -23,7 +23,7 @@ test.describe('Component category sections', () => {
 
     await componentLink.click()
 
-    await expect(page).toHaveURL('/components/application/accordions')
+    await expect(page).toHaveURL(pageURL('/components/application/accordions'))
     await expect(page).toHaveTitle('Free Tailwind CSS Accordions | HyperUI')
 
     await expect(
@@ -53,7 +53,7 @@ test.describe('Component category sections', () => {
 
     await viewAllLink.click()
 
-    await expect(page).toHaveURL('/components/templates')
+    await expect(page).toHaveURL(pageURL('/components/templates'))
     await expect(page).toHaveTitle('Tailwind CSS Full Page Templates | HyperUI')
   })
 })

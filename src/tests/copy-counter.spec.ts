@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from './fixtures'
 
 test.describe('Copy counter', () => {
   test('accepts a copy of a known example', async ({ request }) => {

@@ -1,4 +1,4 @@
-import { test, expect, type Locator, type Page } from '@playwright/test'
+import { test, expect, type Locator, type Page, pageURL } from './fixtures'
 
 const PAGE_URL = '/components/application/accordions'
 const FIRST_IFRAME = '[src="/examples/application/accordions/1.html"]'
@@ -42,7 +42,7 @@ test.describe('Component preview hotlink', () => {
   test('can link to component preview', async ({ page }) => {
     await page.locator('[href="#component-5-dark"]').click()
 
-    await expect(page).toHaveURL(`${PAGE_URL}#component-5-dark`)
+    await expect(page).toHaveURL(pageURL(PAGE_URL, '#component-5-dark'))
 
     await expect(page.locator('component-preview').and(page.locator(LAST_PREVIEW))).toBeVisible()
     await expect(page.locator('component-preview').and(page.locator(LAST_PREVIEW))).toBeInViewport()

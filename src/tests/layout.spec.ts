@@ -1,4 +1,4 @@
-import { test, expect, type Locator } from '@playwright/test'
+import { test, expect, type Locator } from './fixtures'
 
 test.describe('Skip to content link', () => {
   let skipToContentLink: Locator
@@ -26,4 +26,19 @@ test.describe('Skip to content link', () => {
     await expect(skipToContentLink).not.toBeFocused()
     await expect(skipToContentLink).not.toBeInViewport()
   })
+})
+
+test('tests never load ads or analytics', async ({ page }) => {
+  const loaded: string[] = []
+
+  page.on('response', (response) => {
+    if (/ethicalads\.io|cloudflareinsights\.com/.test(response.url())) {
+      loaded.push(response.url())
+    }
+  })
+
+  await page.goto('')
+  await page.waitForLoadState('networkidle')
+
+  expect(loaded).toEqual([])
 })

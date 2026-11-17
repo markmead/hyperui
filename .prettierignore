@@ -15,8 +15,11 @@ pnpm-lock.yaml
 # css
 public/*.css
 
-# wrangler
+# wrangler config
 wrangler.jsonc
 
 # agents
 .agents/
+
+# wrangler local state
+.wrangler/
