@@ -17,6 +17,7 @@ components:
 import BaseHero from '../../../components/BaseHero.astro'
 import BackLink from '../../../components/BackLink.astro'
 import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
+import TemplateInterest from '../../../components/TemplateInterest.astro'
 
 <BaseHero title={frontmatter.title} description={frontmatter.description}>
   <BackLink
@@ -27,3 +28,5 @@ import TemplateDisclaimer from '../../../components/TemplateDisclaimer.astro'
 </BaseHero>
 
 <TemplateDisclaimer />
+
+<TemplateInterest slug={frontmatter.slug} />

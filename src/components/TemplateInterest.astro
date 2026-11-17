@@ -1,0 +1,97 @@
+---
+import { Sparkles } from '@lucide/astro'
+
+interface Props {
+  /** The template's slug, sent with the click. */
+  slug: string
+}
+
+const { slug } = Astro.props
+---
+
+<template-interest data-slug={slug} class="mx-auto block max-w-7xl px-4 pb-8">
+  <div
+    class="flex flex-col gap-4 rounded-lg border border-gray-200 p-8 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div class="flex items-start gap-4">
+      <Sparkles class="mt-0.5 size-6 shrink-0 text-gray-500" />
+
+      <div>
+        <h2 class="text-xl font-medium">A full site version</h2>
+
+        <p class="mt-2 text-gray-600">
+          A full multi-page version is in the works: pricing, docs, changelog, sign in and a
+          dashboard. Want it?
+        </p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      data-interest
+      class="shrink-0 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 aria-disabled:cursor-default aria-disabled:bg-gray-100 aria-disabled:text-gray-700"
+    >
+      I'm interested
+    </button>
+  </div>
+
+  <span data-interest-status aria-live="polite" class="sr-only"></span>
+</template-interest>
+
+<script>
+  const STORAGE_PREFIX = 'hyperui:interest:'
+
+  class TemplateInterest extends HTMLElement {
+    connectedCallback() {
+      const slug = this.dataset.slug
+      const button = this.querySelector<HTMLButtonElement>('button[data-interest]')
+      const status = this.querySelector<HTMLElement>('[data-interest-status]')
+
+      if (!slug || !button || !status) {
+        return
+      }
+
+      if (this.hasRegistered(slug)) {
+        this.showRegistered(button)
+      }
+
+      button.addEventListener('click', () => {
+        if (button.getAttribute('aria-disabled') === 'true') {
+          return
+        }
+
+        // Counted on the server with the slug only (see `src/pages/api/interest.ts`).
+        try {
+          navigator.sendBeacon('/api/interest', JSON.stringify({ slug }))
+        } catch {
+          // Counting must never get in the way of the page.
+        }
+
+        try {
+          localStorage.setItem(`${STORAGE_PREFIX}${slug}`, '1')
+        } catch {
+          // Storage can be blocked. The button still works for this visit.
+        }
+
+        this.showRegistered(button)
+        status.textContent = 'Thanks. Your interest has been noted.'
+      })
+    }
+
+    private hasRegistered(slug: string): boolean {
+      try {
+        return localStorage.getItem(`${STORAGE_PREFIX}${slug}`) === '1'
+      } catch {
+        return false
+      }
+    }
+
+    private showRegistered(button: HTMLButtonElement) {
+      // aria-disabled rather than disabled, so focus stays on the button.
+      button.setAttribute('aria-disabled', 'true')
+      button.textContent = 'Thanks, noted'
+    }
+  }
+
+  customElements.define('template-interest', TemplateInterest)
+</script>

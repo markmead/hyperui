@@ -45,7 +45,11 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 ### Copy Counts
 
-`PreviewCopy.astro` sends a beacon to `/api/copy` (`src/pages/api/copy.ts`, the only server-rendered route) after each copy. It writes the category, slug, variant, theme and copy kind to the `hyperui_copies` Workers Analytics Engine dataset (`COPY_EVENTS` binding in `wrangler.jsonc`).
+`PreviewCopy.astro` sends a beacon to `/api/copy` (`src/pages/api/copy.ts`, a server-rendered route) after each copy. It writes the category, slug, variant, theme and copy kind to the `hyperui_copies` Workers Analytics Engine dataset (`COPY_EVENTS` binding in `wrangler.jsonc`).
+
+### Interest Counts
+
+`TemplateInterest.astro` adds an "I'm interested" button to a template's page, placed in that template's MDX file, never in the template markup. A click sends a beacon to `/api/interest` (`src/pages/api/interest.ts`), which writes only the template slug to the `hyperui_interest` dataset (`INTEREST_EVENTS` binding).
 
 ### Page Routing
 
