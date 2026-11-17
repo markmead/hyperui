@@ -1,0 +1,1605 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing page - Pricing Page - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="bg-white">
+    <a
+      href="#main"
+      class="sr-only rounded-md bg-violet-700 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50"
+    >
+      Skip to content
+    </a>
+
+    <header class="border-b border-gray-100">
+      <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a class="flex items-center gap-2 text-violet-700" href="#">
+          <svg
+            class="size-8"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect
+              x="3"
+              y="6"
+              width="26"
+              height="23"
+              rx="5"
+              stroke="currentColor"
+              stroke-width="2.5"
+            />
+            <path
+              d="M3 13h26M10 3v6M22 3v6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="m11 21 3.5 3L21 17"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="text-lg font-bold text-gray-900">Larkline</span>
+        </a>
+
+        <div class="flex flex-1 items-center justify-end md:justify-between">
+          <nav aria-label="Global" class="hidden md:block">
+            <ul class="flex items-center gap-6 text-sm">
+              <li>
+                <a class="text-gray-600 transition hover:text-gray-900" href="#">Product</a>
+              </li>
+
+              <li>
+                <a class="font-medium text-violet-700" href="#" aria-current="page">Pricing</a>
+              </li>
+
+              <li>
+                <a class="text-gray-600 transition hover:text-gray-900" href="#">Customers</a>
+              </li>
+
+              <li>
+                <a class="text-gray-600 transition hover:text-gray-900" href="#">Help</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="flex items-center gap-4">
+            <a
+              class="hidden text-sm font-medium text-gray-700 transition hover:text-gray-900 sm:block"
+              href="#"
+            >
+              Log in
+            </a>
+
+            <a
+              class="rounded-md bg-violet-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-800"
+              href="#"
+            >
+              Start for free
+            </a>
+
+            <button
+              type="button"
+              id="nav-toggle"
+              aria-expanded="false"
+              aria-controls="mobile-nav"
+              class="block rounded-md bg-gray-100 p-2.5 text-gray-700 transition hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2 md:hidden"
+            >
+              <span class="sr-only">Toggle menu</span>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      id="mobile-nav"
+      hidden
+      aria-label="Global Mobile"
+      class="border-b border-gray-100 bg-white md:hidden"
+    >
+      <ul class="space-y-1 px-4 py-4 text-sm">
+        <li>
+          <a href="#" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50">Product</a>
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="block rounded-lg px-3 py-2 font-medium text-violet-700 hover:bg-gray-50"
+            aria-current="page"
+            >Pricing</a
+          >
+        </li>
+
+        <li>
+          <a href="#" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50"
+            >Customers</a
+          >
+        </li>
+
+        <li>
+          <a href="#" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50">Help</a>
+        </li>
+      </ul>
+
+      <div class="border-t border-gray-100 px-4 py-4 sm:hidden">
+        <a
+          href="#"
+          class="block rounded-md bg-gray-100 px-5 py-2.5 text-center text-sm font-medium text-gray-900"
+        >
+          Log in
+        </a>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section aria-labelledby="plans-title" class="bg-gray-50">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div class="mx-auto max-w-2xl text-center">
+            <p class="text-sm font-semibold text-violet-700">Pricing</p>
+
+            <h1
+              id="plans-title"
+              class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+            >
+              Pay per person, not per meeting
+            </h1>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600">
+              Start free, and only pay for the people who host. Everyone who books time with you is
+              free, always.
+            </p>
+          </div>
+
+          <fieldset class="mt-10 flex justify-center">
+            <legend class="sr-only">Billing period</legend>
+
+            <div class="inline-flex rounded-full bg-gray-200/60 p-1">
+              <label
+                class="inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-gray-700 has-checked:bg-white has-checked:text-gray-900 has-checked:shadow-xs has-focus-visible:ring-2 has-focus-visible:ring-violet-700"
+              >
+                <input type="radio" name="BillingPeriod" value="monthly" class="sr-only" checked />
+                Monthly
+              </label>
+
+              <label
+                class="inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-gray-700 has-checked:bg-white has-checked:text-gray-900 has-checked:shadow-xs has-focus-visible:ring-2 has-focus-visible:ring-violet-700"
+              >
+                <input type="radio" name="BillingPeriod" value="yearly" class="sr-only" />
+                Yearly
+                <span class="rounded-full bg-violet-100 px-2 py-0.5 text-xs text-violet-800"
+                  >Save 20%</span
+                >
+              </label>
+            </div>
+          </fieldset>
+
+          <p data-billing-status class="sr-only" aria-live="polite"></p>
+
+          <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div
+              class="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-xs sm:p-8"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold text-gray-900">
+                  Free
+                  <span class="sr-only">plan</span>
+                </h3>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-600">For one person organising their own week.</p>
+
+              <p class="mt-6">
+                <strong data-monthly="$0" data-yearly="$0" class="text-4xl font-bold text-gray-900">
+                  $0
+                </strong>
+                <span class="text-sm font-medium text-gray-600">/user/month</span>
+              </p>
+
+              <p
+                data-monthly="Free forever"
+                data-yearly="Free forever"
+                class="mt-1 text-sm text-gray-600"
+              >
+                Free forever
+              </p>
+
+              <a
+                href="#"
+                class="mt-6 block rounded-md border border-gray-300 px-5 py-3 text-center text-sm font-medium text-gray-900 hover:bg-gray-50"
+              >
+                Start for free
+              </a>
+
+              <ul class="mt-8 flex-1 space-y-3 border-t border-gray-100 pt-6 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">1 user</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">2 calendars</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Booking page</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Email reminders</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="flex flex-col rounded-2xl border border-violet-700 bg-white p-6 shadow-xs ring-1 ring-violet-700 sm:p-8"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold text-gray-900">
+                  Team
+                  <span class="sr-only">plan</span>
+                </h3>
+                <span
+                  class="rounded-full bg-violet-100 px-2.5 py-0.5 text-xs font-medium text-violet-800"
+                >
+                  Most popular
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-600">For teams who schedule together every day.</p>
+
+              <p class="mt-6">
+                <strong data-monthly="$9" data-yearly="$7" class="text-4xl font-bold text-gray-900">
+                  $9
+                </strong>
+                <span class="text-sm font-medium text-gray-600">/user/month</span>
+              </p>
+
+              <p
+                data-monthly="Per user, billed monthly"
+                data-yearly="Per user, billed $84 yearly"
+                class="mt-1 text-sm text-gray-600"
+              >
+                Per user, billed monthly
+              </p>
+
+              <a
+                href="#"
+                class="mt-6 block rounded-md bg-violet-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-violet-800"
+              >
+                Start a 14-day trial
+              </a>
+
+              <ul class="mt-8 flex-1 space-y-3 border-t border-gray-100 pt-6 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Up to 50 users</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Unlimited calendars</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Round-robin booking</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Calendar and video integrations</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Priority email support</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-xs sm:p-8"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold text-gray-900">
+                  Business
+                  <span class="sr-only">plan</span>
+                </h3>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-600">For companies with many teams.</p>
+
+              <p class="mt-6">
+                <strong
+                  data-monthly="$16"
+                  data-yearly="$13"
+                  class="text-4xl font-bold text-gray-900"
+                >
+                  $16
+                </strong>
+                <span class="text-sm font-medium text-gray-600">/user/month</span>
+              </p>
+
+              <p
+                data-monthly="Per user, billed monthly"
+                data-yearly="Per user, billed $156 yearly"
+                class="mt-1 text-sm text-gray-600"
+              >
+                Per user, billed monthly
+              </p>
+
+              <a
+                href="#"
+                class="mt-6 block rounded-md border border-gray-300 px-5 py-3 text-center text-sm font-medium text-gray-900 hover:bg-gray-50"
+              >
+                Talk to sales
+              </a>
+
+              <ul class="mt-8 flex-1 space-y-3 border-t border-gray-100 pt-6 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Unlimited users</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">SSO and SCIM</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Audit logs</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">Admin roles and policies</span>
+                </li>
+
+                <li class="flex items-start gap-2">
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mt-0.5 size-5 shrink-0 text-violet-700"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span class="text-gray-700">A named account manager</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="mt-8 text-center text-sm text-gray-600">
+            Prices in US dollars. Taxes may apply where you live.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="customers-title">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <h2 id="customers-title" class="text-center text-sm font-medium text-gray-600">
+            Over 8,000 teams book their meetings with Larkline
+          </h2>
+
+          <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            <li class="text-lg font-semibold tracking-tight text-gray-500">Harbor Clinic</li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500">Mapleway</li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500">Studio Ostra</li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500">Pinecrest Legal</li>
+
+            <li class="text-lg font-semibold tracking-tight text-gray-500">Tallyfield</li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="compare-title">
+        <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h2 id="compare-title" class="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Compare plans
+            </h2>
+
+            <p class="mt-4 text-lg text-pretty text-gray-600">Every feature, side by side.</p>
+          </div>
+
+          <div
+            role="region"
+            aria-labelledby="ComparisonCaption"
+            tabindex="0"
+            class="relative mt-10 overflow-x-auto rounded-lg border border-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700"
+          >
+            <table class="w-full min-w-xl text-sm">
+              <caption id="ComparisonCaption" class="sr-only">
+                Larkline plans compared
+              </caption>
+
+              <thead>
+                <tr>
+                  <td class="w-2/5 px-4 py-3"></td>
+                  <th scope="col" class="px-4 py-3 text-center font-semibold text-gray-900">
+                    Free
+                  </th>
+                  <th scope="col" class="px-4 py-3 text-center font-semibold text-gray-900">
+                    Team
+                    <span class="mt-1 block text-xs font-normal text-violet-700">Most popular</span>
+                  </th>
+                  <th scope="col" class="px-4 py-3 text-center font-semibold text-gray-900">
+                    Business
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="bg-gray-50">
+                  <th
+                    scope="colgroup"
+                    colspan="4"
+                    class="px-4 py-2 text-start font-semibold text-gray-900"
+                  >
+                    Scheduling
+                  </th>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">Users</th>
+                  <td class="px-4 py-3 text-center text-gray-700">1</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Up to 50</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Unlimited</td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Calendars
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">2</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Unlimited</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Unlimited</td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Booking pages
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">1</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Unlimited</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Unlimited</td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Round-robin booking
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Buffer times and limits
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody>
+                <tr class="bg-gray-50">
+                  <th
+                    scope="colgroup"
+                    colspan="4"
+                    class="px-4 py-2 text-start font-semibold text-gray-900"
+                  >
+                    Integrations
+                  </th>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Google and Outlook calendars
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Zoom, Meet and Teams
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Webhooks and API
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody>
+                <tr class="bg-gray-50">
+                  <th
+                    scope="colgroup"
+                    colspan="4"
+                    class="px-4 py-2 text-start font-semibold text-gray-900"
+                  >
+                    Admin and security
+                  </th>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Two-factor authentication
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    SSO and SCIM
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Audit logs
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Data residency
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <span aria-hidden="true" class="text-gray-400">&mdash;</span>
+                    <span class="sr-only">Not included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">EU or US</td>
+                </tr>
+              </tbody>
+
+              <tbody>
+                <tr class="bg-gray-50">
+                  <th
+                    scope="colgroup"
+                    colspan="4"
+                    class="px-4 py-2 text-start font-semibold text-gray-900"
+                  >
+                    Support
+                  </th>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Help centre
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                  <td class="px-4 py-3 text-center text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="mx-auto size-5 text-violet-700"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                    <span class="sr-only">Included</span>
+                  </td>
+                </tr>
+
+                <tr class="border-t border-gray-200">
+                  <th scope="row" class="px-4 py-3 text-start font-medium text-gray-900">
+                    Support
+                  </th>
+                  <td class="px-4 py-3 text-center text-gray-700">Email</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Priority email</td>
+                  <td class="px-4 py-3 text-center text-gray-700">Named manager</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="quote-title" class="bg-gray-50">
+        <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 id="quote-title" class="sr-only">What customers say</h2>
+
+          <figure>
+            <blockquote class="text-xl font-medium text-pretty text-gray-900 sm:text-2xl">
+              <p>
+                &ldquo;We moved twelve front-desk staff from a shared spreadsheet to Larkline in an
+                afternoon. Double bookings went to zero, and the yearly plan paid for itself in the
+                first month.&rdquo;
+              </p>
+            </blockquote>
+
+            <figcaption class="mt-6 text-sm">
+              <span class="block font-semibold text-gray-900">Amara Nwosu</span>
+              <span class="block text-gray-600">Operations lead, Harbor Clinic</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-labelledby="faqs-title">
+        <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 id="faqs-title" class="text-center text-3xl font-bold text-gray-900 sm:text-4xl">
+            Billing questions
+          </h2>
+
+          <div class="mt-10 space-y-4">
+            <details
+              class="group rounded-lg border border-gray-200 p-4 [&_summary::-webkit-details-marker]:hidden"
+              open
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2"
+              >
+                Is there a free trial?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600">
+                Team has a 14-day trial with every feature, and no card is needed. At the end you
+                choose a plan or drop to Free, and nothing is deleted.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2"
+              >
+                How does per-user pricing work?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600">
+                You pay for people who can host meetings. People who only book time with your team
+                are always free.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2"
+              >
+                Can I switch between monthly and yearly billing?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600">
+                Yes, at any time. Moving to yearly takes effect straight away, with the unused part
+                of your month credited.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2"
+              >
+                What happens if I add people mid-month?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600">
+                We charge for the days they&apos;re on the plan, and the amount shows on your next
+                invoice.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2"
+              >
+                Do you offer discounts for non-profits and education?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600">
+                Yes. Registered non-profits and schools get 50% off Team and Business. Contact us
+                with proof of status.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-lg border border-gray-200 p-4 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2"
+              >
+                Can I cancel at any time?
+
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-5 shrink-0 transition-transform group-open:-rotate-180"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <p class="mt-4 text-gray-600">
+                Yes. Monthly plans stop at the end of the month. Yearly plans run to the end of the
+                year, and we refund unused months on request.
+              </p>
+            </details>
+          </div>
+
+          <p class="mt-8 text-center text-gray-600">
+            Still not sure?
+            <a href="#" class="font-medium text-violet-700 underline hover:text-violet-800"
+              >Talk to our team</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="cta-title" class="bg-gray-950">
+        <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 id="cta-title" class="text-3xl font-bold text-white sm:text-4xl">
+            Try Team free for 14 days
+          </h2>
+
+          <p class="mt-4 text-lg text-pretty text-gray-300">
+            Every feature, no card needed. Keep your calendars on Free if you decide not to upgrade.
+          </p>
+
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              href="#"
+              class="rounded-md bg-violet-300 px-6 py-3 text-sm font-medium text-gray-950 transition hover:bg-violet-200"
+            >
+              Start your trial
+            </a>
+
+            <a
+              href="#"
+              class="rounded-md border border-gray-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-gray-800"
+            >
+              Book a demo
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-gray-100">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 gap-8 lg:grid-cols-5">
+          <div class="col-span-2">
+            <a class="flex items-center gap-2 text-violet-700" href="#">
+              <svg
+                class="size-8"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <rect
+                  x="3"
+                  y="6"
+                  width="26"
+                  height="23"
+                  rx="5"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M3 13h26M10 3v6M22 3v6"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m11 21 3.5 3L21 17"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="text-lg font-bold text-gray-900">Larkline</span>
+            </a>
+
+            <p class="mt-4 max-w-xs text-sm text-gray-600">
+              Scheduling for teams. Share one link, and let people book the right person at the
+              right time.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900">Product</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Features</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Pricing</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Integrations</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Changelog</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900">Company</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">About</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Careers</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-semibold text-gray-900">Legal</h2>
+
+            <ul class="mt-4 space-y-3 text-sm">
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Privacy</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Terms</a>
+              </li>
+
+              <li>
+                <a href="#" class="text-gray-600 transition hover:text-gray-900">Security</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 border-t border-gray-100 pt-8">
+          <p class="text-sm text-gray-600">&copy; 2026 Larkline. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.getElementById('nav-toggle')
+      const mobileNav = document.getElementById('mobile-nav')
+
+      function setNavOpen(isOpen) {
+        navToggle.setAttribute('aria-expanded', String(isOpen))
+        mobileNav.hidden = !isOpen
+      }
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && !mobileNav.hidden) {
+          setNavOpen(false)
+          navToggle.focus()
+        }
+      })
+
+      const billingStatus = document.querySelector('[data-billing-status]')
+
+      document.querySelectorAll('input[name="BillingPeriod"]').forEach((radio) => {
+        radio.addEventListener('change', () => {
+          const period = radio.value
+
+          document.querySelectorAll('[data-monthly]').forEach((element) => {
+            element.textContent = element.dataset[period]
+          })
+
+          billingStatus.textContent =
+            period === 'yearly' ? 'Showing yearly prices.' : 'Showing monthly prices.'
+        })
+      })
+    </script>
+  </body>
+</html>

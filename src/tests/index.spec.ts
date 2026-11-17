@@ -41,6 +41,7 @@ test.describe('Component category sections', () => {
       'Analytics Dashboard',
       'Developer Tool Landing Page',
       'Portfolio',
+      'Pricing Page',
       'SaaS Landing Page',
       'Storefront',
       'Support Inbox',
@@ -111,7 +112,7 @@ test('every template card has a thumbnail', async ({ page, request }) => {
     .locator('a[href^="/components/templates/"] img')
     .evaluateAll((images) => images.map((img) => img.getAttribute('src') ?? ''))
 
-  expect(sources).toHaveLength(6)
+  expect(sources).toHaveLength(7)
 
   for (const src of sources) {
     const response = await request.get(src)
