@@ -102,3 +102,19 @@ test.describe('Homepage hero', () => {
     await expect(frame.locator('[data-hyperui-focus-order] span').first()).toHaveText('1')
   })
 })
+
+test('every template card has a thumbnail', async ({ page, request }) => {
+  await page.goto('/components/templates')
+
+  const sources = await page
+    .locator('a[href^="/components/templates/"] img')
+    .evaluateAll((images) => images.map((img) => img.getAttribute('src') ?? ''))
+
+  expect(sources).toHaveLength(5)
+
+  for (const src of sources) {
+    const response = await request.get(src)
+
+    expect(response.status(), `${src} is missing. Run pnpm thumbnails`).toBe(200)
+  }
+})
