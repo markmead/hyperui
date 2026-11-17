@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code sample with language tabs (dark) - Code Blocks - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-2xl p-6 dark:bg-gray-900">
+    <div dir="ltr" class="overflow-hidden rounded-lg border border-gray-800 bg-gray-950">
+      <div
+        role="tablist"
+        aria-label="Code language"
+        class="flex gap-1 border-b border-gray-800 px-2"
+      >
+        <button
+          type="button"
+          id="CodeTabNode"
+          role="tab"
+          aria-selected="true"
+          aria-controls="CodePanelNode"
+          class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset aria-selected:border-sky-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+        >
+          Node
+        </button>
+
+        <button
+          type="button"
+          id="CodeTabPython"
+          role="tab"
+          aria-selected="false"
+          aria-controls="CodePanelPython"
+          tabindex="-1"
+          class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset aria-selected:border-sky-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+        >
+          Python
+        </button>
+
+        <button
+          type="button"
+          id="CodeTabCurl"
+          role="tab"
+          aria-selected="false"
+          aria-controls="CodePanelCurl"
+          tabindex="-1"
+          class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset aria-selected:border-sky-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+        >
+          cURL
+        </button>
+      </div>
+
+      <div
+        id="CodePanelNode"
+        role="tabpanel"
+        aria-labelledby="CodeTabNode"
+        tabindex="0"
+        class="overflow-x-auto p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset"
+      >
+        <pre
+          class="font-mono text-sm/6 text-gray-100"
+        ><code><span class="text-pink-300">import</span> { Acme } <span class="text-pink-300">from</span> <span class="text-emerald-300">'@acme/sdk'</span>
+
+<span class="text-pink-300">const</span> acme = <span class="text-pink-300">new</span> <span class="text-sky-300">Acme</span>(process.env.<span class="text-amber-200">ACME_API_KEY</span>)
+
+<span class="text-pink-300">await</span> acme.events.<span class="text-sky-300">send</span>({
+  type: <span class="text-emerald-300">'order.created'</span>,
+  data: { id: <span class="text-emerald-300">'ord_1042'</span>, total: <span class="text-amber-200">4900</span> },
+})</code></pre>
+      </div>
+
+      <div
+        id="CodePanelPython"
+        role="tabpanel"
+        aria-labelledby="CodeTabPython"
+        tabindex="0"
+        hidden
+        class="overflow-x-auto p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset"
+      >
+        <pre
+          class="font-mono text-sm/6 text-gray-100"
+        ><code><span class="text-pink-300">import</span> os
+<span class="text-pink-300">from</span> acme <span class="text-pink-300">import</span> <span class="text-sky-300">Acme</span>
+
+acme = <span class="text-sky-300">Acme</span>(os.environ[<span class="text-emerald-300">"ACME_API_KEY"</span>])
+
+acme.events.<span class="text-sky-300">send</span>(
+    type=<span class="text-emerald-300">"order.created"</span>,
+    data={<span class="text-emerald-300">"id"</span>: <span class="text-emerald-300">"ord_1042"</span>, <span class="text-emerald-300">"total"</span>: <span class="text-amber-200">4900</span>},
+)</code></pre>
+      </div>
+
+      <div
+        id="CodePanelCurl"
+        role="tabpanel"
+        aria-labelledby="CodeTabCurl"
+        tabindex="0"
+        hidden
+        class="overflow-x-auto p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset"
+      >
+        <pre class="font-mono text-sm/6 text-gray-100"><code>curl https://api.acme.dev/v1/events \
+  -H <span class="text-emerald-300">"Authorization: Bearer $ACME_API_KEY"</span> \
+  -H <span class="text-emerald-300">"Content-Type: application/json"</span> \
+  -d <span class="text-emerald-300">'{"type": "order.created", "data": {"id": "ord_1042", "total": 4900}}'</span></code></pre>
+      </div>
+    </div>
+
+    <script>
+      const codeTabs = document.querySelectorAll('[role="tab"]')
+
+      const activateCodeTab = (tab) => {
+        codeTabs.forEach((otherTab) => {
+          const isSelected = otherTab === tab
+
+          otherTab.setAttribute('aria-selected', String(isSelected))
+          otherTab.tabIndex = isSelected ? 0 : -1
+
+          document.getElementById(otherTab.getAttribute('aria-controls')).hidden = !isSelected
+        })
+      }
+
+      codeTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          activateCodeTab(tab)
+          tab.focus()
+        })
+
+        tab.addEventListener('keydown', (event) => {
+          const targetIndex = {
+            ArrowLeft: (index - 1 + codeTabs.length) % codeTabs.length,
+            ArrowRight: (index + 1) % codeTabs.length,
+            Home: 0,
+            End: codeTabs.length - 1,
+          }[event.key]
+
+          if (targetIndex === undefined) return
+
+          event.preventDefault()
+          activateCodeTab(codeTabs[targetIndex])
+          codeTabs[targetIndex].focus()
+        })
+      })
+    </script>
+  </body>
+</html>

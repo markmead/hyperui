@@ -65,6 +65,30 @@ test.describe('pnpm dark', () => {
     expect(gray500).not.toContain('dark:bg-gray-950')
   })
 
+  test('leaves surfaces that are already dark alone', () => {
+    const html = generateDarkHtml(
+      page(
+        '',
+        [
+          '  <body>',
+          '    <div class="bg-gray-950 text-gray-100">',
+          '      <div><span class="text-sky-300">code</span><br /></div>',
+          '      <img src="a.png" alt="" class="border-gray-200" />',
+          '    </div>',
+          '    <p class="text-gray-900">After</p>',
+          '  </body>',
+        ].join('\n'),
+      ),
+      config,
+    )
+
+    expect(html).toContain('<div class="bg-gray-950 text-gray-100">')
+    expect(html).toContain('<span class="text-sky-300">code</span>')
+    expect(html).toContain('class="border-gray-200"')
+    // The generator picks up again once the surface closes.
+    expect(html).toContain('<p class="text-gray-900 dark:text-white">After</p>')
+  })
+
   test('gives form controls without a class a dark field', () => {
     const html = generateDarkHtml(
       page(
