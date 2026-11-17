@@ -12,7 +12,7 @@ Tailwind CSS v4, Astro 7, Cloudflare Pages (via Wrangler), Playwright (E2E tests
 pnpm dev                          # start dev server (also runs wrangler types first)
 pnpm run css:component --watch    # compile component preview CSS (run alongside dev)
 pnpm build                        # production build
-pnpm test                         # run Playwright E2E tests (requires dev server running)
+pnpm test                         # run Playwright E2E tests (reuses `pnpm dev`, or starts it)
 pnpm test:a11y                    # axe (WCAG 2.1 AA) on every example and site page
 pnpm test:a11y:diff               # axe on the examples changed against main (also part of `pnpm test`)
 pnpm lint                         # ESLint
@@ -38,6 +38,10 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 ### Preview System
 
 `ComponentPreview.astro` defines a `<component-preview>` custom element. Preview controls (breakpoints, copy, view toggle, direction) are separate custom elements that communicate with `<component-preview>` via namespaced `CustomEvent`s on `document`, keyed by the component's src path (e.g., `preview:copy:/examples/application/accordions/1.html`).
+
+### CI
+
+`.github/workflows/ci.yml` runs lint, Prettier, `pnpm build`, `pnpm check` and the Chromium tests on every pull request and push to `main`, against the built site served by `wrangler dev`. A weekly run adds Firefox, WebKit and the full accessibility sweep. Tests import `test` and `expect` from `src/tests/fixtures.ts`, which blocks ads and analytics so test runs never count as impressions or visits.
 
 ### Copy Counts
 

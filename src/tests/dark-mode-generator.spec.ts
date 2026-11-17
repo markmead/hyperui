@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, pageURL } from './fixtures'
 
 const GENERATOR_URL = '/tools/dark-mode-generator'
 const DEBOUNCE_WAIT_MS = 500
@@ -13,7 +13,7 @@ test.describe('Tools index', () => {
 
     await generatorCard.click()
 
-    await expect(page).toHaveURL(GENERATOR_URL)
+    await expect(page).toHaveURL(pageURL(GENERATOR_URL))
   })
 })
 
