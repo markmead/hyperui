@@ -56,6 +56,81 @@ const CHART_COLOUR_SWAPS = [
   [/'#e5e7eb'/g, "'rgba(255, 255, 255, 0.1)'"],
 ]
 
+// Surfaces that are already dark in the light file, like code blocks, stay
+// dark in the dark file, so the generator leaves them and everything inside
+// them alone. A 950 background marks one: the page itself is never that dark
+// in a light file.
+const DARK_SURFACE_CLASS = /(^|\s)bg-(gray|slate|zinc|neutral|stone)-950(\s|$)/
+
+const VOID_ELEMENTS = new Set([
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'source',
+  'track',
+  'wbr',
+])
+
+/**
+ * Runs the generator on `bodyHtml`, except inside dark surfaces.
+ *
+ * @param {string} bodyHtml
+ * @param {import('../src/lib/dark-mode/config.js').DarkModeConfig} darkModeConfig
+ * @returns {string}
+ */
+function transformOutsideDarkSurfaces(bodyHtml, darkModeConfig) {
+  const tagPattern =
+    /<!--[\s\S]*?-->|<(script|style)\b[\s\S]*?<\/\1>|<(\/?)([a-zA-Z][\w-]*)\b((?:"[^"]*"|'[^']*'|[^'">])*)>/g
+
+  let output = ''
+  let segmentStart = 0
+  let surfaceDepth = 0
+
+  for (const tagMatch of bodyHtml.matchAll(tagPattern)) {
+    const [tag, , isClosing, tagName = '', attributes = ''] = tagMatch
+    const normalizedTagName = tagName.toLowerCase()
+
+    if (!tagName || VOID_ELEMENTS.has(normalizedTagName) || attributes.trim().endsWith('/')) {
+      continue
+    }
+
+    if (surfaceDepth === 0) {
+      const classMatch = attributes.match(/\sclass="([^"]*)"/)
+
+      if (
+        !isClosing &&
+        normalizedTagName !== 'body' &&
+        classMatch &&
+        DARK_SURFACE_CLASS.test(classMatch[1] ?? '')
+      ) {
+        output += transformHtmlString(bodyHtml.slice(segmentStart, tagMatch.index), darkModeConfig)
+        segmentStart = tagMatch.index
+        surfaceDepth = 1
+      }
+
+      continue
+    }
+
+    surfaceDepth += isClosing ? -1 : 1
+
+    if (surfaceDepth === 0) {
+      const surfaceEnd = tagMatch.index + tag.length
+
+      output += bodyHtml.slice(segmentStart, surfaceEnd)
+      segmentStart = surfaceEnd
+    }
+  }
+
+  return output + transformHtmlString(bodyHtml.slice(segmentStart), darkModeConfig)
+}
+
 /**
  * @param {string} lightHtml
  * @param {import('../src/lib/dark-mode/config.js').DarkModeConfig} darkModeConfig
@@ -71,8 +146,8 @@ export function generateDarkHtml(lightHtml, darkModeConfig) {
       componentTitle.endsWith('(dark)') ? match : `<title>${space}${componentTitle} (dark) - `,
     )
 
-  // 1. The generator, on everything from <body> down.
-  let darkHtml = head + transformHtmlString(lightHtml.slice(bodyIndex), darkModeConfig)
+  // 1. The generator, on everything from <body> down, except dark surfaces.
+  let darkHtml = head + transformOutsideDarkSurfaces(lightHtml.slice(bodyIndex), darkModeConfig)
 
   // 2. Drop dark classes that only repeat their light class. Rules that keep a
   //    shade (gray-400 text stays gray-400) produce these.

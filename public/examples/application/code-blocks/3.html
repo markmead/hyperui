@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code sample with filename and highlighted lines - Code Blocks - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-2xl p-6">
+    <figure dir="ltr" class="overflow-hidden rounded-lg border border-gray-800 bg-gray-950">
+      <figcaption
+        class="flex items-center justify-between gap-4 border-b border-gray-800 px-4 py-2.5 text-sm"
+      >
+        <span class="font-mono text-gray-100">server.js</span>
+        <span class="text-gray-400">Lines 5&ndash;7 changed</span>
+      </figcaption>
+
+      <pre
+        tabindex="0"
+        class="overflow-x-auto py-4 font-mono text-sm/6 text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset"
+      ><code class="block w-max min-w-full"
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">1</span><span class="text-pink-300">import</span> express <span class="text-pink-300">from</span> <span class="text-emerald-300">'express'</span></span
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">2</span></span
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">3</span><span class="text-pink-300">const</span> app = <span class="text-sky-300">express</span>()</span
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">4</span></span
+        ><mark class="block border-s-2 border-sky-400 bg-sky-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">5</span>app.<span class="text-sky-300">post</span>(<span class="text-emerald-300">'/webhooks'</span>, express.<span class="text-sky-300">raw</span>({ type: <span class="text-emerald-300">'application/json'</span> }), (req, res) =&gt; {</mark
+        ><mark class="block border-s-2 border-sky-400 bg-sky-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">6</span>  <span class="text-sky-300">handle</span>(<span class="text-sky-300">JSON</span>.<span class="text-sky-300">parse</span>(req.body))</mark
+        ><mark class="block border-s-2 border-sky-400 bg-sky-400/10 ps-3.5 pe-4 text-gray-100"><span class="inline-block w-8 text-gray-300 select-none" aria-hidden="true">7</span>  res.<span class="text-sky-300">sendStatus</span>(<span class="text-amber-200">200</span>)</mark
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">8</span>})</span
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">9</span></span
+        ><span class="block px-4"><span class="inline-block w-8 text-gray-400 select-none" aria-hidden="true">10</span>app.<span class="text-sky-300">listen</span>(<span class="text-amber-200">3000</span>)</span
+      ></code></pre>
+    </figure>
+  </body>
+</html>

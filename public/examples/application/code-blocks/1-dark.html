@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terminal command with copy button (dark) - Code Blocks - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-xl p-6 dark:bg-gray-900">
+    <div
+      dir="ltr"
+      class="flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-950 py-2 ps-4 pe-2"
+    >
+      <pre
+        tabindex="0"
+        class="min-w-0 flex-1 overflow-x-auto py-1 font-mono text-sm text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+      ><code><span class="text-gray-400 select-none" aria-hidden="true">$ </span><span id="CopyCommand">npm install @acme/sdk</span></code></pre>
+
+      <button
+        type="button"
+        data-copy-target="CopyCommand"
+        class="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-4"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+          />
+        </svg>
+
+        <span data-copy-label>Copy</span>
+        <span class="sr-only">command</span>
+      </button>
+
+      <span data-copy-status class="sr-only" aria-live="polite"></span>
+    </div>
+
+    <script>
+      document.querySelectorAll('[data-copy-target]').forEach((button) => {
+        const label = button.querySelector('[data-copy-label]')
+        const status = button.parentElement.querySelector('[data-copy-status]')
+        let resetTimer
+
+        button.addEventListener('click', async () => {
+          const text = document.getElementById(button.dataset.copyTarget).textContent
+
+          try {
+            await navigator.clipboard.writeText(text)
+          } catch {
+            status.textContent = 'Copy failed. Select the command and copy it instead.'
+            return
+          }
+
+          label.textContent = 'Copied'
+          status.textContent = 'Copied to clipboard.'
+
+          clearTimeout(resetTimer)
+          resetTimer = setTimeout(() => {
+            label.textContent = 'Copy'
+            status.textContent = ''
+          }, 1500)
+        })
+      })
+    </script>
+  </body>
+</html>

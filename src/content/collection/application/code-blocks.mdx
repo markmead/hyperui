@@ -1,0 +1,27 @@
+---
+title: Code Blocks
+description: Code block components for terminal commands with a copy button, code samples with language tabs, and files with highlighted lines. Highlighting uses plain Tailwind CSS classes.
+category: application
+slug: code-blocks
+wrapper: h-[400px]
+terms:
+  - code
+  - snippet
+  - terminal
+  - developer
+components:
+  - { title: 'Terminal command with copy button', dark: true }
+  - { title: 'Code sample with language tabs', dark: true }
+  - { title: 'Code sample with filename and highlighted lines', dark: true }
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
