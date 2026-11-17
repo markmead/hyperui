@@ -1,0 +1,128 @@
+---
+import { ArrowRight, Clipboard } from '@lucide/astro'
+
+import BaseAd from './BaseAd.astro'
+
+const agentPrompt = 'Build with Tailwind components from https://hyperui.dev/llms.txt'
+
+const proofPoints = [
+  {
+    title: 'Accessible',
+    description:
+      'Every example passes axe (WCAG 2.1 AA). The templates and the most-copied components are also audited by hand.',
+  },
+  {
+    title: 'Right-to-left ready',
+    description: 'Built with logical properties. Preview any component right-to-left.',
+  },
+  {
+    title: 'Dark mode',
+    description: 'Every template and most components have a dark variant.',
+  },
+  {
+    title: 'Built for your AI',
+    description: 'Every page as Markdown, an llms.txt index, and Copy for AI on every component.',
+  },
+]
+---
+
+<section class="bg-white">
+  <div class="mx-auto max-w-7xl space-y-12 px-4 py-8 md:py-16">
+    <div class="flex flex-col items-start justify-between gap-8 md:flex-row">
+      <div class="max-w-3xl space-y-6">
+        <p class="text-sm font-medium text-gray-600">HyperUI · Free and open source</p>
+
+        <h1 class="text-4xl font-medium tracking-tight text-gray-900 md:text-5xl">
+          Tailwind CSS components, checked before you ship them
+        </h1>
+
+        <p class="text-lg text-gray-600">
+          Your AI can write a modal in seconds. It can't promise the modal works with a keyboard,
+          flips for right-to-left or holds up in dark mode. HyperUI's components and templates are
+          checked for all three, and published in a format your AI can read.
+        </p>
+
+        <div class="flex flex-col items-start gap-4">
+          <a
+            href="/components/templates"
+            class="group inline-flex items-center gap-2 rounded-md border border-gray-900 bg-gray-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-gray-800 hover:bg-gray-800"
+          >
+            Browse templates
+
+            <ArrowRight
+              class="size-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100"
+            />
+          </a>
+
+          <home-prompt
+            class="flex w-full max-w-xl items-center gap-2 rounded-md border border-gray-200 bg-gray-50 p-1.5 ps-3"
+          >
+            <p class="min-w-0 flex-1 text-sm text-gray-700">
+              <span class="sr-only">Prompt for your AI agent: </span>
+              <code data-prompt class="break-words">{agentPrompt}</code>
+            </p>
+
+            <button
+              type="button"
+              aria-label="Copy prompt"
+              class="inline-flex shrink-0 items-center gap-2 rounded-md bg-white px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-100"
+            >
+              <Clipboard class="size-4" />
+
+              <span
+                class="grid text-left after:invisible after:col-start-1 after:row-start-1 after:content-['Copied']"
+              >
+                <span data-text class="col-start-1 row-start-1">Copy</span>
+              </span>
+            </button>
+
+            <span data-polite aria-live="polite" class="sr-only"></span>
+          </home-prompt>
+        </div>
+      </div>
+
+      <BaseAd />
+    </div>
+
+    <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        proofPoints.map(({ title, description }) => (
+          <div class="border-s-2 border-gray-900 ps-4">
+            <dt class="font-medium text-gray-900">{title}</dt>
+
+            <dd class="mt-1 text-sm text-gray-600">{description}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<script>
+  import { copyTextToClipboard } from '../lib/clipboard'
+
+  class HomePrompt extends HTMLElement {
+    private timeoutId: ReturnType<typeof setTimeout> | null = null
+
+    connectedCallback() {
+      const button = this.querySelector('button')
+      const prompt = this.querySelector<HTMLElement>('[data-prompt]')
+      const buttonText = this.querySelector<HTMLElement>('[data-text]')
+      const politeEl = this.querySelector<HTMLElement>('[data-polite]')
+
+      if (!button || !prompt || !buttonText || !politeEl) {
+        return
+      }
+
+      button.addEventListener('click', async () => {
+        this.timeoutId = await copyTextToClipboard(prompt.textContent ?? '', {
+          buttonTextElement: buttonText,
+          liveRegionElement: politeEl,
+          existingTimerId: this.timeoutId,
+        })
+      })
+    }
+  }
+
+  customElements.define('home-prompt', HomePrompt)
+</script>

@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content'
 
 import { SEO_TITLE_SITE, SEO_DESCRIPTION_SITE } from '../constants/seo'
 
-import BaseAd from '../components/BaseAd.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CollectionFeature from '../components/CollectionFeature.astro'
+import HomeHero from '../components/HomeHero.astro'
 
 const [templatesRaw, applicationRaw, marketingRaw, neobrutalismRaw] = await Promise.all([
   getCollection('templates'),
@@ -36,23 +36,7 @@ const neobrutalism = neobrutalismRaw
 
 <BaseLayout title={SEO_TITLE_SITE} description={SEO_DESCRIPTION_SITE}>
   <main id="main-content">
-    <section class="bg-white">
-      <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-center md:py-16">
-        <h1 class="text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">HyperUI</h1>
-
-        <h2 class="text-xl text-gray-600 md:text-2xl">Free Open Source Tailwind CSS Components</h2>
-
-        <p class="mx-auto max-w-2xl text-gray-600">
-          HyperUI is a collection of free Tailwind CSS components that can be used in your next
-          project. With a range of components, you can build your next marketing website, admin
-          dashboard, eCommerce store and much more.
-        </p>
-
-        <div class="*:mx-auto">
-          <BaseAd />
-        </div>
-      </div>
-    </section>
+    <HomeHero />
 
     <div class="mx-auto max-w-7xl divide-y divide-gray-200 px-4">
       <CollectionFeature

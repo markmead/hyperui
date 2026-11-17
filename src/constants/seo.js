@@ -2,7 +2,7 @@ export const SITE_DESCRIPTION = 'Free Open Source Tailwind CSS Components'
 export const SITE_TITLE = 'HyperUI'
 
 export const SEO_DESCRIPTION_SITE =
-  'Free, open-source Tailwind CSS components for modern web development. Copy-paste ready components to build beautiful, responsive websites faster.'
+  'Free, open-source Tailwind CSS components and templates, checked for accessibility, right-to-left and dark mode, with Markdown and llms.txt for AI agents.'
 export const SEO_TITLE_SITE = 'Free Tailwind CSS Components'
 
 export const SEO_DESCRIPTION_APPLICATION_COMPONENTS =
