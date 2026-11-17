@@ -1,0 +1,222 @@
+---
+import { ArrowRight } from '@lucide/astro'
+
+const src = '/examples/templates/saas-landing-page/1.html'
+const darkSrc = '/examples/templates/saas-landing-page/1-dark.html'
+
+const checks = [
+  {
+    check: 'dark',
+    label: 'Dark mode',
+    description: 'Swaps in the dark variant. Every template and most components have one.',
+  },
+  {
+    check: 'rtl',
+    label: 'Right-to-left',
+    description: 'Flips the direction. Logical properties mean the layout mirrors with it.',
+  },
+  {
+    check: 'focus',
+    label: 'Focus order',
+    description: 'Numbers every stop a keyboard reaches. Every example passes axe (WCAG 2.1 AA).',
+  },
+]
+---
+
+<home-preview data-src={src} data-dark-src={darkSrc} class="block">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    {
+      checks.map(({ check, label, description }) => (
+        <div>
+          <button
+            type="button"
+            aria-pressed="false"
+            data-check={check}
+            class="group inline-flex items-center gap-3 rounded-md py-1 text-sm font-medium text-gray-900"
+          >
+            <span
+              aria-hidden="true"
+              class="relative inline-flex h-5 w-9 shrink-0 rounded-full bg-gray-300 transition-colors group-aria-pressed:bg-gray-900"
+            >
+              <span class="absolute start-0.5 top-0.5 size-4 rounded-full bg-white shadow-sm transition-transform group-aria-pressed:translate-x-4 rtl:group-aria-pressed:-translate-x-4" />
+            </span>
+
+            {label}
+          </button>
+
+          <p class="mt-1 text-sm text-gray-600">{description}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mt-6 overflow-hidden rounded-lg border border-gray-200 shadow-sm">
+    <div
+      class="flex items-center justify-between gap-4 border-b border-gray-200 bg-gray-50 px-4 py-2 text-sm"
+    >
+      <p class="font-medium text-gray-900">SaaS landing page template</p>
+
+      <a
+        href="/components/templates/saas-landing-page"
+        class="group inline-flex items-center gap-1.5 text-gray-700 hover:text-gray-900"
+      >
+        View template
+
+        <ArrowRight
+          class="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
+        />
+      </a>
+    </div>
+
+    <iframe
+      src={src}
+      title="SaaS landing page template preview"
+      loading="lazy"
+      class="block h-[30rem] w-full bg-white md:h-[36rem]"></iframe>
+  </div>
+</home-preview>
+
+<script>
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'
+
+  type Check = 'dark' | 'rtl' | 'focus'
+
+  class HomePreview extends HTMLElement {
+    private iframeEl: HTMLIFrameElement | null = null
+    private state: Record<Check, boolean> = { dark: false, rtl: false, focus: false }
+    private resizeObserver: ResizeObserver | null = null
+
+    connectedCallback() {
+      this.iframeEl = this.querySelector('iframe')
+
+      if (!this.iframeEl) {
+        return
+      }
+
+      this.iframeEl.addEventListener('load', () => this.applyToFrame())
+
+      this.resizeObserver = new ResizeObserver(() => this.renderFocusOrder())
+      this.resizeObserver.observe(this.iframeEl)
+
+      for (const button of this.querySelectorAll<HTMLButtonElement>('[data-check]')) {
+        button.addEventListener('click', () => this.toggle(button))
+      }
+    }
+
+    disconnectedCallback() {
+      this.resizeObserver?.disconnect()
+    }
+
+    private toggle(button: HTMLButtonElement) {
+      const check = button.dataset.check as Check
+      const isOn = !this.state[check]
+
+      this.state[check] = isOn
+      button.setAttribute('aria-pressed', String(isOn))
+
+      if (check === 'dark' && this.iframeEl) {
+        // A new document loads, and the load handler reapplies the other checks.
+        this.iframeEl.src = (isOn ? this.dataset.darkSrc : this.dataset.src) ?? ''
+
+        return
+      }
+
+      this.applyToFrame()
+    }
+
+    private applyToFrame() {
+      const doc = this.iframeEl?.contentDocument
+
+      if (!doc?.documentElement) {
+        return
+      }
+
+      doc.documentElement.setAttribute('dir', this.state.rtl ? 'rtl' : 'ltr')
+
+      this.removeFromTabOrder(doc)
+
+      this.renderFocusOrder()
+    }
+
+    /**
+     * The preview is a demo, so keyboard users shouldn't have to tab through the
+     * whole template to get past it. Marks each tab stop first, so the focus order
+     * badges still number the template's own order.
+     */
+    private removeFromTabOrder(doc: Document) {
+      if (doc.documentElement.dataset.hyperuiPreview !== undefined) {
+        return
+      }
+
+      doc.documentElement.dataset.hyperuiPreview = ''
+
+      for (const el of doc.querySelectorAll<HTMLElement>(FOCUSABLE)) {
+        el.dataset.hyperuiStop = ''
+        el.tabIndex = -1
+      }
+    }
+
+    /** Overlays a numbered badge on each element the keyboard reaches, in tab order. */
+    private renderFocusOrder() {
+      const doc = this.iframeEl?.contentDocument
+
+      if (!doc?.body) {
+        return
+      }
+
+      doc.querySelector('[data-hyperui-focus-order]')?.remove()
+
+      if (!this.state.focus) {
+        return
+      }
+
+      const win = doc.defaultView
+      const layer = doc.createElement('div')
+
+      layer.dataset.hyperuiFocusOrder = ''
+      layer.setAttribute('aria-hidden', 'true')
+      layer.style.cssText =
+        'position:absolute;inset:0 auto auto 0;width:0;height:0;pointer-events:none;z-index:2147483647'
+
+      const stops = [...doc.querySelectorAll<HTMLElement>('[data-hyperui-stop]')].filter((el) => {
+        const style = win?.getComputedStyle(el)
+
+        return (
+          el.getClientRects().length > 0 &&
+          style?.visibility !== 'hidden' &&
+          !el.closest('[inert], [hidden]')
+        )
+      })
+
+      stops.forEach((el, index) => {
+        const rect = el.getBoundingClientRect()
+        const badge = doc.createElement('span')
+        // Sit on the element's inline-start corner, outside its text.
+        const x = this.state.rtl ? rect.right - 10 : rect.left - 10
+
+        badge.textContent = String(index + 1)
+        badge.style.cssText = [
+          'position:absolute',
+          `left:${x + (win?.scrollX ?? 0)}px`,
+          `top:${rect.top + (win?.scrollY ?? 0) - 12}px`,
+          'min-width:20px',
+          'height:20px',
+          'padding:0 5px',
+          'border-radius:9999px',
+          'background:#111827',
+          'color:#fff',
+          'box-shadow:0 0 0 2px #fff',
+          'font:600 11px/20px ui-sans-serif,system-ui,sans-serif',
+          'text-align:center',
+        ].join(';')
+
+        layer.append(badge)
+      })
+
+      doc.body.append(layer)
+    }
+  }
+
+  customElements.define('home-preview', HomePreview)
+</script>

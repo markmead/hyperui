@@ -57,3 +57,48 @@ test.describe('Component category sections', () => {
     await expect(page).toHaveTitle('Tailwind CSS Full Page Templates | HyperUI')
   })
 })
+
+test.describe('Homepage hero', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('')
+  })
+
+  test('the preview switches change the template', async ({ page }) => {
+    const preview: Locator = page.locator('home-preview')
+    const frame = page.frameLocator('home-preview iframe')
+
+    // The preview loads lazily, once it's near the viewport.
+    await preview.locator('iframe').scrollIntoViewIfNeeded()
+
+    await expect.poll(() => frame.locator('title').textContent()).toMatch(/^SaaS landing page - /)
+
+    const dark: Locator = preview.getByRole('button', { name: 'Dark mode' })
+
+    await dark.click()
+
+    await expect(dark).toHaveAttribute('aria-pressed', 'true')
+    await expect
+      .poll(() => frame.locator('title').textContent())
+      .toMatch(/^SaaS landing page \(dark\) - /)
+
+    const rtl: Locator = preview.getByRole('button', { name: 'Right-to-left' })
+
+    await rtl.click()
+
+    await expect(frame.locator('html')).toHaveAttribute('dir', 'rtl')
+
+    await preview.getByRole('button', { name: 'Focus order' }).click()
+
+    await expect(frame.locator('[data-hyperui-focus-order] span').first()).toHaveText('1')
+
+    // The template's links stay out of the homepage's tab order.
+    await expect(frame.locator('a[href]').first()).toHaveAttribute('tabindex', '-1')
+
+    // Turning dark mode off loads a new document. The other checks carry over.
+    await dark.click()
+
+    await expect.poll(() => frame.locator('title').textContent()).toMatch(/^SaaS landing page - /)
+    await expect(frame.locator('html')).toHaveAttribute('dir', 'rtl')
+    await expect(frame.locator('[data-hyperui-focus-order] span').first()).toHaveText('1')
+  })
+})
