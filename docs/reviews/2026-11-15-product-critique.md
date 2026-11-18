@@ -142,24 +142,25 @@ That comes to roughly 40–50 variants. Put that effort into the areas below.
 5. Cut and trim the components listed above (roughly 40–50 variants). Put that effort into templates, dark coverage, pricing, and the small pages that do well.
 6. Rebuild the dark-mode generator as the "audit my markup" tool, and kill the typography mapper.
 
-## Progress (updated 2026-11-17, evening)
+## Progress (updated 2026-11-18)
 
 ### Done
 
-| Plan item              | What shipped                                                                                                                                                                                                                                                                                                                                       |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Tools               | Tools moved below the components, and the coming-soon tools, false copy and Typography Mapper removed (#774)                                                                                                                                                                                                                                       |
-| 2. Homepage            | Templates come first on the homepage (#776). The template pages now say "Accessible, responsive and dark mode ready" instead of "Starting point — not a finished product" (#781). The hero now pitches checked components built for your AI (#785), with a live template preview that has dark mode, right-to-left and focus order switches (#787) |
-| 3. Templates           | Dark mode for all five (#773). Every template has been through an accessibility audit (#777, #780). Template cards show a screenshot, made with `pnpm thumbnails` (#788). A sixth template, a developer tool landing page, built on a new code blocks component (#791, #792), with an interest button on its page                                  |
-| 4. Agents              | The Markdown URLs agents guess now redirect to the real files (#771)                                                                                                                                                                                                                                                                               |
-| 5. Cuts                | Copies are counted per component, variant and theme (#772), so cuts can be based on data. The unused `marketing/stats` examples were deleted (#782)                                                                                                                                                                                                |
-| 6. Dark mode generator | Its engine is now also a script, `pnpm dark`, which generates and checks dark files (#779)                                                                                                                                                                                                                                                         |
+| Plan item              | What shipped                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Tools               | Tools moved below the components, and the coming-soon tools, false copy and Typography Mapper removed (#774)                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 2. Homepage            | Templates come first on the homepage (#776). The template pages now say "Accessible, responsive and dark mode ready" instead of "Starting point — not a finished product" (#781). The hero now pitches checked components built for your AI (#785), with a live template preview that has dark mode, right-to-left and focus order switches (#787)                                                                                                                                                                  |
+| 3. Templates           | Dark mode for all five (#773). Every template has been through an accessibility audit (#777, #780). Template cards show a screenshot, made with `pnpm thumbnails` (#788), regenerated with real photos (#797). A developer tool landing page, built on a new code blocks component (#791, #792), and a pricing page, built on new pricing components (#794, #796). Template pages list the checks every template passes, each backed by a test: axe, a keyboard pass, a right-to-left guard and 320px reflow (#798) |
+| 4. Agents              | The Markdown URLs agents guess now redirect to the real files (#771). "Copy for AI" on templates adds what to wire up and what to keep: placeholders, the accessibility behaviour and logical utilities (#798)                                                                                                                                                                                                                                                                                                      |
+| 5. Cuts                | Copies are counted per component, variant and theme (#772), so cuts can be based on data. The unused `marketing/stats` examples were deleted (#782)                                                                                                                                                                                                                                                                                                                                                                 |
+| 6. Dark mode generator | Its engine is now also a script, `pnpm dark`, which generates and checks dark files (#779). Surfaces that are dark in both themes are left as they are (#791). Marketing cards have dark mode, the first of the dark gaps                                                                                                                                                                                                                                                                                           |
 
 Also done:
 
 - **Blog:** removed. FAQs moved to `/faqs` and stay in the header (#775).
 - **Accessibility:** two audits, with every finding fixed (#777, #780). axe runs in the Playwright suite: `pnpm test:a11y:diff` checks changed examples, and `pnpm test:a11y` checks everything (#782, #783).
 - **CI:** lint, Prettier, the build, type checks and the Chromium tests run on every PR and push to `main`, with a weekly run in every browser and the full accessibility sweep (#789).
+- **Reviews:** each new template or component gets an accessibility review before its PR, with the findings in the PR description. axe and the keyboard pass stay the CI gate (#799).
 
 ### Decisions
 
@@ -171,11 +172,11 @@ Also done:
 
 ### Next
 
-1. **More templates:** start with more landing page variants like the SaaS one. Run `pnpm thumbnails <slug>` for each new card. The current thumbnails were made where the templates' photos couldn't load, so regenerate them where they can.
+1. **More templates:** start with more landing page variants like the SaaS one. Run `pnpm thumbnails <slug>` for each new card.
 2. **Agents:**
    - Split the agent export by user agent, and include `/examples/*`.
-   - Add accessibility, RTL and dark mode rules to "Copy for AI".
+   - Add accessibility, RTL and dark mode rules to "Copy for AI" on components, as templates have now.
    - Ship the MCP server and a published skill. The `pnpm dark` engine could back an MCP tool or CLI.
 3. **The checker:** rebuild the dark mode generator as described under Decisions.
 4. **Cuts:** once there's enough copy data, review the cut and trim lists in section 4.
-5. **Dark gaps:** add the missing dark variants listed in section 4, starting with marketing cards.
+5. **Dark gaps:** add the missing dark variants listed in section 4. Marketing cards are done. `pnpm dark` misses text that has no colour class and inherits black, and it inverts surfaces that are already dark, so check each file with axe and by eye.
