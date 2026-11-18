@@ -67,6 +67,25 @@ test.describe('Template pages', () => {
     expect(header).toContain('Tailwind CSS v4')
     expect(header).not.toContain('placeholders')
   })
+
+  test('Copy for AI on components asks agents to keep accessibility and RTL', async ({ page }) => {
+    await page.goto('/components/marketing/pricing')
+
+    const header = await page.locator('preview-copy').first().getAttribute('data-ai-header')
+
+    expect(header).toContain('Keep the accessibility behaviour')
+    expect(header).toContain('logical utilities')
+    // Pricing has dark files, so there's no note about adding dark mode.
+    expect(header).not.toContain('There is no dark version')
+  })
+
+  test('Copy for AI says when a component has no dark version', async ({ page }) => {
+    await page.goto('/components/application/media')
+
+    const header = await page.locator('preview-copy').first().getAttribute('data-ai-header')
+
+    expect(header).toContain('There is no dark version of this component')
+  })
 })
 
 // "Right-to-left ready" holds only while templates avoid physical left and

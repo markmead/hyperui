@@ -29,7 +29,7 @@ interface Props {
 
 const { component, category, collectionTitle, slug, wrapper } = Astro.props
 
-const { contributors, dark, id, index, title, description = '', plugins = [] } = component
+const { contributors, dark, hasDark, id, index, title, description = '', plugins = [] } = component
 
 const src = dark
   ? `/examples/${category}/${slug}/${index}-dark.html`
@@ -43,6 +43,7 @@ const copyForAiHeader = buildCopyForAiHeader({
   slug,
   anchorId: id,
   dark,
+  hasDark,
   plugins,
 })
 ---

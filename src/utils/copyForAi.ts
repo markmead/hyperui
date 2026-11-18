@@ -8,6 +8,8 @@ type CopyForAiHeaderOptions = {
   slug: string
   anchorId: string
   dark: boolean
+  /** Whether the component has a dark file at all, even when this copy is the light one. */
+  hasDark: boolean
   plugins?: string[]
 }
 
@@ -23,6 +25,7 @@ export function buildCopyForAiHeader({
   slug,
   anchorId,
   dark,
+  hasDark,
   plugins = [],
 }: CopyForAiHeaderOptions): string {
   const setup = [
@@ -42,6 +45,17 @@ export function buildCopyForAiHeader({
       'Keep the accessibility behaviour when you adapt it: labels, `aria-*` attributes, focus styles, the skip link and the keyboard handling in the `<script>`.',
       'Spacing and positioning use logical utilities (`ps-`, `me-`, `start-`) so the page works right-to-left. Keep them rather than switching to `pl-`, `mr-` or `left-`.',
     )
+  } else {
+    setup.push(
+      'Keep the accessibility behaviour when you adapt it: labels, `alt` text, `aria-*` attributes, `sr-only` text, focus styles and any keyboard handling in a `<script>`.',
+      'When you add or change spacing and positioning, use logical utilities (`ps-`, `me-`, `start-`) rather than `pl-`, `mr-` or `left-`, so it works right-to-left.',
+    )
+
+    if (!hasDark) {
+      setup.push(
+        'There is no dark version of this component. If the project uses dark mode, add `dark:` variants for its background, text and border colours, and keep text contrast at 4.5:1 or more.',
+      )
+    }
   }
 
   if (plugins.length) {
