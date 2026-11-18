@@ -26,6 +26,9 @@ importers:
       astro:
         specifier: 7.4.8
         version: 7.4.8(@types/node@25.9.9)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
+      axe-core:
+        specifier: 4.14.0
+        version: 4.14.0
       wrangler:
         specifier: ^4.160.0
         version: 4.160.0(@types/node@25.9.9)

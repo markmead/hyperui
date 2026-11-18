@@ -94,7 +94,7 @@ test('templates use logical utilities, not left and right ones', ({ browserName 
   test.skip(browserName !== 'chromium', 'Node-only check')
 
   const physical =
-    /(?<![\w:./-])(?:[a-z-]+:)*-?(?:pl|pr|ml|mr|left|right|border-l|border-r|rounded-l|rounded-r|rounded-tl|rounded-tr|rounded-bl|rounded-br)-[\w./[\]]+|(?<![\w:./-])(?:[a-z-]+:)*(?:text-left|text-right|border-l|border-r)(?![\w./-])/g
+    /(?<![\w:./-])(?:[a-z*-]+:)*-?(?:pl|pr|ml|mr|left|right|border-l|border-r|rounded-l|rounded-r|rounded-tl|rounded-tr|rounded-bl|rounded-br)-[\w./[\]]+|(?<![\w:./-])(?:[a-z*-]+:)*(?:text-left|text-right|border-l|border-r)(?![\w./-])/g
 
   const findings: string[] = []
 
