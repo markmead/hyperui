@@ -3,7 +3,7 @@ import { test, expect } from './fixtures'
 test.describe('Interest counter', () => {
   test('accepts a known template', async ({ request }) => {
     const response = await request.post('/api/interest', {
-      data: JSON.stringify({ slug: 'developer-tool' }),
+      data: JSON.stringify({ slug: 'analytics-dashboard' }),
       headers: { 'Sec-Fetch-Site': 'same-origin' },
     })
 
@@ -12,7 +12,7 @@ test.describe('Interest counter', () => {
 
   test('rejects a click sent from another site', async ({ request }) => {
     const response = await request.post('/api/interest', {
-      data: JSON.stringify({ slug: 'developer-tool' }),
+      data: JSON.stringify({ slug: 'analytics-dashboard' }),
       headers: { 'Sec-Fetch-Site': 'cross-site' },
     })
 
@@ -42,14 +42,14 @@ test.describe('Interest counter', () => {
       }
     })
 
-    await page.goto('/components/templates/developer-tool')
+    await page.goto('/components/templates/analytics-dashboard')
 
     const button = page.getByRole('button', { name: "I'm interested" })
     const beacon = page.waitForRequest((request) => request.url().endsWith('/api/interest'))
 
     await button.click()
 
-    expect(JSON.parse((await beacon).postData() ?? '')).toEqual({ slug: 'developer-tool' })
+    expect(JSON.parse((await beacon).postData() ?? '')).toEqual({ slug: 'analytics-dashboard' })
 
     const noted = page.getByRole('button', { name: 'Thanks, noted' })
 
