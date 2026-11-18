@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Circular progress (dark) - Progress Bars - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto flex max-w-3xl flex-wrap gap-8 p-6 dark:bg-gray-900">
+    <div class="text-center">
+      <div
+        class="relative mx-auto size-32"
+        role="progressbar"
+        aria-valuenow="25"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-labelledby="LoadingCircleLabel"
+      >
+        <svg class="size-full" viewBox="0 0 100 100" aria-hidden="true">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="8"
+            class="text-gray-200 dark:text-gray-700"
+          />
+
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="8"
+            stroke-dasharray="70.7 282.7"
+            stroke-linecap="round"
+            class="origin-center text-blue-600 dark:text-blue-300"
+            style="transform: rotate(-90deg)"
+          />
+        </svg>
+
+        <div class="absolute inset-0 grid place-content-center">
+          <span class="text-xl font-semibold text-gray-900 dark:text-white">25%</span>
+        </div>
+      </div>
+
+      <p id="LoadingCircleLabel" class="mt-2 text-sm text-gray-700 dark:text-gray-200">Loading</p>
+    </div>
+
+    <div class="text-center">
+      <div
+        class="relative mx-auto size-32"
+        role="progressbar"
+        aria-valuenow="75"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-labelledby="NearlyDoneCircleLabel"
+      >
+        <svg class="size-full" viewBox="0 0 100 100" aria-hidden="true">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="8"
+            class="text-gray-200 dark:text-gray-700"
+          />
+
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="8"
+            stroke-dasharray="212.1 282.7"
+            stroke-linecap="round"
+            class="origin-center text-green-600 dark:text-green-300"
+            style="transform: rotate(-90deg)"
+          />
+        </svg>
+
+        <div class="absolute inset-0 grid place-content-center">
+          <span class="text-xl font-semibold text-gray-900 dark:text-white">75%</span>
+        </div>
+      </div>
+
+      <p id="NearlyDoneCircleLabel" class="mt-2 text-sm text-gray-700 dark:text-gray-200">
+        Nearly done
+      </p>
+    </div>
+  </body>
+</html>

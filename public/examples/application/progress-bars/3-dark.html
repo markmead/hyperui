@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compact with metadata (dark) - Progress Bars - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-md space-y-6 p-6 dark:bg-gray-900">
+    <div
+      role="progressbar"
+      aria-valuenow="25"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-labelledby="DownloadLabel"
+    >
+      <p
+        id="DownloadLabel"
+        class="text-xs font-medium tracking-wide text-gray-700 uppercase dark:text-gray-200"
+      >
+        Download
+      </p>
+
+      <div class="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700">
+        <div class="h-full bg-blue-600 dark:bg-blue-300" style="width: 25%"></div>
+      </div>
+
+      <p class="mt-2 text-xs text-gray-700 dark:text-gray-200">1.2 of 3.8 MB</p>
+    </div>
+
+    <div
+      role="progressbar"
+      aria-valuenow="75"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-labelledby="FileConversionLabel"
+    >
+      <p
+        id="FileConversionLabel"
+        class="text-xs font-medium tracking-wide text-gray-700 uppercase dark:text-gray-200"
+      >
+        File Conversion
+      </p>
+
+      <div class="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700">
+        <div class="h-full bg-blue-600 dark:bg-blue-300" style="width: 75%"></div>
+      </div>
+
+      <p class="mt-2 text-xs text-gray-700 dark:text-gray-200">3/4 files done</p>
+    </div>
+
+    <div
+      role="progressbar"
+      aria-valuenow="100"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-labelledby="FileSyncLabel"
+    >
+      <p
+        id="FileSyncLabel"
+        class="text-xs font-medium tracking-wide text-gray-700 uppercase dark:text-gray-200"
+      >
+        File Sync
+      </p>
+
+      <div class="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700">
+        <div class="h-full bg-green-600 dark:bg-green-300" style="width: 100%"></div>
+      </div>
+
+      <p class="mt-2 text-xs text-gray-700 dark:text-gray-200">Completed</p>
+    </div>
+  </body>
+</html>
