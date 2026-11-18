@@ -183,6 +183,6 @@ Also done:
 2. **Agents:**
    - Split the agent export by user agent, and include `/examples/*`.
    - Ship the MCP server and a published skill. The `pnpm dark` engine could back an MCP tool or CLI.
-3. **The checker:** rebuild the dark mode generator as described under Decisions.
+3. **The checker:** the engine is done (#809). The page, retiring the generator page and the MCP server are planned in `docs/plans/2026-11-18-tailwind-checker.md`, paused while the focus moves to what the analytics show.
 4. **Cuts:** once there's enough copy data, review the cut and trim lists in section 4.
 5. **Dark gaps:** add the missing dark variants listed in section 4. Marketing is done: cards, product cards, product collections, logo clouds, sections and testimonials. Application is done too: progress bars, range inputs and the last radio group, plus the last blog card. Media and grids don't need dark mode. Only skip links are left, and they wait for the cut decision. `pnpm dark` misses text that has no colour class and inherits black, and it inverts surfaces that are already dark, so check each file with axe and by eye.
