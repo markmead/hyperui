@@ -16,6 +16,33 @@ test.describe('Template pages', () => {
     ])
   })
 
+  test('template cards count pages, and cards in a row line up', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/templates')
+
+    const cards = page.locator('a[href^="/components/templates/"]:has(img)')
+
+    await expect(cards.filter({ hasText: 'Analytics Dashboard' })).toContainText('5 pages')
+    await expect(cards.filter({ hasText: 'Developer Tool Landing Page' })).toContainText('1 page')
+    await expect(cards.filter({ hasText: 'components' })).toHaveCount(0)
+
+    const heightsByRow = new Map<number, Set<number>>()
+
+    for (const card of await cards.all()) {
+      const box = await card.boundingBox()
+
+      if (box) {
+        const row = heightsByRow.get(Math.round(box.y)) ?? new Set()
+
+        heightsByRow.set(Math.round(box.y), row.add(Math.round(box.height)))
+      }
+    }
+
+    for (const heights of heightsByRow.values()) {
+      expect(heights.size).toBe(1)
+    }
+  })
+
   test('component pages do not show the template checks', async ({ page }) => {
     await page.goto('/components/marketing/pricing')
 

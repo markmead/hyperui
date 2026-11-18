@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content'
 import { ArrowRight } from '@lucide/astro'
 
 import StatusBadge from './StatusBadge.astro'
+import { countLabel } from '../lib/count-label'
 
 interface Props {
   component:
@@ -17,7 +18,7 @@ const { component } = Astro.props
 
 const { category, components, slug, title, updated } = component
 
-const componentCount = components.length + components.filter(({ dark }) => !!dark).length
+const count = countLabel({ category, components })
 
 const recentUpdateThresholdDate = new Date()
 
@@ -35,7 +36,7 @@ const isRecentlyUpdated = updated?.date
 <li>
   <a
     href={`/components/${category}/${slug}`}
-    class="group block overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
+    class="group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg"
   >
     {
       thumbnail && (
@@ -51,7 +52,7 @@ const isRecentlyUpdated = updated?.date
       )
     }
 
-    <div class="p-6">
+    <div class="flex flex-1 flex-col p-6">
       <div class="flex items-start justify-between gap-3">
         <h3 class="text-xl font-medium text-gray-900">
           {title}
@@ -60,9 +61,9 @@ const isRecentlyUpdated = updated?.date
         {isRecentlyUpdated && <StatusBadge status="updated" class="mt-1" />}
       </div>
 
-      <div class="mt-2 flex items-center justify-between">
+      <div class="mt-auto flex items-center justify-between pt-2">
         <p class="text-sm text-gray-600">
-          {componentCount} components
+          {count}
         </p>
 
         <ArrowRight
