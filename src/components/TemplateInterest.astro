@@ -4,9 +4,13 @@ import { Sparkles } from '@lucide/astro'
 interface Props {
   /** The template's slug, sent with the click. */
   slug: string
+  /** What's in the works, as a short heading. */
+  title: string
+  /** What the fuller version would add. */
+  description: string
 }
 
-const { slug } = Astro.props
+const { slug, title, description } = Astro.props
 ---
 
 <template-interest data-slug={slug} class="mx-auto block max-w-7xl px-4 pb-8">
@@ -25,12 +29,9 @@ const { slug } = Astro.props
           In the works
         </span>
 
-        <h2 class="mt-2 text-xl font-semibold">A full site version</h2>
+        <h2 class="mt-2 text-xl font-semibold">{title}</h2>
 
-        <p class="mt-2 max-w-2xl text-gray-300">
-          A full multi-page version is in the works: pricing, docs, changelog, sign in and a
-          dashboard. Want it?
-        </p>
+        <p class="mt-2 max-w-2xl text-gray-300">{description}</p>
       </div>
     </div>
 

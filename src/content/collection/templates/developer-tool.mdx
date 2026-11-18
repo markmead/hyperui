@@ -16,7 +16,6 @@ components:
 
 import BaseHero from '../../../components/BaseHero.astro'
 import BackLink from '../../../components/BackLink.astro'
-import TemplateInterest from '../../../components/TemplateInterest.astro'
 
 <BaseHero title={frontmatter.title} description={frontmatter.description}>
   <BackLink
@@ -25,5 +24,3 @@ import TemplateInterest from '../../../components/TemplateInterest.astro'
     label={`Back to ${frontmatter.category} components`}
   />
 </BaseHero>
-
-<TemplateInterest slug={frontmatter.slug} />
