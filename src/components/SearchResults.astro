@@ -1,7 +1,7 @@
 ---
 interface Result {
   category: string
-  components?: number
+  count?: string
   description?: string
   slug: string
   terms: string[]
@@ -34,7 +34,7 @@ const { collections, posts } = Astro.props
 <script>
   interface Result {
     category: string
-    components?: number
+    count?: string
     description?: string
     slug: string
     terms: string[]
@@ -101,11 +101,11 @@ const { collections, posts } = Astro.props
 
       anchorEl.appendChild(contentEl)
 
-      if (result.components) {
+      if (result.count) {
         const componentCountEl = document.createElement('p')
 
         componentCountEl.className = 'text-xs text-gray-500 mt-0.5'
-        componentCountEl.textContent = `${result.components} components`
+        componentCountEl.textContent = result.count
 
         anchorEl.appendChild(componentCountEl)
       }

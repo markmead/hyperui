@@ -170,10 +170,16 @@ Also done:
 - **FAQs:** stay in the header.
 - **Hero ad:** stays in the hero, beside the pitch.
 - **Media and grids:** no dark mode.
+- **Templates:** only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
+- **Support Inbox:** stays, as a preview of the application components working together.
 
 ### Next
 
-1. **More templates:** start with more landing page variants like the SaaS one. Run `pnpm thumbnails <slug>` for each new card.
+1. **Templates and the components they need:**
+   - No new landing page variants until the developer tool and pricing pages have copy data. Landing pages are the most common free template, and the SaaS one has fewer copies than the dashboard, portfolio and storefront.
+   - The analytics dashboard is the most-copied template, mostly its first page: the sidebar, header and layout. Next, fill the application component gaps it shows, starting with avatars, each in the free collection first.
+   - Count page views per template alongside copies, so a template nobody copies can be told apart from one nobody finds.
+   - Run `pnpm thumbnails <slug>` for each new template card.
 2. **Agents:**
    - Split the agent export by user agent, and include `/examples/*`.
    - Add accessibility, RTL and dark mode rules to "Copy for AI" on components, as templates have now.
