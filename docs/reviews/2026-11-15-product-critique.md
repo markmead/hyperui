@@ -157,6 +157,7 @@ That comes to roughly 40–50 variants. Put that effort into the areas below.
 
 Also done:
 
+- **Components:** avatars, the first gap the analytics dashboard showed (#808).
 - **Blog:** removed. FAQs moved to `/faqs` and stay in the header (#775).
 - **Accessibility:** two audits, with every finding fixed (#777, #780). axe runs in the Playwright suite: `pnpm test:a11y:diff` checks changed examples, and `pnpm test:a11y` checks everything (#782, #783).
 - **CI:** lint, Prettier, the build, type checks and the Chromium tests run on every PR and push to `main`, with a weekly run in every browser and the full accessibility sweep (#789).
@@ -207,7 +208,11 @@ The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies
 
 1. **Templates and the components they need:**
    - No new landing page variants until the developer tool and pricing pages have copy data. Landing pages are the most common free template, and the SaaS one has fewer copies than the dashboard, portfolio and storefront.
-   - The analytics dashboard is the most-copied template, mostly its first page: the sidebar, header and layout. Next, fill the application component gaps it shows, starting with avatars, each in the free collection first.
+   - The analytics dashboard is the most-copied template, mostly its first page: the sidebar, header and layout. Fill the application component gaps it shows, each in the free collection first. Avatars are done (#808). The rest, in order:
+     1. **Page headers:** the app top bar with a menu toggle, page title and main action. Marketing headers are site navigation, and nothing in the application collections covers this.
+     2. **App shells:** the sidebar that becomes an off-canvas drawer below `lg`, with its overlay, toggle and profile footer. Side menu has the sidebar contents but not the responsive layout.
+     3. **Form layouts:** sectioned settings forms like the Settings page, built from the existing inputs.
+     4. **Stats with a sparkline:** a stats variant matching the Overview cards.
    - Count page views per template alongside copies, so a template nobody copies can be told apart from one nobody finds.
    - Run `pnpm thumbnails <slug>` for each new template card.
 2. **Agents:**
