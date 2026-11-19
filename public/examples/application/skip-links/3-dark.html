@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiple skip links in a full-width bar (dark) - Skip Links - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="dark:bg-gray-900">
+    <nav
+      class="absolute inset-x-0 top-0 flex -translate-y-full items-center gap-3 rounded-sm bg-gray-100 p-4 transition-transform focus-within:translate-y-0 dark:bg-gray-800"
+      aria-label="Skip to"
+    >
+      <p class="text-xs font-semibold tracking-wide text-gray-700 uppercase dark:text-gray-200">
+        Skip to:
+      </p>
+
+      <div class="flex flex-wrap gap-2">
+        <a
+          href="#mainNavigation"
+          class="text-sm font-medium text-blue-700 transition-colors hover:text-blue-600 active:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300 dark:active:text-blue-300"
+        >
+          Navigation
+        </a>
+
+        <a
+          href="#mainContent"
+          class="text-sm font-medium text-blue-700 transition-colors hover:text-blue-600 active:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300 dark:active:text-blue-300"
+        >
+          Content
+        </a>
+
+        <a
+          href="#mainFooter"
+          class="text-sm font-medium text-blue-700 transition-colors hover:text-blue-600 active:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300 dark:active:text-blue-300"
+        >
+          Footer
+        </a>
+      </div>
+    </nav>
+  </body>
+</html>
