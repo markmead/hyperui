@@ -142,7 +142,7 @@ That comes to roughly 40–50 variants. Put that effort into the areas below.
 5. Cut and trim the components listed above (roughly 40–50 variants). Put that effort into templates, dark coverage, pricing, and the small pages that do well.
 6. Rebuild the dark-mode generator as the "audit my markup" tool, and kill the typography mapper.
 
-## Progress (updated 2026-11-18)
+## Progress (updated 2026-11-19)
 
 ### Done
 
@@ -173,6 +173,35 @@ Also done:
 - **Templates:** only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
 - **Support Inbox:** stays, as a preview of the application components working together.
 
+### Copy data (2026-11-15 to 2026-11-19)
+
+The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies**, about 108 a day. Against about 5,700 human page views a day, that's roughly one copy per 50 views. Below about 5 copies a page, rankings are noise, so nothing here is enough to cut on yet.
+
+**Count unique copies, not rows.** 108 rows repeat the same variant within 10 minutes. Most of them (79) are identical: same theme, same copy type, often seconds apart. Only 15 switch between HTML and AI and 14 between light and dark. Leaving the repeats out gives about 290 copies, and that's the number to rank pages by.
+
+**Where the copies go:**
+
+| Category     | Share of views | Share of copies |
+| ------------ | -------------- | --------------- |
+| Templates    | 8%             | 19% (76)        |
+| Marketing    | 20%            | 47% (187)       |
+| Application  | 28%            | 29% (118)       |
+| Neobrutalism | 8%             | 5% (20)         |
+
+- **Templates and landing-page sections lead.** Headers (50 copies from 4 variants), the analytics dashboard (34), footers (34), banners (26) and cards (23) are the top five. This matches what agents fetch.
+- **People copy the first page of a template.** That's 24 of 34 analytics dashboard copies, 16 of 19 for portfolio and 10 of 11 for storefront. The layout shell is what gets used.
+- **Neobrutalism gets views but few copies.** That weakens the case for building on it.
+- **Some earlier calls look weak.** Pricing has 1 copy, which doesn't support adding variants. Charts are 4th by views but have 12 copies, 7 of them chart 1. Accordions are the top page for humans but have 20 copies, half of them variant 1.
+- **Form controls are almost never copied.** Checkboxes, radio groups, selects, toggles, textareas, range and quantity inputs, and file uploaders have no copies, and inputs has 6. File uploaders got about 30 agent requests and no human copies.
+- **21 of 76 pages and 198 of 326 variants have no copies.**
+- **The cut list mostly holds up.** Polls, skip links, marketing empty content, application textareas and testimonials have no copies, and grids have 2 across 10 variants. Footers are the exception: 34 copies across 10 of 12 variants, so there's no clear 5 to keep yet. Vertical menu, loaders, modals and toasts have 3–7 copies each, too few to rank their variants.
+
+**"Copy for AI" is barely used: 29 of 401 copies (7%).** 7 of those came from one person in a 70-second run on charts, and 10 sat within two minutes of an HTML copy of the same variant. That leaves about 15–20 real choices of AI over HTML in four days. The notes added to Copy for AI (#798, #807) made no visible difference, though the numbers are too small to tell. People on the site paste HTML into their code or into their own AI. So this button's count is not the AI signal. The agent export is, and the MCP server and skill are how the AI-friendly work reaches those users.
+
+**Dark variants get copied: 86 copies (21%).** On pages that had dark variants the whole time, the share is higher: footers 41%, banners 38%, headers 36%, the analytics dashboard 24%. Marketing cards show 0 of 23, but their dark files only went live on Nov 18. Roughly a third of people copying landing-page sections want dark, so the dark mode work is paying off.
+
+**Caveats:** an evaluator or browsing agent walked through every template, then accordions 1 to 5, on Nov 17 at 03:59. A dashboard run on Nov 17 at 15:42–15:48, just before #788 merged, may have been our own testing. Both inflate the template and accordion counts slightly.
+
 ### Next
 
 1. **Templates and the components they need:**
@@ -181,8 +210,8 @@ Also done:
    - Count page views per template alongside copies, so a template nobody copies can be told apart from one nobody finds.
    - Run `pnpm thumbnails <slug>` for each new template card.
 2. **Agents:**
-   - Split the agent export by user agent, and include `/examples/*`.
-   - Ship the MCP server and a published skill. The `pnpm dark` engine could back an MCP tool or CLI.
+   - Split the agent export by user agent, and include `/examples/*`. This is the AI signal to track, not Copy for AI counts, which are 7% of copies.
+   - Ship the MCP server and a published skill, sooner rather than later: humans on the site aren't asking for AI-formatted output. The `pnpm dark` engine could back an MCP tool or CLI.
 3. **The checker:** the engine is done (#809). The page, retiring the generator page and the MCP server are planned in `docs/plans/2026-11-18-tailwind-checker.md`, paused while the focus moves to what the analytics show.
-4. **Cuts:** once there's enough copy data, review the cut and trim lists in section 4.
+4. **Cuts:** let the copy data run 3–4 weeks, then review the cut and trim lists in section 4 using unique copies. The first four days already point at form controls, pricing variants and most of the charts.
 5. **Dark gaps:** add the missing dark variants listed in section 4. Marketing is done: cards, product cards, product collections, logo clouds, sections and testimonials. Application is done too: progress bars, range inputs and the last radio group, plus the last blog card. Media and grids don't need dark mode. Only skip links are left, and they wait for the cut decision. `pnpm dark` misses text that has no colour class and inherits black, and it inverts surfaces that are already dark, so check each file with axe and by eye.
