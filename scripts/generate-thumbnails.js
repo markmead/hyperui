@@ -8,7 +8,7 @@
  *   pnpm thumbnails          # every template
  *   pnpm thumbnails storefront portfolio
  *
- * Writes public/thumbnails/templates/{slug}.jpg. Re-run it after changing a
+ * Writes public/thumbnails/templates/{slug}.webp. Re-run it after changing a
  * template's 1.html, and wait for its images to load before committing.
  *
  * Pass --allow-broken-images to save a thumbnail even when an image fails to
@@ -60,9 +60,24 @@ for (const slug of slugs) {
     continue
   }
 
-  const file = path.join(OUTPUT_DIR, `${slug}.jpg`)
+  const file = path.join(OUTPUT_DIR, `${slug}.webp`)
 
-  await page.screenshot({ path: file, type: 'jpeg', quality: 70 })
+  // Playwright only writes PNG or JPEG, so Chromium re-encodes the PNG as WebP.
+  const png = (await page.screenshot({ type: 'png' })).toString('base64')
+  const webp = await page.evaluate(async (data) => {
+    const image = new globalThis.Image()
+    image.src = `data:image/png;base64,${data}`
+    await image.decode()
+
+    const canvas = globalThis.document.createElement('canvas')
+    canvas.width = image.naturalWidth
+    canvas.height = image.naturalHeight
+    canvas.getContext('2d').drawImage(image, 0, 0)
+
+    return canvas.toDataURL('image/webp', 0.7).split(',')[1]
+  }, png)
+
+  fs.writeFileSync(file, Buffer.from(webp, 'base64'))
 
   console.log(`✓ ${file}`)
 }
