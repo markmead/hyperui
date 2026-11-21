@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>With breadcrumbs and description - Page headers - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="bg-gray-50">
+    <header class="border-b border-gray-200 bg-white px-6 py-6">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex items-center gap-1.5 text-sm text-gray-600">
+          <li>
+            <a href="#" class="transition-colors hover:text-gray-900">Customers</a>
+          </li>
+
+          <li aria-hidden="true" class="rtl:rotate-180">/</li>
+
+          <li aria-current="page" class="text-gray-900">Laszlo Cravensworth</li>
+        </ol>
+      </nav>
+
+      <div class="mt-3 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 class="text-2xl font-semibold text-gray-900">Laszlo Cravensworth</h1>
+
+          <p class="mt-1 max-w-xl text-sm text-gray-600">
+            Customer since March 2024. Manage their plan, billing details and recent orders.
+          </p>
+        </div>
+
+        <div class="flex shrink-0 items-center gap-2">
+          <a
+            href="#"
+            class="inline-block rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+            >Export</a
+          >
+
+          <a
+            href="#"
+            class="inline-block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+            >Edit customer</a
+          >
+        </div>
+      </div>
+    </header>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>With menu toggle (dark) - Page headers - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-950">
+    <header
+      class="flex items-center justify-between gap-4 border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-900"
+    >
+      <div class="flex items-center gap-4">
+        <button
+          type="button"
+          aria-expanded="false"
+          class="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 lg:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:focus-visible:ring-gray-50"
+        >
+          <span class="sr-only">Toggle menu</span>
+
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <h1 class="text-lg font-semibold text-gray-900 dark:text-white">Customers</h1>
+      </div>
+
+      <a
+        href="#"
+        class="inline-block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:ring-gray-50"
+        >Add customer</a
+      >
+    </header>
+  </body>
+</html>

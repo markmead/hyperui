@@ -208,8 +208,8 @@ The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies
 
 1. **Templates and the components they need:**
    - No new landing page variants until the developer tool and pricing pages have copy data. Landing pages are the most common free template, and the SaaS one has fewer copies than the dashboard, portfolio and storefront.
-   - The analytics dashboard is the most-copied template, mostly its first page: the sidebar, header and layout. Fill the application component gaps it shows, each in the free collection first. Avatars are done (#808). The rest, in order:
-     1. **Page headers:** the app top bar with a menu toggle, page title and main action. Marketing headers are site navigation, and nothing in the application collections covers this.
+   - The analytics dashboard is the most-copied template, mostly its first page: the sidebar, header and layout. Fill the application component gaps it shows, each in the free collection first. Avatars are done (#808) and page headers are done (4 variants, in this PR). The rest, in order:
+     1. ~~**Page headers**~~ (done).
      2. **App shells:** the sidebar that becomes an off-canvas drawer below `lg`, with its overlay, toggle and profile footer. Side menu has the sidebar contents but not the responsive layout.
      3. **Form layouts:** sectioned settings forms like the Settings page, built from the existing inputs.
      4. **Stats with a sparkline:** a stats variant matching the Overview cards.
