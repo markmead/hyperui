@@ -26,7 +26,7 @@ recentUpdateThresholdDate.setHours(0, 0, 0, 0)
 recentUpdateThresholdDate.setDate(recentUpdateThresholdDate.getDate() - 30)
 
 // `pnpm thumbnails` writes one for every template.
-const thumbnail = category === 'templates' ? `/thumbnails/templates/${slug}.jpg` : null
+const thumbnail = category === 'templates' ? `/thumbnails/templates/${slug}.webp` : null
 
 const isRecentlyUpdated = updated?.date
   ? new Date(updated.date) >= recentUpdateThresholdDate
