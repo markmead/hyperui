@@ -37,23 +37,13 @@
           <span class="text-xs text-gray-600">from $42,910</span>
         </p>
       </div>
-      <svg
-        role="img"
-        aria-label="Monthly revenue over the last six months, rising from $28,000 to $48,204"
-        viewBox="0 0 120 40"
-        preserveAspectRatio="none"
-        class="h-10 w-full"
-      >
-        <polyline
-          points="0,32 24,24 48,28 72,16 96,12 120,4"
-          fill="none"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          vector-effect="non-scaling-stroke"
-          class="stroke-emerald-600"
-        />
-      </svg>
+      <div class="h-10">
+        <canvas
+          id="revenue-sparkline"
+          role="img"
+          aria-label="Monthly revenue over the last six months, rising from $28,000 to $48,204"
+        ></canvas>
+      </div>
     </article>
     <article class="flex flex-col gap-4 rounded-lg border border-gray-100 bg-white p-6">
       <div class="self-end">
@@ -84,23 +74,61 @@
           <span class="text-xs text-gray-600">from 2.1%</span>
         </p>
       </div>
-      <svg
-        role="img"
-        aria-label="Churn rate over the last six months, falling from 2.9% to 1.8%"
-        viewBox="0 0 120 40"
-        preserveAspectRatio="none"
-        class="h-10 w-full"
-      >
-        <polyline
-          points="0,6 24,12 48,10 72,22 96,26 120,34"
-          fill="none"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          vector-effect="non-scaling-stroke"
-          class="stroke-red-600"
-        />
-      </svg>
+      <div class="h-10">
+        <canvas
+          id="churn-sparkline"
+          role="img"
+          aria-label="Churn rate over the last six months, falling from 2.9% to 1.8%"
+        ></canvas>
+      </div>
     </article>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+      const sparklineOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false },
+        },
+      }
+
+      function renderSparkline(canvasId, values, lineColour, fillColour) {
+        new Chart(document.getElementById(canvasId), {
+          type: 'line',
+          data: {
+            labels: values.map((_, index) => index + 1),
+            datasets: [
+              {
+                data: values,
+                borderColor: lineColour,
+                backgroundColor: fillColour,
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0.35,
+                fill: Boolean(fillColour),
+              },
+            ],
+          },
+          options: {
+            ...sparklineOptions,
+            layout: { padding: 2 },
+            scales: {
+              x: { display: false },
+              y: { display: false, min: Math.min(...values), max: Math.max(...values) },
+            },
+          },
+        })
+      }
+
+      renderSparkline(
+        'revenue-sparkline',
+        [28000, 34000, 31000, 39000, 42000, 48204],
+        '#059669',
+        null,
+      )
+      renderSparkline('churn-sparkline', [2.9, 2.7, 2.8, 2.3, 2.1, 1.8], '#e11d48', null)
+    </script>
   </body>
 </html>

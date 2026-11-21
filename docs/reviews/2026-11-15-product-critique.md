@@ -212,7 +212,7 @@ The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies
      1. ~~**Page headers**~~ (done).
      2. ~~**App shells:** the sidebar that becomes an off-canvas drawer below `lg`, with its overlay, toggle and profile footer. Side menu has the sidebar contents but not the responsive layout.~~ (done)
      3. ~~**Form layouts:** sectioned settings forms like the Settings page, built from the existing inputs.~~ (done, 3 variants)
-     4. ~~**Stats with a sparkline:** a stats variant matching the Overview cards.~~ (done, stats 7 and 8, inline SVG)
+     4. ~~**Stats with a sparkline:** a stats variant matching the Overview cards.~~ (done, stats 7 and 8, Chart.js)
 
      All four gaps are filled. The analytics dashboard still has its own copy of the shell and header markup, so rebuilding it from these components is the next template step.
 
