@@ -167,7 +167,7 @@ Also done:
 
 - **Focus:** templates come first.
 - **Cuts:** only remove pages and variants once the copy counts confirm it.
-- **Dark mode generator:** keep it, and turn it into a "Hemingway for Tailwind" checker (paste markup, get accessibility, RTL and dark mode findings with fixes) with an AI angle.
+- **Checker:** dropped (2026-11-21). It was going to replace the dark mode generator page. The generator page stays as it is, and its engine keeps backing `pnpm dark`. The checker engine (#809) stays in the repo, unused.
 - **FAQs:** stay in the header.
 - **Hero ad:** stays in the hero, beside the pitch.
 - **Media and grids:** no dark mode.
@@ -214,12 +214,11 @@ The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies
      3. ~~**Form layouts:** sectioned settings forms like the Settings page, built from the existing inputs.~~ (done, 3 variants)
      4. ~~**Stats with a sparkline:** a stats variant matching the Overview cards.~~ (done, stats 7 and 8, Chart.js)
 
-     All four gaps are filled, and the analytics dashboard is rebuilt from them: the shell and page header on every page, sparkline stats on Overview, initials avatars on Customers, and the form layouts on Settings. Its card screenshot still shows the old Overview, so regenerate it with `pnpm thumbnails analytics-dashboard` where the photos can load.
+     All four gaps are filled, and the analytics dashboard is rebuilt from them: the shell and page header on every page, sparkline stats on Overview, initials avatars on Customers, and the form layouts on Settings. Its card screenshot is regenerated.
 
    - Count page views per template alongside copies, so a template nobody copies can be told apart from one nobody finds.
    - Run `pnpm thumbnails <slug>` for each new template card.
 2. **Agents:**
    - Split the agent export by user agent, and include `/examples/*`. This is the AI signal to track, not Copy for AI counts, which are 7% of copies.
    - Ship the MCP server and a published skill, sooner rather than later: humans on the site aren't asking for AI-formatted output. The `pnpm dark` engine could back an MCP tool or CLI.
-3. **The checker:** the engine is done (#809). The page, retiring the generator page and the MCP server are planned in `docs/plans/2026-11-18-tailwind-checker.md`, paused while the focus moves to what the analytics show.
-4. **Cuts:** let the copy data run 3–4 weeks, then review the cut and trim lists in section 4 using unique copies. The first four days already point at form controls, pricing variants and most of the charts.
+3. **Cuts:** let the copy data run 3–4 weeks, then review the cut and trim lists in section 4 using unique copies. The first four days already point at form controls, pricing variants and most of the charts.

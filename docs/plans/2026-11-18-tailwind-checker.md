@@ -1,6 +1,6 @@
 # Plan: Tailwind checker
 
-_Status: engine shipped (#809). Page and clean-up not started. Paused while the focus shifts to what the analytics show._
+_Status: dropped on 2026-11-21. The engine shipped (#809) and stays in the repo. The page, retiring the generator page and the MCP server won't be built. Kept as a record of what was planned._
 
 ## What it is
 
