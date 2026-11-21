@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stacked cards (dark) - Form layouts - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-4xl p-6 dark:bg-gray-900">
+    <div class="space-y-6">
+      <form
+        action="#"
+        aria-labelledby="account-heading"
+        class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900"
+      >
+        <div class="p-6">
+          <h2 id="account-heading" class="text-base font-semibold text-gray-900 dark:text-white">
+            Account
+          </h2>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+            Your name and the email we send receipts to.
+          </p>
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label
+                for="account-name"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                >Full name</label
+              >
+              <input
+                type="text"
+                id="account-name"
+                autocomplete="name"
+                value="Priya Natarajan"
+                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div>
+              <label
+                for="account-email"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                >Email address</label
+              >
+              <input
+                type="email"
+                id="account-email"
+                autocomplete="email"
+                value="priya@orbitly.com"
+                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end border-t border-gray-200 bg-gray-50 px-6 py-3 dark:border-gray-700 dark:bg-gray-800"
+        >
+          <button
+            type="submit"
+            class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:ring-gray-50"
+          >
+            Save account
+          </button>
+        </div>
+      </form>
+      <form
+        action="#"
+        aria-labelledby="password-heading"
+        class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900"
+      >
+        <div class="p-6">
+          <h2 id="password-heading" class="text-base font-semibold text-gray-900 dark:text-white">
+            Password
+          </h2>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Use at least 12 characters.</p>
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label
+                for="current-password"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                >Current password</label
+              >
+              <input
+                type="password"
+                id="current-password"
+                autocomplete="current-password"
+                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div>
+              <label
+                for="new-password"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                >New password</label
+              >
+              <input
+                type="password"
+                id="new-password"
+                autocomplete="new-password"
+                aria-describedby="new-password-hint"
+                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+              <p id="new-password-hint" class="mt-1 text-xs text-gray-600 dark:text-gray-300">
+                At least 12 characters.
+              </p>
+            </div>
+            <div>
+              <label
+                for="confirm-password"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                >Confirm new password</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                autocomplete="new-password"
+                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end border-t border-gray-200 bg-gray-50 px-6 py-3 dark:border-gray-700 dark:bg-gray-800"
+        >
+          <button
+            type="submit"
+            class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:ring-gray-50"
+          >
+            Update password
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

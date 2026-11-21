@@ -1,0 +1,34 @@
+---
+title: App shells
+description: Application shell layouts built with Tailwind CSS, with a sidebar that becomes an off-canvas drawer below the lg breakpoint, with an overlay, a menu toggle, Escape to close and focus returned to the toggle, for dashboards and admin panels.
+category: application
+slug: app-shells
+wrapper: h-[500px]
+terms:
+  - layout
+  - sidebar
+  - drawer
+  - dashboard
+  - admin
+components:
+  - title: Sidebar with page header
+    description: A sidebar with a profile footer beside a page header and the main content
+    dark: true
+  - title: Sidebar with grouped links
+    description: Links in labelled groups, with help and sign out at the bottom
+    dark: true
+  - title: Top bar with sidebar
+    description: A full-width top bar with the sidebar below it
+    dark: true
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>

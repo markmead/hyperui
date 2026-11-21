@@ -18,7 +18,7 @@
     ></div>
 
     <div
-      id="dashboard-sidebar"
+      id="app-sidebar"
       class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-[transform,visibility] duration-300 group-data-[sidebar=open]:translate-x-0 max-lg:invisible max-lg:group-data-[sidebar=open]:visible lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full max-lg:rtl:group-data-[sidebar=open]:translate-x-0 dark:border-gray-700 dark:bg-gray-900"
     >
       <div class="p-4">
@@ -33,6 +33,7 @@
             <li>
               <a
                 href="#"
+                aria-current="page"
                 class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-white"
               >
                 Overview
@@ -81,7 +82,7 @@
       <div class="sticky inset-x-0 bottom-0 border-t border-gray-200 dark:border-gray-700">
         <a
           href="#"
-          class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50 hover:transition-colors dark:bg-gray-900 dark:hover:bg-gray-800"
+          class="flex items-center gap-2 bg-white p-4 transition-colors hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800"
         >
           <img
             alt=""
@@ -92,7 +93,7 @@
           <p class="text-xs text-gray-900 dark:text-white">
             <strong class="block font-medium">Priya Natarajan</strong>
 
-            <span>priya@orbitly.com</span>
+            <span class="text-gray-600 dark:text-gray-300">priya@orbitly.com</span>
           </p>
         </a>
       </div>
@@ -100,14 +101,14 @@
 
     <div class="flex flex-1 flex-col overflow-y-auto">
       <header
-        class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-900"
+        class="flex items-center justify-between gap-4 border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-900"
       >
         <div class="flex items-center gap-4">
           <button
             type="button"
             id="sidebar-toggle"
             aria-expanded="false"
-            aria-controls="dashboard-sidebar"
+            aria-controls="app-sidebar"
             class="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 lg:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:focus-visible:ring-gray-50"
           >
             <span class="sr-only">Toggle menu</span>
@@ -130,7 +131,7 @@
 
         <a
           href="#"
-          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:ring-gray-50"
         >
           New report
         </a>
@@ -159,33 +160,26 @@
                   d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
                 />
               </svg>
-
               <span class="sr-only">Increase: </span>
-
               <span class="text-xs font-medium">12.4%</span>
             </div>
-
             <div>
               <strong class="block text-sm font-medium text-gray-600 dark:text-gray-300"
                 >Monthly revenue</strong
               >
-
               <p>
                 <span class="text-2xl font-medium text-gray-900 dark:text-white">$48,204</span>
-
                 <span class="text-xs text-gray-600 dark:text-gray-300">from $42,910</span>
               </p>
             </div>
-
             <div class="h-10">
               <canvas
-                id="revenue-trend-sparkline"
+                id="revenue-sparkline"
                 role="img"
-                aria-label="Sparkline showing monthly revenue trending upward over the last six months"
+                aria-label="Monthly revenue over the last six months, rising from $28,000 to $48,204"
               ></canvas>
             </div>
           </article>
-
           <article
             class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
           >
@@ -207,25 +201,26 @@
                   d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
                 />
               </svg>
-
               <span class="sr-only">Increase: </span>
-
               <span class="text-xs font-medium">4.1%</span>
             </div>
-
             <div>
               <strong class="block text-sm font-medium text-gray-600 dark:text-gray-300"
                 >Active customers</strong
               >
-
               <p>
                 <span class="text-2xl font-medium text-gray-900 dark:text-white">2,318</span>
-
                 <span class="text-xs text-gray-600 dark:text-gray-300">from 2,227</span>
               </p>
             </div>
+            <div class="h-10">
+              <canvas
+                id="customers-sparkline"
+                role="img"
+                aria-label="Active customers over the last six months, rising from 2,050 to 2,318"
+              ></canvas>
+            </div>
           </article>
-
           <article
             class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
           >
@@ -247,22 +242,24 @@
                   d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
                 />
               </svg>
-
               <span class="sr-only">Decrease: </span>
-
               <span class="text-xs font-medium">2.6%</span>
             </div>
-
             <div>
               <strong class="block text-sm font-medium text-gray-600 dark:text-gray-300"
                 >Churn rate</strong
               >
-
               <p>
                 <span class="text-2xl font-medium text-gray-900 dark:text-white">1.8%</span>
-
                 <span class="text-xs text-gray-600 dark:text-gray-300">from 2.1%</span>
               </p>
+            </div>
+            <div class="h-10">
+              <canvas
+                id="churn-sparkline"
+                role="img"
+                aria-label="Churn rate over the last six months, falling from 2.9% to 1.8%"
+              ></canvas>
             </div>
           </article>
         </div>
@@ -435,7 +432,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script>
-      const revenueTrendSparklineCanvas = document.getElementById('revenue-trend-sparkline')
       const revenueTrendLineChartCanvas = document.getElementById('revenue-trend-line-chart')
       const orderStatusDonutChartCanvas = document.getElementById('order-status-donut-chart')
       const revenueRangeButtons = document.querySelectorAll('[data-revenue-range]')
@@ -466,34 +462,41 @@
         },
       }
 
-      new Chart(revenueTrendSparklineCanvas, {
-        type: 'line',
-        data: {
-          labels: revenueRangesByPeriod['6m'].labels,
-          datasets: [
-            {
-              data: revenueRangesByPeriod['6m'].values,
-              borderColor: '#34d399',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.35,
-              fill: false,
+      function renderSparkline(canvasId, values, lineColour) {
+        new Chart(document.getElementById(canvasId), {
+          type: 'line',
+          data: {
+            labels: values.map((_, index) => index + 1),
+            datasets: [
+              {
+                data: values,
+                borderColor: lineColour,
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0.35,
+                fill: false,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: { padding: 2 },
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
             },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false },
+            scales: {
+              x: { display: false },
+              y: { display: false, min: Math.min(...values), max: Math.max(...values) },
+            },
           },
-          scales: {
-            x: { display: false },
-            y: { display: false },
-          },
-        },
-      })
+        })
+      }
+
+      renderSparkline('revenue-sparkline', [28000, 34000, 31000, 39000, 42000, 48204], '#6ee7b7')
+      renderSparkline('customers-sparkline', [2050, 2100, 2140, 2190, 2227, 2318], '#6ee7b7')
+      renderSparkline('churn-sparkline', [2.9, 2.7, 2.8, 2.3, 2.1, 1.8], '#fda4af')
 
       const revenueTrendChartContext = revenueTrendLineChartCanvas.getContext('2d')
       const revenueTrendFillGradient = revenueTrendChartContext.createLinearGradient(0, 0, 0, 256)
@@ -637,6 +640,13 @@
       function setSidebarOpen(isOpen) {
         document.body.dataset.sidebar = isOpen ? 'open' : 'closed'
         sidebarToggle.setAttribute('aria-expanded', String(isOpen))
+
+        if (isOpen) {
+          // The panel turns visible one frame into the transition, so focus after that
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => document.querySelector('#app-sidebar a')?.focus()),
+          )
+        }
       }
 
       sidebarToggle.addEventListener('click', () => {

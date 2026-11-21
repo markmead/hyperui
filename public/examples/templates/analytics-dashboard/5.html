@@ -15,7 +15,7 @@
     ></div>
 
     <div
-      id="dashboard-sidebar"
+      id="app-sidebar"
       class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-[transform,visibility] duration-300 group-data-[sidebar=open]:translate-x-0 max-lg:invisible max-lg:group-data-[sidebar=open]:visible lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full max-lg:rtl:group-data-[sidebar=open]:translate-x-0"
     >
       <div class="p-4">
@@ -66,6 +66,7 @@
             <li>
               <a
                 href="#"
+                aria-current="page"
                 class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900"
               >
                 Settings
@@ -76,10 +77,7 @@
       </div>
 
       <div class="sticky inset-x-0 bottom-0 border-t border-gray-200">
-        <a
-          href="#"
-          class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50 hover:transition-colors"
-        >
+        <a href="#" class="flex items-center gap-2 bg-white p-4 transition-colors hover:bg-gray-50">
           <img
             alt=""
             src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=1160"
@@ -89,20 +87,22 @@
           <p class="text-xs text-gray-900">
             <strong class="block font-medium">Priya Natarajan</strong>
 
-            <span>priya@orbitly.com</span>
+            <span class="text-gray-600">priya@orbitly.com</span>
           </p>
         </a>
       </div>
     </div>
 
     <div class="flex flex-1 flex-col overflow-y-auto">
-      <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
+      <header
+        class="flex items-center justify-between gap-4 border-b border-gray-200 bg-white px-6 py-4"
+      >
         <div class="flex items-center gap-4">
           <button
             type="button"
             id="sidebar-toggle"
             aria-expanded="false"
-            aria-controls="dashboard-sidebar"
+            aria-controls="app-sidebar"
             class="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 lg:hidden"
           >
             <span class="sr-only">Toggle menu</span>
@@ -126,171 +126,213 @@
         <button
           type="submit"
           form="account-settings-form"
-          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
         >
           Save changes
         </button>
       </header>
 
       <main class="flex-1 space-y-6 p-6">
-        <form id="account-settings-form" class="rounded-lg border border-gray-200 bg-white p-6">
-          <h2 class="text-sm font-medium text-gray-900">Profile</h2>
-
-          <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <form
+          id="account-settings-form"
+          action="#"
+          class="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white px-6"
+        >
+          <section
+            aria-labelledby="profile-heading"
+            class="grid grid-cols-1 gap-6 py-6 md:grid-cols-3"
+          >
             <div>
-              <label for="full-name" class="block text-sm font-medium text-gray-700">
-                Full name
-              </label>
-
-              <input
-                type="text"
-                autocomplete="name"
-                id="full-name"
-                value="Priya Natarajan"
-                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
-              />
+              <h2 id="profile-heading" class="text-base font-semibold text-gray-900">Profile</h2>
+              <p class="mt-1 text-sm text-gray-600">This is shown to the rest of your team.</p>
             </div>
-
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:col-span-2">
+              <div>
+                <label for="full-name" class="block text-sm font-medium text-gray-700"
+                  >Full name</label
+                >
+                <input
+                  type="text"
+                  id="full-name"
+                  autocomplete="name"
+                  value="Priya Natarajan"
+                  class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+                />
+              </div>
+              <div>
+                <label for="email-address" class="block text-sm font-medium text-gray-700"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  id="email-address"
+                  autocomplete="email"
+                  value="priya@orbitly.com"
+                  class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+                />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="team-name" class="block text-sm font-medium text-gray-700"
+                  >Team name</label
+                >
+                <input
+                  type="text"
+                  id="team-name"
+                  autocomplete="organization"
+                  value="Orbitly"
+                  class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+                />
+              </div>
+            </div>
+          </section>
+          <section
+            aria-labelledby="regional-heading"
+            class="grid grid-cols-1 gap-6 py-6 md:grid-cols-3"
+          >
             <div>
-              <label for="email-address" class="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-
-              <input
-                type="email"
-                autocomplete="email"
-                id="email-address"
-                value="priya@orbitly.com"
-                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
-              />
+              <h2 id="regional-heading" class="text-base font-semibold text-gray-900">Regional</h2>
+              <p class="mt-1 text-sm text-gray-600">
+                Dates, times and currency use these settings.
+              </p>
             </div>
-
-            <div class="sm:col-span-2">
-              <label for="team-name" class="block text-sm font-medium text-gray-700">
-                Team name
-              </label>
-
-              <input
-                type="text"
-                autocomplete="organization"
-                id="team-name"
-                value="Orbitly"
-                class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
-              />
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:col-span-2">
+              <div>
+                <label for="language" class="block text-sm font-medium text-gray-700"
+                  >Language</label
+                >
+                <select
+                  id="language"
+                  class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+                >
+                  <option selected>English</option>
+                  <option>Deutsch</option>
+                  <option>Français</option>
+                </select>
+              </div>
+              <div>
+                <label for="timezone" class="block text-sm font-medium text-gray-700"
+                  >Time zone</label
+                >
+                <select
+                  id="timezone"
+                  class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+                >
+                  <option selected>London (GMT)</option>
+                  <option>New York (EST)</option>
+                  <option>Tokyo (JST)</option>
+                </select>
+              </div>
             </div>
-          </div>
+          </section>
         </form>
 
-        <div class="rounded-lg border border-gray-200 bg-white p-6">
-          <h2 class="text-sm font-medium text-gray-900">Notifications</h2>
-
-          <ul class="mt-4 divide-y divide-gray-200">
-            <li class="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+        <section
+          aria-labelledby="notifications-heading"
+          class="rounded-lg border border-gray-200 bg-white p-6"
+        >
+          <h2 id="notifications-heading" class="text-base font-semibold text-gray-900">
+            Notifications
+          </h2>
+          <p class="mt-1 text-sm text-gray-600">Choose what lands in your inbox.</p>
+          <ul class="mt-6 divide-y divide-gray-200">
+            <li class="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
               <div>
-                <p id="email-notifications-label" class="text-sm font-medium text-gray-900">
+                <p id="email-notifications-toggle-label" class="text-sm font-medium text-gray-900">
                   Email notifications
                 </p>
-                <p id="email-notifications-description" class="text-xs text-gray-600">
+                <p id="email-notifications-toggle-description" class="text-xs text-gray-600">
                   Get notified when a customer places an order.
                 </p>
               </div>
-
               <label
                 for="email-notifications-toggle"
-                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600"
+                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600 has-focus-visible:ring-2 has-focus-visible:ring-indigo-600 has-focus-visible:ring-offset-2"
               >
                 <input
                   type="checkbox"
                   id="email-notifications-toggle"
-                  aria-labelledby="email-notifications-label"
-                  aria-describedby="email-notifications-description"
+                  aria-labelledby="email-notifications-toggle-label"
+                  aria-describedby="email-notifications-toggle-description"
                   role="switch"
                   checked
                   class="peer sr-only"
                 />
-
                 <span
                   class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6"
                 ></span>
               </label>
             </li>
-
-            <li class="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+            <li class="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
               <div>
-                <p id="product-updates-label" class="text-sm font-medium text-gray-900">
+                <p id="product-updates-toggle-label" class="text-sm font-medium text-gray-900">
                   Product updates
                 </p>
-                <p id="product-updates-description" class="text-xs text-gray-600">
+                <p id="product-updates-toggle-description" class="text-xs text-gray-600">
                   Occasional emails about new features.
                 </p>
               </div>
-
               <label
                 for="product-updates-toggle"
-                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600"
+                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600 has-focus-visible:ring-2 has-focus-visible:ring-indigo-600 has-focus-visible:ring-offset-2"
               >
                 <input
                   type="checkbox"
                   id="product-updates-toggle"
-                  aria-labelledby="product-updates-label"
-                  aria-describedby="product-updates-description"
+                  aria-labelledby="product-updates-toggle-label"
+                  aria-describedby="product-updates-toggle-description"
                   role="switch"
                   class="peer sr-only"
                 />
-
                 <span
                   class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6"
                 ></span>
               </label>
             </li>
-
-            <li class="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+            <li class="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
               <div>
-                <p id="weekly-summary-label" class="text-sm font-medium text-gray-900">
+                <p id="weekly-summary-toggle-label" class="text-sm font-medium text-gray-900">
                   Weekly summary
                 </p>
-                <p id="weekly-summary-description" class="text-xs text-gray-600">
+                <p id="weekly-summary-toggle-description" class="text-xs text-gray-600">
                   A digest of revenue and orders every Monday.
                 </p>
               </div>
-
               <label
                 for="weekly-summary-toggle"
-                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600"
+                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600 has-focus-visible:ring-2 has-focus-visible:ring-indigo-600 has-focus-visible:ring-offset-2"
               >
                 <input
                   type="checkbox"
                   id="weekly-summary-toggle"
-                  aria-labelledby="weekly-summary-label"
-                  aria-describedby="weekly-summary-description"
+                  aria-labelledby="weekly-summary-toggle-label"
+                  aria-describedby="weekly-summary-toggle-description"
                   role="switch"
                   checked
                   class="peer sr-only"
                 />
-
                 <span
                   class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6"
                 ></span>
               </label>
             </li>
           </ul>
-        </div>
+        </section>
 
-        <div class="rounded-lg border border-red-200 bg-white p-6">
-          <h2 class="text-sm font-medium text-gray-900">Danger zone</h2>
-
-          <p class="mt-2 text-sm text-gray-600">
-            Deleting your team removes all customers, orders, and billing history. This cannot be
-            undone.
+        <section
+          aria-labelledby="danger-heading"
+          class="rounded-lg border border-red-200 bg-white p-6"
+        >
+          <h2 id="danger-heading" class="text-base font-semibold text-gray-900">Delete team</h2>
+          <p class="mt-1 text-sm text-gray-600">
+            This removes all customers, orders and billing history, and cannot be undone.
           </p>
-
           <button
             type="button"
-            class="mt-4 inline-block rounded-md border border-red-200 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50"
+            class="mt-4 rounded-md border border-red-200 px-4 py-2 text-sm font-medium text-red-700 transition-colors hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-700 focus-visible:ring-offset-2"
           >
             Delete team
           </button>
-        </div>
+        </section>
       </main>
     </div>
 
@@ -301,6 +343,13 @@
       function setSidebarOpen(isOpen) {
         document.body.dataset.sidebar = isOpen ? 'open' : 'closed'
         sidebarToggle.setAttribute('aria-expanded', String(isOpen))
+
+        if (isOpen) {
+          // The panel turns visible one frame into the transition, so focus after that
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => document.querySelector('#app-sidebar a')?.focus()),
+          )
+        }
       }
 
       sidebarToggle.addEventListener('click', () => {

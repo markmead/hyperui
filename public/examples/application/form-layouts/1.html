@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sectioned - Form layouts - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-4xl p-6">
+    <form action="#" class="divide-y divide-gray-200">
+      <section
+        aria-labelledby="profile-heading"
+        class="grid grid-cols-1 gap-6 py-8 first:pt-0 md:grid-cols-3"
+      >
+        <div>
+          <h2 id="profile-heading" class="text-base font-semibold text-gray-900">Profile</h2>
+          <p class="mt-1 text-sm text-gray-600">This is shown to the rest of your team.</p>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:col-span-2">
+          <div>
+            <label for="full-name" class="block text-sm font-medium text-gray-700">Full name</label>
+            <input
+              type="text"
+              id="full-name"
+              autocomplete="name"
+              value="Priya Natarajan"
+              class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+            />
+          </div>
+          <div>
+            <label for="email-address" class="block text-sm font-medium text-gray-700"
+              >Email address</label
+            >
+            <input
+              type="email"
+              id="email-address"
+              autocomplete="email"
+              value="priya@orbitly.com"
+              class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+            />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
+            <textarea
+              id="bio"
+              rows="3"
+              aria-describedby="bio-hint"
+              class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+            >
+Head of operations at Orbitly.</textarea>
+            <p id="bio-hint" class="mt-1 text-xs text-gray-600">
+              A short line about your role. Up to 160 characters.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section
+        aria-labelledby="regional-heading"
+        class="grid grid-cols-1 gap-6 py-8 md:grid-cols-3"
+      >
+        <div>
+          <h2 id="regional-heading" class="text-base font-semibold text-gray-900">Regional</h2>
+          <p class="mt-1 text-sm text-gray-600">Dates, times and currency use these settings.</p>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:col-span-2">
+          <div>
+            <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
+            <select
+              id="language"
+              class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+            >
+              <option selected>English</option>
+              <option>Deutsch</option>
+              <option>Français</option>
+            </select>
+          </div>
+          <div>
+            <label for="timezone" class="block text-sm font-medium text-gray-700">Time zone</label>
+            <select
+              id="timezone"
+              class="mt-1 w-full rounded-md border-gray-200 text-sm text-gray-900 shadow-xs"
+            >
+              <option selected>London (GMT)</option>
+              <option>New York (EST)</option>
+              <option>Tokyo (JST)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div class="flex justify-end gap-3 pt-6">
+        <button
+          type="button"
+          class="rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </body>
+</html>

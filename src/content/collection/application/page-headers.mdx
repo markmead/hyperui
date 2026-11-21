@@ -1,0 +1,37 @@
+---
+title: Page headers
+description: Page header components built with Tailwind CSS for the top of an application page, with a page title, a main action, a menu toggle for responsive sidebars, breadcrumbs with a description and tabs for sectioned pages like settings.
+category: application
+slug: page-headers
+wrapper: h-[200px]
+terms:
+  - page header
+  - top bar
+  - app bar
+  - title
+  - toolbar
+components:
+  - title: Base
+    description: A page title with the main action
+    dark: true
+  - title: With menu toggle
+    description: A menu button for a sidebar that becomes a drawer below the lg breakpoint
+    dark: true
+  - title: With breadcrumbs and description
+    description: A detail page header with breadcrumbs, a description and two actions
+    dark: true
+  - title: With tabs
+    description: A title, a main action and tab links for sections like settings
+    dark: true
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>
