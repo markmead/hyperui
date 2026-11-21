@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggles and danger zone (dark) - Form layouts - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-4xl p-6 dark:bg-gray-900">
+    <div class="space-y-6">
+      <form
+        action="#"
+        aria-labelledby="alerts-heading"
+        class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900"
+      >
+        <h2 id="alerts-heading" class="text-base font-semibold text-gray-900 dark:text-white">
+          Notifications
+        </h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+          Choose what lands in your inbox.
+        </p>
+        <ul class="mt-6 divide-y divide-gray-200 dark:divide-gray-700">
+          <li class="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
+            <div>
+              <p id="new-orders-label" class="text-sm font-medium text-gray-900 dark:text-white">
+                New orders
+              </p>
+              <p id="new-orders-description" class="text-xs text-gray-600 dark:text-gray-300">
+                Get notified when a customer places an order.
+              </p>
+            </div>
+            <label
+              for="new-orders"
+              class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600 has-focus-visible:ring-2 has-focus-visible:ring-indigo-600 has-focus-visible:ring-offset-2 dark:bg-gray-700 dark:has-checked:bg-indigo-300 dark:has-focus-visible:ring-indigo-300"
+            >
+              <input
+                type="checkbox"
+                id="new-orders"
+                aria-labelledby="new-orders-label"
+                aria-describedby="new-orders-description"
+                role="switch"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6 dark:bg-gray-900"
+              ></span>
+            </label>
+          </li>
+          <li class="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
+            <div>
+              <p id="product-news-label" class="text-sm font-medium text-gray-900 dark:text-white">
+                Product updates
+              </p>
+              <p id="product-news-description" class="text-xs text-gray-600 dark:text-gray-300">
+                Occasional emails about new features.
+              </p>
+            </div>
+            <label
+              for="product-news"
+              class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600 has-focus-visible:ring-2 has-focus-visible:ring-indigo-600 has-focus-visible:ring-offset-2 dark:bg-gray-700 dark:has-checked:bg-indigo-300 dark:has-focus-visible:ring-indigo-300"
+            >
+              <input
+                type="checkbox"
+                id="product-news"
+                aria-labelledby="product-news-label"
+                aria-describedby="product-news-description"
+                role="switch"
+                class="peer sr-only"
+              />
+              <span
+                class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6 dark:bg-gray-900"
+              ></span>
+            </label>
+          </li>
+          <li class="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
+            <div>
+              <p id="weekly-digest-label" class="text-sm font-medium text-gray-900 dark:text-white">
+                Weekly summary
+              </p>
+              <p id="weekly-digest-description" class="text-xs text-gray-600 dark:text-gray-300">
+                A digest of revenue and orders every Monday.
+              </p>
+            </div>
+            <label
+              for="weekly-digest"
+              class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-gray-200 transition has-checked:bg-indigo-600 has-focus-visible:ring-2 has-focus-visible:ring-indigo-600 has-focus-visible:ring-offset-2 dark:bg-gray-700 dark:has-checked:bg-indigo-300 dark:has-focus-visible:ring-indigo-300"
+            >
+              <input
+                type="checkbox"
+                id="weekly-digest"
+                aria-labelledby="weekly-digest-label"
+                aria-describedby="weekly-digest-description"
+                role="switch"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="size-4 translate-x-1 rounded-full bg-white transition peer-checked:translate-x-6 rtl:-translate-x-1 rtl:peer-checked:-translate-x-6 dark:bg-gray-900"
+              ></span>
+            </label>
+          </li>
+        </ul>
+        <div class="mt-6 flex justify-end">
+          <button
+            type="submit"
+            class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:ring-gray-50"
+          >
+            Save preferences
+          </button>
+        </div>
+      </form>
+      <section
+        aria-labelledby="danger-heading"
+        class="rounded-lg border border-red-200 bg-white p-6 dark:border-red-700 dark:bg-gray-900"
+      >
+        <h2 id="danger-heading" class="text-base font-semibold text-gray-900 dark:text-white">
+          Delete team
+        </h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+          This removes all customers, orders and billing history, and cannot be undone.
+        </p>
+        <button
+          type="button"
+          class="mt-4 rounded-md border border-red-200 px-4 py-2 text-sm font-medium text-red-700 transition-colors hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-700 focus-visible:ring-offset-2 dark:border-red-700 dark:text-red-200 dark:hover:bg-red-800 dark:focus-visible:ring-red-200"
+        >
+          Delete team
+        </button>
+      </section>
+    </div>
+  </body>
+</html>

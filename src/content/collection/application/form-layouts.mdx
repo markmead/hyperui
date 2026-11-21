@@ -1,0 +1,36 @@
+---
+title: Form layouts
+description: Sectioned settings form layouts built with Tailwind CSS, with two-column sections, stacked cards with their own save buttons, toggle lists and a danger zone, made from labelled inputs, selects and textareas.
+category: application
+slug: form-layouts
+wrapper: h-[500px]
+terms:
+  - form
+  - settings
+  - profile
+  - account
+  - preferences
+components:
+  - title: Sectioned
+    description: Sections with a heading and description beside the fields, and one save bar
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Stacked cards
+    description: Cards with their own fields and save button, for account and password settings
+    dark: true
+    plugins: ['@tailwindcss/forms']
+  - title: Toggles and danger zone
+    description: A toggle list for notification preferences and a destructive action in its own section
+    dark: true
+---
+
+import BaseHero from '../../../components/BaseHero.astro'
+import BackLink from '../../../components/BackLink.astro'
+
+<BaseHero title={frontmatter.title} description={frontmatter.description}>
+  <BackLink
+    slot="back"
+    href={`/components/${frontmatter.category}`}
+    label={`Back to ${frontmatter.category} components`}
+  />
+</BaseHero>

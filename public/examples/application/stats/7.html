@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title, value, from value, themed growth stat and sparkline - Stats - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto flex max-w-lg flex-col gap-4 p-6">
+    <article class="flex flex-col gap-4 rounded-lg border border-gray-100 bg-white p-6">
+      <div class="self-end">
+        <div class="inline-flex gap-2 rounded-sm bg-green-100 p-1 text-green-800">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            />
+          </svg>
+          <span class="sr-only">Increase: </span>
+          <span class="text-xs font-medium">12.4%</span>
+        </div>
+      </div>
+      <div>
+        <strong class="block text-sm font-medium text-gray-600">Monthly revenue</strong>
+        <p>
+          <span class="text-2xl font-medium text-gray-900">$48,204</span>
+          <span class="text-xs text-gray-600">from $42,910</span>
+        </p>
+      </div>
+      <svg
+        role="img"
+        aria-label="Monthly revenue over the last six months, rising from $28,000 to $48,204"
+        viewBox="0 0 120 40"
+        preserveAspectRatio="none"
+        class="h-10 w-full"
+      >
+        <polyline
+          points="0,32 24,24 48,28 72,16 96,12 120,4"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          vector-effect="non-scaling-stroke"
+          class="stroke-emerald-600"
+        />
+      </svg>
+    </article>
+    <article class="flex flex-col gap-4 rounded-lg border border-gray-100 bg-white p-6">
+      <div class="self-end">
+        <div class="inline-flex gap-2 rounded-sm bg-red-100 p-1 text-red-700">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+            />
+          </svg>
+          <span class="sr-only">Decrease: </span>
+          <span class="text-xs font-medium">2.6%</span>
+        </div>
+      </div>
+      <div>
+        <strong class="block text-sm font-medium text-gray-600">Churn rate</strong>
+        <p>
+          <span class="text-2xl font-medium text-gray-900">1.8%</span>
+          <span class="text-xs text-gray-600">from 2.1%</span>
+        </p>
+      </div>
+      <svg
+        role="img"
+        aria-label="Churn rate over the last six months, falling from 2.9% to 1.8%"
+        viewBox="0 0 120 40"
+        preserveAspectRatio="none"
+        class="h-10 w-full"
+      >
+        <polyline
+          points="0,6 24,12 48,10 72,22 96,26 120,34"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          vector-effect="non-scaling-stroke"
+          class="stroke-red-600"
+        />
+      </svg>
+    </article>
+  </body>
+</html>
