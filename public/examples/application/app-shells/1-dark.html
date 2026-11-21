@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar with page header (dark) - App shells - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body
+    data-sidebar="closed"
+    class="group flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-950"
+  >
+    <div
+      data-sidebar-overlay
+      aria-hidden="true"
+      class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[sidebar=open]:block lg:hidden dark:bg-black/60"
+    ></div>
+
+    <div
+      id="app-sidebar"
+      class="fixed inset-y-0 start-0 z-40 flex w-64 -translate-x-full flex-col justify-between overflow-y-auto border-e border-gray-200 bg-white transition-[transform,visibility] duration-300 group-data-[sidebar=open]:translate-x-0 max-lg:invisible max-lg:group-data-[sidebar=open]:visible lg:static lg:shrink-0 lg:translate-x-0 max-lg:rtl:translate-x-full max-lg:rtl:group-data-[sidebar=open]:translate-x-0 dark:border-gray-700 dark:bg-gray-900"
+    >
+      <div class="p-4">
+        <span
+          class="grid h-12 w-32 place-content-center rounded-lg bg-gray-100 text-sm text-gray-600 dark:bg-gray-800 dark:text-gray-300"
+          >Logo</span
+        >
+
+        <nav aria-label="Main" class="mt-4">
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="#"
+                aria-current="page"
+                class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-white"
+                >Overview</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                >Customers</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                >Orders</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                >Billing</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                >Settings</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sticky inset-x-0 bottom-0 border-t border-gray-200 dark:border-gray-700">
+        <a
+          href="#"
+          class="flex items-center gap-2 bg-white p-4 transition-colors hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800"
+        >
+          <img
+            alt=""
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=160&h=160"
+            class="size-10 rounded-full object-cover"
+          />
+
+          <p class="text-xs text-gray-900 dark:text-white">
+            <strong class="block font-medium">Priya Natarajan</strong>
+
+            <span class="text-gray-600 dark:text-gray-300">priya@orbitly.com</span>
+          </p>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-1 flex-col overflow-y-auto">
+      <header
+        class="flex items-center justify-between gap-4 border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-900"
+      >
+        <div class="flex items-center gap-4">
+          <button
+            type="button"
+            id="sidebar-toggle"
+            aria-expanded="false"
+            aria-controls="app-sidebar"
+            class="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 lg:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:focus-visible:ring-gray-50"
+          >
+            <span class="sr-only">Toggle menu</span>
+
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <h1 class="text-lg font-semibold text-gray-900 dark:text-white">Overview</h1>
+        </div>
+
+        <a
+          href="#"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:ring-gray-50"
+          >New report</a
+        >
+      </header>
+
+      <main class="flex-1 p-6">
+        <div
+          class="h-full min-h-48 rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700"
+        ></div>
+      </main>
+    </div>
+
+    <script>
+      const sidebarToggle = document.getElementById('sidebar-toggle')
+      const sidebarPanel = document.getElementById('app-sidebar')
+      const sidebarOverlay = document.querySelector('[data-sidebar-overlay]')
+
+      function setSidebarOpen(isOpen) {
+        document.body.dataset.sidebar = isOpen ? 'open' : 'closed'
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen))
+
+        if (isOpen) {
+          // The panel turns visible one frame into the transition, so focus after that
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => sidebarPanel.querySelector('a')?.focus()),
+          )
+        }
+      }
+
+      sidebarToggle.addEventListener('click', () => {
+        setSidebarOpen(sidebarToggle.getAttribute('aria-expanded') !== 'true')
+      })
+
+      sidebarOverlay.addEventListener('click', () => setSidebarOpen(false))
+
+      document.addEventListener('keydown', (keyboardEvent) => {
+        if (keyboardEvent.key === 'Escape' && document.body.dataset.sidebar === 'open') {
+          setSidebarOpen(false)
+          sidebarToggle.focus()
+        }
+      })
+    </script>
+  </body>
+</html>
