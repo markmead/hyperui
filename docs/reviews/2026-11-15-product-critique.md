@@ -207,12 +207,14 @@ The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies
 
 ### Next
 
-1. **Templates:**
-   - No new landing page variants until the developer tool and pricing pages have copy data. Landing pages are the most common free template, and the SaaS one has fewer copies than the dashboard, portfolio and storefront.
-   - Count page views per template alongside copies, so a template nobody copies can be told apart from one nobody finds.
-   - The analytics dashboard's card screenshot still shows the old Overview. Regenerate it with `pnpm thumbnails analytics-dashboard` where the photos can load, and run `pnpm thumbnails <slug>` for each new template card.
-2. **Agents:**
-   - Split the agent export by user agent, and include `/examples/*`. This is the AI signal to track, not Copy for AI counts, which are 7% of copies.
-   - Watch `/mcp` and `/ai` requests in Cloudflare, and whether the skill shows up on skills.sh. Registry and directory listings (the official MCP Registry, skills.sh) are optional and can wait for signs of use.
-   - Agents may not pick `search_components` unprompted, without "HyperUI" in the prompt. Rewording the tool description to say when to use it might help. Try it on a real prompt first.
-3. **Cuts:** let the copy data run 3–4 weeks, then review the cut and trim lists in section 4 using unique copies. The first four days already point at form controls, pricing variants and most of the charts.
+**To build**
+
+- Count page views per template alongside copies, so a template nobody copies can be told apart from one nobody finds.
+- Regenerate the analytics dashboard's card screenshot, which still shows the old Overview: `pnpm thumbnails analytics-dashboard`, where the photos can load.
+
+**Waiting on data**
+
+- Split the agent export by user agent, and include `/examples/*`. This is the AI signal to track, not Copy for AI counts, which are 7% of copies. Watch `/mcp` and `/ai` in Cloudflare too, and whether the skill appears on skills.sh.
+- In 3–4 weeks, review the cut and trim lists in section 4 using unique copies. The first four days already point at form controls, pricing variants and most of the charts.
+
+**Until then:** no new landing page variants until the developer tool and pricing pages have copy data.
