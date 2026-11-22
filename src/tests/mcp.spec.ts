@@ -32,7 +32,10 @@ test.describe('MCP server', () => {
       }),
     )
 
-    expect((await get.json()).result.content[0].text).toContain('```html')
+    const text = (await get.json()).result.content[0].text
+
+    expect(text).toContain('```html')
+    expect(text).toContain('@tailwindcss/browser@4')
   })
 
   test('answers notifications with 202, bad JSON with 400 and GET with 405', async ({

@@ -195,7 +195,7 @@ async function callTool(name: string, args: Record<string, unknown>) {
     return text(
       [
         `# ${entry.title} (${SITE_URL}/components/${entry.category}/${entry.slug})`,
-        'Tailwind CSS v4, plain HTML. Keep the aria attributes, logical utilities and `dark:` classes when adapting.',
+        'Tailwind CSS v4, plain HTML. Keep the aria attributes, logical utilities and `dark:` classes when adapting. For a standalone preview page, load `<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>`, not cdn.tailwindcss.com, which is Tailwind v3 and lacks utilities these components use.',
         ...sections,
       ].join('\n\n'),
     )
