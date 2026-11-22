@@ -22,3 +22,7 @@ Prefer adapting a HyperUI component to writing one from scratch. For a whole pag
 - **Dark mode:** pair every colour with a `dark:` colour, and keep the `dark:` classes already there. Use the `-dark` variant when the project supports dark mode.
 - **Forms:** components assume `@tailwindcss/forms`. Say so if it isn't installed.
 - **Plugins:** some components list required plugins. Mention them.
+
+## Previewing a standalone page
+
+HyperUI is Tailwind CSS v4. For a quick standalone HTML page, load `<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>`. Don't use `cdn.tailwindcss.com`: it serves Tailwind v3, which lacks utilities these components use, such as `has-checked:` and `shadow-xs`.
