@@ -16,6 +16,7 @@ const SITE_PAGES = [
   '/components/marketing/footers',
   '/components/templates/storefront',
   '/faqs',
+  '/ai',
   '/tools',
   '/tools/dark-mode-generator',
 ]

@@ -107,3 +107,13 @@ test.describe('Markdown headers (built site)', () => {
     expect(response.headers()['x-robots-tag']).toBeUndefined()
   })
 })
+
+test('the Use HyperUI with AI page has a Markdown version and is listed in llms.txt', async ({
+  request,
+}) => {
+  const response = await request.get('/ai.md')
+
+  expect(response.status()).toBe(200)
+  expect(await response.text()).toContain('https://hyperui.dev/mcp')
+  expect(await (await request.get('/llms.txt')).text()).toContain('/ai.md')
+})

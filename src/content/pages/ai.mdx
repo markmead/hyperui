@@ -1,0 +1,51 @@
+---
+title: Use HyperUI with AI
+description: Three ways to give your AI assistant HyperUI components, from a one-line prompt to an MCP server and a skill.
+slug: ai
+pubDate: 2026-11-22
+updatedDate: 2026-11-22
+terms:
+  - ai
+  - agents
+  - mcp
+  - skill
+  - llms
+---
+
+HyperUI is built for people and for the agents they work with. Every component is plain HTML with Tailwind CSS v4 classes, available as Markdown, and all of it is free with nothing to sign up for.
+
+## Point your agent at HyperUI
+
+Paste this into Claude, Cursor, ChatGPT or any coding agent:
+
+```
+Build with Tailwind components from https://hyperui.dev/llms.txt
+```
+
+[llms.txt](/llms.txt) lists every page. Each page has a Markdown version at the same path with `.md` added, for example `/components/marketing/pricing.md`, and it includes the full HTML of every variant, light and dark. [llms-full.txt](/llms-full.txt) has all of them in one file.
+
+## Connect the MCP server
+
+Add this as a remote MCP server in your client:
+
+```
+https://hyperui.dev/mcp
+```
+
+It needs no account or key. Your agent gets three tools:
+
+- `list_categories` lists the component categories.
+- `search_components` finds components by keyword, such as "pricing" or "file upload".
+- `get_component` returns the HTML for a component, with an optional variant number and a dark mode option.
+
+## Install the skill
+
+```bash
+npx skills add markmead/hyperui
+```
+
+The skill tells your agent to start from HyperUI before writing Tailwind from scratch, and to keep the things that make the components work: accessibility attributes and focus styles, logical utilities for right-to-left, and paired `dark:` classes. It works on its own, with or without the MCP server. The file is [`skills/hyperui/SKILL.md`](https://github.com/markmead/hyperui/blob/main/skills/hyperui/SKILL.md).
+
+## Copy for AI
+
+Every component and template page has a "Copy for AI" option. It copies the markup with notes on accessibility, right-to-left and dark mode, ready to paste into a chat.

@@ -30,7 +30,9 @@ const { title, description, updatedDate } = data
         </p>
       </header>
 
-      <div class="prose prose-headings:font-medium mt-8 max-w-none border-t border-gray-200 pt-8">
+      <div
+        class="prose prose-headings:font-medium prose-pre:break-words prose-pre:whitespace-pre-wrap mt-8 max-w-none border-t border-gray-200 pt-8"
+      >
         <slot />
       </div>
     </article>
