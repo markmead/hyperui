@@ -12,6 +12,16 @@ There is no package to install.
 2. Copy the code.
 3. Paste it into your project.
 
+## Use HyperUI with AI
+
+See [hyperui.dev/ai](https://hyperui.dev/ai).
+
+Every page on hyperui.dev has a Markdown version, and there is an MCP server and a skill for agents.
+
+- **Prompt:** `Build with Tailwind components from https://hyperui.dev/llms.txt`
+- **MCP server:** add `https://hyperui.dev/mcp` as a remote MCP server. Tools: `list_categories`, `search_components` and `get_component`.
+- **Skill:** `npx skills add markmead/hyperui` installs [`skills/hyperui`](./skills/hyperui/SKILL.md).
+
 ## Run the site locally
 
 ```bash

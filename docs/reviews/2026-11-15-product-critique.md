@@ -220,6 +220,6 @@ The first export from the `hyperui_copies` dataset covers 3.7 days: **401 copies
    - Run `pnpm thumbnails <slug>` for each new template card.
 2. **Agents:**
    - Split the agent export by user agent, and include `/examples/*`. This is the AI signal to track, not Copy for AI counts, which are 7% of copies.
-   - Ship the MCP server and a published skill, sooner rather than later: humans on the site aren't asking for AI-formatted output. The `pnpm dark` engine could back an MCP tool or CLI.
+   - ~~Ship the MCP server and a published skill~~ (done: `/mcp` and `skills/hyperui/SKILL.md`). Sooner rather than later: humans on the site aren't asking for AI-formatted output. The `pnpm dark` engine could back an MCP tool or CLI.
 3. **The checker:** the engine is done (#809). The page, retiring the generator page and the MCP server are planned in `docs/plans/2026-11-18-tailwind-checker.md`, paused while the focus moves to what the analytics show.
 4. **Cuts:** let the copy data run 3–4 weeks, then review the cut and trim lists in section 4 using unique copies. The first four days already point at form controls, pricing variants and most of the charts.

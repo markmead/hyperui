@@ -51,6 +51,10 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 `TemplateInterest.astro` adds an "I'm interested" button to a template's page, placed in that template's MDX file, never in the template markup. A click sends a beacon to `/api/interest` (`src/pages/api/interest.ts`), which writes only the template slug to the `hyperui_interest` dataset (`INTEREST_EVENTS` binding).
 
+### MCP Server and Skill
+
+`src/pages/mcp.ts` is a stateless remote MCP server at `/mcp` (JSON-RPC over POST, server-rendered). Tools: `list_categories`, `search_components` and `get_component`. `skills/hyperui/SKILL.md` is the published agent skill.
+
 ### Page Routing
 
 - `/components/{category}` → `src/pages/components/{category}/index.astro`

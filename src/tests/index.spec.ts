@@ -120,3 +120,12 @@ test('every template card has a thumbnail', async ({ page, request }) => {
     expect(response.status(), `${src} is missing. Run pnpm thumbnails`).toBe(200)
   }
 })
+
+test('the homepage links to the Use HyperUI with AI page', async ({ page }) => {
+  await page.goto('')
+  await page.getByRole('link', { name: 'View more AI examples' }).click()
+
+  await expect(page).toHaveURL(pageURL('/ai'))
+  await expect(page.getByRole('heading', { level: 1, name: 'Use HyperUI with AI' })).toBeVisible()
+  await expect(page.getByText('https://hyperui.dev/mcp').first()).toBeVisible()
+})
