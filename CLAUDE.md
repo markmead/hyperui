@@ -67,6 +67,11 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 2. Create the corresponding HTML file(s) in `public/examples/{category}/{slug}/`. Give each a `<title>` in the form `{component title} - {collection title} - HyperUI`, adding ` (dark)` after the component title for dark files.
 3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file.
 
+## Templates
+
+- Only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
+- Support Inbox stays, as a preview of the application components working together.
+
 ## PR Title Format
 
 ```
