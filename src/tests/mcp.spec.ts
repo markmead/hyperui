@@ -13,7 +13,6 @@ test.describe('MCP server', () => {
       'list_categories',
       'search_components',
       'get_component',
-      'check_markup',
     ])
   })
 
@@ -34,22 +33,6 @@ test.describe('MCP server', () => {
     )
 
     expect((await get.json()).result.content[0].text).toContain('```html')
-  })
-
-  test('checks markup', async ({ request }) => {
-    const response = await request.post(
-      '/mcp',
-      rpc('tools/call', {
-        name: 'check_markup',
-        arguments: { html: '<button class="pl-4 outline-none">Hi</button>' },
-      }),
-    )
-    const result = JSON.parse((await response.json()).result.content[0].text)
-
-    expect(result.findings.map((finding: { rule: string }) => finding.rule)).toContain(
-      'focus-outline-removed',
-    )
-    expect(result.fixedHtml).toContain('ps-4')
   })
 
   test('answers notifications with 202, bad JSON with 400 and GET with 405', async ({

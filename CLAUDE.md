@@ -53,7 +53,7 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 ### MCP Server and Skill
 
-`src/pages/mcp.ts` is a stateless remote MCP server at `/mcp` (JSON-RPC over POST, server-rendered). Tools: `list_categories`, `search_components`, `get_component` and `check_markup`, which wraps `src/lib/checker/`. `skills/hyperui/SKILL.md` is the published agent skill; keep its rules in line with the checker.
+`src/pages/mcp.ts` is a stateless remote MCP server at `/mcp` (JSON-RPC over POST, server-rendered). Tools: `list_categories`, `search_components` and `get_component`. `skills/hyperui/SKILL.md` is the published agent skill.
 
 ### Page Routing
 

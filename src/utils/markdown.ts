@@ -388,7 +388,7 @@ export async function renderLlmsTxt(): Promise<string> {
       `> ${SEO_DESCRIPTION_SITE}`,
       [
         'HyperUI is a collection of free, open source Tailwind CSS v4 components. Each component is plain HTML with Tailwind classes: copy it into your project, there is nothing to install. Many components have a dark mode variant.',
-        `Every page on ${SITE_URL} has a Markdown version at the same path with \`.md\` appended (the home page is ${SITE_URL}/index.md). Component pages include the full HTML for every variant. ${SITE_URL}/llms-full.txt contains all of them in one file. Agents can also use the MCP server at ${SITE_URL}/mcp (search_components, get_component, check_markup).`,
+        `Every page on ${SITE_URL} has a Markdown version at the same path with \`.md\` appended (the home page is ${SITE_URL}/index.md). Component pages include the full HTML for every variant. ${SITE_URL}/llms-full.txt contains all of them in one file. Agents can also use the MCP server at ${SITE_URL}/mcp (search_components, get_component).`,
       ].join('\n\n'),
       ...sections,
       ['## Optional', `- [Home](${SITE_URL}/index.md): ${SEO_DESCRIPTION_SITE}`].join('\n\n'),

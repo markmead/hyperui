@@ -1,9 +1,6 @@
 import type { APIRoute } from 'astro'
 import { getCollection } from 'astro:content'
 
-import darkRules from '../../scripts/dark-mode.config.json'
-import { applyFixes, checkMarkup, findingsForAi } from '../lib/checker/index.js'
-import { normalizeConfig } from '../lib/dark-mode/config.js'
 import { readComponentMarkup } from '../utils/componentMarkup'
 import { COMPONENT_CATEGORIES, SITE_URL } from '../utils/markdown'
 
@@ -12,12 +9,12 @@ import { COMPONENT_CATEGORIES, SITE_URL } from '../utils/markdown'
  * agent can search HyperUI and pull components into what it is building. It
  * has no sessions, no accounts and stores nothing.
  *
- * Tools: list_categories, search_components, get_component, check_markup.
+ * Tools: list_categories, search_components, get_component.
  */
 export const prerender = false
 
 const PROTOCOL_VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05']
-const MAX_MARKUP_LENGTH = 200_000
+const MAX_BODY_LENGTH = 100_000
 const MAX_RESULTS = 20
 
 type Category = (typeof COMPONENT_CATEGORIES)[number]
@@ -30,8 +27,6 @@ type Entry = {
   terms: string[]
   components: { title: string; description?: string; dark?: boolean; plugins?: string[] }[]
 }
-
-const darkConfig = normalizeConfig(darkRules)
 
 let entries: Promise<Entry[]> | null = null
 
@@ -85,16 +80,6 @@ const TOOLS = [
         dark: { type: 'boolean' },
       },
       required: ['category', 'slug'],
-    },
-  },
-  {
-    name: 'check_markup',
-    description:
-      'Check Tailwind CSS HTML against the rules HyperUI components pass: focus outlines, SVG icons, right-to-left (logical utilities) and dark mode. Returns findings with lines, a prompt listing them, and the fixed HTML.',
-    inputSchema: {
-      type: 'object',
-      properties: { html: { type: 'string', description: 'The markup to check.' } },
-      required: ['html'],
     },
   },
 ]
@@ -216,42 +201,6 @@ async function callTool(name: string, args: Record<string, unknown>) {
     )
   }
 
-  if (name === 'check_markup') {
-    const html = asString(args.html)
-
-    if (!html) {
-      return text('Give some `html`.', true)
-    }
-
-    if (html.length > MAX_MARKUP_LENGTH) {
-      return text('That markup is too large to check. Send up to about 200 KB.', true)
-    }
-
-    const { findings } = checkMarkup(html, darkConfig)
-
-    return text(
-      JSON.stringify(
-        {
-          findings: findings.map(({ group, rule, line, message, why, snippet }) => ({
-            group,
-            rule,
-            line,
-            message,
-            why,
-            snippet,
-          })),
-          prompt: findingsForAi(findings),
-          fixedHtml: applyFixes(
-            html,
-            findings.map(({ fix }) => fix),
-          ),
-        },
-        null,
-        2,
-      ),
-    )
-  }
-
   return null
 }
 
@@ -280,7 +229,7 @@ async function handle(message: Message) {
       protocolVersion: PROTOCOL_VERSIONS.includes(requested) ? requested : PROTOCOL_VERSIONS[0],
       capabilities: { tools: {} },
       serverInfo: { name: 'hyperui', version: '1.0.0' },
-      instructions: `Free Tailwind CSS v4 components from ${SITE_URL}. Search with search_components, fetch with get_component, and run check_markup on generated HTML.`,
+      instructions: `Free Tailwind CSS v4 components from ${SITE_URL}. Search with search_components, fetch with get_component.`,
     })
   }
 
@@ -307,7 +256,7 @@ const JSON_HEADERS = { 'Content-Type': 'application/json', 'Access-Control-Allow
 export const POST: APIRoute = async ({ request }) => {
   const raw = await request.text()
 
-  if (raw.length > MAX_MARKUP_LENGTH * 2) {
+  if (raw.length > MAX_BODY_LENGTH) {
     return new Response(null, { status: 413 })
   }
 

@@ -22,7 +22,3 @@ Prefer adapting a HyperUI component to writing one from scratch. For a whole pag
 - **Dark mode:** pair every colour with a `dark:` colour, and keep the `dark:` classes already there. Use the `-dark` variant when the project supports dark mode.
 - **Forms:** components assume `@tailwindcss/forms`. Say so if it isn't installed.
 - **Plugins:** some components list required plugins. Mention them.
-
-## Check your output
-
-Run generated markup through the HyperUI checker, the `check_markup` MCP tool. It returns findings with line numbers, a prompt for fixes and the fixed HTML. Apply the fixes before showing the result.
