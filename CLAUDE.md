@@ -53,7 +53,7 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 ### MCP Server and Skill
 
-`src/pages/mcp.ts` is a stateless remote MCP server at `/mcp` (JSON-RPC over POST, server-rendered). Tools: `list_categories`, `search_components` and `get_component`. `skills/hyperui/SKILL.md` is the published agent skill.
+`src/pages/mcp.ts` is a stateless remote MCP server at `/mcp` (JSON-RPC over POST, server-rendered). Tools: `list_categories`, `search_components` and `get_component`. Each request is counted in the `hyperui_mcp` dataset (`MCP_EVENTS` binding): the method, the tool, the category and slug for `get_component`, and a coarse client bucket from the user agent. Search queries and anything else about the caller are never stored. `skills/hyperui/SKILL.md` is the published agent skill.
 
 ### Page Routing
 

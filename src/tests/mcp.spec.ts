@@ -55,4 +55,29 @@ test.describe('MCP server', () => {
 
     expect((await response.json()).error.code).toBe(-32602)
   })
+
+  test('answers batches and unusual requests while counting them', async ({ request }) => {
+    const batch = await request.post('/mcp', {
+      headers: { 'User-Agent': 'Cursor/1.0' },
+      data: [
+        { jsonrpc: '2.0', id: 1, method: 'tools/list' },
+        { jsonrpc: '2.0', id: 2, method: 'made/up' },
+        {
+          jsonrpc: '2.0',
+          id: 3,
+          method: 'tools/call',
+          params: { name: 'get_component', arguments: { category: 'x', slug: 'y' } },
+        },
+        null,
+      ],
+    })
+
+    expect(batch.status()).toBe(200)
+
+    const replies = await batch.json()
+
+    expect(replies).toHaveLength(3)
+    expect(replies[1].error.code).toBe(-32601)
+    expect(replies[2].result.isError).toBe(true)
+  })
 })

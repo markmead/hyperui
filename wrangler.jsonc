@@ -15,6 +15,10 @@
     {
       "binding": "INTEREST_EVENTS",
       "dataset": "hyperui_interest"
+    },
+    {
+      "binding": "MCP_EVENTS",
+      "dataset": "hyperui_mcp"
     }
   ],
   "observability": {
