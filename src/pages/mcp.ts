@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import { getCollection } from 'astro:content'
+import { env } from 'cloudflare:workers'
 
 import { readComponentMarkup } from '../utils/componentMarkup'
 import { COMPONENT_CATEGORIES, SITE_URL } from '../utils/markdown'
@@ -10,6 +11,10 @@ import { COMPONENT_CATEGORIES, SITE_URL } from '../utils/markdown'
  * has no sessions, no accounts and stores nothing.
  *
  * Tools: list_categories, search_components, get_component.
+ *
+ * Requests are counted in the `hyperui_mcp` Workers Analytics Engine dataset
+ * (see `countRequest`). Nothing about the caller or what they searched for is
+ * stored.
  */
 export const prerender = false
 
@@ -204,6 +209,70 @@ async function callTool(name: string, args: Record<string, unknown>) {
   return null
 }
 
+const KNOWN_METHODS = new Set(['initialize', 'ping', 'tools/list', 'tools/call'])
+const TOOL_NAMES = new Set(TOOLS.map((tool) => tool.name))
+
+// Coarse client buckets from the user agent. The user agent itself is never stored.
+const CLIENTS: [string, RegExp][] = [
+  ['claude', /claude/i],
+  ['cursor', /cursor/i],
+  ['vscode', /vscode|visual studio code|copilot/i],
+  ['windsurf', /windsurf|codeium/i],
+  ['zed', /\bzed\b/i],
+  ['openai', /openai|chatgpt|codex/i],
+  ['gemini', /gemini|google/i],
+]
+
+function getClient(request: Request) {
+  const agent = request.headers.get('User-Agent')
+
+  if (!agent) {
+    return 'unknown'
+  }
+
+  return CLIENTS.find(([, pattern]) => pattern.test(agent))?.[0] ?? 'other'
+}
+
+/**
+ * Counts one JSON-RPC request. Every value written comes from a fixed list
+ * (methods, tool names, client buckets) or a published component, so a caller
+ * cannot put free text in the dataset. Search queries are never recorded.
+ *
+ * blob1 method, blob2 tool, blob3 category, blob4 slug, blob5 client.
+ * index1 is the tool, or the method when there is none.
+ */
+async function countRequest(message: Message, client: string) {
+  const { id, method } = message
+
+  if (id === undefined || typeof method !== 'string') {
+    return
+  }
+
+  const params = (message.params ?? {}) as Record<string, unknown>
+  const name = asString(params.name)
+  const tool = method === 'tools/call' && TOOL_NAMES.has(name) ? name : ''
+  const args = (params.arguments ?? {}) as Record<string, unknown>
+  let category = ''
+  let slug = ''
+
+  if (tool === 'get_component') {
+    const entry = (await getEntries()).find(
+      (candidate) =>
+        candidate.category === asString(args.category) && candidate.slug === asString(args.slug),
+    )
+
+    category = entry?.category ?? ''
+    slug = entry?.slug ?? ''
+  }
+
+  // The binding is missing under `astro dev`, so counting is skipped there.
+  env.MCP_EVENTS?.writeDataPoint({
+    indexes: [tool || (KNOWN_METHODS.has(method) ? method : 'other')],
+    blobs: [KNOWN_METHODS.has(method) ? method : 'other', tool, category, slug, client],
+    doubles: [1],
+  })
+}
+
 type Message = { jsonrpc?: string; id?: string | number | null; method?: string; params?: unknown }
 
 async function handle(message: Message) {
@@ -272,6 +341,10 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const messages = (Array.isArray(body) ? body : [body]) as Message[]
+  const client = getClient(request)
+
+  await Promise.all(messages.map((message) => countRequest(message ?? {}, client)))
+
   const replies = (await Promise.all(messages.map((message) => handle(message ?? {})))).filter(
     Boolean,
   )
