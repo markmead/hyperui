@@ -13,20 +13,20 @@ for (const theme of ['', '-dark']) {
       const starterPrice = page.locator('strong[data-monthly]').first()
 
       await expect(monthly).toBeChecked()
-      await expect(starterPrice).toHaveText('$12')
+      await expect(starterPrice).toHaveText('$15')
 
       // Radios move with the arrow keys, like any radio group.
       await monthly.focus()
       await page.keyboard.press('ArrowRight')
 
       await expect(yearly).toBeChecked()
-      await expect(starterPrice).toHaveText('$10')
-      await expect(page.getByText('Billed $120 yearly')).toBeVisible()
+      await expect(starterPrice).toHaveText('$12')
+      await expect(page.getByText('Billed $144 yearly')).toBeVisible()
       await expect(page.locator('[data-billing-status]')).toHaveText('Showing yearly prices.')
 
       await page.keyboard.press('ArrowLeft')
 
-      await expect(starterPrice).toHaveText('$12')
+      await expect(starterPrice).toHaveText('$15')
       await expect(page.locator('[data-billing-status]')).toHaveText('Showing monthly prices.')
     })
 
