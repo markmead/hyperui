@@ -8,9 +8,24 @@ terms:
   - form
   - input
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Actions inside', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Actions outside', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Base',
+      description: 'Basic textarea with a label',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Actions inside',
+      description: 'Textarea with clear and save buttons inside the field',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Actions outside',
+      description: 'Textarea with clear and save buttons placed below it',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

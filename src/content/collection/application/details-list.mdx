@@ -6,10 +6,22 @@ slug: details-list
 terms:
   - data
 components:
-  - { title: 'Base', dark: true }
-  - { title: 'Striped', dark: true }
-  - { title: 'Bordered', dark: true }
-  - { title: 'Striped and bordered', dark: true }
+  - {
+      title: 'Base',
+      description: 'Description list of label and value pairs, with no extra styling',
+      dark: true,
+    }
+  - { title: 'Striped', description: 'Description list with alternating striped rows', dark: true }
+  - {
+      title: 'Bordered',
+      description: 'Description list with a border and dividers between rows',
+      dark: true,
+    }
+  - {
+      title: 'Striped and bordered',
+      description: 'Description list with striped rows inside a bordered container',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

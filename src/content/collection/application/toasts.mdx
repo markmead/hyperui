@@ -9,12 +9,20 @@ terms:
   - feedback
   - notification
 components:
-  - { title: 'Success', dark: true }
-  - { title: 'Error', dark: true }
-  - { title: 'Warning', dark: true }
-  - { title: 'Info', dark: true }
-  - { title: 'With action button', dark: true }
-  - { title: 'Standout', dark: { contributors: ['WinnyChang'] } }
+  - { title: 'Success', description: 'Green success toast with a title and message', dark: true }
+  - { title: 'Error', description: 'Red error toast with a title and message', dark: true }
+  - { title: 'Warning', description: 'Yellow warning toast with a title and message', dark: true }
+  - { title: 'Info', description: 'Blue info toast with a title and message', dark: true }
+  - {
+      title: 'With action button',
+      description: 'Info toast with an action button to accept',
+      dark: true,
+    }
+  - {
+      title: 'Standout',
+      description: 'High-contrast toast with a solid background so it stands out',
+      dark: { contributors: ['WinnyChang'] },
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

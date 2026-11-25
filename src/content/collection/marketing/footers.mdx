@@ -7,22 +7,69 @@ terms:
   - layout
   - navigation
 components:
-  - { title: 'Large with newsletter form', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Simple stacked', dark: true }
-  - { title: 'Simple row', dark: true }
-  - { title: 'Call to action with gradient', dark: true }
-  - { title: 'Split with company info, links and image', dark: true }
   - {
+      title: 'Large with newsletter form',
+      description: 'Large footer with a newsletter form, link columns and social links',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Simple stacked',
+      description: 'Simple footer with social links stacked above the copyright',
+      dark: true,
+    }
+  - {
+      title: 'Simple row',
+      description: 'Simple footer with branding on one side and social links in a row',
+      dark: true,
+    }
+  - {
+      title: 'Call to action with gradient',
+      description: 'Footer with a gradient call to action above the links',
+      dark: true,
+    }
+  - {
+      title: 'Split with company info, links and image',
+      description: 'Split footer with contact details, opening hours, links and an image',
+      dark: true,
+    }
+  - {
+      description: 'Split footer with company info, links and a demo request call to action',
       title: 'Split with company info, links and call to action',
       dark: true,
       plugins: ['@tailwindcss/forms'],
     }
-  - { title: 'Newsletter form as priority', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Centered with branding', dark: true }
-  - { title: 'Slim with branding and link top', dark: true }
-  - { title: 'Company info and links', dark: true }
-  - { title: 'Inline with logo and copyright', dark: true }
-  - { title: 'With call to action', dark: true }
+  - {
+      title: 'Newsletter form as priority',
+      description: 'Footer that puts the newsletter form first, above the links',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Centered with branding',
+      description: 'Centered footer with branding, a line of links and social icons',
+      dark: true,
+    }
+  - {
+      title: 'Slim with branding and link top',
+      description: 'Slim footer with branding, links and a back to top link',
+      dark: true,
+    }
+  - {
+      title: 'Company info and links',
+      description: 'Footer with company info, link columns and social links',
+      dark: true,
+    }
+  - {
+      title: 'Inline with logo and copyright',
+      description: 'Minimal inline footer with a logo and copyright notice',
+      dark: true,
+    }
+  - {
+      title: 'With call to action',
+      description: 'Footer with a career call to action above the links',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

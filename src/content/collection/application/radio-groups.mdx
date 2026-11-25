@@ -9,9 +9,22 @@ terms:
   - group
   - radio
 components:
-  - { title: 'Base', dark: true }
-  - { title: 'Base with input', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Color variant', dark: true }
+  - {
+      title: 'Base',
+      description: 'Radio options laid out as selectable cards with a label and a price',
+      dark: true,
+    }
+  - {
+      title: 'Base with input',
+      description: 'Radio cards with a visible radio input next to each option',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Color variant',
+      description: 'Color picker built from radio inputs, one swatch for each option',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

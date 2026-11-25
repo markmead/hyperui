@@ -7,11 +7,31 @@ terms:
   - placeholder
   - cta
 components:
-  - { title: 'Create first item', dark: true }
-  - { title: 'Import or create', dark: true }
-  - { title: 'Upload data', dark: true }
-  - { title: 'Get started', dark: true }
-  - { title: 'No results found', dark: true }
+  - {
+      title: 'Create first item',
+      description: 'Empty state with a heading, short text, a create button and help links',
+      dark: true,
+    }
+  - {
+      title: 'Import or create',
+      description: 'Empty state offering both an import and a create action, with the supported formats noted',
+      dark: true,
+    }
+  - {
+      title: 'Upload data',
+      description: 'Empty state with a file picker, for prompting a first upload',
+      dark: true,
+    }
+  - {
+      title: 'Get started',
+      description: 'Empty state with a numbered checklist of quick steps to get started',
+      dark: true,
+    }
+  - {
+      title: 'No results found',
+      description: 'No results state with a search box, a clear filters button and a support link',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

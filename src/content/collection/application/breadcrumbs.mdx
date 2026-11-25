@@ -8,11 +8,33 @@ terms:
   - link
   - navigation
 components:
-  - { title: 'Base', dark: true }
-  - { title: 'Base with home icon', dark: true }
-  - { title: 'Slash divider', dark: true, contributors: ['mohdahsanrazakhan'] }
-  - { title: 'Slash divider with home icon', dark: true, contributors: ['mohdahsanrazakhan'] }
-  - { title: 'Grouped with chevron divider', dark: true }
+  - {
+      title: 'Base',
+      description: 'Plain text breadcrumb trail with chevron separators between each level',
+      dark: true,
+    }
+  - {
+      title: 'Base with home icon',
+      description: 'Breadcrumb trail that starts with a home icon in place of the first link',
+      dark: true,
+    }
+  - {
+      title: 'Slash divider',
+      description: 'Breadcrumb trail using slash dividers between each level',
+      dark: true,
+      contributors: ['mohdahsanrazakhan'],
+    }
+  - {
+      title: 'Slash divider with home icon',
+      description: 'Slash-divided breadcrumb trail that starts with a home icon',
+      dark: true,
+      contributors: ['mohdahsanrazakhan'],
+    }
+  - {
+      title: 'Grouped with chevron divider',
+      description: 'Breadcrumb trail inside a bordered group, with chevron dividers between links',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

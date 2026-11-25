@@ -7,11 +7,23 @@ wrapper: h-[400px]
 terms:
   - data
 components:
-  - { title: 'Base', dark: true }
-  - { title: 'Bordered', dark: true }
-  - { title: 'Striped', dark: true }
-  - { title: 'Sticky headings', dark: true }
-  - { title: 'Sticky first column', dark: true }
+  - {
+      title: 'Base',
+      description: 'Simple table with a header row and no extra styling',
+      dark: true,
+    }
+  - { title: 'Bordered', description: 'Table with a border and dividers between rows', dark: true }
+  - { title: 'Striped', description: 'Table with alternating striped rows', dark: true }
+  - {
+      title: 'Sticky headings',
+      description: 'Scrollable table whose header row stays fixed while the rows scroll',
+      dark: true,
+    }
+  - {
+      title: 'Sticky first column',
+      description: 'Wide table that keeps the first column in place while scrolling sideways',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

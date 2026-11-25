@@ -11,17 +11,72 @@ terms:
   - dashboard
   - data visualization
 components:
-  - { title: 'Line chart with filled area and range toggle', dark: true, plugins: ['chart.js'] }
-  - { title: 'Bar chart with tooltip', dark: true, plugins: ['chart.js'] }
-  - { title: 'Donut chart with legend', dark: true, plugins: ['chart.js'] }
-  - { title: 'Sparkline for stat cards', dark: true, plugins: ['chart.js'] }
-  - { title: 'Stacked bar chart by category', dark: true, plugins: ['chart.js'] }
-  - { title: 'Combo chart with bars and a target line', dark: true, plugins: ['chart.js'] }
-  - { title: 'Line chart comparing two periods', dark: true, plugins: ['chart.js'] }
-  - { title: 'Radar chart comparing two series', dark: true, plugins: ['chart.js'] }
-  - { title: 'Polar area chart with legend', dark: true, plugins: ['chart.js'] }
-  - { title: 'Scatter chart with axis titles', dark: true, plugins: ['chart.js'] }
-  - { title: 'Bubble chart with sized data points', dark: true, plugins: ['chart.js'] }
+  - {
+      title: 'Line chart with filled area and range toggle',
+      description: 'Line chart with a filled area under the line and 6M and 12M range toggle buttons',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Bar chart with tooltip',
+      description: 'Bar chart of weekly orders, with a tooltip showing the value on hover or focus',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Donut chart with legend',
+      description: 'Donut chart showing a status breakdown, with a legend listing each segment',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Sparkline for stat cards',
+      description: 'Compact sparkline inside a stat card, next to the headline value',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Stacked bar chart by category',
+      description: "Stacked bar chart splitting each day's traffic into channels, with a legend",
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Combo chart with bars and a target line',
+      description: 'Combo chart that overlays a target line on monthly revenue bars',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Line chart comparing two periods',
+      description: 'Line chart comparing this year with last year on the same axes',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Radar chart comparing two series',
+      description: 'Radar chart comparing two teams across several performance metrics',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Polar area chart with legend',
+      description: 'Polar area chart with slice radius set by value, plus a legend',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Scatter chart with axis titles',
+      description: 'Scatter chart plotting spend against conversions, with titles on both axes',
+      dark: true,
+      plugins: ['chart.js'],
+    }
+  - {
+      title: 'Bubble chart with sized data points',
+      description: 'Bubble chart where the size of each point shows a third value, such as reach',
+      dark: true,
+      plugins: ['chart.js'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

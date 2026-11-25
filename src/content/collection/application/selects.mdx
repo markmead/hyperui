@@ -10,9 +10,24 @@ terms:
   - filter
   - form
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Option groups', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Datalist', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Base',
+      description: 'Standard select menu with a label and a list of options',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Option groups',
+      description: 'Select menu with the options arranged into labelled groups',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Datalist',
+      description: 'Text input with a datalist, so people can type or pick a suggestion',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

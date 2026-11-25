@@ -10,9 +10,22 @@ terms:
   - page
   - pagination
 components:
-  - { title: 'Navigation', dark: true }
-  - { title: 'Input', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'X/Y', dark: true }
+  - {
+      title: 'Navigation',
+      description: 'Pagination with previous and next arrows and numbered page links',
+      dark: true,
+    }
+  - {
+      title: 'Input',
+      description: 'Pagination with a number input for jumping to a page, between previous and next',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'X/Y',
+      description: 'Minimal pagination showing the current page as "2/12" between previous and next',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

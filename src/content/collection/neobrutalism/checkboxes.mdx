@@ -9,9 +9,24 @@ terms:
   - form
   - input
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with description', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Grouped', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Base',
+      description: 'Group of checkboxes with thick borders and bold styling',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base with description',
+      description: 'Checkbox options with a short description under each label',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Grouped',
+      description: 'Described checkbox options grouped in one bordered box',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

@@ -9,14 +9,46 @@ terms:
   - feedback
   - metric
 components:
-  - { title: 'Title, value, from value and themed growth stat', dark: true }
-  - { title: 'Title, value, icon and themed growth stat', dark: true }
-  - { title: 'Title, value and themed growth stat', dark: true }
-  - { title: 'Title, value and icon', dark: true }
-  - { title: 'Title, value and themed growth stat, stacked style', dark: true }
-  - { title: 'Title, value, icon and themed growth stat, stacked style', dark: true }
-  - { title: 'Title, value, from value, themed growth stat and sparkline', dark: true }
-  - { title: 'Title, value, themed growth stat and area sparkline', dark: true }
+  - {
+      title: 'Title, value, from value and themed growth stat',
+      description: 'Stat card with a title, a value, the previous value and a colored growth badge',
+      dark: true,
+    }
+  - {
+      title: 'Title, value, icon and themed growth stat',
+      description: 'Stat card with an icon, a title, a value and a colored growth badge',
+      dark: true,
+    }
+  - {
+      title: 'Title, value and themed growth stat',
+      description: 'Stat card with a title, a value and a colored growth badge',
+      dark: true,
+    }
+  - {
+      title: 'Title, value and icon',
+      description: 'Stat card with an icon, a value and a title',
+      dark: true,
+    }
+  - {
+      title: 'Title, value and themed growth stat, stacked style',
+      description: 'Stacked stat card with a title, a value and a growth badge, plus a "since last week" note',
+      dark: true,
+    }
+  - {
+      title: 'Title, value, icon and themed growth stat, stacked style',
+      description: 'Stacked stat card with an icon, a title, a value and a growth badge',
+      dark: true,
+    }
+  - {
+      title: 'Title, value, from value, themed growth stat and sparkline',
+      description: 'Stat card with a growth badge, the previous value and a line sparkline of recent months',
+      dark: true,
+    }
+  - {
+      title: 'Title, value, themed growth stat and area sparkline',
+      description: 'Stat card with a value, a growth badge and a filled area sparkline',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'
