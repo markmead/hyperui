@@ -11,11 +11,34 @@ terms:
   - admin
   - chart
 components:
-  - { title: 'Overview', plugins: ['chart.js'], dark: true }
-  - { title: 'Customers', plugins: ['chart.js'], dark: true }
-  - { title: 'Orders', plugins: ['chart.js'], dark: true }
-  - { title: 'Billing', dark: true }
-  - { title: 'Settings', dark: true }
+  - {
+      title: 'Overview',
+      description: 'Dashboard overview with a sidebar, key stats, a revenue trend chart, orders by status and recent orders',
+      plugins: ['chart.js'],
+      dark: true,
+    }
+  - {
+      title: 'Customers',
+      description: 'Customers page with new customer stats, customers by plan and a table of all customers',
+      plugins: ['chart.js'],
+      dark: true,
+    }
+  - {
+      title: 'Orders',
+      description: 'Orders page with a chart of orders against the monthly target and a table of all orders',
+      plugins: ['chart.js'],
+      dark: true,
+    }
+  - {
+      title: 'Billing',
+      description: 'Billing page with the current plan, payment method and invoice history',
+      dark: true,
+    }
+  - {
+      title: 'Settings',
+      description: 'Settings page with profile and regional forms and a delete team section',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

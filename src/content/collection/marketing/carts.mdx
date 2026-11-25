@@ -7,9 +7,23 @@ terms:
   - checkout
   - ecommerce
 components:
-  - { title: 'Popup', dark: true }
-  - { title: 'Popup with actions', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Page', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Popup',
+      description: 'Shopping cart popup that slides in, listing items with size and color details',
+      dark: true,
+    }
+  - {
+      title: 'Popup with actions',
+      description: 'Shopping cart popup with checkout and continue shopping actions',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Page',
+      description: 'Full page shopping cart listing items with their details and an order summary',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

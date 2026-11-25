@@ -9,10 +9,22 @@ terms:
   - loading
   - status
 components:
-  - { title: 'Basic', dark: true }
-  - { title: 'With labels and status colors', dark: true }
-  - { title: 'Compact with metadata', dark: true }
-  - { title: 'Circular progress', dark: true }
+  - { title: 'Basic', description: 'Single progress bar with a percentage label', dark: true }
+  - {
+      title: 'With labels and status colors',
+      description: 'Progress bars with labels and colors for updating, completed and loading states',
+      dark: true,
+    }
+  - {
+      title: 'Compact with metadata',
+      description: 'Compact progress bars with a title and metadata, such as size transferred',
+      dark: true,
+    }
+  - {
+      title: 'Circular progress',
+      description: 'Circular progress indicators with the percentage in the center',
+      dark: true,
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

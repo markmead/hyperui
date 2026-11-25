@@ -8,9 +8,24 @@ terms:
   - filter
   - form
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with icon', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Search', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Base',
+      description: 'Text input with a thick border and hard shadow',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base with icon',
+      description: 'Text input with an icon inside the field',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Search',
+      description: 'Search input with a bold search button',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

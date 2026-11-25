@@ -8,11 +8,36 @@ terms:
   - inquiry
   - newsletter
 components:
-  - { title: 'Base', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with triage', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Base with checkboxes', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Grid', dark: true, plugins: ['@tailwindcss/forms'] }
-  - { title: 'Side-by-side form with description', dark: true, plugins: ['@tailwindcss/forms'] }
+  - {
+      title: 'Base',
+      description: 'Contact form with name, email and message fields',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base with triage',
+      description: 'Contact form with a topic selector so enquiries can be triaged',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base with checkboxes',
+      description: 'Contact form with checkboxes for choosing what the enquiry is about',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Grid',
+      description: 'Contact form with its fields arranged in a grid',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Side-by-side form with description',
+      description: 'Contact form beside a description and contact details such as a phone number',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

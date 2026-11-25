@@ -7,16 +7,22 @@ wrapper: h-[400px]
 terms:
   - layout
 components:
-  - { title: '1x1' }
-  - { title: '1x2' }
-  - { title: '2x1' }
-  - { title: '1x1x1' }
-  - { title: '1x1x1x1' }
-  - { title: '1x1x2' }
-  - { title: '2x1x1' }
-  - { title: '1x2x1' }
-  - { title: 'Sidebar left' }
-  - { title: 'Sidebar right' }
+  - { title: '1x1', description: 'Two equal columns' }
+  - { title: '1x2', description: 'Two columns where the second is twice as wide as the first' }
+  - { title: '2x1', description: 'Two columns where the first is twice as wide as the second' }
+  - { title: '1x1x1', description: 'Three equal columns' }
+  - { title: '1x1x1x1', description: 'Four equal columns' }
+  - { title: '1x1x2', description: 'Three columns where the last one spans double width' }
+  - { title: '2x1x1', description: 'Three columns where the first one spans double width' }
+  - { title: '1x2x1', description: 'Three columns where the middle one spans double width' }
+  - {
+      title: 'Sidebar left',
+      description: 'Page layout with a narrow sidebar on the left and a wide content area',
+    }
+  - {
+      title: 'Sidebar right',
+      description: 'Page layout with a wide content area and a narrow sidebar on the right',
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'
