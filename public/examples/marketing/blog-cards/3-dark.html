@@ -3,45 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Bordered with image, title, excerpt and call to action (dark) - Blog Cards - HyperUI
-    </title>
+    <title>Image overlay (dark) - Blog Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
     <article
-      class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-xs dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25"
+      class="relative isolate flex aspect-4/5 flex-col justify-end overflow-hidden rounded-2xl bg-gray-950 p-6 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 sm:aspect-video"
     >
       <img
         alt=""
-        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1160"
-        class="h-56 w-full object-cover"
+        src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?auto=format&fit=crop&q=80&w=1160"
+        class="absolute inset-0 -z-10 size-full object-cover opacity-70"
       />
-
-      <div class="p-4 sm:p-6">
-        <a href="#">
-          <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-            A practical guide to writing release notes
-          </h3>
-        </a>
-
-        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 dark:text-gray-400">
-          Customers read release notes when they are short, specific and written for them. A simple
-          template you can copy.
-        </p>
-
-        <a
-          href="#"
-          class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-blue-400 dark:focus-visible:outline-blue-400"
+      <div
+        class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent"
+      ></div>
+      <p class="text-sm text-gray-200">
+        <time datetime="2026-02-03">3 Feb 2026</time> · 5 min read
+      </p>
+      <h3 class="mt-2 text-xl font-semibold text-pretty text-white">
+        <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+          >A practical guide to writing release notes</a
         >
-          Read the article
-
-          <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
-            &rarr;
-          </span>
-        </a>
-      </div>
+      </h3>
+      <p class="mt-2 line-clamp-2 text-sm/relaxed text-gray-200">
+        Customers read release notes when they are short, specific and written for them.
+      </p>
     </article>
   </body>
 </html>

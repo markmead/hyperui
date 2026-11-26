@@ -3,37 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Bordered with image, date, title and excerpt, shadow on hover (dark) - Blog Cards - HyperUI
-    </title>
+    <title>Image with author (dark) - Blog Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
     <article
-      class="overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg dark:shadow-gray-700/25"
+      class="relative overflow-hidden rounded-xl bg-white shadow-xs ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 dark:bg-gray-900 dark:ring-gray-700 dark:has-[a:focus-visible]:outline-indigo-300"
     >
       <img
         alt=""
         src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1160"
-        class="h-56 w-full object-cover"
+        class="aspect-video w-full object-cover"
       />
-
-      <div class="bg-white p-4 sm:p-6 dark:bg-gray-900">
-        <time datetime="2026-02-10" class="block text-xs text-gray-500 dark:text-gray-400">
-          10 Feb 2026
-        </time>
-
-        <a href="#">
-          <h3 class="mt-0.5 text-lg text-gray-900 dark:text-white">
-            Five ways to run a calmer weekly planning meeting
-          </h3>
-        </a>
-
-        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 dark:text-gray-400">
-          Short agendas, written updates and one clear decision per meeting. Here is the format that
-          gave our team back three hours a week.
+      <div class="p-5">
+        <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">Planning</p>
+        <h3 class="mt-1 text-lg font-semibold text-gray-900 dark:text-white">
+          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+            >Five ways to run a calmer weekly planning meeting</a
+          >
+        </h3>
+        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-600 dark:text-gray-300">
+          Short agendas, written updates and one clear decision per meeting. The format that gave
+          our team back three hours a week.
         </p>
+        <div class="mt-5">
+          <div class="flex items-center gap-3">
+            <img
+              alt=""
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=160&h=160"
+              class="size-8 rounded-full object-cover"
+            />
+            <div class="text-sm">
+              <p class="font-medium text-gray-900 dark:text-white">Amara Okafor</p>
+              <p class="text-gray-500 dark:text-gray-400">
+                <time datetime="2026-02-10">10 Feb 2026</time> · 6 min read
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   </body>
