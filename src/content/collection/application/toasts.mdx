@@ -9,18 +9,34 @@ terms:
   - feedback
   - notification
 components:
-  - { title: 'Success', description: 'Green success toast with a title and message', dark: true }
-  - { title: 'Error', description: 'Red error toast with a title and message', dark: true }
-  - { title: 'Warning', description: 'Yellow warning toast with a title and message', dark: true }
-  - { title: 'Info', description: 'Blue info toast with a title and message', dark: true }
   - {
-      title: 'With action button',
-      description: 'Info toast with an action button to accept',
+      title: 'Success',
+      description: 'Success toast with an icon, a message and a dismiss button',
+      dark: true,
+    }
+  - {
+      title: 'Error with retry',
+      description: 'Error toast announced as an alert, with retry and secondary actions',
+      dark: true,
+    }
+  - {
+      title: 'Warning with usage',
+      description: 'Warning toast with a usage meter and an upgrade link',
+      dark: true,
+    }
+  - {
+      title: 'Message with avatar',
+      description: 'Notification toast with an avatar, a quoted message and reply actions',
+      dark: true,
+    }
+  - {
+      title: 'Upload progress',
+      description: 'Progress toast with a live progress bar and a cancel button',
       dark: true,
     }
   - {
       title: 'Standout',
-      description: 'High-contrast toast with a solid background so it stands out',
+      description: 'High-contrast toast with a solid background and an undo action',
       dark: { contributors: ['WinnyChang'] },
     }
 ---

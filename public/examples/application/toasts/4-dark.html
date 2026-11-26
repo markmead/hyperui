@@ -3,41 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info (dark) - Toasts - HyperUI</title>
+    <title>Message with avatar (dark) - Toasts - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="ml-auto max-w-md p-6 dark:bg-gray-900">
+  <body class="ml-auto max-w-sm p-6 dark:bg-gray-900">
     <div
-      role="alert"
-      class="rounded-md border border-blue-500 bg-blue-50 p-4 shadow-sm dark:border-blue-400 dark:bg-blue-800"
+      role="status"
+      class="overflow-hidden rounded-xl bg-white p-4 shadow-lg ring-1 ring-gray-950/10 dark:bg-gray-900"
     >
-      <div class="flex items-start gap-4">
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="-mt-0.5 size-6 text-blue-700 dark:text-blue-200"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-          />
-        </svg>
-
-        <div class="flex-1">
-          <strong class="block leading-tight font-medium text-blue-800 dark:text-blue-100">
-            Maintenance tonight
-          </strong>
-
-          <p class="mt-0.5 text-sm text-blue-700 dark:text-blue-200">
-            Reports will be unavailable tonight from 11:00 to 11:30 pm.
+      <div class="flex items-start gap-3">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80"
+          class="size-10 shrink-0 rounded-full object-cover"
+        />
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-medium text-gray-900 dark:text-white">
+            Amara Okafor <span class="font-normal text-gray-500 dark:text-gray-400">commented</span>
           </p>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+            "Pricing page looks great. Can we move the FAQ above the footer?"
+          </p>
+          <div class="mt-3 flex gap-2">
+            <button
+              type="button"
+              class="rounded-md bg-gray-900 px-2.5 py-1.5 text-sm/none font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-50"
+            >
+              Reply
+            </button>
+            <button
+              type="button"
+              class="rounded-md px-2.5 py-1.5 text-sm/none font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-gray-50"
+            >
+              Mark as read
+            </button>
+          </div>
         </div>
+        <button
+          type="button"
+          class="-m-1 shrink-0 rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-200 dark:focus-visible:outline-gray-50"
+        >
+          <span class="sr-only">Dismiss</span>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </div>
   </body>
