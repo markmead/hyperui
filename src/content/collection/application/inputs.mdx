@@ -1,12 +1,16 @@
 ---
 title: Inputs
-description: Form input components with responsive text fields, search boxes, and form controls. Customizable input elements with various styles including icons and floating labels.
+description: Form input components for text fields, search boxes, textareas, range sliders and quantity steppers. Customizable input elements with various styles including icons, floating labels and plus and minus buttons.
 category: application
 slug: inputs
-wrapper: h-[200px]
+wrapper: h-[260px]
 terms:
   - filter
   - form
+  - textarea
+  - slider
+  - quantity
+  - ecommerce
 components:
   - title: Base
     description: Standard text input with label and border styling
@@ -24,6 +28,64 @@ components:
     description: Input with animated label that floats above on focus
     dark: true
     plugins: ['@tailwindcss/forms']
+  - {
+      title: 'Base',
+      description: 'Basic textarea with a label',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Actions inside',
+      description: 'Textarea with clear and save buttons inside the field',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Actions outside',
+      description: 'Textarea with clear and save buttons placed below it',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base',
+      description: 'Basic range slider with a label',
+      contributors: ['Kryonn'],
+      dark: true,
+    }
+  - {
+      title: 'Base with output',
+      description: 'Range slider with the current value shown beside it',
+      dark: true,
+    }
+  - {
+      title: 'Native with tick marks',
+      description: 'Native range slider with tick marks along the track',
+      dark: true,
+    }
+  - {
+      title: 'Base with plus and minus buttons',
+      description: 'Number input with minus and plus buttons on either side',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base with plus and minus buttons, no spinners in the input',
+      description: 'Quantity input with minus and plus buttons and the browser spinners hidden',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Base with plus and minus buttons, no spinners in the input and text centered',
+      description: 'Quantity input with minus and plus buttons, hidden spinners and centered text',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
+  - {
+      title: 'Bordered with plus and minus buttons',
+      description: 'Quantity input with a border around the minus and plus buttons',
+      dark: true,
+      plugins: ['@tailwindcss/forms'],
+    }
 ---
 
 import BaseHero from '../../../components/BaseHero.astro'

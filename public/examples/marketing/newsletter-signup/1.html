@@ -8,39 +8,48 @@
     <script src="/component.js" defer></script>
   </head>
   <body>
-    <div class="bg-gray-100">
-      <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="max-w-prose">
-          <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">
-            Sign up for our newsletter
-          </h2>
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+        <p class="text-sm font-medium text-indigo-700">The Friday Brief</p>
 
-          <p class="mt-4 text-pretty text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe
-            architecto maiores repudiandae amet perferendis repellendus, reprehenderit voluptas
-            sequi.
-          </p>
-        </div>
+        <h2 class="mt-2 text-2xl font-semibold text-balance text-gray-900 sm:text-3xl">
+          One email a week on what shipped in design and code
+        </h2>
 
-        <form action="#" class="mt-6 flex max-w-xl flex-col gap-4 sm:flex-row sm:items-center">
-          <label for="Email" class="flex-1">
-            <span class="sr-only"> Email </span>
+        <p class="mt-4 text-pretty text-gray-700">
+          Five short reads, picked by our team. Free, every Friday morning, and you can leave with
+          one click.
+        </p>
 
+        <form action="#" class="mt-6">
+          <label for="Email" class="sr-only">Email address</label>
+
+          <div class="flex flex-col gap-3 sm:flex-row">
             <input
               type="email"
-              autocomplete="email"
               id="Email"
-              placeholder="Enter your email"
-              class="h-12 w-full rounded border-gray-300 shadow-sm"
+              name="email"
+              autocomplete="email"
+              required
+              placeholder="you@company.com"
+              aria-describedby="EmailHelp"
+              class="h-12 w-full rounded-md border-gray-300 shadow-sm sm:max-w-xs"
             />
-          </label>
 
-          <button
-            type="submit"
-            class="h-12 rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600"
-          >
-            Sign Up
-          </button>
+            <button
+              type="submit"
+              class="h-12 rounded-md bg-indigo-600 px-6 text-sm font-medium text-white transition-colors hover:bg-indigo-700 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"
+            >
+              Subscribe
+            </button>
+          </div>
+
+          <p id="EmailHelp" class="mt-3 text-sm text-gray-700">
+            Join 12,400 readers. No spam, and we never share your email.
+            <a href="#" class="font-medium text-gray-900 underline hover:no-underline">
+              Privacy policy
+            </a>
+          </p>
         </form>
       </div>
     </div>

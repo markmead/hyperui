@@ -25,8 +25,8 @@
 /blog/highlight-hover-effect-with-tailwindcss.md /components/marketing/cards.md 301
 /blog/how-to-write-better-containers-in-tailwindcss /components/marketing/sections 301
 /blog/how-to-write-better-containers-in-tailwindcss.md /components/marketing/sections.md 301
-/blog/remove-number-input-spinners-with-tailwindcss /components/application/quantity-inputs 301
-/blog/remove-number-input-spinners-with-tailwindcss.md /components/application/quantity-inputs.md 301
+/blog/remove-number-input-spinners-with-tailwindcss /components/application/inputs 301
+/blog/remove-number-input-spinners-with-tailwindcss.md /components/application/inputs.md 301
 /blog/how-to-write-better-tailwindcss / 301
 /blog/how-to-write-better-tailwindcss.md /index.md 301
 /blog/move-to-tailwindcss-without-breaking-changes / 301
@@ -38,6 +38,31 @@
 /rss.xml / 301
 /tools/typography-mapper /tools 301
 /tools/typography-mapper.md /tools.md 301
+
+# Merged or removed components: textareas, range and quantity inputs now live in
+# Inputs, Empty Content in Empty States, and Polls and Neobrutalism Tabs are gone.
+
+/components/application/textareas /components/application/inputs 301
+/components/application/textareas/ /components/application/inputs 301
+/components/application/textareas.md /components/application/inputs.md 301
+/components/application/range-inputs /components/application/inputs 301
+/components/application/range-inputs/ /components/application/inputs 301
+/components/application/range-inputs.md /components/application/inputs.md 301
+/components/application/quantity-inputs /components/application/inputs 301
+/components/application/quantity-inputs/ /components/application/inputs 301
+/components/application/quantity-inputs.md /components/application/inputs.md 301
+/components/neobrutalism/textareas /components/neobrutalism/inputs 301
+/components/neobrutalism/textareas/ /components/neobrutalism/inputs 301
+/components/neobrutalism/textareas.md /components/neobrutalism/inputs.md 301
+/components/marketing/empty-content /components/application/empty-states 301
+/components/marketing/empty-content/ /components/application/empty-states 301
+/components/marketing/empty-content.md /components/application/empty-states.md 301
+/components/marketing/polls /components/marketing 301
+/components/marketing/polls/ /components/marketing 301
+/components/marketing/polls.md /components/marketing.md 301
+/components/neobrutalism/tabs /components/neobrutalism 301
+/components/neobrutalism/tabs/ /components/neobrutalism 301
+/components/neobrutalism/tabs.md /components/neobrutalism.md 301
 
 /components/:category/index.html.md /components/:category.md 301
 /components/:category/:slug/index.html.md /components/:category/:slug.md 301

@@ -66,6 +66,7 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 1. Add an entry to the `components` array in the relevant MDX file under `src/content/collection/`.
 2. Create the corresponding HTML file(s) in `public/examples/{category}/{slug}/`. Give each a `<title>` in the form `{component title} - {collection title} - HyperUI`, adding ` (dark)` after the component title for dark files.
 3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file.
+4. Run `pnpm run generate:git-metadata` and commit `src/data/git-metadata.json`. Do this whenever a collection or component is added, changed, merged or removed, after committing the change, as the "updated" date on each collection comes from it.
 
 ## Templates
 
