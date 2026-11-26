@@ -48,8 +48,8 @@
     "date": "2026-11-16T22:59:07+00:00"
   },
   "application/empty-states": {
-    "commit": "c5f92920499636ab85a38f4e60d6f7e18d59cdae",
-    "date": "2026-11-16T22:59:07+00:00"
+    "commit": "c457d9f9c330b52892400f5014f6b33ad7a69045",
+    "date": "2026-11-26T17:15:30+00:00"
   },
   "application/file-uploaders": {
     "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
@@ -64,8 +64,8 @@
     "date": "2026-11-21T20:51:30+00:00"
   },
   "application/inputs": {
-    "commit": "4d78f3ba71998991fa68fdde175ac1a62ceed769",
-    "date": "2026-11-16T22:46:50+00:00"
+    "commit": "c457d9f9c330b52892400f5014f6b33ad7a69045",
+    "date": "2026-11-26T17:15:30+00:00"
   },
   "application/loaders": {
     "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
@@ -188,8 +188,8 @@
     "date": "2026-11-18T12:12:03+00:00"
   },
   "marketing/newsletter-signup": {
-    "commit": "4d78f3ba71998991fa68fdde175ac1a62ceed769",
-    "date": "2026-11-16T22:46:50+00:00"
+    "commit": "c457d9f9c330b52892400f5014f6b33ad7a69045",
+    "date": "2026-11-26T17:15:30+00:00"
   },
   "marketing/pricing": {
     "commit": "633d55288117cf854dbf8a0bba348daf5a106a42",
@@ -208,8 +208,8 @@
     "date": "2026-11-18T12:12:03+00:00"
   },
   "marketing/team-sections": {
-    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
-    "date": "2026-08-31T15:34:05+01:00"
+    "commit": "c457d9f9c330b52892400f5014f6b33ad7a69045",
+    "date": "2026-11-26T17:15:30+00:00"
   },
   "marketing/testimonials": {
     "commit": "69d2bd0dc9ba922e72d1e1a20f040bc5ff523a7c",
@@ -240,8 +240,8 @@
     "date": "2026-08-31T15:34:05+01:00"
   },
   "neobrutalism/inputs": {
-    "commit": "4d78f3ba71998991fa68fdde175ac1a62ceed769",
-    "date": "2026-11-16T22:46:50+00:00"
+    "commit": "c457d9f9c330b52892400f5014f6b33ad7a69045",
+    "date": "2026-11-26T17:15:30+00:00"
   },
   "neobrutalism/progress-bars": {
     "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
