@@ -3,41 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Base with content and call to action on the left, image on the right - CTAs - HyperUI
-    </title>
+    <title>Split with image - CTAs - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body>
-    <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
-      <div class="p-8 md:p-12 lg:px-16 lg:py-24">
-        <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-          <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+    <section class="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-pretty text-gray-900 sm:text-4xl">
             Plan your next quarter in one place
           </h2>
-
-          <p class="hidden text-gray-500 md:mt-4 md:block">
-            Join 12,000 teams that replaced scattered spreadsheets with one shared plan. Set up
-            takes ten minutes and the trial is free for 14 days.
+          <p class="mt-4 max-w-lg text-lg text-pretty text-gray-600">
+            Join 12,000 teams that replaced scattered spreadsheets with one shared plan. Setup takes
+            ten minutes and the trial is free for 14 days.
           </p>
-
-          <div class="mt-4 md:mt-8">
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#"
-              class="inline-block rounded-sm bg-emerald-700 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 focus:ring-2 focus:ring-yellow-400 focus:outline-hidden"
+              class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >Start your free trial</a
             >
-              Start your free trial
-            </a>
+            <a
+              href="#"
+              class="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >Talk to sales</a
+            >
           </div>
+          <p class="mt-4 text-sm text-gray-500">No card needed. Cancel any time.</p>
         </div>
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1464582883107-8adf2dca8a9f?auto=format&fit=crop&q=80&w=1160"
+          class="aspect-4/3 w-full rounded-2xl object-cover"
+        />
       </div>
-
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1464582883107-8adf2dca8a9f?auto=format&fit=crop&q=80&w=1160"
-        class="h-56 w-full object-cover sm:h-full"
-      />
     </section>
   </body>
 </html>
