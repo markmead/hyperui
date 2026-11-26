@@ -3,55 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bordered with Content on Hover (dark) - Cards - HyperUI</title>
+    <title>Destination (dark) - Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
-    <a
-      href="#"
-      class="group relative block h-64 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:h-80 lg:h-96 dark:focus-visible:outline-white"
+  <body class="mx-auto max-w-sm p-6 dark:bg-gray-900">
+    <article
+      class="relative isolate flex aspect-3/4 flex-col justify-end overflow-hidden rounded-2xl bg-gray-950 p-6 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
     >
-      <span class="absolute inset-0 border-2 border-dashed border-black dark:border-white"></span>
-
+      <img
+        alt=""
+        src="https://images.unsplash.com/photo-1588515724527-074a7a56616c?auto=format&fit=crop&q=80&w=1160"
+        class="absolute inset-0 -z-10 size-full object-cover opacity-80 transition-transform duration-500 hover:scale-105"
+      />
       <div
-        class="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 group-focus-visible:-translate-x-2 group-focus-visible:-translate-y-2 dark:border-white dark:bg-gray-900 dark:text-white"
-      >
-        <div
-          class="px-4 pb-4 transition-opacity group-hover:absolute group-hover:opacity-0 group-focus-visible:absolute group-focus-visible:opacity-0 sm:px-6 sm:pb-4 lg:px-8 lg:pb-8"
+        class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"
+      ></div>
+      <p class="text-sm text-gray-200">8 days · from $2,400</p>
+      <h3 class="mt-1 text-2xl font-semibold text-white">
+        <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+          >Go around the world</a
         >
-          <svg
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-10 sm:size-12"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-
-          <h2 class="mt-4 text-xl font-medium sm:text-2xl">Go around the world</h2>
-        </div>
-
-        <div
-          class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 group-focus-visible:relative group-focus-visible:opacity-100 sm:p-6 lg:p-8"
-        >
-          <h3 class="mt-4 text-xl font-medium sm:text-2xl">Go around the world</h3>
-
-          <p class="mt-4 text-sm sm:text-base">
-            Our small group trips cover six continents, with local guides and no more than twelve
-            travellers.
-          </p>
-
-          <p class="mt-8 font-bold">Read more</p>
-        </div>
-      </div>
-    </a>
+      </h3>
+      <p class="mt-2 text-sm/relaxed text-gray-200">
+        Small group trips on six continents, with local guides and no more than twelve travellers.
+      </p>
+    </article>
   </body>
 </html>
