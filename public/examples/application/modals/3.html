@@ -3,50 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Actions - Modals - HyperUI</title>
+    <title>Invite form - Modals - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="p-6">
     <button
+      type="button"
       data-modal-open
-      class="rounded border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm text-gray-900"
+      class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
     >
-      Open
+      Invite teammate
     </button>
 
     <dialog
       closedby="any"
       aria-labelledby="modalTitle"
       aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white p-6 shadow-lg backdrop:bg-black/50"
+      class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/50"
     >
-      <div class="flex flex-col gap-4">
-        <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl">Modal Title</h2>
-
-        <p id="modalDescription" class="text-pretty text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-
-        <div class="flex justify-end gap-2">
+      <form method="dialog">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h2 id="modalTitle" class="text-lg font-semibold text-gray-900">Invite a teammate</h2>
+            <p id="modalDescription" class="mt-1 text-sm text-gray-600">
+              They'll get an email with a link to join Northwind.
+            </p>
+          </div>
           <button
             type="button"
             data-modal-close
-            class="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden"
+            class="-me-2 -mt-2 rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            <span class="sr-only">Close</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-5 space-y-4">
+          <div>
+            <label for="invite-email" class="block text-sm font-medium text-gray-900"
+              >Email address</label
+            >
+            <input
+              id="invite-email"
+              type="email"
+              autocomplete="off"
+              required
+              placeholder="name@company.com"
+              class="mt-1.5 block w-full rounded-lg border-gray-300 text-sm text-gray-900 shadow-xs focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+            />
+          </div>
+          <div>
+            <label for="invite-role" class="block text-sm font-medium text-gray-900">Role</label>
+            <select
+              id="invite-role"
+              class="mt-1.5 block w-full rounded-lg border-gray-300 text-sm text-gray-900 shadow-xs focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+            >
+              <option>Editor</option>
+              <option>Viewer</option>
+              <option>Admin</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-6 flex justify-end gap-3">
+          <button
+            type="button"
+            data-modal-close
+            class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Cancel
           </button>
-
           <button
-            type="button"
-            data-modal-close
-            class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden"
+            type="submit"
+            class="rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Done
+            Send invite
           </button>
         </div>
-      </div>
+      </form>
     </dialog>
 
     <script>
