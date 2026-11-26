@@ -3,38 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fixed with dismiss (dark) - Announcements - HyperUI</title>
+    <title>Floating card (dark) - Announcements - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="dark:bg-gray-900">
-    <div
-      class="fixed inset-x-0 bottom-0 z-auto flex items-center justify-between border-t border-gray-200 bg-gray-100 px-4 py-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-    >
-      <span> </span>
-
-      <p class="text-center font-medium">
-        Lorem, ipsum dolor
-        <a href="#" class="inline-block underline"> sit amet consectetur </a>
-      </p>
-
-      <button
-        type="button"
-        aria-label="Dismiss"
-        class="rounded border border-gray-300 bg-white p-1.5 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+    <div data-announcement class="fixed inset-x-4 bottom-4 sm:start-auto sm:w-80">
+      <div
+        class="rounded-xl bg-white p-4 text-gray-900 shadow-lg ring-1 ring-gray-950/10 dark:bg-gray-900 dark:text-white"
       >
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-5"
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-sm font-medium">New: shared dashboards</p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+              Invite clients to view live reports without a login.
+            </p>
+          </div>
+          <button
+            type="button"
+            data-dismiss
+            class="-m-1.5 shrink-0 rounded-md p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white dark:focus-visible:outline-indigo-300"
+          >
+            <span class="sr-only">Dismiss announcement</span>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <a
+          href="#"
+          class="mt-3 inline-block text-sm font-medium text-indigo-600 underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-indigo-300 dark:focus-visible:outline-indigo-300"
+          >Try shared dashboards</a
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-        </svg>
-      </button>
+      </div>
     </div>
+    <script>
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', () => buttonEl.closest('[data-announcement]').remove())
+      })
+    </script>
   </body>
 </html>
