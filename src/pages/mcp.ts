@@ -12,9 +12,10 @@ import { COMPONENT_CATEGORIES, SITE_URL } from '../utils/markdown'
  *
  * Tools: list_categories, search_components, get_component.
  *
- * Requests are counted in the `hyperui_mcp` Workers Analytics Engine dataset
- * (see `countRequest`). Nothing about the caller or what they searched for is
- * stored.
+ * Tool calls are counted in the `hyperui_mcp` Workers Analytics Engine dataset
+ * (see `countRequest`). Handshakes, `tools/list` and unknown methods are not
+ * counted, as clients repeat them constantly and they say nothing about use.
+ * Nothing about the caller or what they searched for is stored.
  */
 export const prerender = false
 
@@ -209,7 +210,6 @@ async function callTool(name: string, args: Record<string, unknown>) {
   return null
 }
 
-const KNOWN_METHODS = new Set(['initialize', 'ping', 'tools/list', 'tools/call'])
 const TOOL_NAMES = new Set(TOOLS.map((tool) => tool.name))
 
 // Coarse client buckets from the user agent. The user agent itself is never stored.
@@ -234,12 +234,12 @@ function getClient(request: Request) {
 }
 
 /**
- * Counts one JSON-RPC request. Every value written comes from a fixed list
+ * Counts one JSON-RPC tool call. Every value written comes from a fixed list
  * (methods, tool names, client buckets) or a published component, so a caller
  * cannot put free text in the dataset. Search queries are never recorded.
  *
  * blob1 method, blob2 tool, blob3 category, blob4 slug, blob5 client.
- * index1 is the tool, or the method when there is none.
+ * index1 is the tool.
  */
 async function countRequest(message: Message, client: string) {
   const { id, method } = message
@@ -251,6 +251,11 @@ async function countRequest(message: Message, client: string) {
   const params = (message.params ?? {}) as Record<string, unknown>
   const name = asString(params.name)
   const tool = method === 'tools/call' && TOOL_NAMES.has(name) ? name : ''
+
+  if (!tool) {
+    return
+  }
+
   const args = (params.arguments ?? {}) as Record<string, unknown>
   let category = ''
   let slug = ''
@@ -267,8 +272,8 @@ async function countRequest(message: Message, client: string) {
 
   // The binding is missing under `astro dev`, so counting is skipped there.
   env.MCP_EVENTS?.writeDataPoint({
-    indexes: [tool || (KNOWN_METHODS.has(method) ? method : 'other')],
-    blobs: [KNOWN_METHODS.has(method) ? method : 'other', tool, category, slug, client],
+    indexes: [tool],
+    blobs: [method, tool, category, slug, client],
     doubles: [1],
   })
 }
