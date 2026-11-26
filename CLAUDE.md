@@ -21,6 +21,10 @@ pnpm run generate:git-metadata    # regenerate src/data/git-metadata.json from g
 pnpm dark <light.html>...         # generate {n}-dark.html files (add --check to compare instead)
 ```
 
+### Running tests while working
+
+Run `pnpm test:a11y:diff` (axe on changed examples only) once, then let CI confirm. Don't run the full `pnpm test` or `pnpm test:a11y`, and don't poll or `sleep` for results. If Playwright can't launch a browser, say so instead of building a workaround config.
+
 ## Architecture
 
 ### Content Collections
