@@ -9,14 +9,14 @@
   </head>
   <body class="ml-auto max-w-sm p-6 dark:bg-gray-900">
     <div
+      data-toast
       role="status"
-      class="overflow-hidden rounded-xl bg-white p-4 shadow-lg ring-1 ring-gray-950/10 dark:bg-gray-900 dark:ring-white/15"
+      class="overflow-hidden rounded-xl bg-white p-4 shadow-xl ring-1 ring-gray-950/10 dark:bg-gray-900 dark:ring-white/15"
     >
       <div class="flex items-start gap-3">
         <span
-          class="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200"
-        >
-          <svg
+          class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 ring-1 ring-blue-600/20 ring-inset dark:bg-blue-800 dark:text-blue-300 dark:ring-blue-300/20"
+          ><svg
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -29,35 +29,108 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
-            />
-          </svg>
-        </span>
+            /></svg
+        ></span>
         <div class="min-w-0 flex-1">
-          <div class="flex items-baseline justify-between gap-2">
-            <p class="truncate text-sm font-medium text-gray-900 dark:text-white">brand-kit.zip</p>
-            <p class="text-sm text-gray-500 tabular-nums dark:text-gray-400">64%</p>
+          <div class="flex items-baseline justify-between gap-3">
+            <p data-title class="truncate text-sm font-semibold text-gray-900 dark:text-white">
+              brand-kit.zip
+            </p>
+            <p data-percent class="shrink-0 text-sm text-gray-600 tabular-nums dark:text-gray-300">
+              12%
+            </p>
           </div>
           <div
-            class="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800"
+            data-bar
             role="progressbar"
             aria-label="Upload progress"
             aria-valuemin="0"
             aria-valuemax="100"
-            aria-valuenow="64"
+            aria-valuenow="12"
+            class="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800"
           >
-            <div class="h-full w-[64%] rounded-full bg-blue-600 dark:bg-blue-300"></div>
+            <div
+              data-fill
+              class="h-full w-[12%] rounded-full bg-blue-600 transition-[width] duration-300 ease-out motion-reduce:transition-none dark:bg-blue-300"
+            ></div>
           </div>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-            18 MB of 28 MB, about 10 seconds left
+          <p data-detail class="mt-2 text-sm text-gray-600 tabular-nums dark:text-gray-300">
+            3 MB of 28 MB
           </p>
         </div>
         <button
           type="button"
-          class="-my-1 shrink-0 rounded-md px-2.5 py-1.5 text-sm/none font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-gray-50"
+          data-dismiss
+          data-action
+          class="-my-0.5 shrink-0 rounded-md px-2 py-1 text-sm font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-gray-50"
         >
           Cancel
         </button>
       </div>
     </div>
+    <script>
+      const toastEl = document.querySelector('[data-toast]')
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      if (!reduceMotion) {
+        toastEl.animate(
+          [
+            { opacity: 0, transform: 'translateX(1rem)' },
+            { opacity: 1, transform: 'translateX(0)' },
+          ],
+          { duration: 200, easing: 'ease-out' },
+        )
+      }
+
+      function dismissToast() {
+        if (reduceMotion) {
+          toastEl.remove()
+          return
+        }
+
+        toastEl
+          .animate(
+            [
+              { opacity: 1, transform: 'translateX(0)' },
+              { opacity: 0, transform: 'translateX(1rem)' },
+            ],
+            { duration: 150, easing: 'ease-in' },
+          )
+          .finished.then(() => toastEl.remove())
+      }
+
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', dismissToast)
+      })
+
+      const totalMb = 28
+      let percent = 12
+
+      const titleEl = document.querySelector('[data-title]')
+      const percentEl = document.querySelector('[data-percent]')
+      const barEl = document.querySelector('[data-bar]')
+      const fillEl = document.querySelector('[data-fill]')
+      const detailEl = document.querySelector('[data-detail]')
+      const actionEl = document.querySelector('[data-action]')
+
+      const timerId = setInterval(() => {
+        percent = Math.min(100, percent + Math.ceil(Math.random() * 8))
+
+        percentEl.textContent = percent + '%'
+        barEl.setAttribute('aria-valuenow', percent)
+        fillEl.style.width = percent + '%'
+        detailEl.textContent = Math.round((totalMb * percent) / 100) + ' MB of ' + totalMb + ' MB'
+
+        if (percent === 100) {
+          clearInterval(timerId)
+
+          titleEl.textContent = 'brand-kit.zip uploaded'
+          detailEl.textContent = 'Ready to share with your team.'
+          actionEl.textContent = 'Done'
+        }
+      }, 700)
+
+      actionEl.addEventListener('click', () => clearInterval(timerId))
+    </script>
   </body>
 </html>

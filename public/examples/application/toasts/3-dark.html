@@ -9,14 +9,14 @@
   </head>
   <body class="ml-auto max-w-sm p-6 dark:bg-gray-900">
     <div
-      role="alert"
-      class="overflow-hidden rounded-xl bg-white p-4 shadow-lg ring-1 ring-gray-950/10 dark:bg-gray-900 dark:ring-white/15"
+      data-toast
+      role="status"
+      class="overflow-hidden rounded-xl bg-white p-4 shadow-xl ring-1 ring-gray-950/10 dark:bg-gray-900 dark:ring-white/15"
     >
       <div class="flex items-start gap-3">
         <span
-          class="flex size-8 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700 dark:bg-amber-800 dark:text-amber-200"
-        >
-          <svg
+          class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 ring-1 ring-amber-600/20 ring-inset dark:bg-amber-800 dark:text-amber-300 dark:ring-amber-300/20"
+          ><svg
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -28,31 +28,40 @@
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
-            />
-          </svg>
-        </span>
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-4.898 0L2.697 16.126ZM12 15.75h.01"
+            /></svg
+        ></span>
         <div class="min-w-0 flex-1">
-          <p class="text-sm font-medium text-gray-900 dark:text-white">Storage almost full</p>
+          <p class="text-sm font-semibold text-gray-900 dark:text-white">Storage almost full</p>
           <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">You have used 46 GB of 50 GB.</p>
           <div
-            class="mt-3 h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800"
             role="progressbar"
             aria-label="Storage used"
             aria-valuemin="0"
             aria-valuemax="100"
             aria-valuenow="92"
+            class="mt-3 h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800"
           >
             <div class="h-full w-[92%] rounded-full bg-amber-500 dark:bg-amber-400"></div>
           </div>
-          <a
-            href="#"
-            class="mt-3 inline-block text-sm font-medium text-amber-700 underline underline-offset-4 hover:text-amber-800 dark:text-amber-200 dark:hover:text-amber-100"
-            >Upgrade plan</a
-          >
+          <div class="mt-3 flex gap-2">
+            <a
+              href="#"
+              class="rounded-md bg-gray-900 px-2.5 py-1.5 text-sm/none font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-50"
+              >Upgrade plan</a
+            >
+            <button
+              type="button"
+              data-dismiss
+              class="rounded-md px-2.5 py-1.5 text-sm/none font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-gray-50"
+            >
+              Remind me later
+            </button>
+          </div>
         </div>
         <button
           type="button"
+          data-dismiss
           class="-m-1 shrink-0 rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-200 dark:focus-visible:outline-gray-50"
         >
           <span class="sr-only">Dismiss</span>
@@ -70,5 +79,40 @@
         </button>
       </div>
     </div>
+    <script>
+      const toastEl = document.querySelector('[data-toast]')
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      if (!reduceMotion) {
+        toastEl.animate(
+          [
+            { opacity: 0, transform: 'translateX(1rem)' },
+            { opacity: 1, transform: 'translateX(0)' },
+          ],
+          { duration: 200, easing: 'ease-out' },
+        )
+      }
+
+      function dismissToast() {
+        if (reduceMotion) {
+          toastEl.remove()
+          return
+        }
+
+        toastEl
+          .animate(
+            [
+              { opacity: 1, transform: 'translateX(0)' },
+              { opacity: 0, transform: 'translateX(1rem)' },
+            ],
+            { duration: 150, easing: 'ease-in' },
+          )
+          .finished.then(() => toastEl.remove())
+      }
+
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', dismissToast)
+      })
+    </script>
   </body>
 </html>
