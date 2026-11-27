@@ -31,6 +31,8 @@ Run `pnpm test:a11y:diff` (axe on changed examples only) once, then let CI confi
 
 Components are defined in MDX files under `src/content/collection/{application,marketing,neobrutalism}/`. Each MDX file's frontmatter declares the collection metadata and a `components` array — each entry in that array corresponds to a numbered HTML file. The MDX body is minimal (typically just a `<BaseHero>` import).
 
+`featured: true` in the frontmatter puts a collection first on the homepage, where each category shows nine. Set it from the `hyperui_copies` dataset, which counts what people copy.
+
 The three categories map to Astro content collections defined in `src/content.config.ts`, which also reads `src/data/git-metadata.json` to attach `updated` (commit + date) metadata to each collection entry.
 
 ### Component HTML Files
