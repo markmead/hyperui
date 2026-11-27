@@ -1,0 +1,47 @@
+---
+import {
+  RING_CLASS,
+  SKELETON_HEIGHT,
+  SKELETON_WIDTH,
+  TONE_CLASS,
+  getSkeleton,
+} from '../lib/skeletons'
+
+interface Props {
+  slug: string
+  class?: string
+}
+
+const { slug, class: className } = Astro.props
+
+const shapes = getSkeleton(slug)
+---
+
+{
+  shapes && (
+    <svg
+      viewBox={`0 0 ${SKELETON_WIDTH} ${SKELETON_HEIGHT}`}
+      data-skeleton
+      aria-hidden="true"
+      focusable="false"
+      class={className}
+    >
+      {shapes.map((shape) =>
+        shape.kind === 'circle' ? (
+          <circle cx={shape.x} cy={shape.y} r={shape.r} class={TONE_CLASS[shape.tone]} />
+        ) : shape.kind === 'ring' ? (
+          <circle cx={shape.x} cy={shape.y} r={shape.r} class={RING_CLASS} />
+        ) : (
+          <rect
+            x={shape.x}
+            y={shape.y}
+            width={shape.w}
+            height={shape.h}
+            rx={shape.r}
+            class:list={[TONE_CLASS[shape.tone], shape.dashed && '[stroke-dasharray:4_4]']}
+          />
+        ),
+      )}
+    </svg>
+  )
+}
