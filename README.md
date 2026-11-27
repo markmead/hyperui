@@ -27,7 +27,7 @@ Every page on hyperui.dev has a Markdown version, and there is an MCP server and
 ```bash
 pnpm install
 pnpm dev
-pnpm run css:component --watch
+pnpm css --watch
 ```
 
 ## Contributing

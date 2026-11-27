@@ -10,7 +10,7 @@ Tailwind CSS v4, Astro 7, Cloudflare Pages (via Wrangler), Playwright (E2E tests
 
 ```bash
 pnpm dev                          # start dev server (also runs wrangler types first)
-pnpm run css:component --watch    # compile component preview CSS (run alongside dev)
+pnpm css --watch    # compile component preview CSS (run alongside dev)
 pnpm build                        # production build
 pnpm test                         # run Playwright E2E tests (reuses `pnpm dev`, or starts it)
 pnpm test:a11y                    # axe (WCAG 2.1 AA) on every example and site page

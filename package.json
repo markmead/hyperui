@@ -10,7 +10,7 @@
     "test:a11y:diff": "playwright test accessibility --project=chromium",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "css:component": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
+    "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
     "dark": "node scripts/generate-dark.js",
     "generate:git-metadata": "node scripts/generate-git-metadata.js",
     "thumbnails": "node scripts/generate-thumbnails.js"
