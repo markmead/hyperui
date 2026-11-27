@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>With row actions - Details Lists - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-xl p-6">
+    <div class="flow-root">
+      <dl class="-my-3 divide-y divide-gray-200 text-sm">
+        <div class="grid grid-cols-[1fr_auto] gap-x-4 py-3">
+          <dt class="font-medium text-gray-900">Email address</dt>
+          <dd class="col-start-1 mt-0.5 text-gray-600">amara@northwind.co</dd>
+          <dd class="col-start-2 row-span-2 row-start-1 self-center">
+            <a
+              href="#"
+              class="text-sm font-medium text-indigo-600 underline underline-offset-4 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >Change<span class="sr-only"> email address</span></a
+            >
+          </dd>
+        </div>
+        <div class="grid grid-cols-[1fr_auto] gap-x-4 py-3">
+          <dt class="font-medium text-gray-900">Password</dt>
+          <dd class="col-start-1 mt-0.5 text-gray-600">Last changed 3 months ago</dd>
+          <dd class="col-start-2 row-span-2 row-start-1 self-center">
+            <a
+              href="#"
+              class="text-sm font-medium text-indigo-600 underline underline-offset-4 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >Change<span class="sr-only"> password</span></a
+            >
+          </dd>
+        </div>
+        <div class="grid grid-cols-[1fr_auto] gap-x-4 py-3">
+          <dt class="font-medium text-gray-900">Two-step sign-in</dt>
+          <dd class="col-start-1 mt-0.5 text-gray-600">On, using an authenticator app</dd>
+          <dd class="col-start-2 row-span-2 row-start-1 self-center">
+            <a
+              href="#"
+              class="text-sm font-medium text-indigo-600 underline underline-offset-4 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >Manage<span class="sr-only"> two-step sign-in</span></a
+            >
+          </dd>
+        </div>
+        <div class="grid grid-cols-[1fr_auto] gap-x-4 py-3">
+          <dt class="font-medium text-gray-900">Connected apps</dt>
+          <dd class="col-start-1 mt-0.5 text-gray-600">Slack and Google Drive</dd>
+          <dd class="col-start-2 row-span-2 row-start-1 self-center">
+            <a
+              href="#"
+              class="text-sm font-medium text-indigo-600 underline underline-offset-4 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >Review<span class="sr-only"> connected apps</span></a
+            >
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </body>
+</html>

@@ -3,26 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Right align center - Media - HyperUI</title>
+    <title>Comment - Media - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-md p-6">
-    <div class="flex flex-row-reverse items-center gap-4">
+    <article class="flex items-start gap-3">
       <img
         alt=""
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1160"
-        class="size-20 rounded object-cover"
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=160&h=160"
+        class="size-10 shrink-0 rounded-full object-cover"
       />
-
-      <div>
-        <h3 class="font-medium text-gray-900 sm:text-lg">Title goes here</h3>
-
-        <p class="mt-0.5 text-gray-700">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates voluptas distinctio
-          nesciunt quas non animi.
+      <div class="min-w-0 flex-1">
+        <p class="text-sm">
+          <span class="font-medium text-gray-900">Tom Reyes</span>
+          <span class="text-gray-500">2 hours ago</span>
         </p>
+        <p class="mt-1 text-pretty text-gray-700">
+          The new pricing table reads much better. Could we show the yearly price first?
+        </p>
+        <div class="mt-2 flex gap-4 text-sm font-medium text-gray-600">
+          <button
+            type="button"
+            class="py-1.5 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Reply
+          </button>
+          <button
+            type="button"
+            class="py-1.5 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Resolve
+          </button>
+        </div>
       </div>
-    </div>
+    </article>
   </body>
 </html>

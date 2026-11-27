@@ -3,44 +3,122 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Underline - Tabs - HyperUI</title>
+    <title>Underline with counts - Tabs - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6">
-    <div role="tablist" class="flex gap-2">
-      <button
-        role="tab"
-        aria-selected="true"
-        class="border-b-2 border-blue-600 px-4 py-2 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
-      >
-        Overview
-      </button>
-
-      <button
-        role="tab"
-        aria-selected="false"
-        class="border-b-2 border-transparent px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-700"
-      >
-        Analytics
-      </button>
-
-      <button
-        role="tab"
-        aria-selected="false"
-        class="border-b-2 border-transparent px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-700"
-      >
-        Reports
-      </button>
+    <div class="overflow-x-auto border-b border-gray-200">
+      <div role="tablist" aria-label="Mail" class="flex w-max gap-6">
+        <button
+          type="button"
+          role="tab"
+          id="inbox-tab-0"
+          aria-controls="inbox-panel-0"
+          aria-selected="true"
+          tabindex="0"
+          class="group -mb-px flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 py-3 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:border-indigo-600 aria-selected:text-indigo-600"
+        >
+          Inbox<span
+            class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700 group-aria-selected:bg-indigo-100 group-aria-selected:text-indigo-700"
+            >12</span
+          >
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="inbox-tab-1"
+          aria-controls="inbox-panel-1"
+          aria-selected="false"
+          tabindex="-1"
+          class="group -mb-px flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 py-3 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:border-indigo-600 aria-selected:text-indigo-600"
+        >
+          Drafts<span
+            class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700 group-aria-selected:bg-indigo-100 group-aria-selected:text-indigo-700"
+            >3</span
+          >
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="inbox-tab-2"
+          aria-controls="inbox-panel-2"
+          aria-selected="false"
+          tabindex="-1"
+          class="group -mb-px flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 py-3 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:border-indigo-600 aria-selected:text-indigo-600"
+        >
+          Sent<span
+            class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700 group-aria-selected:bg-indigo-100 group-aria-selected:text-indigo-700"
+            >148</span
+          >
+        </button>
+      </div>
+    </div>
+    <div
+      role="tabpanel"
+      id="inbox-panel-0"
+      aria-labelledby="inbox-tab-0"
+      tabindex="0"
+      class="mt-6 text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      <p>12 unread messages. The newest is from Amara Okafor about the pricing page.</p>
+    </div>
+    <div
+      role="tabpanel"
+      id="inbox-panel-1"
+      aria-labelledby="inbox-tab-1"
+      tabindex="0"
+      hidden
+      class="mt-6 text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      <p>3 drafts. "Q3 launch plan" was last edited yesterday at 4:12 pm.</p>
+    </div>
+    <div
+      role="tabpanel"
+      id="inbox-panel-2"
+      aria-labelledby="inbox-tab-2"
+      tabindex="0"
+      hidden
+      class="mt-6 text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      <p>148 sent messages. Search to find an older conversation.</p>
     </div>
 
-    <div role="tabpanel" class="mt-4">
-      <p class="text-gray-700">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic dicta
-        quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste odio
-        consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos, temporibus
-        perspiciatis!
-      </p>
-    </div>
+    <script>
+      document.querySelectorAll('[role="tablist"]').forEach((tabListEl) => {
+        const tabEls = [...tabListEl.querySelectorAll('[role="tab"]')]
+        const isVertical = tabListEl.getAttribute('aria-orientation') === 'vertical'
+
+        function selectTab(selectedEl) {
+          tabEls.forEach((tabEl) => {
+            const isSelected = tabEl === selectedEl
+
+            tabEl.setAttribute('aria-selected', isSelected)
+            tabEl.tabIndex = isSelected ? 0 : -1
+            document.getElementById(tabEl.getAttribute('aria-controls')).hidden = !isSelected
+          })
+        }
+
+        tabEls.forEach((tabEl, index) => {
+          tabEl.addEventListener('click', () => selectTab(tabEl))
+
+          tabEl.addEventListener('keydown', (event) => {
+            const prevKey = isVertical ? 'ArrowUp' : 'ArrowLeft'
+            const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight'
+            let nextIndex
+
+            if (event.key === nextKey) nextIndex = (index + 1) % tabEls.length
+            else if (event.key === prevKey) nextIndex = (index - 1 + tabEls.length) % tabEls.length
+            else if (event.key === 'Home') nextIndex = 0
+            else if (event.key === 'End') nextIndex = tabEls.length - 1
+            else return
+
+            event.preventDefault()
+            tabEls[nextIndex].focus()
+            selectTab(tabEls[nextIndex])
+          })
+        })
+      })
+    </script>
   </body>
 </html>

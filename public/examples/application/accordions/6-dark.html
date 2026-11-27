@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single open (dark) - Accordions - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-3xl p-6 dark:bg-gray-900">
+    <div class="space-y-2">
+      <details
+        name="faq"
+        open
+        class="group rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 [&_summary::-webkit-details-marker]:hidden"
+      >
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
+        >
+          <span class="flex items-center gap-3"
+            ><span>What is included in the free plan?</span></span
+          >
+          <svg
+            aria-hidden="true"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </summary>
+        <div class="px-4 pb-4">
+          <p class="text-pretty text-gray-700 dark:text-gray-200">
+            Three projects, 5 GB of storage and up to 5 teammates. No card is needed to sign up.
+          </p>
+        </div>
+      </details>
+      <details
+        name="faq"
+        class="group rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 [&_summary::-webkit-details-marker]:hidden"
+      >
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
+        >
+          <span class="flex items-center gap-3"><span>Is my data backed up?</span></span>
+          <svg
+            aria-hidden="true"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </summary>
+        <div class="px-4 pb-4">
+          <p class="text-pretty text-gray-700 dark:text-gray-200">
+            We back up every workspace each night and keep the copies for 30 days. Restores take
+            about 15 minutes.
+          </p>
+        </div>
+      </details>
+      <details
+        name="faq"
+        class="group rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 [&_summary::-webkit-details-marker]:hidden"
+      >
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
+        >
+          <span class="flex items-center gap-3"><span>Can I use my own domain?</span></span>
+          <svg
+            aria-hidden="true"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </summary>
+        <div class="px-4 pb-4">
+          <p class="text-pretty text-gray-700 dark:text-gray-200">
+            Yes. Add a CNAME record, paste your domain into Settings and we issue the certificate
+            for you.
+          </p>
+        </div>
+      </details>
+    </div>
+  </body>
+</html>

@@ -3,19 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Floating (dark) - Announcements - HyperUI</title>
+    <title>Sale countdown (dark) - Announcements - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="dark:bg-gray-900">
-    <div class="fixed inset-x-0 bottom-0 z-auto p-4">
+    <div data-announcement class="bg-gray-950 px-4 py-3 text-white">
       <div
-        class="rounded border border-gray-200 bg-gray-100 px-4 py-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+        class="mx-auto flex max-w-3xl flex-col items-center justify-center gap-2 text-center text-sm sm:flex-row sm:gap-4"
       >
-        <p class="text-center font-medium">
-          Lorem, ipsum dolor
-          <a href="#" class="inline-block underline"> sit amet consectetur </a>
+        <p>
+          <span class="font-semibold">Black Friday:</span> 30% off everything, ends Sunday at
+          midnight.
         </p>
+        <a
+          href="#"
+          class="shrink-0 rounded-full bg-white px-3.5 py-1.5 font-medium text-gray-900 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >Shop now</a
+        >
       </div>
     </div>
   </body>
