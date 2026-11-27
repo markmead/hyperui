@@ -69,7 +69,7 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 ### Adding a New Component
 
-1. Add an entry to the `components` array in the relevant MDX file under `src/content/collection/`.
+1. Add an entry to the `components` array in the relevant MDX file under `src/content/collection/`, then run `pnpm component:ids` to give it a `uuid`. The `uuid` stays with the component if it is renumbered, renamed or moved, so never edit or reuse one.
 2. Create the corresponding HTML file(s) in `public/examples/{category}/{slug}/`. Give each a `<title>` in the form `{component title} - {collection title} - HyperUI`, adding ` (dark)` after the component title for dark files.
 3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file.
 4. Run `pnpm run generate:git-metadata` and commit `src/data/git-metadata.json`. Do this whenever a collection or component is added, changed, merged or removed, after committing the change, as the "updated" date on each collection comes from it.
@@ -78,6 +78,10 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 - Only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
 - Support Inbox stays, as a preview of the application components working together.
+- Templates are built from components, and new templates feed components. `src/data/template-links.json` records which components each template is built from (`uses`), and which components were made from a template (`feeds`), with a hash of each side's markup structure (tags, classes and accessibility attributes, not wording). The tests fail when a linked component changes, or a template that feeds a component changes, until the other side is brought along.
+  - A linked component changed: update the template to use the new markup, or copy the old component into a new variant (with `pnpm component:ids` for its uuid) and keep the template on that.
+  - A new template section that is worth reusing: make it a component and link it with `--feeds`.
+  - Link, check and accept with `pnpm templates:links` (run it with no arguments to check, or see `--add`, `--accept` and `--suggest`). Run `--accept` only once both sides agree.
 
 ## PR Title Format
 

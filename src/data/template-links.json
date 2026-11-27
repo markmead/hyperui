@@ -1,0 +1,83 @@
+[
+  {
+    "template": "586a23a8-dd68-4670-b23c-749017875fa6",
+    "component": "eed7bf5e-b256-434f-afc7-41a623d2a471",
+    "direction": "uses",
+    "templateName": "templates/analytics-dashboard/1",
+    "componentName": "application/app-shells/1",
+    "templateHash": "c8d082d5d295",
+    "componentHash": "f94478bbaa90"
+  },
+  {
+    "template": "586a23a8-dd68-4670-b23c-749017875fa6",
+    "component": "c658c402-06c8-49c7-8637-db122473fd0c",
+    "direction": "uses",
+    "templateName": "templates/analytics-dashboard/1",
+    "componentName": "application/charts/3",
+    "templateHash": "c8d082d5d295",
+    "componentHash": "bf9fe6fe7fcb"
+  },
+  {
+    "template": "fab9049e-6459-4982-90e0-c4f70130b4ae",
+    "component": "eed7bf5e-b256-434f-afc7-41a623d2a471",
+    "direction": "uses",
+    "templateName": "templates/analytics-dashboard/2",
+    "componentName": "application/app-shells/1",
+    "templateHash": "872cc6ce85ad",
+    "componentHash": "f94478bbaa90"
+  },
+  {
+    "template": "f8c4d820-ba50-485d-8ea2-30983295e9cf",
+    "component": "eed7bf5e-b256-434f-afc7-41a623d2a471",
+    "direction": "uses",
+    "templateName": "templates/analytics-dashboard/3",
+    "componentName": "application/app-shells/1",
+    "templateHash": "f123aac72cd4",
+    "componentHash": "f94478bbaa90"
+  },
+  {
+    "template": "13c1237f-eb91-45e2-9dcb-d9d1f034145a",
+    "component": "eed7bf5e-b256-434f-afc7-41a623d2a471",
+    "direction": "uses",
+    "templateName": "templates/analytics-dashboard/4",
+    "componentName": "application/app-shells/1",
+    "templateHash": "f283cbbd7cab",
+    "componentHash": "f94478bbaa90"
+  },
+  {
+    "template": "43122e28-b631-4c30-bc46-92fbe7bd2234",
+    "component": "eed7bf5e-b256-434f-afc7-41a623d2a471",
+    "direction": "uses",
+    "templateName": "templates/analytics-dashboard/5",
+    "componentName": "application/app-shells/1",
+    "templateHash": "e4775d5de435",
+    "componentHash": "f94478bbaa90"
+  },
+  {
+    "template": "cfe2c475-7c47-4bd5-b614-90514f5e5987",
+    "component": "8c3aaf66-0a07-4fce-8be3-019e95b0b24d",
+    "direction": "uses",
+    "templateName": "templates/saas-landing-page/1",
+    "componentName": "marketing/feature-grids/1",
+    "templateHash": "e99effda7110",
+    "componentHash": "a1f3cf7d3507"
+  },
+  {
+    "template": "cfe2c475-7c47-4bd5-b614-90514f5e5987",
+    "component": "64de9556-0148-4660-b388-d0de8568cab8",
+    "direction": "uses",
+    "templateName": "templates/saas-landing-page/1",
+    "componentName": "marketing/pricing/1",
+    "templateHash": "e99effda7110",
+    "componentHash": "f6050e7ccaae"
+  },
+  {
+    "template": "8f99fff6-d780-4f7c-a502-04eb749a23b2",
+    "component": "69a640c1-76e9-4d82-ae2a-4529bb39573b",
+    "direction": "uses",
+    "templateName": "templates/storefront/2",
+    "componentName": "marketing/testimonials/3",
+    "templateHash": "2dc868529e02",
+    "componentHash": "63a19b41e8a5"
+  }
+]

@@ -13,7 +13,9 @@
     "css": "npx @tailwindcss/cli -i ./src/styles/component.css -o ./public/component.css -m",
     "dark": "node scripts/generate-dark.js",
     "generate:git-metadata": "node scripts/generate-git-metadata.js",
-    "thumbnails": "node scripts/generate-thumbnails.js"
+    "thumbnails": "node scripts/generate-thumbnails.js",
+    "component:ids": "node scripts/assign-component-ids.js",
+    "templates:links": "node scripts/template-links.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",

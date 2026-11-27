@@ -81,6 +81,8 @@ const collection = z.object({
   pattern: z.url().optional(),
   components: z.array(
     z.object({
+      // Stays with a component when it moves or is renumbered. `pnpm component:ids` adds one.
+      uuid: z.uuid(),
       contributors: z.array(z.string()).default(['markmead']),
       description: z.string().optional(),
       title: z.string(),
