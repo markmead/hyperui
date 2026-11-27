@@ -24,7 +24,7 @@ interface Props {
   category: string
   collectionTitle: string
   slug: string
-  wrapper: string
+  wrapper?: string | undefined
 }
 
 const { component, category, collectionTitle, slug, wrapper } = Astro.props

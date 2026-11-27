@@ -23,7 +23,7 @@ const count = countLabel({ category, components })
 const recentUpdateThresholdDate = new Date()
 
 recentUpdateThresholdDate.setHours(0, 0, 0, 0)
-recentUpdateThresholdDate.setDate(recentUpdateThresholdDate.getDate() - 30)
+recentUpdateThresholdDate.setDate(recentUpdateThresholdDate.getDate() - 7)
 
 // `pnpm thumbnails` writes one for every template.
 const thumbnail = category === 'templates' ? `/thumbnails/templates/${slug}.webp` : null

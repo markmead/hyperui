@@ -6,10 +6,10 @@ interface Props {
   title: string
   dark?: boolean
   index?: number
-  wrapper?: string
+  wrapper?: string | undefined
 }
 
-const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
+const { src, title, dark = false, index = 1, wrapper } = Astro.props
 
 const sourceHtml = readComponentMarkup(src)
 ---
@@ -19,8 +19,9 @@ const sourceHtml = readComponentMarkup(src)
     data-preview="true"
     {src}
     {title}
+    data-auto={wrapper ? 'false' : 'true'}
     class:list={[
-      wrapper,
+      wrapper ?? 'h-[600px] max-h-[640px]',
       dark ? 'bg-gray-900' : 'bg-white',
       'mx-auto w-full ring ring-gray-200 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
     ]}
@@ -41,6 +42,7 @@ const sourceHtml = readComponentMarkup(src)
     private contentSrc: string | null = null
 
     private iframeEl: HTMLIFrameElement | null = null
+    private resizeObserver: ResizeObserver | null = null
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
@@ -62,9 +64,61 @@ const sourceHtml = readComponentMarkup(src)
       }
 
       this.setupEventListeners()
+      this.setupAutoHeight()
+    }
+
+    // Without a fixed `wrapper` height, size the preview to its content
+    // (capped by the iframe's max-h), and follow it when the width changes.
+    private setupAutoHeight() {
+      const iframeEl = this.iframeEl
+
+      if (!iframeEl || iframeEl.dataset.auto !== 'true') {
+        return
+      }
+
+      const resize = () => {
+        const bodyEl = iframeEl.contentDocument?.body
+
+        if (!bodyEl) {
+          return
+        }
+
+        const bodyStyle = iframeEl.contentWindow?.getComputedStyle(bodyEl)
+        const margins = bodyStyle
+          ? Number.parseFloat(bodyStyle.marginTop) + Number.parseFloat(bodyStyle.marginBottom)
+          : 0
+
+        const height = Math.ceil(bodyEl.getBoundingClientRect().height + margins)
+
+        if (height > 0) {
+          iframeEl.style.height = `${Math.max(height, 120)}px`
+        }
+      }
+
+      const watch = () => {
+        const bodyEl = iframeEl.contentDocument?.body
+
+        if (!bodyEl) {
+          return
+        }
+
+        resize()
+
+        this.resizeObserver?.disconnect()
+        this.resizeObserver = new ResizeObserver(resize)
+        this.resizeObserver.observe(bodyEl)
+      }
+
+      iframeEl.addEventListener('load', watch)
+
+      if (iframeEl.contentDocument?.readyState === 'complete') {
+        watch()
+      }
     }
 
     disconnectedCallback() {
+      this.resizeObserver?.disconnect()
+
       if (this.contentSrc && this.breakpointHandler && this.copyHandler && this.viewHandler) {
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)

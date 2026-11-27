@@ -74,7 +74,7 @@ const collection = z.object({
   slug: z.string(),
   terms: z.array(z.string()),
   title: z.string(),
-  wrapper: z.string().default('h-[600px]'),
+  wrapper: z.string().optional(),
   pattern: z.url().optional(),
   components: z.array(
     z.object({
