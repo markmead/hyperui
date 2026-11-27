@@ -1,6 +1,6 @@
 ---
 title: Details Lists
-description: Responsive details list components for displaying structured data with striped rows, borders, and dark mode support for web applications and dashboards.
+description: Description list components for structured data. Includes order summaries, striped profiles, bordered cards with actions, row level actions and compact two column lists.
 category: application
 slug: details-list
 terms:
@@ -8,18 +8,32 @@ terms:
 components:
   - {
       title: 'Base',
-      description: 'Description list of label and value pairs, with no extra styling',
+      description: 'Description list of label and value pairs with dividers, shown as an order summary with a status badge',
       dark: true,
     }
-  - { title: 'Striped', description: 'Description list with alternating striped rows', dark: true }
   - {
-      title: 'Bordered',
-      description: 'Description list with a border and dividers between rows',
+      title: 'Striped',
+      description: 'Description list with alternating striped rows for a person profile',
+      dark: true,
+    }
+  - {
+      title: 'Bordered with action',
+      description: 'Bordered card with a header, an edit link that names what it edits and dividers between rows',
       dark: true,
     }
   - {
       title: 'Striped and bordered',
-      description: 'Description list with striped rows inside a bordered container',
+      description: 'Striped rows inside a bordered container, with monospace values for technical details',
+      dark: true,
+    }
+  - {
+      title: 'With row actions',
+      description: 'Description list where each row has its own change or manage link',
+      dark: true,
+    }
+  - {
+      title: 'Two columns',
+      description: 'Compact two column list of property facts, with the label and value on one line',
       dark: true,
     }
 ---
