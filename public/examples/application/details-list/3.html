@@ -3,45 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bordered - Details Lists - HyperUI</title>
+    <title>Bordered with action - Details Lists - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6">
-    <div class="flow-root">
-      <dl class="-my-3 divide-y divide-gray-200 rounded border border-gray-200 text-sm">
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Title</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">Mr</dd>
+    <div class="rounded-xl border border-gray-200">
+      <div class="flex items-center justify-between gap-4 border-b border-gray-200 px-4 py-3">
+        <h2 class="font-semibold text-gray-900">Billing details</h2>
+        <a
+          href="#"
+          class="py-1.5 text-sm font-medium text-indigo-600 underline underline-offset-4 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >Edit<span class="sr-only"> billing details</span></a
+        >
+      </div>
+      <dl class="divide-y divide-gray-200 text-sm">
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Company</dt>
+          <dd class="text-gray-700 sm:col-span-2">Northwind Traders Ltd</dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Name</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">John Frusciante</dd>
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Billing email</dt>
+          <dd class="text-gray-700 sm:col-span-2">accounts@northwind.co</dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Occupation</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">VAT number</dt>
+          <dd class="text-gray-700 sm:col-span-2">GB 123 4567 89</dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Salary</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd>
-        </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Bio</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis debitis explicabo
-            doloremque impedit nesciunt dolorem facere, dolor quasi veritatis quia fugit aperiam
-            aspernatur neque molestiae labore aliquam soluta architecto?
-          </dd>
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Next invoice</dt>
+          <dd class="text-gray-700 sm:col-span-2">1 March 2026, $1,240.00</dd>
         </div>
       </dl>
     </div>

@@ -80,7 +80,7 @@ test.describe('Template pages', () => {
   })
 
   test('Copy for AI says when a component has no dark version', async ({ page }) => {
-    await page.goto('/components/application/media')
+    await page.goto('/components/application/grids')
 
     const header = await page.locator('preview-copy').first().getAttribute('data-ai-header')
 

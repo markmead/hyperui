@@ -1,6 +1,6 @@
 ---
 title: Media
-description: Responsive media and avatar components for user profiles, image galleries, and content cards with flexible alignment and layouts.
+description: Media object components that pair an image or avatar with text. Includes article summaries, people rows, stretched cards, right aligned images, responsive stacking and comments.
 category: application
 slug: media
 wrapper: h-[400px]
@@ -8,31 +8,35 @@ terms:
   - avatar
   - image
 components:
-  - { title: 'Left align top', description: 'Image on the left with the text aligned to the top' }
   - {
-      title: 'Left align center',
-      description: 'Image on the left with the text centered vertically',
+      title: 'Article summary',
+      description: 'Image on the left with a linked heading, a summary and a reading time',
+      dark: true,
     }
   - {
-      title: 'Left align bottom',
-      description: 'Image on the left with the text aligned to the bottom',
+      title: 'Person centered',
+      description: 'Avatar on the left with a name, an email and a status badge, centered vertically',
+      dark: true,
     }
   - {
-      title: 'Left align stretch',
-      description: 'Image on the left with the text stretched to the image height',
-    }
-  - { title: 'Right align top', description: 'Image on the right with the text aligned to the top' }
-  - {
-      title: 'Right align center',
-      description: 'Image on the right with the text centered vertically',
+      title: 'Stretch card',
+      description: 'Image on the left that stretches to the card height, with the text spread top to bottom',
+      dark: true,
     }
   - {
-      title: 'Right align bottom',
-      description: 'Image on the right with the text aligned to the bottom',
+      title: 'Image on the right',
+      description: 'Text on the left with an eyebrow, a linked heading and a summary, and the image on the right',
+      dark: true,
     }
   - {
-      title: 'Right align stretch',
-      description: 'Image on the right with the text stretched to the image height',
+      title: 'Stacked on mobile',
+      description: 'Image above the text on mobile that moves to the side from the sm breakpoint',
+      dark: true,
+    }
+  - {
+      title: 'Comment',
+      description: 'Avatar with an author, a timestamp, a message and reply and resolve actions',
+      dark: true,
     }
 ---
 
