@@ -3,41 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Product with image, title, description, offer and call to action (dark) - Product Cards -
-      HyperUI
-    </title>
+    <title>Sold out with notify (dark) - Product Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
-    <a href="#" class="relative block rounded-se-3xl border border-gray-100 dark:border-gray-800">
-      <span
-        class="absolute -top-px -right-px rounded-se-3xl rounded-es-3xl bg-rose-600 px-6 py-4 font-medium tracking-widest text-white uppercase dark:bg-rose-300 dark:text-gray-900"
-      >
-        Save 10%
-      </span>
-
-      <img
-        src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&q=80&w=1160"
-        alt=""
-        class="h-80 w-full rounded-se-3xl object-cover"
-      />
-
-      <div class="p-4 text-center">
-        <strong class="text-xl font-medium text-gray-900 dark:text-white"> Aloe Vera </strong>
-
-        <p class="mt-2 text-pretty text-gray-700 dark:text-gray-200">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet officia rem vel voluptatum
-          in eum vitae aliquid at sed dignissimos.
-        </p>
-
-        <span
-          class="mt-4 block rounded-md border border-indigo-900 bg-indigo-900 px-5 py-3 text-sm font-medium tracking-widest text-white uppercase transition-colors hover:bg-white hover:text-indigo-900 dark:border-indigo-50 dark:bg-indigo-50 dark:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-indigo-50"
-        >
-          Buy now
-        </span>
+  <body class="mx-auto max-w-sm p-6 dark:bg-gray-900">
+    <article
+      class="group relative overflow-hidden rounded-xl bg-white shadow-xs ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 dark:bg-gray-900 dark:ring-gray-700 dark:has-[a:focus-visible]:outline-indigo-300"
+    >
+      <div class="bg-gray-100 dark:bg-gray-800">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&q=80&w=1160"
+          class="aspect-square w-full object-cover opacity-60 grayscale"
+        />
       </div>
-    </a>
+      <div class="p-4">
+        <div class="flex items-start justify-between gap-3">
+          <h3 class="text-sm font-medium text-gray-900 dark:text-white">
+            <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+              >Aloe vera plant</a
+            >
+          </h3>
+          <p
+            class="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-200"
+          >
+            Sold out
+          </p>
+        </div>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+          A hardy desk plant that needs water about every two weeks.
+        </p>
+        <form data-notify class="relative z-10 mt-4 flex gap-2">
+          <label for="notify-email" class="sr-only">Email address</label>
+          <input
+            id="notify-email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="you@example.com"
+            class="min-w-0 flex-1 rounded-md border-0 px-3 py-2 text-sm text-gray-900 ring-1 ring-gray-300 ring-inset placeholder:text-gray-500 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 dark:bg-gray-900 dark:text-white dark:ring-gray-600 dark:placeholder:text-gray-400 dark:focus-visible:outline-indigo-300"
+          />
+          <button
+            type="submit"
+            class="shrink-0 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-indigo-300"
+          >
+            Notify me
+          </button>
+        </form>
+      </div>
+    </article>
+    <script>
+      const notifyEl = document.querySelector('[data-notify]')
+
+      notifyEl.addEventListener('submit', () => {
+        const messageEl = document.createElement('p')
+
+        messageEl.setAttribute('role', 'status')
+        messageEl.className = 'relative z-10 mt-4 text-sm font-medium text-gray-900'
+        messageEl.textContent = 'Thanks. We will email you when it is back.'
+
+        notifyEl.replaceWith(messageEl)
+      })
+    </script>
   </body>
 </html>
