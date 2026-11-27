@@ -3,56 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base with close - Modals - HyperUI</title>
+    <title>Delete with confirmation - Modals - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="p-6">
     <button
+      type="button"
       data-modal-open
-      class="rounded border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm text-gray-900"
+      class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
     >
-      Open
+      Delete project
     </button>
 
     <dialog
       closedby="any"
       aria-labelledby="modalTitle"
       aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white p-6 shadow-lg backdrop:bg-black/50"
+      class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/50"
     >
-      <div class="flex flex-col gap-4">
-        <div class="flex items-start justify-between">
-          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl">Modal Title</h2>
-
-          <button
-            type="button"
-            data-modal-close
-            class="-me-4 -mt-4 rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden"
-            aria-label="Close"
+      <div class="flex gap-4">
+        <span
+          class="flex size-10 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-700"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
           >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+            />
+          </svg>
+        </span>
+        <div class="min-w-0 flex-1">
+          <h2 id="modalTitle" class="text-lg font-semibold text-gray-900">Delete Northwind?</h2>
+          <p id="modalDescription" class="mt-2 text-pretty text-gray-600">
+            This permanently deletes the project, its 48 tasks and all files. You can't undo this.
+          </p>
+          <label for="confirm-name" class="mt-4 block text-sm font-medium text-gray-900"
+            >Type <span class="font-semibold">northwind</span> to confirm</label
+          >
+          <input
+            id="confirm-name"
+            type="text"
+            autocomplete="off"
+            class="mt-1.5 block w-full rounded-lg border-gray-300 text-sm text-gray-900 shadow-xs focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+          />
         </div>
-
-        <p id="modalDescription" class="text-pretty text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+      </div>
+      <div class="mt-6 flex justify-end gap-3">
+        <button
+          type="button"
+          data-modal-close
+          class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          data-modal-confirm
+          data-modal-close
+          disabled
+          class="rounded-lg bg-red-600 px-3.5 py-2 text-sm font-medium text-white hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Delete project
+        </button>
       </div>
     </dialog>
 
@@ -64,6 +86,18 @@
 
       document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
         buttonEl.addEventListener('click', () => modalEl.close())
+      })
+
+      const confirmInputEl = document.querySelector('#confirm-name')
+      const confirmButtonEl = document.querySelector('[data-modal-confirm]')
+
+      confirmInputEl.addEventListener('input', () => {
+        confirmButtonEl.disabled = confirmInputEl.value.trim().toLowerCase() !== 'northwind'
+      })
+
+      modalEl.addEventListener('close', () => {
+        confirmInputEl.value = ''
+        confirmButtonEl.disabled = true
       })
     </script>
   </body>

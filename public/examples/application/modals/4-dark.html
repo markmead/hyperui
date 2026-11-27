@@ -3,76 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Actions with close (dark) - Modals - HyperUI</title>
+    <title>Success (dark) - Modals - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="p-6 dark:bg-gray-900">
     <button
+      type="button"
       data-modal-open
-      class="rounded border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+      class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
     >
-      Open
+      Pay invoice
     </button>
 
     <dialog
       closedby="any"
       aria-labelledby="modalTitle"
       aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white p-6 shadow-lg backdrop:bg-black/50 dark:bg-gray-900 dark:backdrop:bg-white/50"
+      class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/50 dark:bg-gray-900 dark:backdrop:bg-white/50"
     >
-      <div class="flex flex-col gap-4">
-        <div class="flex items-start justify-between">
-          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
-            Modal Title
-          </h2>
-
-          <button
-            type="button"
-            data-modal-close
-            class="-me-4 -mt-4 rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-300 dark:focus:ring-indigo-300 dark:focus:ring-offset-gray-900 dark:focus-visible:ring-indigo-300 dark:focus-visible:ring-offset-gray-900"
-            aria-label="Close"
+      <div class="text-center">
+        <span
+          class="mx-auto flex size-12 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
           >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </span>
+        <h2 id="modalTitle" class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+          Payment received
+        </h2>
+        <p id="modalDescription" class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+          We charged $1,240.00 to your card ending 4242 and emailed the receipt to
+          accounts@northwind.co.
         </p>
-
-        <div class="flex justify-end gap-2">
-          <button
-            type="button"
-            data-modal-close
-            class="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-indigo-300 dark:focus:ring-offset-gray-900 dark:focus-visible:ring-indigo-300 dark:focus-visible:ring-offset-gray-900"
-          >
-            Cancel
-          </button>
-
-          <button
-            type="button"
-            data-modal-close
-            class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden dark:bg-blue-300 dark:text-gray-900 dark:hover:bg-blue-200 dark:focus:ring-indigo-300 dark:focus:ring-offset-gray-900 dark:focus-visible:ring-indigo-300 dark:focus-visible:ring-offset-gray-900"
-          >
-            Done
-          </button>
-        </div>
+      </div>
+      <div class="mt-6 flex flex-col gap-3">
+        <button
+          type="button"
+          data-modal-close
+          class="rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-indigo-300 dark:text-gray-900 dark:hover:bg-indigo-200 dark:focus-visible:outline-indigo-300"
+        >
+          Back to invoices
+        </button>
+        <a
+          href="#"
+          class="text-center text-sm font-medium text-indigo-600 underline underline-offset-4 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-indigo-300 dark:hover:text-indigo-200 dark:focus-visible:outline-indigo-300"
+          >Download receipt</a
+        >
       </div>
     </dialog>
 
