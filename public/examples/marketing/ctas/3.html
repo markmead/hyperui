@@ -3,42 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Base with content can call to action on the left, offset image on the right - CTAs - HyperUI
-    </title>
+    <title>Offset image - CTAs - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body>
-    <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center">
-      <div class="p-8 md:p-12 lg:px-16 lg:py-24">
-        <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-          <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit
+    <section class="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div class="max-w-lg">
+          <p class="text-sm font-medium text-indigo-600">New in March</p>
+          <h2 class="mt-2 text-3xl font-bold tracking-tight text-pretty text-gray-900 sm:text-4xl">
+            Send reports your clients actually read
           </h2>
-
-          <p class="hidden text-gray-500 md:mt-4 md:block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam
-            sed. Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet
-            volutpat quisque ut interdum tincidunt duis.
+          <p class="mt-4 text-pretty text-gray-600">
+            Build a report once, then share it as a live link or a PDF with your logo on every page.
           </p>
-
-          <div class="mt-4 md:mt-8">
-            <a
-              href="#"
-              class="inline-block rounded-sm bg-emerald-700 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 focus:ring-2 focus:ring-yellow-400 focus:outline-hidden"
+          <a
+            href="#"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >See how reports work<svg
+              aria-hidden="true"
+              class="size-5 rtl:rotate-180"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              Get Started Today
-            </a>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              /></svg
+          ></a>
+        </div>
+        <div class="relative ps-8 pb-8">
+          <div class="absolute inset-y-8 start-0 end-8 rounded-2xl bg-indigo-100"></div>
+          <img
+            alt=""
+            src="https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?auto=format&fit=crop&q=80&w=1160"
+            class="relative aspect-4/3 w-full rounded-2xl object-cover shadow-lg"
+          />
         </div>
       </div>
-
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?auto=format&fit=crop&q=80&w=1160"
-        class="h-full w-full object-cover sm:h-[calc(100%-2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%-4rem)] md:rounded-ss-[60px]"
-      />
     </section>
   </body>
 </html>
