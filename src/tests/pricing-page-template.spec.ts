@@ -31,13 +31,13 @@ for (const theme of ['', '-dark']) {
 
       const prices = page.locator('strong[data-monthly]')
 
-      await expect(prices).toHaveText(['$0', '$9', '$16'])
+      await expect(prices).toHaveText(['$0', '$10', '$15'])
 
       await page.getByRole('radio', { name: 'Monthly' }).focus()
       await page.keyboard.press('ArrowRight')
 
-      await expect(prices).toHaveText(['$0', '$7', '$13'])
-      await expect(page.getByText('Per user, billed $84 yearly')).toBeVisible()
+      await expect(prices).toHaveText(['$0', '$8', '$12'])
+      await expect(page.getByText('Per user, billed $96 yearly')).toBeVisible()
       await expect(page.locator('[data-billing-status]')).toHaveText('Showing yearly prices.')
     })
 
