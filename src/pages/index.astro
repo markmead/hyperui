@@ -14,23 +14,30 @@ const [templatesRaw, applicationRaw, marketingRaw, neobrutalismRaw] = await Prom
   getCollection('neobrutalism'),
 ])
 
+// Featured collections lead, then the rest A-Z. `featured` in a collection's
+// frontmatter is set from what people copy most.
+const byFeatured = (
+  a: { featured: boolean; title: string },
+  b: { featured: boolean; title: string },
+) => Number(b.featured) - Number(a.featured) || a.title.localeCompare(b.title)
+
 const templates = templatesRaw
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
 
 const application = applicationRaw
   .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
+  .sort(byFeatured)
   .slice(0, 9)
 
 const marketing = marketingRaw
   .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
+  .sort(byFeatured)
   .slice(0, 9)
 
 const neobrutalism = neobrutalismRaw
   .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
+  .sort(byFeatured)
   .slice(0, 9)
 ---
 
