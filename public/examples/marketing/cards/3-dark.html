@@ -3,35 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Darkened Background with Content on Hover (dark) - Cards - HyperUI</title>
+    <title>Destination (dark) - Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
-    <a href="#" class="group relative block bg-black">
+  <body class="mx-auto max-w-sm p-6 dark:bg-gray-900">
+    <article
+      class="relative isolate flex aspect-3/4 flex-col justify-end overflow-hidden rounded-2xl bg-gray-950 p-6 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
+    >
       <img
         alt=""
-        src="https://images.unsplash.com/photo-1603871165848-0aa92c869fa1?auto=format&fit=crop&q=80&w=1160"
-        class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+        src="https://images.unsplash.com/photo-1588515724527-074a7a56616c?auto=format&fit=crop&q=80&w=1160"
+        class="absolute inset-0 -z-10 size-full object-cover opacity-80 transition-transform duration-500 hover:scale-105"
       />
-
-      <div class="relative p-4 sm:p-6 lg:p-8">
-        <p class="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
-
-        <p class="text-xl font-bold text-white sm:text-2xl">Tony Wayne</p>
-
-        <div class="mt-32 sm:mt-48 lg:mt-64">
-          <div
-            class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100"
-          >
-            <p class="text-sm text-white">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis perferendis hic
-              asperiores quibusdam quidem voluptates doloremque reiciendis nostrum harum.
-              Repudiandae?
-            </p>
-          </div>
-        </div>
-      </div>
-    </a>
+      <div
+        class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"
+      ></div>
+      <p class="text-sm text-gray-200">8 days · from $2,400</p>
+      <h3 class="mt-1 text-2xl font-semibold text-white">
+        <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+          >Go around the world</a
+        >
+      </h3>
+      <p class="mt-2 text-sm/relaxed text-gray-200">
+        Small group trips on six continents, with local guides and no more than twelve travellers.
+      </p>
+    </article>
   </body>
 </html>
