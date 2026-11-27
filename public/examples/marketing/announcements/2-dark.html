@@ -3,26 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base with dismiss (dark) - Announcements - HyperUI</title>
+    <title>With dismiss (dark) - Announcements - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="dark:bg-gray-900">
     <div
-      class="flex items-center justify-between border-b border-gray-200 bg-gray-100 px-4 py-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+      data-announcement
+      class="flex items-center gap-4 bg-indigo-600 px-4 py-2.5 text-white dark:bg-indigo-300 dark:text-gray-900"
     >
-      <span> </span>
-
-      <p class="text-center font-medium">
-        Lorem, ipsum dolor
-        <a href="#" class="inline-block underline"> sit amet consectetur </a>
+      <p class="flex-1 ps-6 text-center text-sm">
+        Reports now export to PDF.
+        <a
+          href="#"
+          class="font-medium underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:focus-visible:outline-gray-900"
+          >See what's new</a
+        >
       </p>
-
       <button
         type="button"
-        aria-label="Dismiss"
-        class="rounded border border-gray-300 bg-white p-1.5 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+        data-dismiss
+        class="-m-1.5 shrink-0 rounded-md p-1.5 hover:bg-black/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:hover:bg-white/10 dark:focus-visible:outline-gray-900"
       >
+        <span class="sr-only">Dismiss announcement</span>
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -36,5 +39,10 @@
         </svg>
       </button>
     </div>
+    <script>
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', () => buttonEl.closest('[data-announcement]').remove())
+      })
+    </script>
   </body>
 </html>

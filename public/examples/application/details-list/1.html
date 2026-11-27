@@ -8,39 +8,33 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6">
-    <div class="flow-root">
+    <h2 class="text-base font-semibold text-gray-900">Order summary</h2>
+    <div class="mt-4 flow-root">
       <dl class="-my-3 divide-y divide-gray-200 text-sm">
         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Title</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">Mr</dd>
+          <dt class="font-medium text-gray-900">Order number</dt>
+          <dd class="text-gray-700 sm:col-span-2">#10482</dd>
         </div>
-
         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Name</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">John Frusciante</dd>
+          <dt class="font-medium text-gray-900">Placed on</dt>
+          <dd class="text-gray-700 sm:col-span-2">12 February 2026</dd>
         </div>
-
         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Occupation</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
-        </div>
-
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Salary</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd>
-        </div>
-
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Bio</dt>
-
+          <dt class="font-medium text-gray-900">Status</dt>
           <dd class="text-gray-700 sm:col-span-2">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis debitis explicabo
-            doloremque impedit nesciunt dolorem facere, dolor quasi veritatis quia fugit aperiam
-            aspernatur neque molestiae labore aliquam soluta architecto?
+            <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800"
+              >Delivered</span
+            >
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Total</dt>
+          <dd class="text-gray-700 sm:col-span-2">$248.00, paid by Visa ending 4242</dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Ship to</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Amara Okafor, 14 Harbour Street, Bristol BS1 4RB
           </dd>
         </div>
       </dl>

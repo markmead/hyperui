@@ -3,21 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base nested (dark) - Accordions - HyperUI</title>
+    <title>Nested (dark) - Accordions - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6 dark:bg-gray-900">
     <div class="space-y-2">
-      <details class="group space-y-2 [&_summary::-webkit-details-marker]:hidden" open>
+      <details
+        class="group/outer rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 [&_summary::-webkit-details-marker]:hidden"
+      >
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
         >
-          <span>Team Settings</span>
-
+          <span class="flex items-center gap-3"><span>REST API</span></span>
           <svg
             aria-hidden="true"
-            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            class="size-5 shrink-0 transition-transform duration-300 group-open/outer:-rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -31,85 +32,105 @@
             />
           </svg>
         </summary>
-
-        <div class="space-y-2 pl-4">
-          <details class="group/members [&_summary::-webkit-details-marker]:hidden">
-            <summary
-              class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-            >
-              <span>Members</span>
-
-              <svg
-                aria-hidden="true"
-                class="size-4 shrink-0 transition-transform duration-300 group-open/members:-rotate-180"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div class="px-4 pb-4">
+          <div class="space-y-1">
+            <details class="group/inner [&_summary::-webkit-details-marker]:hidden">
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </summary>
-
-            <div class="p-4">
-              <p class="text-gray-700 dark:text-gray-200">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae
-                hic dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut
-                minus iste odio consectetur molestias iusto cupiditate ullam laborum veniam quos
-                officia. Quos, temporibus perspiciatis!
-              </p>
-            </div>
-          </details>
-
-          <details class="group/roles [&_summary::-webkit-details-marker]:hidden">
-            <summary
-              class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-            >
-              <span>Roles & Permissions</span>
-
-              <svg
-                aria-hidden="true"
-                class="size-4 shrink-0 transition-transform duration-300 group-open/roles:-rotate-180"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+                <span class="flex items-center gap-3"><span>Authentication</span></span>
+                <svg
+                  aria-hidden="true"
+                  class="size-5 shrink-0 transition-transform duration-300 group-open/inner:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div class="px-3 pb-3">
+                <p class="text-sm text-pretty text-gray-600 dark:text-gray-300">
+                  Send your API key in the Authorization header. Keys are shown once, so store them
+                  somewhere safe.
+                </p>
+              </div>
+            </details>
+            <details class="group/inner [&_summary::-webkit-details-marker]:hidden">
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </summary>
-
-            <div class="p-4">
-              <p class="text-gray-700 dark:text-gray-200">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae
-                hic dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut
-                minus iste odio consectetur molestias iusto cupiditate ullam laborum veniam quos
-                officia. Quos, temporibus perspiciatis!
-              </p>
-            </div>
-          </details>
+                <span class="flex items-center gap-3"><span>Rate limits</span></span>
+                <svg
+                  aria-hidden="true"
+                  class="size-5 shrink-0 transition-transform duration-300 group-open/inner:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div class="px-3 pb-3">
+                <p class="text-sm text-pretty text-gray-600 dark:text-gray-300">
+                  Each key can make 600 requests a minute. Responses include headers that show how
+                  many you have left.
+                </p>
+              </div>
+            </details>
+            <details class="group/inner [&_summary::-webkit-details-marker]:hidden">
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
+              >
+                <span class="flex items-center gap-3"><span>Webhooks</span></span>
+                <svg
+                  aria-hidden="true"
+                  class="size-5 shrink-0 transition-transform duration-300 group-open/inner:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div class="px-3 pb-3">
+                <p class="text-sm text-pretty text-gray-600 dark:text-gray-300">
+                  Subscribe to events such as invoice.paid. We retry failed deliveries for up to 24
+                  hours.
+                </p>
+              </div>
+            </details>
+          </div>
         </div>
       </details>
-
-      <details class="group space-y-2 [&_summary::-webkit-details-marker]:hidden">
+      <details
+        class="group/outer rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 [&_summary::-webkit-details-marker]:hidden"
+      >
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
         >
-          <span>Integration Settings</span>
-
+          <span class="flex items-center gap-3"><span>Client libraries</span></span>
           <svg
             aria-hidden="true"
-            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            class="size-5 shrink-0 transition-transform duration-300 group-open/outer:-rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -123,40 +144,63 @@
             />
           </svg>
         </summary>
-
-        <div class="space-y-2 pl-4">
-          <details class="group/keys [&_summary::-webkit-details-marker]:hidden">
-            <summary
-              class="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-            >
-              <span>API Keys</span>
-
-              <svg
-                aria-hidden="true"
-                class="size-4 shrink-0 transition-transform duration-300 group-open/keys:-rotate-180"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div class="px-4 pb-4">
+          <div class="space-y-1">
+            <details class="group/inner [&_summary::-webkit-details-marker]:hidden">
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </summary>
-
-            <div class="p-4">
-              <p class="text-gray-700 dark:text-gray-200">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae
-                hic dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut
-                minus iste odio consectetur molestias iusto cupiditate ullam laborum veniam quos
-                officia. Quos, temporibus perspiciatis!
-              </p>
-            </div>
-          </details>
+                <span class="flex items-center gap-3"><span>JavaScript</span></span>
+                <svg
+                  aria-hidden="true"
+                  class="size-5 shrink-0 transition-transform duration-300 group-open/inner:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div class="px-3 pb-3">
+                <p class="text-sm text-pretty text-gray-600 dark:text-gray-300">
+                  Install the package from npm and create a client with your key.
+                </p>
+              </div>
+            </details>
+            <details class="group/inner [&_summary::-webkit-details-marker]:hidden">
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
+              >
+                <span class="flex items-center gap-3"><span>Python</span></span>
+                <svg
+                  aria-hidden="true"
+                  class="size-5 shrink-0 transition-transform duration-300 group-open/inner:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div class="px-3 pb-3">
+                <p class="text-sm text-pretty text-gray-600 dark:text-gray-300">
+                  Install with pip. Supports Python 3.9 and newer.
+                </p>
+              </div>
+            </details>
+          </div>
         </div>
       </details>
     </div>
