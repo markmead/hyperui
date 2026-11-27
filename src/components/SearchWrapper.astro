@@ -79,7 +79,7 @@ const browse: Item[] = [
 <search-dialog data-items={JSON.stringify(items)} data-browse={JSON.stringify(browse)}>
   <button
     type="button"
-    data-open
+    data-search-open
     aria-haspopup="dialog"
     aria-keyshortcuts="Control+K Meta+K"
     class="inline-flex h-9 items-center gap-2 rounded-md border border-gray-200 bg-white px-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50 md:w-56"
@@ -89,7 +89,7 @@ const browse: Item[] = [
     <span class="sr-only md:not-sr-only md:flex-1 md:text-left">Search</span>
 
     <kbd
-      data-shortcut
+      data-search-shortcut
       aria-hidden="true"
       class="hidden rounded border border-gray-200 px-1.5 font-sans text-xs text-gray-500 md:inline"
       >Ctrl K</kbd
@@ -97,7 +97,7 @@ const browse: Item[] = [
   </button>
 
   <dialog
-    data-dialog
+    data-search-dialog
     aria-label="Search HyperUI"
     class="fixed top-[10vh] left-1/2 m-0 w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-xl border border-gray-200 bg-white p-0 text-gray-900 shadow-2xl backdrop:bg-gray-950/40"
   >
@@ -105,7 +105,7 @@ const browse: Item[] = [
       <Search class="size-4 shrink-0 text-gray-400" aria-hidden="true" />
 
       <input
-        data-input
+        data-search-input
         type="text"
         role="combobox"
         aria-label="Search components, templates and pages"
@@ -122,7 +122,7 @@ const browse: Item[] = [
 
       <button
         type="button"
-        data-close
+        data-search-close
         aria-label="Close search"
         class="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
       >
@@ -131,11 +131,11 @@ const browse: Item[] = [
     </div>
 
     <div class="max-h-[min(24rem,60vh)] overflow-y-auto overscroll-contain p-2">
-      <p data-heading class="px-2 pt-1 pb-2 text-xs font-medium text-gray-500">Browse</p>
+      <p data-search-heading class="px-2 pt-1 pb-2 text-xs font-medium text-gray-500">Browse</p>
 
-      <ul data-list id="search-listbox" role="listbox" aria-label="Search results"></ul>
+      <ul data-search-list id="search-listbox" role="listbox" aria-label="Search results"></ul>
 
-      <p data-empty hidden class="px-2 py-6 text-center text-sm text-gray-600"></p>
+      <p data-search-empty hidden class="px-2 py-6 text-center text-sm text-gray-600"></p>
     </div>
 
     <p
@@ -145,7 +145,7 @@ const browse: Item[] = [
       <span>Esc to close</span>
     </p>
 
-    <span data-status aria-live="polite" class="sr-only"></span>
+    <span data-search-status aria-live="polite" class="sr-only"></span>
   </dialog>
 </search-dialog>
 
@@ -181,16 +181,16 @@ const browse: Item[] = [
     private abortController: AbortController | null = null
 
     connectedCallback() {
-      this.dialogEl = this.querySelector('[data-dialog]')
-      this.inputEl = this.querySelector('[data-input]')
-      this.listEl = this.querySelector('[data-list]')
-      this.headingEl = this.querySelector('[data-heading]')
-      this.emptyEl = this.querySelector('[data-empty]')
-      this.statusEl = this.querySelector('[data-status]')
+      this.dialogEl = this.querySelector('[data-search-dialog]')
+      this.inputEl = this.querySelector('[data-search-input]')
+      this.listEl = this.querySelector('[data-search-list]')
+      this.headingEl = this.querySelector('[data-search-heading]')
+      this.emptyEl = this.querySelector('[data-search-empty]')
+      this.statusEl = this.querySelector('[data-search-status]')
 
-      const openEl = this.querySelector('[data-open]')
-      const closeEl = this.querySelector('[data-close]')
-      const shortcutEl = this.querySelector('[data-shortcut]')
+      const openEl = this.querySelector('[data-search-open]')
+      const closeEl = this.querySelector('[data-search-close]')
+      const shortcutEl = this.querySelector('[data-search-shortcut]')
 
       if (!this.dialogEl || !this.inputEl || !this.listEl || !openEl || !closeEl) {
         return

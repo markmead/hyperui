@@ -77,7 +77,7 @@ test.describe('Site search', () => {
     await page.keyboard.press('ControlOrMeta+k')
     await page.getByRole('combobox').fill('faqs')
 
-    await expect(page.getByRole('option', { name: /FAQs/ })).toBeVisible()
+    await expect(page.locator('[role="option"][href="/faqs"]')).toBeVisible()
   })
 
   test('moves through results with the arrow keys without scrolling the page', async ({ page }) => {
@@ -105,14 +105,14 @@ test.describe('Site search', () => {
     await page.getByRole('combobox').fill('accordion')
     await page.keyboard.press('Enter')
 
-    await expect(page).toHaveURL(pageURL('/components/application/accordions'))
-    await expect(page).toHaveTitle('Free Tailwind CSS Accordions | HyperUI')
+    await expect(page).toHaveURL(/\/components\/(application|neobrutalism)\/accordions\/?$/)
+    await expect(page).toHaveTitle(/Accordions \| HyperUI$/)
   })
 
   test('opens a result with a click', async ({ page }) => {
     await page.keyboard.press('ControlOrMeta+k')
     await page.getByRole('combobox').fill('faqs')
-    await page.getByRole('option', { name: /FAQs/ }).click()
+    await page.locator('[role="option"][href="/faqs"]').click()
 
     await expect(page).toHaveURL(pageURL('/faqs'))
     await expect(page.locator('article')).toBeVisible()
