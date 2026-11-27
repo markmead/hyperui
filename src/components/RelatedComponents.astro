@@ -3,22 +3,24 @@ import { getCollection } from 'astro:content'
 
 import { ArrowRight } from '@lucide/astro'
 
+import { relatedItems } from '../lib/search'
+
 import ComponentCard from './ComponentCard.astro'
 
 type Props = {
   slug: string
+  title: string
   terms: string[]
   category: 'application' | 'marketing' | 'neobrutalism' | 'templates'
 }
 
-const { slug, terms, category } = Astro.props
+const { slug, title, terms, category } = Astro.props
 
-const termsSet = new Set(terms)
-
-const components = (await getCollection(category))
+const collection = (await getCollection(category))
   .map(({ data }) => data)
-  .filter((item) => item.slug !== slug && item.terms.some((term) => termsSet.has(term)))
-  .slice(0, 5)
+  .filter((item) => item.slug !== slug)
+
+const components = relatedItems({ title, terms }, collection)
 ---
 
 <div class="mt-16 space-y-8">

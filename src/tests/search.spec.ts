@@ -1,136 +1,129 @@
-import { test, expect, type Locator, pageURL } from './fixtures'
+import { test, expect, pageURL } from './fixtures'
 
 test.describe('Site search', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
   })
 
-  test('search is not visible by default', async ({ page }) => {
-    await expect(page.locator('search-results [data-container="false"]')).not.toBeVisible()
+  test('is closed by default', async ({ page }) => {
+    await expect(page.getByRole('dialog', { name: 'Search HyperUI' })).toBeHidden()
+    await expect(page.getByRole('button', { name: 'Search' })).toBeVisible()
   })
 
-  test('shows results when searching', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-    const resultsContainer: Locator = page.locator('search-results [data-container]')
+  test('opens from the header button and closes with escape', async ({ page }) => {
+    const trigger = page.getByRole('button', { name: 'Search' })
+    const dialog = page.getByRole('dialog', { name: 'Search HyperUI' })
 
-    await expect(resultsContainer).not.toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'false')
+    await trigger.click()
 
-    await searchInput.fill('accordion')
-
-    await expect(resultsContainer).toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'true')
-
-    const resultCount: number = await page.locator('search-results [role="listbox"] li').count()
-
-    expect(resultCount).toBeGreaterThan(0)
-  })
-
-  test('shows error when no results are found', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-    const resultsContainer: Locator = page.locator('search-results [data-container]')
-    const errorMessage: Locator = page.locator('search-results [data-error]')
-
-    await expect(resultsContainer).not.toBeVisible()
-    await expect(errorMessage).not.toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'false')
-    await expect(errorMessage).toHaveAttribute('data-error', 'false')
-
-    await searchInput.fill('abcdefg')
-
-    await expect(resultsContainer).toBeVisible()
-    await expect(errorMessage).toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'true')
-    await expect(errorMessage).toHaveAttribute('data-error', 'true')
-
-    const resultCount: number = await page.locator('search-results [role="listbox"] li').count()
-
-    expect(resultCount).toBe(0)
-  })
-
-  test('can clear results', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-    const clearButton: Locator = page.getByRole('button', { name: 'Clear' })
-    const resultsContainer: Locator = page.locator('search-results [data-container]')
-
-    await expect(resultsContainer).not.toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'false')
-
-    await searchInput.fill('accordion')
-
-    await expect(resultsContainer).toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'true')
-
-    await clearButton.click()
-
-    await expect(searchInput).toHaveValue('')
-    await expect(resultsContainer).not.toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'false')
-  })
-
-  test('shows both component and page results', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-
-    await searchInput.fill('faqs')
-
-    await expect(
-      page.locator('search-results [data-list] strong', { hasText: 'Components' }),
-    ).toBeVisible()
-
-    await expect(
-      page.locator('search-results [data-list] strong', { hasText: 'Pages' }),
-    ).toBeVisible()
-  })
-
-  test('can navigate to a component result', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-
-    await searchInput.fill('accordion')
-
-    const componentLink: Locator = page.locator('search-results [role="listbox"] a').first()
-    const componentHref: string | null = await componentLink.getAttribute('href')
-
-    await componentLink.click()
-
-    await expect(page).toHaveURL(pageURL(componentHref ?? ''))
-    await expect(page).toHaveTitle('Free Tailwind CSS Accordions | HyperUI')
-
-    const componentPreviews: number = await page.locator('component-preview').count()
-
-    expect(componentPreviews).toBeGreaterThan(0)
-  })
-
-  test('can navigate to a page result', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-
-    await searchInput.fill('faqs')
-
-    const pageLink: Locator = page.locator('search-results [role="listbox"] a[href="/faqs"]')
-
-    await pageLink.click()
-
-    await expect(page).toHaveURL(pageURL('/faqs'))
-    await expect(page).toHaveTitle('FAQs | HyperUI')
-
-    await expect(page.locator('article')).toBeVisible()
-  })
-
-  test('can close with escape', async ({ page }) => {
-    const searchInput: Locator = page.locator('search-input input')
-    const resultsContainer: Locator = page.locator('search-results [data-container]')
-
-    await expect(resultsContainer).not.toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'false')
-
-    await searchInput.fill('accordion')
-
-    await expect(resultsContainer).toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'true')
+    await expect(dialog).toBeVisible()
+    await expect(page.getByRole('combobox')).toBeFocused()
 
     await page.keyboard.press('Escape')
 
-    await expect(searchInput).toHaveValue('')
-    await expect(resultsContainer).not.toBeVisible()
-    await expect(resultsContainer).toHaveAttribute('data-container', 'false')
+    await expect(dialog).toBeHidden()
+    await expect(trigger).toBeFocused()
+  })
+
+  test('opens and closes with the keyboard shortcut', async ({ page }) => {
+    const dialog = page.getByRole('dialog', { name: 'Search HyperUI' })
+
+    await page.keyboard.press('ControlOrMeta+k')
+
+    await expect(dialog).toBeVisible()
+
+    await page.keyboard.press('ControlOrMeta+k')
+
+    await expect(dialog).toBeHidden()
+  })
+
+  test('closes from the close button', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('button', { name: 'Close search' }).click()
+
+    await expect(page.getByRole('dialog', { name: 'Search HyperUI' })).toBeHidden()
+  })
+
+  test('suggests the categories before anything is typed', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+
+    await expect(page.getByRole('option')).toHaveCount(4)
+    await expect(page.getByRole('option').first()).toContainText('Application')
+  })
+
+  test('shows results when searching', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('accordion')
+
+    await expect(page.getByRole('option').first()).toContainText('Accordions')
+  })
+
+  test('ranks a title match ahead of description matches', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('product')
+
+    await expect(page.getByRole('option').first()).toContainText('Product Cards')
+  })
+
+  test('shows a message when nothing matches', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('abcdefg')
+
+    await expect(page.getByRole('option')).toHaveCount(0)
+    await expect(page.getByText('No results for “abcdefg”.')).toBeVisible()
+  })
+
+  test('shows page results', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('faqs')
+
+    await expect(page.locator('[role="option"][href="/faqs"]')).toBeVisible()
+  })
+
+  test('moves through results with the arrow keys without scrolling the page', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('card')
+
+    const options = page.getByRole('option')
+
+    await expect(options.first()).toHaveAttribute('aria-selected', 'true')
+
+    await page.keyboard.press('ArrowDown')
+
+    await expect(options.nth(1)).toHaveAttribute('aria-selected', 'true')
+    await expect(options.first()).toHaveAttribute('aria-selected', 'false')
+
+    await page.keyboard.press('ArrowUp')
+
+    await expect(options.first()).toHaveAttribute('aria-selected', 'true')
+
+    expect(await page.evaluate(() => globalThis.scrollY)).toBe(0)
+  })
+
+  test('opens the highlighted result with enter', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('accordion')
+    await page.keyboard.press('Enter')
+
+    await expect(page).toHaveURL(/\/components\/(application|neobrutalism)\/accordions\/?$/)
+    await expect(page).toHaveTitle(/Accordions \| HyperUI$/)
+  })
+
+  test('opens a result with a click', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('faqs')
+    await page.locator('[role="option"][href="/faqs"]').click()
+
+    await expect(page).toHaveURL(pageURL('/faqs'))
+    await expect(page.locator('article')).toBeVisible()
+  })
+
+  test('starts clean when opened again', async ({ page }) => {
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.getByRole('combobox').fill('accordion')
+    await page.keyboard.press('Escape')
+    await page.keyboard.press('ControlOrMeta+k')
+
+    await expect(page.getByRole('combobox')).toHaveValue('')
   })
 })
