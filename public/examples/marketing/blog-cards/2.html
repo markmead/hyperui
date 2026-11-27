@@ -3,28 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Floating image with title and excerpt - Blog Cards - HyperUI</title>
+    <title>Horizontal - Blog Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6">
-    <article class="group">
+  <body class="mx-auto max-w-2xl p-6">
+    <article
+      class="relative flex flex-col overflow-hidden rounded-xl bg-white ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 sm:flex-row"
+    >
       <img
         alt=""
-        src="https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?auto=format&fit=crop&q=80&w=1160"
-        class="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-50"
+        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1160"
+        class="aspect-video w-full object-cover sm:aspect-auto sm:w-48 sm:shrink-0"
       />
-
-      <div class="p-4">
-        <a href="#">
-          <h3 class="text-lg font-medium text-gray-900">Finding the Journey to Mordor</h3>
-        </a>
-
-        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-          pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
-          quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
-          atque dignissimos. Molestias explicabo corporis voluptatem?
+      <div class="p-5">
+        <p class="text-sm font-medium text-indigo-600">Research</p>
+        <h3 class="mt-1 text-lg font-semibold text-gray-900">
+          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+            >What we learned from 1,000 customer interviews</a
+          >
+        </h3>
+        <p class="mt-2 line-clamp-2 text-sm/relaxed text-gray-600">
+          We spent a year asking customers how they plan their work. The answers changed what we
+          build next.
+        </p>
+        <p class="mt-4 text-sm text-gray-500">
+          <time datetime="2026-01-28">28 Jan 2026</time> · 8 min read
         </p>
       </div>
     </article>
