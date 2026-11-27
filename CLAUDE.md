@@ -78,10 +78,10 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 - Only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
 - Support Inbox stays, as a preview of the application components working together.
-- Templates are built from components, and new templates feed components. `src/data/template-links.json` records which components each template is built from (`uses`), and which components were made from a template (`feeds`), with a hash of each side's markup structure (tags, classes and accessibility attributes, not wording). The tests fail when a linked component changes, or a template that feeds a component changes, until the other side is brought along.
-  - A linked component changed: update the template to use the new markup, or copy the old component into a new variant (with `pnpm component:ids` for its uuid) and keep the template on that.
-  - A new template section that is worth reusing: make it a component and link it with `--feeds`.
-  - Link, check and accept with `pnpm templates:links` (run it with no arguments to check, or see `--add`, `--accept` and `--suggest`). Run `--accept` only once both sides agree.
+- Templates are built from components, and new templates feed components. Every template page is a composition: `src/data/template-links.json` lists all the components it is built from, by `uuid`, and how much of the template those components account for (its coverage, aiming for 90%). Wrapper `div`s and layout are the only markup that should not belong to a component.
+  - A section of a template that is not a component yet becomes one: add it to the relevant collection as a new variant (`pnpm component:ids` for its `uuid`, `pnpm dark` for dark mode), then link it with `--from-template`.
+  - Build a template section from an existing component by using the component's markup, then link it. Changing a class or accessibility attribute in a linked component fails the tests until the template follows, or the old markup is kept as a new variant the template uses. Wording changes do not count.
+  - `pnpm templates:links` checks (no arguments). `--status` shows each template's coverage, `--add-matches <template>` links every component found inside it, `--add` links one, and `--accept` re-records a template once it and its components agree. Coverage can only go up, never down.
 
 ## PR Title Format
 

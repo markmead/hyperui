@@ -4,7 +4,13 @@ import path from 'node:path'
 import { test, expect } from './fixtures'
 
 import { componentIndex } from '../../scripts/lib/component-ids.js'
-import { findDrift, readLinks } from '../../scripts/lib/template-links.js'
+import {
+  TARGET_COVERAGE,
+  coverageReport,
+  findDrift,
+  percent,
+  readLinks,
+} from '../../scripts/lib/template-links.js'
 
 const examplesPath = path.resolve(import.meta.dirname, '../../public/examples')
 
@@ -36,18 +42,38 @@ test.describe('Template links', () => {
   test('every link joins a template to a component', () => {
     const index = componentIndex()
 
-    for (const link of readLinks()) {
+    for (const link of readLinks().links) {
       expect(index.get(link.template), `${link.templateName} is a template`).toMatch(/^templates\//)
       expect(index.get(link.component), `${link.componentName} is a component`).not.toMatch(
         /^templates\//,
       )
-      expect(['uses', 'feeds']).toContain(link.direction)
+      expect(['existing', 'template']).toContain(link.origin)
     }
   })
 
   test('links are not repeated', () => {
-    const keys = readLinks().map((link) => `${link.template}:${link.component}`)
+    const keys = readLinks().links.map((link) => `${link.template}:${link.component}`)
 
     expect(new Set(keys).size).toBe(keys.length)
+  })
+
+  test('every template page has a coverage floor', () => {
+    const { coverage } = readLinks()
+
+    for (const page of coverageReport()) {
+      expect(coverage[page.uuid], `${page.name} has no entry in coverage`).toBeDefined()
+    }
+  })
+
+  test('how much of each template is built from components', () => {
+    // Not a failure yet: the floors stop it falling, and this shows the gap.
+    const below = coverageReport()
+      .filter((page) => page.coverage < TARGET_COVERAGE)
+      .map((page) => `${percent(page.coverage)} ${page.name}`)
+
+    test.info().annotations.push({
+      type: 'below the target',
+      description: `${below.length} templates: ${below.join(', ')}`,
+    })
   })
 })
