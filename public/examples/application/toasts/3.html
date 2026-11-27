@@ -3,37 +3,92 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Warning - Toasts - HyperUI</title>
+    <title>Warning with usage - Toasts - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="ml-auto max-w-md p-6">
-    <div role="alert" class="rounded-md border border-amber-500 bg-amber-50 p-4 shadow-sm">
-      <div class="flex items-start gap-4">
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="-mt-0.5 size-6 text-amber-700"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
-          />
-        </svg>
-
-        <div class="flex-1">
-          <strong class="block leading-tight font-medium text-amber-800"> Warning </strong>
-
-          <p class="mt-0.5 text-sm text-amber-700">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, dignissimos.
-          </p>
+    <div
+      data-toast
+      role="status"
+      class="overflow-hidden rounded-xl bg-white p-4 shadow-xl ring-1 ring-gray-950/10"
+    >
+      <div class="flex items-start gap-3">
+        <span
+          class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 ring-1 ring-amber-600/20 ring-inset"
+          ><svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-4.898 0L2.697 16.126ZM12 15.75h.01"
+            /></svg
+        ></span>
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold text-gray-900">Storage almost full</p>
+          <p class="mt-1 text-sm text-gray-600">You have used 46 GB of 50 GB.</p>
+          <div
+            role="progressbar"
+            aria-label="Storage used"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="92"
+            class="mt-3 h-1.5 overflow-hidden rounded-full bg-gray-100"
+          >
+            <div class="h-full w-[92%] rounded-full bg-amber-500"></div>
+          </div>
+          <div class="mt-3 flex gap-2">
+            <a
+              href="#"
+              class="rounded-md bg-gray-900 px-2.5 py-1.5 text-sm/none font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+              >Upgrade plan</a
+            >
+            <button
+              type="button"
+              data-dismiss
+              class="rounded-md px-2.5 py-1.5 text-sm/none font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+            >
+              Remind me later
+            </button>
+          </div>
         </div>
+        <button
+          type="button"
+          data-dismiss
+          class="-m-1 shrink-0 rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+        >
+          <span class="sr-only">Dismiss</span>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </div>
+    <script>
+      const toastEl = document.querySelector('[data-toast]')
+
+      function dismissToast() {
+        toastEl.remove()
+      }
+
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', dismissToast)
+      })
+    </script>
   </body>
 </html>

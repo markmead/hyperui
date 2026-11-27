@@ -8,44 +8,29 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="flex min-h-screen items-center justify-center p-6">
-    <div class="max-w-md text-center">
-      <svg
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="mx-auto size-20 text-gray-400"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
-        />
-      </svg>
-
-      <h2 class="mt-6 text-2xl font-bold text-gray-900">No data to display</h2>
-
-      <p class="mt-4 text-pretty text-gray-700">
-        Get started by creating your first item. It only takes a few seconds.
+    <div class="w-full max-w-xl text-center">
+      <h2 class="text-lg font-semibold text-gray-900">Add your first customers</h2>
+      <p class="mt-2 text-pretty text-gray-600">
+        Bring in the list you already have, or start from a blank record.
       </p>
-
-      <div class="mt-6 space-y-3">
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
         <button
-          class="block w-full rounded-lg bg-indigo-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
+          type="button"
+          class="group rounded-xl p-5 text-start ring-1 ring-gray-200 hover:ring-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Import Data
+          <span class="block font-medium text-gray-900">Import a CSV</span>
+          <span class="mt-1 block text-sm text-gray-600"
+            >Map columns to fields. Up to 10,000 rows.</span
+          >
         </button>
-
         <button
-          class="block w-full rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50"
+          type="button"
+          class="group rounded-xl p-5 text-start ring-1 ring-gray-200 hover:ring-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Create New
+          <span class="block font-medium text-gray-900">Add a customer</span>
+          <span class="mt-1 block text-sm text-gray-600">Enter one customer by hand.</span>
         </button>
       </div>
-
-      <p class="mt-6 text-sm text-gray-700">Supported formats: CSV, JSON</p>
     </div>
   </body>
 </html>

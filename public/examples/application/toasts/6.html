@@ -8,8 +8,25 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="ml-auto max-w-md p-6">
-    <div role="alert" class="border-s-4 border-blue-700 bg-blue-50 p-4">
-      <div class="flex items-center gap-2 text-blue-700">
+    <div
+      data-toast
+      role="status"
+      class="flex items-center gap-3 overflow-hidden rounded-xl bg-gray-950 py-3 pr-3 pl-4 text-white shadow-xl ring-1 ring-white/10"
+    >
+      <p data-message class="min-w-0 flex-1 text-sm font-medium">Conversation archived</p>
+      <button
+        type="button"
+        data-undo
+        class="rounded-md px-2 py-1 text-sm font-semibold text-sky-300 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Undo
+      </button>
+      <button
+        type="button"
+        data-dismiss
+        class="-m-1 shrink-0 rounded-md p-1 text-gray-400 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        <span class="sr-only">Dismiss</span>
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -17,21 +34,29 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6"
+          class="size-5"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-          />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
-
-        <strong class="block leading-tight font-medium text-blue-800"> Info </strong>
-      </div>
-
-      <p class="mt-1 text-sm text-blue-700">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, dignissimos.
-      </p>
+      </button>
     </div>
+    <script>
+      const toastEl = document.querySelector('[data-toast]')
+
+      function dismissToast() {
+        toastEl.remove()
+      }
+
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', dismissToast)
+      })
+
+      const undoEl = document.querySelector('[data-undo]')
+
+      undoEl.addEventListener('click', () => {
+        document.querySelector('[data-message]').textContent = 'Conversation restored'
+        undoEl.remove()
+      })
+    </script>
   </body>
 </html>

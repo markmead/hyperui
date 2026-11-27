@@ -3,37 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info - Toasts - HyperUI</title>
+    <title>Message with avatar - Toasts - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="ml-auto max-w-md p-6">
-    <div role="alert" class="rounded-md border border-blue-500 bg-blue-50 p-4 shadow-sm">
-      <div class="flex items-start gap-4">
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="-mt-0.5 size-6 text-blue-700"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-          />
-        </svg>
-
-        <div class="flex-1">
-          <strong class="block leading-tight font-medium text-blue-800"> Info </strong>
-
-          <p class="mt-0.5 text-sm text-blue-700">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, dignissimos.
+    <div
+      data-toast
+      role="status"
+      class="overflow-hidden rounded-xl bg-white p-4 shadow-xl ring-1 ring-gray-950/10"
+    >
+      <div class="flex items-start gap-3">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80"
+          class="size-10 shrink-0 rounded-full object-cover"
+        />
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold text-gray-900">
+            Amara Okafor <span class="font-normal text-gray-500">commented</span>
           </p>
+          <p class="mt-1 text-sm text-gray-600">
+            "Pricing page looks great. Can we move the FAQ above the footer?"
+          </p>
+          <div data-actions class="mt-3 flex gap-2">
+            <button
+              type="button"
+              data-reply
+              class="rounded-md bg-gray-900 px-2.5 py-1.5 text-sm/none font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+            >
+              Reply
+            </button>
+            <button
+              type="button"
+              data-dismiss
+              class="rounded-md px-2.5 py-1.5 text-sm/none font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+            >
+              Mark as read
+            </button>
+          </div>
+          <form data-reply-form hidden class="mt-3 flex gap-2">
+            <label class="sr-only" for="toast-reply">Reply to Amara</label>
+            <input
+              id="toast-reply"
+              type="text"
+              required
+              placeholder="Write a reply"
+              class="min-w-0 flex-1 rounded-md border-0 px-2.5 py-1.5 text-sm text-gray-900 ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-gray-900"
+            />
+            <button
+              type="submit"
+              class="rounded-md bg-gray-900 px-2.5 py-1.5 text-sm/none font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+            >
+              Send
+            </button>
+          </form>
         </div>
+        <button
+          type="button"
+          data-dismiss
+          class="-m-1 shrink-0 rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+        >
+          <span class="sr-only">Dismiss</span>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </div>
+    <script>
+      const toastEl = document.querySelector('[data-toast]')
+
+      function dismissToast() {
+        toastEl.remove()
+      }
+
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', dismissToast)
+      })
+
+      const actionsEl = document.querySelector('[data-actions]')
+      const formEl = document.querySelector('[data-reply-form]')
+
+      document.querySelector('[data-reply]').addEventListener('click', () => {
+        actionsEl.hidden = true
+        formEl.hidden = false
+        formEl.querySelector('input').focus()
+      })
+
+      formEl.addEventListener('submit', () => {
+        formEl.replaceChildren('Reply sent')
+        formEl.className = 'mt-3 text-sm font-medium text-gray-900'
+
+        setTimeout(dismissToast, 1200)
+      })
+    </script>
   </body>
 </html>

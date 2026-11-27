@@ -9,36 +9,65 @@
   </head>
   <body class="ml-auto max-w-md p-6 dark:bg-gray-900">
     <div
-      role="alert"
-      class="rounded-md border border-green-500 bg-green-50 p-4 shadow-sm dark:border-green-400 dark:bg-green-800"
+      data-toast
+      role="status"
+      class="overflow-hidden rounded-xl bg-white p-4 shadow-xl ring-1 ring-gray-950/10 dark:bg-gray-900 dark:ring-white/15"
     >
-      <div class="flex items-start gap-4">
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="-mt-0.5 size-6 text-green-700 dark:text-green-200"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-
-        <div class="flex-1">
-          <strong class="block leading-tight font-medium text-green-800 dark:text-green-100">
-            Success
-          </strong>
-
-          <p class="mt-0.5 text-sm text-green-700 dark:text-green-200">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, dignissimos.
+      <div class="flex items-start gap-3">
+        <span
+          class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-green-50 text-green-600 ring-1 ring-green-600/20 ring-inset dark:bg-green-800 dark:text-green-300 dark:ring-green-300/20"
+          ><svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg
+        ></span>
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold text-gray-900 dark:text-white">Invoice sent</p>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+            INV-0142 was emailed to accounts@northwind.co.
           </p>
+          <a
+            href="#"
+            class="mt-2 inline-block rounded-sm text-sm font-medium text-green-700 underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-green-200 dark:focus-visible:outline-gray-50"
+            >View invoice</a
+          >
         </div>
+        <button
+          type="button"
+          data-dismiss
+          class="-m-1 shrink-0 rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-200 dark:focus-visible:outline-gray-50"
+        >
+          <span class="sr-only">Dismiss</span>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </div>
+    <script>
+      const toastEl = document.querySelector('[data-toast]')
+
+      function dismissToast() {
+        toastEl.remove()
+      }
+
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', dismissToast)
+      })
+    </script>
   </body>
 </html>
