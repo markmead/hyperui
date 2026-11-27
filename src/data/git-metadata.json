@@ -1,7 +1,8 @@
 {
   "application/accordions": {
     "commit": "ddd173b764f377ea2a7e7f6453aa33dee68e044f",
-    "date": "2026-11-27T12:43:09+00:00"
+    "date": "2026-11-27T12:43:09+00:00",
+    "created": "2025-11-04T10:39:59+00:00"
   },
   "application/app-shells": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
@@ -14,24 +15,29 @@
     "created": "2026-11-18T13:04:47+00:00"
   },
   "application/badges": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/breadcrumbs": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/button-groups": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "6d7a621211849037f6398a3eb6cbe3375c35b93f",
+    "date": "2026-11-11T15:49:18+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/charts": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2026-07-11T09:21:52+01:00"
   },
   "application/checkboxes": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/code-blocks": {
     "commit": "8d4f414c67e5c427bb221ba978d1804ef7632884",
@@ -40,52 +46,58 @@
   },
   "application/details-list": {
     "commit": "6365b55d15b1bad16af77455577bca77ddfa081c",
-    "date": "2026-11-27T10:46:06+00:00"
+    "date": "2026-11-27T10:46:06+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/dividers": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/dropdown": {
     "commit": "c5f92920499636ab85a38f4e60d6f7e18d59cdae",
-    "date": "2026-11-16T22:59:07+00:00"
+    "date": "2026-11-16T22:59:07+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/empty-states": {
     "commit": "bc282b74331a39804cd7f37c3a03d82ba3ec5710",
-    "date": "2026-11-27T12:58:37+00:00"
+    "date": "2026-11-27T12:58:37+00:00",
+    "created": "2025-11-06T21:46:35+00:00"
   },
   "application/file-uploaders": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/filters": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/form-layouts": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
     "date": "2026-11-21T20:51:30+00:00",
     "created": "2026-11-21T20:51:30+00:00"
   },
-  "application/grids": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
-  },
   "application/inputs": {
     "commit": "d55af8cf9a35ee58c54e0ad75834ccf435f125a9",
-    "date": "2026-11-26T17:23:14+00:00"
+    "date": "2026-11-26T17:23:14+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/loaders": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-06T21:46:35+00:00"
   },
   "application/media": {
     "commit": "35772f28378822d9061178a742997f24b78f9987",
-    "date": "2026-11-27T12:45:48+00:00"
+    "date": "2026-11-27T12:45:48+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/modals": {
     "commit": "6ffb26379a15d1a1d83b5849d3949bfdb2d5d6d3",
-    "date": "2026-11-27T12:48:44+00:00"
+    "date": "2026-11-27T12:48:44+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/page-headers": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
@@ -93,205 +105,258 @@
     "created": "2026-11-21T20:51:30+00:00"
   },
   "application/pagination": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/progress-bars": {
     "commit": "e6d9c6e53295809130ca6999dd05e3da6b1894b5",
-    "date": "2026-11-18T12:17:06+00:00"
+    "date": "2026-11-18T12:17:06+00:00",
+    "created": "2025-11-14T14:49:19+00:00"
   },
   "application/radio-groups": {
     "commit": "70250524839a6e048d24be01b44b8323f5687dde",
-    "date": "2026-11-18T12:21:27+00:00"
+    "date": "2026-11-18T12:21:27+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/selects": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/side-menu": {
     "commit": "c5f92920499636ab85a38f4e60d6f7e18d59cdae",
-    "date": "2026-11-16T22:59:07+00:00"
+    "date": "2026-11-16T22:59:07+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/skip-links": {
     "commit": "59c70737603e599b957235e1e7cdb6fce77320d0",
-    "date": "2026-11-19T10:44:19+00:00"
+    "date": "2026-11-19T10:44:19+00:00",
+    "created": "2025-11-14T14:49:19+00:00"
   },
   "application/stats": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
-    "date": "2026-11-21T20:51:30+00:00"
+    "date": "2026-11-21T20:51:30+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/steps": {
     "commit": "c5f92920499636ab85a38f4e60d6f7e18d59cdae",
-    "date": "2026-11-16T22:59:07+00:00"
+    "date": "2026-11-16T22:59:07+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/tables": {
     "commit": "c5f92920499636ab85a38f4e60d6f7e18d59cdae",
-    "date": "2026-11-16T22:59:07+00:00"
+    "date": "2026-11-16T22:59:07+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/tabs": {
     "commit": "c5b4e427487e98d3a90c3158c3d272cb643b5d53",
-    "date": "2026-11-27T12:40:24+00:00"
+    "date": "2026-11-27T12:40:24+00:00",
+    "created": "2025-11-04T10:39:59+00:00"
   },
   "application/timelines": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/toasts": {
     "commit": "bc282b74331a39804cd7f37c3a03d82ba3ec5710",
-    "date": "2026-11-27T12:58:37+00:00"
+    "date": "2026-11-27T12:58:37+00:00",
+    "created": "2025-11-04T10:39:59+00:00"
   },
   "application/toggles": {
     "commit": "b05ce5a219e4e2575e98ddabc06b14a6b3b50fb3",
-    "date": "2026-11-17T16:27:03+00:00"
+    "date": "2026-11-17T16:27:03+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "application/vertical-menu": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/announcements": {
     "commit": "761935dbf941511088e67d751e23a80f32bc4483",
-    "date": "2026-11-27T12:48:11+00:00"
+    "date": "2026-11-27T12:48:11+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/banners": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/blog-cards": {
     "commit": "561a44e18a6b4bd2fefe2843a003c9c830512c22",
-    "date": "2026-11-27T12:49:02+00:00"
+    "date": "2026-11-27T12:49:02+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/buttons": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "6d7a621211849037f6398a3eb6cbe3375c35b93f",
+    "date": "2026-11-11T15:49:18+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/cards": {
     "commit": "145caedaae1dff79de001f229074c8502f4a6cc8",
-    "date": "2026-11-27T12:59:50+00:00"
+    "date": "2026-11-27T12:59:50+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/carts": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/contact-forms": {
     "commit": "4d78f3ba71998991fa68fdde175ac1a62ceed769",
-    "date": "2026-11-16T22:46:50+00:00"
+    "date": "2026-11-16T22:46:50+00:00",
+    "created": "2025-11-06T07:22:33+00:00"
   },
   "marketing/ctas": {
-    "commit": "94011f4091f580e841d8773d0e4adbe42deaacb9",
-    "date": "2026-11-27T12:48:28+00:00"
+    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
+    "date": "2026-11-27T21:31:21+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/faqs": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/feature-grids": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-07T08:57:04+00:00"
   },
   "marketing/footers": {
     "commit": "e534a2ebbaedd76c87ba83780910a77428fcb19c",
-    "date": "2026-11-27T12:49:20+00:00"
+    "date": "2026-11-27T12:49:20+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/headers": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/logo-clouds": {
-    "commit": "69d2bd0dc9ba922e72d1e1a20f040bc5ff523a7c",
-    "date": "2026-11-18T12:12:03+00:00"
+    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
+    "date": "2026-11-27T21:31:21+00:00",
+    "created": "2025-11-06T07:22:33+00:00"
   },
   "marketing/newsletter-signup": {
     "commit": "d55af8cf9a35ee58c54e0ad75834ccf435f125a9",
-    "date": "2026-11-26T17:23:14+00:00"
+    "date": "2026-11-26T17:23:14+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/pricing": {
     "commit": "633d55288117cf854dbf8a0bba348daf5a106a42",
-    "date": "2026-11-23T11:11:29+00:00"
+    "date": "2026-11-23T11:11:29+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/product-cards": {
-    "commit": "5e3cc7c9b1da9a4f1d5f62c4675458edabbd550e",
-    "date": "2026-11-27T13:01:52+00:00"
+    "commit": "bf711a07942095313a140ed5ce2402e6b6bef5de",
+    "date": "2026-11-27T14:42:52+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/product-collections": {
     "commit": "69d2bd0dc9ba922e72d1e1a20f040bc5ff523a7c",
-    "date": "2026-11-18T12:12:03+00:00"
+    "date": "2026-11-18T12:12:03+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/sections": {
     "commit": "69d2bd0dc9ba922e72d1e1a20f040bc5ff523a7c",
-    "date": "2026-11-18T12:12:03+00:00"
+    "date": "2026-11-18T12:12:03+00:00",
+    "created": "2025-10-27T12:07:31+00:00"
+  },
+  "marketing/stats": {
+    "commit": "c5db9e610259ffda64e3c4b2576175bdb5fe2719",
+    "date": "2026-11-27T19:40:12+00:00",
+    "created": "2026-11-27T19:40:12+00:00"
   },
   "marketing/team-sections": {
     "commit": "d55af8cf9a35ee58c54e0ad75834ccf435f125a9",
-    "date": "2026-11-26T17:23:14+00:00"
+    "date": "2026-11-26T17:23:14+00:00",
+    "created": "2025-11-06T07:22:33+00:00"
   },
   "marketing/testimonials": {
     "commit": "69d2bd0dc9ba922e72d1e1a20f040bc5ff523a7c",
-    "date": "2026-11-18T12:12:03+00:00"
+    "date": "2026-11-18T12:12:03+00:00",
+    "created": "2026-08-27T17:48:35+01:00"
   },
   "neobrutalism/accordions": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "399d5c686d483a99ac415bd64e727e9fcedb8b4c",
+    "date": "2026-11-11T16:00:02+00:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/alerts": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/badges": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/buttons": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "399d5c686d483a99ac415bd64e727e9fcedb8b4c",
+    "date": "2026-11-11T16:00:02+00:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/cards": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "399d5c686d483a99ac415bd64e727e9fcedb8b4c",
+    "date": "2026-11-11T16:00:02+00:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/checkboxes": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/inputs": {
     "commit": "d55af8cf9a35ee58c54e0ad75834ccf435f125a9",
-    "date": "2026-11-26T17:23:14+00:00"
+    "date": "2026-11-26T17:23:14+00:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/progress-bars": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "neobrutalism/selects": {
-    "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
-    "date": "2026-11-15T21:50:16+00:00"
+    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
+    "date": "2026-08-31T15:34:05+01:00",
+    "created": "2025-11-28T22:55:17+00:00"
   },
   "templates/analytics-dashboard": {
-    "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
-    "date": "2026-11-21T20:51:30+00:00"
+    "commit": "88078ad6efdd7d3a99c40c076c03a717e3929f4a",
+    "date": "2026-11-27T19:39:15+00:00",
+    "created": "2026-07-11T09:21:52+01:00"
   },
   "templates/developer-tool": {
-    "commit": "a1e8637822f6456f7aaaac7b5fcb96c508f92d49",
-    "date": "2026-11-17T21:47:43+00:00",
+    "commit": "df98cda7909f518b2c8219086f4d7856859e1e4c",
+    "date": "2026-11-27T19:38:47+00:00",
     "created": "2026-11-17T17:05:03+00:00"
   },
   "templates/portfolio": {
-    "commit": "9ee65b0eddbf02682f2da96e85d8f54c50e64061",
-    "date": "2026-11-17T21:41:59+00:00"
+    "commit": "11b336d61ebf91c7764d1cac398da5db6c6da2b3",
+    "date": "2026-11-27T19:39:05+00:00",
+    "created": "2026-08-27T17:48:35+01:00"
   },
   "templates/pricing-page": {
-    "commit": "a1e8637822f6456f7aaaac7b5fcb96c508f92d49",
-    "date": "2026-11-17T21:47:43+00:00",
+    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
+    "date": "2026-11-27T21:31:21+00:00",
     "created": "2026-11-17T18:47:34+00:00"
   },
   "templates/saas-landing-page": {
-    "commit": "4d78f3ba71998991fa68fdde175ac1a62ceed769",
-    "date": "2026-11-16T22:46:50+00:00"
+    "commit": "c5db9e610259ffda64e3c4b2576175bdb5fe2719",
+    "date": "2026-11-27T19:40:12+00:00",
+    "created": "2026-07-11T09:21:52+01:00"
   },
   "templates/storefront": {
-    "commit": "9ee65b0eddbf02682f2da96e85d8f54c50e64061",
-    "date": "2026-11-17T21:41:59+00:00"
+    "commit": "9a463b3ce11099b94cdd040537386da8d4f3ec0f",
+    "date": "2026-11-27T19:38:56+00:00",
+    "created": "2026-08-27T17:48:35+01:00"
   },
   "templates/support-inbox": {
-    "commit": "302420d3fdefe741571b869a16ad6fbd801915af",
-    "date": "2026-11-18T14:43:33+00:00"
+    "commit": "13da9c9e4dfecff5d0b615265843186ca3a623af",
+    "date": "2026-11-27T19:39:24+00:00",
+    "created": "2026-08-27T17:48:35+01:00"
   }
 }
