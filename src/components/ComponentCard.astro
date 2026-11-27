@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 
 import { ArrowRight } from '@lucide/astro'
 
+import CollectionSkeleton from './CollectionSkeleton.astro'
 import StatusBadge from './StatusBadge.astro'
 import { countLabel } from '../lib/count-label'
 
@@ -53,6 +54,14 @@ const isRecentlyUpdated = updated?.date ? new Date(updated.date) >= daysAgo(7) :
           decoding="async"
           class="aspect-[16/10] w-full border-b border-gray-200 object-cover object-top"
         />
+      )
+    }
+
+    {
+      !thumbnail && (
+        <div class="border-b border-gray-200 bg-gray-50">
+          <CollectionSkeleton slug={slug} class="mx-auto h-28 w-full" />
+        </div>
       )
     }
 
