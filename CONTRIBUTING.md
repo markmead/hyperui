@@ -12,7 +12,7 @@ Please open an issue first before starting work.
 git clone git@github.com:markmead/hyperui.git
 pnpm install
 pnpm dev
-pnpm run css:component --watch
+pnpm css --watch
 ```
 
 ## Submit a contribution

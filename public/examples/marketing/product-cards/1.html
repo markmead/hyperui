@@ -3,33 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product with image, title and price - Product Cards - HyperUI</title>
+    <title>Basic - Product Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6">
-    <a href="#" class="group block overflow-hidden">
-      <div class="relative h-87.5 sm:h-112.5">
+  <body class="mx-auto max-w-sm p-6">
+    <article
+      class="group relative overflow-hidden rounded-xl bg-white shadow-xs ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
+    >
+      <div class="bg-gray-100">
         <img
+          alt=""
           src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1160"
-          alt=""
-          class="absolute inset-0 h-full w-full object-cover opacity-100 group-hover:opacity-0"
-        />
-
-        <img
-          src="https://images.unsplash.com/photo-1523381140794-a1eef18a37c7?auto=format&fit=crop&q=80&w=1160"
-          alt=""
-          class="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100"
+          class="aspect-square w-full object-cover"
         />
       </div>
-
-      <div class="relative bg-white pt-3">
-        <h3 class="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-          Limited Edition Sports Trainer
+      <div class="p-4">
+        <h3 class="text-sm font-medium text-gray-900">
+          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+            >Tempo running trainer</a
+          >
         </h3>
-
-        <p class="mt-1.5 tracking-wide text-gray-900">$189.99</p>
+        <p class="mt-1 text-sm text-gray-600">$128.00</p>
       </div>
-    </a>
+    </article>
   </body>
 </html>

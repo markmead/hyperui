@@ -3,37 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product with image, title, price and variant count - Product Cards - HyperUI</title>
+    <title>Rating - Product Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6">
-    <a href="#" class="group block overflow-hidden">
-      <div class="relative h-87.5 sm:h-112.5">
+  <body class="mx-auto max-w-sm p-6">
+    <article
+      class="group relative overflow-hidden rounded-xl bg-white shadow-xs ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
+    >
+      <div class="bg-gray-100">
         <img
-          src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=1160"
           alt=""
-          class="absolute inset-0 h-full w-full object-cover opacity-100 group-hover:opacity-0"
-        />
-
-        <img
-          src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&q=80&w=1160"
-          alt=""
-          class="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100"
+          src="https://images.unsplash.com/photo-1592921870789-04563d55041c?auto=format&fit=crop&q=80&w=1160"
+          class="aspect-square w-full object-cover"
         />
       </div>
-
-      <div class="relative bg-white pt-3">
-        <h3 class="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-          Limited Edition Sports Trainer
+      <div class="p-4">
+        <h3 class="text-sm font-medium text-gray-900">
+          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+            >Studio 300 wireless headphones</a
+          >
         </h3>
-
-        <div class="mt-1.5 flex items-center justify-between text-gray-900">
-          <p class="tracking-wide">$189.99</p>
-
-          <p class="text-xs tracking-wide uppercase">6 Colors</p>
+        <div class="mt-2 flex items-center gap-2">
+          <div class="flex" aria-hidden="true">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="size-4 shrink-0 text-amber-400"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                clip-rule="evenodd"
+              /></svg
+            ><svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="size-4 shrink-0 text-amber-400"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                clip-rule="evenodd"
+              /></svg
+            ><svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="size-4 shrink-0 text-amber-400"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                clip-rule="evenodd"
+              /></svg
+            ><svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="size-4 shrink-0 text-amber-400"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                clip-rule="evenodd"
+              /></svg
+            ><svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="size-4 shrink-0 text-gray-300"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <p class="text-sm text-gray-600">
+            <span class="sr-only">Rated 4.6 out of 5 from</span>
+            <span aria-hidden="true">4.6 ·</span> 212 reviews
+          </p>
         </div>
+        <p class="mt-2 text-base font-semibold text-gray-900">$299.00</p>
       </div>
-    </a>
+    </article>
   </body>
 </html>
