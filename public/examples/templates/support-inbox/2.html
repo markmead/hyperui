@@ -20,7 +20,7 @@
         id="rail-toggle"
         aria-expanded="false"
         aria-controls="queue-rail"
-        class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+        class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset lg:hidden"
       >
         <span class="sr-only">Toggle queues</span>
         <svg
@@ -40,7 +40,10 @@
         </svg>
       </button>
 
-      <a href="#" class="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900">
+      <a
+        href="#"
+        class="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
+      >
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +69,7 @@
           title="Toggle ticket details"
           aria-expanded="false"
           aria-controls="ticket-details"
-          class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 xl:hidden"
+          class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset xl:hidden"
         >
           <span class="sr-only">Toggle ticket details</span>
           <svg
@@ -110,7 +113,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700"
+              class="flex items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               My tickets
               <span class="rounded-full bg-white px-2 py-0.5 text-xs text-indigo-700">4</span>
@@ -119,7 +122,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Unassigned
               <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">11</span>
@@ -128,7 +131,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               All open
               <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">37</span>
@@ -137,7 +140,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Closed
             </a>
@@ -228,7 +231,7 @@
               id="tab-reply"
               aria-pressed="true"
               aria-controls="TicketComposer"
-              class="rounded-t-md px-3 py-1.5 text-xs font-medium aria-pressed:border aria-pressed:border-b-0 aria-pressed:border-gray-200 aria-pressed:bg-white aria-pressed:text-gray-900 aria-[pressed=false]:text-gray-500 aria-[pressed=false]:hover:text-gray-700"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset aria-pressed:border aria-pressed:border-b-0 aria-pressed:border-gray-200 aria-pressed:bg-white aria-pressed:text-gray-900 aria-[pressed=false]:text-gray-500 aria-[pressed=false]:hover:text-gray-700"
             >
               Reply
             </button>
@@ -237,7 +240,7 @@
               id="tab-internal-note"
               aria-pressed="false"
               aria-controls="TicketComposer"
-              class="rounded-t-md px-3 py-1.5 text-xs font-medium aria-pressed:border aria-pressed:border-b-0 aria-pressed:border-gray-200 aria-pressed:bg-white aria-pressed:text-gray-900 aria-[pressed=false]:text-gray-500 aria-[pressed=false]:hover:text-gray-700"
+              class="rounded-t-md px-3 py-1.5 text-xs font-medium focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset aria-pressed:border aria-pressed:border-b-0 aria-pressed:border-gray-200 aria-pressed:bg-white aria-pressed:text-gray-900 aria-[pressed=false]:text-gray-500 aria-[pressed=false]:hover:text-gray-700"
             >
               Internal note
             </button>
@@ -260,7 +263,7 @@
                 type="button"
                 id="ComposerSubmit"
                 data-mode="reply"
-                class="rounded-md px-4 py-2 text-sm font-medium text-white transition data-[mode=note]:bg-amber-600 data-[mode=note]:hover:bg-amber-700 data-[mode=reply]:bg-indigo-600 data-[mode=reply]:hover:bg-indigo-700"
+                class="rounded-md px-4 py-2 text-sm font-medium text-white transition focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset data-[mode=note]:bg-amber-600 data-[mode=note]:hover:bg-amber-700 data-[mode=reply]:bg-indigo-600 data-[mode=reply]:hover:bg-indigo-700"
               >
                 Send reply
               </button>
