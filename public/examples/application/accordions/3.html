@@ -3,18 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base with dividers - Accordions - HyperUI</title>
+    <title>With dividers - Accordions - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6">
-    <div class="-mx-4 -my-2 space-y-0 divide-y divide-gray-200">
-      <details class="group px-4 py-3 [&_summary::-webkit-details-marker]:hidden">
+    <div class="divide-y divide-gray-200 border-y border-gray-200">
+      <details class="group [&_summary::-webkit-details-marker]:hidden">
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 hover:text-gray-700"
+          class="flex cursor-pointer items-center justify-between gap-4 py-4 font-medium text-gray-900 hover:text-gray-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          <span>Account Settings</span>
-
+          <span class="flex items-center gap-3"><span>How long does shipping take?</span></span>
           <svg
             aria-hidden="true"
             class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
@@ -31,23 +30,18 @@
             />
           </svg>
         </summary>
-
-        <div class="py-4">
-          <p class="text-gray-700">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-            dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-            odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-            temporibus perspiciatis!
+        <div class="pb-4">
+          <p class="text-pretty text-gray-700">
+            Orders ship within one working day. Standard delivery takes 3 to 5 days and express
+            takes 1 to 2 days.
           </p>
         </div>
       </details>
-
-      <details class="group px-4 py-3 [&_summary::-webkit-details-marker]:hidden">
+      <details class="group [&_summary::-webkit-details-marker]:hidden">
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 hover:text-gray-700"
+          class="flex cursor-pointer items-center justify-between gap-4 py-4 font-medium text-gray-900 hover:text-gray-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          <span>Privacy & Permissions</span>
-
+          <span class="flex items-center gap-3"><span>Can I return an item?</span></span>
           <svg
             aria-hidden="true"
             class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
@@ -64,23 +58,18 @@
             />
           </svg>
         </summary>
-
-        <div class="py-4">
-          <p class="text-gray-700">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-            dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-            odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-            temporibus perspiciatis!
+        <div class="pb-4">
+          <p class="text-pretty text-gray-700">
+            Return anything unused within 30 days. We email a prepaid label and refund you when the
+            parcel arrives.
           </p>
         </div>
       </details>
-
-      <details class="group px-4 py-3 [&_summary::-webkit-details-marker]:hidden">
+      <details class="group [&_summary::-webkit-details-marker]:hidden">
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 font-medium text-gray-900 hover:text-gray-700"
+          class="flex cursor-pointer items-center justify-between gap-4 py-4 font-medium text-gray-900 hover:text-gray-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          <span>Notifications & Alerts</span>
-
+          <span class="flex items-center gap-3"><span>Do you ship internationally?</span></span>
           <svg
             aria-hidden="true"
             class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
@@ -97,13 +86,10 @@
             />
           </svg>
         </summary>
-
-        <div class="py-4">
-          <p class="text-gray-700">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-            dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-            odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-            temporibus perspiciatis!
+        <div class="pb-4">
+          <p class="text-pretty text-gray-700">
+            We ship to 38 countries. Duties are shown at checkout, so there are no surprise charges
+            on delivery.
           </p>
         </div>
       </details>
