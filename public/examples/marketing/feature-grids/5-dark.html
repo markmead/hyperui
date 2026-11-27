@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numbered steps (dark) - Feature Grids - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="dark:bg-gray-900">
+    <section aria-labelledby="how-title">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 id="how-title" class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
+            How it works
+          </h2>
+
+          <p class="mt-4 text-lg text-pretty text-gray-600 dark:text-gray-300">
+            Three steps, and the hard part is ours.
+          </p>
+        </div>
+
+        <ol class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <li class="relative rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+            <span
+              class="inline-flex size-8 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white dark:bg-indigo-300 dark:text-gray-900"
+              aria-hidden="true"
+            >
+              1
+            </span>
+
+            <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Send an event</h3>
+
+            <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+              Call the API or the SDK once. Relay stores the event and answers in milliseconds.
+            </p>
+          </li>
+
+          <li class="relative rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+            <span
+              class="inline-flex size-8 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white dark:bg-indigo-300 dark:text-gray-900"
+              aria-hidden="true"
+            >
+              2
+            </span>
+
+            <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+              We retry and sign it
+            </h3>
+
+            <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+              Relay signs the request and delivers it, retrying with backoff until the endpoint says
+              yes.
+            </p>
+          </li>
+
+          <li class="relative rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+            <span
+              class="inline-flex size-8 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white dark:bg-indigo-300 dark:text-gray-900"
+              aria-hidden="true"
+            >
+              3
+            </span>
+
+            <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+              You check the log
+            </h3>
+
+            <p class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+              Every attempt is in the delivery log, with the response, so support questions take a
+              minute.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </body>
+</html>
