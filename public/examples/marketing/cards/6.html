@@ -3,68 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image, Name, with Social Links and Project Links - Cards - HyperUI</title>
+    <title>Event - Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6">
-    <article class="rounded-xl border border-gray-700 bg-gray-800 p-4">
-      <div class="flex items-center gap-4">
-        <img
-          alt=""
-          src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?auto=format&fit=crop&q=80&w=1160"
-          class="size-16 rounded-full object-cover"
-        />
-
-        <div>
-          <h3 class="text-lg font-medium text-white">Claire Mac</h3>
-
-          <div class="flow-root">
-            <ul class="-m-1 flex flex-wrap">
-              <li class="p-1 leading-none">
-                <a href="#" class="text-xs font-medium text-gray-300"> Twitter </a>
-              </li>
-
-              <li class="p-1 leading-none">
-                <a href="#" class="text-xs font-medium text-gray-300"> GitHub </a>
-              </li>
-
-              <li class="p-1 leading-none">
-                <a href="#" class="text-xs font-medium text-gray-300">Website</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+  <body class="mx-auto max-w-sm p-6">
+    <article
+      class="relative flex gap-4 rounded-xl bg-white p-5 ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
+    >
+      <div
+        class="flex size-16 shrink-0 flex-col items-center justify-center rounded-lg bg-indigo-50 text-indigo-700"
+      >
+        <span class="text-xs font-medium uppercase">Mar</span
+        ><span class="text-2xl font-semibold">14</span>
       </div>
-
-      <ul class="mt-4 space-y-2">
-        <li>
-          <a
-            href="#"
-            class="block h-full rounded-lg border border-gray-700 p-4 hover:border-pink-600"
+      <div class="min-w-0">
+        <h3 class="font-semibold text-gray-900">
+          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+            >Spring workshop: planning with data</a
           >
-            <strong class="font-medium text-white">Project A</strong>
-
-            <p class="mt-1 text-xs font-medium text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime consequuntur deleniti,
-              unde ab ut in!
-            </p>
-          </a>
-        </li>
-
-        <li>
-          <a
-            href="#"
-            class="block h-full rounded-lg border border-gray-700 p-4 hover:border-pink-600"
+        </h3>
+        <p class="mt-1 flex items-center gap-1.5 text-sm text-gray-600">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4"
           >
-            <strong class="font-medium text-white">Project B</strong>
-
-            <p class="mt-1 text-xs font-medium text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente cumque saepe sit.
-            </p>
-          </a>
-        </li>
-      </ul>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+            /></svg
+          ><time datetime="2026-03-14T10:00">Saturday, 10:00 am</time>
+        </p>
+        <p class="mt-1 text-sm text-gray-600">Bristol Arts Centre · Free</p>
+      </div>
     </article>
   </body>
 </html>

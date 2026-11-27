@@ -3,52 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bordered with Content on Hover (dark) - Cards - HyperUI</title>
+    <title>Podcast (dark) - Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
-    <a href="#" class="group relative block h-64 sm:h-80 lg:h-96">
-      <span class="absolute inset-0 border-2 border-dashed border-black dark:border-white"></span>
-
-      <div
-        class="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 dark:border-white dark:bg-gray-900 dark:text-white"
-      >
-        <div
-          class="px-4 pb-4 transition-opacity group-hover:absolute group-hover:opacity-0 sm:px-6 sm:pb-4 lg:px-8 lg:pb-8"
-        >
-          <svg
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-10 sm:size-12"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-
-          <h2 class="mt-4 text-xl font-medium sm:text-2xl">Go around the world</h2>
-        </div>
-
-        <div
-          class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8"
-        >
-          <h3 class="mt-4 text-xl font-medium sm:text-2xl">Go around the world</h3>
-
-          <p class="mt-4 text-sm sm:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, praesentium
-            voluptatem omnis atque culpa repellendus.
-          </p>
-
-          <p class="mt-8 font-bold">Read more</p>
+  <body class="mx-auto max-w-sm p-6 dark:bg-gray-900">
+    <article
+      class="relative rounded-xl bg-white p-5 ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 dark:bg-gray-900 dark:ring-gray-700 dark:has-[a:focus-visible]:outline-indigo-300"
+    >
+      <div class="flex gap-4">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1603871165848-0aa92c869fa1?auto=format&fit=crop&q=80&w=1160"
+          class="size-20 shrink-0 rounded-lg object-cover"
+        />
+        <div class="min-w-0">
+          <p class="text-xs font-medium text-indigo-600 dark:text-indigo-300">Episode 101</p>
+          <h3 class="mt-1 font-semibold text-gray-900 dark:text-white">
+            <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+              >How a ten person team builds for millions</a
+            >
+          </h3>
         </div>
       </div>
-    </a>
+      <p class="mt-3 line-clamp-2 text-sm/relaxed text-gray-600 dark:text-gray-300">
+        Two founders explain how they stayed under ten people for five years, and why they would do
+        it again.
+      </p>
+      <p class="mt-3 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          /></svg
+        ><span><span class="sr-only">Length: </span>42 min</span>
+      </p>
+    </article>
   </body>
 </html>
