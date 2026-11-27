@@ -3,21 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base compact - Accordions - HyperUI</title>
+    <title>Compact - Accordions - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-3xl p-6">
+  <body class="mx-auto max-w-sm p-6">
     <div class="space-y-1">
       <details class="group [&_summary::-webkit-details-marker]:hidden">
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 rounded px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          <span>Storage & Limits</span>
-
+          <span class="flex items-center gap-3"><span>Storage and limits</span></span>
           <svg
             aria-hidden="true"
-            class="size-4 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -31,26 +30,20 @@
             />
           </svg>
         </summary>
-
-        <div class="p-3">
-          <p class="text-gray-700">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-            dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-            odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-            temporibus perspiciatis!
+        <div class="px-3 pb-2">
+          <p class="text-sm text-pretty text-gray-600">
+            You are using 18 GB of 50 GB. Files over 2 GB can only be uploaded on paid plans.
           </p>
         </div>
       </details>
-
       <details class="group [&_summary::-webkit-details-marker]:hidden">
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 rounded px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          <span>Active Sessions</span>
-
+          <span class="flex items-center gap-3"><span>Connected apps</span></span>
           <svg
             aria-hidden="true"
-            class="size-4 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -64,26 +57,21 @@
             />
           </svg>
         </summary>
-
-        <div class="p-3">
-          <p class="text-gray-700">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-            dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-            odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-            temporibus perspiciatis!
+        <div class="px-3 pb-2">
+          <p class="text-sm text-pretty text-gray-600">
+            Slack and Google Drive are connected. Disconnect an app to remove its access straight
+            away.
           </p>
         </div>
       </details>
-
       <details class="group [&_summary::-webkit-details-marker]:hidden">
         <summary
-          class="flex cursor-pointer items-center justify-between gap-4 rounded px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          <span>Billing History</span>
-
+          <span class="flex items-center gap-3"><span>Export your data</span></span>
           <svg
             aria-hidden="true"
-            class="size-4 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -97,13 +85,37 @@
             />
           </svg>
         </summary>
-
-        <div class="p-3">
-          <p class="text-gray-700">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-            dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-            odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-            temporibus perspiciatis!
+        <div class="px-3 pb-2">
+          <p class="text-sm text-pretty text-gray-600">
+            Download everything as a ZIP. Large workspaces can take up to an hour and we email you
+            when it is ready.
+          </p>
+        </div>
+      </details>
+      <details class="group [&_summary::-webkit-details-marker]:hidden">
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <span class="flex items-center gap-3"><span>Delete workspace</span></span>
+          <svg
+            aria-hidden="true"
+            class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </summary>
+        <div class="px-3 pb-2">
+          <p class="text-sm text-pretty text-gray-600">
+            Deleting removes all projects and files after a 14 day grace period.
           </p>
         </div>
       </details>

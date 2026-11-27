@@ -3,87 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Input with close - Modals - HyperUI</title>
+    <title>Share link - Modals - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="p-6">
     <button
+      type="button"
       data-modal-open
-      class="rounded border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm text-gray-900"
+      class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
     >
-      Open
+      Share report
     </button>
 
     <dialog
       closedby="any"
       aria-labelledby="modalTitle"
       aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white p-6 shadow-lg backdrop:bg-black/50"
+      class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/50"
     >
-      <div class="flex flex-col gap-4">
-        <div class="flex items-start justify-between">
-          <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl">Modal Title</h2>
-
-          <button
-            type="button"
-            data-modal-close
-            class="-me-4 -mt-4 rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden"
-            aria-label="Close"
-          >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 id="modalTitle" class="text-lg font-semibold text-gray-900">Share this report</h2>
+          <p id="modalDescription" class="mt-1 text-sm text-gray-600">
+            Anyone with the link can view it. They can't edit.
+          </p>
         </div>
-
-        <p id="modalDescription" class="text-pretty text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-
-        <label for="Confirm" class="block">
-          <span class="text-sm font-medium text-gray-700">
-            Please type "Confirm" to complete action
-          </span>
-
-          <input
-            type="text"
-            id="Confirm"
-            class="mt-0.5 w-full rounded border-gray-300 bg-white text-gray-900 shadow-sm sm:text-sm"
-          />
-        </label>
-
-        <div class="flex justify-end gap-2">
-          <button
-            type="button"
-            data-modal-close
-            class="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden"
+        <button
+          type="button"
+          data-modal-close
+          class="-me-2 -mt-2 rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <span class="sr-only">Close</span>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            Cancel
-          </button>
-
-          <button
-            type="button"
-            data-modal-close
-            class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-hidden"
-          >
-            Done
-          </button>
-        </div>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
+      <label for="share-link" class="mt-5 block text-sm font-medium text-gray-900">Link</label>
+      <div class="mt-1.5 flex gap-2">
+        <input
+          id="share-link"
+          type="text"
+          readonly
+          value="https://app.northwind.co/r/q3-revenue"
+          class="min-w-0 flex-1 rounded-lg border-gray-300 bg-gray-50 text-sm text-gray-700 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+        />
+        <button
+          type="button"
+          data-copy
+          class="rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Copy link
+        </button>
+      </div>
+      <p role="status" data-copy-status class="mt-2 min-h-5 text-sm text-green-700"></p>
     </dialog>
 
     <script>
@@ -94,6 +80,19 @@
 
       document.querySelectorAll('[data-modal-close]').forEach((buttonEl) => {
         buttonEl.addEventListener('click', () => modalEl.close())
+      })
+
+      const copyButtonEl = document.querySelector('[data-copy]')
+      const copyStatusEl = document.querySelector('[data-copy-status]')
+      const shareLinkEl = document.querySelector('#share-link')
+
+      copyButtonEl.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(shareLinkEl.value)
+        copyStatusEl.textContent = 'Link copied to your clipboard.'
+      })
+
+      modalEl.addEventListener('close', () => {
+        copyStatusEl.textContent = ''
       })
     </script>
   </body>

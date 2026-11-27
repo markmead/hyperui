@@ -3,40 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Floating with dismiss (dark) - Announcements - HyperUI</title>
+    <title>Pill (dark) - Announcements - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="dark:bg-gray-900">
-    <div class="fixed inset-x-0 bottom-0 z-auto p-4">
-      <div
-        class="flex items-center justify-between rounded border border-gray-200 bg-gray-100 px-4 py-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+    <div class="flex justify-center p-6">
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-sm text-indigo-900 ring-1 ring-indigo-600/20 ring-inset hover:bg-indigo-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-800 dark:text-indigo-50 dark:ring-indigo-300/20 dark:hover:bg-indigo-800 dark:focus-visible:outline-indigo-300"
       >
-        <span> </span>
-
-        <p class="text-center font-medium">
-          Lorem, ipsum dolor
-          <a href="#" class="inline-block underline"> sit amet consectetur </a>
-        </p>
-
-        <button
-          type="button"
-          aria-label="Dismiss"
-          class="rounded border border-gray-300 bg-white p-1.5 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+        <span
+          class="rounded-full bg-indigo-600 px-2 py-0.5 text-xs font-medium text-white dark:bg-indigo-300 dark:text-gray-900"
+          >New</span
         >
-          <svg
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-5"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+        Invoicing now supports 12 currencies
+      </a>
     </div>
   </body>
 </html>
