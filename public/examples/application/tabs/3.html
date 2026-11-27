@@ -8,43 +8,124 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6">
-    <div class="flex gap-4">
-      <div class="border-r border-gray-200">
-        <div role="tablist" class="-me-px flex flex-col gap-1">
-          <button
-            role="tab"
-            aria-selected="true"
-            class="border-r-2 border-blue-600 px-4 py-2 text-left text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
-          >
-            General
-          </button>
-
-          <button
-            role="tab"
-            aria-selected="false"
-            class="border-r-2 border-transparent px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700"
-          >
-            Privacy
-          </button>
-
-          <button
-            role="tab"
-            aria-selected="false"
-            class="border-r-2 border-transparent px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700"
-          >
-            Security
-          </button>
+    <div class="flex flex-col gap-6 sm:flex-row sm:gap-8">
+      <div
+        role="tablist"
+        aria-label="Settings"
+        aria-orientation="vertical"
+        class="flex gap-1 sm:w-44 sm:shrink-0 sm:flex-col"
+      >
+        <button
+          type="button"
+          role="tab"
+          id="side-tab-0"
+          aria-controls="side-panel-0"
+          aria-selected="true"
+          tabindex="0"
+          class="rounded-md px-3 py-2 text-start text-sm font-medium text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:bg-gray-100 aria-selected:text-gray-900"
+        >
+          General
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="side-tab-1"
+          aria-controls="side-panel-1"
+          aria-selected="false"
+          tabindex="-1"
+          class="rounded-md px-3 py-2 text-start text-sm font-medium text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:bg-gray-100 aria-selected:text-gray-900"
+        >
+          Privacy
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="side-tab-2"
+          aria-controls="side-panel-2"
+          aria-selected="false"
+          tabindex="-1"
+          class="rounded-md px-3 py-2 text-start text-sm font-medium text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:bg-gray-100 aria-selected:text-gray-900"
+        >
+          Security
+        </button>
+      </div>
+      <div class="min-w-0 flex-1">
+        <div
+          role="tabpanel"
+          id="side-panel-0"
+          aria-labelledby="side-tab-0"
+          tabindex="0"
+          class="text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <h2 class="font-medium text-gray-900">General</h2>
+          <p class="mt-1">
+            Rename your workspace and change the web address your team uses to sign in.
+          </p>
+        </div>
+        <div
+          role="tabpanel"
+          id="side-panel-1"
+          aria-labelledby="side-tab-1"
+          tabindex="0"
+          hidden
+          class="text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <h2 class="font-medium text-gray-900">Privacy</h2>
+          <p class="mt-1">
+            Decide who can see your profile and whether search engines can index public pages.
+          </p>
+        </div>
+        <div
+          role="tabpanel"
+          id="side-panel-2"
+          aria-labelledby="side-tab-2"
+          tabindex="0"
+          hidden
+          class="text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <h2 class="font-medium text-gray-900">Security</h2>
+          <p class="mt-1">
+            Turn on two-step sign-in and review the devices that are signed in to your account.
+          </p>
         </div>
       </div>
-
-      <div role="tabpanel" class="flex-1">
-        <p class="text-gray-700">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique, quae hic
-          dicta quo facere facilis praesentium a sunt, est quia pariatur nam, modi aut minus iste
-          odio consectetur molestias iusto cupiditate ullam laborum veniam quos officia. Quos,
-          temporibus perspiciatis!
-        </p>
-      </div>
     </div>
+
+    <script>
+      document.querySelectorAll('[role="tablist"]').forEach((tabListEl) => {
+        const tabEls = [...tabListEl.querySelectorAll('[role="tab"]')]
+        const isVertical = tabListEl.getAttribute('aria-orientation') === 'vertical'
+
+        function selectTab(selectedEl) {
+          tabEls.forEach((tabEl) => {
+            const isSelected = tabEl === selectedEl
+
+            tabEl.setAttribute('aria-selected', isSelected)
+            tabEl.tabIndex = isSelected ? 0 : -1
+            document.getElementById(tabEl.getAttribute('aria-controls')).hidden = !isSelected
+          })
+        }
+
+        tabEls.forEach((tabEl, index) => {
+          tabEl.addEventListener('click', () => selectTab(tabEl))
+
+          tabEl.addEventListener('keydown', (event) => {
+            const prevKey = isVertical ? 'ArrowUp' : 'ArrowLeft'
+            const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight'
+            let nextIndex
+
+            if (event.key === nextKey) nextIndex = (index + 1) % tabEls.length
+            else if (event.key === prevKey) nextIndex = (index - 1 + tabEls.length) % tabEls.length
+            else if (event.key === 'Home') nextIndex = 0
+            else if (event.key === 'End') nextIndex = tabEls.length - 1
+            else return
+
+            event.preventDefault()
+            tabEls[nextIndex].focus()
+            selectTab(tabEls[nextIndex])
+          })
+        })
+      })
+    </script>
   </body>
 </html>
