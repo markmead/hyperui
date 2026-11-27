@@ -16,7 +16,7 @@
         id="rail-toggle"
         aria-expanded="false"
         aria-controls="queue-rail"
-        class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+        class="rounded-md p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset lg:hidden"
       >
         <span class="sr-only">Toggle queues</span>
         <svg
@@ -70,7 +70,7 @@
       <div class="ms-auto flex items-center gap-3">
         <button
           type="button"
-          class="hidden rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-indigo-700 sm:block"
+          class="hidden rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset sm:block"
         >
           New ticket
         </button>
@@ -99,7 +99,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700"
+              class="flex items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               My tickets
               <span class="rounded-full bg-white px-2 py-0.5 text-xs text-indigo-700">4</span>
@@ -108,7 +108,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Unassigned
               <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">11</span>
@@ -117,7 +117,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               All open
               <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">37</span>
@@ -126,7 +126,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+              class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Closed
             </a>
@@ -138,7 +138,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               <span class="size-2 rounded-full bg-rose-500"></span>
               Billing
@@ -147,7 +147,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               <span class="size-2 rounded-full bg-amber-500"></span>
               Bug
@@ -156,7 +156,7 @@
           <li>
             <a
               href="#"
-              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+              class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               <span class="size-2 rounded-full bg-emerald-500"></span>
               Onboarding
@@ -172,25 +172,25 @@
           <div class="mt-3 flex gap-1">
             <button
               aria-pressed="true"
-              class="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white"
+              class="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               All
             </button>
             <button
               aria-pressed="false"
-              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
+              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Open
             </button>
             <button
               aria-pressed="false"
-              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
+              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Pending
             </button>
             <button
               aria-pressed="false"
-              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
+              class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
             >
               Closed
             </button>
@@ -312,7 +312,7 @@
             <div class="flex gap-1">
               <a
                 href="#"
-                class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-400"
+                class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-400 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
               >
                 <span class="sr-only">Previous</span>
                 <svg
@@ -331,7 +331,7 @@
               </a>
               <a
                 href="#"
-                class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-600"
+                class="inline-flex size-8 items-center justify-center rounded-md border border-gray-200 text-gray-600 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset"
               >
                 <span class="sr-only">Next</span>
                 <svg
