@@ -1,9 +1,9 @@
 ---
 title: Use HyperUI with AI
-description: Three ways to give your AI assistant HyperUI components, from a one-line prompt to an MCP server and a skill.
+description: Connect the HyperUI MCP server to Claude, Cursor or VS Code, add the skill, or paste a one-line prompt, so your AI builds from components that are checked.
 slug: ai
 pubDate: 2026-11-22
-updatedDate: 2026-11-22
+updatedDate: 2026-11-27
 terms:
   - ai
   - agents
@@ -14,29 +14,76 @@ terms:
 
 HyperUI is built for people and for the agents they work with. Every component is plain HTML with Tailwind CSS v4 classes, available as Markdown, and all of it is free with nothing to sign up for.
 
-## Point your agent at HyperUI
-
-Paste this into Claude, Cursor, ChatGPT or any coding agent:
-
-```
-Build with Tailwind components from https://hyperui.dev/llms.txt
-```
-
-[llms.txt](/llms.txt) lists every page. Each page has a Markdown version at the same path with `.md` added, for example `/components/marketing/pricing.md`, and it includes the full HTML of every variant, light and dark. [llms-full.txt](/llms-full.txt) has all of them in one file.
-
 ## Connect the MCP server
 
-Add this as a remote MCP server in your client:
+The MCP server lets your agent search HyperUI and pull in a component while it builds, instead of writing the markup from scratch. The server address is the same everywhere:
 
 ```
 https://hyperui.dev/mcp
 ```
 
-It needs no account or key. Calls are counted anonymously, as the tool used, the component fetched and a broad client type such as Claude or Cursor. Search text and anything about you or your project are never stored. Your agent gets three tools:
+It needs no account or key. Your agent gets three tools:
 
 - `list_categories` lists the component categories.
 - `search_components` finds components by keyword, such as "pricing" or "file upload".
 - `get_component` returns the HTML for a component, with an optional variant number and a dark mode option.
+
+### Claude Code
+
+```bash
+claude mcp add --transport http hyperui https://hyperui.dev/mcp
+```
+
+### Claude
+
+In Settings, open Connectors and add a custom connector with the server address above.
+
+### Cursor
+
+Add this to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "hyperui": {
+      "url": "https://hyperui.dev/mcp"
+    }
+  }
+}
+```
+
+### VS Code
+
+Add this to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "hyperui": {
+      "type": "http",
+      "url": "https://hyperui.dev/mcp"
+    }
+  }
+}
+```
+
+### Any other client
+
+Add `https://hyperui.dev/mcp` as a remote MCP server that uses Streamable HTTP.
+
+### Try it
+
+Once it is connected, ask for something and name HyperUI:
+
+```
+Using HyperUI, build a pricing section with three plans and a dark mode.
+```
+
+```
+Find the HyperUI modal that traps focus and use it for the delete confirmation.
+```
+
+Calls are counted anonymously, as the tool used, the component fetched and a broad client type such as Claude or Cursor. Search text and anything about you or your project are never stored.
 
 ## Install the skill
 
@@ -45,6 +92,16 @@ npx skills add markmead/hyperui
 ```
 
 The skill tells your agent to start from HyperUI before writing Tailwind from scratch, and to keep the things that make the components work: accessibility attributes and focus styles, logical utilities for right-to-left, and paired `dark:` classes. It works on its own, with or without the MCP server. The file is [`skills/hyperui/SKILL.md`](https://github.com/markmead/hyperui/blob/main/skills/hyperui/SKILL.md).
+
+## Point your agent at HyperUI
+
+If you would rather not install anything, paste this into Claude, Cursor, ChatGPT or any coding agent:
+
+```
+Build with Tailwind components from https://hyperui.dev/llms.txt
+```
+
+[llms.txt](/llms.txt) lists every page. Each page has a Markdown version at the same path with `.md` added, for example `/components/marketing/pricing.md`, and it includes the full HTML of every variant, light and dark. [llms-full.txt](/llms-full.txt) has all of them in one file.
 
 ## Copy for AI
 

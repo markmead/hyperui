@@ -1,7 +1,7 @@
 ---
 import { SITE_TITLE } from '../constants/seo'
 
-import { ExternalLink } from '@lucide/astro'
+import { Sparkles } from '@lucide/astro'
 
 import DropdownWrapper from './DropdownWrapper.astro'
 import HeaderLink from './HeaderLink.astro'
@@ -19,15 +19,12 @@ import SearchWrapper from './SearchWrapper.astro'
       <HeaderLink href="/components/marketing"> Marketing </HeaderLink>
       <HeaderLink href="/components/neobrutalism"> Neobrutalism </HeaderLink>
       <HeaderLink href="/components/templates"> Templates </HeaderLink>
-      <HeaderLink href="/ai"> AI </HeaderLink>
       <HeaderLink
-        href="https://js.hyperui.dev"
+        href="/ai"
         class="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 transition-colors hover:bg-gray-50"
-        target="_blank"
-        rel="noreferrer"
       >
-        UX
-        <ExternalLink class="size-4 shrink-0" />
+        <Sparkles class="size-4 shrink-0" aria-hidden="true" />
+        AI
       </HeaderLink>
     </nav>
 
