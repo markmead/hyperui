@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Segmented (dark) - Tabs - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-3xl p-6 dark:bg-gray-900">
+    <div class="mx-auto max-w-sm">
+      <div
+        role="tablist"
+        aria-label="Billing period"
+        class="grid grid-cols-2 gap-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-800"
+      >
+        <button
+          type="button"
+          role="tab"
+          id="bill-tab-0"
+          aria-controls="bill-panel-0"
+          aria-selected="true"
+          tabindex="0"
+          class="rounded-md px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:bg-white aria-selected:text-gray-900 aria-selected:shadow-sm dark:text-gray-300 dark:hover:text-white dark:focus-visible:outline-indigo-300 dark:aria-selected:bg-gray-900 dark:aria-selected:text-white"
+        >
+          Monthly
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="bill-tab-1"
+          aria-controls="bill-panel-1"
+          aria-selected="false"
+          tabindex="-1"
+          class="rounded-md px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-selected:bg-white aria-selected:text-gray-900 aria-selected:shadow-sm dark:text-gray-300 dark:hover:text-white dark:focus-visible:outline-indigo-300 dark:aria-selected:bg-gray-900 dark:aria-selected:text-white"
+        >
+          Yearly
+        </button>
+      </div>
+      <div
+        role="tabpanel"
+        id="bill-panel-0"
+        aria-labelledby="bill-tab-0"
+        tabindex="0"
+        class="mt-6 text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:focus-visible:outline-indigo-300"
+      >
+        <p class="text-center">
+          <span class="text-3xl font-semibold text-gray-900 dark:text-white">$24</span> per seat
+          each month. Cancel any time.
+        </p>
+      </div>
+      <div
+        role="tabpanel"
+        id="bill-panel-1"
+        aria-labelledby="bill-tab-1"
+        tabindex="0"
+        hidden
+        class="mt-6 text-pretty text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-200 dark:focus-visible:outline-indigo-300"
+      >
+        <p class="text-center">
+          <span class="text-3xl font-semibold text-gray-900 dark:text-white">$240</span> per seat
+          each year. That is two months free.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll('[role="tablist"]').forEach((tabListEl) => {
+        const tabEls = [...tabListEl.querySelectorAll('[role="tab"]')]
+        const isVertical = tabListEl.getAttribute('aria-orientation') === 'vertical'
+
+        function selectTab(selectedEl) {
+          tabEls.forEach((tabEl) => {
+            const isSelected = tabEl === selectedEl
+
+            tabEl.setAttribute('aria-selected', isSelected)
+            tabEl.tabIndex = isSelected ? 0 : -1
+            document.getElementById(tabEl.getAttribute('aria-controls')).hidden = !isSelected
+          })
+        }
+
+        tabEls.forEach((tabEl, index) => {
+          tabEl.addEventListener('click', () => selectTab(tabEl))
+
+          tabEl.addEventListener('keydown', (event) => {
+            const prevKey = isVertical ? 'ArrowUp' : 'ArrowLeft'
+            const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight'
+            let nextIndex
+
+            if (event.key === nextKey) nextIndex = (index + 1) % tabEls.length
+            else if (event.key === prevKey) nextIndex = (index - 1 + tabEls.length) % tabEls.length
+            else if (event.key === 'Home') nextIndex = 0
+            else if (event.key === 'End') nextIndex = tabEls.length - 1
+            else return
+
+            event.preventDefault()
+            tabEls[nextIndex].focus()
+            selectTab(tabEls[nextIndex])
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

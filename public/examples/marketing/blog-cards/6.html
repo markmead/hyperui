@@ -3,59 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Artistic with rotated date, image, title, excerpt and call to action, shadow on hover - Blog
-      Cards - HyperUI
-    </title>
+    <title>Icon guide - Blog Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
-  <body class="mx-auto max-w-3xl p-6">
-    <article class="flex bg-white transition hover:shadow-xl">
-      <div class="rotate-180 p-2 [writing-mode:vertical-lr]">
-        <time
-          datetime="2022-10-10"
-          class="flex items-center justify-between gap-4 text-xs font-bold text-gray-900 uppercase"
+  <body class="mx-auto max-w-md p-6">
+    <article
+      class="relative rounded-xl bg-white p-6 ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
+    >
+      <span
+        class="flex size-11 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600"
+      >
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="size-6"
         >
-          <span>2022</span>
-          <span class="w-px flex-1 bg-gray-900/10"></span>
-          <span>Oct 10</span>
-        </time>
-      </div>
-
-      <div class="hidden sm:block sm:basis-56">
-        <img
-          alt=""
-          src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?auto=format&fit=crop&q=80&w=1160"
-          class="aspect-square h-full w-full object-cover"
-        />
-      </div>
-
-      <div class="flex flex-1 flex-col justify-between">
-        <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
-          <a href="#">
-            <h3 class="font-bold text-gray-900 uppercase">
-              Finding the right guitar for your style - 5 tips
-            </h3>
-          </a>
-
-          <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-            pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
-            quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
-            atque dignissimos. Molestias explicabo corporis voluptatem?
-          </p>
-        </div>
-
-        <div class="sm:flex sm:items-end sm:justify-end">
-          <a
-            href="#"
-            class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold text-gray-900 uppercase transition hover:bg-yellow-400"
-          >
-            Read Blog
-          </a>
-        </div>
-      </div>
+          <path d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path
+            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+          />
+        </svg>
+      </span>
+      <h3 class="mt-4 text-lg font-semibold text-gray-900">Learn to plan a quarter</h3>
+      <p class="mt-2 text-sm/relaxed text-gray-600">
+        A six part guide with templates, from setting goals to reviewing what shipped.
+      </p>
+      <a
+        href="#"
+        class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-indigo-600 after:absolute after:inset-0 focus-visible:outline-none"
+        >Start the guide
+        <svg
+          aria-hidden="true"
+          class="size-4 rtl:rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          /></svg
+      ></a>
     </article>
   </body>
 </html>

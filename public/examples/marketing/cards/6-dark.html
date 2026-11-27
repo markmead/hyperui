@@ -3,28 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forum post (dark) - Cards - HyperUI</title>
+    <title>Event (dark) - Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-sm p-6 dark:bg-gray-900">
     <article
-      class="relative rounded-xl bg-white p-5 ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 dark:bg-gray-900 dark:ring-gray-700 dark:has-[a:focus-visible]:outline-indigo-300"
+      class="relative flex gap-4 rounded-xl bg-white p-5 ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 dark:bg-gray-900 dark:ring-gray-700 dark:has-[a:focus-visible]:outline-indigo-300"
     >
-      <h3 class="font-semibold text-gray-900 dark:text-white">
-        <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
-          >Page flashes on first load when server rendering</a
-        >
-      </h3>
-      <p class="mt-2 line-clamp-2 text-sm/relaxed text-gray-600 dark:text-gray-300">
-        I'm seeing a flash on first load when I server render the layout. Has anyone found a fix
-        that doesn't need a client only wrapper?
-      </p>
       <div
-        class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400"
+        class="flex size-16 shrink-0 flex-col items-center justify-center rounded-lg bg-indigo-50 text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200"
       >
-        <span class="flex items-center gap-1.5"
-          ><svg
+        <span class="text-xs font-medium uppercase">Mar</span
+        ><span class="text-2xl font-semibold">14</span>
+      </div>
+      <div class="min-w-0">
+        <h3 class="font-semibold text-gray-900 dark:text-white">
+          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+            >Spring workshop: planning with data</a
+          >
+        </h3>
+        <p class="mt-1 flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <svg
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -36,28 +36,11 @@
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
             /></svg
-          ><span>14<span class="sr-only"> replies</span></span></span
-        >
-        <span class="flex items-center gap-1.5 text-green-700 dark:text-green-200"
-          ><svg
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-            /></svg
-          >Solved</span
-        >
-        <span>Asked by Tom Reyes, 2 hours ago</span>
+          ><time datetime="2026-03-14T10:00">Saturday, 10:00 am</time>
+        </p>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Bristol Arts Centre · Free</p>
       </div>
     </article>
   </body>

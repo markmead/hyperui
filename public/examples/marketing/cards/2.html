@@ -3,40 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Property - Cards - HyperUI</title>
+    <title>Profile - Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-sm p-6">
-    <article
-      class="relative overflow-hidden rounded-xl bg-white ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600"
-    >
+    <article class="rounded-xl bg-white p-6 text-center ring-1 ring-gray-200">
       <img
         alt=""
-        src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=1160"
-        class="aspect-4/3 w-full object-cover"
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=160&h=160"
+        class="mx-auto size-24 rounded-full object-cover"
       />
-      <div class="p-5">
-        <p class="text-2xl font-semibold text-gray-900">$485,000</p>
-        <h3 class="mt-1 text-sm text-gray-600">
-          <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
-            >14 Harbour Street, Bristol BS1 4RB</a
-          >
-        </h3>
-        <dl class="mt-4 flex gap-6 border-t border-gray-200 pt-4 text-sm">
-          <div>
-            <dt class="text-gray-500">Bedrooms</dt>
-            <dd class="mt-0.5 font-medium text-gray-900">3</dd>
-          </div>
-          <div>
-            <dt class="text-gray-500">Bathrooms</dt>
-            <dd class="mt-0.5 font-medium text-gray-900">2</dd>
-          </div>
-          <div>
-            <dt class="text-gray-500">Floor area</dt>
-            <dd class="mt-0.5 font-medium text-gray-900">112 m²</dd>
-          </div>
-        </dl>
+      <h3 class="mt-4 text-lg font-semibold text-gray-900">Amara Okafor</h3>
+      <p class="text-sm text-gray-600">Product designer, Bristol</p>
+      <ul class="mt-4 flex justify-center gap-3">
+        <li>
+          <a
+            href="#"
+            class="relative z-10 flex size-9 items-center justify-center rounded-full text-gray-600 ring-1 ring-gray-200 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-indigo-600"
+            ><span class="sr-only">Amara on GitHub</span
+            ><svg aria-hidden="true" class="size-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="relative z-10 flex size-9 items-center justify-center rounded-full text-gray-600 ring-1 ring-gray-200 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-indigo-600"
+            ><span class="sr-only">Amara on Twitter</span
+            ><svg aria-hidden="true" class="size-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+              /></svg
+          ></a>
+        </li>
+      </ul>
+      <div class="mt-6 grid grid-cols-2 gap-3 text-start">
+        <a
+          href="#"
+          class="rounded-lg p-3 ring-1 ring-gray-200 hover:ring-indigo-600 focus-visible:outline-2 focus-visible:outline-indigo-600"
+          ><span class="block text-sm font-medium text-gray-900">Checkout redesign</span
+          ><span class="mt-0.5 block text-xs text-gray-600">Cut abandoned carts by 18%</span></a
+        >
+        <a
+          href="#"
+          class="rounded-lg p-3 ring-1 ring-gray-200 hover:ring-indigo-600 focus-visible:outline-2 focus-visible:outline-indigo-600"
+          ><span class="block text-sm font-medium text-gray-900">Design system</span
+          ><span class="mt-0.5 block text-xs text-gray-600">60 shared components</span></a
+        >
       </div>
     </article>
   </body>

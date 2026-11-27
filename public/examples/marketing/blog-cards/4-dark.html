@@ -3,40 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Gradient border with date, title and tags, animated gradient on hover (dark) - Blog Cards -
-      HyperUI
-    </title>
+    <title>Text with tags (dark) - Blog Cards - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-md p-6 dark:bg-gray-900">
     <article
-      class="rounded-[10px] border border-gray-200 bg-white px-4 pt-12 pb-4 dark:border-gray-700 dark:bg-gray-900"
+      class="relative rounded-xl bg-white p-6 ring-1 ring-gray-200 transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-indigo-600 dark:bg-gray-900 dark:ring-gray-700 dark:has-[a:focus-visible]:outline-indigo-300"
     >
-      <time datetime="2022-10-10" class="block text-xs text-gray-500 dark:text-gray-400">
-        10th Oct 2022
-      </time>
-
-      <a href="#">
-        <h3 class="mt-0.5 text-lg font-medium text-gray-900 dark:text-white">
-          How to center an element using JavaScript and jQuery
-        </h3>
-      </a>
-
-      <div class="mt-4 flex flex-wrap gap-1">
-        <span
-          class="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs whitespace-nowrap text-purple-600 dark:bg-purple-600 dark:text-purple-100"
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        <time datetime="2026-02-10">10 Feb 2026</time> · 4 min read
+      </p>
+      <h3 class="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
+        <a href="#" class="after:absolute after:inset-0 focus-visible:outline-none"
+          >Why we moved our docs to plain Markdown</a
         >
-          Snippet
-        </span>
-
-        <span
-          class="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs whitespace-nowrap text-purple-600 dark:bg-purple-600 dark:text-purple-100"
+      </h3>
+      <p class="mt-2 text-sm/relaxed text-gray-600 dark:text-gray-300">
+        Fewer tools, faster edits and docs that live next to the code they describe.
+      </p>
+      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tags">
+        <li
+          class="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200"
         >
-          JavaScript
-        </span>
-      </div>
+          Documentation
+        </li>
+        <li
+          class="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200"
+        >
+          Engineering
+        </li>
+      </ul>
     </article>
   </body>
 </html>
