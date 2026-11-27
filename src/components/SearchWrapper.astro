@@ -1,17 +1,18 @@
 ---
 import { getCollection } from 'astro:content'
 
-import SearchInput from './SearchInput.astro'
-import SearchResults from './SearchResults.astro'
+import { Search, X } from '@lucide/astro'
+
 import { countLabel } from '../lib/count-label'
 
-interface Result {
-  category: string
-  count?: string
-  description?: string
-  slug: string
-  terms: string[]
+interface Item {
+  href: string
+  label: string
+  meta: string
   title: string
+  description?: string
+  terms?: string[]
+  variants?: string[]
 }
 
 const [application, marketing, neobrutalism, templates, pages] = await Promise.all([
@@ -22,35 +23,435 @@ const [application, marketing, neobrutalism, templates, pages] = await Promise.a
   getCollection('pages'),
 ])
 
-const allCollections = [...application, ...marketing, ...neobrutalism, ...templates]
+const collectionItems: Item[] = [...application, ...marketing, ...neobrutalism, ...templates]
   .map(({ data }) => data)
   .sort((a, b) => a.title.localeCompare(b.title))
+  .map(({ category, components, description, slug, terms, title }) => ({
+    description,
+    href: `/components/${category}/${slug}`,
+    label: category,
+    meta: countLabel({ category, components }),
+    terms,
+    title,
+    variants: components.map((component) => component.title),
+  }))
 
-const collections: Result[] = allCollections.map(
-  ({ category, components, description, slug, terms, title }) => {
-    return {
-      category,
-      count: countLabel({ category, components }),
-      description,
-      slug: `/components/${category}/${slug}`,
-      terms,
-      title,
-    }
+const pageItems: Item[] = pages.map(({ data }) => ({
+  description: data.description,
+  href: `/${data.slug}`,
+  label: 'page',
+  meta: '',
+  terms: data.terms,
+  title: data.title,
+}))
+
+const items = [...collectionItems, ...pageItems]
+
+// Shown before anything is typed.
+const browse: Item[] = [
+  {
+    href: '/components/application',
+    label: 'category',
+    meta: 'Dashboards, forms, tables and more',
+    title: 'Application',
   },
-)
-
-const posts: Result[] = pages.map(({ data }) => {
-  return {
-    category: '',
-    description: data.description,
-    slug: `/${data.slug}`,
-    terms: data.terms,
-    title: data.title,
-  }
-})
+  {
+    href: '/components/marketing',
+    label: 'category',
+    meta: 'Heroes, pricing, headers and more',
+    title: 'Marketing',
+  },
+  {
+    href: '/components/neobrutalism',
+    label: 'category',
+    meta: 'Bold borders and hard shadows',
+    title: 'Neobrutalism',
+  },
+  {
+    href: '/components/templates',
+    label: 'category',
+    meta: 'Full pages built from components',
+    title: 'Templates',
+  },
+]
 ---
 
-<div class="relative">
-  <SearchInput />
-  <SearchResults {collections} {posts} />
-</div>
+<search-dialog data-items={JSON.stringify(items)} data-browse={JSON.stringify(browse)}>
+  <button
+    type="button"
+    data-open
+    aria-haspopup="dialog"
+    aria-keyshortcuts="Control+K Meta+K"
+    class="inline-flex h-9 items-center gap-2 rounded-md border border-gray-200 bg-white px-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50 md:w-56"
+  >
+    <Search class="size-4 shrink-0 text-gray-400" aria-hidden="true" />
+
+    <span class="sr-only md:not-sr-only md:flex-1 md:text-left">Search</span>
+
+    <kbd
+      data-shortcut
+      aria-hidden="true"
+      class="hidden rounded border border-gray-200 px-1.5 font-sans text-xs text-gray-500 md:inline"
+      >Ctrl K</kbd
+    >
+  </button>
+
+  <dialog
+    data-dialog
+    aria-label="Search HyperUI"
+    class="fixed top-[10vh] left-1/2 m-0 w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-xl border border-gray-200 bg-white p-0 text-gray-900 shadow-2xl backdrop:bg-gray-950/40"
+  >
+    <div class="flex items-center gap-2 border-b border-gray-200 px-3">
+      <Search class="size-4 shrink-0 text-gray-400" aria-hidden="true" />
+
+      <input
+        data-input
+        type="text"
+        role="combobox"
+        aria-label="Search components, templates and pages"
+        aria-expanded="true"
+        aria-controls="search-listbox"
+        aria-autocomplete="list"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        enterkeyhint="go"
+        placeholder="Search components, templates and pages"
+        class="h-12 w-full border-0 bg-transparent px-0 text-sm text-gray-900 placeholder:text-gray-500 focus:ring-0 focus:outline-none"
+      />
+
+      <button
+        type="button"
+        data-close
+        aria-label="Close search"
+        class="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+      >
+        <X class="size-4" aria-hidden="true" />
+      </button>
+    </div>
+
+    <div class="max-h-[min(24rem,60vh)] overflow-y-auto overscroll-contain p-2">
+      <p data-heading class="px-2 pt-1 pb-2 text-xs font-medium text-gray-500">Browse</p>
+
+      <ul data-list id="search-listbox" role="listbox" aria-label="Search results"></ul>
+
+      <p data-empty hidden class="px-2 py-6 text-center text-sm text-gray-600"></p>
+    </div>
+
+    <p
+      class="hidden justify-between border-t border-gray-200 bg-gray-50 px-3 py-2 text-xs text-gray-500 md:flex"
+    >
+      <span>Use the up and down arrows to move, Enter to open</span>
+      <span>Esc to close</span>
+    </p>
+
+    <span data-status aria-live="polite" class="sr-only"></span>
+  </dialog>
+</search-dialog>
+
+<script>
+  import { searchItems } from '../lib/search'
+
+  interface Item {
+    description?: string
+    href: string
+    label: string
+    meta: string
+    terms?: string[]
+    title: string
+    variants?: string[]
+  }
+
+  const MAX_RESULTS = 10
+
+  class SearchDialog extends HTMLElement {
+    private items: Item[] = []
+    private browse: Item[] = []
+
+    private dialogEl: HTMLDialogElement | null = null
+    private inputEl: HTMLInputElement | null = null
+    private listEl: HTMLElement | null = null
+    private headingEl: HTMLElement | null = null
+    private emptyEl: HTMLElement | null = null
+    private statusEl: HTMLElement | null = null
+
+    private options: HTMLAnchorElement[] = []
+    private activeIndex = -1
+
+    private abortController: AbortController | null = null
+
+    connectedCallback() {
+      this.dialogEl = this.querySelector('[data-dialog]')
+      this.inputEl = this.querySelector('[data-input]')
+      this.listEl = this.querySelector('[data-list]')
+      this.headingEl = this.querySelector('[data-heading]')
+      this.emptyEl = this.querySelector('[data-empty]')
+      this.statusEl = this.querySelector('[data-status]')
+
+      const openEl = this.querySelector('[data-open]')
+      const closeEl = this.querySelector('[data-close]')
+      const shortcutEl = this.querySelector('[data-shortcut]')
+
+      if (!this.dialogEl || !this.inputEl || !this.listEl || !openEl || !closeEl) {
+        return
+      }
+
+      try {
+        this.items = JSON.parse(this.dataset.items || '[]')
+        this.browse = JSON.parse(this.dataset.browse || '[]')
+      } catch {
+        return
+      }
+
+      if (shortcutEl && /mac|iphone|ipad/i.test(navigator.userAgent)) {
+        shortcutEl.textContent = '⌘K'
+      }
+
+      this.abortController = new AbortController()
+
+      const { signal } = this.abortController
+
+      openEl.addEventListener('click', () => this.open(), { signal })
+      closeEl.addEventListener('click', () => this.close(), { signal })
+
+      this.dialogEl.addEventListener(
+        'click',
+        (clickEvent) => {
+          if (clickEvent.target === this.dialogEl) {
+            this.close()
+          }
+        },
+        { signal },
+      )
+
+      this.dialogEl.addEventListener('close', () => this.reset(), { signal })
+
+      this.inputEl.addEventListener('input', () => this.render(), { signal })
+      this.inputEl.addEventListener('keydown', (keyEvent) => this.handleKeydown(keyEvent), {
+        signal,
+      })
+
+      document.addEventListener(
+        'keydown',
+        (keyEvent) => {
+          const isShortcut =
+            (keyEvent.metaKey || keyEvent.ctrlKey) && keyEvent.key.toLowerCase() === 'k'
+
+          if (isShortcut) {
+            keyEvent.preventDefault()
+
+            if (this.dialogEl?.open) {
+              this.close()
+            } else {
+              this.open()
+            }
+
+            return
+          }
+
+          if (keyEvent.key === '/' && !this.dialogEl?.open && !this.isTyping(keyEvent.target)) {
+            keyEvent.preventDefault()
+
+            this.open()
+          }
+        },
+        { signal },
+      )
+    }
+
+    disconnectedCallback() {
+      this.abortController?.abort()
+      this.abortController = null
+    }
+
+    private isTyping(target: EventTarget | null) {
+      return (
+        target instanceof HTMLElement &&
+        (target.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName))
+      )
+    }
+
+    private open() {
+      if (!this.dialogEl || !this.inputEl || this.dialogEl.open) {
+        return
+      }
+
+      this.dialogEl.showModal()
+
+      document.documentElement.style.overflow = 'hidden'
+
+      this.render()
+
+      this.inputEl.focus()
+    }
+
+    private close() {
+      this.dialogEl?.close()
+    }
+
+    private reset() {
+      document.documentElement.style.overflow = ''
+
+      if (this.inputEl) {
+        this.inputEl.value = ''
+      }
+    }
+
+    private handleKeydown(keyEvent: KeyboardEvent) {
+      const optionCount = this.options.length
+
+      if (keyEvent.key === 'ArrowDown' || keyEvent.key === 'ArrowUp') {
+        // Stops the arrow keys from scrolling the page behind the dialog.
+        keyEvent.preventDefault()
+
+        if (optionCount === 0) {
+          return
+        }
+
+        const step = keyEvent.key === 'ArrowDown' ? 1 : -1
+
+        this.setActive((this.activeIndex + step + optionCount) % optionCount)
+
+        return
+      }
+
+      if (keyEvent.key === 'Home' || keyEvent.key === 'End') {
+        if (optionCount > 0 && this.inputEl?.value === '') {
+          keyEvent.preventDefault()
+
+          this.setActive(keyEvent.key === 'Home' ? 0 : optionCount - 1)
+        }
+
+        return
+      }
+
+      if (keyEvent.key === 'Enter') {
+        keyEvent.preventDefault()
+
+        const activeOption = this.options[this.activeIndex]
+
+        if (activeOption) {
+          globalThis.location.assign(activeOption.href)
+        }
+      }
+    }
+
+    private setActive(index: number) {
+      this.options.forEach((optionEl, optionIndex) => {
+        const isActive = optionIndex === index
+
+        optionEl.setAttribute('aria-selected', String(isActive))
+        optionEl.dataset.active = String(isActive)
+
+        if (isActive) {
+          optionEl.scrollIntoView({ block: 'nearest' })
+        }
+      })
+
+      this.activeIndex = index
+
+      const activeOption = this.options[index]
+
+      if (activeOption) {
+        this.inputEl?.setAttribute('aria-activedescendant', activeOption.id)
+      } else {
+        this.inputEl?.removeAttribute('aria-activedescendant')
+      }
+    }
+
+    private createOption(item: Item, index: number) {
+      const listItem = document.createElement('li')
+
+      listItem.setAttribute('role', 'presentation')
+
+      const optionEl = document.createElement('a')
+
+      optionEl.id = `search-option-${index}`
+      optionEl.href = item.href
+      optionEl.tabIndex = -1
+      optionEl.setAttribute('role', 'option')
+      optionEl.setAttribute('aria-selected', 'false')
+      optionEl.dataset.active = 'false'
+      optionEl.className =
+        'flex items-center justify-between gap-3 rounded-lg px-3 py-2 data-[active=true]:bg-gray-100'
+
+      const textEl = document.createElement('span')
+
+      textEl.className = 'min-w-0'
+
+      const titleEl = document.createElement('span')
+
+      titleEl.className = 'block truncate text-sm font-medium text-gray-900'
+      titleEl.textContent = item.title
+
+      textEl.appendChild(titleEl)
+
+      if (item.meta) {
+        const metaEl = document.createElement('span')
+
+        metaEl.className = 'block truncate text-xs text-gray-600'
+        metaEl.textContent = item.meta
+
+        textEl.appendChild(metaEl)
+      }
+
+      const labelEl = document.createElement('span')
+
+      labelEl.className = 'shrink-0 text-xs text-gray-500 capitalize'
+      labelEl.textContent = item.label === 'category' ? '' : item.label
+
+      optionEl.appendChild(textEl)
+      optionEl.appendChild(labelEl)
+
+      optionEl.addEventListener('pointermove', () => {
+        if (this.activeIndex !== index) {
+          this.setActive(index)
+        }
+      })
+
+      listItem.appendChild(optionEl)
+
+      return { listItem, optionEl }
+    }
+
+    private render() {
+      if (!this.inputEl || !this.listEl || !this.headingEl || !this.emptyEl || !this.statusEl) {
+        return
+      }
+
+      const query = this.inputEl.value.trim()
+      const results = query ? searchItems(this.items, query, MAX_RESULTS) : this.browse
+
+      this.options = []
+
+      const fragment = document.createDocumentFragment()
+
+      results.forEach((item, index) => {
+        const { listItem, optionEl } = this.createOption(item, index)
+
+        this.options.push(optionEl)
+
+        fragment.appendChild(listItem)
+      })
+
+      this.listEl.replaceChildren(fragment)
+
+      this.headingEl.hidden = results.length === 0
+      this.headingEl.textContent = query ? 'Results' : 'Browse'
+
+      this.emptyEl.hidden = results.length > 0
+      this.emptyEl.textContent = results.length > 0 ? '' : `No results for “${query}”.`
+
+      this.statusEl.textContent = query
+        ? `${results.length} ${results.length === 1 ? 'result' : 'results'}`
+        : ''
+
+      // The first result is ready to open with Enter.
+      this.activeIndex = -1
+
+      this.setActive(results.length > 0 ? 0 : -1)
+    }
+  }
+
+  customElements.define('search-dialog', SearchDialog)
+</script>
