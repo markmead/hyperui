@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures'
 
-import { scoreItem, searchItems, type SearchItem } from '../lib/search'
+import { relatedItems, scoreItem, searchItems, type SearchItem } from '../lib/search'
 
 const items: SearchItem[] = [
   {
@@ -53,5 +53,20 @@ test.describe('Search ranking', () => {
   test('scores nothing for an empty or unmatched query', () => {
     expect(scoreItem(items[0] as SearchItem, '')).toBe(0)
     expect(titles('zzzz')).toEqual([])
+  })
+
+  const relatedTo = (current: SearchItem) =>
+    relatedItems(
+      current,
+      items.filter((item) => item !== current),
+    ).map(({ title }) => title)
+
+  test('relates collections that share a word in their titles', () => {
+    expect(relatedTo(items[1] as SearchItem)).toContain('Product Cards')
+    expect(relatedTo(items[2] as SearchItem)).toEqual(['Cards', 'Product Collections'])
+  })
+
+  test('never relates a collection to unrelated ones', () => {
+    expect(relatedTo(items[4] as SearchItem)).toEqual([])
   })
 })

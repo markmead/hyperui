@@ -120,3 +120,45 @@ export function searchItems<T extends SearchItem>(items: T[], query: string, lim
     .slice(0, limit)
     .map(({ item }) => item)
 }
+
+const STOP_WORDS = new Set(['a', 'an', 'and', 'for', 'of', 'the', 'with'])
+
+const titleWords = (title: string) => tokenize(title).filter((word) => !STOP_WORDS.has(word))
+
+const termWords = (terms: string[] | undefined) => (terms ?? []).flatMap((term) => tokenize(term))
+
+/**
+ * How closely two collections relate: words their titles share count most, then
+ * a title word that is a term on the other, then terms that match. "Cards" and
+ * "Product Cards" are related because both are about cards, whatever their
+ * terms say.
+ */
+export function relatedScore(current: SearchItem, other: SearchItem): number {
+  const currentTitle = new Set(titleWords(current.title))
+  const otherTitle = new Set(titleWords(other.title))
+
+  const currentTerms = new Set(termWords(current.terms))
+  const otherTerms = new Set(termWords(other.terms))
+
+  const count = (first: Set<string>, second: Set<string>) =>
+    [...first].filter((word) => second.has(word)).length
+
+  return (
+    count(currentTitle, otherTitle) * 6 +
+    (count(currentTitle, otherTerms) + count(currentTerms, otherTitle)) * 3 +
+    count(currentTerms, otherTerms)
+  )
+}
+
+export function relatedItems<T extends SearchItem>(
+  current: SearchItem,
+  items: T[],
+  limit = 5,
+): T[] {
+  return items
+    .map((item) => ({ item, score: relatedScore(current, item) }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title))
+    .slice(0, limit)
+    .map(({ item }) => item)
+}
