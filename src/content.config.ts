@@ -9,11 +9,12 @@ import path from 'node:path'
 type UpdatedMeta = {
   date: Date
   commit: string
+  created?: Date
 }
 
 const repositoryRootPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
-let gitMetadata: Record<string, { commit: string; date: string }> = {}
+let gitMetadata: Record<string, { commit: string; date: string; created?: string }> = {}
 
 try {
   const metadataPath = path.resolve(repositoryRootPath, 'src/data/git-metadata.json')
@@ -35,6 +36,7 @@ function getCollectionUpdated(
     return {
       commit: gitMetadata[cacheKey].commit,
       date: new Date(gitMetadata[cacheKey].date),
+      ...(gitMetadata[cacheKey].created && { created: new Date(gitMetadata[cacheKey].created) }),
     }
   }
 
@@ -74,7 +76,7 @@ const collection = z.object({
   slug: z.string(),
   terms: z.array(z.string()),
   title: z.string(),
-  wrapper: z.string().optional(),
+  wrapper: z.string().default('h-[600px]'),
   pattern: z.url().optional(),
   components: z.array(
     z.object({

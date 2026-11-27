@@ -6,10 +6,10 @@ interface Props {
   title: string
   dark?: boolean
   index?: number
-  wrapper?: string | undefined
+  wrapper?: string
 }
 
-const { src, title, dark = false, index = 1, wrapper } = Astro.props
+const { src, title, dark = false, index = 1, wrapper = '' } = Astro.props
 
 const sourceHtml = readComponentMarkup(src)
 ---
@@ -19,10 +19,8 @@ const sourceHtml = readComponentMarkup(src)
     data-preview="true"
     {src}
     {title}
-    data-auto={wrapper ? 'false' : 'true'}
-    height={wrapper ? undefined : 600}
     class:list={[
-      wrapper ?? 'max-h-[640px]',
+      wrapper,
       dark ? 'bg-gray-900' : 'bg-white',
       'mx-auto w-full ring ring-gray-200 transition-[max-width] duration-300 data-[preview=false]:hidden data-[preview=true]:block',
     ]}
@@ -39,13 +37,10 @@ const sourceHtml = readComponentMarkup(src)
 
 <script>
   class ComponentPreview extends HTMLElement {
-    static settled = false
-
     private contentHtml: string | null = null
     private contentSrc: string | null = null
 
     private iframeEl: HTMLIFrameElement | null = null
-    private resizeObserver: ResizeObserver | null = null
     private previewEl: HTMLPreElement | null = null
 
     private breakpointHandler: ((event: CustomEvent<{ width: string }>) => void) | null = null
@@ -67,75 +62,9 @@ const sourceHtml = readComponentMarkup(src)
       }
 
       this.setupEventListeners()
-      this.setupAutoHeight()
-    }
-
-    // Previews resize after the page loads, which moves a `#component-n`
-    // link target. Keep it in view until the person scrolls or the page settles.
-    private keepHashInView() {
-      const hash = globalThis.location.hash.slice(1)
-
-      if (!hash || ComponentPreview.settled) {
-        return
-      }
-
-      document.getElementById(hash)?.scrollIntoView()
-    }
-
-    // Without a fixed `wrapper` height, size the preview to its content
-    // (capped by the iframe's max-h), and follow it when the width changes.
-    private setupAutoHeight() {
-      const iframeEl = this.iframeEl
-
-      if (!iframeEl || iframeEl.dataset.auto !== 'true') {
-        return
-      }
-
-      const resize = () => {
-        const bodyEl = iframeEl.contentDocument?.body
-
-        if (!bodyEl) {
-          return
-        }
-
-        const bodyStyle = iframeEl.contentWindow?.getComputedStyle(bodyEl)
-        const margins = bodyStyle
-          ? Number.parseFloat(bodyStyle.marginTop) + Number.parseFloat(bodyStyle.marginBottom)
-          : 0
-
-        const height = Math.ceil(bodyEl.getBoundingClientRect().height + margins)
-
-        if (height > 0) {
-          iframeEl.setAttribute('height', String(Math.max(height, 120)))
-
-          this.keepHashInView()
-        }
-      }
-
-      const watch = () => {
-        const bodyEl = iframeEl.contentDocument?.body
-
-        if (!bodyEl) {
-          return
-        }
-
-        resize()
-
-        this.resizeObserver?.disconnect()
-        this.resizeObserver = new ResizeObserver(resize)
-        this.resizeObserver.observe(bodyEl)
-      }
-
-      iframeEl.addEventListener('load', watch)
-
-      if (iframeEl.contentDocument?.readyState === 'complete') {
-        watch()
-      }
     }
 
     disconnectedCallback() {
-      this.resizeObserver?.disconnect()
-
       if (this.contentSrc && this.breakpointHandler && this.copyHandler && this.viewHandler) {
         // @ts-expect-error -- CustomEvent handler is not assignable to EventListener
         document.removeEventListener(`breakpoint:change:${this.contentSrc}`, this.breakpointHandler)
@@ -210,16 +139,6 @@ const sourceHtml = readComponentMarkup(src)
 
       return null
     }
-  }
-
-  const settle = () => {
-    ComponentPreview.settled = true
-  }
-
-  setTimeout(settle, 2000)
-
-  for (const eventName of ['wheel', 'touchstart', 'keydown', 'pointerdown']) {
-    globalThis.addEventListener(eventName, settle, { once: true, passive: true })
   }
 
   customElements.define('component-preview', ComponentPreview)
