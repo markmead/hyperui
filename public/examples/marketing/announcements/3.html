@@ -3,18 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fixed - Announcements - HyperUI</title>
+    <title>Fixed bottom - Announcements - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body>
     <div
-      class="fixed inset-x-0 bottom-0 z-auto border-t border-gray-200 bg-gray-100 px-4 py-2 text-gray-900"
+      data-announcement
+      class="fixed inset-x-0 bottom-0 flex items-center gap-4 border-t border-gray-200 bg-white px-4 py-3 text-gray-900"
     >
-      <p class="text-center font-medium">
-        Lorem, ipsum dolor
-        <a href="#" class="inline-block underline"> sit amet consectetur </a>
+      <p class="flex-1 text-sm text-pretty">
+        We've updated our terms of service. They take effect on 1 March.
+        <a
+          href="#"
+          class="font-medium text-indigo-600 underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >Read the changes</a
+        >
       </p>
+      <button
+        type="button"
+        data-dismiss
+        class="shrink-0 rounded-lg bg-gray-900 px-3.5 py-2 text-sm font-medium text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+      >
+        Got it
+      </button>
     </div>
+    <script>
+      document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
+        buttonEl.addEventListener('click', () => buttonEl.closest('[data-announcement]').remove())
+      })
+    </script>
   </body>
 </html>
