@@ -136,6 +136,38 @@ function getCollectionUpdated(collectionCategory, componentSlug) {
   return updatedMetadata
 }
 
+// The commit that added the collection file. Commits at a shallow clone's
+// boundary look like additions for every file, so they are ignored.
+function getCollectionCreated(collectionCategory, componentSlug) {
+  const mdxPath = `src/content/collection/${collectionCategory}/${componentSlug}.mdx`
+  const shallowFilePath = path.join(repositoryRootPath, '.git', 'shallow')
+
+  const shallowCommits = fs.existsSync(shallowFilePath)
+    ? new Set(fs.readFileSync(shallowFilePath, 'utf8').split(/\r?\n/).filter(Boolean))
+    : new Set()
+
+  try {
+    const addedEntries = execFileSync(
+      'git',
+      ['log', '--diff-filter=A', '--format=%H%x00%cI', '--', mdxPath],
+      { cwd: repositoryRootPath, encoding: 'utf8' },
+    )
+      .trim()
+      .split(/\r?\n/)
+      .filter(Boolean)
+
+    const [commitSha, commitDate] = (addedEntries.at(-1) ?? '').split('\x00')
+
+    if (!commitSha || !commitDate || shallowCommits.has(commitSha)) {
+      return undefined
+    }
+
+    return commitDate
+  } catch {
+    return undefined
+  }
+}
+
 function generateMetadata() {
   console.log(
     '🔍 Generating Git metadata for local collections (checking both MDX pages and HTML examples)...',
@@ -170,6 +202,12 @@ function generateMetadata() {
       const updatedInfo = getCollectionUpdated(categoryItem, collectionSlug)
 
       if (updatedInfo) {
+        const createdDate = getCollectionCreated(categoryItem, collectionSlug)
+
+        if (createdDate) {
+          updatedInfo.created = createdDate
+        }
+
         fileMetadata[`${categoryItem}/${collectionSlug}`] = updatedInfo
         console.log(
           `   ✨ Last updated commit: ${updatedInfo.commit.slice(0, 7)} on ${updatedInfo.date}\n`,

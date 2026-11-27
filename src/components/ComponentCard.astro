@@ -20,17 +20,21 @@ const { category, components, slug, title, updated } = component
 
 const count = countLabel({ category, components })
 
-const recentUpdateThresholdDate = new Date()
+const daysAgo = (days: number) => {
+  const thresholdDate = new Date()
 
-recentUpdateThresholdDate.setHours(0, 0, 0, 0)
-recentUpdateThresholdDate.setDate(recentUpdateThresholdDate.getDate() - 30)
+  thresholdDate.setHours(0, 0, 0, 0)
+  thresholdDate.setDate(thresholdDate.getDate() - days)
+
+  return thresholdDate
+}
 
 // `pnpm thumbnails` writes one for every template.
 const thumbnail = category === 'templates' ? `/thumbnails/templates/${slug}.webp` : null
 
-const isRecentlyUpdated = updated?.date
-  ? new Date(updated.date) >= recentUpdateThresholdDate
-  : false
+const isNew = updated?.created ? new Date(updated.created) >= daysAgo(30) : false
+
+const isRecentlyUpdated = updated?.date ? new Date(updated.date) >= daysAgo(7) : false
 ---
 
 <li>
@@ -58,7 +62,8 @@ const isRecentlyUpdated = updated?.date
           {title}
         </h3>
 
-        {isRecentlyUpdated && <StatusBadge status="updated" class="mt-1" />}
+        {isNew && <StatusBadge status="fresh" class="mt-1" />}
+        {!isNew && isRecentlyUpdated && <StatusBadge status="updated" class="mt-1" />}
       </div>
 
       <div class="mt-auto flex items-center justify-between pt-2">

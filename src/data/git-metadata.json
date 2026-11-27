@@ -5,11 +5,13 @@
   },
   "application/app-shells": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
-    "date": "2026-11-21T20:51:30+00:00"
+    "date": "2026-11-21T20:51:30+00:00",
+    "created": "2026-11-21T20:51:30+00:00"
   },
   "application/avatars": {
     "commit": "f67a2a95e5cf073c7fba1c61239a6244f01002fc",
-    "date": "2026-11-18T13:04:47+00:00"
+    "date": "2026-11-18T13:04:47+00:00",
+    "created": "2026-11-18T13:04:47+00:00"
   },
   "application/badges": {
     "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
@@ -33,7 +35,8 @@
   },
   "application/code-blocks": {
     "commit": "8d4f414c67e5c427bb221ba978d1804ef7632884",
-    "date": "2026-11-17T16:56:09+00:00"
+    "date": "2026-11-17T16:56:09+00:00",
+    "created": "2026-11-17T16:56:09+00:00"
   },
   "application/details-list": {
     "commit": "6365b55d15b1bad16af77455577bca77ddfa081c",
@@ -61,7 +64,8 @@
   },
   "application/form-layouts": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
-    "date": "2026-11-21T20:51:30+00:00"
+    "date": "2026-11-21T20:51:30+00:00",
+    "created": "2026-11-21T20:51:30+00:00"
   },
   "application/grids": {
     "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
@@ -85,7 +89,8 @@
   },
   "application/page-headers": {
     "commit": "8a0cb89c2164d8b1a3696bf843e8d3678b99e5ed",
-    "date": "2026-11-21T20:51:30+00:00"
+    "date": "2026-11-21T20:51:30+00:00",
+    "created": "2026-11-21T20:51:30+00:00"
   },
   "application/pagination": {
     "commit": "afe9c234997de8b8fe33bac3f2827b2deb081983",
@@ -265,7 +270,8 @@
   },
   "templates/developer-tool": {
     "commit": "a1e8637822f6456f7aaaac7b5fcb96c508f92d49",
-    "date": "2026-11-17T21:47:43+00:00"
+    "date": "2026-11-17T21:47:43+00:00",
+    "created": "2026-11-17T17:05:03+00:00"
   },
   "templates/portfolio": {
     "commit": "9ee65b0eddbf02682f2da96e85d8f54c50e64061",
@@ -273,7 +279,8 @@
   },
   "templates/pricing-page": {
     "commit": "a1e8637822f6456f7aaaac7b5fcb96c508f92d49",
-    "date": "2026-11-17T21:47:43+00:00"
+    "date": "2026-11-17T21:47:43+00:00",
+    "created": "2026-11-17T18:47:34+00:00"
   },
   "templates/saas-landing-page": {
     "commit": "4d78f3ba71998991fa68fdde175ac1a62ceed769",
