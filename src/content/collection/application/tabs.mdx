@@ -1,6 +1,6 @@
 ---
 title: Tabs
-description: Responsive tab components for organizing content sections with customizable styles, icons, and interactions.
+description: Accessible tab components with roving tabindex and arrow key navigation. Includes boxed, icon, vertical, underline with counts, pill and segmented styles.
 category: application
 slug: tabs
 wrapper: h-[400px]
@@ -10,19 +10,32 @@ terms:
 components:
   - {
       title: 'Base',
-      description: 'Basic tabs with a row of tab buttons above the panel content',
+      description: 'Tabs with a filled active tab, arrow key navigation and panels linked by aria-controls',
       dark: true,
     }
-  - { title: 'With icons', description: 'Tabs with an icon beside each label', dark: true }
+  - {
+      title: 'With icons',
+      description: 'Underline tabs with an icon beside each label',
+      dark: true,
+    }
   - {
       title: 'Vertical',
-      description: 'Vertical tabs with the tab list at the side of the panel',
+      description: 'Vertical tabs that stack above the panel on mobile and move to the side from the sm breakpoint',
       dark: true,
     }
-  - { title: 'Underline', description: 'Tabs with an underline marking the active tab', dark: true }
+  - {
+      title: 'Underline with counts',
+      description: 'Underline tabs with a count badge on each tab',
+      dark: true,
+    }
   - {
       title: 'Pills',
-      description: 'Tabs styled as pills, with a filled pill marking the active tab',
+      description: 'Pill shaped tabs for switching a time range, with a filled active pill',
+      dark: true,
+    }
+  - {
+      title: 'Segmented',
+      description: 'Segmented control with two options, such as monthly and yearly billing',
       dark: true,
     }
 ---

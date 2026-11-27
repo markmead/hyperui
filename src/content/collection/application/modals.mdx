@@ -1,6 +1,6 @@
 ---
 title: Modals
-description: Modal and dialog components for web applications. Includes simple modals, close buttons, and action modals with responsive, customizable designs.
+description: Modal and dialog components for web applications. Includes confirmations, destructive actions with typed confirmation, forms, success messages, scrollable content and link sharing, all built on the native dialog element.
 category: application
 slug: modals
 pattern: https://js.hyperui.dev/patterns/dialog/
@@ -9,29 +9,33 @@ terms:
   - popup
 components:
   - {
-      title: 'Base',
-      description: 'Basic modal with a heading and text, opened from a button',
+      title: 'Confirm',
+      description: 'Confirmation modal that names what is at stake, with a safe cancel and a clear destructive action',
       dark: true,
     }
   - {
-      title: 'Base with close',
-      description: 'Basic modal with a close button in the corner',
+      title: 'Delete with confirmation',
+      description: 'Destructive modal that keeps the delete button disabled until the user types the project name',
       dark: true,
     }
   - {
-      title: 'Actions',
-      description: 'Modal with confirm and cancel actions in the footer',
+      title: 'Invite form',
+      description: 'Form modal with a labelled email input, a role select, a close button and a submit action',
       dark: true,
     }
   - {
-      title: 'Actions with close',
-      description: 'Modal with action buttons and a close button in the corner',
+      title: 'Success',
+      description: 'Centered success modal with an icon, a receipt summary and a primary and secondary action',
       dark: true,
     }
-  - { title: 'Input', description: 'Modal containing an input field and actions', dark: true }
   - {
-      title: 'Input with close',
-      description: 'Modal with an input field, actions and a close button in the corner',
+      title: 'Scrollable terms',
+      description: 'Modal with a keyboard focusable scroll area for long content and accept or decline actions',
+      dark: true,
+    }
+  - {
+      title: 'Share link',
+      description: 'Modal with a read-only link, a copy button and a live status message',
       dark: true,
     }
 ---

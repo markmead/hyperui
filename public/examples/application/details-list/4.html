@@ -8,42 +8,23 @@
     <script src="/component.js" defer></script>
   </head>
   <body class="mx-auto max-w-3xl p-6">
-    <div class="flow-root">
-      <dl
-        class="-my-3 divide-y divide-gray-200 rounded border border-gray-200 text-sm *:even:bg-gray-50"
-      >
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Title</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">Mr</dd>
+    <div class="overflow-hidden rounded-xl border border-gray-200">
+      <dl class="divide-y divide-gray-200 text-sm [&>div:nth-child(odd)]:bg-gray-50">
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Region</dt>
+          <dd class="text-gray-700 sm:col-span-2">eu-west-2 (London)</dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Name</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">John Frusciante</dd>
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Instance</dt>
+          <dd class="text-gray-700 sm:col-span-2"><span class="font-mono">c6.large</span></dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Occupation</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">IP address</dt>
+          <dd class="text-gray-700 sm:col-span-2"><span class="font-mono">203.0.113.24</span></dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Salary</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd>
-        </div>
-
-        <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Bio</dt>
-
-          <dd class="text-gray-700 sm:col-span-2">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis debitis explicabo
-            doloremque impedit nesciunt dolorem facere, dolor quasi veritatis quia fugit aperiam
-            aspernatur neque molestiae labore aliquam soluta architecto?
-          </dd>
+        <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Uptime</dt>
+          <dd class="text-gray-700 sm:col-span-2">99.98% over the last 30 days</dd>
         </div>
       </dl>
     </div>

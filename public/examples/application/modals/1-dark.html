@@ -3,33 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base (dark) - Modals - HyperUI</title>
+    <title>Confirm (dark) - Modals - HyperUI</title>
     <link href="/component.css" rel="stylesheet" />
     <script src="/component.js" defer></script>
   </head>
   <body class="p-6 dark:bg-gray-900">
     <button
+      type="button"
       data-modal-open
-      class="rounded border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+      class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
     >
-      Open
+      Discard draft
     </button>
 
     <dialog
       closedby="any"
       aria-labelledby="modalTitle"
       aria-describedby="modalDescription"
-      class="m-auto max-w-xl rounded-lg bg-white p-6 shadow-lg backdrop:bg-black/50 dark:bg-gray-900 dark:backdrop:bg-white/50"
+      class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/50 dark:bg-gray-900 dark:backdrop:bg-white/50"
     >
-      <div class="flex flex-col gap-4">
-        <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
-          Modal Title
-        </h2>
-
-        <p id="modalDescription" class="text-pretty text-gray-700 dark:text-gray-200">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu
-          consectetur. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+      <h2 id="modalTitle" class="text-lg font-semibold text-gray-900 dark:text-white">
+        Discard this draft?
+      </h2>
+      <p id="modalDescription" class="mt-2 text-pretty text-gray-600 dark:text-gray-300">
+        Your changes to "Q3 launch plan" haven't been saved. If you leave now, they'll be lost.
+      </p>
+      <div class="mt-6 flex justify-end gap-3">
+        <button
+          type="button"
+          data-modal-close
+          class="rounded-lg px-3.5 py-2 text-sm font-medium text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800 dark:focus-visible:outline-indigo-300"
+        >
+          Keep editing
+        </button>
+        <button
+          type="button"
+          data-modal-close
+          class="rounded-lg bg-red-600 px-3.5 py-2 text-sm font-medium text-white hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-300 dark:text-gray-900 dark:hover:bg-red-200 dark:focus-visible:outline-red-300"
+        >
+          Discard draft
+        </button>
       </div>
     </dialog>
 
