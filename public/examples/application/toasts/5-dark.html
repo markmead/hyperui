@@ -49,10 +49,7 @@
             aria-valuenow="12"
             class="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800"
           >
-            <div
-              data-fill
-              class="h-full w-[12%] rounded-full bg-blue-600 transition-[width] duration-300 ease-out motion-reduce:transition-none dark:bg-blue-300"
-            ></div>
+            <div data-fill class="h-full w-[12%] rounded-full bg-blue-600 dark:bg-blue-300"></div>
           </div>
           <p data-detail class="mt-2 text-sm text-gray-600 tabular-nums dark:text-gray-300">
             3 MB of 28 MB
@@ -70,33 +67,9 @@
     </div>
     <script>
       const toastEl = document.querySelector('[data-toast]')
-      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
-
-      if (!reduceMotion) {
-        toastEl.animate(
-          [
-            { opacity: 0, transform: 'translateX(1rem)' },
-            { opacity: 1, transform: 'translateX(0)' },
-          ],
-          { duration: 200, easing: 'ease-out' },
-        )
-      }
 
       function dismissToast() {
-        if (reduceMotion) {
-          toastEl.remove()
-          return
-        }
-
-        toastEl
-          .animate(
-            [
-              { opacity: 1, transform: 'translateX(0)' },
-              { opacity: 0, transform: 'translateX(1rem)' },
-            ],
-            { duration: 150, easing: 'ease-in' },
-          )
-          .finished.then(() => toastEl.remove())
+        toastEl.remove()
       }
 
       document.querySelectorAll('[data-dismiss]').forEach((buttonEl) => {
