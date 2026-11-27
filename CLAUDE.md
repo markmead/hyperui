@@ -78,6 +78,11 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 
 - Only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
 - Support Inbox stays, as a preview of the application components working together.
+- Templates are built from components, and new templates feed components.
+  - Where a template section does what an existing component does, build it from that component's current markup, then massage it to fit the template: its palette, copy, logo, number of items or columns and spacing can all change. Keep what makes the component work, such as its structure, accessibility attributes and focus styles. Only where it makes sense: don't force a section into a component that doesn't fit what the section is for.
+  - If a template needs a component the library doesn't offer, make the component first. Add it as a new variant to the relevant collection (see Adding a New Component), then build the template section from it. A new template section that is worth reusing becomes a component the same way.
+  - When a component is changed or redesigned, find the templates built from it (search `public/examples/templates` for its distinctive classes) and bring them along. Either update the template to the new markup, or keep the old markup as a new component variant that the template uses. A template should never quietly fall behind the component it came from, for example by missing the focus styles or accessibility attributes the component gained.
+  - Changes to what a template looks like mean regenerating its dark variant with `pnpm dark` and its thumbnail with `pnpm thumbnails`.
 
 ## PR Title Format
 

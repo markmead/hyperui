@@ -567,13 +567,15 @@
 
             <div class="col-span-2 lg:col-span-3 lg:flex lg:items-end">
               <form class="w-full">
-                <label for="UserEmail" class="sr-only"> Email </label>
+                <label for="footer-email" class="sr-only"> Email </label>
 
                 <div
                   class="border border-gray-100 p-2 focus-within:ring-3 sm:flex sm:items-center sm:gap-4"
                 >
                   <input
+                    id="footer-email"
                     type="email"
+                    required
                     autocomplete="email"
                     id="UserEmail"
                     placeholder="jane@orbitly.com"
@@ -581,7 +583,7 @@
                   />
 
                   <button
-                    class="mt-1 w-full bg-indigo-600 px-6 py-3 text-sm font-bold tracking-wide text-white uppercase transition-none hover:bg-indigo-700 sm:mt-0 sm:w-auto sm:shrink-0"
+                    class="mt-1 w-full bg-indigo-600 px-6 py-3 text-sm font-bold tracking-wide text-white uppercase transition-none hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-0 sm:w-auto sm:shrink-0"
                   >
                     Sign Up
                   </button>
@@ -589,107 +591,188 @@
               </form>
             </div>
 
-            <div class="col-span-2 sm:col-span-1">
-              <p class="font-medium text-gray-900">Product</p>
+            <nav aria-labelledby="footer-product" class="col-span-2 sm:col-span-1">
+              <h2 id="footer-product" class="font-medium text-gray-900">Product</h2>
 
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Features </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Features
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Integrations </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Integrations
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Changelog </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Changelog
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Roadmap </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Roadmap
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Security </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Security
+                  </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="col-span-2 sm:col-span-1">
-              <p class="font-medium text-gray-900">Company</p>
+            <nav aria-labelledby="footer-company" class="col-span-2 sm:col-span-1">
+              <h2 id="footer-company" class="font-medium text-gray-900">Company</h2>
 
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> About </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    About
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Careers </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Careers
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Blog </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Blog
+                  </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="col-span-2 sm:col-span-1">
-              <p class="font-medium text-gray-900">Resources</p>
+            <nav aria-labelledby="footer-resources" class="col-span-2 sm:col-span-1">
+              <h2 id="footer-resources" class="font-medium text-gray-900">Resources</h2>
 
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Documentation </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Documentation
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Support </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Support
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Community </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Community
+                  </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="col-span-2 sm:col-span-1">
-              <p class="font-medium text-gray-900">Legal</p>
+            <nav aria-labelledby="footer-legal" class="col-span-2 sm:col-span-1">
+              <h2 id="footer-legal" class="font-medium text-gray-900">Legal</h2>
 
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Privacy Policy </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Privacy Policy
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75">
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
                     Terms of Service
                   </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Cookie Policy </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Cookie Policy
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75">
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
                     Security Disclosures
                   </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="col-span-2 sm:col-span-1">
-              <p class="font-medium text-gray-900">Developers</p>
+            <nav aria-labelledby="footer-developers" class="col-span-2 sm:col-span-1">
+              <h2 id="footer-developers" class="font-medium text-gray-900">Developers</h2>
 
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> API Reference </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    API Reference
+                  </a>
                 </li>
 
                 <li>
-                  <a href="#" class="text-gray-700 transition hover:opacity-75"> Status Page </a>
+                  <a
+                    href="#"
+                    class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Status Page
+                  </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
             <ul class="col-span-2 flex justify-start gap-6 lg:col-span-5 lg:justify-end">
               <li>
@@ -697,7 +780,7 @@
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  class="text-gray-700 transition hover:opacity-75"
+                  class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   <span class="sr-only">Facebook</span>
 
@@ -716,7 +799,7 @@
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  class="text-gray-700 transition hover:opacity-75"
+                  class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   <span class="sr-only">Instagram</span>
 
@@ -735,7 +818,7 @@
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  class="text-gray-700 transition hover:opacity-75"
+                  class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   <span class="sr-only">Twitter</span>
 
@@ -752,7 +835,7 @@
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  class="text-gray-700 transition hover:opacity-75"
+                  class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   <span class="sr-only">GitHub</span>
 
@@ -771,7 +854,7 @@
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  class="text-gray-700 transition hover:opacity-75"
+                  class="text-gray-700 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   <span class="sr-only">Dribbble</span>
 
@@ -792,21 +875,36 @@
           <div class="sm:flex sm:justify-between">
             <p class="text-xs text-gray-500">&copy; 2026. Orbitly. All rights reserved.</p>
 
-            <ul class="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
-              <li>
-                <a href="#" class="text-gray-500 transition hover:opacity-75">
-                  Terms &amp; Conditions
-                </a>
-              </li>
+            <nav aria-label="Legal" class="mt-8 sm:mt-0">
+              <ul class="flex flex-wrap justify-start gap-4 text-xs lg:justify-end">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-500 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Terms &amp; Conditions
+                  </a>
+                </li>
 
-              <li>
-                <a href="#" class="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
-              </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-500 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
 
-              <li>
-                <a href="#" class="text-gray-500 transition hover:opacity-75"> Cookies </a>
-              </li>
-            </ul>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-500 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Cookies
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
