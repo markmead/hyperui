@@ -972,11 +972,10 @@
         tab.addEventListener('keydown', (event) => {
           // In a right-to-left page the first tab is on the right, so the arrows swap.
           const isRtl = getComputedStyle(tab.closest('[role="tablist"]')).direction === 'rtl'
-          const previousKey = isRtl ? 'ArrowRight' : 'ArrowLeft'
-          const nextKey = isRtl ? 'ArrowLeft' : 'ArrowRight'
+          const step = isRtl ? -1 : 1
           const targetIndex = {
-            [previousKey]: (index - 1 + tabs.length) % tabs.length,
-            [nextKey]: (index + 1) % tabs.length,
+            ArrowLeft: (index - step + tabs.length) % tabs.length,
+            ArrowRight: (index + step + tabs.length) % tabs.length,
             Home: 0,
             End: tabs.length - 1,
           }[event.key]
