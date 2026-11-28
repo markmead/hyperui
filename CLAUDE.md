@@ -87,6 +87,7 @@ Read these before the work they cover. They hold the detail that doesn't belong 
 - Run `pnpm install` first. Without it Prettier can't load its plugins and ESLint, `pnpm check` and the tests don't run.
 - Before pushing, run `pnpm lint`, `pnpm exec prettier --check <the files you changed>` and `pnpm check`. For an example file, also run `pnpm test:a11y:diff` against `pnpm dev`. Keep lines within Prettier's 100 columns.
 - Example behaviour is copy-pasted across light, dark and template files. When you fix a pattern, `git grep` for the old code in `public/examples` and fix every copy, or say which you left and why.
+- Never hand-edit a `-dark.html` file to fix something. Change the light file and run `pnpm dark`. If the generator gets a pattern wrong, fix the generator or `scripts/dark-mode.config.json`, so the fix survives the next regeneration.
 - Check keyboard and resize behaviour in a real browser (the pre-installed Chromium), not by reading the code. A refactor of index maths or key handling is not done until arrow keys have been pressed.
 - Don't add a new spec with each fix. Axe and the guides cover the markup. Add a test only when asked, or for behaviour nothing else would catch.
 - Open pull requests as drafts, stack a follow-up on the branch it builds on, and call out in the description what you couldn't run. If several pull requests are open, leave `git-metadata.json` for a separate one after they merge.
