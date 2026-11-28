@@ -43,7 +43,9 @@ A wrapper with `overflow-x-auto` scrolls sideways on a narrow screen, so a keybo
 ```html
 <h2 id="recent-orders-title">Recent orders</h2>
 <div role="region" aria-labelledby="recent-orders-title" tabindex="0" class="overflow-x-auto …">
-  <table>…</table>
+  <table>
+    …
+  </table>
 </div>
 ```
 
