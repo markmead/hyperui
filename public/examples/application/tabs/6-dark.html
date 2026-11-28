@@ -83,8 +83,12 @@
           tabEl.addEventListener('click', () => selectTab(tabEl))
 
           tabEl.addEventListener('keydown', (event) => {
-            const prevKey = isVertical ? 'ArrowUp' : 'ArrowLeft'
-            const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight'
+            // In a right-to-left page the first tab is on the right, so the arrows swap.
+            const isRtl = getComputedStyle(tabListEl).direction === 'rtl'
+            const horizontalPrevKey = isRtl ? 'ArrowRight' : 'ArrowLeft'
+            const horizontalNextKey = isRtl ? 'ArrowLeft' : 'ArrowRight'
+            const prevKey = isVertical ? 'ArrowUp' : horizontalPrevKey
+            const nextKey = isVertical ? 'ArrowDown' : horizontalNextKey
             let nextIndex
 
             if (event.key === nextKey) nextIndex = (index + 1) % tabEls.length
