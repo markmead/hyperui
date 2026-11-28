@@ -114,6 +114,8 @@ Read these before the work they cover. They hold the detail that doesn't belong 
 
 When on a branch other than `main`, always push to the current branch (`git push origin HEAD:<current-branch-name>` or equivalent), unless a new branch is explicitly requested. Do not `git checkout -b <name>` a local branch whose name differs from the remote branch it's meant to track (e.g. dropping a `claude/` prefix) — a plain `git push -u origin <name>` in that situation creates a new, unrelated remote branch instead of updating the intended one.
 
-Small, low-risk pull requests (a fix to one example, a typo, a class or copy tweak, a test update) are auto-merged once CI is green. Open them ready for review, not as drafts, since auto-merge doesn't work on a draft, and turn on auto-merge (squash) straight away. Don't wait for CI to finish before moving on: the merge and the notification follow on their own. If CI fails, fix it in the same pull request.
+Small, low-risk pull requests (a fix to one example, a typo, a class or copy tweak, a test update) merge without waiting for review, as soon as the `Lint, build and test (Chromium)` check is green. Open them ready for review, not as drafts. Subscribe to the pull request, and squash-merge it when that check passes, with the head SHA of the commit that was tested. If CI fails, fix it in the same pull request.
+
+GitHub's own auto-merge isn't available: `main` has no branch protection rule with required checks, so enabling it fails with "Protected branch rules not configured". If a rule requiring that check is added, turn on auto-merge (squash) when opening the pull request instead.
 
 Larger changes, anything touching `src/pages`, `wrangler.jsonc`, the build or dependencies, wait for review.
