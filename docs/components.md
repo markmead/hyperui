@@ -11,6 +11,7 @@ Conventions for the HTML files in `public/examples/`. The steps for adding one a
 - **Ids** are prefixed so two components on one page can't collide: `base-tab-0`, `base-panel-0`. Ids that a heading label points at must be unique within the file.
 - **Scripts** are plain, small, and inline. Name things for what they are (`tabEl`, `sidebarToggle`), keep to one `setXOpen`-style function per behaviour, and skip frameworks.
 - **Dark files** are generated, not hand-written (`pnpm dark <file>`). A hand edit to a dark file is lost the next time it's generated, so change the light file, regenerate, then review. If a section can't be generated (a hand-tuned area), say so in the PR.
+- **Colour swatches** (a product's real colour, such as the dots on a product card or the colour picker on the storefront) must look the same in both themes. The generator doesn't know they are swatches and shifts their fill, so after `pnpm dark` put the original `bg-*` back on each swatch and remove its `dark:bg-*`. Keep their ring and focus `dark:` variants. This makes `pnpm dark --check` report the file as different, like `templates/portfolio/1-dark.html`. `templates/storefront/2-dark.html` is one, and `marketing/product-cards/3-dark.html` has the same fix.
 
 ## Compiled CSS
 
