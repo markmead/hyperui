@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project with image beside text - Cards - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-5xl p-6">
+    <article
+      class="group relative grid items-center gap-8 rounded-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-8 has-[a:focus-visible]:outline-indigo-600 sm:grid-cols-2 sm:gap-12"
+    >
+      <img
+        alt=""
+        src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1160"
+        class="aspect-4/3 w-full rounded-lg object-cover"
+      />
+
+      <div>
+        <p class="text-xs font-medium tracking-wide text-gray-500 uppercase">
+          Northwind &middot; Product design &middot; 2025
+        </p>
+
+        <h3 class="mt-2 text-xl font-semibold text-gray-900">
+          <a
+            href="#"
+            class="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-transparent"
+            >Redesigning the editor that field engineers actually trust</a
+          >
+        </h3>
+
+        <p class="mt-3 text-gray-600">
+          Cut average report time from 11 minutes to 4 by rebuilding the note editor around
+          offline-first sync, not adding features on top of it.
+        </p>
+
+        <p
+          aria-hidden="true"
+          class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-indigo-600 transition group-hover:text-indigo-700"
+        >
+          View case study
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 rtl:rotate-180"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </p>
+      </div>
+    </article>
+  </body>
+</html>
