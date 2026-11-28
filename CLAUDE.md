@@ -74,6 +74,26 @@ Generate dark variants with `pnpm dark public/examples/{category}/{slug}/{n}.htm
 3. If dark mode is supported, add `dark: true` to the frontmatter entry and provide a `{n}-dark.html` file.
 4. Run `pnpm run generate:git-metadata` and commit `src/data/git-metadata.json`. Do this whenever a collection or component is added, changed, merged or removed, after committing the change, as the "updated" date on each collection comes from it.
 
+## Guides
+
+Read these before the work they cover. They hold the detail that doesn't belong here.
+
+- `docs/accessibility.md`: before touching tabs, sidebars and app shells, scrollable tables, focus styles, forms or anything right-to-left. It covers what axe can't check.
+- `docs/components.md`: conventions for the example HTML, when to recompile `public/component.css`, and a checklist to run before a PR.
+- `docs/reviews/` and `docs/plans/`: past audits and plans. They are history, not rules.
+
+## Working on your own
+
+- Run `pnpm install` first. Without it Prettier can't load its plugins and ESLint, `pnpm check` and the tests don't run.
+- Before pushing, run `pnpm lint`, `pnpm exec prettier --check <the files you changed>` and `pnpm check`. For an example file, also run `pnpm test:a11y:diff` against `pnpm dev`. Keep lines within Prettier's 100 columns.
+- Example behaviour is copy-pasted across light, dark and template files. When you fix a pattern, `git grep` for the old code in `public/examples` and fix every copy, or say which you left and why.
+- Never hand-edit a `-dark.html` file to fix something. Change the light file and run `pnpm dark`. If the generator gets a pattern wrong, fix the generator or `scripts/dark-mode.config.json`, so the fix survives the next regeneration.
+- Check keyboard and resize behaviour in a real browser (the pre-installed Chromium), not by reading the code. A refactor of index maths or key handling is not done until arrow keys have been pressed.
+- Don't add a new spec with each fix. Axe and the guides cover the markup. Add a test only when asked, or for behaviour nothing else would catch.
+- Open pull requests as drafts, stack a follow-up on the branch it builds on, and call out in the description what you couldn't run. If several pull requests are open, leave `git-metadata.json` for a separate one after they merge.
+- Proceed on conventional choices without asking. Stop and ask before: adding a collection or template (CONTRIBUTING.md says to open an issue first), editing `src/pages`, `wrangler.jsonc` or the build, removing a component, or pushing to a branch you didn't create.
+- When a review or CI finds something real, fix it in the same pull request. Report nits you decline instead of silently skipping them.
+
 ## Templates
 
 - Only build pages people would otherwise build themselves inside their own product. No kanban boards or other templates that copy tools teams already use off the shelf.
