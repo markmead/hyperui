@@ -6,7 +6,9 @@ test.describe('Component category sections', () => {
   })
 
   test('can navigate to application components', async ({ page }) => {
-    const viewAllLink: Locator = page.getByRole('link', { name: /^View all \d+ application components$/ })
+    const viewAllLink: Locator = page.getByRole('link', {
+      name: /^View all \d+ application components$/,
+    })
 
     await expect(viewAllLink).toBeVisible()
 
