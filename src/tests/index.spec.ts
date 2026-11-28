@@ -35,7 +35,7 @@ test.describe('Component category sections', () => {
     ).toBeVisible()
   })
 
-  test('lists the first six templates first, in title order', async ({ page }) => {
+  test('lists the five featured templates first, in title order', async ({ page }) => {
     const firstSection: Locator = page.locator('#main-content section').nth(1)
 
     await expect(firstSection.getByRole('heading', { level: 2 })).toHaveText('Templates')
@@ -45,7 +45,6 @@ test.describe('Component category sections', () => {
       'Portfolio',
       'Pricing Page',
       'SaaS Landing Page',
-      'Storefront',
     ])
   })
 
