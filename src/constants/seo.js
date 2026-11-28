@@ -1,4 +1,3 @@
-export const SITE_DESCRIPTION = 'Free Open Source Tailwind CSS Components'
 export const SITE_TITLE = 'HyperUI'
 
 export const SEO_DESCRIPTION_SITE =

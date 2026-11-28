@@ -22,7 +22,6 @@
     "@astrojs/sitemap": "3.7.4",
     "@lucide/astro": "^1.71.0",
     "astro": "7.4.8",
-    "axe-core": "4.14.0",
     "wrangler": "^4.160.0"
   },
   "devDependencies": {
