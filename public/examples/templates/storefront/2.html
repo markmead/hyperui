@@ -393,15 +393,16 @@
       </div>
 
       <div class="mt-16">
-        <div class="border-b border-gray-200">
-          <div role="tablist" class="-mb-px flex gap-6">
+        <div class="overflow-x-auto border-b border-gray-200">
+          <div role="tablist" aria-label="Product information" class="flex w-max gap-6">
             <button
               type="button"
               id="tab-description"
               role="tab"
               aria-selected="true"
               aria-controls="description"
-              class="border-b-2 py-3 text-sm font-medium aria-selected:border-emerald-700 aria-selected:text-emerald-700 aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-500 aria-[selected=false]:hover:text-gray-700"
+              tabindex="0"
+              class="-mb-px shrink-0 border-b-2 border-transparent px-1 py-3 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 aria-selected:border-emerald-700 aria-selected:text-emerald-700"
             >
               Description
             </button>
@@ -412,7 +413,7 @@
               aria-selected="false"
               aria-controls="shipping"
               tabindex="-1"
-              class="border-b-2 py-3 text-sm font-medium aria-selected:border-emerald-700 aria-selected:text-emerald-700 aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-500 aria-[selected=false]:hover:text-gray-700"
+              class="-mb-px shrink-0 border-b-2 border-transparent px-1 py-3 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 aria-selected:border-emerald-700 aria-selected:text-emerald-700"
             >
               Shipping &amp; returns
             </button>
@@ -423,7 +424,7 @@
               aria-selected="false"
               aria-controls="reviews"
               tabindex="-1"
-              class="border-b-2 py-3 text-sm font-medium aria-selected:border-emerald-700 aria-selected:text-emerald-700 aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-500 aria-[selected=false]:hover:text-gray-700"
+              class="-mb-px shrink-0 border-b-2 border-transparent px-1 py-3 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 aria-selected:border-emerald-700 aria-selected:text-emerald-700"
             >
               Reviews (126)
             </button>
@@ -648,7 +649,9 @@
 
         <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4">
           <li>
-            <a href="#" class="group block">
+            <article
+              class="group relative rounded-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-emerald-700"
+            >
               <div class="overflow-hidden rounded-lg bg-gray-100">
                 <img
                   alt=""
@@ -656,13 +659,21 @@
                   class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </div>
-              <h3 class="mt-3 text-sm font-medium text-gray-900">Cairn 1P Solo</h3>
+              <h3 class="mt-3 text-sm font-medium text-gray-900">
+                <a
+                  href="#"
+                  class="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-transparent"
+                  >Cairn 1P Solo</a
+                >
+              </h3>
               <p class="mt-1 text-sm text-gray-600">$329</p>
-            </a>
+            </article>
           </li>
 
           <li>
-            <a href="#" class="group block">
+            <article
+              class="group relative rounded-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-emerald-700"
+            >
               <div class="overflow-hidden rounded-lg bg-gray-100">
                 <img
                   alt=""
@@ -670,13 +681,21 @@
                   class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </div>
-              <h3 class="mt-3 text-sm font-medium text-gray-900">Ridgeline 3P Family</h3>
+              <h3 class="mt-3 text-sm font-medium text-gray-900">
+                <a
+                  href="#"
+                  class="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-transparent"
+                  >Ridgeline 3P Family</a
+                >
+              </h3>
               <p class="mt-1 text-sm text-gray-600">$419</p>
-            </a>
+            </article>
           </li>
 
           <li>
-            <a href="#" class="group block">
+            <article
+              class="group relative rounded-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-emerald-700"
+            >
               <div class="overflow-hidden rounded-lg bg-gray-100">
                 <img
                   alt=""
@@ -684,13 +703,21 @@
                   class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </div>
-              <h3 class="mt-3 text-sm font-medium text-gray-900">Hollow 1P Bivy</h3>
+              <h3 class="mt-3 text-sm font-medium text-gray-900">
+                <a
+                  href="#"
+                  class="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-transparent"
+                  >Hollow 1P Bivy</a
+                >
+              </h3>
               <p class="mt-1 text-sm text-gray-600">$219</p>
-            </a>
+            </article>
           </li>
 
           <li>
-            <a href="#" class="group block">
+            <article
+              class="group relative rounded-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-emerald-700"
+            >
               <div class="overflow-hidden rounded-lg bg-gray-100">
                 <img
                   alt=""
@@ -698,9 +725,15 @@
                   class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </div>
-              <h3 class="mt-3 text-sm font-medium text-gray-900">Summit 2P Storm</h3>
+              <h3 class="mt-3 text-sm font-medium text-gray-900">
+                <a
+                  href="#"
+                  class="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-transparent"
+                  >Summit 2P Storm</a
+                >
+              </h3>
               <p class="mt-1 text-sm text-gray-600">$589</p>
-            </a>
+            </article>
           </li>
         </ul>
       </div>
