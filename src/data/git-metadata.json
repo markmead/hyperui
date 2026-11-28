@@ -210,8 +210,8 @@
     "created": "2025-11-06T07:22:33+00:00"
   },
   "marketing/ctas": {
-    "commit": "94011f4091f580e841d8773d0e4adbe42deaacb9",
-    "date": "2026-11-27T12:48:28+00:00",
+    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
+    "date": "2026-11-27T21:31:21+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/faqs": {
@@ -235,8 +235,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/logo-clouds": {
-    "commit": "69d2bd0dc9ba922e72d1e1a20f040bc5ff523a7c",
-    "date": "2026-11-18T12:12:03+00:00",
+    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
+    "date": "2026-11-27T21:31:21+00:00",
     "created": "2025-11-06T07:22:33+00:00"
   },
   "marketing/newsletter-signup": {
@@ -260,8 +260,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/sections": {
-    "commit": "793a115130b38978dd0303ecc92a61b135d22a5a",
-    "date": "2026-11-27T19:43:06+00:00",
+    "commit": "93817a11b9bc02bab2b4f3604a269f5ab279d292",
+    "date": "2026-11-28T11:31:25+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/stats": {
@@ -340,13 +340,13 @@
     "created": "2026-08-27T17:48:35+01:00"
   },
   "templates/pricing-page": {
-    "commit": "fa3b75dc76f3579dd0cf30a41c9f8663d41905d4",
-    "date": "2026-11-27T19:38:38+00:00",
+    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
+    "date": "2026-11-27T21:31:21+00:00",
     "created": "2026-11-17T18:47:34+00:00"
   },
   "templates/saas-landing-page": {
-    "commit": "793a115130b38978dd0303ecc92a61b135d22a5a",
-    "date": "2026-11-27T19:43:06+00:00",
+    "commit": "93817a11b9bc02bab2b4f3604a269f5ab279d292",
+    "date": "2026-11-28T11:31:25+00:00",
     "created": "2026-07-11T09:21:52+01:00"
   },
   "templates/storefront": {
