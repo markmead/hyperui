@@ -45,8 +45,8 @@
     "created": "2026-11-17T16:56:09+00:00"
   },
   "application/details-list": {
-    "commit": "6365b55d15b1bad16af77455577bca77ddfa081c",
-    "date": "2026-11-27T10:46:06+00:00",
+    "commit": "37b92c325964db3661b6361feaa9f9533eb8f16c",
+    "date": "2026-11-27T21:44:06+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "application/dividers": {
@@ -70,8 +70,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "application/filters": {
-    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
-    "date": "2026-08-31T15:34:05+01:00",
+    "commit": "37b92c325964db3661b6361feaa9f9533eb8f16c",
+    "date": "2026-11-27T21:44:06+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "application/form-layouts": {
@@ -250,8 +250,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/product-cards": {
-    "commit": "34da087a2ed59549a1abbe652b6102b1a99daca6",
-    "date": "2026-11-27T21:43:02+00:00",
+    "commit": "9bbdc103688d33ec68ca94683d5908aa72350ec9",
+    "date": "2026-11-28T11:48:56+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/product-collections": {
@@ -350,13 +350,13 @@
     "created": "2026-07-11T09:21:52+01:00"
   },
   "templates/storefront": {
-    "commit": "34da087a2ed59549a1abbe652b6102b1a99daca6",
-    "date": "2026-11-27T21:43:02+00:00",
+    "commit": "9bbdc103688d33ec68ca94683d5908aa72350ec9",
+    "date": "2026-11-28T11:48:56+00:00",
     "created": "2026-08-27T17:48:35+01:00"
   },
   "templates/support-inbox": {
-    "commit": "13da9c9e4dfecff5d0b615265843186ca3a623af",
-    "date": "2026-11-27T19:39:24+00:00",
+    "commit": "3a56da05205db7df767964081977350a294b8969",
+    "date": "2026-11-28T07:22:28+00:00",
     "created": "2026-08-27T17:48:35+01:00"
   }
 }
