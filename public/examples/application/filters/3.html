@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status buttons - Filters - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body class="mx-auto max-w-sm p-6">
+    <div role="group" aria-label="Filter tickets by status" data-filter-group class="flex gap-1">
+      <button
+        type="button"
+        aria-pressed="true"
+        class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:hover:bg-gray-900"
+      >
+        All
+      </button>
+      <button
+        type="button"
+        aria-pressed="false"
+        class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:hover:bg-gray-900"
+      >
+        Open
+      </button>
+      <button
+        type="button"
+        aria-pressed="false"
+        class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:hover:bg-gray-900"
+      >
+        Pending
+      </button>
+      <button
+        type="button"
+        aria-pressed="false"
+        class="rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-inset aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:hover:bg-gray-900"
+      >
+        Closed
+      </button>
+    </div>
+    <script>
+      document.querySelectorAll('[data-filter-group]').forEach((group) => {
+        const buttons = group.querySelectorAll('button')
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            buttons.forEach((other) => {
+              other.setAttribute('aria-pressed', String(other === button))
+            })
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
