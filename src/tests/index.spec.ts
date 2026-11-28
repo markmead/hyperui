@@ -6,7 +6,9 @@ test.describe('Component category sections', () => {
   })
 
   test('can navigate to application components', async ({ page }) => {
-    const viewAllLink: Locator = page.getByRole('link', { name: 'View all application components' })
+    const viewAllLink: Locator = page.getByRole('link', {
+      name: /^View all \d+ application components$/,
+    })
 
     await expect(viewAllLink).toBeVisible()
 
@@ -33,7 +35,7 @@ test.describe('Component category sections', () => {
     ).toBeVisible()
   })
 
-  test('lists every template first, in title order', async ({ page }) => {
+  test('lists the five featured templates first, in title order', async ({ page }) => {
     const firstSection: Locator = page.locator('#main-content section').nth(1)
 
     await expect(firstSection.getByRole('heading', { level: 2 })).toHaveText('Templates')
@@ -43,13 +45,11 @@ test.describe('Component category sections', () => {
       'Portfolio',
       'Pricing Page',
       'SaaS Landing Page',
-      'Storefront',
-      'Support Inbox',
     ])
   })
 
   test('can navigate to templates', async ({ page }) => {
-    const viewAllLink: Locator = page.getByRole('link', { name: 'View all templates' })
+    const viewAllLink: Locator = page.getByRole('link', { name: /^View all \d+ templates$/ })
 
     await expect(viewAllLink).toBeVisible()
 

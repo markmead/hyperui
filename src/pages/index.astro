@@ -23,7 +23,8 @@ const byFeatured = (
 
 const templates = templatesRaw
   .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
+  .sort(byFeatured)
+  .slice(0, 5)
 
 const application = applicationRaw
   .map(({ data }) => data)
@@ -51,7 +52,8 @@ const neobrutalism = neobrutalismRaw
         description="Full pages built from HyperUI components. Accessible, responsive and dark mode ready."
         slug="templates"
         components={templates}
-        linkLabel="View all templates"
+        total={templatesRaw.length}
+        linkNoun="templates"
       />
 
       <CollectionFeature
@@ -59,6 +61,7 @@ const neobrutalism = neobrutalismRaw
         description="Components for building application user interfaces."
         slug="application"
         components={application}
+        total={applicationRaw.length}
       />
 
       <CollectionFeature
@@ -66,6 +69,7 @@ const neobrutalism = neobrutalismRaw
         description="Components for building marketing websites and landing pages."
         slug="marketing"
         components={marketing}
+        total={marketingRaw.length}
       />
 
       <CollectionFeature
@@ -73,6 +77,7 @@ const neobrutalism = neobrutalismRaw
         description="Components for building neobrutalist designs."
         slug="neobrutalism"
         components={neobrutalism}
+        total={neobrutalismRaw.length}
       />
 
       <section class="py-16">

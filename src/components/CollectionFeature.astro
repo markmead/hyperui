@@ -15,11 +15,13 @@ interface Props {
     | CollectionEntry<'neobrutalism'>['data']
     | CollectionEntry<'templates'>['data']
   )[]
-  /** Link text for the category page. Defaults to "View all {slug} components". */
-  linkLabel?: string
+  /** Number of collections in the category, shown in the link. */
+  total: number
+  /** What the link calls them. Defaults to "{slug} components". */
+  linkNoun?: string
 }
 
-const { title, description, slug, components, linkLabel } = Astro.props
+const { title, description, slug, components, total, linkNoun } = Astro.props
 ---
 
 <section class="py-16">
@@ -32,7 +34,7 @@ const { title, description, slug, components, linkLabel } = Astro.props
   </ul>
 
   <a href={`/components/${slug}`} class="group mt-8 inline-flex items-center gap-2 text-gray-700">
-    <span>{linkLabel ?? `View all ${slug} components`}</span>
+    <span>{`View all ${total} ${linkNoun ?? `${slug} components`}`}</span>
 
     <ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
   </a>
