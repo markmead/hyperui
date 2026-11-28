@@ -67,9 +67,20 @@ test.describe('Interest counter', () => {
     expect(beacons).toHaveLength(1)
   })
 
-  test('only appears on templates that offer it', async ({ page }) => {
-    await page.goto('/components/templates/storefront')
+  for (const slug of [
+    'analytics-dashboard',
+    'developer-tool',
+    'portfolio',
+    'pricing-page',
+    'saas-landing-page',
+    'storefront',
+    'support-inbox',
+  ]) {
+    test(`appears once on the ${slug} template`, async ({ page }) => {
+      await page.goto(`/components/templates/${slug}`)
 
-    await expect(page.locator('template-interest')).toHaveCount(0)
-  })
+      await expect(page.locator('template-interest')).toHaveCount(1)
+      await expect(page.locator('template-interest')).toHaveAttribute('data-slug', slug)
+    })
+  }
 })
