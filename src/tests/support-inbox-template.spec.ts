@@ -8,8 +8,10 @@ for (const theme of ['', '-dark']) {
       await page.setViewportSize({ width: 700, height: 900 })
       await page.goto(`${TEMPLATE}/2${theme}.html`)
 
-      const railToggle = page.getByRole('button', { name: 'Toggle queues' })
-      const detailsToggle = page.getByRole('button', { name: 'Toggle ticket details' })
+      // The toggles are hidden at desktop width, and getByRole skips hidden
+      // elements, so look them up by id to read their state after the resize.
+      const railToggle = page.locator('#rail-toggle')
+      const detailsToggle = page.locator('#details-toggle')
       const railBackdrop = page.locator('[data-rail-overlay]')
       const detailsBackdrop = page.locator('[data-details-overlay]')
 
