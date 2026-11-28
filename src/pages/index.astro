@@ -23,7 +23,7 @@ const byFeatured = (
 
 const templates = templatesRaw
   .map(({ data }) => data)
-  .sort((a, b) => a.title.localeCompare(b.title))
+  .sort(byFeatured)
   .slice(0, 6)
 
 const application = applicationRaw
