@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" class="dark font-sans antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero with install command and code sample - Sections - HyperUI</title>
+    <link href="/component.css" rel="stylesheet" />
+    <script src="/component.js" defer></script>
+  </head>
+  <body>
+    <section class="bg-gray-50">
+      <div
+        class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24"
+      >
+        <div class="min-w-0">
+          <p class="text-sm font-semibold text-indigo-600">Event delivery API</p>
+
+          <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Events that arrive. Every time.
+          </h1>
+
+          <p class="mt-4 text-lg text-pretty text-gray-600">
+            Relay delivers your events with retries, signing and a full delivery log, so you can
+            stop writing queue code.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href="#"
+              class="rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Get an API key
+            </a>
+
+            <a
+              href="#"
+              class="rounded-md border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-900 transition hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Read the docs
+            </a>
+          </div>
+
+          <div class="mt-8 max-w-md">
+            <h2 class="sr-only">Install</h2>
+
+            <div
+              dir="ltr"
+              class="flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-950 py-2 ps-4 pe-2"
+            >
+              <pre
+                tabindex="0"
+                class="min-w-0 flex-1 overflow-x-auto py-1 text-start font-mono text-sm text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+              ><code><span class="text-gray-400 select-none" aria-hidden="true">$ </span><span id="InstallCommandHero">npm install @relay/node</span></code></pre>
+
+              <button
+                type="button"
+                data-copy-target="InstallCommandHero"
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-4"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+                  />
+                </svg>
+
+                <span data-copy-label>Copy</span>
+                <span class="sr-only">command</span>
+              </button>
+
+              <span data-copy-status class="sr-only" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          dir="ltr"
+          class="overflow-hidden rounded-lg border border-gray-800 bg-gray-950 shadow-xl"
+        >
+          <div
+            role="tablist"
+            aria-label="Code language"
+            class="flex gap-1 border-b border-gray-800 px-2"
+          >
+            <button
+              type="button"
+              id="CodeTabNode"
+              role="tab"
+              aria-selected="true"
+              aria-controls="CodePanelNode"
+              class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-inset aria-selected:border-indigo-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+            >
+              Node
+            </button>
+
+            <button
+              type="button"
+              id="CodeTabPython"
+              role="tab"
+              aria-selected="false"
+              aria-controls="CodePanelPython"
+              tabindex="-1"
+              class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-inset aria-selected:border-indigo-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+            >
+              Python
+            </button>
+
+            <button
+              type="button"
+              id="CodeTabCurl"
+              role="tab"
+              aria-selected="false"
+              aria-controls="CodePanelCurl"
+              tabindex="-1"
+              class="-mb-px border-b-2 px-3 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-inset aria-selected:border-indigo-400 aria-selected:text-white aria-[selected=false]:border-transparent aria-[selected=false]:text-gray-400 aria-[selected=false]:hover:text-gray-200"
+            >
+              cURL
+            </button>
+          </div>
+
+          <div
+            id="CodePanelNode"
+            role="tabpanel"
+            aria-labelledby="CodeTabNode"
+            tabindex="0"
+            class="overflow-x-auto p-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-inset"
+          >
+            <pre
+              class="font-mono text-sm/6 text-gray-100"
+            ><code><span class="text-pink-300">import</span> { <span class="text-sky-300">Relay</span> } <span class="text-pink-300">from</span> <span class="text-emerald-300">'@relay/node'</span>
+
+<span class="text-pink-300">const</span> relay = <span class="text-pink-300">new</span> <span class="text-sky-300">Relay</span>(process.env.<span class="text-amber-200">RELAY_KEY</span>)
+
+<span class="text-pink-300">await</span> relay.events.<span class="text-sky-300">send</span>({
+  endpoint: <span class="text-emerald-300">'ep_orders'</span>,
+  type: <span class="text-emerald-300">'order.paid'</span>,
+  data: { id: <span class="text-emerald-300">'ord_1042'</span>, total: <span class="text-amber-200">4900</span> },
+})</code></pre>
+          </div>
+
+          <div
+            id="CodePanelPython"
+            role="tabpanel"
+            aria-labelledby="CodeTabPython"
+            tabindex="0"
+            hidden
+            class="overflow-x-auto p-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-inset"
+          >
+            <pre
+              class="font-mono text-sm/6 text-gray-100"
+            ><code><span class="text-pink-300">import</span> os
+<span class="text-pink-300">from</span> relay <span class="text-pink-300">import</span> <span class="text-sky-300">Relay</span>
+
+relay = <span class="text-sky-300">Relay</span>(os.environ[<span class="text-emerald-300">"RELAY_KEY"</span>])
+
+relay.events.<span class="text-sky-300">send</span>(
+    endpoint=<span class="text-emerald-300">"ep_orders"</span>,
+    type=<span class="text-emerald-300">"order.paid"</span>,
+    data={<span class="text-emerald-300">"id"</span>: <span class="text-emerald-300">"ord_1042"</span>, <span class="text-emerald-300">"total"</span>: <span class="text-amber-200">4900</span>},
+)</code></pre>
+          </div>
+
+          <div
+            id="CodePanelCurl"
+            role="tabpanel"
+            aria-labelledby="CodeTabCurl"
+            tabindex="0"
+            hidden
+            class="overflow-x-auto p-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-inset"
+          >
+            <pre
+              class="font-mono text-sm/6 text-gray-100"
+            ><code>curl https://api.relay.dev/v1/events \
+  -H <span class="text-emerald-300">"Authorization: Bearer $RELAY_KEY"</span> \
+  -H <span class="text-emerald-300">"Content-Type: application/json"</span> \
+  -d <span class="text-emerald-300">'{"endpoint": "ep_orders", "type": "order.paid",
+       "data": {"id": "ord_1042", "total": 4900}}'</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.querySelectorAll('[data-copy-target]').forEach((button) => {
+        const label = button.querySelector('[data-copy-label]')
+        const status = button.parentElement.querySelector('[data-copy-status]')
+        let resetTimer
+
+        button.addEventListener('click', async () => {
+          const text = document.getElementById(button.dataset.copyTarget).textContent
+
+          try {
+            await navigator.clipboard.writeText(text)
+          } catch {
+            status.textContent = 'Copy failed. Select the command and copy it instead.'
+            return
+          }
+
+          label.textContent = 'Copied'
+          status.textContent = 'Copied to clipboard.'
+
+          clearTimeout(resetTimer)
+          resetTimer = setTimeout(() => {
+            label.textContent = 'Copy'
+            status.textContent = ''
+          }, 1500)
+        })
+      })
+    </script>
+    <script>
+      const codeTabs = document.querySelectorAll('[role="tab"]')
+
+      const activateCodeTab = (tab) => {
+        codeTabs.forEach((otherTab) => {
+          const isSelected = otherTab === tab
+
+          otherTab.setAttribute('aria-selected', String(isSelected))
+          otherTab.tabIndex = isSelected ? 0 : -1
+
+          document.getElementById(otherTab.getAttribute('aria-controls')).hidden = !isSelected
+        })
+      }
+
+      codeTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          activateCodeTab(tab)
+          tab.focus()
+        })
+
+        tab.addEventListener('keydown', (event) => {
+          const targetIndex = {
+            ArrowLeft: (index - 1 + codeTabs.length) % codeTabs.length,
+            ArrowRight: (index + 1) % codeTabs.length,
+            Home: 0,
+            End: codeTabs.length - 1,
+          }[event.key]
+
+          if (targetIndex === undefined) return
+
+          event.preventDefault()
+          activateCodeTab(codeTabs[targetIndex])
+          codeTabs[targetIndex].focus()
+        })
+      })
+    </script>
+  </body>
+</html>

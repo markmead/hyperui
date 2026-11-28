@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab' && e.target.closest('a, input[type="file"]')) {
+    if (e.key !== 'Tab' && e.key !== 'Escape' && e.target.closest('a, input[type="file"]')) {
       e.preventDefault()
     }
   })
