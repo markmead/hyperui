@@ -210,8 +210,8 @@
     "created": "2025-11-06T07:22:33+00:00"
   },
   "marketing/ctas": {
-    "commit": "14e3a6c8365a71302f3adece2ce654a8cdccf078",
-    "date": "2026-11-27T21:31:21+00:00",
+    "commit": "318e97ee16ba012e3d2a3b33740b9c1cf91f087e",
+    "date": "2026-11-27T21:35:59+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/faqs": {
@@ -220,8 +220,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/feature-grids": {
-    "commit": "2dfb3ef2122ed387410362accffe7ffaec38da36",
-    "date": "2026-08-31T15:34:05+01:00",
+    "commit": "318e97ee16ba012e3d2a3b33740b9c1cf91f087e",
+    "date": "2026-11-27T21:35:59+00:00",
     "created": "2025-11-07T08:57:04+00:00"
   },
   "marketing/footers": {
@@ -260,8 +260,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/sections": {
-    "commit": "93817a11b9bc02bab2b4f3604a269f5ab279d292",
-    "date": "2026-11-28T11:31:25+00:00",
+    "commit": "54ab36d91190236f5c8fbe05b4270f0167b06c69",
+    "date": "2026-11-28T11:35:26+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/stats": {
@@ -330,8 +330,8 @@
     "created": "2026-07-11T09:21:52+01:00"
   },
   "templates/developer-tool": {
-    "commit": "df98cda7909f518b2c8219086f4d7856859e1e4c",
-    "date": "2026-11-27T19:38:47+00:00",
+    "commit": "318e97ee16ba012e3d2a3b33740b9c1cf91f087e",
+    "date": "2026-11-27T21:35:59+00:00",
     "created": "2026-11-17T17:05:03+00:00"
   },
   "templates/portfolio": {
