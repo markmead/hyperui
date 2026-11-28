@@ -90,7 +90,7 @@ Read these before the work they cover. They hold the detail that doesn't belong 
 - Never hand-edit a `-dark.html` file to fix something. Change the light file and run `pnpm dark`. If the generator gets a pattern wrong, fix the generator or `scripts/dark-mode.config.json`, so the fix survives the next regeneration.
 - Check keyboard and resize behaviour in a real browser (the pre-installed Chromium), not by reading the code. A refactor of index maths or key handling is not done until arrow keys have been pressed.
 - Don't add a new spec with each fix. Axe and the guides cover the markup. Add a test only when asked, or for behaviour nothing else would catch.
-- Open pull requests as drafts, stack a follow-up on the branch it builds on, and call out in the description what you couldn't run. If several pull requests are open, leave `git-metadata.json` for a separate one after they merge.
+- Open larger pull requests as drafts. Open small, low-risk ones ready for review with auto-merge on (see Git Workflow). Stack a follow-up on the branch it builds on, and call out in the description what you couldn't run. If several pull requests are open, leave `git-metadata.json` for a separate one after they merge.
 - Proceed on conventional choices without asking. Stop and ask before: adding a collection or template (CONTRIBUTING.md says to open an issue first), editing `src/pages`, `wrangler.jsonc` or the build, removing a component, or pushing to a branch you didn't create.
 - When a review or CI finds something real, fix it in the same pull request. Report nits you decline instead of silently skipping them.
 
@@ -114,4 +114,8 @@ Read these before the work they cover. They hold the detail that doesn't belong 
 
 When on a branch other than `main`, always push to the current branch (`git push origin HEAD:<current-branch-name>` or equivalent), unless a new branch is explicitly requested. Do not `git checkout -b <name>` a local branch whose name differs from the remote branch it's meant to track (e.g. dropping a `claude/` prefix) — a plain `git push -u origin <name>` in that situation creates a new, unrelated remote branch instead of updating the intended one.
 
-Merge small, low-risk pull requests (a fix to one example, a typo, a test update) yourself once CI is green. Larger changes, anything touching `src/pages`, `wrangler.jsonc` or the build, wait for review.
+Small, low-risk pull requests (a fix to one example, a typo, a class or copy tweak, a test update) merge without waiting for review, as soon as the `Lint, build and test (Chromium)` check is green. Open them ready for review, not as drafts. Subscribe to the pull request, and squash-merge it when that check passes, with the head SHA of the commit that was tested. If CI fails, fix it in the same pull request.
+
+GitHub's own auto-merge isn't available: `main` has no branch protection rule with required checks, so enabling it fails with "Protected branch rules not configured". If a rule requiring that check is added, turn on auto-merge (squash) when opening the pull request instead.
+
+Larger changes, anything touching `src/pages`, `wrangler.jsonc`, the build or dependencies, wait for review.
