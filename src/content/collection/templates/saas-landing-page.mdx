@@ -19,6 +19,7 @@ components:
 
 import BaseHero from '../../../components/BaseHero.astro'
 import BackLink from '../../../components/BackLink.astro'
+import TemplateInterest from '../../../components/TemplateInterest.astro'
 
 <BaseHero title={frontmatter.title} description={frontmatter.description}>
   <BackLink
@@ -27,3 +28,9 @@ import BackLink from '../../../components/BackLink.astro'
     label={`Back to ${frontmatter.category} components`}
   />
 </BaseHero>
+
+<TemplateInterest
+  slug={frontmatter.slug}
+  title="A complete marketing site"
+  description="A fuller version is in the works: about, blog, changelog, customers and contact pages. Want it?"
+/>
