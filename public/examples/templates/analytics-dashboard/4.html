@@ -187,9 +187,16 @@
         </div>
 
         <div class="rounded-lg border border-gray-200 bg-white p-6">
-          <h2 class="text-sm font-medium text-gray-900">Invoice history</h2>
+          <h2 id="invoice-history-title" class="text-sm font-medium text-gray-900">
+            Invoice history
+          </h2>
 
-          <div class="mt-4 overflow-x-auto">
+          <div
+            role="region"
+            aria-labelledby="invoice-history-title"
+            tabindex="0"
+            class="mt-4 overflow-x-auto rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+          >
             <table class="min-w-full divide-y-2 divide-gray-200">
               <thead class="ltr:text-left rtl:text-right">
                 <tr class="*:font-medium *:text-gray-900">
