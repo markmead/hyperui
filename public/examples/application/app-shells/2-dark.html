@@ -14,7 +14,7 @@
     <div
       data-sidebar-overlay
       aria-hidden="true"
-      class="fixed inset-0 z-30 hidden bg-gray-900/50 group-data-[sidebar=open]:block lg:hidden dark:bg-black/60"
+      class="fixed inset-0 z-30 hidden bg-gray-900/50 max-lg:group-data-[sidebar=open]:block dark:bg-black/60"
     ></div>
 
     <div
@@ -171,6 +171,12 @@
       })
 
       sidebarOverlay.addEventListener('click', () => setSidebarOpen(false))
+      // The sidebar only slides in below lg, so close it if the window grows past that.
+      globalThis.matchMedia('(min-width: 64rem)').addEventListener('change', (mediaEvent) => {
+        if (mediaEvent.matches) {
+          setSidebarOpen(false)
+        }
+      })
 
       document.addEventListener('keydown', (keyboardEvent) => {
         if (keyboardEvent.key === 'Escape' && document.body.dataset.sidebar === 'open') {
