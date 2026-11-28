@@ -12,7 +12,9 @@
  * can't do, because it only rewrites `class` attributes.
  *
  * `--check` writes nothing. It reports which dark files differ from what the
- * script would generate, and exits 1 if any do. A dark file that was
+ * script would generate, and exits 1 if any do. It ignores class order and
+ * line breaks, which Prettier decides. A light file with no dark file is
+ * listed as `missing:` and doesn't fail the check. A dark file that was
  * hand-tuned after generating will show up here, so mention the tuning in
  * the PR that adds it.
  *
@@ -248,6 +250,24 @@ export function generateDarkHtml(lightHtml, darkModeConfig) {
   return darkHtml
 }
 
+/**
+ * Class order and line breaks come from Prettier and change with the length of
+ * the class lists, so a check compares the markup without them. What is left
+ * is the classes, the text and the structure.
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+function withoutFormatting(html) {
+  return html
+    .replace(
+      /class="([^"]*)"/g,
+      (_, classAttribute) =>
+        `class="${classAttribute.split(/\s+/).filter(Boolean).sort().join(',')}"`,
+    )
+    .replace(/\s+/g, '')
+}
+
 async function main() {
   const commandLineArguments = process.argv.slice(2)
   const isCheck = commandLineArguments.includes('--check')
@@ -275,11 +295,15 @@ async function main() {
     )
 
     if (isCheck) {
-      const existingDarkHtml = fs.existsSync(darkFilePath)
-        ? fs.readFileSync(darkFilePath, 'utf8')
-        : ''
+      if (!fs.existsSync(darkFilePath)) {
+        console.log(`missing: ${darkFilePath}`)
 
-      if (existingDarkHtml !== darkHtml) {
+        continue
+      }
+
+      if (
+        withoutFormatting(fs.readFileSync(darkFilePath, 'utf8')) !== withoutFormatting(darkHtml)
+      ) {
         mismatchCount += 1
         console.log(`differs: ${darkFilePath}`)
       }
