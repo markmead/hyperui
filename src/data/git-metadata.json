@@ -195,8 +195,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/cards": {
-    "commit": "d13b855ab287cdd9d05bf6e2ae058a296513d1a3",
-    "date": "2026-11-27T21:42:44+00:00",
+    "commit": "582ab574da918be08f0c8f5a9d1d00c32275aebe",
+    "date": "2026-11-28T11:44:26+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/carts": {
@@ -250,8 +250,8 @@
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/product-cards": {
-    "commit": "bf711a07942095313a140ed5ce2402e6b6bef5de",
-    "date": "2026-11-27T14:42:52+00:00",
+    "commit": "34da087a2ed59549a1abbe652b6102b1a99daca6",
+    "date": "2026-11-27T21:43:02+00:00",
     "created": "2025-10-27T12:07:31+00:00"
   },
   "marketing/product-collections": {
@@ -335,8 +335,8 @@
     "created": "2026-11-17T17:05:03+00:00"
   },
   "templates/portfolio": {
-    "commit": "d13b855ab287cdd9d05bf6e2ae058a296513d1a3",
-    "date": "2026-11-27T21:42:44+00:00",
+    "commit": "582ab574da918be08f0c8f5a9d1d00c32275aebe",
+    "date": "2026-11-28T11:44:26+00:00",
     "created": "2026-08-27T17:48:35+01:00"
   },
   "templates/pricing-page": {
@@ -350,8 +350,8 @@
     "created": "2026-07-11T09:21:52+01:00"
   },
   "templates/storefront": {
-    "commit": "9a463b3ce11099b94cdd040537386da8d4f3ec0f",
-    "date": "2026-11-27T19:38:56+00:00",
+    "commit": "34da087a2ed59549a1abbe652b6102b1a99daca6",
+    "date": "2026-11-27T21:43:02+00:00",
     "created": "2026-08-27T17:48:35+01:00"
   },
   "templates/support-inbox": {
